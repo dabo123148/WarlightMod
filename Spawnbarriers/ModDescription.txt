@@ -1,0 +1,1 @@
+Randomizes the size of each wasteland by the given amount.  For example, if you set the +/- limit to 2, each wasteland will have its size changed by -2, -1, 0, +1, or +2 randomly when the game starts.
