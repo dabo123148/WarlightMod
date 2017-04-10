@@ -7,8 +7,8 @@ function Spawnbarriers(game, standing)
 			print('is called1');
 			for placeholder, conn in pairs(game.Map.Territories[territory.ID].ConnectedTo.ID) do
 				print('is called2');
-		  		if(game.Map.Territories[conn].TTerritories.OwnerPlayerID == PlayerID.Neutral) then
-					game.Map.Territories[conn].TTerritories.NumArmies = Armies(newArmiesCount);
+		  		if(standing.Territories[conn].OwnerPlayerID == PlayerID.Neutral) then
+					standing.Territories[conn].NumArmies = Armies(newArmiesCount);
 		   		end
 	    	end
         end
