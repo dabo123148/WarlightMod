@@ -5,10 +5,10 @@ function Spawnbarriers(game, standing)
            	if (newArmiesCount < 0) then newArmiesCount = 0 end;
             if (newArmiesCount > 100000) then newArmiesCount = 100000 end;
 			print('is called1');
-			for placeholder, conn in pairs(game.Map.Territories[territory.ID].TTerritories.ConnectedTo.ID) do
+			for placeholder, conn in pairs(game.Map.Territories[territory.ID].ConnectedTo.ID) do
 				print('is called2');
-		  		if(game.Map.Territories[territory.ID].TTerritories.OwnerPlayerID == PlayerID.Neutral) then
-					game.Map.Territories[territory.ID].TTerritories.NumArmies = Armies(newArmiesCount);
+		  		if(game.Map.Territories[conn].TTerritories.OwnerPlayerID == PlayerID.Neutral) then
+					game.Map.Territories[conn].TTerritories.NumArmies = Armies(newArmiesCount);
 		   		end
 	    	end
         end
