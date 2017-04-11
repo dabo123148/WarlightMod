@@ -14,7 +14,7 @@ function Spawnbarriers(game, standing)
 			print('is called7');
 			print(game.Map.Territories[territory.ID]);
 			print('is called8');
-			for _, ID in pairs(game.Map.Territories[territory.ID].ConnectedTo.ID) do
+			for _, conn in pairs(game.Map.Territories[territory.ID].ConnectedTo.ID) do
 				print('is called9');
 		  		if(standing.Territories[conn].OwnerPlayerID == PlayerID.Neutral) then
 					print('is called10');
