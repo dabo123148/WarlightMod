@@ -2,7 +2,7 @@ function Spawnbarriers(game, standing)
 	print('is called1');
 	for _, territory in pairs(standing.Territories) do
 		print('is called2');
-        if (territory.OwnerPlayerID ~= PlayerID.Neutral) then
+        if (territory.OwnerPlayerID ~= WL.PlayerID.Neutral) then
 			print('is called3');
         	local newArmiesCount = Mod.Settings.ConnectedArmyNumber;
 			print('is called4');
@@ -18,7 +18,7 @@ function Spawnbarriers(game, standing)
 				print('is called9');
 		  		if(standing.Territories[conn].OwnerPlayerID == PlayerID.Neutral) then
 					print('is called10');
-					standing.Territories[conn].NumArmies = Armies(newArmiesCount);
+					standing.Territories[conn].NumArmies = WL.Armies.Create(newArmiesCount);
 					print('is called11');
 		   		end
 	    	end
