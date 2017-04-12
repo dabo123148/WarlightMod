@@ -1,1 +1,1 @@
-Changes the number of armies connected to the starting regions to a definded value. This Mod was created by dabo1.
+Changes the number of armies connected to the starting regions to a definded value.
