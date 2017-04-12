@@ -1,1 +1,1 @@
-Every starting region of a random player gets a commander, which can't move (this is in the current modsystem version not possible). If one of the commanders dies, the player has lost.
+Every starting region of a random player gets a commander, which can't move (stopping a commander from moving is in the current modsystem version not possible, so you need to trust the players to hold their commanders at their starting positions). --> if one of the starting regions falls, the player is dead
