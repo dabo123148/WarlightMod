@@ -6,7 +6,7 @@ function Client_PresentConfigureUI(rootParent)
 	end
     
     local horz = UI.CreateHorizontalLayoutGroup(rootParent);
-	UI.CreateLabel(horz).SetText('Connected Staring Regions Armies ');
+	UI.CreateLabel(horz).SetText('Connected Starting Regions Armies ');
     InputConnectedArmyNum = UI.CreateNumberInputField(horz)
 		.SetSliderMinValue(0)
 		.SetSliderMaxValue(100)
