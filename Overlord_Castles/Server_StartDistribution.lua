@@ -1,7 +1,8 @@
 function Server_StartDistribution(game, standing)
+	overriddenTerris=Mod.Settings.OverriddenTerris;
     for _, terr in pairs(standing.Territories) do
 		if not overriddenTerris[terr.ID]==nil then
-			if overriddenTerris[terr.ID]==true and terr.IsNeutral then
+			if overriddenTerris[terr.ID]==1 and terr.IsNeutral then
 				terr.NumArmies = Mod.Settings.TroopValue;
 			end
 		end
