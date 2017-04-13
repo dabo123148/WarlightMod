@@ -19,8 +19,8 @@ function Server_Created(game, settings)
 					if (tablelength(bonus.Territories)<=Mod.Settings.MaxBonus) then
 						newValue=Mod.Settings.BonusValue*tablelength(bonus.Territories);
 						for _, terr in pairs(bonus.Territories) do
-							print(terr.ID);
-							overriddenTerris[terr.ID]=1;
+							
+							overriddenTerris[terr]=1;
 						end
 					end
 				end
