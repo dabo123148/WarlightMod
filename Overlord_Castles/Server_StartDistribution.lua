@@ -3,11 +3,12 @@ function Server_StartDistribution(game, standing)
 
     for _, terr in pairs(standing.Territories) do
 		print('ID: ' .. terr.ID .. ', Arr: ' .. overriddenTerris[terr.ID]);
-
-		if not overriddenTerris[terr.ID]==nil then
-			if overriddenTerris[terr.ID]==1 and terr.IsNeutral then
-				print('Tried NumArmyChange');
-				terr.NumArmies = Mod.Settings.TroopValue;
+		if (overriddenTerris[terr.ID]~=nil) then
+			if (overriddenTerris[terr.ID]==1) then
+				if(terr.IsNeutral) then
+					print('Tried NumArmyChange');
+					terr.NumArmies = WL.Armies.Create(Mod.Settings.TroopValue);
+				end
 			end
 		end
 	end
