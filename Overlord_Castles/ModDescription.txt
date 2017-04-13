@@ -1,0 +1,1 @@
+Adds Overlord Castles to the game. They are Small, Neutral Bonuses giving high amounts of troops, but holding many defending troops.
