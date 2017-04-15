@@ -4,19 +4,14 @@ function NoLose(game, standing)
 		Territoryanzahl = Territoryanzahl+1;
 	end
 	local Zahl = math.random(0,Territoryanzahl-1);
-	print(Zahl);
-	print('T4');
-		print(standing.Territories[Zahl]);
-		print('T5');
-		print(standing.Territories[Zahl].OwnerPlayerID);
-		print('T6');
+	while(standing.Territories[Zahl] == nil){
+		Zahl = math.random(0,Territoryanzahl-1);
+	}
 	while(standing.Territories[Zahl].OwnerPlayerID == WL.PlayerID.Neutral) do
 		Zahl = math.random(0,Territoryanzahl-1);
-		print('T1');
-		print(standing.Territories[Zahl]);
-		print('T2');
-		print(standing.Territories[Zahl].OwnerPlayerID);
-		print('T3');
+		while(standing.Territories[Zahl] == nil){
+			Zahl = math.random(0,Territoryanzahl-1);
+		}
 	end
 	local territory = standing.Territories[Zahl];
 	Mod.Settings.Spieler = territory.OwnerPlayerID;
