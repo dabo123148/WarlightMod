@@ -12,6 +12,6 @@ function Client_SaveConfigureUI(alert)
 		alert('The Effect Radius can not be less than one, else the Mod would not have any effect and you can remove it.');
 	end
 	if(Mod.Settings.Radius > 3)then
-		alert('Through performence issuses, the maximum Effect area is limited to a radius of 3.');
+		alert('Through performence issuses, the maximum Effect Radius is limited to a radius of 3.');
 	end
 end
