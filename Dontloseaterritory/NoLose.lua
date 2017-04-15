@@ -7,6 +7,11 @@ function NoLose(game, standing)
 	print(Zahl);
 	while(standing.Territories[Zahl].OwnerPlayerID == WL.PlayerID.Neutral) do
 		Zahl = math.random(0,Territoryanzahl-1);
+		print('T1');
+		print(standing.Territories[Zahl]);
+		print('T2');
+		print(standing.Territories[Zahl].OwnerPlayerID);
+		print('T3');
 	end
 	local territory = standing.Territories[Zahl];
 	Mod.Settings.Spieler = territory.OwnerPlayerID;
