@@ -4,6 +4,7 @@ function NoLose(game, standing)
 		Territoryanzahl = Territoryanzahl+1;
 	end
 	local Zahl = math.random(0,Territoryanzahl-1);
+	print(Zahl);
 	while(standing.Territories[Zahl].OwnerPlayerID == WL.PlayerID.Neutral) do
 		Zahl = math.random(0,Territoryanzahl-1);
 	end
