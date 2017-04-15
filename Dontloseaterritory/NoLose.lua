@@ -5,6 +5,11 @@ function NoLose(game, standing)
 	end
 	local Zahl = math.random(0,Territoryanzahl-1);
 	print(Zahl);
+	print('T4');
+		print(standing.Territories[Zahl]);
+		print('T5');
+		print(standing.Territories[Zahl].OwnerPlayerID);
+		print('T6');
 	while(standing.Territories[Zahl].OwnerPlayerID == WL.PlayerID.Neutral) do
 		Zahl = math.random(0,Territoryanzahl-1);
 		print('T1');
