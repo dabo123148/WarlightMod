@@ -1,1 +1,1 @@
-Changes the number of armies connected to the starting regions to a definded value.
+Changes the number of armies on each neutral territory connected to the starting territorys in a radius between 1-3 territorys to a definded value.
