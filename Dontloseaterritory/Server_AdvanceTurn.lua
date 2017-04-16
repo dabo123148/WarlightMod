@@ -6,6 +6,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		for _, unit in pairs(order.NumArmies.SpecialUnits) do
 			for _, created in pairs(Mod.Settings.CreatedCommander) do
 				print('with special unit');
+				print(unit.ID .. created.ID);
 				if(unit.ID == created.ID) then
 					print('with commander');
 					skipThisOrder(WL.ModOrderControl.Skip);
