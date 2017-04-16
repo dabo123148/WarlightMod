@@ -21,13 +21,9 @@ function NoLose(game, standing)
    	local newArmiesCount = Mod.Settings.StartArmies;
 	if (newArmiesCount < 0) then newArmiesCount = 0 end;
 	if (newArmiesCount > 100000) then newArmiesCount = 100000 end;
-	Mod.Settings.CreatedCommander = {};
 	for _, allterritory in pairs(standing.Territories) do
 		if(allterritory.OwnerPlayerID == Mod.Settings.Spieler) then
 			allterritory.NumArmies = WL.Armies.Create(newArmiesCount,{WL.Commander.Create(Mod.Settings.Spieler)});
-			for _, sunit in pairs(allterritory.NumArmies.SpecialUnits) do
-				Mod.Settings.CreatedCommander[tablelength(Mod.Settings.CreatedCommander)] = sunit;
-			end
 		end
 	end
 end
