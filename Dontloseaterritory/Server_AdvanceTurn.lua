@@ -9,7 +9,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 		if(Zahl == 1) then
 			skipThisOrder(WL.ModOrderControl.Skip);
-			print(order.test);
 			addNewOrder(WL.GameOrderAttackTransfer.Create(order.PlayerID, order.From, order.To, order.AttackTransfer , order.ByPercent , WL.Armies.Create(order.NumArmies.NumArmies), order.AttackTeammates))
 		end
 	end
