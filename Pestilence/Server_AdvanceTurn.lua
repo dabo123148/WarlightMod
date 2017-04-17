@@ -1,7 +1,7 @@
 
 function Server_AdvanceTurn_End(game,addOrder)
     standing=game.ServerGame.LatestTurnStanding;
-	CurrentIndex=0;
+	CurrentIndex=1;
 	PestilenceOrder={};
 	for _,terr in pairs(standing.Territories) do
 		if not (terr.IsNeutral) then
