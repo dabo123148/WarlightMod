@@ -7,8 +7,8 @@ function Client_PresentConfigureUI(rootParent)
     local horz1 = UI.CreateHorizontalLayoutGroup(vert);
 	UI.CreateLabel(horz1).SetText('Pestilence Strength');
     numberInputField1 = UI.CreateNumberInputField(horz1)
-		.SetSliderMinValue(0)
-		.SetSliderMaxValue(200)
+		.SetSliderMinValue(1)
+		.SetSliderMaxValue(5)
 		.SetValue(initialValue1);
 
 
