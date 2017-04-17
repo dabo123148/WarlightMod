@@ -1,0 +1,1 @@
+If an attacks fails, the player who got attacked won't lose any army and get the lost enemy troops.
