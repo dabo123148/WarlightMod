@@ -21,6 +21,6 @@ function Server_AdvanceTurn_End(game,addOrder)
 			
 		end
 	end
-	addOrder(WL.GameOrderEvent.Create(terr.OwnerPlayerID,'Pestilence',{},PestilenceOrder));
+	addOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral,'Pestilence',nil,PestilenceOrder));
 
 end
