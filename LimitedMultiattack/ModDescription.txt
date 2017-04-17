@@ -1,1 +1,1 @@
-Allows to limit the maximum number of attacks per multiattack
+Allows to limit the maximum number of attacks per multiattack. Feature Multiattack must be enabled.
