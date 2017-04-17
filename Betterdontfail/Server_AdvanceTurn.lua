@@ -7,7 +7,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			terrMod = WL.TerritoryModification.Create(terr.ID);
 			terrMod.SetOwnerOpt=terr.OwnerPlayerID;
 			terrMod.SetArmiesTo = result.DefendingArmiesKilled.NumArmies+result.AttackingArmiesKilled.NumArmies+game.ServerGame.LatestTurnStanding.Territories[order.To].NumArmies.NumArmies;
-			addOrder(WL.GameOrderEvent.Create(terr.OwnerPlayerID,"Attackfailed",{},{terrMod}));
+			addNewOrder(WL.GameOrderEvent.Create(terr.OwnerPlayerID,"Attackfailed",{},{terrMod}));
 		end
 	end
 end
