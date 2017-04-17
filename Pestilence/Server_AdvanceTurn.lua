@@ -6,7 +6,7 @@ function Server_AdvanceTurn_End(game,addOrder)
 			Count = terr.NumArmies.NumArmies;
 			terrMod2=WL.TerritoryModification.Create(terr.ID);
 			terrMod2.SetArmiesTo=math.min(Count-Mod.Settings.PestilenceStrength,0);
-			addOrder(WL.GameOrderEvent.Create(terr.OwnerPlayerID,'Pestilence',{},terrMod2));
+			addOrder(WL.GameOrderEvent.Create(terr.OwnerPlayerID,'Pestilence',{},{terrMod2}));
 			if (Count<=Mod.Settings.PestilenceStrength) then
 				terrMod = WL.TerritoryModification.Create(terr.ID);
 				terrMod.SetOwnerOpt=WL.PlayerID.Neutral;
