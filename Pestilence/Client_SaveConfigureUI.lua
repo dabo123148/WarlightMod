@@ -1,6 +1,6 @@
 
 function Client_SaveConfigureUI(alert)
     
-    Mod.Settings.PestilenceStrength = numberInputField1.GetValue();
+    Mod.Settings.PeatilenceStrength = numberInputField1.GetValue();
 
 end

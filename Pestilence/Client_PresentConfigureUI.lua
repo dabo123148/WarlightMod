@@ -4,7 +4,7 @@ function Client_PresentConfigureUI(rootParent)
 	if initialValue1 == nil then initialValue1 = 1; end
     
 
-    local horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
+    local horz1 = UI.CreateHorizontalLayoutGroup(vert);
 	UI.CreateLabel(horz1).SetText('Pestilence Strength');
     numberInputField1 = UI.CreateNumberInputField(horz1)
 		.SetSliderMinValue(0)
