@@ -25,11 +25,11 @@ function Server_AdvanceTurn_End(game, addNewOrder)
 				for _,bombterrid in pairs(Renaisanceterr) do
 					local Effect = {};
 					for _,conn in pairs(game.Map.Territories[bombterrid].ConnectedTo) do
-						Effect[tablelength(Effect)] = WL.TerritoryModification.Create(conn.ID);
-						Effect[tablelength(Effect)-1].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*0.75;
+						Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(conn.ID);
+						Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*0.75;
 					end
-					Effect[tablelength(Effect)] = WL.TerritoryModification.Create(bombterrid);
-					Effect[tablelength(Effect)-1].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[bombterrid].NumArmies.NumArmies/2;
+					Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(bombterrid);
+					Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[bombterrid].NumArmies.NumArmies/2;
 					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID,'Nuke',{},Effect));
 				end
 			end
