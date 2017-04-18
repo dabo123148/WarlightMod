@@ -1,1 +1,1 @@
-The Army Count on every own Territory will be reduced by the Pestilence Strength after every turn. If there are no armies left, the territory will go neutral. This mod was written by melwei.
+Creates n Randomly Placed Wastelands per turn. They'll have the same size like the normal ones.
