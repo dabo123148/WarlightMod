@@ -6,7 +6,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		executed = true;
 		for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
 			if(terr.OwnerPlayerID == WL.PlayerID.Neutral)then
-				local Remainingarmies = 0;
+				local Remainingarmies = terr.NumArmies.NumArmies;
 				for _,conn in pairs(game.Map.Territories[terr.ID].ConnectedTo) do
 					local  Takenarmies = math.random(0,Remainingarmies);
 					if(Takenarmies > 0)then
