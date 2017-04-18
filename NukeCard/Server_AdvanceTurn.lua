@@ -12,27 +12,20 @@ end
 function Server_AdvanceTurn_End(game, addNewOrder)
 	if(executed == false)then
 		executed = true;
-		local deployed = false;
 		local Renaisanceterr = {};
 		for _,order in pairs(SkippedOrders) do
 			if(order.proxyType == 'GameOrderPlayCardReconnaissance')then
-				Renaisanceterr[tablelength(Renaisanceterr)] = order.TargetTerritory;
+				local Effect = {};
+				for _,conn in pairs(game.Map.Territories[order.TargetTerritory].ConnectedTo) do
+					Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(conn.ID);
+					Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*0.75;
+				end
+				Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(order.TargetTerritory);
+				Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritory].NumArmies.NumArmies/2;
+				addNewOrder(WL.GameOrderEvent.Create(order.PlayerID,'Nuke',{},Effect));
 			end
 		end
 		for _,order in pairs(SkippedOrders) do
-			if(deployed == false)then
-				deployed = true;
-				for _,bombterrid in pairs(Renaisanceterr) do
-					local Effect = {};
-					for _,conn in pairs(game.Map.Territories[bombterrid].ConnectedTo) do
-						Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(conn.ID);
-						Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*0.75;
-					end
-					Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(bombterrid);
-					Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[bombterrid].NumArmies.NumArmies/2;
-					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID,'Nuke',{},Effect));
-				end
-			end
 			if(order.proxyType ~= 'GameOrderPlayCardReconnaissance')then
 				addNewOrder(order);
 			end
