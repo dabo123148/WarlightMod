@@ -16,7 +16,7 @@ function Server_AdvanceTurn_End(game, addNewOrder)
 		local Renaisanceterr = {};
 		for _,order in pairs(SkippedOrders) do
 			if(order.proxyType == 'GameOrderPlayCardReconnaissance')then
-				Renaisanceterr[tablelength(Renaisanceterr)] = order;
+				Renaisanceterr[tablelength(Renaisanceterr)] = order.TargetTerritory;
 			end
 		end
 		for _,order in pairs(SkippedOrders) do
