@@ -1,0 +1,1 @@
+This Mod rewrites the Renaisance card to a nuke card. The territory it is played on will lose 50%of its armies and all connected territries lose 25% of their armies. The attack also effects own territories.
