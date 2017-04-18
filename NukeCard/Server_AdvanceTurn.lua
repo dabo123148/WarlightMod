@@ -24,7 +24,7 @@ function Server_AdvanceTurn_End(game, addNewOrder)
 				deployed = true;
 				for _,bombterrid in pairs(Renaisanceterr) do
 					local Effect = {};
-					for _,conn in pairs(game.Map.Territories[bombterrid]) do
+					for _,conn in pairs(game.Map.Territories[bombterrid].ConnectedTo) do
 						Effect[tablelength(Effect)] = WL.TerritoryModification.Create(conn.ID);
 						Effect[tablelength(Effect)-1].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*0.75;
 					end
