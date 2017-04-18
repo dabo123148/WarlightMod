@@ -1,1 +1,1 @@
-Neutral territorys also attack players and transfer troops between them.
+Neutral territories move transfer their armies between each other.
