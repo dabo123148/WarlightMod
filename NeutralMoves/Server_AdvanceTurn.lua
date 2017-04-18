@@ -1,7 +1,7 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
 	executed = false;
 end
-function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
+function Server_AdvanceTurn_End(game,addNewOrder)
 	if(executed == false) then
 		executed = true;
 		for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
@@ -16,7 +16,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						terrMod[0].SetArmiesTo = Remainingarmies;
 						terrMod[1] = WL.TerritoryModification.Create(conn.ID);
 						terrMod[1].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies + Takenarmies;
-						addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "Neutral Move", {}, terrMod));
+						addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, 'Neutral Move', nil, terrMod);
 					end
 				end
 			end
