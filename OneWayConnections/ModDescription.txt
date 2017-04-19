@@ -1,0 +1,1 @@
+You can remove connections with this mod. If you changed the count of removed Connections you need to press submit and then open the window again.
