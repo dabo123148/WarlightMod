@@ -4,7 +4,7 @@ function Client_PresentSettingsUI(rootParent)
 	local num = 0;
 	while(RC[num] ~= nil)do
 		UI.CreateLabel(rootParent)
-		.SetText('Removed Connection between ' .. RC[num] .. ' and ' RC[num+1]);
+		.SetText('Removed Connection between ' .. RC[num] .. ' and ' .. RC[num+1]);
 		num=num+2;
 	end
 end
