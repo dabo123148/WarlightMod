@@ -34,13 +34,13 @@ function Client_PresentConfigureUI(rootParent)
 		 if(enteredtext == nil)then
 			 enteredtext = "";
 		 end
-		 RemovedConnectionsFields[num] = UI.CreateTextInputField(removedconn1).SetText(enteredtext).SetFlexibleWidth(1);
+		 RemovedConnectionsFields[num] = UI.CreateTextInputField(removedconn1).SetText(enteredtext).SetPreferredWidth(100);
 		 UI.CreateLabel(removedconn1).SetText('To ');
 		 enteredtext =  RC[num+1];
 		 if(enteredtext == nil)then
 			 enteredtext = "";
 		 end
-		  RemovedConnectionsFields[num+1] = UI.CreateTextInputField(removedconn1).SetText(enteredtext).SetFlexibleWidth(1);
+		  RemovedConnectionsFields[num+1] = UI.CreateTextInputField(removedconn1).SetText(enteredtext).SetPreferredWidth(100);
 		num = num+2;
 	end
 end
