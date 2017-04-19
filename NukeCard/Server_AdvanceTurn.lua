@@ -27,9 +27,7 @@ function Server_AdvanceTurn_End(game, addNewOrder)
 			end
 		end
 		for _,order in pairs(SkippedOrders) do
-			if(order.proxyType ~= 'GameOrderPlayCardReconnaissance')then
-				addNewOrder(order);
-			end
+			addNewOrder(order);
 		end
 	end
 end
