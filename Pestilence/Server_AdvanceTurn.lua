@@ -26,3 +26,8 @@ function Server_AdvanceTurn_End(game,addOrder)
 	addOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral,'Pestilence',nil,PestilenceOrder));
 
 end
+function tablelength(T)
+  local count = 0
+  for _ in pairs(T) do count = count + 1 end
+  return count
+end
