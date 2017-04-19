@@ -12,13 +12,25 @@ function Client_SaveConfigureUI(alert)
 		if(RemovedConnectionsFields[num].GetText() ~= nil and RemovedConnectionsFields[num+1].GetText() ~= nil)then
 			print('Test3');
 			local Vorhanden = false;
-			for _, elem in pairs(RemovedConnectionsFields[num].GetText())do
+			local chartable = {};
+			local ausgang = RemovedConnectionsFields[num].GetText();
+			while(string.len(ausgang)>0)do
+				chartable[tablelength(chartable)] = string.sub(ausgang, 1 , 1);
+				ausgang = string.sub(ausgang, 2);
+			end
+			for _, elem in pairs(chartable)do
 				if(elem == ',')then
 					print('Test6');
 					Vorhanden=true;
 				end
 			end
-			for _, elem in pairs(RemovedConnectionsFields[num+1].GetText())do
+			chartable = {};
+			ausgang = RemovedConnectionsFields[num+1].GetText();
+			while(string.len(ausgang)>0)do
+				chartable[tablelength(chartable)] = string.sub(ausgang, 1 , 1);
+				ausgang = string.sub(ausgang, 2);
+			end
+			for _, elem in pairs(chartable)do
 				if(elem == ',')then
 					print('Test5');
 					Vorhanden=true;
@@ -36,4 +48,27 @@ function Client_SaveConfigureUI(alert)
 	end
 	print(Mod.Settings.RemovedConnections);
 	print('Test4');
+end
+function stringtotable(variable)
+	local chartable = {};
+	while(string.len(variable)>0)do
+		chartable[tablelength(chartable)] = string.sub(variable, 1 , 1);
+		variable = string.sub(variable, 2);
+	end
+	local newtable = {};
+	local tablepos = 0;
+	for _, elem in pairs(chartable)do
+		if(elem == ',')then
+			tablepos = tablepos + 1;
+			newtable[tablepos] = "";
+		else
+			newtable[tablepos] = newtable[tablepos] .. elem;
+		end
+	end
+	return newtable;
+end
+function tablelength(T)
+	local count = 0;
+	for _ in pairs(T) do count = count + 1 end;
+	return count;
 end
