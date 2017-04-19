@@ -16,16 +16,7 @@ function Client_PresentConfigureUI(rootParent)
 	if(RCstring == nil)then
 		RCstring = ",";
 	end
-	local RC = {};
-	local savedarraynum = 0;
-	for _, elem in pairs(RCstring)do
-		if(elem == ',')then
-			savedarraynum = savedarraynum +1;
-			RC[savedarraynum] = "";
-		else
-			RC[savedarraynum] = RC[savedarraynum] .. elem;
-		end
-	end
+	local RC = stringtotable(RCstring);
 	RemovedConnectionsFields = {};
 	while(num < initialValue*2)do
 		 local removedconn1 = UI.CreateHorizontalLayoutGroup(rootParent);
@@ -43,4 +34,27 @@ function Client_PresentConfigureUI(rootParent)
 		  RemovedConnectionsFields[num+1] = UI.CreateTextInputField(removedconn1).SetText(enteredtext).SetPreferredWidth(100);
 		num = num+2;
 	end
+end
+function stringtotable(variable)
+	local chartable = {};
+	while(string.len(variable)>0)do
+		chartable[tablelength(chartable)] = string.sub(variable, 1 , 1);
+		variable = string.sub(variable, 2);
+	end
+	local newtable = {};
+	local tablepos = 0;
+	for _, elem in pairs(chartable)do
+		if(elem == ',')then
+			tablepos = tablepos + 1;
+			newtable[tablepos] = "";
+		else
+			newtable[tablepos] = newtable[tablepos] .. elem;
+		end
+	end
+	return newtable;
+end
+function tablelength(T)
+  local count = 0
+  for _ in pairs(T) do count = count + 1 end
+  return count
 end
