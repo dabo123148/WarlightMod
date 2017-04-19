@@ -8,7 +8,7 @@ function Client_SaveConfigureUI(alert)
 	print('Test2');
 	while(num < InputStartArmies.GetValue()*2) do
 		if(RemovedConnectionsFields[num] ~= nil)then
-			if(RemovedConnectionsFields[num].GetText() ~= nil and RemovedConnectionsFields[num+1].GetText() ~= nil)then
+			if(RemovedConnectionsFields[num].GetText() ~= "" and RemovedConnectionsFields[num+1].GetText() ~= "")then
 				print('Test3');
 				local Vorhanden = false;
 				local chartable = {};
