@@ -1,7 +1,7 @@
 
 function Client_PresentSettingsUI(rootParent)
 	local RC = stringtotable(Mod.Settings.RemovedConnections);
-	local num = 0;
+	local num = 1;
 	while(RC[num] ~= nil)do
 		UI.CreateLabel(rootParent)
 		.SetText('Removed Connection between ' .. RC[num] .. ' and ' .. RC[num+1]);
