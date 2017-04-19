@@ -1,1 +1,1 @@
-Creates n Randomly Placed Wastelands per turn. They'll have the same size like the normal ones.
+Creates n Wastelands per turn, which are placed on random Neutral Territories. They'll have the same size like the normal ones (If Wastelands are disabled, Wastelands of Size 0 will be created).
