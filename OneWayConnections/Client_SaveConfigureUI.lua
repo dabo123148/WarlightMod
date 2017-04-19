@@ -11,7 +11,7 @@ function Client_SaveConfigureUI(alert)
 		print(RemovedConnectionsFields[num].GetText());
 		if(RemovedConnectionsFields[num].GetText() ~= nil and RemovedConnectionsFields[num+1].GetText() ~= nil)then
 			print('Test3');
-			bool Vorhanden = false;
+			local Vorhanden = false;
 			for _, elem in pairs(RemovedConnectionsFields[num].GetText())do
 				if(elem == ',')then
 					print('Test6');
