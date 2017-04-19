@@ -6,10 +6,10 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		removedconns = Mod.Settings.RemovedConnections;
 		local num = 1;
 		local Match = false;
-		local Fromterrname = game.Map.Territories[order.From].Name;
-		local Toterrname = game.Map.Territories[order.To].Name;
+		local Fromterrname = string.upper(game.Map.Territories[order.From].Name);
+		local Toterrname = string.upper(game.Map.Territories[order.To].Name);
 		while(num < Mod.Settings.TotalRemovedConnections*2 and Match == false)do
-			if(removedconns[num] == Fromterrname and removedconns[num+1] == Toterrname)then
+			if(string.upper(removedconns[num]) == Fromterrname and string.upper(removedconns[num+1]) == Toterrname)then
 				Match = true;
 				skipThisOrder(WL.ModOrderControl.Skip);
 			end
