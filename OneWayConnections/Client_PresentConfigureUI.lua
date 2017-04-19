@@ -12,9 +12,19 @@ function Client_PresentConfigureUI(rootParent)
 		.SetSliderMaxValue(100)
 		.SetValue(initialValue);
 	local num = 1;
-	RC = Mod.Settings.RemovedConnections;
-	if(RC == nil)then
-		RC = {};
+	local RCstring = Mod.Settings.RemovedConnections;
+	if(RCstring == nil)then
+		RCstring = ",";
+	end
+	local RC = {};
+	local savedarraynum = 0;
+	for _, elem in pairs(RCstring)do
+		if(elem == ',')then
+			savedarraynum = savedarraynum +1;
+			RC[savedarraynum] = "";
+		else
+			RC[savedarraynum] = RC[savedarraynum] .. elem;
+		end
 	end
 	RemovedConnectionsFields = {};
 	while(num < initialValue*2)do
