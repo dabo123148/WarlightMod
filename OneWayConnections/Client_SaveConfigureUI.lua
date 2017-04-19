@@ -43,8 +43,8 @@ function Client_SaveConfigureUI(alert)
 					setnum = setnum +2;
 				end
 			end
-			num = num+2;
 		end
+		num = num+2;
 	end
 	print(Mod.Settings.RemovedConnections);
 	print('Test4');
