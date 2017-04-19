@@ -23,7 +23,7 @@ function Server_AdvanceTurn_End(game, addNewOrder)
 				end
 				Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(order.TargetTerritory);
 				Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritory].NumArmies.NumArmies/2;
-				addNewOrder(WL.GameOrderEvent.Create(order.PlayerID,'Nuke',{},Effect));
+				addNewOrder(WL.GameOrderEvent.Create(order.PlayerID,'Nuked ' .. game.Map.Territories[order.TargetTerritory].Name,{},Effect));
 			end
 		end
 		for _,order in pairs(SkippedOrders) do
