@@ -95,10 +95,10 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 			end
 		end
 		executed2 = true;
-		for _, ord in pairs(ord)do
+		for _, ord in pairs(AddedOrders)do
 			addNewOrder(order);
 		end
-		for _, ord in pairs(ord)do
+		for _, ord in pairs(SkippedOrders)do
 			addNewOrder(order);
 		end
 	end
