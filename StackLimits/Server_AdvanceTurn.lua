@@ -6,7 +6,9 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(executed == false)then
+		print(terr.dasdasd);
 		if(order.proxyType ~= 'GameOrderDeploy')then
+			print(terr.dasdasd);
 			if(order.proxyType ~= 'GameOrderPlayCardAirlift')then
 				print(terr.dasdasd);
 				executed = true;
@@ -48,7 +50,11 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 					end
 				end
+			else
+				print(terr.dasdasd);
 			end
+		else
+			print(terr.dasdasd);
 		end
 	else
 		print(terr.asdsadasd);
