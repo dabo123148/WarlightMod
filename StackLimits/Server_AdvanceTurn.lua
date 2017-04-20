@@ -5,13 +5,19 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	executed2 = false;
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
+	if(order == nil)then
+		print(error);
+	end
+	if(order.proxyType == nil)then
+		print(error);
+	end
 	if(executed == false)then
 		if(order.proxyType ~= 'GameOrderDeploy')then
 			print(error);
 			if(order.proxyType ~= 'GameOrderPlayCardAirlift')then
 				print(error);
 				executed = true;
-				ArmiesonTerr = {};
+				local ArmiesonTerr = {};
 				for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 					ArmiesonTerr[terr.ID] = terr.NumArmies.NumArmies;
 				end
