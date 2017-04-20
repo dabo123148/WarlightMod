@@ -9,6 +9,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(order.proxyType ~= 'GameOrderDeploy')then
 			if(order.proxyType ~= 'GameOrderPlayCardAirlift')then
 				executed = true;
+				ArmiesonTerr = {};
 				for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 					ArmiesonTerr[terr.ID] = terr.NumArmies.NumArmies;
 				end
