@@ -30,7 +30,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 										HasArmies=Mod.Settings.StackLimit;
 									else
 										ExtraArmies = ExtraArmies - PlaceFor;
-										HasArmies = HasArmies - PlaceFor;
+										HasArmies = HasArmies + PlaceFor;
 									end
 									Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terr2.ID);
 									Effect[tablelength(Effect)].SetArmiesTo = HasArmies;
