@@ -62,6 +62,7 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 		for _, order in pairs(AddedOrders)do
 			addNewOrder(order);
 		end
+		print(tablelength(SkippedOrders));
 		for _, order in pairs(SkippedOrders)do
 			addNewOrder(order);
 		end
