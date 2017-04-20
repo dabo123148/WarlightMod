@@ -32,7 +32,7 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 			Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terr.ID);
 			Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
 			ArmiesonTerr[terr.ID] = Mod.Settings.StackLimit;
-			addOrder(WL.GameOrderEvent.Create(terr.OwnerPlayerID,"Stack Limit",nil,Effect));
+			addNewOrder(WL.GameOrderEvent.Create(terr.OwnerPlayerID,"Stack Limit",nil,Effect));
 		end
 	end
 end
