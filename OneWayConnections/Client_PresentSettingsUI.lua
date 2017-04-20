@@ -7,6 +7,8 @@ function Client_PresentSettingsUI(rootParent)
 		.SetText('Removed Connection between ' .. RC[num] .. ' and ' .. RC[num+1]);
 		num=num+2;
 	end
+	UI.CreateLabel(rootParent)
+		.SetText(Mod.Settings.RemovedConnections);
 end
 function stringtotable(variable)
 	local chartable = {};
