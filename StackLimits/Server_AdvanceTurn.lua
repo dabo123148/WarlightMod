@@ -8,7 +8,7 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 		if(ArmiesonTerr[terr.ID] > Mod.Settings.StackLimit)then
 			local Effect = {};
 			local ExtraArmies = Mod.Settings.StackLimit-ArmiesonTerr[terr.ID];
-			print(ExtraArmies');
+			print(ExtraArmies);
 			for _, terr2 in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 				if(terr2.OwnerPlayerID == terr.OwnerPlayerID)then
 					print('Test2');
