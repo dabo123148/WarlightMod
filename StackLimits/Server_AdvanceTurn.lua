@@ -50,7 +50,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			end
 		end
 	else
+		print('Test1');
 		if(executed2 == false)then
+			print('Test2');
 			SkippedOrders[tablelength(SkippedOrders)+1] = orders;
 			skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 		end
