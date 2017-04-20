@@ -42,9 +42,14 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
 						ArmiesonTerr[terr.ID] = Mod.Settings.StackLimit;
 						AddedOrders[tablelength(AddedOrders)] = WL.GameOrderEvent.Create(terr.OwnerPlayerID,"Stack Limit",nil,Effect);
+						SkippedOrders[tablelength(SkippedOrders)] = orders;
+						skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 					end
 				end
 			end
+		end
+		if(order.proxyType ~= 'GameOrderAttackTransfer')then
+			print('Bug');
 		end
 	else
 		if(executed2 == false)then
