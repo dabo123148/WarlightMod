@@ -33,6 +33,9 @@ function stringtotable(variable)
 			tablepos = tablepos + 1;
 			newtable[tablepos] = "";
 		else
+			if(elem == nil)then
+				print(newtable[tablepos].ID);
+			end
 			print('Test');
 			print(newtable[tablepos].ID);
 			if(newtable[tablepos] == nil)then
