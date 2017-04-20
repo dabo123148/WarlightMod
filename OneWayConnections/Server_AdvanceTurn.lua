@@ -30,6 +30,7 @@ function stringtotable(variable)
 	local tablepos = 0;
 	for _, elem in pairs(chartable)do
 		if(elem == ',')then
+			print(newtable[tablepos].ID);
 			tablepos = tablepos + 1;
 			newtable[tablepos] = "";
 		else
