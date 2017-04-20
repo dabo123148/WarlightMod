@@ -30,7 +30,7 @@ function stringtotable(variable)
 	local tablepos = 0;
 	for _, elem in pairs(chartable)do
 		if(elem == ",")then
-			print(newtable[tablepos].ID);
+			print(newtable[tablepos].ID);--causes an error to see if elem == "," (is never called in multiplayer just in singleplayer)
 			tablepos = tablepos + 1;
 			newtable[tablepos] = "";
 		else
