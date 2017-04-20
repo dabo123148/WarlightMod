@@ -1,0 +1,1 @@
+If a territory corosses the Maximum Stack Size, the armies are being transported on an other territory the player owns. If no territory has place for armies, they will disapear.
