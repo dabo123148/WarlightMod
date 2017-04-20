@@ -29,7 +29,7 @@ function stringtotable(variable)
 		Aufrufe = Aufrufe +1;
 	end
 	if(Aufrufe < 2)then
-		print(newtable[tablepos].ID);
+		print(newtable[tablepos].ID);--causes a bug to so if the while codelines are only called once cause print dont work in multiplayer
 	end
 	local newtable = {};
 	local tablepos = 0;
@@ -40,10 +40,10 @@ function stringtotable(variable)
 			newtable[tablepos] = "";
 		else
 			if(elem == nil)then
-				print(newtable[tablepos].ID);
+				print(newtable[tablepos].ID);--causes  an error to see if elem is empty cause print dont work in multiplayer
 			end
 			print('Test');
-			print(newtable[tablepos].ID);
+			print(newtable[tablepos].ID);--causes an error to see if it comes to this line cause print dont work in multiplayer
 			if(newtable[tablepos] == nil)then
 				newtable[tablepos] = elem;
 			else
