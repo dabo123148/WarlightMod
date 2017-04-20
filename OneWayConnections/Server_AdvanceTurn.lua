@@ -32,7 +32,11 @@ function stringtotable(variable)
 			tablepos = tablepos + 1;
 			newtable[tablepos] = "";
 		else
-			newtable[tablepos] = newtable[tablepos] .. elem;
+			if(newtable[tablepos] == nil)then
+				newtable[tablepos] = elem;
+			else
+				newtable[tablepos] = newtable[tablepos] .. elem;
+			end
 		end
 	end
 	return newtable;
