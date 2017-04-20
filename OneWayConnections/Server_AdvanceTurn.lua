@@ -3,7 +3,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	--result GameOrderAttackTransferResult
 	--order GameOrderAttackTransfer
     if (order.proxyType == 'GameOrderAttackTransfer') then
-		removedconns = Mod.Settings.RemovedConnections;
+		removedconns = stringtotable(Mod.Settings.RemovedConnections);
 		local num = 1;
 		local Match = false;
 		local Fromterrname = string.upper(game.Map.Territories[order.From].Name);
@@ -18,4 +18,22 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			num = num + 2;
 		end
 	end
+end
+function stringtotable(variable)
+	local chartable = {};
+	while(string.len(variable)>0)do
+		chartable[tablelength(chartable)] = string.sub(variable, 1 , 1);
+		variable = string.sub(variable, 2);
+	end
+	local newtable = {};
+	local tablepos = 0;
+	for _, elem in pairs(chartable)do
+		if(elem == ',')then
+			tablepos = tablepos + 1;
+			newtable[tablepos] = "";
+		else
+			newtable[tablepos] = newtable[tablepos] .. elem;
+		end
+	end
+	return newtable;
 end
