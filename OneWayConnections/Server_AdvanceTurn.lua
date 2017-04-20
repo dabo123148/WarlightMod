@@ -22,14 +22,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 end
 function stringtotable(variable)
 	local chartable = {};
-	local Aufrufe = 0;
 	while(string.len(variable)>0)do
 		chartable[tablelength(chartable)] = string.sub(variable, 1 , 1);
 		variable = string.sub(variable, 2);
-		Aufrufe = Aufrufe +1;
-	end
-	if(Aufrufe > 2)then
-		print(newtable[tablepos].ID);--causes a bug to so if the while codelines are only called once cause print dont work in multiplayer
 	end
 	local newtable = {};
 	local tablepos = 0;
