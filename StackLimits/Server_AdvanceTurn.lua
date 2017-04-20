@@ -24,7 +24,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 									PlaceFor = ExtraArmies;
 								end
 								if(PlaceFor > 0)then
-									local HasArmies = Mod.Settings.StackLimit;
+									local HasArmies = ArmiesonTerr[terr2.ID];
 									print(HasArmies .. ' ' .. ExtraArmies);
 									if(HasArmies + PlaceFor > Mod.Settings.StackLimit)then
 										ExtraArmies = ExtraArmies - (Mod.Settings.StackLimit-HasArmies);
