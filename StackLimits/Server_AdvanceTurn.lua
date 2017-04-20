@@ -25,7 +25,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 								end
 								if(PlaceFor > 0)then
 									local HasArmies = ArmiesonTerr[terr2.ID];
-									print(HasArmies .. ' ' .. ExtraArmies);
 									if(HasArmies + PlaceFor > Mod.Settings.StackLimit)then
 										ExtraArmies = ExtraArmies - (Mod.Settings.StackLimit-HasArmies);
 										HasArmies=Mod.Settings.StackLimit;
@@ -50,12 +49,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			end
 		end
 	else
-		print('Test1');
 		if(executed2 == false)then
-			print('Test2');
-			print('T2 ' .. tablelength(SkippedOrders));
-			SkippedOrders[tablelength(SkippedOrders)+1] = orders;
-			print('T2 ' ..tablelength(SkippedOrders));
+			SkippedOrders[tablelength(SkippedOrders)+1] = order;
 			skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 		end
 	end
@@ -66,7 +61,6 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 		for _, order in pairs(AddedOrders)do
 			addNewOrder(order);
 		end
-		print(tablelength(SkippedOrders));
 		for _, order in pairs(SkippedOrders)do
 			addNewOrder(order);
 		end
