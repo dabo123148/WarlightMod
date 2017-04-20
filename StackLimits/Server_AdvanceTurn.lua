@@ -25,6 +25,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 								end
 								if(PlaceFor > 0)then
 									local HasArmies = Mod.Settings.StackLimit;
+									print(HasArmies .. ' ' .. ExtraArmies);
 									if(HasArmies + PlaceFor > Mod.Settings.StackLimit)then
 										ExtraArmies = ExtraArmies - (Mod.Settings.StackLimit-HasArmies);
 										HasArmies=Mod.Settings.StackLimit;
@@ -47,9 +48,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					end
 				end
 			end
-		end
-		if(order.proxyType ~= 'GameOrderAttackTransfer')then
-			print('Bug');
 		end
 	else
 		if(executed2 == false)then
