@@ -58,7 +58,6 @@ end
 function Server_AdvanceTurn_End(game,addNewOrder)
 	if(executed2 == false)then
 		if(executed == false)then
-			print(error);
 			local ArmiesonTerr = {};
 			for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 				ArmiesonTerr[terr.ID] = terr.NumArmies.NumArmies;
