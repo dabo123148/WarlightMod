@@ -58,7 +58,7 @@ end
 function Server_AdvanceTurn_End(game,addNewOrder)
 	if(executed2 == false)then
 		if(executed == false)then
-			print(err);
+			print(error);
 			local ArmiesonTerr = {};
 			for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 				ArmiesonTerr[terr.ID] = terr.NumArmies.NumArmies;
@@ -92,7 +92,7 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 					Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
 					ArmiesonTerr[terr.ID] = Mod.Settings.StackLimit;
 					AddedOrders[tablelength(AddedOrders)] = WL.GameOrderEvent.Create(terr.OwnerPlayerID,"Stack Limit",nil,Effect);
-					print(err);
+					print(error);
 				end
 			end
 		end
