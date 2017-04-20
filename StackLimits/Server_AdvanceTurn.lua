@@ -5,6 +5,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	executed2 = false;
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
+	print(error);
 	if(executed == false)then
 		print(terr.dasdasd);
 		if(order.proxyType ~= 'GameOrderDeploy')then
