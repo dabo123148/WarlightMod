@@ -8,7 +8,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(executed == false)then
 		if(order.proxyType ~= 'GameOrderDeploy')then
 			if(order.proxyType ~= 'GameOrderPlayCardAirlift')then
-				print(terr.owner);
+				print(terr.dasdasd);
 				executed = true;
 				ArmiesonTerr = {};
 				for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
@@ -51,7 +51,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			end
 		end
 	else
-		print(terr.owner);
+		print(terr.asdsadasd);
 		if(executed2 == false)then
 			SkippedOrders[tablelength(SkippedOrders)+1] = order;
 			skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
