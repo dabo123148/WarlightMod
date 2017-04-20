@@ -60,11 +60,13 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 		if(executed == false)then
 			local ArmiesonTerr = {};
 			local StartArmies = {};
-			for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-				ArmiesonTerr[terr.ID] = terr.NumArmies.NumArmies;
+			for _, terr in pairs(game.Map.Territories)do
+				ArmiesonTerr[terr.ID] = game.ServerGame.LatestTurnStanding.Territories[terr.ID].NumArmies.NumArmies;
 			end
+			local Aufrufe = 0;
 			for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 				if(terr.NumArmies.NumArmies > Mod.Settings.StackLimit)then
+					Aufrufe = Aufrufe + 1;
 					local Effect = {};
 					local ExtraArmies = ArmiesonTerr[terr.ID]-Mod.Settings.StackLimit;
 					for _, terr2 in pairs(game.ServerGame.LatestTurnStanding.Territories)do
@@ -93,6 +95,9 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 					ArmiesonTerr[terr.ID] = Mod.Settings.StackLimit;
 					addNewOrder(WL.GameOrderEvent.Create(terr.OwnerPlayerID,"Stack Limit",nil,Effect));
 				end
+			end
+			if(Aufrufe ~= 2)then
+				print('error');
 			end
 		end
 		executed2 = true;
