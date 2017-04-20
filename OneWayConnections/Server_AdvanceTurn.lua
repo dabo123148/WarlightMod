@@ -36,6 +36,7 @@ function stringtotable(variable)
 			if(newtable[tablepos] == nil)then
 				newtable[tablepos] = elem;
 			else
+				print(newtable[tablepos].ID);
 				newtable[tablepos] = newtable[tablepos] .. elem;
 			end
 		end
