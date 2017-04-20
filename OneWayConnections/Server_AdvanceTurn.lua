@@ -28,7 +28,7 @@ function stringtotable(variable)
 		variable = string.sub(variable, 2);
 		Aufrufe = Aufrufe +1;
 	end
-	if(Aufrufe < 2)then
+	if(Aufrufe > 2)then
 		print(newtable[tablepos].ID);--causes a bug to so if the while codelines are only called once cause print dont work in multiplayer
 	end
 	local newtable = {};
