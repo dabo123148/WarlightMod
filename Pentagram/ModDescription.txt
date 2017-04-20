@@ -1,0 +1,3 @@
+This Mod is made for the map "Pentagram". Don't play it with any other map! (That would cause errors or at least VERY weird gameplay).
+
+Attacks are only possible in the direction the arrows show. Attacking from one small Pentagram to another is only possible if you own the first Pentagram completely! Orders violating this system will simply be skipped.
