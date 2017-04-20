@@ -11,9 +11,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == nil)then
 		print(error);
 	end
-	if (order.proxyType == 'GameOrderAttackTransfer') then
-		print(error);
-	end
 	if(executed == false)then
 		if(order.proxyType ~= 'GameOrderDeploy')then
 			print(error);
