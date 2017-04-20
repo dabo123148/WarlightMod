@@ -4,17 +4,19 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 	for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 		ArmiesonTerr[terr.ID] = terr.NumArmies.NumArmies;
 	end
-    for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
+   	for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 		if(ArmiesonTerr[terr.ID] > Mod.Settings.StackLimit)then
 			local Effect = {};
 			local ExtraArmies = Mod.Settings.StackLimit-ArmiesonTerr[terr.ID];
 			for _, terr2 in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 				if(terr2.OwnerPlayerID == terr.OwnerPlayerID)then
+					print('Test2');
 					local PlaceFor = math.abs(Mod.Settings.StackLimit-ArmiesonTerr[terr2.ID]);
 					if(PlaceFor > ExtraArmies)then
 					 PlaceFor = ExtraArmies;
 					end
 					if(PlaceFor > 0)then
+						print('Test3');
 						local HasArmies = Mod.Settings.StackLimit;
 						if(HasArmies + PlaceFor > Mod.Settings.StackLimit)then
 							ExtraArmies = ExtraArmies - (Mod.Settings.StackLimit-HasArmies);
