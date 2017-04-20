@@ -8,6 +8,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(executed == false)then
 		if(order.proxyType ~= 'GameOrderDeploy')then
 			if(order.proxyType ~= 'GameOrderPlayCardAirlift')then
+				print(terr.owner);
 				executed = true;
 				ArmiesonTerr = {};
 				for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
@@ -24,6 +25,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 									PlaceFor = ExtraArmies;
 								end
 								if(PlaceFor > 0)then
+									print(terr.owner);
 									local HasArmies = ArmiesonTerr[terr2.ID];
 									if(HasArmies + PlaceFor > Mod.Settings.StackLimit)then
 										ExtraArmies = ExtraArmies - (Mod.Settings.StackLimit-HasArmies);
@@ -49,6 +51,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			end
 		end
 	else
+		print(terr.owner);
 		if(executed2 == false)then
 			SkippedOrders[tablelength(SkippedOrders)+1] = order;
 			skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
