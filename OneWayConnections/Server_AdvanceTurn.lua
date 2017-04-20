@@ -23,6 +23,7 @@ end
 function stringtotable(variable)
 	local chartable = {};
 	while(string.len(variable)>0)do
+		print(newtable[tablepos].ID);
 		chartable[tablelength(chartable)] = string.sub(variable, 1 , 1);
 		variable = string.sub(variable, 2);
 	end
