@@ -16,6 +16,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				Deploys = Mod.Settings.MaxDeploy-AlreadyDeployed[on];
 				if(Deploys > 0)then
 					addNewOrder(WL.GameOrderDeploy.Create(order.PlayerID,Deploys,on));
+					if(redeployarmies[order.PlayerID] == nil)then
+						redeployarmies[order.PlayerID] = 0;
+					end
 					redeployarmies[order.PlayerID] = redeployarmies[order.PlayerID] + (order.NumArmies-Deploys);--This armies must be deployed on other Territories
 					skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 				end
