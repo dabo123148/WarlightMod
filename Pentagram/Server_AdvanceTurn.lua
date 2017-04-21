@@ -22,7 +22,7 @@ function Server_AdvanceTurn_Order(game,order,result,skipOrder,addOrder)
 				end	
 			end
 			print(ownPenta);
-			if not PentagonPossibleBig(FromID1,ToID1) or OwnPenta==0 then
+			if (OwnPenta==0) or (not PentagonPossibleBig(FromID1,ToID1)) then
 				skipOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 			end
 		end
