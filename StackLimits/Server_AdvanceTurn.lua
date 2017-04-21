@@ -13,6 +13,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				for _, terra in pairs(game.Map.Territories)do
 					ArmiesonTerr[terra.ID] = game.ServerGame.LatestTurnStanding.Territories[terra.ID].NumArmies.NumArmies;
 				end
+				print('T1');
 				for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 					if(terra.NumArmies.NumArmies > Mod.Settings.StackLimit)then
 						local Effect = {};
@@ -23,6 +24,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 								if(PlaceFor > ExtraArmies)then
 									PlaceFor = ExtraArmies;
 								end
+								print('T2');
 								if(PlaceFor > 0)then
 									local HasArmies = ArmiesonTerr[terri.ID];
 									if(HasArmies + PlaceFor > Mod.Settings.StackLimit)then
@@ -38,10 +40,11 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 								end
 							end
 						end
+						print('T3');
 						Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terra.ID);
 						Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
 						ArmiesonTerr[terra.ID] = Mod.Settings.StackLimit;
-						AddedOrders[tablelength(AddedOrders)] = WL.GameOrderEvent.Create(terra.OwnerPlayerID,"Stack Limit",{},Effect);
+						AddedOrders[tablelength(AddedOrders)+1] = WL.GameOrderEvent.Create(terra.OwnerPlayerID,"Stack Limit",{},Effect);
 						SkippedOrders[tablelength(SkippedOrders)+1] = order;
 						skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 					end
