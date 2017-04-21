@@ -104,10 +104,17 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 					for _,eff in pairs(Effect)do
 						Aufrufe = Aufrufe + 1;
 					end
+					Aufrufe2 = Aufrufe2 + 1;
 					addNewOrder(WL.GameOrderEvent.Create(terr.OwnerPlayerID,"Stack Limit",nil,Effect));
 				end
 			end
 			if(Aufrufe ~= 1)then
+				print('error');
+			end
+			if(Aufrufe ~= Aufrufe2)then
+				print('error');
+			end
+			if(Aufrufe2 ~= 2)then
 				print('error');
 			end
 		end
