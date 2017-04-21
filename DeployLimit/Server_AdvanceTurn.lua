@@ -19,6 +19,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					if(redeployarmies[order.PlayerID] == nil)then
 						redeployarmies[order.PlayerID] = 0;
 					end
+					print(order.PlayerID);
 					redeployarmies[order.PlayerID] = redeployarmies[order.PlayerID] + (order.NumArmies-Deploys);--This armies must be deployed on other Territories
 					skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 				end
@@ -52,6 +53,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 					end
 				end
 			end
+			print(terri.OwnerPlayerID);
 			redeployarmies[terri.OwnerPlayerID] = 0;
 		end
 		for _,order in pairs(SkippedOrders)do
