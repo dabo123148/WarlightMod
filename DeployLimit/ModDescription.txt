@@ -1,1 +1,1 @@
-This Mod only allows you to deploy a limited number of armies per territory per turn.
+This Mod only allows you to limit the number of armies a player can deploy on a territory. If a players territory reaches the limit, the armies will be deployed on other territories. If every territory reached the deployment limit, the armies will be lost.
