@@ -91,6 +91,15 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 					end
 					Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terr.ID);
 					Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
+					if(terr.ID == nil)then
+						print('error');
+					end
+					if(Effect[tablelength(Effect)] == nil)then
+						print('error');
+					end
+					if(Effect[tablelength(Effect)].SetArmiesTo == nil)then
+						print('error');
+					end
 					ArmiesonTerr[terr.ID] = Mod.Settings.StackLimit;
 					for _,eff in pairs(Effect)do
 						Aufrufe = Aufrufe + 1;
