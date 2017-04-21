@@ -2,7 +2,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	SkippedOrders = {};
 	executed = false;
 	AddedOrders = {};
-	executed2 = false;
+	executedend = false;
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(executed == false)then
@@ -61,9 +61,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	end
 end
 function Server_AdvanceTurn_End(game,addNewOrder)
-	if(executed2 == false)then
+	if(executedend == false)then
 		if(executed == false)then
-			executed2 = true;
+			executedend = true;
 			executed = true;
 			local ArmiesonTerr = {};
 			for _, terra in pairs(game.Map.Territories)do
