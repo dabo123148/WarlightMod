@@ -64,6 +64,7 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 				ArmiesonTerr[terr.ID] = game.ServerGame.LatestTurnStanding.Territories[terr.ID].NumArmies.NumArmies;
 			end
 			local Aufrufe = 0;
+			local Aufrufe2 = 0;
 			for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 				if(terr.NumArmies.NumArmies > Mod.Settings.StackLimit)then
 					local Effect = {};
