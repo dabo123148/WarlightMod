@@ -118,7 +118,6 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 			if(Aufrufe2 ~= 2)then
 				print(error);
 			end
-			print(error);
 		end
 		executed2 = true;
 		for _, ord in pairs(AddedOrders)do
