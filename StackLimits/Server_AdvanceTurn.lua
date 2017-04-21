@@ -58,13 +58,13 @@ end
 function Server_AdvanceTurn_End(game,addNewOrder)
 	if(executed2 == false)then
 		if(executed == false)then
+			executed2 = true;
+			executed = true;
 			local ArmiesonTerr = {};
 			local StartArmies = {};
 			for _, terra in pairs(game.Map.Territories)do
 				ArmiesonTerr[terra.ID] = game.ServerGame.LatestTurnStanding.Territories[terra.ID].NumArmies.NumArmies;
 			end
-			local Aufrufe = 0;
-			local Aufrufe2 = 0;
 			for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 				if(terra.NumArmies.NumArmies > Mod.Settings.StackLimit)then
 					local Effect = {};
@@ -92,34 +92,11 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 					end
 					Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terra.ID);
 					Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
-					if(terra.ID == nil)then
-						print(error);
-					end
-					if(Effect[tablelength(Effect)] == nil)then
-						print(error);
-					end
-					if(Effect[tablelength(Effect)].SetArmiesTo == nil)then
-						print(error);
-					end
 					ArmiesonTerr[terra.ID] = Mod.Settings.StackLimit;
-					for _,eff in pairs(Effect)do
-						Aufrufe = Aufrufe + 1;
-					end
-					Aufrufe2 = Aufrufe2 + 1;
-					addNewOrder(WL.GameOrderEvent.Create(terra.OwnerPlayerID,"Stack Limit",{5852007897},Effect));
+					addNewOrder(WL.GameOrderEvent.Create(terra.OwnerPlayerID,"Stack Limit",{},Effect));
 				end
 			end
-			if(Aufrufe ~= 2)then
-				print(error);
-			end
-			if(Aufrufe ~= Aufrufe2)then
-				print(error);
-			end
-			if(Aufrufe2 ~= 2)then
-				print(error);
-			end
 		end
-		executed2 = true;
 		for _, ord in pairs(AddedOrders)do
 			addNewOrder(ord);
 		end
