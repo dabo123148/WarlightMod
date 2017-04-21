@@ -1,0 +1,1 @@
+This Mod only allows you to deploy a limited number of armies per territory per turn.
