@@ -1,5 +1,4 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
-	AddedOrders = 0;
 	AlreadyDeployed = {};
 	for _,terr in pairs(game.Map.Territories)do
 		AlreadyDeployed[terr.ID] = 0;
@@ -16,7 +15,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if(AlreadyDeployed[on] + Deploys > Mod.Settings.MaxDeploy)then
 				Deploys = Mod.Settings.MaxDeploy-AlreadyDeployed[on];
 				if(Deploys > 0)then
-					AddedOrders(order.PlayerID,Deploys,on);
+					addNewOrder(order.PlayerID,Deploys,on);
 					redeployarmies[order.PlayerID] = redeployarmies[order.PlayerID] + (order.NumArmies-Deploys);--This armies must be deployed on other Territories
 					skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 				end
