@@ -44,7 +44,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terra.ID);
 						Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
 						ArmiesonTerr[terra.ID] = Mod.Settings.StackLimit;
+						print(tablelength(AddedOrders));
 						AddedOrders[tablelength(AddedOrders)+1] = WL.GameOrderEvent.Create(terra.OwnerPlayerID,"Stack Limit",{},Effect);
+						print(tablelength(AddedOrders));
 						SkippedOrders[tablelength(SkippedOrders)+1] = order;
 						skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 					end
@@ -99,6 +101,7 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 				end
 			end
 		end
+		print(tablelength(AddedOrders));
 		for _, ord in pairs(AddedOrders)do
 			addNewOrder(ord);
 		end
