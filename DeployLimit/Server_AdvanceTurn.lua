@@ -19,7 +19,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					if(redeployarmies[order.PlayerID] == nil)then
 						redeployarmies[order.PlayerID] = 0;
 					end
-					print(order.PlayerID);
 					redeployarmies[order.PlayerID] = redeployarmies[order.PlayerID] + (order.NumArmies-Deploys);--This armies must be deployed on other Territories
 					skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 				end
@@ -35,11 +34,11 @@ end
 function Server_AdvanceTurn_End (game,addNewOrder)
 	if(executed == false)then
 		executed = true;
-		for _, terri in pairs(game.ServerGame.LatestTurnStanding)do
+		for _, terri in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 			local remainingarmies = redeployarmies[terri.OwnerPlayerID];
 			if(remainingarmies ~= nil)then
 				if(remainingarmies > 0)then
-					for _, terra in pairs(game.ServerGame.LatestTurnStanding)do
+					for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 						if(AlreadyDeployed[terra.ID] < Mod.Settings.MaxDeploy)then
 							local PlaceFor = Mod.Settings.MaxDeploy-AlreadyDeployed[terra.ID];
 							if(PlaceFor>remainingarmies)then
@@ -53,7 +52,6 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 					end
 				end
 			end
-			print(terri.OwnerPlayerID);
 			redeployarmies[terri.OwnerPlayerID] = 0;
 		end
 		for _,order in pairs(SkippedOrders)do
