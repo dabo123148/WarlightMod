@@ -39,14 +39,16 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			if(remainingarmies ~= nil)then
 				if(remainingarmies > 0)then
 					for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-						if(AlreadyDeployed[terra.ID] < Mod.Settings.MaxDeploy)then
-							local PlaceFor = Mod.Settings.MaxDeploy-AlreadyDeployed[terra.ID];
-							if(PlaceFor>remainingarmies)then
-								PlaceFor = remainingarmies;
-							end
-							if(PlaceFor > 0)then
-								addNewOrder(WL.GameOrderDeploy.Create(terri.OwnerPlayerID,PlaceFor,terra.ID));
-								remainingarmies = remainingarmies - PlaceFor;
+						if(terri.OwnerPlayerID == terra.OwnerPlayerID)then
+							if(AlreadyDeployed[terra.ID] < Mod.Settings.MaxDeploy)then
+								local PlaceFor = Mod.Settings.MaxDeploy-AlreadyDeployed[terra.ID];
+								if(PlaceFor>remainingarmies)then
+									PlaceFor = remainingarmies;
+								end
+								if(PlaceFor > 0)then
+									addNewOrder(WL.GameOrderDeploy.Create(terri.OwnerPlayerID,PlaceFor,terra.ID));
+									remainingarmies = remainingarmies - PlaceFor;
+								end
 							end
 						end
 					end
