@@ -14,7 +14,11 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 	if(executed == false) then
 		executed = true;
 		for _,order in pairs(SkippedAirlifts)do
-			addNewOrder(order);
+			if(order.PlayerID == order.FromTerritoryID)then
+				if(order.FromTerritoryID == order.ToTerritoryID)then
+					addNewOrder(order);
+				end
+			end
 		end
 	end
 end
