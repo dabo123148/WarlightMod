@@ -1,6 +1,6 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
 	SkippedAirlifts = {};
-	executed == false;
+	executed = false;
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)	
 	if(executed == false)then
