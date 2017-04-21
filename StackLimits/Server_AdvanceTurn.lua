@@ -1,14 +1,14 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
 	SkippedOrders = {};
-	executed = false;
+	executedadd = false;
 	AddedOrders = {};
 	executedend = false;
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
-	if(executed == false)then
+	if(executedadd == false)then
 		if(order.proxyType ~= 'GameOrderDeploy')then
 			if(order.proxyType ~= 'GameOrderPlayCardAirlift')then
-				executed = true;
+				executedadd = true;
 				local ArmiesonTerr = {};
 				for _, terra in pairs(game.Map.Territories)do
 					ArmiesonTerr[terra.ID] = game.ServerGame.LatestTurnStanding.Territories[terra.ID].NumArmies.NumArmies;
@@ -62,9 +62,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 end
 function Server_AdvanceTurn_End(game,addNewOrder)
 	if(executedend == false)then
-		if(executed == false)then
-			executedend = true;
-			executed = true;
+		executedend = true;
+		if(executedadd == false)then
+			executedadd = true;
 			local ArmiesonTerr = {};
 			for _, terra in pairs(game.Map.Territories)do
 				ArmiesonTerr[terra.ID] = game.ServerGame.LatestTurnStanding.Territories[terra.ID].NumArmies.NumArmies;
