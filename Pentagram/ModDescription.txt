@@ -1,5 +1,5 @@
 This Mod is made for the map "Pentagram". Don't play it with any other map! (That would cause errors or at least VERY weird gameplay).
 
-Attacks are only possible in the direction the arrows show. Attacking from one small Pentagram to another is only possible if you own the first Pentagram completely! Orders violating this system will simply be skipped.
+Attacks are only possible in the direction the arrows show. Attacking from one small Pentagram to another is only possible if you own at least 4 Territories in the attacking Pentagon! Orders violating this system will simply be skipped.
 
 Not only the Center Territories of the small Pentagrams connect to each other, but the corners, too. For example, you can attack the upper corner of Pentagon 2 from the upper corner of Pentagon 1.

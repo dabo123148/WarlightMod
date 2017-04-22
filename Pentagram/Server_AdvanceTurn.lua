@@ -12,17 +12,17 @@ function Server_AdvanceTurn_Order(game,order,result,skipOrder,addOrder)
 				skipOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 			end
 		else
-			local ownPenta=1;
+			local ownPenta=6;
 			for i=0,5,1 do
 				ID=10*FromID1+i;
 				
 				if(game.ServerGame.LatestTurnStanding.Territories[ID].OwnerPlayerID~=game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID) then
 					print("TerrID: "..ID.."; TerrOwnerID: "..game.ServerGame.LatestTurnStanding.Territories[ID].OwnerPlayerID.."; FromTerrOwnerID: "..game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID.."; Neutral: "..WL.PlayerID.Neutral);
-					ownPenta=0;
+					ownPenta=OwnPenta-1;
 				end	
 			end
 			print(ownPenta);
-			if ((ownPenta==0) or (not PentagonPossibleBig(FromID1,ToID1))) then
+			if ((ownPenta<=3) or (not PentagonPossibleBig(FromID1,ToID1))) then
 				print("Skipped");
 				skipOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 			end
