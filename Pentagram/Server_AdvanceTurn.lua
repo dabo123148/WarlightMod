@@ -9,7 +9,7 @@ function Server_AdvanceTurn_Order(game,order,result,skipOrder,addOrder)
 		ToID2=ToID%10;
 		if(FromID1==ToID1)then
 			if not PentagonPossibleSmall(FromID2,ToID2) then
-				skipOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
+				skipOrder(WL.ModOrderControl.Skip);
 			end
 		else
 			local ownPenta=6;
@@ -24,7 +24,7 @@ function Server_AdvanceTurn_Order(game,order,result,skipOrder,addOrder)
 			print(ownPenta);
 			if ((ownPenta<=3) or (not PentagonPossibleBig(FromID1,ToID1))) then
 				print("Skipped");
-				skipOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
+				skipOrder(WL.ModOrderControl.Skip);
 			end
 		end
 	end
