@@ -18,21 +18,20 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				end
 				redeployarmies[order.PlayerID] = redeployarmies[order.PlayerID] + (order.NumArmies-Deploys);--This armies must be deployed on other Territories
 				skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
-				for _, terri in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-					local remainingarmies = redeployarmies[terri.OwnerPlayerID];
-					if(remainingarmies ~= nil)then
-						if(remainingarmies > 0)then
-							for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-								if(terri.OwnerPlayerID == terra.OwnerPlayerID)then
-									if(AlreadyDeployed[terra.ID] < Mod.Settings.MaxDeploy)then
-										local PlaceFor = Mod.Settings.MaxDeploy-AlreadyDeployed[terra.ID];
-										if(PlaceFor>remainingarmies)then
-											PlaceFor = remainingarmies;
-										end
-										if(PlaceFor > 0)then
-											addNewOrder(WL.GameOrderDeploy.Create(terri.OwnerPlayerID,PlaceFor,terra.ID));
-											remainingarmies = remainingarmies - PlaceFor;
-										end
+				local terri = game.ServerGame.LatestTurnStanding.Territories[on];
+				local remainingarmies = redeployarmies[terri.OwnerPlayerID];
+				if(remainingarmies ~= nil)then
+					if(remainingarmies > 0)then
+						for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
+							if(terri.OwnerPlayerID == terra.OwnerPlayerID)then
+								if(AlreadyDeployed[terra.ID] < Mod.Settings.MaxDeploy)then
+									local PlaceFor = Mod.Settings.MaxDeploy-AlreadyDeployed[terra.ID];
+									if(PlaceFor>remainingarmies)then
+										PlaceFor = remainingarmies;
+									end
+									if(PlaceFor > 0)then
+										addNewOrder(WL.GameOrderDeploy.Create(terri.OwnerPlayerID,PlaceFor,terra.ID));
+										remainingarmies = remainingarmies - PlaceFor;
 									end
 								end
 							end
