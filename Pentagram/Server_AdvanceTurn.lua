@@ -18,7 +18,7 @@ function Server_AdvanceTurn_Order(game,order,result,skipOrder,addOrder)
 				
 				if(game.ServerGame.LatestTurnStanding.Territories[ID].OwnerPlayerID~=game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID) then
 					print("TerrID: "..ID.."; TerrOwnerID: "..game.ServerGame.LatestTurnStanding.Territories[ID].OwnerPlayerID.."; FromTerrOwnerID: "..game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID.."; Neutral: "..WL.PlayerID.Neutral);
-					ownPenta=OwnPenta-1;
+					ownPenta=ownPenta-1;
 				end	
 			end
 			print(ownPenta);
