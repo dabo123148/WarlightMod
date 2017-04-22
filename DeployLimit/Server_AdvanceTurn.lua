@@ -13,6 +13,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			Deploys = Mod.Settings.MaxDeploy-AlreadyDeployed[on];
 			if(Deploys > 0)then
 				addNewOrder(WL.GameOrderDeploy.Create(order.PlayerID,Deploys,on));
+				AlreadyDeployed[on] = AlreadyDeployed[on]+Deploys;
 				if(redeployarmies[order.PlayerID] == nil)then
 					redeployarmies[order.PlayerID] = 0;
 				end
