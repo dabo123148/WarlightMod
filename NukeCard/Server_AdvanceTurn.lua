@@ -6,8 +6,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(executed == false)then
 		if(order.proxyType ~= 'GameOrderDeploy')then--deployorders needn't to be skipped
 			SkippedOrders[tablelength(SkippedOrders)] = order;
-			--skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
-			skipThisOrder(WL.ModOrderControl.Skip);
+			skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 			print('Test1');
 		end
 	end
