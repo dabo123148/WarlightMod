@@ -1,6 +1,6 @@
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == 'GameOrderPlayCardReconnaissance') then
-		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
+		--In a later version, you can choose, wheater you want the old card effect still or not
 		local Effect = {};
 		for _,conn in pairs(game.Map.Territories[order.TargetTerritory].ConnectedTo) do
 			Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(conn.ID);
