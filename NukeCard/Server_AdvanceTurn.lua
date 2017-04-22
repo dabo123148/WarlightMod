@@ -1,7 +1,3 @@
-function Server_AdvanceTurn_Start (game,addNewOrder)
-	SkippedOrders = {};
-	executed = false;
-end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == 'GameOrderPlayCardReconnaissance') then
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
