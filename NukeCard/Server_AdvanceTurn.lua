@@ -8,13 +8,14 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			SkippedOrders[tablelength(SkippedOrders)] = order;
 			--skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 			skipThisOrder(WL.ModOrderControl.Skip);
+			print('Test1');
 		end
 	end
 end
 function Server_AdvanceTurn_End(game, addNewOrder)
 	if(executed == false)then
+		print('Test2');
 		executed = true;
-		local Renaisanceterr = {};
 		for _,order in pairs(SkippedOrders) do
 			if(order.proxyType == 'GameOrderPlayCardReconnaissance')then
 				local Effect = {};
