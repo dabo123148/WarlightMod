@@ -4,7 +4,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(executed == false)then
-		if(order.proxyType ~= 'GameOrderPlayCardReconnaissance')
+		if(order.proxyType ~= 'GameOrderPlayCardReconnaissance') then
 			skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 			local Effect = {};
 			for _,conn in pairs(game.Map.Territories[order.TargetTerritory].ConnectedTo) do
