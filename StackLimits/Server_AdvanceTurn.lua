@@ -86,7 +86,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local PlaceFor = Mod.Settings.StackLimit-terr.NumArmies.NumArmies;
 			skipThisOrder(WL.ModOrderControl.Skip);
 			if(PlaceFor > 0)then
-				addNewOrder(WL.GameOrderPlayCardAirlift.Create(order.CardInstanceID, order.PlayerID, order.FromTerritoryID , order.ToTerritoryID, WL.Armies.Create(order.Armies.NumArmies,order.Armies.SpecialUnits)));
+				addNewOrder(WL.GameOrderPlayCardAirlift.Create(order.CardInstanceID, order.PlayerID, order.FromTerritoryID , order.ToTerritoryID, WL.Armies.Create(PlaceFor ,order.Armies.SpecialUnits)));
 			end
 		end
 	end
