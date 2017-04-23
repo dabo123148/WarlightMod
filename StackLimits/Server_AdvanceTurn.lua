@@ -71,7 +71,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == 'GameOrderAttackTransfer')then
 		local Deploys = order.NumArmies.NumArmies;
 		local terr = game.ServerGame.LatestTurnStanding.Territories[order.To];
-		iif(terr.NumArmies.NumArmies + Deploys > Mod.Settings.StackLimit)then
+		if(terr.NumArmies.NumArmies + Deploys > Mod.Settings.StackLimit)then
 			local PlaceFor = Mod.Settings.StackLimit-terr.NumArmies.NumArmies;
 			skipThisOrder(WL.ModOrderControl.Skip);
 			if(PlaceFor > 0)then
