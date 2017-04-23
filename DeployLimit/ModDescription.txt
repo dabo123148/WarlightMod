@@ -1,2 +1,1 @@
-Warning you won't recieve any new card pieces (will be fixed soon).
 This Mod allows you to limit the number of armies a player can deploy on a territory. If a players territory reaches the limit, the armies will be deployed on other territories. If every territory reached the deployment limit, the armies will be lost.
