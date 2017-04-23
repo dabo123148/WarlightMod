@@ -39,8 +39,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == 'GameOrderDeploy')then
 		local Deploys = order.NumArmies;
 		local terr = game.ServerGame.LatestTurnStanding.Territories[order.DeployOn];
-		if(terr.NumArmies.NumArmies + Deploys > Mod.Settings.Mod.Settings.StackLimit)then
-			local PlaceFor = Mod.Settings.Mod.Settings.StackLimit-terr.NumArmies.NumArmies;
+		if(terr.NumArmies.NumArmies + Deploys > Mod.Settings.StackLimit)then
+			local PlaceFor = Mod.Settings.StackLimit-terr.NumArmies.NumArmies;
 			local Effect = {};
 			Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terr.ID);
 			Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
