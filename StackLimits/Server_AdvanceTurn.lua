@@ -71,8 +71,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == 'GameOrderAttackTransfer')then
 		local Deploys = order.NumArmies.NumArmies;
 		local terr = game.ServerGame.LatestTurnStanding.Territories[order.To];
-		if(terr.NumArmies.NumArmies + Deploys > Mod.Settings.Mod.Settings.StackLimit)then
-			local PlaceFor = Mod.Settings.Mod.Settings.StackLimit-terr.NumArmies.NumArmies;
+		iif(terr.NumArmies.NumArmies + Deploys > Mod.Settings.StackLimit)then
+			local PlaceFor = Mod.Settings.StackLimit-terr.NumArmies.NumArmies;
 			skipThisOrder(WL.ModOrderControl.Skip);
 			if(PlaceFor > 0)then
 				addNewOrder(WL.GameOrderAttackTransfer.Create(order.PlayerID, order.From, order.To, order.AttackTransfer , order.ByPercent , WL.Armies.Create(PlaceFor,order.NumArmies.SpecialUnits), order.AttackTeammates));
@@ -82,8 +82,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == 'GameOrderPlayCardAirlift')then
 		local Deploys = order.Armies.NumArmies;
 		local terr = game.ServerGame.LatestTurnStanding.Territories[order.ToTerritoryID];
-		if(terr.NumArmies.NumArmies + Deploys > Mod.Settings.Mod.Settings.StackLimit)then
-			local PlaceFor = Mod.Settings.Mod.Settings.StackLimit-terr.NumArmies.NumArmies;
+		if(terr.NumArmies.NumArmies + Deploys > Mod.Settings.StackLimit)then
+			local PlaceFor = Mod.Settings.StackLimit-terr.NumArmies.NumArmies;
 			skipThisOrder(WL.ModOrderControl.Skip);
 			if(PlaceFor > 0)then
 				addNewOrder(WL.GameOrderPlayCardAirlift.Create(order.CardInstanceID, order.PlayerID, order.FromTerritoryID , order.ToTerritoryID, WL.Armies.Create(order.Armies.NumArmies,order.Armies.SpecialUnits)));
