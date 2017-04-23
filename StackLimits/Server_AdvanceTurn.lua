@@ -46,7 +46,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
 			local RemainingArmies = Deploys-PlaceFor;
 			for _, terri in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-				if(terri.OwnerPlayerID == terra.OwnerPlayerID)then
+				if(terri.OwnerPlayerID == terr.OwnerPlayerID)then
 					local CanTakeArmies = Mod.Settings.StackLimit-terri.NumArmies.NumArmies;
 					if(CanTakeArmies > RemainingArmies)then
 						CanTakeArmies = RemainingArmies;
