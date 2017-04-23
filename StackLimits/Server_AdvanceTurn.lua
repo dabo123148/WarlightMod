@@ -65,7 +65,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					end
 				end
 			end
-			addNewOrder(WL.GameOrderEvent.Create(terra.OwnerPlayerID,"Stack Limit",{},Effect));
+			addNewOrder(WL.GameOrderEvent.Create(terr.OwnerPlayerID,"Stack Limit",{},Effect));
 		end
 	end
 	if(order.proxyType == 'GameOrderAttackTransfer')then
