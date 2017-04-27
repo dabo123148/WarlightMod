@@ -1,0 +1,1 @@
+This Mod allowes special units to revive 100% of the lost armies on connected territories to them. That won't work, if they are killed by an bomb card or if the commander is involved into the attack.
