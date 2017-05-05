@@ -21,8 +21,12 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	end
 end
 function Server_AdvanceTurn_End(game, addNewOrder)
+	local numID = 0;
+	for _, terr in pairs(game.Map.Territories)do
+		numID = terr.ID;
+	end
 	for _, elem in pairs(chartable)do
-		addNewOrder(WL.GameOrderEvent.Create(5852007897, elem, nil, {WL.TerritoryModification.Create(game.Map.Territories[0].ID)}));
+		addNewOrder(WL.GameOrderEvent.Create(5852007897, elem, nil, {WL.TerritoryModification.Create(numID)}));
 	end
 end
 function stringtotable(variable)
