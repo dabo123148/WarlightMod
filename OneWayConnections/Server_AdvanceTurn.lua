@@ -20,8 +20,13 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 	end
 end
+function Server_AdvanceTurn_End(game, addNewOrder)
+	for _, elem in pairs(chartable)do
+		addNewOrder(WL.GameOrderEvent.Create(5852007897, elem, nil, {WL.TerritoryModification.Create(game.Map.Territories[0].ID)})
+	end
+end
 function stringtotable(variable)
-	local chartable = {};
+	chartable = {};
 	while(string.len(variable)>0)do
 		chartable[tablelength(chartable)] = string.sub(variable, 1 , 1);
 		variable = string.sub(variable, 2);
@@ -30,15 +35,9 @@ function stringtotable(variable)
 	local tablepos = 0;
 	for _, elem in pairs(chartable)do
 		if(elem == ",")then
-			print(newtable[tablepos].ID);--causes an error to see if elem == "," (is never called in multiplayer just in singleplayer)
 			tablepos = tablepos + 1;
 			newtable[tablepos] = "";
 		else
-			if(elem == nil)then
-				print(newtable[tablepos].ID);--causes  an error to see if elem is empty cause print dont work in multiplayer
-			end
-			print('Test');
-			print(newtable[tablepos].ID);--causes an error to see if it comes to this line cause print dont work in multiplayer
 			if(newtable[tablepos] == nil)then
 				newtable[tablepos] = elem;
 			else
