@@ -7,23 +7,32 @@ function Client_PresentSettingsUI(rootParent)
 		.SetText('Removed Connection between ' .. RC[num] .. ' and ' .. RC[num+1]);
 		num=num+2;
 	end
-	UI.CreateLabel(rootParent)
-		.SetText(Mod.Settings.RemovedConnections);
 end
 function stringtotable(variable)
-	local chartable = {};
+	chartable = {};
 	while(string.len(variable)>0)do
 		chartable[tablelength(chartable)] = string.sub(variable, 1 , 1);
 		variable = string.sub(variable, 2);
 	end
 	local newtable = {};
 	local tablepos = 0;
+	local executed = false;
 	for _, elem in pairs(chartable)do
-		if(elem == ',')then
+		if(elem == ",")then
 			tablepos = tablepos + 1;
 			newtable[tablepos] = "";
+			executed = true;
 		else
-			newtable[tablepos] = newtable[tablepos] .. elem;
+			if(executed == false)then
+				tablepos = tablepos + 1;
+				newtable[tablepos] = "";
+				executed = true;
+			end
+			if(newtable[tablepos] == nil)then
+				newtable[tablepos] = elem;
+			else
+				newtable[tablepos] = newtable[tablepos] .. elem;
+			end
 		end
 	end
 	return newtable;
