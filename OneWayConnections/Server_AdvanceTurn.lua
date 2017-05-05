@@ -37,11 +37,18 @@ function stringtotable(variable)
 	end
 	local newtable = {};
 	local tablepos = 0;
+	local executed = false;
 	for _, elem in pairs(chartable)do
 		if(elem == ",")then
 			tablepos = tablepos + 1;
 			newtable[tablepos] = "";
+			executed = true;
 		else
+			if(executed == false)then
+				tablepos = tablepos + 1;
+				newtable[tablepos] = "";
+				executed = true;
+			end
 			if(newtable[tablepos] == nil)then
 				newtable[tablepos] = elem;
 			else
