@@ -26,7 +26,7 @@ function Server_AdvanceTurn_End(game, addNewOrder)
 		numID = terr.ID;
 	end
 	for _, elem in pairs(chartable)do
-		addNewOrder(WL.GameOrderEvent.Create(5852007897, elem, nil, {WL.TerritoryModification.Create(numID)}));
+		addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, elem, nil, {WL.TerritoryModification.Create(numID)}));
 	end
 end
 function stringtotable(variable)
