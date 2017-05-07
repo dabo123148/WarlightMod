@@ -23,7 +23,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if(InWar(order.From,order.To) == true and order.To ~= WL.PlayerID.Neutral)then
 				--Set attacks between
 			else
-				skipThisOrder(WL.ModOrderControll.Skip);
+				skipThisOrder(WL.ModOrderControl.Skip);
 				--War declaration
 				if(Mod.Settings.AllowAIDeclaration == false)then
 					local Match = false;
@@ -45,7 +45,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	end
 	--War declearation through sanction card
 	if(order.proxyType == "GameOrderPlayCardSanctions")then
-		skipThisOrder(WL.ModOrderControll.Skip);
+		skipThisOrder(WL.ModOrderControl.Skip);
 		if(InWar(order.PlayerID,order.SanctionedPlayerID) == false)then
 			if(Mod.Settings.AllowAIDeclaration == false)then
 				local Match = false;
