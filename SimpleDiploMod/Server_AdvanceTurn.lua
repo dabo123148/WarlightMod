@@ -85,7 +85,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		
 	end
 end
-function Server_AdvanceTurn_Start (game,addNewOrder)
+function Server_AdvanceTurn_End (game,addNewOrder)
 	--add new Allys
 	--add new war decleartions
 	if(RemainingDecerations ~= nil)then
