@@ -17,6 +17,7 @@ function Client_PresentSettingsUI(rootParent)
 	end
 	local ShowenIDs = {};
 	if(AllPlayerIDs ~= nil)then
+		print('Show');
 		for _, PID in pairs(AllPlayerIDs)do
 			for _, PID2 in pairs(AllPlayerIDs)do
 				if(War[PID][PID2] == true)then
