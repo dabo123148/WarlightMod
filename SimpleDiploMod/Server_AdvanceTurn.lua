@@ -16,6 +16,21 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 			end
 		end
 	end
+	AllPlayerIDs = {};
+	for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
+		local Match = false;
+		local CheckingID = terr.OwnerPlayerID;
+		if(CheckingID ~= WL.PlayerID.Neutral)then
+			for _,knownPlayers in pairs(AllPlayerIDs)do
+				if(CheckingID == knownPlayers)then
+					Match = true;
+				end
+			end
+			if(Match == false)then
+				AllPlayerIDs[tablelength(AllPlayerIDs)] = CheckingID;
+			end
+		end
+	end
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == "GameOrderAttackTransfer")then
