@@ -19,7 +19,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == "GameOrderAttackTransfer")then
-		if(result.IsAttack order.To ~= WL.PlayerID.Neutral)then
+		if(result.IsAttack and order.To ~= WL.PlayerID.Neutral)then
 			if(InWar(order.From,order.To) == true)then
 				--Set attacks between
 			else
