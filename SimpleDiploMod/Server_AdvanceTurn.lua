@@ -19,8 +19,9 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == "GameOrderAttackTransfer")then
-		if(result.IsAttack and order.To ~= WL.PlayerID.Neutral)then
-			if(InWar(order.From,order.To) == true)then
+		if(result.IsAttack and game.ServerGame.LatestTurnStanding.Territories[order.To].PlayerID ~= WL.PlayerID.Neutral)then
+			print('Attack');
+			if(InWar(game.ServerGame.LatestTurnStanding.Territories[order.From].PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].PlayerID) == true)then
 				--Set attacks between
 			else
 				skipThisOrder(WL.ModOrderControl.Skip);
@@ -36,11 +37,11 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						end
 					end
 					if(Match == false)then
-						DeclearWar(order.From,order.To);
+						DeclearWar(game.ServerGame.LatestTurnStanding.Territories[order.From].PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].PlayerID);
 						--Allys declear war on order.From if not allied with order.From
 					end
 				else
-					DeclearWar(order.From,order.To);
+					DeclearWar(game.ServerGame.LatestTurnStanding.Territories[order.From].PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].PlayerID);
 					--Allys declear war on order.From if not allied with order.From
 				end
 			end
@@ -48,6 +49,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	end
 	--War declearation through sanction card
 	if(order.proxyType == "GameOrderPlayCardSanctions")then
+		print('Sanction');
 		skipThisOrder(WL.ModOrderControl.Skip);
 		if(InWar(order.PlayerID,order.SanctionedPlayerID) == false)then
 			if(Mod.Settings.AllowAIDeclaration == false)then
@@ -56,7 +58,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					print('Fehler');
 				end
 				for _, AI in pairs(AllAIs)do
-					if(order.From == AI)then
+					if(order.PlayerID == AI)then
 						Match = true;
 					end
 				end
