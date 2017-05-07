@@ -81,7 +81,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			else
 				if(Deploys > Mod.Settings.StackLimit)then
 					skipThisOrder(WL.ModOrderControl.Skip);
-					addNewOrder(WL.GameOrderAttackTransfer.Create(order.PlayerID, order.From, order.To, order.AttackTransfer , order.ByPercent , WL.Armies.Create(PlaceFor,order.NumArmies.SpecialUnits), order.AttackTeammates));
+					addNewOrder(WL.GameOrderAttackTransfer.Create(order.PlayerID, order.From, order.To, order.AttackTransfer , order.ByPercent , WL.Armies.Create(Mod.Settings.StackLimit,order.NumArmies.SpecialUnits), order.AttackTeammates));
 				end
 			end
 		end
