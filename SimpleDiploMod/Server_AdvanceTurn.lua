@@ -49,6 +49,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(InWar(order.PlayerID,order.SanctionedPlayerID) == false)then
 			if(Mod.Settings.AllowAIDeclaration == false)then
 				local Match = false;
+				if(AllAIs == nil)then
+					print('Fehler');
+				end
 				for _, AI in pairs(AllAIs)do
 					if(order.From == AI)then
 						Match = true;
