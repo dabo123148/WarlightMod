@@ -106,6 +106,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			end
 			newinwar[P2] = true;
 			War[P1] = newinwar;
+			addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "The Player with the player ID " .. tostring(P1) .. " decleared war on " .. tostring(P2), nil,{}));
 			local P3 = P2;
 			P2 = P1;
 			p1 = P3;
@@ -116,7 +117,6 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				end
 			end
 			newinwar[P2] = true;
-			addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "The Player with the player ID " .. " decleared war on ", nil,{}));
 		end
 	end
 	if(Mod.Settings.SeeAllyTerritories)then
