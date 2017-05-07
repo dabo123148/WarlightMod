@@ -20,7 +20,6 @@ end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == "GameOrderAttackTransfer")then
 		if(result.IsAttack and game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID ~= WL.PlayerID.Neutral)then
-			print('Attack');
 			if(InWar(game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID) == true)then
 				--Set attacks between
 			else
@@ -28,9 +27,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				--War declaration
 				if(Mod.Settings.AllowAIDeclaration == false)then
 					local Match = false;
-					if(AllAIs == nil)then
-						print('Fehler');
-					end
 					for _, AI in pairs(AllAIs)do
 						if(game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID == AI)then
 							Match = true;
@@ -122,6 +118,7 @@ function DeclearWar(Player1,Player2)
 end
 function InWar(Player1,Player2)
 	if(War == nil)then
+		print('neu gesetzt');
 		War = {{}};
 	end
 	if(War[Player1] ~= nil)then
