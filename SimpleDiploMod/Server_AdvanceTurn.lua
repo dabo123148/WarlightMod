@@ -84,8 +84,10 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			local P1 = tonumber(stringtotable(newwar)[1]);
 			local P2 = tonumber(stringtotable(newwar)[2]);
 			local newinwar = {};
-			for _, alreadyinwar in pairs(War[P1])do
-				newinwar[alreadyinwar] = true;
+			if(War[P1] ~= nil)then
+				for _, alreadyinwar in pairs(War[P1])do
+					newinwar[alreadyinwar] = true;
+				end
 			end
 			newinwar[P2] = true;
 			print(P1);
