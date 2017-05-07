@@ -20,13 +20,13 @@ end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == "GameOrderAttackTransfer")then
 		if(order.IsAttack)then
-			if(InWar(order.From,order.To) == true)then
+			if(InWar(order.From,order.To) == true and order.To ~= WL.PlayerID.Neutral)then
 				--Set attacks between
 			else
 				skipThisOrder(WL.ModOrderControll.Skip);
 				--War declaration
 				if(Mod.Settings.AllowAIDeclaration == false)then
-					bool Match = false;
+					local Match = false;
 					for _, AI in pairs(AllAIs)do
 						if(order.From == AI)then
 							Match = true;
