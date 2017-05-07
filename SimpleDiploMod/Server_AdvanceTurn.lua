@@ -78,7 +78,7 @@ end
 function Server_AdvanceTurn_End (game,addNewOrder)
 	--add new Allys
 	--add new war decleartions
-	if(RemainingDecerations ~= nil)then
+	if(RemainingDeclerations ~= nil)then
 		print('T5');
 		for _,P1 in pairs(RemainingDeclerations)do
 			print('T6');
