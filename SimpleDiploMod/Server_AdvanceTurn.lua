@@ -85,10 +85,13 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	if(RemainingDecerations ~= nil)then
 		for _,P1 in pairs(RemainingDeclerations)do
 			for _,P2 in pairs(P1)do
-				if(RemainingDeclerations[P1][P2] == true)then
-					War[P1][P2] = true;
-					addNewOrder(WL.GameOrderEvent.Create(order.From, "The Player with the player ID " ..P1 .. " decleared war on " .. P2, nil, {}));
+				local newinwar = {};
+				for _, alreadyinwar in pairs(P1)do
+					newinwar[alreadyinwar] = true;
 				end
+				newinwar[P2] = true;
+				War[P1] = newinwar;
+				addNewOrder(WL.GameOrderEvent.Create(order.From, "The Player with the player ID " ..P1 .. " decleared war on " .. P2, nil, {}));
 			end
 		end
 	end
@@ -121,8 +124,10 @@ function InWar(Player1,Player2)
 	if(War == nil)then
 		War = {{}};
 	end
-	if(War[Player1][Player2])then
-		return true;
+	if(War[Player1] ~= nil)then
+		if(War[Player1][Player2])then
+			return true;
+		end
 	end
 	return false;
 end
