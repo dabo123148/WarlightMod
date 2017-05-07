@@ -88,6 +88,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				newinwar[alreadyinwar] = true;
 			end
 			newinwar[P2] = true;
+			print(P1);
 			print(P2);
 			War[P1] = newinwar;
 			print('T3');
