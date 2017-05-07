@@ -72,10 +72,17 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		local Deploys = order.NumArmies.NumArmies;
 		local terr = game.ServerGame.LatestTurnStanding.Territories[order.To];
 		if(terr.NumArmies.NumArmies + Deploys > Mod.Settings.StackLimit)then
-			local PlaceFor = Mod.Settings.StackLimit-terr.NumArmies.NumArmies;
-			skipThisOrder(WL.ModOrderControl.Skip);
-			if(PlaceFor > 0)then
-				addNewOrder(WL.GameOrderAttackTransfer.Create(order.PlayerID, order.From, order.To, order.AttackTransfer , order.ByPercent , WL.Armies.Create(PlaceFor,order.NumArmies.SpecialUnits), order.AttackTeammates));
+			if(order.PlayerID == terr.OwnerPlayerID)then
+				local PlaceFor = Mod.Settings.StackLimit-terr.NumArmies.NumArmies;
+				skipThisOrder(WL.ModOrderControl.Skip);
+				if(PlaceFor > 0)then
+					addNewOrder(WL.GameOrderAttackTransfer.Create(order.PlayerID, order.From, order.To, order.AttackTransfer , order.ByPercent , WL.Armies.Create(PlaceFor,order.NumArmies.SpecialUnits), order.AttackTeammates));
+				end
+			else
+				if(Deploys > Mod.Settings.StackLimit)then
+					skipThisOrder(WL.ModOrderControl.Skip);
+					addNewOrder(WL.GameOrderAttackTransfer.Create(order.PlayerID, order.From, order.To, order.AttackTransfer , order.ByPercent , WL.Armies.Create(PlaceFor,order.NumArmies.SpecialUnits), order.AttackTeammates));
+				end
 			end
 		end
 	end
