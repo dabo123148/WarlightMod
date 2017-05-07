@@ -16,21 +16,23 @@ function Client_PresentSettingsUI(rootParent)
 		UI.CreateLabel(rootParent).SetText('Just you and your ally can see your allianze');
 	end
 	local ShowenIDs = {};
-	for _, PID in pairs(AllPlayerIDs)do
-		for _, PID2 in pairs(AllPlayerIDs)do
-			if(War[PID][PID2] == true)then
-				local Match = false;
-				for _, SID in pairs(ShowenIDs)do
-					if(SID == PID2)then
-						Match = true;
+	if(AllPlayerIDs ~= nil)then
+		for _, PID in pairs(AllPlayerIDs)do
+			for _, PID2 in pairs(AllPlayerIDs)do
+				if(War[PID][PID2] == true)then
+					local Match = false;
+					for _, SID in pairs(ShowenIDs)do
+						if(SID == PID2)then
+							Match = true;
+						end
+					end
+					if(Match == false)then
+						UI.CreateLabel(rootParent).SetText(PID .." is in war with " PID2);
 					end
 				end
-				if(Match == false)then
-					UI.CreateLabel(rootParent).SetText(PID .." is in war with " PID2);
-				end
 			end
+			ShowenIDs[tablelength(ShowenIDs)] = PID;
 		end
-		ShowenIDs[tablelength(ShowenIDs)] = PID;
 	end
 end
 function tablelength(T)
