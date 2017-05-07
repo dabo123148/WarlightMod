@@ -119,6 +119,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			newinwar[P2] = true;
 		end
 	end
+	RemainingDeclerations = {};
 	if(Mod.Settings.SeeAllyTerritories)then
 		--play on every ally a spy card
 	end
@@ -132,7 +133,19 @@ function DeclearWar(Player1,Player2)
 		if(RemainingDeclerations == nil)then
 			RemainingDeclerations = {};
 		end
-		RemainingDeclerations[tablelength(RemainingDeclerations)] = Player1 .. "," ..Player2;
+		local Match = false;
+		for _,newwar in pairs(RemainingDeclerations)do
+			local P1 = tonumber(stringtotable(newwar)[1]);
+			local P2 = tonumber(stringtotable(newwar)[2]);
+			if(P1 == Player1 or P1 == Player2)then
+				if(P2 == Player1 or P2 == Player2)then
+					Match = true;
+				end
+			end
+		end
+		if(Match == false)then
+			RemainingDeclerations[tablelength(RemainingDeclerations)] = Player1 .. "," ..Player2;
+		end
 		print('T4');
 	else
 		RemoveAlly(Player1,Player2);
