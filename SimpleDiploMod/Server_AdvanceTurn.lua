@@ -86,6 +86,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		for _,P1 in pairs(RemainingDeclerations)do
 			for _,P2 in pairs(P1)do
 				if(RemainingDeclerations[P1][P2] == true)then
+					War[P1][P2] = true;
 					addNewOrder(WL.GameOrderEvent.Create(order.From, "The Player with the player ID " ..P1 .. " decleared war on " .. P2, nil, {}));
 				end
 			end
@@ -110,8 +111,6 @@ function DeclearWar(Player1,Player2)
 				newstate[P2] = true;	
 			end
 		end
-		print(Player1);
-		print(Player2);
 		newstate[Player2] = true;
 		RemainingDeclerations[Player1] = newstate;
 	else
@@ -119,6 +118,12 @@ function DeclearWar(Player1,Player2)
 	end
 end
 function InWar(Player1,Player2)
+	if(War == nil)then
+		War = {{}};
+	end
+	if(War[Player1][Player2])then
+		return true;
+	end
 	return false;
 end
 function DeclearAlly(Player1,Player2)
