@@ -81,8 +81,8 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	if(RemainingDeclerations ~= nil)then
 		print('T5');
 		for _,newwar in pairs(RemainingDeclerations)do
-			local P1 = int.Parse(stringtotable(newwar)[1]);
-			local P2 = int.Parse(stringtotable(newwar)[2]);
+			local P1 = tonumber(stringtotable(newwar)[1]);
+			local P2 = tonumber(stringtotable(newwar)[2]);
 			local newinwar = {};
 			for _, alreadyinwar in pairs(War[P1])do
 				newinwar[alreadyinwar] = true;
