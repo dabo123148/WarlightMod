@@ -108,7 +108,7 @@ function DeclearWar(Player1,Player2)
 		if(RemainingDeclerations == nil)then
 			RemainingDeclerations = {};
 		end
-		RemainingDeclerations[tablelenght(RemainingDeclerations)] = Player1 .. "," ..Player2;
+		RemainingDeclerations[tablelength(RemainingDeclerations)] = Player1 .. "," ..Player2;
 		print('T4');
 	else
 		RemoveAlly(Player1,Player2);
