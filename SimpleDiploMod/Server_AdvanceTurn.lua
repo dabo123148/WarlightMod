@@ -19,9 +19,9 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == "GameOrderAttackTransfer")then
-		if(result.IsAttack and game.ServerGame.LatestTurnStanding.Territories[order.To].PlayerID ~= WL.PlayerID.Neutral)then
+		if(result.IsAttack and game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID ~= WL.PlayerID.Neutral)then
 			print('Attack');
-			if(InWar(game.ServerGame.LatestTurnStanding.Territories[order.From].PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].PlayerID) == true)then
+			if(InWar(game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID) == true)then
 				--Set attacks between
 			else
 				skipThisOrder(WL.ModOrderControl.Skip);
@@ -32,16 +32,16 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						print('Fehler');
 					end
 					for _, AI in pairs(AllAIs)do
-						if(order.From == AI)then
+						if(game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID == AI)then
 							Match = true;
 						end
 					end
 					if(Match == false)then
-						DeclearWar(game.ServerGame.LatestTurnStanding.Territories[order.From].PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].PlayerID);
+						DeclearWar(game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID);
 						--Allys declear war on order.From if not allied with order.From
 					end
 				else
-					DeclearWar(game.ServerGame.LatestTurnStanding.Territories[order.From].PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].PlayerID);
+					DeclearWar(game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID);
 					--Allys declear war on order.From if not allied with order.From
 				end
 			end
