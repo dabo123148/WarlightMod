@@ -27,7 +27,7 @@ function Client_PresentSettingsUI(rootParent)
 						end
 					end
 					if(Match == false)then
-						UI.CreateLabel(rootParent).SetText(tostring(PID) .." is in war with " tostring(PID2));
+						UI.CreateLabel(rootParent).SetText(tostring(PID) .." is in war with " .. tostring(PID2));
 					end
 				end
 			end
