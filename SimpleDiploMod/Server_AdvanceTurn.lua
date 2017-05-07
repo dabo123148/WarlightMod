@@ -80,20 +80,18 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	--add new war decleartions
 	if(RemainingDeclerations ~= nil)then
 		print('T5');
-		for _,P1 in pairs(RemainingDeclerations)do
-			print('T6');
-			for _,P2 in pairs(P1)do
-				print('T7');
-				local newinwar = {};
-				for _, alreadyinwar in pairs(P1)do
-					newinwar[alreadyinwar] = true;
-				end
-				newinwar[P2] = true;
-				print(P2);
-				War[P1] = newinwar;
-				print('T3');
-				addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "The Player with the player ID " .. " decleared war on ", nil,{}));
+		for _,newwar in pairs(RemainingDeclerations)do
+			local P1 = int.Parse(stringtotable(newwar)[1]);
+			local P2 = int.Parse(stringtotable(newwar)[2]);
+			local newinwar = {};
+			for _, alreadyinwar in pairs(War[P1])do
+				newinwar[alreadyinwar] = true;
 			end
+			newinwar[P2] = true;
+			print(P2);
+			War[P1] = newinwar;
+			print('T3');
+			addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "The Player with the player ID " .. " decleared war on ", nil,{}));
 		end
 	end
 	if(Mod.Settings.SeeAllyTerritories)then
@@ -107,16 +105,9 @@ end
 function DeclearWar(Player1,Player2)
 	if(IsAlly(Player1,Player2)==false)then
 		if(RemainingDeclerations == nil)then
-			RemainingDeclerations = {{}};
+			RemainingDeclerations = {};
 		end
-		local newstate = {};
-		if(RemainingDeclerations[Player1] ~= nil)then
-			for _,P2 in pairs(RemainingDeclerations[Player1])do
-				newstate[P2] = true;	
-			end
-		end
-		newstate[Player2] = true;
-		RemainingDeclerations[Player1] = newstate;
+		RemainingDeclerations[tablelenght(RemainingDeclerations)] = Player1 .. "," ..Player2;
 		print('T4');
 	else
 		RemoveAlly(Player1,Player2);
@@ -148,4 +139,33 @@ function tablelength(T)
 		count = count + 1;
 	end
 	return count;
+end
+function stringtotable(variable)
+	chartable = {};
+	while(string.len(variable)>0)do
+		chartable[tablelength(chartable)] = string.sub(variable, 1 , 1);
+		variable = string.sub(variable, 2);
+	end
+	local newtable = {};
+	local tablepos = 0;
+	local executed = false;
+	for _, elem in pairs(chartable)do
+		if(elem == ",")then
+			tablepos = tablepos + 1;
+			newtable[tablepos] = "";
+			executed = true;
+		else
+			if(executed == false)then
+				tablepos = tablepos + 1;
+				newtable[tablepos] = "";
+				executed = true;
+			end
+			if(newtable[tablepos] == nil)then
+				newtable[tablepos] = elem;
+			else
+				newtable[tablepos] = newtable[tablepos] .. elem;
+			end
+		end
+	end
+	return newtable;
 end
