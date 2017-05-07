@@ -1,0 +1,5 @@
+Sanction = War declaration
+Diplo = Peace declaration
+Attack = War declaration(attack get still blocked)
+AIs allowed to declear war? (AllowAIDeclaration)
+If allied its possible to see the allied territories (SeeAllyTerritories)
