@@ -48,7 +48,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		skipThisOrder(WL.ModOrderControll.Skip);
 		if(InWar(order.PlayerID,order.SanctionedPlayerID) == false)then
 			if(Mod.Settings.AllowAIDeclaration == false)then
-				bool Match = false;
+				local Match = false;
 				for _, AI in pairs(AllAIs)do
 					if(order.From == AI)then
 						Match = true;
