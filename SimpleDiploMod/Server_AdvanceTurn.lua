@@ -87,6 +87,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				end
 				newinwar[P2] = true;
 				War[P1] = newinwar;
+				print('T3);
 				addNewOrder(WL.GameOrderEvent.Create(order.From, "The Player with the player ID " ..P1 .. " decleared war on " .. P2, nil, {}));
 			end
 		end
@@ -122,7 +123,9 @@ function InWar(Player1,Player2)
 		War = {{}};
 	end
 	if(War[Player1] ~= nil)then
+		print('Test');
 		if(War[Player1][Player2])then
+			print('Test2');
 			return true;
 		end
 	end
