@@ -113,6 +113,7 @@ function DeclearWar(Player1,Player2)
 		end
 		newstate[Player2] = true;
 		RemainingDeclerations[Player1] = newstate;
+		print('T4');
 	else
 		RemoveAlly(Player1,Player2);
 	end
