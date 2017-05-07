@@ -111,8 +111,10 @@ function DeclearWar(Player1,Player2)
 			RemainingDeclerations = {{}};
 		end
 		local newstate = {};
-		for _,P2 in pairs(RemainingDeclerations[Player1])do
-			newstate[P2] = true;	
+		if(RemainingDeclerations[Player1] ~= nil)then
+			for _,P2 in pairs(RemainingDeclerations[Player1])do
+				newstate[P2] = true;	
+			end
 		end
 		newstate[Player2] = true;
 		RemainingDeclerations[Player1] = newstate;
