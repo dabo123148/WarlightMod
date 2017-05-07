@@ -1,29 +1,21 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
-	print('T0');
 	AllAIs = {};
-	print('T1');
 	for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 		local Match = false;
 		local CheckingID = terr.OwnerPlayerID;
-		print('T2');
 		if(CheckingID ~= WL.PlayerID.Neutral)then
-			print('T3');
 			if(game.Game.Players[CheckingID].IsAI)then
-				print('T4');
 				for _,knownAIs in pairs(AllAIs)do
 					if(CheckingID == knownAIs)then
-						print('T5');
 						Match = true;
 					end
 				end
 				if(Match == false)then
-					print('T6');
 					AllAIs[tablelength(AllAIs)] = CheckingID;
 				end
 			end
 		end
 	end
-	print('T7');
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == "GameOrderAttackTransfer")then
@@ -116,6 +108,8 @@ function DeclearWar(Player1,Player2)
 				newstate[P2] = true;	
 			end
 		end
+		print(Player1);
+		print(Player2);
 		newstate[Player2] = true;
 		RemainingDeclerations[Player1] = newstate;
 	else
