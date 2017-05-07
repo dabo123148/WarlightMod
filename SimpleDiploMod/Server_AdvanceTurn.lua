@@ -117,6 +117,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				end
 			end
 			newinwar[P2] = true;
+			War[P1] = newinwar;
 		end
 	end
 	RemainingDeclerations = {};
