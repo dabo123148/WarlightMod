@@ -36,11 +36,11 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						end
 					end
 					if(Match == false)then
-						DeclearWar(Player1,Player2);
+						DeclearWar(order.From,order.To);
 						--Allys declear war on order.From if not allied with order.From
 					end
 				else
-					DeclearWar(Player1,Player2);
+					DeclearWar(order.From,order.To);
 					--Allys declear war on order.From if not allied with order.From
 				end
 			end
