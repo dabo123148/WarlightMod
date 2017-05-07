@@ -90,10 +90,17 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				end
 			end
 			newinwar[P2] = true;
-			print(P1);
-			print(P2);
 			War[P1] = newinwar;
-			print('T3');
+			local P3 = P2;
+			P2 = P1;
+			p1 = P3;
+			local newinwar = {};
+			if(War[P1] ~= nil)then
+				for _, alreadyinwar in pairs(War[P1])do
+					newinwar[alreadyinwar] = true;
+				end
+			end
+			newinwar[P2] = true;
 			addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "The Player with the player ID " .. " decleared war on ", nil,{}));
 		end
 	end
