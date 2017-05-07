@@ -1,4 +1,5 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
+	print('T0');
 	AllAIs = {};
 	print('T1');
 	for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
