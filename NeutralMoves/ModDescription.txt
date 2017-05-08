@@ -1,1 +1,1 @@
-Neutral territories move transfer their armies between each other.
+Neutral territories transfer their armies between each other.
