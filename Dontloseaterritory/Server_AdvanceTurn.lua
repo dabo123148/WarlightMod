@@ -11,8 +11,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							local Player = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 							for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 								if(Player==terr.OwnerPlayerID)then
-									Effect[tablelength(t)+1] = WL.TerritoryModification.Create(terr.ID); 
-									Effect[tablelength(t)].SetOwnerOpt = WL.PlayerID.Neutral;
+									Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terr.ID); 
+									Effect[tablelength(Effect)].SetOwnerOpt = WL.PlayerID.Neutral;
 								end
 							end
 							WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect);
@@ -31,8 +31,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							local Player = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 							for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 								if(Player==terr.OwnerPlayerID)then
-									Effect[tablelength(t)+1] = WL.TerritoryModification.Create(terr.ID); 
-									Effect[tablelength(t)].SetOwnerOpt = WL.PlayerID.Neutral;
+									Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terr.ID); 
+									Effect[tablelength(Effect)].SetOwnerOpt = WL.PlayerID.Neutral;
 								end
 							end
 							WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect);
@@ -47,8 +47,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				local Player = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 				for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 					if(Player==terr.OwnerPlayerID)then
-						Effect[tablelength(t)+1] = WL.TerritoryModification.Create(terr.ID); 
-						Effect[tablelength(t)].SetOwnerOpt = WL.PlayerID.Neutral;
+						Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terr.ID); 
+						Effect[tablelength(Effect)].SetOwnerOpt = WL.PlayerID.Neutral;
 					end
 				end
 				WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect);
