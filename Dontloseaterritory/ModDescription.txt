@@ -1,1 +1,1 @@
-Every starting territory of a random player gets a commander. This commander isn't able to move. --> If a starting territory falls, the player has lost. But please note that through the commanders on the starting territories, more armies are required to capture one of them.
+A player has lost, if one of his territories is lost or one of the starting territories is lost(depends on the settings)
