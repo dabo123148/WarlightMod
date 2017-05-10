@@ -7,8 +7,17 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				for _,terr in pairs(game.ServerGame.TurnZeroStanding.Territories)do
 					if(terr.ID == order.To)then
 						if(terr.OwnerPlayerID ~= WL.PlayerID.Neutral)then
+							local Effect = {};
+							local Player = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
+							for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
+								if(Player==terr.OwnerPlayerID)then
+									Effect[tablelength(t)+1] = WL.TerritoryModification.Create(terr.ID); 
+									Effect[tablelength(t)].SetOwnerOpt = WL.PlayerID.Neutral;
+								end
+							end
+							WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect);
 							skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
-							addNewOrder(Eliminate(game,game.ServerGame.LatestTurnStanding.Territories[order.To]));
+							addNewOrder(WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect););
 							addNewOrder(order);
 						end
 					end
@@ -18,29 +27,37 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				for _,terr in pairs(game.ServerGame.TurnZeroStanding.Territories)do
 					if(terr.ID == order.To)then
 						if(terr.OwnerPlayerID ~= WL.PlayerID.Neutral)then
+							local Effect = {};
+							local Player = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
+							for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
+								if(Player==terr.OwnerPlayerID)then
+									Effect[tablelength(t)+1] = WL.TerritoryModification.Create(terr.ID); 
+									Effect[tablelength(t)].SetOwnerOpt = WL.PlayerID.Neutral;
+								end
+							end
+							WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect);
 							skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
-							addNewOrder(Eliminate(game,game.ServerGame.LatestTurnStanding.Territories[order.To]));
+							addNewOrder(WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect););
 							addNewOrder(order);
 						end
 					end
 				end
 			else
+				local Effect = {};
+				local Player = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
+				for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
+					if(Player==terr.OwnerPlayerID)then
+						Effect[tablelength(t)+1] = WL.TerritoryModification.Create(terr.ID); 
+						Effect[tablelength(t)].SetOwnerOpt = WL.PlayerID.Neutral;
+					end
+				end
+				WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect);
 				skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
-				addNewOrder(Eliminate(game,game.ServerGame.LatestTurnStanding.Territories[order.To]));
+				addNewOrder(WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect););
 				addNewOrder(order);
 			end
 		end
 	end
-end
-function Eliminate(game,Player)
-	local Effect = {};
-	for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-		if(Player==terr.OwnerPlayerID)then
-			Effect[tablelength(t)+1] = WL.TerritoryModification.Create(terr.ID); 
-			Effect[tablelength(t)].SetOwnerOpt = WL.PlayerID.Neutral;
-		end
-	end
-	return WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect);
 end
 function Exists(game,Player)
 	for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
