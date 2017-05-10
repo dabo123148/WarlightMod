@@ -6,7 +6,7 @@ function Client_PresentConfigureUI(rootParent)
 	end
     
     local horz = UI.CreateHorizontalLayoutGroup(rootParent);
-	UI.CreateLabel(horz).SetText('No Territory. If it is set to false, a player has lost if he loses a starting region else, he has lost, when he lost any territory');
   	  InputNoTerritory = UI.CreateCheckBox(horz)
+		..SetText('No Territory. If it is set to false, a player has lost if he loses a starting region else, he has lost, when he lost any territory');
 		.SetIsChecked(initialValue);
 end
