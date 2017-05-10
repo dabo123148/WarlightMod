@@ -1,15 +1,12 @@
 
 function Client_PresentConfigureUI(rootParent)
-	local initialValue = Mod.Settings.StartArmies;
+	local initialValue = Mod.Settings.NoTerritory;
 	if initialValue == nil then
-		initialValue = 5;
+		initialValue = true;
 	end
     
     local horz = UI.CreateHorizontalLayoutGroup(rootParent);
-	UI.CreateLabel(horz).SetText('Commanderplayer StartArmies ');
-    InputStartArmies = UI.CreateNumberInputField(horz)
-		.SetSliderMinValue(0)
-		.SetSliderMaxValue(100)
-		.SetValue(initialValue);
-
+	UI.CreateLabel(horz).SetText('No Territory. If it is set to false, a player has lost if he loses a starting region else, he has lost, when he lost any territory');
+  	  InputNoTerritory = UI.CreateCheckBox(horz)
+		.SetIsChecked(initialValue);
 end
