@@ -3,7 +3,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
     if (order.proxyType == 'GameOrderAttackTransfer') then
 		if(result.IsSuccessful and result.IsAttack)then
 			--Should still support a little bit the older versions
-			if(game.LatestTurnStanding.Territories[order.To].OwnerPlayerID ~= WL.PlayerID.Neutral)then
+			if(game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID ~= WL.PlayerID.Neutral)then
 				if(Mod.Settings.NoTerritory == nil)then
 					for _,terr in pairs(game.ServerGame.TurnZeroStanding.Territories)do
 						if(terr.ID == order.To)then
