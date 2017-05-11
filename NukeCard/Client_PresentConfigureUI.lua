@@ -1,11 +1,11 @@
 
 function Client_PresentConfigureUI(rootParent)
 	local initialValue1 = Mod.Settings.MainTerritoryDamage;
-	if initialValue1 == nil then initialValue1 = 0.5f; end
+	if initialValue1 == nil then initialValue1 = 0.5; end
     
 
     local horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
-	UI.CreateLabel(horz1).SetText('Main Territory Damage in %');
+	UI.CreateLabel(horz1).SetText('Main Territory Damage in % (0 = 0% 1= 100%)');
     inputMainTerritoryDamage = UI.CreateNumberInputField(horz1)
 		.SetSliderMinValue(0)
 		.SetSliderMaxValue(1)
@@ -13,10 +13,10 @@ function Client_PresentConfigureUI(rootParent)
 		.SetWholeNumbers(false);
 
 	local initialValue2 = Mod.Settings.ConnectedTerritoryDamage;
-	if initialValue2 == nil then initialValue2 = 0.25f; end
+	if initialValue2 == nil then initialValue2 = 0.25; end
 
 	horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
-	UI.CreateLabel(horz1).SetText('Connected Territory Damage in %');
+	UI.CreateLabel(horz1).SetText('Connected Territory Damage in % (0 = 0% 1= 100%)');
     inputConnectedTerritoryDamage = UI.CreateNumberInputField(horz1)
 		.SetSliderMinValue(0)
 		.SetSliderMaxValue(1)
