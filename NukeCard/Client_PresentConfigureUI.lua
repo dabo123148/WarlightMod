@@ -1,7 +1,7 @@
 
 function Client_PresentConfigureUI(rootParent)
 	local initialValue1 = Mod.Settings.MainTerritoryDamage;
-	if initialValue1 == nil then initialValue1 = 0.5; end
+	if initialValue1 == nil then initialValue1 = 0.5f; end
     
 
     local horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
@@ -13,7 +13,7 @@ function Client_PresentConfigureUI(rootParent)
 		.SetWholeNumbers(false);
 
 	local initialValue2 = Mod.Settings.ConnectedTerritoryDamage;
-	if initialValue2 == nil then initialValue2 = 0.25; end
+	if initialValue2 == nil then initialValue2 = 0.25f; end
 
 	horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(horz1).SetText('Connected Territory Damage in %');
