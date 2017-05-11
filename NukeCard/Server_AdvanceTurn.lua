@@ -4,10 +4,18 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		local Effect = {};
 		for _,conn in pairs(game.Map.Territories[order.TargetTerritory].ConnectedTo) do
 			Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(conn.ID);
-			Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*0.75;
+			if(Mod.Settings.ConnectedTerritoryDamage ~= nil)then
+				Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*(1-Mod.Settings.ConnectedTerritoryDamage);
+			else
+				Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*0.75;
+			end
 		end
 		Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(order.TargetTerritory);
-		Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritory].NumArmies.NumArmies/2;
+		if(Mod.Settings.MainTerritoryDamage ~= nil)then
+			Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritory].NumArmies.NumArmies*(1-Mod.Settings.MainTerritoryDamage);
+		else
+			Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritory].NumArmies.NumArmies/2;
+		end
 		addNewOrder(WL.GameOrderEvent.Create(order.PlayerID,'Nuked ' .. game.Map.Territories[order.TargetTerritory].Name,{},Effect));
 	end
 end
