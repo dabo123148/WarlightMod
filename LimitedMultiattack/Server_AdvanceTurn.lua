@@ -100,7 +100,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				else
 					UbrigeAngriffe[order.To] = 1;
 				end
-				if(Mod.Settings.MaxAttacks ~= 0 and UbrigeAngriffe[order.To] == 0)then
+				if(Mod.Settings.MaxAttacks ~= 0 and UbrigeAngriffe[order.To] ~= 0)then
 					UbrigeAngriffe[order.To] = UbrigeAngriffe[order.To] - 1;
 				else
 				end
