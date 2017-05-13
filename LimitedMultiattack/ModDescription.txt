@@ -1,1 +1,1 @@
-Allows to limit the maximum number of attacks per multiattack and you can also bind the multiattack setting to playing a spezial card(cards must be added manualy).
+Allows to limit the maximum number of attacks per multiattack and you can also bind the multiattack setting to playing a spezial card(cards must be added manualy). If no "spezial card" is played, you can just make the normal attacks in this turn.
