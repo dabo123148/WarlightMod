@@ -10,7 +10,8 @@ function Client_PresentSettingsUI(rootParent)
 		if(Mod.Settings.ReinforcementCard)then
 			if(boundtocard == false)then
 				boundtocard = true;
-				UI.CreateLabel(rootParent).SetText('Multiattacks are for the current turn enabled, when one of the following cards is played');
+				UI.CreateLabel(rootParent).SetText('Multiattacks are for the current turn enabled, when one of the following cards is played.');
+				UI.CreateLabel(rootParent).SetText('!!! The cards keep their old effect !!!');
 			end
 			UI.CreateLabel(rootParent).SetText('Reinforcement Card');
 		end
@@ -20,6 +21,7 @@ function Client_PresentSettingsUI(rootParent)
 			if(boundtocard == false)then
 				boundtocard = true;
 				UI.CreateLabel(rootParent).SetText('Multiattacks are for the current turn enabled, when one of the following cards is played');
+				UI.CreateLabel(rootParent).SetText('!!! The cards keep their old effect !!!');
 			end
 			UI.CreateLabel(rootParent).SetText('Gift Card');
 		end
@@ -29,6 +31,7 @@ function Client_PresentSettingsUI(rootParent)
 			if(boundtocard == false)then
 				boundtocard = true;
 				UI.CreateLabel(rootParent).SetText('Multiattacks are for the current turn enabled, when one of the following cards is played');
+				UI.CreateLabel(rootParent).SetText('!!! The cards keep their old effect !!!');
 			end
 			UI.CreateLabel(rootParent).SetText('Airlift Card');
 		end
@@ -38,6 +41,7 @@ function Client_PresentSettingsUI(rootParent)
 			if(boundtocard == false)then
 				boundtocard = true;
 				UI.CreateLabel(rootParent).SetText('Multiattacks are for the current turn enabled, when one of the following cards is played');
+				UI.CreateLabel(rootParent).SetText('!!! The cards keep their old effect !!!');
 			end
 			UI.CreateLabel(rootParent).SetText('Reconnaisance Card');
 		end
@@ -47,6 +51,7 @@ function Client_PresentSettingsUI(rootParent)
 			if(boundtocard == false)then
 				boundtocard = true;
 				UI.CreateLabel(rootParent).SetText('Multiattacks are for the current turn enabled, when one of the following cards is played');
+				UI.CreateLabel(rootParent).SetText('!!! The cards keep their old effect !!!');
 			end
 			UI.CreateLabel(rootParent).SetText('Spy Card');
 		end
