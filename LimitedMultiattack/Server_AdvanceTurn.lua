@@ -29,7 +29,9 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	local Maximaleangriffe = Mod.Settings.MaxAttacks;
 	if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
 	if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
-	for _, terr in pairs(game.Map.Territories) do
+	activated = {};
+	for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
+		activated[terr.OwnerPlayerID] = false;
 		if(boundtoacard)then
 			UbrigeAngriffe[terr.ID] = 1;
 		else
@@ -42,6 +44,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	--order GameOrderAttackTransfer
 	if(boundtoacard)then
 		if(order.proxyType == 'GameOrderPlayCardAirlift') then
+			activated[order.PlayerID] = true;
 			local Maximaleangriffe = Mod.Settings.MaxAttacks;
 			if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
 			if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
@@ -52,6 +55,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			end
 		end
 		if(order.proxyType == 'GameOrderPlayCardReinforcement') then
+			activated[order.PlayerID] = true;
 			local Maximaleangriffe = Mod.Settings.MaxAttacks;
 			if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
 			if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
@@ -62,6 +66,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			end
 		end
 		if(order.proxyType == 'GameOrderPlayCardSpy') then
+			activated[order.PlayerID] = true;
 			local Maximaleangriffe = Mod.Settings.MaxAttacks;
 			if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
 			if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
@@ -72,6 +77,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			end
 		end
 		if(order.proxyType == 'GameOrderPlayCardReconnaissance') then
+			activated[order.PlayerID] = true;
 			local Maximaleangriffe = Mod.Settings.MaxAttacks;
 			if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
 			if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
@@ -82,6 +88,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			end
 		end
 		if(order.proxyType == 'GameOrderPlayCardSurveillance') then
+			activated[order.PlayerID] = true;
 			local Maximaleangriffe = Mod.Settings.MaxAttacks;
 			if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
 			if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
@@ -93,16 +100,19 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 	end
 	if(order.proxyType == 'GameOrderAttackTransfer') then
-		if(UbrigeAngriffe[order.From] > 0)then
+		if(UbrigeAngriffe[order.From] > 0 or (activated[order.PlayerID] and Mod.Settings.MaxAttacks == 0))then
 			if(result.IsSuccessful)then
 				if(game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID ~= game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID)then
 					UbrigeAngriffe[order.To] = UbrigeAngriffe[order.From];
 				else
-					UbrigeAngriffe[order.To] = 1;
+					UbrigeAngriffe[order.To] = -1;
 				end
-				if(Mod.Settings.MaxAttacks ~= 0 and UbrigeAngriffe[order.To] ~= 0)then
+				if(Mod.Settings.MaxAttacks == 0 and UbrigeAngriffe[order.To] ~= 0)then
 					UbrigeAngriffe[order.To] = UbrigeAngriffe[order.To] - 1;
 				else
+					if(UbrigeAngriffe[order.To] ~= 0)then
+						UbrigeAngriffe[order.To] = UbrigeAngriffe[order.To] - 1;
+					end
 				end
 			else
 				UbrigeAngriffe[order.From] = 0;
