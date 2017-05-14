@@ -115,7 +115,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					end
 				end
 			else
-				UbrigeAngriffe[order.From] = 0;
+				UbrigeAngriffe[order.From] = -1;
 			end
 		else
 			skipThisOrder(WL.ModOrderControl.Skip);
