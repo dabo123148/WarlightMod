@@ -8,7 +8,7 @@ function Client_PresentSettingsUI(rootParent)
 	end
 	vert = UI.CreateVerticalLayoutGroup(rootParent);
 	if(Mod.Settings.ConnectedTerritoryDamage ~= nil)then
-		UI.CreateLabel(vert).SetText('Connected Territorys to a nuke take ' .. toString((Mod.Settings.ConnectedTerritoryDamage*100)) .. '% Damage');
+		UI.CreateLabel(vert).SetText('Connected Territorys to a nuke take ' .. (Mod.Settings.ConnectedTerritoryDamage*100) .. '% Damage');
 	else
 		UI.CreateLabel(vert).SetText('Connected Territorys to a nuke take 25% Damage');
 	end
