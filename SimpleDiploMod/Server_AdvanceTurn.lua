@@ -106,7 +106,8 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			end
 			newinwar[P2] = true;
 			War[P1] = newinwar;
-			addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "The Player with the player ID " .. tostring(P1) .. " decleared war on " .. tostring(P2), nil,{}));
+			--addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "The Player with the player ID " .. tostring(P1) .. " decleared war on " .. tostring(P2), nil,{}));
+			addNewOrder(WL.GameOrderCustom.Create(P1, "Declears war on " .. tostring(P2), "War " .. tostring(P1) .. " " .. tostring(P2));
 			local P3 = P2;
 			P2 = P1;
 			p1 = P3;
