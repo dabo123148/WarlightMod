@@ -1,1 +1,1 @@
-If an attacks fails, the player who got attacked won't lose any army and get the lost enemy armies. This Mod can also be used to transfer armies in Diplo games.
+If an attacks fails, the player(also neutral) who got attacked won't lose any army and get the lost enemy armies. This Mod can also be used to transfer armies in Diplo games.
