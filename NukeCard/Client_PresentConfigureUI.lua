@@ -27,5 +27,7 @@ function Client_PresentConfigureUI(rootParent)
 	if initFriendlyfire == nil then initFriendlyfire = true; end
 	
 	 horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
-  	  InputFriendlyfire = UI.CreateCheckBox(horz)
+  	 InputFriendlyfire = UI.CreateCheckBox(horz)
+	.SetText('Can harm itself')
+		.SetIsChecked(initFriendlyfire);
 end
