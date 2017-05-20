@@ -17,7 +17,13 @@ function Client_PresentConfigureUI(rootParent)
 		 if(enteredtext2 == nil)then
 			 enteredtext2 = "";
 		 end
-		addnewline(enteredtext,enteredtext2);
+		if(enteredtext == "" and enteredtext == "")then
+			if(num == 1)then
+				addnewline(enteredtext,enteredtext2);
+			end
+		else
+			addnewline(enteredtext,enteredtext2);
+		end
 		num = num+2;
 	end
 	addnewbutton();
