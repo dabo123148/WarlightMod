@@ -10,11 +10,11 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		local on = order.DeployOn;
 		if(AlreadyDeployed[on] + Deploys > Mod.Settings.MaxDeploy)then
 			Deploys = Mod.Settings.MaxDeploy-AlreadyDeployed[on];
+			skipThisOrder(WL.ModOrderControl.Skip);
 			if(Deploys > 0)then
 				addNewOrder(WL.GameOrderDeploy.Create(order.PlayerID,Deploys,on));
 				print('Deploys ' .. Deploys .. ' on ' .. game.Map.Territories[on].Name .. AlreadyDeployed[on] .. ' armies deployed');
 				AlreadyDeployed[on] = AlreadyDeployed[on]+Deploys;
-				skipThisOrder(WL.ModOrderControl.Skip);
 				local terri = game.ServerGame.LatestTurnStanding.Territories[on];
 				local remainingarmies = order.NumArmies-Deploys;
 				if(remainingarmies ~= nil)then
