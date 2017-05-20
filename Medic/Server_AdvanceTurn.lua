@@ -24,7 +24,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							newarmies = 0;
 						end
 						effect.SetArmiesTo = newarmies;
-						addNewOrder(WL.GameOrderEvent.Create(ToOwner, "Heal", nil, {effect}));
+						addNewOrder(WL.GameOrderEvent.Create(ToOwner, "Heal", {}, {effect}));
 					end
 				end
 			end
