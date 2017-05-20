@@ -8,7 +8,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(FromOwner ~= ToOwner)then
 			for _, conn in pairs(game.Map.Territories[to].ConnectedTo)do
 				if(tablelength(game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.SpecialUnits)>0)then
+					print('t1');
 					if(conn.ID ~= from and tablelength(order.NumArmies.SpecialUnits) > 0)then
+						print('t2');
 						if(game.ServerGame.LatestTurnStanding.Territories[conn.ID].OwnerPlayerID == FromOwner)then
 							local effect = WL.TerritoryModification.Create(conn.ID);
 							local newarmies = result.AttackingArmiesKilled.NumArmies + game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies;
