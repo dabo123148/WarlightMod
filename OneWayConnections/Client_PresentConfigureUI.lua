@@ -3,7 +3,7 @@ function Client_PresentConfigureUI(rootParent)
 	parent = rootParent;
 	local num = 1;
 	local RCstring = Mod.Settings.RemovedConnections;
-	if(RCstring == nil)then
+	if(RCstring == nil or RCstring == ",")then
 		RCstring = ",,";
 	end
 	local RC = stringtotable(RCstring);
