@@ -20,8 +20,7 @@ function Client_PresentConfigureUI(rootParent)
 		addnewline(enteredtext,enteredtext2);
 		num = num+2;
 	end
-	local buttonlayer = UI.CreateHorizontalLayoutGroup(rootParent);
-	newlinebutton = UI.CreateButton(buttonlayer).SetText('new Line').SetOnClick(buttonnewline);
+	addnewbutton();
 end
 function stringtotable(variable)
 	chartable = {};
@@ -53,7 +52,11 @@ function stringtotable(variable)
 	return newtable;
 end
 function buttonnewline()
+	if(buttonlayer ~= nil)then
+		UI.Destroy(buttonlayer);
+	end
 	addnewline("","");
+	addnewbutton();
 end
 function addnewline(content1,content2)
 	local removedconn1 = UI.CreateHorizontalLayoutGroup(parent);
@@ -61,6 +64,10 @@ function addnewline(content1,content2)
 	RemovedConnectionsFields[tablelength(RemovedConnectionsFields)+1] = UI.CreateTextInputField(removedconn1).SetText(content1).SetPreferredWidth(200).SetPreferredHeight(30);
 	UI.CreateLabel(removedconn1).SetText('To ');
 	RemovedConnectionsFields[tablelength(RemovedConnectionsFields)+1] = UI.CreateTextInputField(removedconn1).SetText(content2).SetPreferredWidth(200).SetPreferredHeight(30);
+end
+function addnewbutton()
+	buttonlayer = UI.CreateHorizontalLayoutGroup(rootParent);
+	local newlinebutton = UI.CreateButton(buttonlayer).SetText('new Line').SetOnClick(buttonnewline);
 end
 function tablelength(T)
   local count = 0
