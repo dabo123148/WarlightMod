@@ -7,7 +7,7 @@ function Client_PresentConfigureUI(rootParent)
 	end
 	local RC = stringtotable(RCstring);
 	RemovedConnectionsFields = {};
-	while(num <tablelength(RC)-1)do
+	while(num <tablelength(RC))do
 		 local enteredtext =  RC[num];
 		 if(enteredtext == nil)then
 			 enteredtext = "";
