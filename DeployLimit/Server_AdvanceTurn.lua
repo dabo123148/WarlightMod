@@ -38,10 +38,11 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					end
 				end
 			else
-				print('Successfully ' .. Deploys .. ' on ' .. game.Map.Territories[on].Name);
+				print('Ignoring Deploys zero order ' .. Deploys .. ' on ' .. game.Map.Territories[on].Name);
 			end
 		else
-			AlreadyDeployed[on] = Deploys;
+			print('Successfully ' .. Deploys .. ' on ' .. game.Map.Territories[on].Name);
+			AlreadyDeployed[on] = AlreadyDeployed[on] + Deploys;
 		end
 	end
 end
