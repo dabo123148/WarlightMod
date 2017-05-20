@@ -1,21 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @dabo123148
- Sign out
- Unwatch 3
-  Unstar 3
- Fork 3 dabo123148/WarlightMod
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs  Settings
-Tree: a13c22fb89 Find file Copy pathWarlightMod/DeployLimit/Server_AdvanceTurn.lua
-a13c22f  8 minutes ago
-@dabo123148 dabo123148 bugfix
-1 contributor
-RawBlameHistory     
-54 lines (53 sloc)  2.09 KB
 function Server_AdvanceTurn_Start (game,addNewOrder)
 	AlreadyDeployed = {};
 	for _,terr in pairs(game.Map.Territories)do
