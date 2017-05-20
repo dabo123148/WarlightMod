@@ -5,7 +5,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		for _,conn in pairs(game.Map.Territories[order.TargetTerritory].ConnectedTo) do
 			Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(conn.ID);
 			if(Mod.Settings.Friendlyfire ~= nil)then
-				if(game.ServerGame.LatestTurnStanding.Territories[conn.ID].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == false)then
+				if(game.ServerGame.LatestTurnStanding.Territories[conn.ID].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == true)then
 					if(Mod.Settings.ConnectedTerritoryDamage ~= 0)then
 						Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*(1-(Mod.Settings.ConnectedTerritoryDamage/100));
 					end
@@ -22,7 +22,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 		Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(order.TargetTerritory);
 		if(Mod.Settings.Friendlyfire ~= nil)then
-			if(game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritory].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == false)then
+			if(game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritory].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == true)then
 				if(Mod.Settings.MainTerritoryDamage ~= 0)then
 					Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritory].NumArmies.NumArmies*(1-(Mod.Settings.MainTerritoryDamage/100));
 				end
