@@ -1,10 +1,10 @@
 
 function Client_SaveConfigureUI(alert)
-    Mod.Settings.TotalRemovedConnections = InputStartArmies.GetValue();
 	Mod.Settings.RemovedConnections = "";
 	local num = 1;
 	local setnum = 1;
-	while(num < InputStartArmies.GetValue()*2) do
+	local do = true;
+	while(do) do
 		if(RemovedConnectionsFields[num] ~= nil)then
 			if(RemovedConnectionsFields[num].GetText() ~= "" and RemovedConnectionsFields[num+1].GetText() ~= "")then
 				local Vorhanden = false;
@@ -36,6 +36,8 @@ function Client_SaveConfigureUI(alert)
 					setnum = setnum +2;
 				end
 			end
+		else
+			do=false;
 		end
 		num = num+2;
 	end
