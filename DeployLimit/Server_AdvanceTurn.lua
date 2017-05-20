@@ -16,7 +16,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if(Deploys > 0)then
 				addNewOrder(WL.GameOrderDeploy.Create(order.PlayerID,Deploys,on));
 				print('Deploys ' .. Deploys .. ' on ' .. game.Map.Territories[on].Name .. AlreadyDeployed[on] .. ' armies deployed');
-				AlreadyDeployed[on] = AlreadyDeployed[on]+Deploys;
 				local terri = game.ServerGame.LatestTurnStanding.Territories[on];
 				local remainingarmies = order.NumArmies-Deploys;
 				if(remainingarmies ~= nil)then
