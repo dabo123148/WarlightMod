@@ -8,8 +8,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		local Match = false;
 		local Fromterrname = string.upper(game.Map.Territories[order.From].Name);
 		local Toterrname = string.upper(game.Map.Territories[order.To].Name);
-		while(num < Mod.Settings.TotalRemovedConnections*2 and Match == false)do
-			if(removedconns[num] ~=nil)then
+		while(num < tablelength(removedconns) and Match == false)do
+			if(removedconns[num] ~=nil and removedconns[num+1] ~=nil)then
 				if(string.upper(removedconns[num]) == Fromterrname and string.upper(removedconns[num+1]) == Toterrname)then
 					Match = true;
 					skipThisOrder(WL.ModOrderControl.Skip);
