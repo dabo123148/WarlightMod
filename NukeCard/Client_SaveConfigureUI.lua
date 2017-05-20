@@ -1,7 +1,8 @@
 
 function Client_SaveConfigureUI(alert)
-    Mod.Settings.MainTerritoryDamage = inputMainTerritoryDamage.GetValue();
+   	Mod.Settings.MainTerritoryDamage = inputMainTerritoryDamage.GetValue();
 	Mod.Settings.ConnectedTerritoryDamage = inputConnectedTerritoryDamage.GetValue();
+	Mod.Settings.Friendlyfire = inputFriendlyfire.GetIsChecked();
 	if(Mod.Settings.MainTerritoryDamage > 100 or Mod.Settings.ConnectedTerritoryDamage>100)then
 		alert('More than 100% Damage is impossible')
 	end
