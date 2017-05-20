@@ -3,12 +3,14 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	for _,terr in pairs(game.Map.Territories)do
 		AlreadyDeployed[terr.ID] = 0;
 	end
+	print('MAx DEPLOY ' .. Mod.Settings.MaxDeploy);
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == 'GameOrderDeploy') then
 		local Deploys = order.NumArmies;
 		local on = order.DeployOn;
 		if(AlreadyDeployed[on] + Deploys > Mod.Settings.MaxDeploy)then
+			print('Ausgabe ' .. (AlreadyDeployed[on] + Deploys) .. ' ' .. Mod.Settings.MaxDeploy);
 			Deploys = Mod.Settings.MaxDeploy-AlreadyDeployed[on];
 			skipThisOrder(WL.ModOrderControl.Skip);
 			if(Deploys > 0)then
