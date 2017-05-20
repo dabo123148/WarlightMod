@@ -9,15 +9,15 @@ function Client_PresentConfigureUI(rootParent)
 	local RC = stringtotable(RCstring);
 	RemovedConnectionsFields = {};
 	while(num <tablelength(RC))do
-		 local enteredtext =  RC[num];
-		 if(enteredtext == nil)then
-			 enteredtext = "";
-		 end
-		 enteredtext2 =  RC[num+1];
-		 if(enteredtext2 == nil)then
-			 enteredtext2 = "";
-		 end
-		if(enteredtext == "" and enteredtext == "")then
+		local enteredtext =  RC[num];
+		if(enteredtext == nil)then
+			enteredtext = "";
+		end
+		enteredtext2 =  RC[num+1];
+		if(enteredtext2 == nil)then
+			enteredtext2 = "";
+		end
+		if(enteredtext == "" and enteredtext2 == "")then
 			if(num == 1)then
 				addnewline(enteredtext,enteredtext2);
 			end
