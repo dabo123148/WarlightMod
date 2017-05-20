@@ -66,7 +66,7 @@ function addnewline(content1,content2)
 	RemovedConnectionsFields[tablelength(RemovedConnectionsFields)+1] = UI.CreateTextInputField(removedconn1).SetText(content2).SetPreferredWidth(200).SetPreferredHeight(30);
 end
 function addnewbutton()
-	buttonlayer = UI.CreateHorizontalLayoutGroup(rootParent);
+	buttonlayer = UI.CreateHorizontalLayoutGroup(parent);
 	local newlinebutton = UI.CreateButton(buttonlayer).SetText('new Line').SetOnClick(buttonnewline);
 end
 function tablelength(T)
