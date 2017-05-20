@@ -14,34 +14,32 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				addNewOrder(WL.GameOrderDeploy.Create(order.PlayerID,Deploys,on));
 				print('Deploys ' .. Deploys .. ' on ' .. game.Map.Territories[on].Name);
 				AlreadyDeployed[on] = AlreadyDeployed[on]+Deploys;
-				skipThisOrder(WL.ModOrderControl.Skip);
-				local terri = game.ServerGame.LatestTurnStanding.Territories[on];
-				local remainingarmies = order.NumArmies-Deploys;
-				if(remainingarmies ~= nil)then
-					if(remainingarmies > 0)then
-						for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-							if(terri.OwnerPlayerID == terra.OwnerPlayerID)then
-								if(AlreadyDeployed[terra.ID] < Mod.Settings.MaxDeploy)then
-									local PlaceFor = Mod.Settings.MaxDeploy-AlreadyDeployed[terra.ID];
-									if(PlaceFor>remainingarmies)then
-										PlaceFor = remainingarmies;
-									end
-									if(PlaceFor > 0)then
-										AlreadyDeployed[terra.ID] = AlreadyDeployed[terra.ID]+PlaceFor;
-										addNewOrder(WL.GameOrderDeploy.Create(terri.OwnerPlayerID,PlaceFor,terra.ID));
-										remainingarmies = remainingarmies - PlaceFor;
-										print('ReDeploys ' .. PlaceFor .. ' on ' .. game.Map.Territories[terra.ID].Name);
-									end
+			end
+			skipThisOrder(WL.ModOrderControl.Skip);
+			local terri = game.ServerGame.LatestTurnStanding.Territories[on];
+			local remainingarmies = order.NumArmies-Deploys;
+			if(remainingarmies ~= nil)then
+				if(remainingarmies > 0)then
+					for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
+						if(terri.OwnerPlayerID == terra.OwnerPlayerID)then
+							if(AlreadyDeployed[terra.ID] < Mod.Settings.MaxDeploy)then
+								local PlaceFor = Mod.Settings.MaxDeploy-AlreadyDeployed[terra.ID];
+								if(PlaceFor>remainingarmies)then
+									PlaceFor = remainingarmies;
+								end
+								if(PlaceFor > 0)then
+									AlreadyDeployed[terra.ID] = AlreadyDeployed[terra.ID]+PlaceFor;
+									addNewOrder(WL.GameOrderDeploy.Create(terri.OwnerPlayerID,PlaceFor,terra.ID));
+									remainingarmies = remainingarmies - PlaceFor;
+									print('ReDeploys ' .. PlaceFor .. ' on ' .. game.Map.Territories[terra.ID].Name);
 								end
 							end
 						end
 					end
 				end
-			else
-				print('Ignoring Deploys zero order ' .. Deploys .. ' on ' .. game.Map.Territories[on].Name);
 			end
 		else
-			print('Successfully ' .. Deploys .. ' on ' .. game.Map.Territories[on].Name);
+			print('Successfully ' .. Deploys .. ' on ' .. game.Map.Territories[on].Name .. ' before there were ' .. AlreadyDeployed[on] .. ' armies deployed');
 			AlreadyDeployed[on] = AlreadyDeployed[on] + Deploys;
 		end
 	end
