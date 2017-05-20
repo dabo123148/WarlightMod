@@ -27,7 +27,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 										PlaceFor = remainingarmies;
 									end
 									if(PlaceFor > 0)then
-										AlreadyDeployed[terra.ID] = AlreadyDeployed[terra.ID]+PlaceFor;
 										addNewOrder(WL.GameOrderDeploy.Create(terri.OwnerPlayerID,PlaceFor,terra.ID));
 										remainingarmies = remainingarmies - PlaceFor;
 										print('ReDeploys ' .. PlaceFor .. ' on ' .. game.Map.Territories[terra.ID].Name .. ' before there were ' .. AlreadyDeployed[terra.ID] .. ' armies deployed');
