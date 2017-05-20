@@ -6,7 +6,7 @@ function Client_SaveConfigureUI(alert)
 	local mache = true;
 	while(mache) do
 		if(RemovedConnectionsFields[num] ~= nil)then
-			if(RemovedConnectionsFields[num].GetText() ~= "" and RemovedConnectionsFields[num+1].GetText() ~= "")then
+			if(RemovedConnectionsFields[num].GetText() ~= "" or RemovedConnectionsFields[num+1].GetText() ~= "")then
 				local Vorhanden = false;
 				local chartable = {};
 				local ausgang = RemovedConnectionsFields[num].GetText();
