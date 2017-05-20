@@ -1,3 +1,21 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @dabo123148
+ Sign out
+ Unwatch 3
+  Unstar 3
+ Fork 3 dabo123148/WarlightMod
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs  Settings
+Tree: a13c22fb89 Find file Copy pathWarlightMod/DeployLimit/Server_AdvanceTurn.lua
+a13c22f  8 minutes ago
+@dabo123148 dabo123148 bugfix
+1 contributor
+RawBlameHistory     
+54 lines (53 sloc)  2.09 KB
 function Server_AdvanceTurn_Start (game,addNewOrder)
 	AlreadyDeployed = {};
 	for _,terr in pairs(game.Map.Territories)do
@@ -12,31 +30,33 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			Deploys = Mod.Settings.MaxDeploy-AlreadyDeployed[on];
 			if(Deploys > 0)then
 				addNewOrder(WL.GameOrderDeploy.Create(order.PlayerID,Deploys,on));
-				print('Deploys ' .. Deploys .. ' on ' .. game.Map.Territories[on].Name);
+				print('Deploys ' .. Deploys .. ' on ' .. game.Map.Territories[on].Name .. AlreadyDeployed[on] .. ' armies deployed');
 				AlreadyDeployed[on] = AlreadyDeployed[on]+Deploys;
-			end
-			skipThisOrder(WL.ModOrderControl.Skip);
-			local terri = game.ServerGame.LatestTurnStanding.Territories[on];
-			local remainingarmies = order.NumArmies-Deploys;
-			if(remainingarmies ~= nil)then
-				if(remainingarmies > 0)then
-					for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-						if(terri.OwnerPlayerID == terra.OwnerPlayerID)then
-							if(AlreadyDeployed[terra.ID] < Mod.Settings.MaxDeploy)then
-								local PlaceFor = Mod.Settings.MaxDeploy-AlreadyDeployed[terra.ID];
-								if(PlaceFor>remainingarmies)then
-									PlaceFor = remainingarmies;
-								end
-								if(PlaceFor > 0)then
-									AlreadyDeployed[terra.ID] = AlreadyDeployed[terra.ID]+PlaceFor;
-									addNewOrder(WL.GameOrderDeploy.Create(terri.OwnerPlayerID,PlaceFor,terra.ID));
-									remainingarmies = remainingarmies - PlaceFor;
-									print('ReDeploys ' .. PlaceFor .. ' on ' .. game.Map.Territories[terra.ID].Name);
+				skipThisOrder(WL.ModOrderControl.Skip);
+				local terri = game.ServerGame.LatestTurnStanding.Territories[on];
+				local remainingarmies = order.NumArmies-Deploys;
+				if(remainingarmies ~= nil)then
+					if(remainingarmies > 0)then
+						for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
+							if(terri.OwnerPlayerID == terra.OwnerPlayerID)then
+								if(AlreadyDeployed[terra.ID] < Mod.Settings.MaxDeploy)then
+									local PlaceFor = Mod.Settings.MaxDeploy-AlreadyDeployed[terra.ID];
+									if(PlaceFor>remainingarmies)then
+										PlaceFor = remainingarmies;
+									end
+									if(PlaceFor > 0)then
+										AlreadyDeployed[terra.ID] = AlreadyDeployed[terra.ID]+PlaceFor;
+										addNewOrder(WL.GameOrderDeploy.Create(terri.OwnerPlayerID,PlaceFor,terra.ID));
+										remainingarmies = remainingarmies - PlaceFor;
+										print('ReDeploys ' .. PlaceFor .. ' on ' .. game.Map.Territories[terra.ID].Name .. ' before there were ' .. AlreadyDeployed[terra.ID] .. ' armies deployed');
+									end
 								end
 							end
 						end
 					end
 				end
+			else
+				print('Ignoring Deploys zero order ' .. Deploys .. ' on ' .. game.Map.Territories[on].Name .. ' before there were ' .. AlreadyDeployed[on] .. ' armies deployed');
 			end
 		else
 			print('Successfully ' .. Deploys .. ' on ' .. game.Map.Territories[on].Name .. ' before there were ' .. AlreadyDeployed[on] .. ' armies deployed');
