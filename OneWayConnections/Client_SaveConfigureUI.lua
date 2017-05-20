@@ -3,8 +3,8 @@ function Client_SaveConfigureUI(alert)
 	Mod.Settings.RemovedConnections = "";
 	local num = 1;
 	local setnum = 1;
-	local do = true;
-	while(do) do
+	local mache = true;
+	while(mache) do
 		if(RemovedConnectionsFields[num] ~= nil)then
 			if(RemovedConnectionsFields[num].GetText() ~= "" and RemovedConnectionsFields[num+1].GetText() ~= "")then
 				local Vorhanden = false;
@@ -37,7 +37,7 @@ function Client_SaveConfigureUI(alert)
 				end
 			end
 		else
-			do=false;
+			mache=false;
 		end
 		num = num+2;
 	end
