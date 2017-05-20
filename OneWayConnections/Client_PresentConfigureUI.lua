@@ -27,7 +27,7 @@ function Client_PresentConfigureUI(rootParent)
 		 if(enteredtext2 == nil)then
 			 enteredtext2 = "";
 		 end
-		addnewline(enteredtext,enteredtext2);
+		addnewline(rootParent,enteredtext,enteredtext2);
 		num = num+2;
 	end
 end
@@ -60,7 +60,7 @@ function stringtotable(variable)
 	end
 	return newtable;
 end
-function addnewline(content1,content2)
+function addnewline(rootParent,content1,content2)
 	local removedconn1 = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(removedconn1).SetText('From ');
 	RemovedConnectionsFields[tablelength(RemovedConnectionsFields)+1] = UI.CreateTextInputField(removedconn1).SetText(content1).SetPreferredWidth(100).SetPreferredHeight(30);
