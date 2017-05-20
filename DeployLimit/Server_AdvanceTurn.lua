@@ -3,7 +3,6 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	for _,terr in pairs(game.Map.Territories)do
 		AlreadyDeployed[terr.ID] = 0;
 	end
-	redeployarmies = {};
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == 'GameOrderDeploy') then
@@ -14,13 +13,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if(Deploys > 0)then
 				addNewOrder(WL.GameOrderDeploy.Create(order.PlayerID,Deploys,on));
 				AlreadyDeployed[on] = AlreadyDeployed[on]+Deploys;
-				if(redeployarmies[order.PlayerID] == nil)then
-					redeployarmies[order.PlayerID] = 0;
-				end
-				redeployarmies[order.PlayerID] = redeployarmies[order.PlayerID] + (order.NumArmies-Deploys);--This armies must be deployed on other Territories
 				skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 				local terri = game.ServerGame.LatestTurnStanding.Territories[on];
-				local remainingarmies = redeployarmies[terri.OwnerPlayerID];
+				local remainingarmies = order.NumArmies-Deploys;
 				if(remainingarmies ~= nil)then
 					if(remainingarmies > 0)then
 						for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
@@ -31,6 +26,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 										PlaceFor = remainingarmies;
 									end
 									if(PlaceFor > 0)then
+										AlreadyDeployed[terra.ID] = AlreadyDeployed[terra.ID]+PlaceFor;
 										addNewOrder(WL.GameOrderDeploy.Create(terri.OwnerPlayerID,PlaceFor,terra.ID));
 										remainingarmies = remainingarmies - PlaceFor;
 									end
