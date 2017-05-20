@@ -1,16 +1,5 @@
 
 function Client_PresentConfigureUI(rootParent)
-	local initialValue = Mod.Settings.TotalRemovedConnections;
-	if initialValue == nil then
-		initialValue = 1;
-	end
-    
-    local horz = UI.CreateHorizontalLayoutGroup(rootParent);
-	UI.CreateLabel(horz).SetText('Total removed Connections ');
-    InputStartArmies = UI.CreateNumberInputField(horz)
-		.SetSliderMinValue(0)
-		.SetSliderMaxValue(100)
-		.SetValue(initialValue);
 	local num = 1;
 	local RCstring = Mod.Settings.RemovedConnections;
 	if(RCstring == nil)then
@@ -18,7 +7,7 @@ function Client_PresentConfigureUI(rootParent)
 	end
 	local RC = stringtotable(RCstring);
 	RemovedConnectionsFields = {};
-	while(num < initialValue*2)do
+	while(num <tablelength(RC)-1)do
 		 local enteredtext =  RC[num];
 		 if(enteredtext == nil)then
 			 enteredtext = "";
