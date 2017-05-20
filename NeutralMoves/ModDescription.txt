@@ -1,1 +1,1 @@
-Neutral territories transfer their armies between each other.
+Neutral territories transfer their armies between each other at the end of the turn.
