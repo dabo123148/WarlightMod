@@ -19,19 +19,15 @@ function Client_PresentConfigureUI(rootParent)
 	local RC = stringtotable(RCstring);
 	RemovedConnectionsFields = {};
 	while(num < initialValue*2)do
-		 local removedconn1 = UI.CreateHorizontalLayoutGroup(rootParent);
-		 UI.CreateLabel(removedconn1).SetText('From ');
 		 local enteredtext =  RC[num];
 		 if(enteredtext == nil)then
 			 enteredtext = "";
 		 end
-		 RemovedConnectionsFields[num] = UI.CreateTextInputField(removedconn1).SetText(enteredtext).SetPreferredWidth(100).SetPreferredHeight(30);
-		 UI.CreateLabel(removedconn1).SetText('To ');
-		 enteredtext =  RC[num+1];
-		 if(enteredtext == nil)then
-			 enteredtext = "";
+		 enteredtext2 =  RC[num+1];
+		 if(enteredtext2 == nil)then
+			 enteredtext2 = "";
 		 end
-		 RemovedConnectionsFields[num+1] = UI.CreateTextInputField(removedconn1).SetText(enteredtext).SetPreferredWidth(100).SetPreferredHeight(30);
+		addnewline(enteredtext,enteredtext2);
 		num = num+2;
 	end
 end
@@ -63,6 +59,13 @@ function stringtotable(variable)
 		end
 	end
 	return newtable;
+end
+function addnewline(content1,content2)
+	local removedconn1 = UI.CreateHorizontalLayoutGroup(rootParent);
+	UI.CreateLabel(removedconn1).SetText('From ');
+	RemovedConnectionsFields[tablelength(RemovedConnectionsFields)+1] = UI.CreateTextInputField(removedconn1).SetText(content1).SetPreferredWidth(100).SetPreferredHeight(30);
+	UI.CreateLabel(removedconn1).SetText('To ');
+	RemovedConnectionsFields[tablelength(RemovedConnectionsFields)+1] = UI.CreateTextInputField(removedconn1).SetText(content2).SetPreferredWidth(100).SetPreferredHeight(30);
 end
 function tablelength(T)
   local count = 0
