@@ -16,10 +16,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 										Effect[tablelength(Effect)].SetOwnerOpt = WL.PlayerID.Neutral;
 									end
 								end
-								WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect);
-								skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 								addNewOrder(WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect));
-								addNewOrder(order);
 							end
 						end
 					end
@@ -36,10 +33,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 										Effect[tablelength(Effect)].SetOwnerOpt = WL.PlayerID.Neutral;
 									end
 								end
-								WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect);
-								skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 								addNewOrder(WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect));
-								addNewOrder(order);
 							end
 						end
 					end
@@ -52,10 +46,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							Effect[tablelength(Effect)].SetOwnerOpt = WL.PlayerID.Neutral;
 						end
 					end
-					WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect);
-					skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 					addNewOrder(WL.GameOrderEvent.Create(Player, "Got eliminated through losing a territory", nil, Effect));
-					addNewOrder(order);
 				end
 			end
 		end
