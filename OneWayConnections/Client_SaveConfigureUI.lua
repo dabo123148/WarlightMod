@@ -41,6 +41,9 @@ function Client_SaveConfigureUI(alert)
 		end
 		num = num+2;
 	end
+	if(Mod.Settings.RemovedConnections == "")then
+		Mod.Settings.RemovedConnections = ",";
+	end
 end
 function stringtotable(variable)
 	local chartable = {};
