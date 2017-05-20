@@ -23,7 +23,7 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 							currentarmies[conn.ID] = currentarmies[conn.ID] + Takenarmies;
 							terrMod[2].SetArmiesTo = currentarmies[conn.ID];
 							currentarmies[conn.ID] = currentarmies[terr.ID]-Takenarmies;
-							addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, 'Neutral_Move', nil, terrMod));
+							addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, 'Neutral_Move', {}, terrMod));
 						end
 					end
 				end
