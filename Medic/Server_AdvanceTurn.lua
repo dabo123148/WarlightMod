@@ -8,23 +8,25 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(FromOwner ~= ToOwner)then
 			for _, conn in pairs(game.Map.Territories[to].ConnectedTo)do
 				if(tablelength(game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.SpecialUnits)>0)then
-					if(game.ServerGame.LatestTurnStanding.Territories[conn.ID].OwnerPlayerID == FromOwner)then
-						local effect = WL.TerritoryModification.Create(conn.ID);
-						local newarmies = result.AttackingArmiesKilled.NumArmies + game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies - order.NumArmies.NumArmies;
-						if(newarmies < 0)then
-							newarmies = 0;
+					if(conn.ID ~= from and tablelength(order.NumArmies.SpecialUnits) > 0)then
+						if(game.ServerGame.LatestTurnStanding.Territories[conn.ID].OwnerPlayerID == FromOwner)then
+							local effect = WL.TerritoryModification.Create(conn.ID);
+							local newarmies = result.AttackingArmiesKilled.NumArmies + game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies;
+							if(newarmies < 0)then
+								newarmies = 0;
+							end
+							effect.SetArmiesTo = newarmies;
+							addNewOrder(WL.GameOrderEvent.Create(FromOwner, "Heal", {}, {effect}));
 						end
-						effect.SetArmiesTo = newarmies;
-						addNewOrder(WL.GameOrderEvent.Create(FromOwner, "Heal", nil, {effect}));
-					end
-					if(game.ServerGame.LatestTurnStanding.Territories[conn.ID].OwnerPlayerID == ToOwner)then
-						local effect = WL.TerritoryModification.Create(conn.ID);
-						local newarmies = result.AttackingArmiesKilled.NumArmies + game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies - order.NumArmies.NumArmies;
-						if(newarmies < 0)then
-							newarmies = 0;
+						if(game.ServerGame.LatestTurnStanding.Territories[conn.ID].OwnerPlayerID == ToOwner)then
+							local effect = WL.TerritoryModification.Create(conn.ID);
+							local newarmies = result.DefendingArmiesKilled.NumArmies + game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies;
+							if(newarmies < 0)then
+								newarmies = 0;
+							end
+							effect.SetArmiesTo = newarmies;
+							addNewOrder(WL.GameOrderEvent.Create(ToOwner, "Heal", {}, {effect}));
 						end
-						effect.SetArmiesTo = newarmies;
-						addNewOrder(WL.GameOrderEvent.Create(ToOwner, "Heal", {}, {effect}));
 					end
 				end
 			end
