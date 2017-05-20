@@ -17,7 +17,7 @@ function Client_PresentConfigureUI(rootParent)
 		 if(enteredtext2 == nil)then
 			 enteredtext2 = "";
 		 end
-		addnewline(enteredtext,enteredtext2);
+		--addnewline(enteredtext,enteredtext2);
 		num = num+2;
 	end
 	local buttonlayer = UI.CreateHorizontalLayoutGroup(rootParent);
