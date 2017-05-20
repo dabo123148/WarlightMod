@@ -4,9 +4,9 @@ function Client_PresentConfigureUI(rootParent)
 	if initialValue1 == nil then initialValue1 = 50; end
     
 
-    local horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
+   	local horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(horz1).SetText('Main Territory Damage in %');
-    inputMainTerritoryDamage = UI.CreateNumberInputField(horz1)
+    	inputMainTerritoryDamage = UI.CreateNumberInputField(horz1)
 		.SetSliderMinValue(0)
 		.SetSliderMaxValue(100)
 		.SetValue(initialValue1)
@@ -17,10 +17,15 @@ function Client_PresentConfigureUI(rootParent)
 
 	horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(horz1).SetText('Connected Territory Damage in %');
-    inputConnectedTerritoryDamage = UI.CreateNumberInputField(horz1)
+   	inputConnectedTerritoryDamage = UI.CreateNumberInputField(horz1)
 		.SetSliderMinValue(0)
 		.SetSliderMaxValue(100)
 		.SetValue(initialValue2)
 		.SetWholeNumbers(true);
-
+	
+	local initFriendlyfire = Mod.Settings.Friendlyfire;
+	if initFriendlyfire == nil then initFriendlyfire = true; end
+	
+	 horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
+  	  InputFriendlyfire = UI.CreateCheckBox(horz)
 end
