@@ -2,9 +2,11 @@
 function Client_PresentSettingsUI(rootParent)
 	local RC = stringtotable(Mod.Settings.RemovedConnections);
 	local num = 1;
-	while(RC[num] ~= nil)do
-		UI.CreateLabel(rootParent)
-		.SetText('Removed Connection between ' .. RC[num] .. ' and ' .. RC[num+1]);
+	while(RC[num] ~= nil and RC[num+1] ~= nil)do
+		if(RC[num] ~= "" and RC[num+1] ~= "")then
+			UI.CreateLabel(rootParent)
+			.SetText('Removed Connection between ' .. RC[num] .. ' and ' .. RC[num+1]);
+		end
 		num=num+2;
 	end
 end
