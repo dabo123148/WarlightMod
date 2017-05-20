@@ -1,5 +1,6 @@
 
 function Client_PresentConfigureUI(rootParent)
+	parant = rootParent;
 	local num = 1;
 	local RCstring = Mod.Settings.RemovedConnections;
 	if(RCstring == nil)then
@@ -20,7 +21,7 @@ function Client_PresentConfigureUI(rootParent)
 		num = num+2;
 	end
 	local buttonlayer = UI.CreateHorizontalLayoutGroup(rootParent);
-	newlinebutton = UI.CreateButton(buttonlayer).SetText('new Line').SetOnClick(addnewline);
+	newlinebutton = UI.CreateButton(buttonlayer).SetText('new Line').SetOnClick(buttonnewline);
 end
 function stringtotable(variable)
 	chartable = {};
@@ -51,8 +52,11 @@ function stringtotable(variable)
 	end
 	return newtable;
 end
-function addnewline(rootParent,content1,content2)
-	local removedconn1 = UI.CreateHorizontalLayoutGroup(rootParent);
+function buttonnewline()
+	addnewline("","");
+end
+function addnewline(content1,content2)
+	local removedconn1 = UI.CreateHorizontalLayoutGroup(parent);
 	UI.CreateLabel(removedconn1).SetText('From ');
 	RemovedConnectionsFields[tablelength(RemovedConnectionsFields)+1] = UI.CreateTextInputField(removedconn1).SetText(content1).SetPreferredWidth(200).SetPreferredHeight(30);
 	UI.CreateLabel(removedconn1).SetText('To ');
