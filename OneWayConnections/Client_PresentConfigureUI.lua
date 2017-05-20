@@ -61,9 +61,9 @@ end
 function addnewline(content1,content2)
 	local removedconn1 = UI.CreateHorizontalLayoutGroup(parent);
 	UI.CreateLabel(removedconn1).SetText('From ');
-	RemovedConnectionsFields[tablelength(RemovedConnectionsFields)+1] = UI.CreateTextInputField(removedconn1).SetText(content1).SetPreferredWidth(200).SetPreferredHeight(30);
+	RemovedConnectionsFields[tablelength(RemovedConnectionsFields)+1] = UI.CreateTextInputField(removedconn1).SetPlaceholderText('Enter territory name').SetText(content1).SetPreferredWidth(200).SetPreferredHeight(30);
 	UI.CreateLabel(removedconn1).SetText('To ');
-	RemovedConnectionsFields[tablelength(RemovedConnectionsFields)+1] = UI.CreateTextInputField(removedconn1).SetText(content2).SetPreferredWidth(200).SetPreferredHeight(30);
+	RemovedConnectionsFields[tablelength(RemovedConnectionsFields)+1] = UI.CreateTextInputField(removedconn1).SetPlaceholderText('Enter territory name').SetText(content2).SetPreferredWidth(200).SetPreferredHeight(30);
 end
 function addnewbutton()
 	buttonlayer = UI.CreateHorizontalLayoutGroup(parent);
