@@ -12,5 +12,14 @@ function Client_PresentSettingsUI(rootParent)
 	else
 		UI.CreateLabel(vert).SetText('Connected Territorys to a nuke take 25% Damage');
 	end
+	if(Mod.Settings.Friendlyfire ~= nil)then
+		if(Mod.Settings.Friendlyfire)then
+			UI.CreateLabel(vert).SetText('Player can harm themself: Yes');
+		else
+			UI.CreateLabel(vert).SetText('Player can harm themself: No');
+		end
+	else
+		UI.CreateLabel(vert).SetText('Player can harm themself: Yes');
+	end
 end
 
