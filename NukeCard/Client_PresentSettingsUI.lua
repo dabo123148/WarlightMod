@@ -25,7 +25,7 @@ function Client_PresentSettingsUI(rootParent)
 	vert = UI.CreateVerticalLayoutGroup(rootParent);
 	if(Mod.Settings.AfterDeployment ~= nil)then
 		if(Mod.Settings.AfterDeployment)then
-			UI.CreateLabel(vert).SetText('Territories get nuked AFTER Deployment');
+			UI.CreateLabel(vert).SetText('Territories get nuked AFTER Deployment but before any option of changing the owner');
 		else
 			UI.CreateLabel(vert).SetText('Territories get nuked BEFORE Deployment');
 		end
