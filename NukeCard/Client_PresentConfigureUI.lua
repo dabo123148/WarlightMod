@@ -45,8 +45,16 @@ function Client_PresentConfigureUI(rootParent)
 	end
 end
 function OnClickAfterDeployment()
-	InputBeforeDeployment.SetIsChecked(!InputAfterDeployment.GetIsChecked());
+	if(InputAfterDeployment.GetIsChecked())then
+		InputBeforeDeployment.SetIsChecked(false);
+	else
+		InputBeforeDeployment.SetIsChecked(true);
+	end
 end
 function OnClickBeforeDeployment()
-	InputAfterDeployment.SetIsChecked(!InputBeforeDeployment.GetIsChecked());
+	if(InputBeforeDeployment.GetIsChecked())then
+		InputAfterDeployment.SetIsChecked(false);
+	else
+		InputAfterDeployment.SetIsChecked(true);
+	end
 end
