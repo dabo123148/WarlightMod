@@ -127,7 +127,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		for _, player in pairs(AllPlayerIDs)do
 			for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 				if(IsAlly(player,terr.OwnerPlayerID))then
-					addNewOrder(WL.GameOrderPlayCardReconnaissance.Create(WL.CardID.Reconnaisance, player, terr));
+					addNewOrder(WL.GameOrderPlayCardReconnaissance.Create(WL.CardID.Reconnaissance, player, terr));
 				end
 			end
 		end
