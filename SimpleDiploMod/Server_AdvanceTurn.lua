@@ -107,7 +107,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			newinwar[P2] = true;
 			War[P1] = newinwar;
 			--addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "The Player with the player ID " .. tostring(P1) .. " decleared war on " .. tostring(P2), nil,{}));
-			addNewOrder(WL.GameOrderCustom.Create(P1, "Declears war on " .. tostring(P2), "War " .. tostring(P1) .. " " .. tostring(P2));
+			addNewOrder(WL.GameOrderCustom.Create(P1, "Declears war on " .. tostring(P2), "War " .. tostring(P1) .. " " .. tostring(P2)));
 			local P3 = P2;
 			P2 = P1;
 			p1 = P3;
@@ -123,7 +123,14 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	end
 	RemainingDeclerations = {};
 	if(Mod.Settings.SeeAllyTerritories)then
-		--play on every ally a spy card
+		--play on every ally a reconnaisance card
+		for _, player in pairs(AllPlayerID)do
+			for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
+				if(IsAlly(player,terr.OwnerPlayerID))then
+					addNewOrder(WL.GameOrderPlayCardReconnaissance.Create(WL.CardID.Reconnaisance, player, terr));
+				end
+			end
+		end
 	end
 end
 function RemoveAlly(Player1,Player2)
@@ -171,7 +178,7 @@ function DeclearAlly(Player1,Player2)
 	
 end
 function IsAlly(Player1,Player2)
-	return false;
+	return true;
 end
 function tablelength(T)
 	local count = 0;
