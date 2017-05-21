@@ -12,6 +12,7 @@ function Client_PresentSettingsUI(rootParent)
 	else
 		UI.CreateLabel(vert).SetText('Connected Territorys to a nuke take 25% Damage');
 	end
+	vert = UI.CreateVerticalLayoutGroup(rootParent);
 	if(Mod.Settings.Friendlyfire ~= nil)then
 		if(Mod.Settings.Friendlyfire)then
 			UI.CreateLabel(vert).SetText('Player can harm themself: Yes');
@@ -20,6 +21,16 @@ function Client_PresentSettingsUI(rootParent)
 		end
 	else
 		UI.CreateLabel(vert).SetText('Player can harm themself: Yes');
+	end
+	vert = UI.CreateVerticalLayoutGroup(rootParent);
+	if(Mod.Settings.AfterDeployment ~= nil)then
+		if(Mod.Settings.AfterDeployment)then
+			UI.CreateLabel(vert).SetText('Territories get nuked AFTER Deployment');
+		else
+			UI.CreateLabel(vert).SetText('Territories get nuked BEFORE Deployment');
+		end
+	else
+		UI.CreateLabel(vert).SetText('Territories get nuked BEFORE Deployment');
 	end
 end
 
