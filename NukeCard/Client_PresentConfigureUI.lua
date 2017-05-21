@@ -26,8 +26,27 @@ function Client_PresentConfigureUI(rootParent)
 	local initFriendlyfire = Mod.Settings.Friendlyfire;
 	if initFriendlyfire == nil then initFriendlyfire = true; end
 	
-	 horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
-  	 InputFriendlyfire = UI.CreateCheckBox(horz1)
-	.SetText('Can harm itself')
-		.SetIsChecked(initFriendlyfire);
+	horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
+  	InputFriendlyfire = UI.CreateCheckBox(horz1).SetText('Can harm itself').SetIsChecked(initFriendlyfire);
+	
+	local initAfterDeployment = Mod.Settings.Friendlyfire;
+	if initAfterDeployment == nil then initAfterDeployment = true; end
+	
+	horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
+  	InputAfterDeployment = UI.CreateCheckBox(horz1).SetText('After Deployment but before Attacks').SetOnValueChanged(OnClickAfterDeployment);
+	horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
+  	InputBeforeDeployment = UI.CreateCheckBox(horz1).SetText('Before Deployment').SetOnValueChanged(OnClickBeforeDeployment);
+	if(initAfterDeployment == true)then
+		InputAfterDeployment.SetIsChecked(true);
+		InputBeforeDeployment.SetIsChecked(false);
+	else
+		InputAfterDeployment.SetIsChecked(false);
+		InputBeforeDeployment.SetIsChecked(true);
+	end
+end
+function OnClickAfterDeployment()
+	InputBeforeDeployment.SetIsChecked(!InputAfterDeployment.GetIsChecked());
+end
+function OnClickBeforeDeployment()
+	InputAfterDeployment.SetIsChecked(!InputBeforeDeployment.GetIsChecked());
 end
