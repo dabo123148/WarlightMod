@@ -7,7 +7,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(Mod.Settings.AfterDeployment ~= nil)then
 			if(deployed == false and Mod.Settings.AfterDeployment == true)then
 				AusstehendeNukes[tablelength(AusstehendeNukes)+1] = order;
-				skipThisOrder(WL.ModOrderControll.Skip);
+				skipThisOrder(WL.ModOrderControl.Skip);
 			else
 				local Effect = {};
 				for _,conn in pairs(game.Map.Territories[order.TargetTerritory].ConnectedTo) do
@@ -80,7 +80,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 		skipThisOrder(WL.ModOrderControll.Skip);
 		if(deployed == true)then
-			skipThisOrder(WL.ModOrderControll.Skip);
+			skipThisOrder(WL.ModOrderControl.Skip);
 			for _, order in pairs(AusstehendeNukes)do
 				addNewOrder(order);
 			end
