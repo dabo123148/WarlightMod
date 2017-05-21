@@ -78,7 +78,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(order.proxyType == 'GameOrderPlayCardBlockade') then
 			deployed = true;
 		end
-		skipThisOrder(WL.ModOrderControll.Skip);
 		if(deployed == true)then
 			skipThisOrder(WL.ModOrderControl.Skip);
 			for _, order in pairs(AusstehendeNukes)do
