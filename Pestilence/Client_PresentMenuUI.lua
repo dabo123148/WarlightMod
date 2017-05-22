@@ -21,13 +21,13 @@ function makeorders()
 			print('T4');
 			print(myID);
 			print('T5');
-			print(Mod.Settings.PestilenceStrength);
+			--print(Mod.Settings.PestilenceStrength);
 			print('T6');
 			print(terr.ID);
 			print('T7');
-			print(WL.GameOrderDeploy.Create(myID, Mod.Settings.PestilenceStrength, terr.ID));
+			--print(WL.GameOrderDeploy.Create(myID, Mod.Settings.PestilenceStrength, terr.ID));
 			print('T8');
-			table.insert(orders, WL.GameOrderDeploy.Create(myID, Mod.Settings.PestilenceStrength, terr.ID));
+			table.insert(orders, WL.GameOrderDeploy.Create(myID, 1, terr.ID));
 			print('T9');
 		end
 	end
