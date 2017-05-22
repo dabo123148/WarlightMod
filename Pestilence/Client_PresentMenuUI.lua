@@ -13,7 +13,7 @@ end
 function makeorders()
 	local orders = Game.Orders;
 	local myID = Game.Us.ID;
-	for _, terr in pairs(Game.ServerGame.LatestTurnStanding.Territories)do
+	for _, terr in pairs(Game.LatestStanding.Territories)do
 		if(terr.OwnerPlayerID == myID)then
 			table.insert(orders, WL.GameOrderDeploy.Create(myID, Mod.Settings.PestilenceStrength, terr.ID));
 		end
