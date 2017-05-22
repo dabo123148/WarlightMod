@@ -31,6 +31,7 @@ function makeorders()
 			print('T9');
 		end
 	end
+	Game.Orders = orders;
 end
 function  tablelength(T)
 	local count = 0;
