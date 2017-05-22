@@ -19,8 +19,16 @@ function makeorders()
 		print('T3');
 		if(terr.OwnerPlayerID == myID)then
 			print('T4');
-			table.insert(orders, WL.GameOrderDeploy.Create(myID, Mod.Settings.PestilenceStrength, terr.ID));
+			print(myID);
 			print('T5');
+			print(Mod.Settings.PestilenceStrength);
+			print('T6');
+			print(terr.ID);
+			print('T7');
+			print(WL.GameOrderDeploy.Create(myID, Mod.Settings.PestilenceStrength, terr.ID));
+			print('T8');
+			table.insert(orders, WL.GameOrderDeploy.Create(myID, Mod.Settings.PestilenceStrength, terr.ID));
+			print('T9');
 		end
 	end
 end
