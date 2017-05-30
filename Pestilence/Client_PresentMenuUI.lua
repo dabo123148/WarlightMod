@@ -13,22 +13,9 @@ end
 function makeorders()
 	local orders = Game.Orders;
 	local myID = Game.Us.ID;
-	print('T1');
-	print('T2');
 	for _, terr in pairs(Game.LatestStanding.Territories)do
-		print('T3');
-		if(terr.OwnerPlayerID == myID)then
-			print('T4');
-			print(myID);
-			print('T5');
-			--print(Mod.Settings.PestilenceStrength);
-			print('T6');
-			print(terr.ID);
-			print('T7');
-			--print(WL.GameOrderDeploy.Create(myID, Mod.Settings.PestilenceStrength, terr.ID));
-			print('T8');
-			table.insert(orders, WL.GameOrderDeploy.Create(myID, 1, terr.ID));
-			print('T9');
+		if(terr.OwnerPlayerID == myID and tablelength(terr.Armies.SpecialUnits)==0)then
+			table.insert(orders, WL.GameOrderDeploy.Create(myID, Mod.Settings.PestilenceStrength, terr.ID));
 		end
 	end
 	Game.Orders = orders;
