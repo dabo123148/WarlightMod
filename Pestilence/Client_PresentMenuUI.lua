@@ -14,7 +14,7 @@ function makeorders()
 	local orders = Game.Orders;
 	local myID = Game.Us.ID;
 	for _, terr in pairs(Game.LatestStanding.Territories)do
-		if(terr.OwnerPlayerID == myID and tablelength(terr.Armies.SpecialUnits)==0)then
+		if(terr.OwnerPlayerID == myID and tablelength(terr.NumArmies.SpecialUnits)==0)then
 			table.insert(orders, WL.GameOrderDeploy.Create(myID, Mod.Settings.PestilenceStrength, terr.ID));
 		end
 	end
