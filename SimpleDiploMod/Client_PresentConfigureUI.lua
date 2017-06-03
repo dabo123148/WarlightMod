@@ -29,5 +29,5 @@ function Client_PresentConfigureUI(rootParent)
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('Shop System');
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
-	inputStartMoney = UI.CreateNumberInputField(horz1).SetSliderMinValue(0).SetSliderMaxValue(100).SetText('Starting Money').SetValue(StartMoneyinit);
+	inputStartMoney = UI.CreateNumberInputField(texthorz).SetSliderMinValue(0).SetSliderMaxValue(100).SetText('Starting Money').SetValue(StartMoneyinit);
 end
