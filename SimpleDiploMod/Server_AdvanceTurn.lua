@@ -301,7 +301,7 @@ function check(message,variable)
 	local num = 0;
 	while(mess[num] ~= nil)do
 		if(mess[num] ~= varchararray[num])then
-			print(mess[num] .. ' ' .. vaarchararray[num];
+			print(mess[num] .. ' ' .. vaarchararray[num]);
 			match = false;
 		end
 		num = num + 1;
