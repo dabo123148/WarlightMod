@@ -185,7 +185,7 @@ function PlayerButton(player)
 	return ret;
 end
 function DeleteUI()
-	horz = UI.CreateHorizontalLayoutGroup(root);
+	--horz = UI.CreateHorizontalLayoutGroup(root);
 	if(textelem ~= nil)then
 		UI.Destroy(textelem);
 		textelem = nil;
