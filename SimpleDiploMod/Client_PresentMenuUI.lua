@@ -37,18 +37,23 @@ end
 function DeleteUI()
 	if(openshopbutton ~= nil)then
 		UI.Destroy(openshopbutton);
+		openshopbutton = nil;
 	end
 	if(declarewarbutton ~= nil)then
 		UI.Destroy(declarewarbutton);
+		declarewarbutton = nil;
 	end
 	if(offerpeacebutton ~= nil)then
 		UI.Destroy(offerpeacebutton);
+		offerpeacebutton = nil;
 	end
 	if(offerallianzebutton ~= nil)then
 		UI.Destroy(offerallianzebutton);
+		offerallianzebutton = nil;
 	end
 	if(pendingrequestbutton ~= nil)then
 		UI.Destroy(pendingrequestbutton);
+		pendingrequestbutton = nil;
 	end
 end
 function  tablelength(T)
