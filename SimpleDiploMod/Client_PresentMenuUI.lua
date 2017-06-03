@@ -11,7 +11,51 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	vert = UI.CreateVerticalLayoutGroup(rootParent);
   	local horz = UI.CreateHorizontalLayoutGroup(vert);
  	moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
+	mainmenu = UI.CreateButton(horz).SetText("Main Menu").SetOnClick(OpenMenu);
 	OpenMenu(rootParent);
+end
+function OpenOfferPeace()
+	vert = UI.CreateVerticalLayoutGroup(root);
+	local horz = UI.CreateHorizontalLayoutGroup(vert);
+	UI.CreateLabel(horz).SetText("Declare war on: ");
+	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
+	local horz = UI.CreateHorizontalLayoutGroup(vert);
+	commitbutton = UI.CreateButton(horz).SetText("Declare").SetOnClick(commitofferpeace);
+end
+function commitofferpeace()
+	local offerto = TargetPlayerBtn.GetText();
+	local orders = Game.Orders;
+	local myID = Game.Us.ID;
+	local Preis = 0;
+	if(offerto == "Select player...")then
+		UI.Alert('You need to choose a player first');
+	else
+		Game.SendGameCustomMessage("Sending request...", "Peace " .. offerto .. " " .. tostring(Preis), function(returnValue));
+	end
+end
+function TargetPlayerClickedOfferPeace()
+	if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
+		local options = {};
+		local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us.ID]);
+		for _,playerinstanze in pairs(Game.Game.Players)do
+			local Match = false;
+			for _,with in pairs(inwarwith)do
+				if(tostring(with) == tostring(playerinstanze.ID))then
+					Match = true;
+				end
+			end
+			if(Match == false)then
+				print('insert');
+				if(playerinstanze.ID ~= Game.Us.ID)then
+					table.insert(options,playerinstanze);
+				end
+			end
+		end
+		options = map(options, PlayerButton);
+		UI.PromptFromList("Select the player you'd like to declare war on", options);
+	else	
+		UI.Alert('You are currently with noone in war');
+	end
 end
 function OpenMenu()
 	DeleteUI();
@@ -42,7 +86,7 @@ function OpenDeclarWar()
 	UI.CreateLabel(horz).SetText("Declare war on: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClicked);
 	local horz = UI.CreateHorizontalLayoutGroup(vert);
-	declarebutton = UI.CreateButton(horz).SetText("Declare").SetOnClick(declare);
+	commitbutton = UI.CreateButton(horz).SetText("Declare").SetOnClick(declare);
 end
 function stringtotable(variable)
 	chartable = {};
@@ -144,9 +188,9 @@ function DeleteUI()
 		UI.Destroy(TargetPlayerBtn);
 		TargetPlayerBtn = nil;
 	end
-	if(declarebutton ~= nil)then
-		UI.Destroy(declarebutton);
-		declarebutton = nil;
+	if(commitbutton ~= nil)then
+		UI.Destroy(commitbutton);
+		commitbutton = nil;
 	end
 	if(openshopbutton ~= nil)then
 		UI.Destroy(openshopbutton);
