@@ -302,7 +302,7 @@ function check(message,variable)
 	for _, char in pairs(varchararray)do
 		print(char);
 	end
-	while(mess[num] ~= nil)do
+	while(varchararray[num] ~= nil)do
 		print('aufgerufen');
 		if(mess[num] ~= varchararray[num])then
 			print("char" .. varchararray[num]);
