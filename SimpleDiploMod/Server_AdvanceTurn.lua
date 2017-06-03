@@ -54,7 +54,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					if(bereitsgemachteangriffe == nil)then
 						bereitsgemachteangriffe={};
 					end
-					bereitsgemachteangriffe[order.PlayerID].OwnerPlayerID] = true;
+					bereitsgemachteangriffe[order.PlayerID] = true;
 					Attacksbetween[game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID] = bereitsgemachteangriffe;
 				else
 					Attacksbetween[game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID] = {};
