@@ -10,18 +10,17 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(vert).SetText("You cannot use the Diplomacy game, cause you aren't in the game");
 		return;
 	end
-	vertmain = UI.CreateVerticalLayoutGroup(rootParent);
-  	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
+  	local horz = UI.CreateHorizontalLayoutGroup(root);
  	moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 	mainmenu = UI.CreateButton(horz).SetText("Main Menu").SetOnClick(OpenMenu);
 	OpenMenu(rootParent);
 end
 function OpenOfferPeace()
 	DeleteUI();
-	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
+	local horz = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horz).SetText("Offer peace to: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
-	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
+	local horz = UI.CreateHorizontalLayoutGroup(root);
 	commitbutton = UI.CreateButton(horz).SetText("Offer").SetOnClick(commitofferpeace);
 end
 function commitofferpeace()
@@ -60,19 +59,19 @@ function TargetPlayerClickedOfferPeace()
 end
 function OpenMenu()
 	DeleteUI();
-	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
+	local horz = UI.CreateHorizontalLayoutGroup(root);
 	--UI.CreateLabel(horz).SetText("Shop");
 	openshopbutton = UI.CreateButton(horz).SetText("Shop").SetOnClick(Openshop);
- 	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
+ 	local horz = UI.CreateHorizontalLayoutGroup(root);
  	--UI.CreateLabel(horz).SetText("Declare War");
 	declarewarbutton = UI.CreateButton(horz).SetText("Declare War").SetOnClick(OpenDeclarWar);
- 	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
+ 	local horz = UI.CreateHorizontalLayoutGroup(root);
 	--UI.CreateLabel(horz).SetText("Offer Peace");
 	offerpeacebutton = UI.CreateButton(horz).SetText("Offer Peace").SetOnClick(OpenOfferPeace);
-	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
+	local horz = UI.CreateHorizontalLayoutGroup(root);
 	--UI.CreateLabel(horz).SetText("Offer Allianze");
 	offerallianzebutton = UI.CreateButton(horz).SetText("Offer Alliance").SetOnClick(OpenOfferAlliance);
-  	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
+  	local horz = UI.CreateHorizontalLayoutGroup(root);
   	--UI.CreateLabel(horz).SetText("Pending Requests");
 	pendingrequestbutton = UI.CreateButton(horz).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
 end
@@ -81,10 +80,10 @@ function Openshop(rootParent)
 end
 function OpenDeclarWar()
 	DeleteUI();
-	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
+	local horz = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horz).SetText("Declare war on: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClicked);
-	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
+	local horz = UI.CreateHorizontalLayoutGroup(root);
 	commitbutton = UI.CreateButton(horz).SetText("Declare").SetOnClick(declare);
 end
 function stringtotable(variable)
