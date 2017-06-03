@@ -88,7 +88,17 @@ function TargetPlayerClicked()
 			table.insert(options,playerinstanze);
 		end
 	end
+	options = map(options, PlayerButton);
 	UI.PromptFromList("Select the player you'd like to declare war on", options);
+end
+function map(array, func)
+	local new_array = {};
+	local i = 1;
+	for _,v in pairs(array) do
+		new_array[i] = func(v);
+		i = i + 1;
+	end
+	return new_array;
 end
 function PlayerButton(player)
 	local name = player.DisplayName(nil, false);
