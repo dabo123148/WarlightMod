@@ -75,9 +75,9 @@ function stringtotable(variable)
 end
 function TargetPlayerClicked()
 	local options = {};
-	if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us] ~= nil)then
+	if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
 		print('Test');
-		local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us]);
+		local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us.ID]);
 		for _,playerinstanze in pairs(Game.Game.Players)do
 			print('Test2');
 			local Match = false;
@@ -93,7 +93,7 @@ function TargetPlayerClicked()
 		end
 	else	
 		if(Mod.PublicGameData.War ~=nil)then
-			print(Mod.PublicGameData.War[Game.Us]);
+			print(Mod.PublicGameData.War[Game.Us.ID]);
 		else
 			print('neu?');
 		end
