@@ -16,7 +16,6 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 end
 function OpenOfferPeace()
 	DeleteUI();
-	vertmain = UI.CreateVerticalLayoutGroup(root);
 	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
 	UI.CreateLabel(horz).SetText("Offer peace to: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
@@ -59,7 +58,6 @@ function TargetPlayerClickedOfferPeace()
 end
 function OpenMenu()
 	DeleteUI();
-	vertmain = UI.CreateVerticalLayoutGroup(root);
 	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
 	--UI.CreateLabel(horz).SetText("Shop");
 	openshopbutton = UI.CreateButton(horz).SetText("Shop").SetOnClick(Openshop);
@@ -81,7 +79,6 @@ function Openshop(rootParent)
 end
 function OpenDeclarWar()
 	DeleteUI();
-	vertmain = UI.CreateVerticalLayoutGroup(root);
 	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
 	UI.CreateLabel(horz).SetText("Declare war on: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClicked);
@@ -184,33 +181,32 @@ function PlayerButton(player)
 	return ret;
 end
 function DeleteUI()
-	UI.Destroy(vertmain);
 	if(TargetPlayerBtn ~= nil)then
-		--UI.Destroy(TargetPlayerBtn);
+		UI.Destroy(TargetPlayerBtn);
 		TargetPlayerBtn = nil;
 	end
 	if(commitbutton ~= nil)then
-		--UI.Destroy(commitbutton);
+		UI.Destroy(commitbutton);
 		commitbutton = nil;
 	end
 	if(openshopbutton ~= nil)then
-		--UI.Destroy(openshopbutton);
+		UI.Destroy(openshopbutton);
 		openshopbutton = nil;
 	end
 	if(declarewarbutton ~= nil)then
-		--UI.Destroy(declarewarbutton);
+		UI.Destroy(declarewarbutton);
 		declarewarbutton = nil;
 	end
 	if(offerpeacebutton ~= nil)then
-		--UI.Destroy(offerpeacebutton);
+		UI.Destroy(offerpeacebutton);
 		offerpeacebutton = nil;
 	end
 	if(offerallianzebutton ~= nil)then
-		--UI.Destroy(offerallianzebutton);
+		UI.Destroy(offerallianzebutton);
 		offerallianzebutton = nil;
 	end
 	if(pendingrequestbutton ~= nil)then
-		--UI.Destroy(pendingrequestbutton);
+		UI.Destroy(pendingrequestbutton);
 		pendingrequestbutton = nil;
 	end
 end
