@@ -1,17 +1,19 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
 	AllAIs = {};
-	for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-		local CheckingID = terr.OwnerPlayerID;
-		if(CheckingID ~= WL.PlayerID.Neutral)then
-			if(game.Game.Players[CheckingID].IsAI)then
-				local Match = false;
-				for _,knownAIs in pairs(AllAIs)do
-					if(CheckingID == knownAIs)then
-						Match = true;
+	if(Mod.Settings.AIsdeclearAIs == false)then
+		for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
+			local CheckingID = terr.OwnerPlayerID;
+			if(CheckingID ~= WL.PlayerID.Neutral)then
+				if(game.Game.Players[CheckingID].IsAI)then
+					local Match = false;
+					for _,knownAIs in pairs(AllAIs)do
+						if(CheckingID == knownAIs)then
+							Match = true;
+						end
 					end
-				end
-				if(Match == false)then
-					AllAIs[tablelength(AllAIs)] = CheckingID;
+					if(Match == false)then
+						AllAIs[tablelength(AllAIs)] = CheckingID;
+					end
 				end
 			end
 		end
