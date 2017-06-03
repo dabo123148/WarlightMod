@@ -1,9 +1,9 @@
 
 function Client_PresentSettingsUI(rootParent)
 	if(Mod.Settings.AllowAIDeclaration)then
-		UI.CreateLabel(rootParent).SetText('AIs are allowed to declear war');
+		UI.CreateLabel(rootParent).SetText('AIs are allowed to declare war');
 	else
-		UI.CreateLabel(rootParent).SetText('AIs are not allowed to declear war');
+		UI.CreateLabel(rootParent).SetText('AIs are not allowed to declare war');
 	end
 	if(Mod.Settings.SeeAllyTerritories)then
 		UI.CreateLabel(rootParent).SetText('Allied Players can see your territories');
