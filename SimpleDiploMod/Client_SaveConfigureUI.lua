@@ -4,6 +4,10 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.AllowAIDeclaration == nil)then
 		Mod.Settings.AllowAIDeclaration = true;
 	end
+	Mod.Settings.AIsdeclearAIs = AIsdeclearAIsinitcheckbox.GetIsChecked();
+	if(Mod.Settings.AIsdeclearAIs == nil)then
+		Mod.Settings.AIsdeclearAIs = true;
+	end
 	Mod.Settings.SeeAllyTerritories = SeeAllyTerritoriesCheckbox.GetIsChecked();
 	if(Mod.Settings.SeeAllyTerritories == nil)then
 		Mod.Settings.SeeAllyTerritories = true;
