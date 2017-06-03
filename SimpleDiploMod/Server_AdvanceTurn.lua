@@ -294,7 +294,7 @@ function check(message,variable)
 		if(mess[num] ~= varchararray[num])then
 			match = false;
 		end
-		num += 1;
+		num = num + 1;
 	end
 	return match;
 end
