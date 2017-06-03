@@ -68,7 +68,7 @@ function stringtotable(variable)
 end
 function TargetPlayerClicked()
 	local options = {};
-	if(Mod.PublicGameData.War[Game.Us] ~= nil)then
+	if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us] ~= nil)then
 		local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us]);
 		for _,playerinstanze in pairs(Game.Game.Players)do
 			local Match = false;
