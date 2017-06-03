@@ -93,6 +93,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	end
 	if(order.proxyType == "GameOrderCustom")then
 		if(check(order.Message,"Declared war on"))then
+			print('Text erkannt');
 			local ordersplit = stringtochararray(order.Message);
 			local with = "";
 			local num = 16;
