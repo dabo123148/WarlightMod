@@ -99,7 +99,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local with = "";
 			local num = 16;
 			while(num < tablelength(ordersplit))do
-				with = with + splitelem[num];
+				if(splitelem[num] ~= nil)then
+					with = with + splitelem[num];
+				end
 				num = num + 1;
 			end
 			print('with ' .. with);
