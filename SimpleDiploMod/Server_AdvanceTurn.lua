@@ -83,8 +83,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	end
 	if(order.proxyType == "GameOrderCustom")then
 		if(check(order.Message,"Declared war on"))then
-			local with = toint(order.Message);
-			if(InWar(order.PlayerID,order.SanctionedPlayerID) == false)then
 				local ordersplit = stringtochararray(order.Message);
 				local with = "";
 				local num = 16;
@@ -93,7 +91,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					num = num + 1;
 				end
 				print('with ' .. with);
-				DeclearWar(order.PlayerID,tonumber(with));
+				if(InWar(order.PlayerID,tonumber(with)) == false)then
+					DeclearWar(order.PlayerID,tonumber(with));
+				end
 			end
 		end
 		if(check(order.Message,"Offer peace to"))then
