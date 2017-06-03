@@ -15,31 +15,5 @@ function Client_PresentSettingsUI(rootParent)
 	else
 		UI.CreateLabel(rootParent).SetText('Just you and your ally can see your allianze');
 	end
-	local ShowenIDs = {};
-	if(AllPlayerIDs ~= nil)then
-		print('Show');
-		for _, PID in pairs(AllPlayerIDs)do
-			for _, PID2 in pairs(AllPlayerIDs)do
-				if(War[PID][PID2] == true)then
-					local Match = false;
-					for _, SID in pairs(ShowenIDs)do
-						if(SID == PID2)then
-							Match = true;
-						end
-					end
-					if(Match == false)then
-						UI.CreateLabel(rootParent).SetText(tostring(PID) .." is in war with " .. tostring(PID2));
-					end
-				end
-			end
-			ShowenIDs[tablelength(ShowenIDs)] = PID;
-		end
-	end
-end
-function tablelength(T)
-	local count = 0;
-	for _,elem in pairs(T)do
-		count = count + 1;
-	end
-	return count;
+	UI.CreateLabel(rootParent).SetText('Player start with ' .. Mod.Settings.StartMoney .. ' Money');
 end
