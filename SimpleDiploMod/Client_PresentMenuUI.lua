@@ -67,16 +67,23 @@ function stringtotable(variable)
 	return newtable;
 end
 function TargetPlayerClicked()
-	local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us]);
 	local options = {};
-	for _,playerinstanze in pairs(Game.Game.Players)do
-		local Match = false;
-		for _,with in pairs(inwarwith)do
-			if(with == playerinstanze.ID)then
-				Match = true;
+	if(Mod.PublicGameData.War[Game.Us] ~= nil)then
+		local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us]);
+		for _,playerinstanze in pairs(Game.Game.Players)do
+			local Match = false;
+			for _,with in pairs(inwarwith)do
+				if(with == playerinstanze.ID)then
+					Match = true;
+				end
+			end
+			if(Match == false)then
+				table.insert(options,playerinstanze);
 			end
 		end
-		if(Match == false)then
+	else
+			
+		for _,playerinstanze in pairs(Game.Game.Players)do
 			table.insert(options,playerinstanze);
 		end
 	end
