@@ -6,9 +6,8 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(vert).SetText("You cannot use the Diplomacy game, cause you aren't in the game");
 		return;
 	end
-	local playerGameData = Mod.PlayerGameData;
   	local horz = UI.CreateHorizontalLayoutGroup(vert);
- 	UI.CreateLabel(horz).SetText(Mod.PlayerGameData[game.Us.ID].Money);
+ 	UI.CreateLabel(horz).SetText(Mod.PlayerGameData[game.Us.ID]);
 	local horz = UI.CreateHorizontalLayoutGroup(vert);
 	UI.CreateLabel(horz).SetText("Shop");
 	openshopbutton = UI.CreateButton(horz).SetText("Shop").SetOnClick(Openshop);
