@@ -197,9 +197,8 @@ end
 function getplayerid(playername,game)
 	for _,playerinfo in pairs(game.ServerGame.Game.Players)do
 		local name = playerinfo.DisplayName(nil, false);
-			if(name == playername)then
-				return playerinfo.ID;
-			end
+		if(name == playername)then
+			return playerinfo.ID;
 		end
 	end
 	return 0;
