@@ -299,11 +299,7 @@ function check(message,variable)
 	local mess = stringtochararray(message);
 	local varchararray = stringtochararray(variable);
 	local num = 0;
-	for _, char in pairs(varchararray)do
-		print(char);
-	end
 	while(varchararray[num] ~= nil)do
-		print('aufgerufen');
 		if(mess[num] ~= varchararray[num])then
 			print("char" .. varchararray[num]);
 			print(mess[num] .. ' ' .. varchararray[num]);
