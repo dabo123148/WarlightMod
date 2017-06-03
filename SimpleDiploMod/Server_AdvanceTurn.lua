@@ -109,16 +109,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				DeclearWar(order.PlayerID,getplayerid(with,game));
 			end
 		end
-		if(check(order.Message,"Offer peace to"))then
-			
-		end
-		if(check(order.Message,"Offer ally to"))then
-			
-		end
 		if(check(order.Message,"Removed ally with"))then
 			
 		end
-		print('test');
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 	end
 end
@@ -240,7 +233,6 @@ function DeclearWar(Player1,Player2)
 		if(Match == false)then
 			RemainingDeclerations[tablelength(RemainingDeclerations)] = "," .. Player1 .. "," ..Player2;
 		end
-		print('T4');
 	else
 		RemoveAlly(Player1,Player2);
 	end
