@@ -196,8 +196,10 @@ function RemoveWar(Player1,Player2)
 	
 end
 function DeclearWar(Player1,Player2)
+	print('Declear War');
 	--Allys declear war on order.PlayerID if not allied with order.PlayerID
 	if(IsAlly(Player1,Player2)==false)then
+		print('D1');
 		if(RemainingDeclerations == nil)then
 			RemainingDeclerations = {};
 		end
@@ -239,7 +241,7 @@ function DeclearAlly(Player1,Player2)
 	
 end
 function IsAlly(Player1,Player2)
-	return true;
+	return false;
 end
 function tablelength(T)
 	local count = 0;
