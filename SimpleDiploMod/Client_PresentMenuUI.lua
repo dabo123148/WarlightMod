@@ -1,16 +1,16 @@
 function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	Game = game;
-	setMaxSize(450, 250);
+	setMaxSize(450, 350);
 	vert = UI.CreateVerticalLayoutGroup(rootParent);
 	if (game.Us == nil) then
 		UI.CreateLabel(vert).SetText("You cannot use the Diplomacy game, cause you aren't in the game");
 		return;
 	end
   	local horz = UI.CreateHorizontalLayoutGroup(vert);
- 	UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
-	OpenMenu(rootParent);
+ 	moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
+	OpenMenu();
 end
-function OpenMenu(rootParent)
+function OpenMenu()
 	DeleteUI();
 	local horz = UI.CreateHorizontalLayoutGroup(vert);
 	--UI.CreateLabel(horz).SetText("Shop");
@@ -33,8 +33,70 @@ function Openshop(rootParent)
 end
 function OpenDeclarWar(rootParent)
 	DeleteUI();
+	local horz = UI.CreateHorizontalLayoutGroup(vert);
+	UI.CreateLabel(horz).SetText("Declare war on: ");
+	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClicked);
+end
+function stringtotable(variable)
+	chartable = {};
+	while(string.len(variable)>0)do
+		chartable[tablelength(chartable)] = string.sub(variable, 1 , 1);
+		variable = string.sub(variable, 2);
+	end
+	local newtable = {};
+	local tablepos = 0;
+	local executed = false;
+	for _, elem in pairs(chartable)do
+		if(elem == ",")then
+			tablepos = tablepos + 1;
+			newtable[tablepos] = "";
+			executed = true;
+		else
+			if(executed == false)then
+				tablepos = tablepos + 1;
+				newtable[tablepos] = "";
+				executed = true;
+			end
+			if(newtable[tablepos] == nil)then
+				newtable[tablepos] = elem;
+			else
+				newtable[tablepos] = newtable[tablepos] .. elem;
+			end
+		end
+	end
+	return newtable;
+end
+function TargetPlayerClicked()
+	local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us]);
+	local options = {};
+	for _,playerinstanze in pairs(Game.Game.Players)do
+		local Match = false;
+		for _,with in pairs(inwarwith)do
+			if(with == playerinstanze.ID)then
+				Match = true;
+			end
+		end
+		if(Match == false)then
+			table.insert(options,playerinstanze);
+		end
+	end
+	UI.PromptFromList("Select the player you'd like to declare war on", options);
+end
+function PlayerButton(player)
+	local name = player.DisplayName(nil, false);
+	local ret = {};
+	ret["text"] = name;
+	ret["selected"] = function() 
+		TargetPlayerBtn.SetText(name);
+		TargetPlayerID = player.ID;
+	end
+	return ret;
 end
 function DeleteUI()
+	if(TargetPlayerBtn ~= nil)then
+		UI.Destroy(TargetPlayerBtn);
+		TargetPlayerBtn = nil;
+	end
 	if(openshopbutton ~= nil)then
 		UI.Destroy(openshopbutton);
 		openshopbutton = nil;
