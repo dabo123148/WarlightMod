@@ -118,6 +118,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(check(order.Message,"Removed ally with"))then
 			
 		end
+		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 	end
 end
 function Server_AdvanceTurn_End (game,addNewOrder)
@@ -135,7 +136,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				publicGameData.War[P1] = tostring(P2) .. ",";
 			end
 			--addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, tostring(newwar), nil,{}));
-			addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "The Player with the player ID " .. tostring(P1) .. " declared war on " .. tostring(P2), nil,{}));
+			addNewOrder(WL.GameOrderEvent.Create(P1, "Declared war on " .. toname(P2), nil,{}));
 			--addNewOrder(WL.GameOrderCustom.Create(P1, "Declars war on " .. tostring(P2), ""));
 			local P3 = P2;
 			P2 = P1;
@@ -202,6 +203,14 @@ function getplayerid(playername,game)
 		end
 	end
 	return 0;
+end
+function toname(playerid,game)
+	for _,playerinfo in pairs(game.ServerGame.Game.Players)do
+		if(playerid == playerinfo.ID)then
+			return playerinfo.DisplayName(nil, false);
+		end
+	end
+	return "Error. Please report to dabo1.";
 end
 function RemoveAlly(Player1,Player2)
 	
