@@ -302,7 +302,7 @@ function check(message,variable)
 	while(varchararray[num] ~= nil)do
 		if(mess[num] ~= varchararray[num])then
 			print(mess[num] .. ' ' .. varchararray[num]);
-			return = false;
+			return false;
 		end
 		num = num + 1;
 	end
