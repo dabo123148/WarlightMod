@@ -2,6 +2,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	TargetPlayerBtn = nil;
 	declarebutton=nil;
 	textelem=nil;
+	commitbutton =nil;
 	Game = game;
 	root = rootParent;
 	setMaxSize(450, 350);
