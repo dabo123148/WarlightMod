@@ -92,6 +92,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 	end
 	if(order.proxyType == "GameOrderCustom")then
+		print('custom order');
 		if(check(order.Message,"Declared war on"))then
 			print('Text erkannt');
 			local ordersplit = stringtochararray(order.Message);
@@ -300,6 +301,7 @@ function check(message,variable)
 	local num = 0;
 	while(mess[num] ~= nil)do
 		if(mess[num] ~= varchararray[num])then
+			print(mess[num] .. ' ' .. vaarchararray[num];
 			match = false;
 		end
 		num = num + 1;
