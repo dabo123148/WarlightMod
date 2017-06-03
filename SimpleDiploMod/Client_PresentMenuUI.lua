@@ -9,7 +9,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		return;
 	end
 	vert = UI.CreateVerticalLayoutGroup(rootParent);
-  	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
+  	local horz = UI.CreateHorizontalLayoutGroup(vert);
  	moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 	mainmenu = UI.CreateButton(horz).SetText("Main Menu").SetOnClick(OpenMenu);
 	OpenMenu(rootParent);
