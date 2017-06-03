@@ -1,6 +1,7 @@
 function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	TargetPlayerBtn = nil;
 	declarebutton=nil;
+	textelem=nil;
 	Game = game;
 	root = rootParent;
 	setMaxSize(450, 350);
@@ -17,7 +18,7 @@ end
 function OpenOfferPeace()
 	DeleteUI();
 	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
-	UI.CreateLabel(horz).SetText("Offer peace to: ");
+	textelem = UI.CreateLabel(horz).SetText("Offer peace to: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
 	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
 	commitbutton = UI.CreateButton(horz).SetText("Offer").SetOnClick(commitofferpeace);
@@ -80,7 +81,7 @@ end
 function OpenDeclarWar()
 	DeleteUI();
 	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
-	UI.CreateLabel(horz).SetText("Declare war on: ");
+	textelem = UI.CreateLabel(horz).SetText("Declare war on: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClicked);
 	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
 	commitbutton = UI.CreateButton(horz).SetText("Declare").SetOnClick(declare);
@@ -181,6 +182,10 @@ function PlayerButton(player)
 	return ret;
 end
 function DeleteUI()
+	if(textelem ~= nil)then
+		UI.Destroy(textelem);
+		textelem = nil;
+	end
 	if(TargetPlayerBtn ~= nil)then
 		UI.Destroy(TargetPlayerBtn);
 		TargetPlayerBtn = nil;
