@@ -25,14 +25,22 @@ end
 function PestCardCheckBoxChanged()
     PestCardIn= not PestCardIn;
     if(PestCardIn) then
+	lab1=UI.CreateLabel(vertPest).SetText('Pestilence Card Strentgh:');
         PestCardStrengthSlider=UI.CreateNumberInputField(vertPest).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(PestCardStrength).SetText('Pestilence Card Strength');
+	
+	lab2=UI.CreateLabel(vertPest).SetText('Card Pieces Needed:');
 	PestCardPiecesNeededBox=UI.CreateNumberInputField(vertPest).SetSliderMinValue(1).SetSliderMaxValue(20).SetValue(PestCardPiecesNeeded);
+	
+	lab3=UI.CreateLabel(vertPest).SetText('Card Pieces given at the beginning of the game:');
 	PestCardStartPiecesBox=UI.CreateNumberInputField(vertPest).SetSliderMinValue(0).SetSliderMaxValue(20).SetValue(PestCardStartPieces);
 	Mod.Settings.PestCardIn=true;
     else
 	UI.Destroy(PestCardStrengthSlider);
 	UI.Destroy(PestCardPiecesNeededBox);
 	UI.Destroy(PestCardStartPiecesBox);
+	UI.Destroy(lab1);
+	UI.Destroy(lab2);
+	UI.Destroy(lab3);
 	Mod.Settings.PestCardIn=false;
     end
 end
