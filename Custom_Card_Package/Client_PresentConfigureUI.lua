@@ -4,7 +4,7 @@ function Client_PresentConfigureUI(rootParent)
     
     PestCardIn=false;
     PestCardStrength=1;
-    PestCardStrengthSlider;
+    PestCardStrengthSlider=nil;
     vertPest = UI.CreateVerticalLayoutGroup(rootParent);
     PestCardCheckbox=UI.CreateCheckBox(vertPest).SetText('Include Pestilence Card').SetIsChecked(PestCardIn).SetOnValueChanged(PestCardCheckBoxChanged);
     
