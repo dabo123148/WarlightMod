@@ -1,15 +1,24 @@
 
 function Client_PresentConfigureUI(rootParent)
-    local PestCardIn=false;
     root=rootParent;
-    local vert1 = UI.CreateVerticalLayoutGroup(rootParent);
-    PestCardCheckbox=UI.CreateCheckBox(vert1).SetText('Include Pestilence Card').SetIsChecked(PestCardIn).SetOnValueChanged(PestCardCheckBoxChanged);
-
+    
+    PestCardIn=false;
+    PestCardStrength=1;
+    PestCardStrengthSlider;
+    vertPest = UI.CreateVerticalLayoutGroup(rootParent);
+    PestCardCheckbox=UI.CreateCheckBox(vertPest).SetText('Include Pestilence Card').SetIsChecked(PestCardIn).SetOnValueChanged(PestCardCheckBoxChanged);
+    
 end
 
 function PestCardCheckBoxChanged()
-    local vert = UI.CreateVerticalLayoutGroup(root);
-    local PestStrength=1;
-    PestCardStrength=UI.CreateNumberInputField(vert).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(PestStrength);
-	
+    PestCardIn=!PestCardIn;
+    if(PestCardIn) then
+        PestCardStrengthSlider=UI.CreateNumberInputField(vertPest).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(PestCardStrength);
+    else
+	UI.Destroy(PestCardStrengthSlider);
+    end
 end
+function CreateUI()
+    	
+end
+
