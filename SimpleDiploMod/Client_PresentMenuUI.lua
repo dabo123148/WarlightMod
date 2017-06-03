@@ -26,10 +26,10 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
   UI.CreateLabel(horz).SetText("Pending Requests");
 	offerallianzebutton = UI.CreateButton(horz).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
 end
-function Openshop
+function Openshop()
   DeleteUI();
 end
-function DeleteUI
+function DeleteUI()
 
 end
 function  tablelength(T)
