@@ -105,8 +105,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				num = num + 1;
 			end
 			print('with ' .. with);
-			addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, tostring(with), nil,{}));
-			if(InWar(order.PlayerID,tonumber(with)) == false)then
+			if(InWar(order.PlayerID,getplayerid(with)) == false)then
 				DeclearWar(order.PlayerID,tonumber(with));
 			end
 		end
@@ -194,6 +193,16 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			--end
 		--end
 	--end
+end
+function getplayerid(playername,game)
+	for _,playerinfo in pairs(game.ServerGame.Game.Players)do
+		local name = playerinfo.DisplayName(nil, false);
+			if(name == playername)then
+				return playerinfo.ID;
+			end
+		end
+	end
+	return 0;
 end
 function RemoveAlly(Player1,Player2)
 	
