@@ -82,16 +82,15 @@ function TargetPlayerClicked()
 			print('Test2');
 			local Match = false;
 			for _,with in pairs(inwarwith)do
-				print(with .. ' ' .. playerinstanze.ID);
-				print('instanz ' .. playerinstanze.ID);
 				if(tostring(with) == tostring(playerinstanze.ID))then
-					print('match true');
 					Match = true;
 				end
 			end
 			if(Match == false)then
 				print('insert');
-				table.insert(options,playerinstanze);
+				if(playerinstanze.ID ~= Game.Us.ID)then
+					table.insert(options,playerinstanze);
+				end
 			end
 		end
 	else	
@@ -102,7 +101,9 @@ function TargetPlayerClicked()
 		end
 		print('Test3');
 		for _,playerinstanze in pairs(Game.Game.Players)do
-			table.insert(options,playerinstanze);
+			if(playerinstanze.ID ~= Game.Us.ID)then
+				table.insert(options,playerinstanze);
+			end
 		end
 	end
 	options = map(options, PlayerButton);
