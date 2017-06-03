@@ -1,4 +1,5 @@
 function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
+	TargetPlayerBtn = nil;
 	Game = game;
 	setMaxSize(450, 350);
 	vert = UI.CreateVerticalLayoutGroup(rootParent);
@@ -67,6 +68,7 @@ function stringtotable(variable)
 	return newtable;
 end
 function TargetPlayerClicked()
+	print('Test');
 	local options = {};
 	if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us] ~= nil)then
 		local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us]);
