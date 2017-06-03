@@ -7,7 +7,7 @@ function Client_PresentConfigureUI(rootParent)
     local horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(horz1).SetText('Pestilence Card');
 	PestCardCheckbox=horz1.CreateCheckBox;
-	PestCardCheckbox.OnValueChanged=PestCardCheckBoxChanged;
+	PestCardCheckbox.OnValueChanged=PestCardCheckBoxChanged();
 
 end
 
