@@ -100,7 +100,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local num = 16;
 			while(num < tablelength(ordersplit))do
 				if(ordersplit[num] ~= nil)then
-					with = with + ordersplit[num];
+					with = with .. ordersplit[num];
 				end
 				num = num + 1;
 			end
