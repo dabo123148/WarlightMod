@@ -213,8 +213,6 @@ function DeclearWar(Player1,Player2)
 	end
 end
 function InWar(Player1,Player2)
-	print(Player1);
-	print(Player2);
 	if(Mod.PublicGameData.War == nil)then
 		print('neu gesetzt');
 		local publicGameData = Mod.PublicGameData;
@@ -226,7 +224,7 @@ function InWar(Player1,Player2)
 		print(with);
 		for _,pID in pairs(with)do
 			print(pID .. " " .. Player2);
-			if(pID == Player2)then
+			if(tostring(pID) == tostring(Player2))then
 				print("sind im krieg");
 				return true;
 			end
