@@ -84,10 +84,12 @@ function TargetPlayerClicked()
 			for _,with in pairs(inwarwith)do
 				print(with .. ' ' .. playerinstanze.ID);
 				if(with == playerinstanze.ID)then
+					print('match true');
 					Match = true;
 				end
 			end
 			if(Match == false)then
+				print('insert');
 				table.insert(options,playerinstanze);
 			end
 		end
