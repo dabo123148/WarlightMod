@@ -302,6 +302,7 @@ function check(message,variable)
 	while(mess[num] ~= nil)do
 		print('aufgerufen');
 		if(mess[num] ~= varchararray[num])then
+			print("char" .. varchararray[num]);
 			print(mess[num] .. ' ' .. varchararray[num]);
 			match = false;
 		end
