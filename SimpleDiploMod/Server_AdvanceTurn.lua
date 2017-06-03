@@ -231,7 +231,6 @@ function InWar(Player1,Player2)
 	end
 	if(Mod.PublicGameData.War[Player1] ~= nil)then
 		local with = stringtotable(Mod.PublicGameData.War[Player1]);
-		print(with);
 		for _,pID in pairs(with)do
 			print(pID .. " " .. Player2);
 			if(tostring(pID) == tostring(Player2))then
