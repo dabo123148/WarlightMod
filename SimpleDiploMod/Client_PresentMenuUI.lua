@@ -76,8 +76,10 @@ end
 function TargetPlayerClicked()
 	local options = {};
 	if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us] ~= nil)then
+		print('Test');
 		local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us]);
 		for _,playerinstanze in pairs(Game.Game.Players)do
+			print('Test2');
 			local Match = false;
 			for _,with in pairs(inwarwith)do
 				print(with .. ' ' .. playerinstanze.ID);
@@ -90,6 +92,7 @@ function TargetPlayerClicked()
 			end
 		end
 	else	
+		print('Test3');
 		for _,playerinstanze in pairs(Game.Game.Players)do
 			table.insert(options,playerinstanze);
 		end
