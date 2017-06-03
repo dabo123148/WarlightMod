@@ -131,7 +131,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			else
 				publicGameData.War[P1] = tostring(P2) .. ",";
 			end
-			addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, tostring(newwar), nil,{}));
+			--addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, tostring(newwar), nil,{}));
 			addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "The Player with the player ID " .. tostring(P1) .. " declared war on " .. tostring(P2), nil,{}));
 			--addNewOrder(WL.GameOrderCustom.Create(P1, "Declars war on " .. tostring(P2), ""));
 			local P3 = P2;
@@ -139,9 +139,9 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			P1 = P3;
 			if(Mod.PublicGameData.War[P1] ~= nil)then
 				local with = Mod.PublicGameData.War[P1] .. tostring(P2) .. ",";
-				--publicGameData.War[P1] = with;
+				publicGameData.War[P1] = with;
 			else
-				--publicGameData.War[P1] = tostring(P2) .. ",";
+				publicGameData.War[P1] = tostring(P2) .. ",";
 			end
 			Mod.PublicGameData = publicGameData;
 		end
