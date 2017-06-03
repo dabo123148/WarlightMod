@@ -230,7 +230,7 @@ function InWar(Player1,Player2)
 	end
 	if(Mod.PublicGameData.War[Player1] ~= nil)then
 		print('Test');
-		if(Mod.PublicGameData.War[Player1][Player2])then
+		if(Mod.PublicGameData.War[Player1][Player2] ~= nil)then
 			print('Test2');
 			return true;
 		end
