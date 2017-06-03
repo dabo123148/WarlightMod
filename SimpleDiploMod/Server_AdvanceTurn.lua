@@ -105,8 +105,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				num = num + 1;
 			end
 			print('with ' .. with);
-			if(InWar(order.PlayerID,getplayerid(with)) == false)then
-				DeclearWar(order.PlayerID,tonumber(with));
+			if(InWar(order.PlayerID,getplayerid(with,game)) == false)then
+				DeclearWar(order.PlayerID,getplayerid(with,game));
 			end
 		end
 		if(check(order.Message,"Offer peace to"))then
