@@ -214,7 +214,7 @@ function DeclearWar(Player1,Player2)
 			end
 		end
 		if(Match == false)then
-			RemainingDeclerations[tablelength(RemainingDeclerations)] = Player1 .. "," ..Player2;
+			RemainingDeclerations[tablelength(RemainingDeclerations)] = "," .. Player1 .. "," ..Player2;
 		end
 		print('T4');
 	else
