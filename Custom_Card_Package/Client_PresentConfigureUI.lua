@@ -11,6 +11,6 @@ function Client_PresentConfigureUI(rootParent)
 
 end
 
-function PestCardCheckBoxChanged(){
+function PestCardCheckBoxChanged()
 
-}
+end
