@@ -225,6 +225,7 @@ function InWar(Player1,Player2)
 		local with = stringtotable(Mod.PublicGameData.War[Player1]);
 		for _,pID in pairs(with)do
 			if(pID == Player2)then
+				return true;
 			end
 		end
 	end
