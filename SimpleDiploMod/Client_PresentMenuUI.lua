@@ -10,7 +10,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	vert = UI.CreateVerticalLayoutGroup(rootParent);
   	local horz = UI.CreateHorizontalLayoutGroup(vert);
  	moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
-	OpenMenu();
+	OpenMenu(rootParent);
 end
 function OpenMenu(rootParent)
 	DeleteUI();
@@ -20,7 +20,7 @@ function OpenMenu(rootParent)
 	openshopbutton = UI.CreateButton(horz).SetText("Shop").SetOnClick(Openshop);
  	local horz = UI.CreateHorizontalLayoutGroup(vert);
  	--UI.CreateLabel(horz).SetText("Declare War");
-	declarewarbutton = UI.CreateButton(horz).SetText("Declare War").SetOnClick(OpenDeclarWar);
+	declarewarbutton = UI.CreateButton(horz).SetText("Declare War").SetOnClick(OpenDeclarWar(rootParent));
  	local horz = UI.CreateHorizontalLayoutGroup(vert);
 	--UI.CreateLabel(horz).SetText("Offer Peace");
 	offerpeacebutton = UI.CreateButton(horz).SetText("Offer Peace").SetOnClick(OpenOfferPeace);
