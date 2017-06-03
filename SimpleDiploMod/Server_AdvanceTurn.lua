@@ -116,31 +116,22 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			local P2 = tonumber(stringtotable(newwar)[2]);
 			local publicGameData = Mod.PublicGameData;
 			if(Mod.PublicGameData.War[P1] ~= nil)then
-				local newinwar = {};
-				for _, alreadyinwar in pairs(War[P1])do
-					newinwar[alreadyinwar] = true;
-				end
-				publicGameData.War[P1] = newinwar;
+				local with = stringtotable(Mod.PublicGameData.War[P1]) + tostring(P2) + ",";
+				publicGameData.War[P1] = with;
 			else
-				publicGameData.War[P1] = {};
+				publicGameData.War[P1] = tostring(P2) + ",";
 			end
-			publicGameData.War[P1][P2] = true;
 			--addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "The Player with the player ID " .. tostring(P1) .. " decleared war on " .. tostring(P2), nil,{}));
 			--addNewOrder(WL.GameOrderCustom.Create(P1, "Declars war on " .. tostring(P2), ""));
 			local P3 = P2;
 			P2 = P1;
 			P1 = P3;
 			if(Mod.PublicGameData.War[P1] ~= nil)then
-				local newinwar ={};
-				for _, alreadyinwar in pairs(Mod.PublicGameData.War[P1])do
-					newinwar[alreadyinwar] = true;
-				end
-				publicGameData.War[P1] = newinwar;
+				local with = stringtotable(Mod.PublicGameData.War[P1]) + tostring(P2) + ",";
+				publicGameData.War[P1] = with;
 			else
-				publicGameData.War[P1] = {};
+				publicGameData.War[P1] = tostring(P2) + ",";
 			end
-			publicGameData.War[P1][P2] = true;
-			publicGameData.War[P1] = true;
 			Mod.PublicGameData = publicGameData;
 		end
 	end
@@ -153,7 +144,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			if(Mod.PublicGameData.Ally[P1] ~= nil)then
 				local newinwar = {};
 				for _, alreadyinwar in pairs(Ally[P1])do
-					newinwar[alreadyinwar] = true;
+					newinwar[alreadyinwar] = "wahr";
 				end
 				publicGameData.Ally[P1] = newinwar;
 			else
@@ -231,11 +222,10 @@ function InWar(Player1,Player2)
 		Mod.PublicGameData=publicGameData;
 	end
 	if(Mod.PublicGameData.War[Player1] ~= nil)then
-		print('Test');
-		print(Mod.PublicGameData.War[Player1][Player2]);
-		if(Mod.PublicGameData.War[Player1][Player2])then
-			print('Test2');
-			return true;
+		local with = stringtotable(Mod.PublicGameData.War[Player1]);
+		for _,pID in pairs(with)do
+			if(pID == Player2)then
+			end
 		end
 	end
 	return false;
