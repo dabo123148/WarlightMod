@@ -291,7 +291,7 @@ function check(message,variable)
 	local varchararray = stringtochararray(variable);
 	local num = 0;
 	while(mess[num] ~= nil)do
-		if(mess[num] != varchararray[num])then
+		if(mess[num] ~= varchararray[num])then
 			match = false;
 		end
 		num += 1;
