@@ -1,6 +1,8 @@
 
 function Client_SaveConfigureUI(alert)
     
-    --Mod.Settings.PestilenceStrength = numberInputField1.GetValue();
-
+    Mod.Settings.PestCardStrength=PestCardStrengthSlider.GetValue();
+    Mod.Settings.PestCardPiecesNeeded=PestCardPiecesNeededBox.GetValue();
+    Mod.Settings.PestCardStartPieces=PestCardStartPiecesBox.GetValue();
+    
 end
