@@ -18,6 +18,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
   	horz = UI.CreateHorizontalLayoutGroup(root);
  	moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 	mainmenu = UI.CreateButton(horz).SetText("Main Menu").SetOnClick(OpenMenu);
+	horz = UI.CreateHorizontalLayoutGroup(root);
 	OpenMenu(rootParent);
 end
 function OpenOfferPeace()
