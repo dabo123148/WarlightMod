@@ -295,7 +295,7 @@ function stringtotable(variable)
 	return newtable;
 end
 function check(message,variable)
-	local match = false;
+	local match = true;
 	local mess = stringtochararray(message);
 	local varchararray = stringtochararray(variable);
 	local num = 0;
