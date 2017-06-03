@@ -25,7 +25,6 @@ function OpenOfferPeace()
 end
 function commitofferpeace()
 	local offerto = TargetPlayerBtn.GetText();
-	local orders = Game.Orders;
 	local myID = Game.Us.ID;
 	local Preis = 0;
 	if(offerto == "Select player...")then
