@@ -223,8 +223,11 @@ function InWar(Player1,Player2)
 	end
 	if(Mod.PublicGameData.War[Player1] ~= nil)then
 		local with = stringtotable(Mod.PublicGameData.War[Player1]);
+		print(with);
 		for _,pID in pairs(with)do
+			print(pID .. " " .. Player2);
 			if(pID == Player2)then
+				print("sind im krieg");
 				return true;
 			end
 		end
