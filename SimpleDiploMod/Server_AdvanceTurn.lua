@@ -101,6 +101,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				num = num + 1;
 			end
 			print('with ' .. with);
+			addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, tostring(with), nil,{}));
 			if(InWar(order.PlayerID,tonumber(with)) == false)then
 				DeclearWar(order.PlayerID,tonumber(with));
 			end
