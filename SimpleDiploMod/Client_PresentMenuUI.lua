@@ -15,12 +15,13 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	OpenMenu(rootParent);
 end
 function OpenOfferPeace()
+	DeleteUI();
 	vert = UI.CreateVerticalLayoutGroup(root);
 	local horz = UI.CreateHorizontalLayoutGroup(vert);
-	UI.CreateLabel(horz).SetText("Declare war on: ");
+	UI.CreateLabel(horz).SetText("Offer peace to: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
 	local horz = UI.CreateHorizontalLayoutGroup(vert);
-	commitbutton = UI.CreateButton(horz).SetText("Declare").SetOnClick(commitofferpeace);
+	commitbutton = UI.CreateButton(horz).SetText("Offer").SetOnClick(commitofferpeace);
 end
 function commitofferpeace()
 	local offerto = TargetPlayerBtn.GetText();
