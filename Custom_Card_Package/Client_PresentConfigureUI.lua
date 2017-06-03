@@ -1,7 +1,7 @@
 
 function Client_PresentConfigureUI(rootParent)
     local PestCardIn=false;
-    public root=rootParent;
+    root=rootParent;
     local vert1 = UI.CreateVerticalLayoutGroup(rootParent);
     PestCardCheckbox=UI.CreateCheckBox(vert1).SetText('Include Pestilence Card').SetIsChecked(PestCardIn).SetOnValueChanged(PestCardCheckBoxChanged);
 
