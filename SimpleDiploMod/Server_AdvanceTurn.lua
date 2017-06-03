@@ -222,6 +222,8 @@ function DeclearWar(Player1,Player2)
 	end
 end
 function InWar(Player1,Player2)
+	print(Player1);
+	print(Player2);
 	if(Mod.PublicGameData.War == nil)then
 		print('neu gesetzt');
 		local publicGameData = Mod.PublicGameData;
@@ -230,6 +232,7 @@ function InWar(Player1,Player2)
 	end
 	if(Mod.PublicGameData.War[Player1] ~= nil)then
 		print('Test');
+		print(Mod.PublicGameData.War[Player1][Player2]);
 		if(Mod.PublicGameData.War[Player1][Player2])then
 			print('Test2');
 			return true;
