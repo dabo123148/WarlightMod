@@ -19,7 +19,7 @@ function OpenOfferPeace()
 	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
 	UI.CreateLabel(horz).SetText("Offer peace to: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
-	local horz = UI.CreateHorizontalLayoutGroup(vert);
+	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
 	commitbutton = UI.CreateButton(horz).SetText("Offer").SetOnClick(commitofferpeace);
 end
 function commitofferpeace()
@@ -82,7 +82,7 @@ function OpenDeclarWar()
 	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
 	UI.CreateLabel(horz).SetText("Declare war on: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClicked);
-	local horz = UI.CreateHorizontalLayoutGroup(vert);
+	local horz = UI.CreateHorizontalLayoutGroup(vertmain);
 	commitbutton = UI.CreateButton(horz).SetText("Declare").SetOnClick(declare);
 end
 function stringtotable(variable)
