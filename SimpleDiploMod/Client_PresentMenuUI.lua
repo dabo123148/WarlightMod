@@ -9,19 +9,19 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
   	local horz = UI.CreateHorizontalLayoutGroup(vert);
  	UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 	local horz = UI.CreateHorizontalLayoutGroup(vert);
-	UI.CreateLabel(horz).SetText("Shop");
+	--UI.CreateLabel(horz).SetText("Shop");
 	openshopbutton = UI.CreateButton(horz).SetText("Shop").SetOnClick(Openshop);
  	local horz = UI.CreateHorizontalLayoutGroup(vert);
- 	UI.CreateLabel(horz).SetText("Declar War");
-	declarewarbutton = UI.CreateButton(horz).SetText("Declar War").SetOnClick(OpenDeclarWar);
+ 	--UI.CreateLabel(horz).SetText("Declare War");
+	declarewarbutton = UI.CreateButton(horz).SetText("Declare War").SetOnClick(OpenDeclarWar);
  	local horz = UI.CreateHorizontalLayoutGroup(vert);
-	UI.CreateLabel(horz).SetText("Auto Deployer");
+	--UI.CreateLabel(horz).SetText("Offer Peace");
 	offerpeacebutton = UI.CreateButton(horz).SetText("Offer Peace").SetOnClick(OpenOfferPeace);
 	local horz = UI.CreateHorizontalLayoutGroup(vert);
-	UI.CreateLabel(horz).SetText("Offer Allianze");
-	offerallianzebutton = UI.CreateButton(horz).SetText("Offer Allianze").SetOnClick(OpenOfferAllianze);
+	--UI.CreateLabel(horz).SetText("Offer Allianze");
+	offerallianzebutton = UI.CreateButton(horz).SetText("Offer Alliance").SetOnClick(OpenOfferAlliance);
   	local horz = UI.CreateHorizontalLayoutGroup(vert);
-  	UI.CreateLabel(horz).SetText("Pending Requests");
+  	--UI.CreateLabel(horz).SetText("Pending Requests");
 	offerallianzebutton = UI.CreateButton(horz).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
 end
 function Openshop()
