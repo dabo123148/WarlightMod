@@ -92,7 +92,11 @@ function TargetPlayerClicked()
 			end
 		end
 	else	
-		print(Mod.PublicGameData.War[Game.Us]);
+		if(Mod.PublicGameData.War ~=nil)then
+			print(Mod.PublicGameData.War[Game.Us]);
+		else
+			print('neu?');
+		end
 		print('Test3');
 		for _,playerinstanze in pairs(Game.Game.Players)do
 			table.insert(options,playerinstanze);
