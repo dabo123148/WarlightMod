@@ -9,6 +9,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
   	local horz = UI.CreateHorizontalLayoutGroup(vert);
 	print(game.Us.ID);
 	print(Mod.PlayerGameData[game.Us.ID]);
+	print(Mod.PlayerGameData[game.Us.ID].Money);
  	UI.CreateLabel(horz).SetText(Mod.PlayerGameData[game.Us.ID]);
 	local horz = UI.CreateHorizontalLayoutGroup(vert);
 	UI.CreateLabel(horz).SetText("Shop");
