@@ -1,19 +1,17 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
 	AllAIs = {};
-	if(Mod.Settings.AIsdeclearAIs == false)then
-		for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-			local CheckingID = terr.OwnerPlayerID;
-			if(CheckingID ~= WL.PlayerID.Neutral)then
-				if(game.Game.Players[CheckingID].IsAI)then
-					local Match = false;
-					for _,knownAIs in pairs(AllAIs)do
-						if(CheckingID == knownAIs)then
-							Match = true;
-						end
+	for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
+		local CheckingID = terr.OwnerPlayerID;
+		if(CheckingID ~= WL.PlayerID.Neutral)then
+			if(game.Game.Players[CheckingID].IsAI)then
+				local Match = false;
+				for _,knownAIs in pairs(AllAIs)do
+					if(CheckingID == knownAIs)then
+						Match = true;
 					end
-					if(Match == false)then
-						AllAIs[tablelength(AllAIs)] = CheckingID;
-					end
+				end
+				if(Match == false)then
+					AllAIs[tablelength(AllAIs)] = CheckingID;
 				end
 			end
 		end
@@ -65,20 +63,30 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			else
 				skipThisOrder(WL.ModOrderControl.Skip);
 				--War declaration
-				if(Mod.Settings.AllowAIDeclaration == false)then
-					local Match = false;
+				if(Mod.Settings.AllowAIDeclaration == false or Mod.Settings.AIsdeclearAIs  == false)then
+					local Match1 = false;
+					local Match2 = false;
 					for _, AI in pairs(AllAIs)do
 						if(order.PlayerID == AI)then
-							Match = true;
+							Match1 = true;
+						end
+						if(game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID == AI)then
+							Match2 = true;
 						end
 					end
-					if(Match == false)then
+					if(Match1 == false)then
 						DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID);
-						--Allys declear war on order.From if not allied with order.From
+					else
+						if(Mod.Settings.AllowAIDeclaration and Match2 == false)then
+							DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID);
+						else
+							if(Mod.Settings.AIsdeclearAIs and Match2 == true)then
+								DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID);
+							end
+						end
 					end
 				else
 					DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID);
-					--Allys declear war on order.From if not allied with order.From
 				end
 			end
 		end
