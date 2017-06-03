@@ -16,10 +16,16 @@ function Client_PresentConfigureUI(rootParent)
 	if(StartMoneyinit == nil)then
 		StartMoneyinit = 100;
 	end
-	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	local AIsdeclearAIsinit = Mod.Settings.AIsdeclearAIs;
+	if(AIsdeclearAIsinit == nil)then
+		AIsdeclearAIsinit = true;
+	end
+	local texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('AI Settings');
-   	local horz = UI.CreateHorizontalLayoutGroup(rootParent);
-	AIDeclerationcheckbox = UI.CreateCheckBox(horz).SetText('Allow AIs to declear war').SetIsChecked(AIDeclerationinit);
+   	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	AIDeclerationcheckbox = UI.CreateCheckBox(texthorz).SetText('Allow AIs to declare war on Player').SetIsChecked(AIDeclerationinit);
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	AIsdeclearAIsinitcheckbox = UI.CreateCheckBox(texthorz).SetText('Allow AIs to declare war on AIs').SetIsChecked(AIsdeclearAIsinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('Allianze Settings');
 	horz = UI.CreateHorizontalLayoutGroup(rootParent);
