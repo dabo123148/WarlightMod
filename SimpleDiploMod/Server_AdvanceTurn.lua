@@ -136,7 +136,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				publicGameData.War[P1] = tostring(P2) .. ",";
 			end
 			--addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, tostring(newwar), nil,{}));
-			addNewOrder(WL.GameOrderEvent.Create(P1, "Declared war on " .. toname(P2), nil,{}));
+			addNewOrder(WL.GameOrderEvent.Create(P1, "Declared war on " .. toname(P2,game), nil,{}));
 			--addNewOrder(WL.GameOrderCustom.Create(P1, "Declars war on " .. tostring(P2), ""));
 			local P3 = P2;
 			P2 = P1;
