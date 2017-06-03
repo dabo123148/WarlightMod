@@ -12,4 +12,12 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.PublicAllies == nil)then
 		Mod.Settings.PublicAllies = true;
 	end
+	inputStartMoney
+	Mod.Settings.StartMoney = inputStartMoney.GetValue();
+	if(Mod.Settings.StartMoney == nil)then
+		Mod.Settings.StartMoney = 100;
+	end
+	if(Mod.Settings.StartMoney >10000)then
+		alert('Start Money is too high');
+	end
 end
