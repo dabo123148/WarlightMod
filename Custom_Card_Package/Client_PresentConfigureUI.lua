@@ -28,10 +28,11 @@ function PestCardCheckBoxChanged()
         PestCardStrengthSlider=UI.CreateNumberInputField(vertPest).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(PestCardStrength);
 	PestCardPiecesNeededBox=UI.CreateNumberInputField(vertPest).SetSliderMinValue(1).SetSliderMaxValue(20).SetValue(PestCardPiecesNeeded);
 	PestCardStartPiecesBox=UI.CreateNumberInputField(vertPest).SetSliderMinValue(0).SetSliderMaxValue(20).SetValue(PestCardStartPieces);
-	
+	Mod.Settings.PestCardIn=true;
     else
 	UI.Destroy(PestCardStrengthSlider);
 	UI.Destroy(PestCardPiecesNeededBox);
 	UI.Destroy(PestCardStartPiecesBox);
+	Mod.Settings.PestCardIn=false;
     end
 end
