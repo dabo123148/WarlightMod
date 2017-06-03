@@ -8,6 +8,10 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	end
   	local horz = UI.CreateHorizontalLayoutGroup(vert);
  	UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
+	OpenMenu(rootParent);
+end
+function OpenMenu(rootParent)
+	DeleteUI();
 	local horz = UI.CreateHorizontalLayoutGroup(vert);
 	--UI.CreateLabel(horz).SetText("Shop");
 	openshopbutton = UI.CreateButton(horz).SetText("Shop").SetOnClick(Openshop);
@@ -22,13 +26,30 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	offerallianzebutton = UI.CreateButton(horz).SetText("Offer Alliance").SetOnClick(OpenOfferAlliance);
   	local horz = UI.CreateHorizontalLayoutGroup(vert);
   	--UI.CreateLabel(horz).SetText("Pending Requests");
-	offerallianzebutton = UI.CreateButton(horz).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
+	pendingrequestbutton = UI.CreateButton(horz).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
 end
-function Openshop()
-  DeleteUI();
+function Openshop(rootParent)
+	--DeleteUI();
+end
+function OpenDeclarWar(rootParent)
+	DeleteUI();
 end
 function DeleteUI()
-
+	if(openshopbutton ~= nil)then
+		UI.Destroy(openshopbutton);
+	end
+	if(declarewarbutton ~= nil)then
+		UI.Destroy(declarewarbutton);
+	end
+	if(offerpeacebutton ~= nil)then
+		UI.Destroy(offerpeacebutton);
+	end
+	if(offerallianzebutton ~= nil)then
+		UI.Destroy(offerallianzebutton);
+	end
+	if(pendingrequestbutton ~= nil)then
+		UI.Destroy(pendingrequestbutton);
+	end
 end
 function  tablelength(T)
 	local count = 0;
