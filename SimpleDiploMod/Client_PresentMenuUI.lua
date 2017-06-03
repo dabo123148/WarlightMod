@@ -2,6 +2,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	TargetPlayerBtn = nil;
 	declarebutton=nil;
 	Game = game;
+	root = rootParent;
 	setMaxSize(450, 350);
 	if (game.Us == nil) then
 		UI.CreateLabel(vert).SetText("You cannot use the Diplomacy game, cause you aren't in the game");
@@ -12,15 +13,15 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
  	moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 	OpenMenu(rootParent);
 end
-function OpenMenu(rootParent)
+function OpenMenu()
 	DeleteUI();
-	vert = UI.CreateVerticalLayoutGroup(rootParent);
+	vert = UI.CreateVerticalLayoutGroup(root);
 	local horz = UI.CreateHorizontalLayoutGroup(vert);
 	--UI.CreateLabel(horz).SetText("Shop");
 	openshopbutton = UI.CreateButton(horz).SetText("Shop").SetOnClick(Openshop);
  	local horz = UI.CreateHorizontalLayoutGroup(vert);
  	--UI.CreateLabel(horz).SetText("Declare War");
-	declarewarbutton = UI.CreateButton(horz).SetText("Declare War").SetOnClick(OpenDeclarWar(rootParent));
+	declarewarbutton = UI.CreateButton(horz).SetText("Declare War").SetOnClick(OpenDeclarWar);
  	local horz = UI.CreateHorizontalLayoutGroup(vert);
 	--UI.CreateLabel(horz).SetText("Offer Peace");
 	offerpeacebutton = UI.CreateButton(horz).SetText("Offer Peace").SetOnClick(OpenOfferPeace);
@@ -34,9 +35,9 @@ end
 function Openshop(rootParent)
 	--DeleteUI();
 end
-function OpenDeclarWar(rootParent)
+function OpenDeclarWar()
 	DeleteUI();
-	vert = UI.CreateVerticalLayoutGroup(rootParent);
+	vert = UI.CreateVerticalLayoutGroup(root);
 	local horz = UI.CreateHorizontalLayoutGroup(vert);
 	UI.CreateLabel(horz).SetText("Declare war on: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClicked);
