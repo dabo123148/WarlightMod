@@ -11,7 +11,7 @@ function Client_PresentConfigureUI(rootParent)
 end
 
 function PestCardCheckBoxChanged()
-    PestCardIn=!PestCardIn;
+    PestCardIn=~PestCardIn;
     if(PestCardIn) then
         PestCardStrengthSlider=UI.CreateNumberInputField(vertPest).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(PestCardStrength);
     else
