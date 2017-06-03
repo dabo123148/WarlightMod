@@ -81,8 +81,7 @@ function TargetPlayerClicked()
 				table.insert(options,playerinstanze);
 			end
 		end
-	else
-			
+	else	
 		for _,playerinstanze in pairs(Game.Game.Players)do
 			table.insert(options,playerinstanze);
 		end
@@ -91,6 +90,7 @@ function TargetPlayerClicked()
 end
 function PlayerButton(player)
 	local name = player.DisplayName(nil, false);
+	print(name);
 	local ret = {};
 	ret["text"] = name;
 	ret["selected"] = function() 
