@@ -220,7 +220,7 @@ function DeclearWar(Player1,Player2)
 	end
 end
 function InWar(Player1,Player2)
-	if(Mod.PlayerGameData.War == nil)then
+	if(Mod.PublicGameData.War == nil)then
 		print('neu gesetzt');
 		local publicGameData = Mod.PublicGameData;
  		publicGameData.War={};
