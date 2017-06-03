@@ -127,10 +127,10 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			P2 = P1;
 			P1 = P3;
 			if(Mod.PublicGameData.War[P1] ~= nil)then
-				local with = stringtotable(Mod.PublicGameData.War[P1]) + tostring(P2) + ",";
+				local with = stringtotable(Mod.PublicGameData.War[P1]) .. tostring(P2) + ",";
 				publicGameData.War[P1] = with;
 			else
-				publicGameData.War[P1] = tostring(P2) + ",";
+				publicGameData.War[P1] = tostring(P2) .. ",";
 			end
 			Mod.PublicGameData = publicGameData;
 		end
