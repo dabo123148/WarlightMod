@@ -8,7 +8,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(vert).SetText("You cannot use the Diplomacy game, cause you aren't in the game");
 		return;
 	end
-	vert = UI.CreateVerticalLayoutGroup(rootParent);
+	vertmain = UI.CreateVerticalLayoutGroup(rootParent);
   	local horz = UI.CreateHorizontalLayoutGroup(vert);
  	moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 	mainmenu = UI.CreateButton(horz).SetText("Main Menu").SetOnClick(OpenMenu);
@@ -16,7 +16,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 end
 function OpenOfferPeace()
 	DeleteUI();
-	vert = UI.CreateVerticalLayoutGroup(root);
+	vertmain = UI.CreateVerticalLayoutGroup(root);
 	local horz = UI.CreateHorizontalLayoutGroup(vert);
 	UI.CreateLabel(horz).SetText("Offer peace to: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
@@ -184,32 +184,33 @@ function PlayerButton(player)
 	return ret;
 end
 function DeleteUI()
+	UI.Destroy(vertmain);
 	if(TargetPlayerBtn ~= nil)then
-		UI.Destroy(TargetPlayerBtn);
+		--UI.Destroy(TargetPlayerBtn);
 		TargetPlayerBtn = nil;
 	end
 	if(commitbutton ~= nil)then
-		UI.Destroy(commitbutton);
+		--UI.Destroy(commitbutton);
 		commitbutton = nil;
 	end
 	if(openshopbutton ~= nil)then
-		UI.Destroy(openshopbutton);
+		--UI.Destroy(openshopbutton);
 		openshopbutton = nil;
 	end
 	if(declarewarbutton ~= nil)then
-		UI.Destroy(declarewarbutton);
+		--UI.Destroy(declarewarbutton);
 		declarewarbutton = nil;
 	end
 	if(offerpeacebutton ~= nil)then
-		UI.Destroy(offerpeacebutton);
+		--UI.Destroy(offerpeacebutton);
 		offerpeacebutton = nil;
 	end
 	if(offerallianzebutton ~= nil)then
-		UI.Destroy(offerallianzebutton);
+		--UI.Destroy(offerallianzebutton);
 		offerallianzebutton = nil;
 	end
 	if(pendingrequestbutton ~= nil)then
-		UI.Destroy(pendingrequestbutton);
+		--UI.Destroy(pendingrequestbutton);
 		pendingrequestbutton = nil;
 	end
 end
