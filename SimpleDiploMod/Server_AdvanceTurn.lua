@@ -118,6 +118,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(check(order.Message,"Removed ally with"))then
 			
 		end
+		print('test');
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 	end
 end
