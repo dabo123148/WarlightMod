@@ -83,7 +83,7 @@ function TargetPlayerClicked()
 			local Match = false;
 			for _,with in pairs(inwarwith)do
 				print(with .. ' ' .. playerinstanze.ID);
-				if(with == playerinstanze.ID)then
+				if(tostring(with) == tostring(playerinstanze.ID))then
 					print('match true');
 					Match = true;
 				end
