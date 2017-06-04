@@ -1,7 +1,8 @@
 function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
-  if(check(payload,"Peace"))then
-    print('Friedensangebot');
-  end
+	print('Custom Message');
+ 	if(check(payload,"Peace"))then
+    		print('Friedensangebot');
+  	end
 end
 function stringtochararray(variable)
 	chartable = {};
