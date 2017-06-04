@@ -6,7 +6,7 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 			addOrder(WL.GameOrderCustom.Create(playerID,'Test 2',''));
 			Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked=false;
 			addOrder(WL.GameOrderCustom.Create(playerID,'Test 3',''));
-			if(result.IsSuccessful)then
+			if(result.IsSuccessful and result.IsAttack)then
 				addOrder(WL.GameOrderCustom.Create(playerID,'Test 4',''));
 				if(Mod.Settings.PestCardIn)then
 					addOrder(WL.GameOrderCustom.Create(playerID,'Test 5',''));
