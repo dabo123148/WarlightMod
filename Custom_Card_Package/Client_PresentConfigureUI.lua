@@ -25,7 +25,7 @@ end
 function PestCardCheckBoxChanged()
     PestCardIn= not PestCardIn;
     if(PestCardIn) then
-	lab1=UI.CreateLabel(vertPest).SetText('Pestilence Card Strentgh:');
+	lab1=UI.CreateLabel(vertPest).SetText('Pestilence Card Strength:');
         PestCardStrengthSlider=UI.CreateNumberInputField(vertPest).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(PestCardStrength);
 	
 	lab2=UI.CreateLabel(vertPest).SetText('Card Pieces Needed:');
