@@ -64,7 +64,6 @@ function TargetPlayerClickedOfferPeace()
 end
 function OpenMenu()
 	DeleteUI();
-	horz = UI.CreateHorizontalLayoutGroup(root);
 	--UI.CreateLabel(horz).SetText("Shop");
 	openshopbutton = UI.CreateButton(horz).SetText("Shop").SetOnClick(Openshop);
  	horz = UI.CreateHorizontalLayoutGroup(root);
@@ -85,7 +84,6 @@ function Openshop(rootParent)
 end
 function OpenDeclarWar()
 	DeleteUI();
-	horz = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horz).SetText("Declare war on: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClicked);
 	horz = UI.CreateHorizontalLayoutGroup(root);
@@ -229,7 +227,6 @@ function DeleteUI()
 		UI.Destroy(pendingrequestbutton);
 		pendingrequestbutton = nil;
 	end
-	UI.Destroy(horz);
 end
 function  tablelength(T)
 	local count = 0;
