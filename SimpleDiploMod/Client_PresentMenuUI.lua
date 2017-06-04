@@ -1,4 +1,5 @@
 function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
+	horzobjlist = {};
 	TargetPlayerBtn = nil;
 	declarebutton=nil;
 	declarewarbutton=nil;
@@ -24,11 +25,11 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 end
 function OpenOfferPeace()
 	DeleteUI();
-	horz = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horz).SetText("Offer peace to: ");
-	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
-	horz = UI.CreateHorizontalLayoutGroup(root);
-	commitbutton = UI.CreateButton(horz).SetText("Offer").SetOnClick(commitofferpeace);
+	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Offer peace to: ");
+	TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
+	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+	commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Offer").SetOnClick(commitofferpeace);
 end
 function commitofferpeace()
 	local offerto = TargetPlayerBtn.GetText();
@@ -82,11 +83,11 @@ function Openshop(rootParent)
 end
 function OpenDeclarWar()
 	DeleteUI();
-	horz = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horz).SetText("Declare war on: ");
-	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClicked);
-	horz = UI.CreateHorizontalLayoutGroup(root);
-	commitbutton = UI.CreateButton(horz).SetText("Declare").SetOnClick(declare);
+	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Declare war on: ");
+	TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerClicked);
+	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+	commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Declare").SetOnClick(declare);
 end
 function stringtotable(variable)
 	chartable = {};
@@ -226,6 +227,10 @@ function DeleteUI()
 		UI.Destroy(pendingrequestbutton);
 		pendingrequestbutton = nil;
 	end
+	for _,horzobj in pairs(horzobjlist)do
+		UI.Destroy(horzobj);
+	end
+	horzobjlist = {};
 end
 function  tablelength(T)
 	local count = 0;
