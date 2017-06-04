@@ -28,14 +28,9 @@ function Server_AdvanceTurn_End(game,addOrder)
 			--addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 2)' .. Mod.PlayerGameData[playerID].SuccessfullyAttacked,''));
 			if(Mod.PlayerGameData[playerID].SuccessfullyAttacked==1)then
 				--addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 3)',''));
-				if(Mod.PlayerGameData[playerID].PestCardPieces==nil)then
-					PGD[playerID].PestCardPieces=0;
-				end
-				PGD[playerID].PestCardPieces=Mod.Settings.PestCardPiecesNeeded+1;
+				
+				PGD[playerID].PestCardPieces=Mod.PlayerGameData[playerID].PestCardPieces+1;
 				if(Mod.PlayerGameData[playerID].PestCardPieces>=Mod.Settings.PestCardPiecesNeeded)then
-					if(Mod.PlayerGameData[playerID].PestCards==nil)then
-						PGD[playerID].PestCards=0;
-					end
 					PGD[playerID].PestCards=Mod.PlayerGameData[playerID].PestCards+1;
 					PGD[playerID].PestCardPieces=0;
 				end
