@@ -4,7 +4,8 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		local target = payload.TargetPlayerID;
 		local preis = payload.Preis;
     		print('Friedensangebot');
-		if(getplayerid(target,game) > 50)then
+		--if(getplayerid(target,game) > 50)then
+		if(false)then
 			local playerGameData = Mod.PlayerGameData;
  			if(playerGameData[getplayerid(target,game)]==nil)then
 				playerGameData[getplayerid(target,game)] = { Peaceoffers=","};
