@@ -25,7 +25,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		end
 	else
 		local rg = {};
-		rg.Message = 'Frieden an ai Test';
+		rg.Message = 'Frieden an ai Test'.. getplayerid(target,game);
 		setReturnTable(rg);
   	end
 	if(payload.Message == "Request Data")then
