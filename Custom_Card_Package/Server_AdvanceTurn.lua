@@ -23,7 +23,7 @@ function Server_AdvanceTurn_End(game,addOrder)
 	for playerID in pairs(game.ServerGame.Game.PlayingPlayers) do
 		addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 1)',''));
 		if(playerID>50)then
-			addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 2)',''));
+			addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 2)' .. Mod.PlayerGameData[playerID].SuccessfullyAttacked,''));
 			if(Mod.PlayerGameData[playerID].SuccessfullyAttacked)then
 				addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 3)',''));
 				if(Mod.PlayerGameData[playerID].PestCardPieces==nil)then
