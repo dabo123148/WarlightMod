@@ -84,7 +84,7 @@ function Openshop(rootParent)
 end
 function OpenDeclarWar()
 	DeleteUI();
-	horz = UI.CreateHorizontalLayoutGroup(root);
+	--horz = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horz).SetText("Declare war on: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClicked);
 	horz = UI.CreateHorizontalLayoutGroup(root);
