@@ -12,7 +12,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			end
 			--there can be double peace offers
 			--peaceoffers if not in war/allied still possible
-			playerGameData[target] = {Peaceoffers=existingpeaceoffers .. playerID .. "," .. preis .. ",",Money=Mod.PlayerGameData[target].Money);
+			playerGameData[target] = {Peaceoffers=existingpeaceoffers .. playerID .. "," .. preis .. ",",Money=Mod.PlayerGameData[target].Money};
 			print(playerGameData[target].Peaceoffers);
 			Mod.PlayerGameData=playerGameData;
 			local rg = {};
