@@ -14,13 +14,19 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			playerGameData[getplayerid(target,game)].Peaceoffers = playerGameData[getplayerid(target,game)].Peaceoffers .. playerID .. "," .. preis .. ",";
 			print(playerGameData[getplayerid(target,game)].Peaceoffers);
 			Mod.PlayerGameData=playerGameData;
-			setReturnTable(playerGameData[getplayerid(target,game)].Peaceoffers .. 'Test');
+			local rg = {};
+			rg.Message =playerGameData[getplayerid(target,game)].Peaceoffers ..'Test';
+			setReturnTable(rg);
 		else
-			setReturnTable('Frieden an ai Test');
+			local rg = {};
+			rg.Message = 'Frieden an ai Test';
+			setReturnTable(rg);
 			--accept peace cause ai
 		end
 	else
-		setReturnTable('Fehler');
+		local rg = {};
+		rg.Message = 'Frieden an ai Test';
+		setReturnTable(rg);
   	end
 	if(payload.Message == "Request Data")then
 		
