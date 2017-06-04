@@ -1,6 +1,6 @@
 function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	print('Custom Message');
- 	if(check(payload,"Peace"))then
+ 	if(payload.Message == "Peace")then
     		print('Friedensangebot');
   	end
 end
