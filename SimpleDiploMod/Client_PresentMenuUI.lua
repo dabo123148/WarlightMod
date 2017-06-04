@@ -37,7 +37,7 @@ function commitofferpeace()
 	else
 		local payload = {};
 		payload.Message = "Peace";
-		payload.TargetPlayerID = offerto;
+		payload.TargetPlayerID = getplayerid(offerto,Game);
 		payload.Preis = Preis;
 		Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
 			UI.Alert(returnvalue.Message);
@@ -162,9 +162,18 @@ function declare()
 	if(declareon == "Select player...")then
 		UI.Alert('You need to choose a player first');
 	else
-		table.insert(orders, WL.GameOrderCustom.Create(myID, "Declared war on " .. declareon, ""));
+		table.insert(orders, WL.GameOrderCustom.Create(myID, "Declared war on " .. declareon, getplayerid(declareon,Game)));
 	end
 	Game.Orders = orders;
+end
+function getplayerid(playername,game)
+	for _,playerinfo in pairs(game.Game.Players)do
+		local name = playerinfo.DisplayName(nil, false);
+		if(name == playername)then
+			return playerinfo.ID;
+		end
+	end
+	return 0;
 end
 function map(array, func)
 	local new_array = {};
