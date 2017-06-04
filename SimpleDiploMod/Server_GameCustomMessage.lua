@@ -19,7 +19,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			setReturnTable(rg);
 		else
 			local rg = {};
-			rg.Message = 'Frieden an ai Test'.. getplayerid(target,game);
+			rg.Message = 'Frieden an ai Test'.. getplayerid(target,game) .. target;
 			setReturnTable(rg);
 			--accept peace cause ai
 		end
