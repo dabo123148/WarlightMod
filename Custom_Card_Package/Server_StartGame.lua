@@ -1,6 +1,7 @@
 function Server_StartGame(game,standing)
+  local playerGameData = Mod.PlayerGameData;
   for playerID in pairs(game.ServerGame.Game.PlayingPlayers) do
-    pData={ PestCardPieces=Mod.Settings.PestCardStartPieces, PestCards=0, SuccessfullyAttacked=false };
-    Mod.PlayerGameData[playerID]=pData;
+    playerGameData[playerID]={ PestCardPieces=Mod.Settings.PestCardStartPieces, PestCards=0, SuccessfullyAttacked=false };
   end
+  Mod.PlayerGameData = playerGameData;
 end
