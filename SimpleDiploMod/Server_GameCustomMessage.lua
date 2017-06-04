@@ -65,7 +65,7 @@ function getplayerid(playername,game)
 	local error = "";
 	for _,playerinfo in pairs(game.ServerGame.Game.Players)do
 		local name = playerinfo.DisplayName(nil, false);
-		error = error .. name .. " ";
+		error = error .. name .. " placeholder ";
 	end
 	return error;
 end
