@@ -1,10 +1,12 @@
 function Server_AdvanceTurn_Order(game,gameOrder,result,skip,add)
-	Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked=false;
-	if(gameOrder.proxyType=='GameOrderAttackTransfer')then
-		if(result.IsSuccessful)then
-			if(Mod.Settings.PestCardIn)then
-				Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked=true;
-				
+	if(gameOrder.PlayerID>50)then
+		Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked=false;
+		if(gameOrder.proxyType=='GameOrderAttackTransfer')then
+			if(result.IsSuccessful)then
+				if(Mod.Settings.PestCardIn)then
+					Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked=true;
+					
+				end
 			end
 		end
 	end
@@ -13,19 +15,21 @@ end
 
 function Server_AdvanceTurn_End(game,addOrder)
 	for playerID in pairs(game.ServerGame.Game.PlayingPlayers) do
-		if(Mod.PlayerGameData[playerID].SuccessfullyAttacked)then
-			if(Mod.PlayerGameData[gameOrder.PlayerID].PestCardPieces==nil)then
-				Mod.PlayerGameData[gameOrder.PlayerID].PestCardPieces=0;
-			end
-			Mod.PlayerGameData[gameOrder.PlayerID].PestCardPieces=Mod.PlayerGameData[gameOrder.PlayerID].PestCardPiecesNeeded+1;
-			if(Mod.PlayerGameData[gameOrder.PlayerID].PestCardPieces>=Mod.Settings.PestCardPiecesNeeded)then
-				if(Mod.PlayerGameData[gameOrder.PlayerID].PestCards==nil)then
-					Mod.PlayerGameData[gameOrder.PlayerID].PestCards=0;
+		if(playerID>50)then
+			if(Mod.PlayerGameData[playerID].SuccessfullyAttacked)then
+				if(Mod.PlayerGameData[playerID].PestCardPieces==nil)then
+					Mod.PlayerGameData[playerID].PestCardPieces=0;
 				end
-				Mod.PlayerGameData[gameOrder.PlayerID].PestCards=Mod.PlayerGameData[gameOrder.PlayerID].PestCards+1;
-				Mod.PlayerGameData[gameOrder.PlayerID].PestCardPieces=0;
+				Mod.PlayerGameData[playerID].PestCardPieces=Mod.PlayerGameData[playerID].PestCardPiecesNeeded+1;
+				if(Mod.PlayerGameData[playerID].PestCardPieces>=Mod.Settings.PestCardPiecesNeeded)then
+					if(Mod.PlayerGameData[playerID].PestCards==nil)then
+						Mod.PlayerGameData[playerID].PestCards=0;
+					end
+					Mod.PlayerGameData[playerID].PestCards=Mod.PlayerGameData[playerID].PestCards+1;
+					Mod.PlayerGameData[playerID].PestCardPieces=0;
+				end
+				addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece',''));
 			end
-			addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece',''));
 		end
 	end
 --    standing=game.ServerGame.LatestTurnStanding;
