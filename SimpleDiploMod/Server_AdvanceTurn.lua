@@ -105,8 +105,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				num = num + 1;
 			end
 			print('with ' .. with);
-			if(InWar(order.PlayerID,getplayerid(with,game)) == false)then
-				DeclearWar(order.PlayerID,getplayerid(with,game));
+			if(InWar(order.PlayerID,order.payload) == false)then
+				DeclearWar(order.PlayerID,order.payload);
 			end
 		end
 		if(check(order.Message,"Removed ally with"))then
