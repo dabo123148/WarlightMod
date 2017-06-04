@@ -40,7 +40,7 @@ function commitofferpeace()
 		payload.TargetPlayerID = offerto;
 		payload.Preis = Preis;
 		Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
-			UI.Alert(returnvalue);
+			UI.Alert(returnvalue.Message);
 			end);
 		print('Test2');
 	end
