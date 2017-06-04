@@ -30,7 +30,7 @@ function Server_AdvanceTurn_End(game,addOrder)
 				--addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 3)',''));
 				
 				PGD[playerID].PestCardPieces=Mod.PlayerGameData[playerID].PestCardPieces+1;
-				if(Mod.PlayerGameData[playerID].PestCardPieces>=Mod.Settings.PestCardPiecesNeeded)then
+				if(Mod.PlayerGameData[playerID].PestCardPieces+1>=Mod.Settings.PestCardPiecesNeeded)then
 					PGD[playerID].PestCards=Mod.PlayerGameData[playerID].PestCards+1;
 					PGD[playerID].PestCardPieces=0;
 				end
