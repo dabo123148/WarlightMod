@@ -61,5 +61,5 @@ function getplayerid(playername,game)
 			return playerinfo.ID;
 		end
 	end
-	return 0;
+	return -1;
 end
