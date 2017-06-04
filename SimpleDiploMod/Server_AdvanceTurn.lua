@@ -189,7 +189,12 @@ end
 function toname(playerid,game)
 	for _,playerinfo in pairs(game.ServerGame.Game.Players)do
 		if(playerid == playerinfo.ID)then
-			return playerinfo.DisplayName(nil, false);
+			local name = playerinfo.DisplayName(nil, false);
+			if(name == nil)then
+				return "fehler";
+			else
+				return name;
+			end
 		end
 	end
 	return "Error. Please report to dabo1.";
