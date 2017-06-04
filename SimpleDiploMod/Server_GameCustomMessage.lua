@@ -13,7 +13,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				privateGameData.Peaceoffers[target]=",";
 			end
 		end
-		privateGameData.Peaceoffers = privateGameData.Peaceoffers .. "," .. target .. ","+ preis ..",";
+		privateGameData.Peaceoffers = privateGameData.Peaceoffers .. "," .. target .. "," .. preis .. ",";
 		print(privateGameData.Peaceoffers);
 		Mod.PrivateGameData=privateGameData;
   	end
