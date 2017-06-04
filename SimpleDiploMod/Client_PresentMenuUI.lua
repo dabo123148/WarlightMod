@@ -38,7 +38,7 @@ function commitofferpeace()
 		Game.SendGameCustomMessage("Sending request...", "Peace " .. offerto .. " " .. tostring(Preis), Testfunction);
 	end
 end
-function Testfunction(retval)
+function Testfunction()
 end
 function TargetPlayerClickedOfferPeace()
 	if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
