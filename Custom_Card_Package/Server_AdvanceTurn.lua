@@ -4,13 +4,13 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 		addOrder(WL.GameOrderCustom.Create(playerID,'Test 1',''));
 		if(gameOrder.PlayerID>50)then
 			addOrder(WL.GameOrderCustom.Create(playerID,'Test 2',''));
-			Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked=false;
+			Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked=0;
 			addOrder(WL.GameOrderCustom.Create(playerID,'Test 3',''));
 			if(result.IsSuccessful and result.IsAttack)then
 				addOrder(WL.GameOrderCustom.Create(playerID,'Test 4',''));
 				if(Mod.Settings.PestCardIn)then
 					addOrder(WL.GameOrderCustom.Create(playerID,'Test 5',''));
-					Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked=true;
+					Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked=1;
 				end
 			end
 		end
@@ -23,8 +23,8 @@ function Server_AdvanceTurn_End(game,addOrder)
 	for playerID in pairs(game.ServerGame.Game.PlayingPlayers) do
 		addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 1)',''));
 		if(playerID>50)then
-			addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 2)' .. Mod.PlayerGameData[playerID].PestCardPieces,''));
-			if(Mod.PlayerGameData[playerID].SuccessfullyAttacked)then
+			addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 2)' .. Mod.PlayerGameData[playerID].SuccessfullyAttacked,''));
+			if(Mod.PlayerGameData[playerID].SuccessfullyAttacked==1)then
 				addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 3)',''));
 				if(Mod.PlayerGameData[playerID].PestCardPieces==nil)then
 					Mod.PlayerGameData[playerID].PestCardPieces=0;
