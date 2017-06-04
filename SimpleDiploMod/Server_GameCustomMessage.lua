@@ -13,7 +13,9 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				privateGameData.Peaceoffers[target]=",";
 			end
 		end
-		privateGameData.Peaceoffers[target] = privateGameData.Peaceoffers[target] .. target .. "," .. preis .. ",";
+		--there can be double peace offers
+		--peaceoffers if not in war/allied still possible
+		privateGameData.Peaceoffers[target] = privateGameData.Peaceoffers[target] .. playerID .. "," .. preis .. ",";
 		print(privateGameData.Peaceoffers[target]);
 		Mod.PrivateGameData=privateGameData;
   	end
