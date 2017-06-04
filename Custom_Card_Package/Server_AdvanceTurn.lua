@@ -1,18 +1,16 @@
 function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
-	local playerID=gameOrder.PlayerID;
-	addOrder(WL.GameOrderCustom.Create(playerID,'Test 1',''));
-	if(gameOrder.PlayerID>50)then
-		addOrder(WL.GameOrderCustom.Create(playerID,'Test 2',''));
-		Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked=false;
-		if(gameOrder.proxyType=='GameOrderAttackTransfer')then
+	if(gameOrder.proxyType=='GameOrderAttackTransfer')then
+		local playerID=gameOrder.PlayerID;
+		addOrder(WL.GameOrderCustom.Create(playerID,'Test 1',''));
+		if(gameOrder.PlayerID>50)then
+			addOrder(WL.GameOrderCustom.Create(playerID,'Test 2',''));
+			Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked=false;
 			addOrder(WL.GameOrderCustom.Create(playerID,'Test 3',''));
 			if(result.IsSuccessful)then
 				addOrder(WL.GameOrderCustom.Create(playerID,'Test 4',''));
 				if(Mod.Settings.PestCardIn)then
-					
 					addOrder(WL.GameOrderCustom.Create(playerID,'Test 5',''));
 					Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked=true;
-					
 				end
 			end
 		end
