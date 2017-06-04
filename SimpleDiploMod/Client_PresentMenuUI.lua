@@ -35,9 +35,10 @@ function commitofferpeace()
 	if(offerto == "Select player...")then
 		UI.Alert('You need to choose a player first');
 	else
-		Game.SendGameCustomMessage("Sending request...", "Peace " .. offerto .. " " .. tostring(Preis), function(returnValue);
-		UI.Alert("Proposal sent!");
+		Game.SendGameCustomMessage("Sending request...", "Peace " .. offerto .. " " .. tostring(Preis), function(Testfunction)));
 	end
+end
+function Testfunction(retval)
 end
 function TargetPlayerClickedOfferPeace()
 	if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
