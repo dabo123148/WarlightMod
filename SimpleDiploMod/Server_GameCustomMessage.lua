@@ -14,6 +14,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			playerGameData[getplayerid(target,game)].Peaceoffers = playerGameData[getplayerid(target,game)].Peaceoffers .. playerID .. "," .. preis .. ",";
 			print(playerGameData[getplayerid(target,game)].Peaceoffers);
 			Mod.PlayerGameData=playerGameData;
+			setReturnTable(playerGameData[getplayerid(target,game)].Peaceoffers);
 		else
 			--accept peace cause ai
 		end
