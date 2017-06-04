@@ -4,7 +4,6 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 		addOrder(WL.GameOrderCustom.Create(playerID,'Test 1',''));
 		if(gameOrder.PlayerID>50)then
 			addOrder(WL.GameOrderCustom.Create(playerID,'Test 2',''));
-			Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked=0;
 			addOrder(WL.GameOrderCustom.Create(playerID,'Test 3',''));
 			if(result.IsSuccessful and result.IsAttack)then
 				addOrder(WL.GameOrderCustom.Create(playerID,'Test 4',''));
