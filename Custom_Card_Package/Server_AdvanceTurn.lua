@@ -14,7 +14,9 @@ end
 
 
 function Server_AdvanceTurn_End(game,addOrder)
+	
 	for playerID in pairs(game.ServerGame.Game.PlayingPlayers) do
+		addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST)',''));
 		if(playerID>50)then
 			if(Mod.PlayerGameData[playerID].SuccessfullyAttacked)then
 				if(Mod.PlayerGameData[playerID].PestCardPieces==nil)then
