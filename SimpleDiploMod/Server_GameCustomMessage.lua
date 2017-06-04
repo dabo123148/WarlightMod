@@ -8,7 +8,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			local playerGameData = Mod.PlayerGameData;
 			local existingpeaceoffers = ",";
  			if(playerGameData[target].Peaceoffers~=nil)then
-				existingpeaceoffers=playerGameData[target];
+				existingpeaceoffers=playerGameData[target].Peaceoffers;
 			end
 			--there can be double peace offers
 			--peaceoffers if not in war/allied still possible
