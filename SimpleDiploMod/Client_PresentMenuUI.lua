@@ -43,21 +43,14 @@ function TargetPlayerClickedOfferPeace()
 		local options = {};
 		local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us.ID]);
 		for _,playerinstanze in pairs(Game.Game.Players)do
-			local Match = false;
 			for _,with in pairs(inwarwith)do
 				if(tostring(with) == tostring(playerinstanze.ID))then
-					Match = true;
-				end
-			end
-			if(Match == false)then
-				print('insert');
-				if(playerinstanze.ID ~= Game.Us.ID)then
 					table.insert(options,playerinstanze);
 				end
 			end
 		end
 		options = map(options, PlayerButton);
-		UI.PromptFromList("Select the player you'd like to declare war on", options);
+		UI.PromptFromList("Select the player you'd like to offer the peace to", options);
 	else	
 		UI.Alert('You are currently with noone in war');
 	end
