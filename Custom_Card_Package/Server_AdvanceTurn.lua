@@ -1,4 +1,4 @@
-function Server_AdvanceTurn_Order(game,gameOrder,result,skip,add)
+function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 	local playerID=gameOrder.PlayerID;
 	addOrder(WL.GameOrderCustom.Create(playerID,'Test 1',''));
 	if(gameOrder.PlayerID>50)then
