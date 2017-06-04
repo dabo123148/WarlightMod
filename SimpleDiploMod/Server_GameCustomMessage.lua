@@ -14,10 +14,13 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			playerGameData[getplayerid(target,game)].Peaceoffers = playerGameData[getplayerid(target,game)].Peaceoffers .. playerID .. "," .. preis .. ",";
 			print(playerGameData[getplayerid(target,game)].Peaceoffers);
 			Mod.PlayerGameData=playerGameData;
-			setReturnTable(playerGameData[getplayerid(target,game)].Peaceoffers);
+			setReturnTable(playerGameData[getplayerid(target,game)].Peaceoffers .. 'Test');
 		else
+			setReturnTable('Frieden an ai Test');
 			--accept peace cause ai
 		end
+	else
+		setReturnTable('Fehler');
   	end
 	if(payload.Message == "Request Data")then
 		
