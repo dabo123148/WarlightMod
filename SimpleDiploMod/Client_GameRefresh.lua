@@ -1,7 +1,7 @@
 function Client_GameRefresh(game)
   if(Mod.PlayerGameData.Peaceoffers~=nil)then
     if(tablelength(stringtotable(Mod.PlayerGameData.Peaceoffers))>0)then
-      UI.Alert('You have ' .. tablelength(stringtotable(Mod.PlayerGameData.Peaceoffers)) .. ' open peace requests');
+      UI.Alert('You have ' .. tablelength(stringtotable(Mod.PlayerGameData.Peaceoffers))/2 .. ' open peace requests');
     end
   end
   if(Mod.PlayerGameData.Allyoffers~=nil)then
