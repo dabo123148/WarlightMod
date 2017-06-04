@@ -14,7 +14,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			end
 		end
 		privateGameData.Peaceoffers[target] = privateGameData.Peaceoffers[target] .. target .. "," .. preis .. ",";
-		print(privateGameData.Peaceoffers);
+		print(privateGameData.Peaceoffers[target]);
 		Mod.PrivateGameData=privateGameData;
   	end
 	if(payload.Message == "Request Data")then
