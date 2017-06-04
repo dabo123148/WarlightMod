@@ -39,7 +39,7 @@ function Server_AdvanceTurn_End(game,addOrder)
 					PGD[playerID].PestCards=Mod.PlayerGameData[playerID].PestCards+1;
 					PGD[playerID].PestCardPieces=0;
 				end
-				addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece',''));
+				addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece. You now have '..PGD[playerID].PestCards..' Cards and '..PGD[playerID].PestCardPieces..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.',''));
 			end
 		end
 	end
