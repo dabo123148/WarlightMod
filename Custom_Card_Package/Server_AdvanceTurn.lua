@@ -31,7 +31,7 @@ function Server_AdvanceTurn_End(game,addOrder)
 				if(Mod.PlayerGameData[playerID].PestCardPieces==nil)then
 					Mod.PlayerGameData[playerID].PestCardPieces=0;
 				end
-				Mod.PlayerGameData[playerID].PestCardPieces=Mod.PlayerGameData[playerID].PestCardPiecesNeeded+1;
+				Mod.PlayerGameData[playerID].PestCardPieces=Mod.Settings.PestCardPiecesNeeded+1;
 				if(Mod.PlayerGameData[playerID].PestCardPieces>=Mod.Settings.PestCardPiecesNeeded)then
 					if(Mod.PlayerGameData[playerID].PestCards==nil)then
 						Mod.PlayerGameData[playerID].PestCards=0;
