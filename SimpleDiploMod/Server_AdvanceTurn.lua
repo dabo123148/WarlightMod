@@ -92,21 +92,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 	end
 	if(order.proxyType == "GameOrderCustom")then
-		print('custom order');
 		if(check(order.Message,"Declared war on"))then
-			print('Text erkannt');
-			local ordersplit = stringtochararray(order.Message);
-			local with = "";
-			local num = 16;
-			while(num < tablelength(ordersplit))do
-				if(ordersplit[num] ~= nil)then
-					with = with .. ordersplit[num];
-				end
-				num = num + 1;
-			end
-			print('with ' .. with);
-			if(InWar(order.PlayerID,order.payload) == false)then
-				DeclearWar(order.PlayerID,order.payload);
+			if(InWar(order.PlayerID,order.Payload) == false)then
+				DeclearWar(order.PlayerID,order.Payload);
 			end
 		end
 		if(check(order.Message,"Removed ally with"))then
