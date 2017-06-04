@@ -23,7 +23,6 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 end
 function OpenOfferPeace()
 	DeleteUI();
-	horz = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horz).SetText("Offer peace to: ");
 	TargetPlayerBtn = UI.CreateButton(horz).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
 	horz = UI.CreateHorizontalLayoutGroup(root);
