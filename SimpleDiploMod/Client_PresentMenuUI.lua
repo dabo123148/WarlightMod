@@ -35,7 +35,9 @@ function commitofferpeace()
 	if(offerto == "Select player...")then
 		UI.Alert('You need to choose a player first');
 	else
-		Game.SendGameCustomMessage("Sending request...", "Peace " .. offerto .. " " .. tostring(Preis), Testfunction);
+		print('Test1');
+		Game.SendGameCustomMessage("Sending request...", "Peace " .. offerto .. " " .. tostring(Preis), function(Testfunction)UI.Alert("Proposal sent!");end);
+		print('Test2');
 	end
 end
 function Testfunction()
