@@ -1,4 +1,5 @@
 function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
+	
 	if(gameOrder.proxyType=='GameOrderAttackTransfer')then
 		local playerID=gameOrder.PlayerID;
 		addOrder(WL.GameOrderCustom.Create(playerID,'Test 1',''));
@@ -9,7 +10,9 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 				addOrder(WL.GameOrderCustom.Create(playerID,'Test 4',''));
 				if(Mod.Settings.PestCardIn)then
 					addOrder(WL.GameOrderCustom.Create(playerID,'Test 5',''));
-					Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked=1;
+					local PGD=Mod.PlayerGameData;
+					PGD[gameOrder.PlayerID].SuccessfullyAttacked=1;
+					Mod.PlayerGameData=PGD;
 				end
 			end
 		end
