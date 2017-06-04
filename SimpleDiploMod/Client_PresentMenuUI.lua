@@ -78,6 +78,35 @@ function OpenMenu()
   	--UI.CreateLabel(horz).SetText("Pending Requests");
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
 end
+function OpenPendingRequests()
+	DeleteUI();
+	if(Mod.PlayerGameData.Peaceoffers~=nil)then
+		local peacesplit = stringtotable(Mod.PlayerGameData.Peaceoffers);
+		local num = 1;
+		while(peacesplit[num] ~= nil)do
+			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offer by " .. toname(tonumber(peacesplit),Game));
+			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+			if(peacesplit[num+1] == "0")then
+				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("This Peace Offer is for free");
+			else
+				if(tonumber(peacesplit[num+1]) > 0)then
+					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You need to pay " .. tonumber(peacesplit[num+1]) .. " Coins if you accept");
+				else
+					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("He will pay " .. tonumber(peacesplit[num+1]) .. " Coins if you accept");
+				end
+			end
+		end
+	end
+end
+function toname(playerid,game)
+	for _,playerinfo in pairs(game.ServerGame.Game.Players)do
+		if(playerid == playerinfo.ID)then
+			return playerinfo.DisplayName(nil, false);
+		end
+	end
+	return "Error. Please report to dabo1.";
+end
 function Openshop(rootParent)
 	--DeleteUI();
 end
