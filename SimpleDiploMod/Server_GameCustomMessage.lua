@@ -4,15 +4,19 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		local target = payload.TargetPlayerID;
 		local preis = payload.Preis;
     		print('Friedensangebot');
-		local playerGameData = Mod.PlayerGameData;
- 		if(playerGameData[target]==nil)then
-			playerGameData[target] = { Peaceoffers=","};
+		if(getplayerid(target,game) > 50)then
+			local playerGameData = Mod.PlayerGameData;
+ 			if(playerGameData[getplayerid(target,game)]==nil)then
+				playerGameData[getplayerid(target,game)] = { Peaceoffers=","};
+			end
+			--there can be double peace offers
+			--peaceoffers if not in war/allied still possible
+			playerGameData[getplayerid(target,game)].Peaceoffers = playerGameData[getplayerid(target,game)].Peaceoffers .. playerID .. "," .. preis .. ",";
+			print(playerGameData[getplayerid(target,game)].Peaceoffers);
+			Mod.PlayerGameData=playerGameData;
+		else
+			--accept peace cause ai
 		end
-		--there can be double peace offers
-		--peaceoffers if not in war/allied still possible
-		playerGameData[target].Peaceoffers = playerGameData[target].Peaceoffers .. playerID .. "," .. preis .. ",";
-		print(playerGameData[target].Peaceoffers);
-		Mod.PlayerGameData=playerGameData;
   	end
 	if(payload.Message == "Request Data")then
 		
@@ -39,4 +43,13 @@ function check(message,variable)
 		num = num + 1;
 	end
 	return match;
+end
+function getplayerid(playername,game)
+	for _,playerinfo in pairs(game.ServerGame.Game.Players)do
+		local name = playerinfo.DisplayName(nil, false);
+		if(name == playername)then
+			return playerinfo.ID;
+		end
+	end
+	return 0;
 end
