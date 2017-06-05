@@ -27,12 +27,19 @@ function PlayPestCard()
 end
 
 function Pestilence(playerID)
-  
+	ClearUI();
+	Mod.PlayerGameData.Cards=Mod.PlayerGameData.Cards-1;
+  PGD=Mod.PublicGameData;
+  PGD.PestilenceStrengths[playerID]=Mod.Settings.PestilenceCardStrength;
+	Mod.PublicGameData=PGD;
 end
 
 function ClearUI()
   if(vertPest~=nil)then
     UI.Destroy(vertPest);
+  end
+	if(vertPestCard~=nil)then
+    UI.Destroy(vertPestCard);
   end
 end
 
