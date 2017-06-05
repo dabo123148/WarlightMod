@@ -68,22 +68,22 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		playerGameData[an].SetMoney = Mod.PlayerGameData[an] + preis;
 		playerGameData[playerID].SetMoney = Mod.PlayerGameData[playerID] - preis;
 		Mod.PlayerGameData=playerGameData;
-		local publicGameData = Mod.PublicGameData;
-		local remainingwar = ",";
-		for _,with in pairs(publicGameData.War[an]) do
-			if(tonumber(with)~=playerID)then
-				remainingwar = remainingwar .. with .. ",";
-			end
-		end
-		publicGameData.War[an] = remainingwar;
-		remainingwar = ",";
-		for _,with in pairs(publicGameData.War[playerID]) do
-			if(tonumber(with)~=an)then
-				remainingwar = remainingwar .. with .. ",";
-			end
-		end
-		publicGameData.War[playerID] = remainingwar;
-		Mod.PublicGameData = publicGameData;
+		--local publicGameData = Mod.PublicGameData;
+		--local remainingwar = ",";
+		--for _,with in pairs(publicGameData.War[an]) do
+		--	if(tonumber(with)~=playerID)then
+		--		remainingwar = remainingwar .. with .. ",";
+		--	end
+		--end
+		--publicGameData.War[an] = remainingwar;
+		--remainingwar = ",";
+		--for _,with in pairs(publicGameData.War[playerID]) do
+		--	if(tonumber(with)~=an)then
+		--		remainingwar = remainingwar .. with .. ",";
+		--	end
+		--end
+		--publicGameData.War[playerID] = remainingwar;
+		--Mod.PublicGameData = publicGameData;
 		--local privateGameData = Mod.PrivateGameData;
 		--if(privateGameData.Cantdeclare == nil)then
 		--	privateGameData.Cantdeclare = ",";
