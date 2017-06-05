@@ -110,8 +110,8 @@ function OpenPendingRequests()
 			if(requiredmoney > mymoney)then
 				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You haven't the money to accept this offer.");
 			else
-				
-				AllEvilFuncs[num]=function() AcceptPeaceOffer(num); end;
+				local locNum=num;
+				AllEvilFuncs[num]=function() local InNum = locNum; AcceptPeaceOffer(InNum); end;
 				local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept").SetOnClick(AllEvilFuncs[num]);
 				
 			end
