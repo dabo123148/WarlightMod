@@ -188,7 +188,7 @@ function DeclearWar(Player1,Player2)
 			end
 		end
 	else
-		RemoveAlly(Player1,Player2);
+		RemoveAlly(Player1,);
 	end
 end
 function InWar(Player1,Player2)
