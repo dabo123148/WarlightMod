@@ -34,7 +34,7 @@ end
 function Pestilence(playerID)
   ClearUI();
 	Mod.PlayerGameData.PestCards=Mod.PlayerGameData.PestCards-1;
-	ClientGame.SendGameCustomMessage('Waiting for the server to respond...',{PestCardPlayer=playerID},PestCardPlayedCallback);
+	Game.SendGameCustomMessage('Waiting for the server to respond...',{PestCardPlayer=playerID},PestCardPlayedCallback);
 end
 
 function PestCardPlayedCallback()
