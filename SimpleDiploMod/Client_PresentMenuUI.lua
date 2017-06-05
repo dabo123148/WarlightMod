@@ -101,7 +101,7 @@ function OpenPendingRequests()
 					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("He will pay you " .. peacesplit[num+1] .. " Coins if you accept");
 				end
 			end
-			local mymoney = Mod.PlayerGameData.Money;
+			local mymoney = tonumber(Mod.PlayerGameData.Money);
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			if(requiredmoney > mymoney)then
 				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You haven't the money to accept this offer.");
