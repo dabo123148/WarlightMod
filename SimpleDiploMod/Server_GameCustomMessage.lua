@@ -3,24 +3,35 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
  	if(payload.Message == "Peace")then
 		local target = payload.TargetPlayerID;
 		local preis = payload.Preis;
-    		print('Friedensangebot');
 		if(target> 50)then
 			local playerGameData = Mod.PlayerGameData;
 			local existingpeaceoffers = ",";
  			if(playerGameData[target].Peaceoffers~=nil)then
 				existingpeaceoffers=playerGameData[target].Peaceoffers;
 			end
-			--there can be double peace offers
-			--peaceoffers if not in war/allied still possible
-			playerGameData[target] = {Peaceoffers=existingpeaceoffers .. math.random(0,10000) .. "," .. preis .. ",",Money=Mod.PlayerGameData[target].Money};
-			print(playerGameData[target].Peaceoffers);
-			Mod.PlayerGameData=playerGameData;
+			local existingofferssplit = stringtotable(existingpeaceoffers);
+			local num = 1;
+			local match = true;
+			while(existingofferssplit[num] ~=nil)do
+				if(tonumber(existingofferssplit[num]) == target)then
+					match = true;
+				end
+				num=num+2;
+			end
 			local rg = {};
-			rg.Message =playerGameData[target].Peaceoffers ..'Test';
-			setReturnTable(rg);
+			if(match == false)then
+				playerGameData[target] = {Peaceoffers=existingpeaceoffers .. math.random(0,10000) .. "," .. preis .. ",",Money=Mod.PlayerGameData[target].Money};
+				print(playerGameData[target].Peaceoffers);
+				Mod.PlayerGameData=playerGameData;
+				rg.Message ='The Offer has been submitted';
+				setReturnTable(rg);
+			else
+				rg.Message ='He has already a pending peace offer by you.';
+				setReturnTable(rg);
+			end
 		else
 			local rg = {};
-			rg.Message = 'Frieden an ai Test';
+			rg.Message = 'Peace to AI';
 			setReturnTable(rg);
 			--accept peace cause ai
 		end
@@ -84,25 +95,32 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		
 	end
 end
-function stringtochararray(variable)
+function stringtotable(variable)
 	chartable = {};
 	while(string.len(variable)>0)do
 		chartable[tablelength(chartable)] = string.sub(variable, 1 , 1);
 		variable = string.sub(variable, 2);
 	end
-	return chartable;
-end
-function check(message,variable)
-	local match = true;
-	local mess = stringtochararray(message);
-	local varchararray = stringtochararray(variable);
-	local num = 0;
-	while(varchararray[num] ~= nil)do
-		if(mess[num] ~= varchararray[num])then
-			print(mess[num] .. ' ' .. varchararray[num]);
-			return false;
+	local newtable = {};
+	local tablepos = 0;
+	local executed = false;
+	for _, elem in pairs(chartable)do
+		if(elem == ",")then
+			tablepos = tablepos + 1;
+			newtable[tablepos] = "";
+			executed = true;
+		else
+			if(executed == false)then
+				tablepos = tablepos + 1;
+				newtable[tablepos] = "";
+				executed = true;
+			end
+			if(newtable[tablepos] == nil)then
+				newtable[tablepos] = elem;
+			else
+				newtable[tablepos] = newtable[tablepos] .. elem;
+			end
 		end
-		num = num + 1;
 	end
-	return match;
+	return newtable;
 end
