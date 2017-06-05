@@ -107,13 +107,13 @@ function OpenPendingRequests()
 				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You haven't the money to accept this offer.");
 			else
 				local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
-				button.SetOnClick(AcceptorDeny(button));
+				button.SetOnClick(function AcceptorDeny() 
+					UI.Alert(mymoney);
+					end);
 			end
 			num = num +2;
 		end
 	end
-end
-function execute(func)
 end
 function AcceptorDeny(knopf)
 	UI.Alert(knopf.GetText());
