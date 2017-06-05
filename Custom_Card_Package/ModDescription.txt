@@ -3,4 +3,5 @@ This Mod adds a couple of User-Created Cards. Already added:
     -> Adds Pestilence Cards to the game. A player you play a Pestilence Card on will lose [Pestilence Strength] troops on every Territory in the end of his next turn. Territories with 0 armies left will go Neutral.
     
 In development:
+  -Vanish Card
   
