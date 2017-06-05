@@ -94,7 +94,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == "GameOrderCustom")then
 		if(check(order.Message,"Declared war on"))then
 			if(InWar(order.PlayerID,order.Payload) == false)then
-				DeclearWar(order.PlayerID,order.Payload);
+				DeclearWar(order.PlayerID,tonumber(order.Payload));
 			end
 		end
 		if(check(order.Message,"Removed ally with"))then
