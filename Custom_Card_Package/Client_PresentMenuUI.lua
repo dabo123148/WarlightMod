@@ -28,11 +28,20 @@ function PlayPestCard()
   PestCardText0=UI.CreateLabel(vertPestCard).SetText('Select the player you want to play the Card on: ');
   local Pestfuncs={};
   for playerID in pairs(Game.Game.Players) do
+		
     if(playerID~=Game.Us.ID)then
-      local locPlayerID=playerID;
-      Pestfuncs[playerID]=function() Pestilence(locPlayerID); end;
-      local pestPlayerButton = UI.CreateButton(vertPestCard).SetText(toname(playerID,Game)).SetOnClick(Pestfuncs[playerID]);
-    end
+      if(Mod.PublicGameData.PestilenceStadium[playerID]~=nil)then
+				if(Mod.PublicGameData.PestilenceStadium[playerID]==0)then
+      		local locPlayerID=playerID;
+      		Pestfuncs[playerID]=function() Pestilence(locPlayerID); end;
+      		local pestPlayerButton = UI.CreateButton(vertPestCard).SetText(toname(playerID,Game)).SetOnClick(Pestfuncs[playerID]);
+    		end
+			else
+				local locPlayerID=playerID;
+      	Pestfuncs[playerID]=function() Pestilence(locPlayerID); end;
+      	local pestPlayerButton = UI.CreateButton(vertPestCard).SetText(toname(playerID,Game)).SetOnClick(Pestfuncs[playerID]);
+			end
+		end
   end
 end
 
