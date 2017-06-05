@@ -11,7 +11,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			end
 			local existingofferssplit = stringtotable(existingpeaceoffers);
 			local num = 1;
-			local match = true;
+			local match = false;
 			while(existingofferssplit[num] ~=nil)do
 				if(tonumber(existingofferssplit[num]) == target)then
 					match = true;
