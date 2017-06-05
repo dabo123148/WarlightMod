@@ -41,55 +41,55 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		setReturnTable(rg);
   	end
 	if(payload.Message == "Accept Peace")then
-		--local playerGameData = Mod.PlayerGameData;
-		--local an = payload.TargetPlayerID;
-		--local preis = 0;
-		--offers = stringtotable(playerGameData[playerID].Peaceoffers);
-		--local num = 1;
-		--local remainingoffers = ",";
-		--while(offers[num]~=nil and offers[num+1]~=nil)do
-		--	if(tonumber(offers[num])==an)then
-		--		preis = tonumber(offers[num+1]);
-		--	else
-		--		remainingoffers = remainingoffers .. offers[num] .. "," .. ofefers[num+1] .. ",";
-		--	end
-		--	num = num + 2;
-		--end
-		--playerGameData[playerID].Peaceoffers = remainingoffers;
-		--offers = stringtotable(playerGameData[an].Peaceoffers);
-		--while(offers[num]~=nil and offers[num+1]~=nil)do
-		--	if(tonumber(offers[num])==playerID)then
-		--		preis = tonumber(offers[num+1]);
-		--	else
-		--		remainingoffers = remainingoffers .. offers[num] .. "," .. ofefers[num+1] .. ",";
-		--	end
-		--	num = num + 2;
-		--end
-		--playerGameData[an].SetMoney = Mod.PlayerGameData[an] + preis;
-		--playerGameData[playerID].SetMoney = Mod.PlayerGameData[playerID] - preis;
-		--Mod.PlayerGameData=playerGameData;
-		--local publicGameData = Mod.PublicGameData;
-		--local remainingwar = ",";
-		--for _,with in pairs(publicGameData.War[an]) do
-		--	if(tonumber(with)~=playerID)then
-		--		remainingwar = remainingwar .. with .. ",";
-		--	end
-		--end
-		--publicGameData.War[an] = remainingwar;
-		--remainingwar = ",";
-		--for _,with in pairs(publicGameData.War[playerID]) do
-		--	if(tonumber(with)~=an)then
-		--		remainingwar = remainingwar .. with .. ",";
-		--	end
-		--end
-		--publicGameData.War[playerID] = remainingwar;
-		--Mod.PublicGameData = publicGameData;
-		--local privateGameData = Mod.PrivateGameData;
-		--if(privateGameData.Cantdeclare == nil)then
-		--	privateGameData.Cantdeclare = ",";
-		--end
-		--privateGameData.Cantdeclare = privateGameData.Cantdeclare .. an .. "," .. playerID .. ",";
-		--Mod.PrivateGameData = privateGameData;
+		local playerGameData = Mod.PlayerGameData;
+		local an = payload.TargetPlayerID;
+		local preis = 0;
+		offers = stringtotable(playerGameData[playerID].Peaceoffers);
+		local num = 1;
+		local remainingoffers = ",";
+		while(offers[num]~=nil and offers[num+1]~=nil)do
+			if(tonumber(offers[num])==an)then
+				preis = tonumber(offers[num+1]);
+			else
+				remainingoffers = remainingoffers .. offers[num] .. "," .. ofefers[num+1] .. ",";
+			end
+			num = num + 2;
+		end
+		playerGameData[playerID].Peaceoffers = remainingoffers;
+		offers = stringtotable(playerGameData[an].Peaceoffers);
+		while(offers[num]~=nil and offers[num+1]~=nil)do
+			if(tonumber(offers[num])==playerID)then
+				preis = tonumber(offers[num+1]);
+			else
+				remainingoffers = remainingoffers .. offers[num] .. "," .. ofefers[num+1] .. ",";
+			end
+			num = num + 2;
+		end
+		playerGameData[an].SetMoney = Mod.PlayerGameData[an] + preis;
+		playerGameData[playerID].SetMoney = Mod.PlayerGameData[playerID] - preis;
+		Mod.PlayerGameData=playerGameData;
+		local publicGameData = Mod.PublicGameData;
+		local remainingwar = ",";
+		for _,with in pairs(publicGameData.War[an]) do
+			if(tonumber(with)~=playerID)then
+				remainingwar = remainingwar .. with .. ",";
+			end
+		end
+		publicGameData.War[an] = remainingwar;
+		remainingwar = ",";
+		for _,with in pairs(publicGameData.War[playerID]) do
+			if(tonumber(with)~=an)then
+				remainingwar = remainingwar .. with .. ",";
+			end
+		end
+		publicGameData.War[playerID] = remainingwar;
+		Mod.PublicGameData = publicGameData;
+		local privateGameData = Mod.PrivateGameData;
+		if(privateGameData.Cantdeclare == nil)then
+			privateGameData.Cantdeclare = ",";
+		end
+		privateGameData.Cantdeclare = privateGameData.Cantdeclare .. an .. "," .. playerID .. ",";
+		Mod.PrivateGameData = privateGameData;
 	end
 	if(payload.Message == "Request Data")then
 		
