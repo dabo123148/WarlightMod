@@ -88,6 +88,8 @@ function OpenPendingRequests()
 		--	UI.CreateLabel(horz).SetText("Test " .. obj);
 		--end
 		RecentPlayerID={};
+		AllEvilFuncs={};
+		
 		while(peacesplit[num] ~= nil and peacesplit[num+1] ~= nil)do
 			RecentPlayerID[num]=tonumber(peacesplit[num]);
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
@@ -109,9 +111,7 @@ function OpenPendingRequests()
 				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You haven't the money to accept this offer.");
 			else
 				
-				local function Call()
-					AcceptPeaceOffer(RecentPlayerID[num]);
-				end
+				AllEvilFuncs[num]=function() AcceptPeaceOffer(num); end;
 				local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept").SetOnClick(Call);
 				
 			end
