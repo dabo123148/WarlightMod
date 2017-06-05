@@ -112,7 +112,7 @@ function OpenPendingRequests()
 			else
 				
 				AllEvilFuncs[num]=function() AcceptPeaceOffer(num); end;
-				local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept").SetOnClick(Call);
+				local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept").SetOnClick(AllEvilFuncs[num]);
 				
 			end
 			num = num +2;
