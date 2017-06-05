@@ -89,7 +89,7 @@ function OpenPendingRequests()
 		RecentPlayerID={};
 		AllEvilFuncs={};
 		
-		while(peacesplit[num] ~= nil and peacesplit[num+1] ~= nil)do
+		while(peacesplit[num] ~= nil and peacesplit[num+1] ~= nil and peacesplit[num+1] ~= "")do
 			RecentPlayerID[num]=tonumber(peacesplit[num]);
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offer by " .. toname(tonumber(peacesplit[num]),Game));
