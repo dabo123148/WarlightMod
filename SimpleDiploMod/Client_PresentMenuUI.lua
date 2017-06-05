@@ -45,7 +45,6 @@ function commitofferpeace()
 		Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
 			UI.Alert(returnvalue.Message);
 			end);
-		print('Test2');
 	end
 end
 function TargetPlayerClickedOfferPeace()
@@ -125,7 +124,6 @@ function OpenPendingRequests()
 end
 
 function AcceptPeaceOffer(data)
-	UI.Alert('Accept Peace'..tostring(data.spieler));
 	local payload = {};
 	payload.Message = "Accept Peace";
 	payload.TargetPlayerID = data.Spieler;
