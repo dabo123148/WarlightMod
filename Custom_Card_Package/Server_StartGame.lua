@@ -7,5 +7,9 @@ function Server_StartGame(game,standing)
       playerGameData[playerID]={ PestCardPieces=Pieces, PestCards=Cards, SuccessfullyAttacked=0 };
     end
   end
+  local publicGameData = Mod.PublicGameData;
+  publicGameData={PestilenceStrengths={}};
+  
+  Mod.PublicGameData=publicGameData;
   Mod.PlayerGameData = playerGameData;
 end
