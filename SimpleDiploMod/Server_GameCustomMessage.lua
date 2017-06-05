@@ -65,8 +65,8 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			end
 			num = num + 2;
 		end
-		playerGameData[an].SetMoney = Mod.PlayerGameData[an] + preis;
-		playerGameData[playerID].SetMoney = Mod.PlayerGameData[playerID] - preis;
+		playerGameData[an].Money = Mod.PlayerGameData[an].Money + preis;
+		playerGameData[playerID].Money = Mod.PlayerGameData[playerID].Money - preis;
 		Mod.PlayerGameData=playerGameData;
 		local publicGameData = Mod.PublicGameData;
 		local remainingwar = ",";
