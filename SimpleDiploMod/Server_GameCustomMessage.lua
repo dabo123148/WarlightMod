@@ -55,7 +55,11 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			end
 			num = num + 2;
 		end
-		playerGameData[playerID].Peaceoffers = remainingoffers;
+		if(remainingoffers == ",")then
+			playerGameData[playerID].Peaceoffers = nil;
+		else
+			playerGameData[playerID].Peaceoffers = remainingoffers;
+		end
 		
 		local testmg = {};
 		testmg.Message = remainingoffers;
@@ -69,6 +73,11 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				remainingoffers = remainingoffers .. offers[num] .. "," .. offers[num+1] .. ",";
 			end
 			num = num + 2;
+		end
+		if(remainingoffers == ",")then
+			playerGameData[an].Peaceoffers = nil;
+		else
+			playerGameData[an].Peaceoffers = remainingoffers;
 		end
 		playerGameData[an].Money = Mod.PlayerGameData[an].Money + preis;
 		playerGameData[playerID].Money = Mod.PlayerGameData[playerID].Money - preis;
