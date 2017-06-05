@@ -126,11 +126,11 @@ function AcceptPeaceOffer(data)
 	local payload = {};
 	payload.Message = "Accept Peace";
 	payload.TargetPlayerID = data.Spieler;
-	Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)
-				if(returnvalue==nil)then			
-					UI.Alert("You are now again in peace with " .. toname(data.Spieler,Game));
+	Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	
+				if(returnvalue.Message == 0)then
+					UI.Alert("I am sorry, but " .. toname(data.Spieler,Game) .. " hasn't the money to pay you");
 				else
-					UI.Alert("Debugdata for dabo1 " .. returnvalue.Message);
+					UI.Alert("You are now again in peace with " .. toname(data.Spieler,Game));
 				end
 			end);
 	OpenPendingRequests();
