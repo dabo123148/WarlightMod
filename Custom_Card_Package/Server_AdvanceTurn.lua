@@ -44,7 +44,7 @@ function Server_AdvanceTurn_End(game,addOrder)
 			if(Mod.PublicGameData.PestilenceStadium[playerID]==1)then
 				PuGD.PestilenceStadium[playerID]=2;
 			else
-				if(Mod.PublicGameDatamPestilenceStadium[playerID]==2)then
+				if(Mod.PublicGameData.PestilenceStadium[playerID]==2)then
 					standing=game.ServerGame.LatestTurnStanding;
 					CurrentIndex=1;
 					PestilenceOrder={};
