@@ -24,7 +24,6 @@ function PlayPestCard()
       local pestPlayerButton = UI.CreateButton(vertPestCard).SetText(toname(playerID,Game)).SetOnClick(Pestfuncs[playerID]);
     end
   end
-  UI.Alert('TEST');
 end
 
 function Pestilence(playerID)
@@ -35,6 +34,15 @@ function ClearUI()
   if(vertPest~=nil)then
     UI.Destroy(vertPest);
   end
+end
+
+function Contains(array,object)
+  for obj in pairs(array) do
+    if(obj==object)then
+      return true;
+    end
+  end
+  return false;
 end
 
 function toname(playerid,game)
