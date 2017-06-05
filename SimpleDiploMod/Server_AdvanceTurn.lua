@@ -135,39 +135,6 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		end
 	end
 	RemainingDeclerations = {};
-	if(RemainingAllies ~= nil)then
-		for _,newwar in pairs(RemainingAllies)do
-			local P1 = tonumber(stringtotable(newwar)[1]);
-			local P2 = tonumber(stringtotable(newwar)[2]);
-			local publicGameData = Mod.PublicGameData;
-			if(Mod.PublicGameData.Ally[P1] ~= nil)then
-				local newinwar = {};
-				for _, alreadyinwar in pairs(Ally[P1])do
-					newinwar[alreadyinwar] = "wahr";
-				end
-				publicGameData.Ally[P1] = newinwar;
-			else
-				publicGameData.Ally[P1] = {};
-			end
-			publicGameData.Ally[P1][P2] = true;
-			local P3 = P2;
-			P2 = P1;
-			P1 = P3;
-			if(Mod.PublicGameData.Ally[P1] ~= nil)then
-				local newinwar ={};
-				for _, alreadyinwar in pairs(Mod.PublicGameData.Ally[P1])do
-					newinwar[alreadyinwar] = true;
-				end
-				publicGameData.Ally[P1] = newinwar;
-			else
-				publicGameData.Ally[P1] = {};
-			end
-			publicGameData.Ally[P1][P2] = true;
-			publicGameData.Ally[P1] = true;
-			Mod.PublicGameData = publicGameData;
-		end
-	end
-	RemainingAllies = {};
 	--if(Mod.Settings.SeeAllyTerritories)then
 		--play on every ally a reconnaisance card
 		--for _, player in pairs(AllPlayerIDs)do
