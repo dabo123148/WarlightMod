@@ -125,7 +125,15 @@ function OpenPendingRequests()
 end
 
 function AcceptPeaceOffer(data)
-	UI.Alert('Accept Peace Offer Test '..tostring(data.spieler));
+	UI.Alert('Accept Peace'..tostring(data.spieler));
+	local payload = {};
+	payload.Message = "Accept Peace";
+	payload.TargetPlayerID = data.Spieler;
+	Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)
+				If(returnvalu==nil)then
+					UI.Alert("You are now again in peace with " .. toname(data.Spieler));
+				end
+			end);
 end
 
 
