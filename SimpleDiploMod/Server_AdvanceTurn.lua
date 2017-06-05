@@ -37,29 +37,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == "GameOrderAttackTransfer")then
 		if(result.IsAttack and game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID ~= WL.PlayerID.Neutral)then
 			if(InWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID) == true)then
-				--Set attacks between
-				if(Attacksbetween[order.PlayerID] ~= nil)then
-					bereitsgemachteangriffe = Attacksbetween[order.PlayerID];
-					if(bereitsgemachteangriffe == nil)then
-						bereitsgemachteangriffe={};
-					end
-					bereitsgemachteangriffe[game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID] = true;
-					Attacksbetween[order.PlayerID] = bereitsgemachteangriffe;
-				else
-					Attacksbetween[order.PlayerID] = {};
-					Attacksbetween[order.PlayerID][game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID] = true;
-				end
-				if(Attacksbetween[game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID] ~= nil)then
-					bereitsgemachteangriffe = Attacksbetween[game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID];
-					if(bereitsgemachteangriffe == nil)then
-						bereitsgemachteangriffe={};
-					end
-					bereitsgemachteangriffe[order.PlayerID] = true;
-					Attacksbetween[game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID] = bereitsgemachteangriffe;
-				else
-					Attacksbetween[game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID] = {};
-					Attacksbetween[game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID][order.PlayerID] = true;
-				end
 			else
 				skipThisOrder(WL.ModOrderControl.Skip);
 				--War declaration
@@ -196,7 +173,19 @@ function DeclearWar(Player1,Player2)
 			end
 		end
 		if(Match == false)then
-			RemainingDeclerations[tablelength(RemainingDeclerations)] = "," .. Player1 .. "," ..Player2;
+			local privateGameDatasplit = Mod.PrivateGameData;
+			local num = 1;
+			local Player2 = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
+			while(Mod.PrivateGameData.Cantdeclare[num] ~= nil and Mod.PrivateGameData.Cantdeclare[num+1] ~= nil and Mod.PrivateGameData.Cantdeclare[num+1] ~= "")do
+				if(tonumber(Mod.PrivateGameData.Cantdeclare[num]) == order.PlayerID or tonumber(Mod.PrivateGameData.Cantdeclare[num+1]) == order.PlayerID)then
+					if(tonumber(Mod.PrivateGameData.Cantdeclare[num]) == Player2 or tonumber(Mod.PrivateGameData.Cantdeclare[num+1]) == Player2)then
+						Match = true;
+					end
+				end
+			end
+			if(Match == false)then
+				RemainingDeclerations[tablelength(RemainingDeclerations)] = "," .. Player1 .. "," ..Player2;
+			end
 		end
 	else
 		RemoveAlly(Player1,Player2);
