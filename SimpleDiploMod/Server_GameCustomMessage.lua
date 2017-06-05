@@ -56,11 +56,16 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			num = num + 2;
 		end
 		playerGameData[playerID].Peaceoffers = remainingoffers;
+		
+		local testmg = "";
+		testmg.Message = remainingoffers;
+		setReturnTable(testmg);
+		
 		offers = stringtotable(playerGameData[an].Peaceoffers);
+		remainingoffers = ",";
+		num = 1;
 		while(offers[num]~=nil and offers[num+1]~=nil)do
-			if(tonumber(offers[num])==playerID)then
-				preis = tonumber(offers[num+1]);
-			else
+			if(tonumber(offers[num])~=playerID)then
 				remainingoffers = remainingoffers .. offers[num] .. "," .. offers[num+1] .. ",";
 			end
 			num = num + 2;
