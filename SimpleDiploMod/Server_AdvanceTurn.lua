@@ -156,8 +156,10 @@ function getplayerid(playername,game)
 	return 0;
 end
 function toname(playerid,game)
+	local test = "";
 	for _,playerinfo in pairs(game.ServerGame.Game.Players)do
 		if(playerid == playerinfo.ID)then
+			return tostring(playerid) .. " " .. tostring(playerinfo.ID);
 			local name = playerinfo.DisplayName(nil, false);
 			if(name == nil or name == "")then
 				return "fehler";
