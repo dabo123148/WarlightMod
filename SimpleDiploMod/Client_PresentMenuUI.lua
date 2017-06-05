@@ -110,9 +110,10 @@ function OpenPendingRequests()
 			if(requiredmoney > mymoney)then
 				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You haven't the money to accept this offer.");
 			else
-				local locNum=num;
+				local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
+				local locNum={Knopf=button,spieler=tonumber(peacesplit[num]};
 				AllEvilFuncs[num]=function() local InNum = locNum; AcceptPeaceOffer(InNum); end;
-				local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept").SetOnClick(AllEvilFuncs[num]);
+				button.SetOnClick(AllEvilFuncs[num]);
 				
 			end
 			num = num +2;
@@ -120,8 +121,8 @@ function OpenPendingRequests()
 	end
 end
 
-function AcceptPeaceOffer(playerID)
-	UI.Alert('Accept Peace Offer Test '..tostring(playerID));
+function AcceptPeaceOffer(data)
+	UI.Alert('Accept Peace Offer Test '..tostring(data.spieler));
 end
 
 
