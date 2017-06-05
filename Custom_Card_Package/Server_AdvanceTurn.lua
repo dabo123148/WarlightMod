@@ -38,7 +38,7 @@ function Server_AdvanceTurn_End(game,addOrder)
 				addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece. You now have '..PGD[playerID].PestCards..' Cards and '..PGD[playerID].PestCardPieces..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.',''));
 			end
 		end
-		print(tostring(Mod.PublicGameData.PestilenceStadium));
+		--print(tostring(Mod.PublicGameData.PestilenceStadium));
 		if(Mod.PublicGameData.PestilenceStadium[playerID]~=nil)then
 			PestTerrs={};
 			if(Mod.PublicGameData.PestilenceStadium[playerID]==1)then
