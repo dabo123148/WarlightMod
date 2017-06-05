@@ -44,8 +44,16 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			end
 			num = num + 2;
 		end
-		local hasMoney;
 		playerGameData[playerID].Peaceoffers = remainingoffers;
+		offers = stringtotable(playerGameData[an].Peaceoffers);
+		while(offers[num]~=niland offers[num+1]~=nil)do
+			if(tonumber(offers[num])==playerID)then
+				preis = tonumber(offers[num+1]);
+			else
+				remainingoffers = remainingoffers .. offers[num] .. "," .. ofefers[num+1] .. ",";
+			end
+			num = num + 2;
+		end
 		playerGameData[an].SetMoney = Mod.PlayerGameData[an] + preis;
 		playerGameData[playerID].SetMoney = Mod.PlayerGameData[playerID] - preis;
 		Mod.PlayerGameData=playerGameData;
@@ -69,7 +77,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		if(privateGameData.Cantdeclare == nil)then
 			privateGameData.Cantdeclare = ",";
 		end
-		privateGameData.Cantdeclare = privateGameData.Cantdeclare .. an .. "," .. playerID ..;
+		privateGameData.Cantdeclare = privateGameData.Cantdeclare .. an .. "," .. playerID .. ",";
 		Mod.PrivateGameData = privateGameData;
 	end
 	if(payload.Message == "Request Data")then
