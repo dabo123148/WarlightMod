@@ -116,7 +116,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				publicGameData.War[P1] = with;
 				addNewOrder(WL.GameOrderEvent.Create(P1, "Test1", nil,{}));
 			else
-				publicGameData.War[P1] = tostring(P2) .. ",";
+				publicGameData.War[P1] = "," .. tostring(P2) .. ",";
 				addNewOrder(WL.GameOrderEvent.Create(P1, "Test2", nil,{}));
 			end
 			addNewOrder(WL.GameOrderEvent.Create(P1, "Declared war on " .. toname(P2,game), nil,{}));
@@ -128,7 +128,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				publicGameData.War[P1] = with;
 				addNewOrder(WL.GameOrderEvent.Create(P1, "Test3", nil,{}));
 			else
-				publicGameData.War[P1] = tostring(P2) .. ",";
+				publicGameData.War[P1] = "," .. tostring(P2) .. ",";
 				addNewOrder(WL.GameOrderEvent.Create(P1, "Test4", nil,{}));
 			end
 			Mod.PublicGameData = publicGameData;
