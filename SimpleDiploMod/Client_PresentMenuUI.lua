@@ -133,6 +133,7 @@ function AcceptPeaceOffer(data)
 					UI.Alert("Debugdata for dabo1 " .. returnvalue.Message);
 				end
 			end);
+	OpenPendingRequests();
 end
 
 
