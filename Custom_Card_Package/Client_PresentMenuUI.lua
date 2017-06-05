@@ -15,7 +15,7 @@ end
 function PlayPestCard()
   ClearUI();
   vertPestCard=UI.CreateVerticalLayoutGroup(rootParent);
-  PestCardText0=UI.CreateLabel(vertPest).SetText('Select the player you want to play the Pestilence Card on: ');
+  PestCardText0=UI.CreateLabel(vertPestCard).SetText('Select the player you want to play the Pestilence Card on: ');
   local Pestfuncs={};
   for playerID in pairs(Game.Game.Players) do
     if(playerID~=Game.Us.ID)then
