@@ -83,26 +83,38 @@ function OpenPendingRequests()
 	if(Mod.PlayerGameData.Peaceoffers~=nil)then
 		local peacesplit = stringtotable(Mod.PlayerGameData.Peaceoffers);
 		local num = 1;
-		for _,obj in pairs(peacesplit)do
-			horz = UI.CreateHorizontalLayoutGroup(root);
-			UI.CreateLabel(horz).SetText("Test " .. obj);
-		end
+		--for _,obj in pairs(peacesplit)do
+		--	horz = UI.CreateHorizontalLayoutGroup(root);
+		--	UI.CreateLabel(horz).SetText("Test " .. obj);
+		--end
 		while(peacesplit[num] ~= nil and peacesplit[num+1] ~= nil)do
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offer by " .. toname(tonumber(peacesplit[num]),Game));
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-			if(peacesplit[num+1] == "0")then
+			local requiredmoney = tonumber(peacesplit[num+1]);
+			if(requiredmoney == 0)then
 				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("This Peace Offer is for free");
 			else
-				if(tonumber(peacesplit[num+1]) > 0)then
-					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You need to pay " .. tonumber(peacesplit[num+1]) .. " Coins if you accept");
+				if(requiredmoney > 0)then
+					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You need to pay " .. peacesplit[num+1] .. " Coins if you accept");
 				else
-					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("He will pay you " .. tonumber(peacesplit[num+1]) .. " Coins if you accept");
+					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("He will pay you " .. peacesplit[num+1] .. " Coins if you accept");
 				end
 			end
+			local mymoney = Mod.PlayerGameData.Money;
+			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+			if(requiredmoney > mymoney)then
+				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You haven't the money to accept this offer.");
+			else
+				UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept " .. ).SetOnClick(OpenPendingRequests);
+			end
+			
 			num = num +2;
 		end
 	end
+end
+function AcceptorDeny()
+	
 end
 function toname(playerid,game)
 	for _,playerinfo in pairs(game.Game.Players)do
