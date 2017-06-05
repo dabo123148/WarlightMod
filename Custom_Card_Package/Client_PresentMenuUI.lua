@@ -28,9 +28,9 @@ end
 
 function Pestilence(playerID)
 	ClearUI();
-	Mod.PlayerGameData.Cards=Mod.PlayerGameData.Cards-1;
+	Mod.PlayerGameData.PestCards=Mod.PlayerGameData.PestCards-1;
   PGD=Mod.PublicGameData;
-  PGD.PestilenceStrengths[playerID]=Mod.Settings.PestilenceCardStrength;
+  PGD.PestilenceStrengths[playerID]=Mod.Settings.PestCardStrength;
 	Mod.PublicGameData=PGD;
 end
 
