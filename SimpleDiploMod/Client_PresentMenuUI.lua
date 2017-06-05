@@ -100,7 +100,7 @@ function OpenPendingRequests()
 	end
 end
 function toname(playerid,game)
-	for _,playerinfo in pairs(game.ServerGame.Game.Players)do
+	for _,playerinfo in pairs(game.Game.Players)do
 		if(playerid == playerinfo.ID)then
 			return playerinfo.DisplayName(nil, false);
 		end
