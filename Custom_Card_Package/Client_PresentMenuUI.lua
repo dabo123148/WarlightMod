@@ -1,4 +1,5 @@
-function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game,close)
+function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
+  rootParent=RootParent;
   Game=game;
   setMaxSize(450, 350);
   if(Mod.Settings.PestCardIn)then
