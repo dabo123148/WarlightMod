@@ -42,7 +42,7 @@ function Server_AdvanceTurn_End(game,addOrder)
 		if(Mod.PublicGameData.PestilenceStadium[playerID]~=nil)then
 			PestTerrs={};
 			if(Mod.PublicGameData.PestilenceStadium[playerID]==1)then
-				PuGD.PestilenceStadium=2;
+				PuGD.PestilenceStadium[playerID]=2;
 			else
 				if(Mod.PublicGameDatamPestilenceStadium[playerID]==2)then
 					standing=game.ServerGame.LatestTurnStanding;
