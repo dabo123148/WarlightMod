@@ -1,7 +1,7 @@
 function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
   rootParent=RootParent;
   Game=game;
-	PestCards=Mod.PlayerGameData.PestCards;
+  PestCards=Mod.PlayerGameData.PestCards;
   setMaxSize(450, 350);
   ShowFirstMenu();
 end
@@ -10,7 +10,7 @@ function ShowFirstMenu()
   if(Mod.Settings.PestCardIn)then
     vertPest=UI.CreateVerticalLayoutGroup(rootParent);
     PestText0=UI.CreateLabel(vertPest).SetText('Pestilence Card: ');
-    PestText1=UI.CreateLabel(vertPest).SetText('      You have got '..tostring(Cards)..' Cards and '..tostring(Mod.PlayerGameData.PestCardPieces)..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.');
+    PestText1=UI.CreateLabel(vertPest).SetText('      You have got '..tostring(PestCards)..' Cards and '..tostring(Mod.PlayerGameData.PestCardPieces)..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.');
     if(PestCards>0)then
       PestButton1=UI.CreateButton(vertPest).SetText('Play Pestilence Card').SetOnClick(PlayPestCard);
     end
