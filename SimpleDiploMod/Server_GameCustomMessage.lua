@@ -84,14 +84,16 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		Mod.PlayerGameData=playerGameData;
 		local publicGameData = Mod.PublicGameData;
 		local remainingwar = ",";
-		for _,with in pairs(stringtotable(publicGameData.War[an])) do
+		local withtable = stringtotable(Mod.PublicGameData.War[an]);
+		for _,with in pairs(withtable) do
 			if(tonumber(with)~=playerID)then
 				remainingwar = remainingwar .. with .. ",";
 			end
 		end
 		publicGameData.War[an] = remainingwar;
 		remainingwar = ",";
-		for _,with in pairs(stringtotable(publicGameData.War[playerID])) do
+		local withtable = stringtotable(Mod.PublicGameData.War[playerID]);
+		for _,with in pairs(withtable) do
 			if(tonumber(with)~=an)then
 				remainingwar = remainingwar .. with .. ",";
 			end
