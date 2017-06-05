@@ -73,6 +73,7 @@ function Server_AdvanceTurn_End(game,addOrder)
 			
 		end
 	end
+	Mod.PublicGameData=PuGD;
 	Mod.PlayerGameData=PGD;
 --    standing=game.ServerGame.LatestTurnStanding;
 --	CurrentIndex=1;
