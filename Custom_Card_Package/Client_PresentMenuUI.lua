@@ -2,6 +2,10 @@ function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
   rootParent=RootParent;
   Game=game;
   setMaxSize(450, 350);
+  ShowFirstMenu();
+end
+  
+function ShowFirstMenu()
   if(Mod.Settings.PestCardIn)then
     vertPest=UI.CreateVerticalLayoutGroup(rootParent);
     PestText0=UI.CreateLabel(vertPest).SetText('Pestilence Card: ');
@@ -11,7 +15,8 @@ function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
     end
   end
 end
-  
+
+
 function PlayPestCard()
   ClearUI();
   vertPestCard=UI.CreateVerticalLayoutGroup(rootParent);
@@ -27,11 +32,13 @@ function PlayPestCard()
 end
 
 function Pestilence(playerID)
-	ClearUI();
+  ClearUI();
 	Mod.PlayerGameData.PestCards=Mod.PlayerGameData.PestCards-1;
-  PGD=Mod.PublicGameData;
-  PGD.PestilenceStrengths[playerID]=Mod.Settings.PestCardStrength;
-	Mod.PublicGameData=PGD;
+	ClientGame.SendGameCustomMessage('Waiting for the server to respond...',{PestCardPlayer=playerID},PestCardPlayedCallback);
+end
+
+function PestCardPlayedCallback()
+	ShowFirstMenu();
 end
 
 function ClearUI()
