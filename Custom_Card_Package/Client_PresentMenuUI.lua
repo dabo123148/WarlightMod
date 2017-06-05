@@ -21,7 +21,7 @@ function PlayPestCard()
     if(playerID~=Game.Us.ID)then
       local locPlayerID=playerID;
       Pestfuncs[playerID]=function() Pestilence(locPlayerID); end;
-      local pestPlayerButton = UI.CreateButton(vertPestCard).SetText(playerID.DisplayName(nil,false)).SetOnClick(Pestfuncs[playerID]);
+      local pestPlayerButton = UI.CreateButton(vertPestCard).SetText(toname(playerID,Game)).SetOnClick(Pestfuncs[playerID]);
     end
   end
   UI.Alert('TEST');
@@ -35,4 +35,13 @@ function ClearUI()
   if(vertPest~=nil)then
     UI.Destroy(vertPest);
   end
+end
+
+function toname(playerid,game)
+	for _,playerinfo in pairs(game.Game.Players)do
+		if(playerid == playerinfo.ID)then
+			return playerinfo.DisplayName(nil, false);
+		end
+	end
+	return "Error - Player ID not found. Please report to melwei[PG].";
 end
