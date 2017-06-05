@@ -69,6 +69,7 @@ function Server_AdvanceTurn_End(game,addOrder)
 						end
 					end
 					addOrder(WL.GameOrderEvent.Create(playerID,'Pestilence',nil,PestilenceOrder));
+					PuGD.PestilenceStadium[playerID]=0;
 				end
 			end
 			
