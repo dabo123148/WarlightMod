@@ -175,9 +175,8 @@ function DeclearWar(Player1,Player2)
 		if(Match == false)then
 			local privateGameDatasplit = Mod.PrivateGameData;
 			local num = 1;
-			local Player2 = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 			while(Mod.PrivateGameData.Cantdeclare[num] ~= nil and Mod.PrivateGameData.Cantdeclare[num+1] ~= nil and Mod.PrivateGameData.Cantdeclare[num+1] ~= "")do
-				if(tonumber(Mod.PrivateGameData.Cantdeclare[num]) == order.PlayerID or tonumber(Mod.PrivateGameData.Cantdeclare[num+1]) == order.PlayerID)then
+				if(tonumber(Mod.PrivateGameData.Cantdeclare[num]) == Player1 or tonumber(Mod.PrivateGameData.Cantdeclare[num+1]) == Player1)then
 					if(tonumber(Mod.PrivateGameData.Cantdeclare[num]) == Player2 or tonumber(Mod.PrivateGameData.Cantdeclare[num+1]) == Player2)then
 						Match = true;
 					end
