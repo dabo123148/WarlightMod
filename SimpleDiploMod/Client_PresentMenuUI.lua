@@ -130,7 +130,7 @@ function AcceptPeaceOffer(data)
 	payload.Message = "Accept Peace";
 	payload.TargetPlayerID = data.Spieler;
 	Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)
-				If(returnvalu==nil)then
+				if(returnvalu==nil)then
 					UI.Alert("You are now again in peace with " .. toname(data.Spieler));
 				end
 			end);
