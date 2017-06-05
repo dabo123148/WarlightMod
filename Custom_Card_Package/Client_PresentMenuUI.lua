@@ -1,7 +1,7 @@
 function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
   rootParent=RootParent;
   Game=game;
-  
+  vertPestCard=nil;
   PestCards=Mod.PlayerGameData.PestCards;
   if(PestCards==nil)then
     PestCards=0;
