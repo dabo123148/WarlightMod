@@ -51,11 +51,11 @@ function Server_AdvanceTurn_End(game,addOrder)
 						if terr.OwnerPlayerID==playerID then
 							Count = terr.NumArmies.NumArmies;
 							terrMod2=WL.TerritoryModification.Create(terr.ID);
-							terrMod2.SetArmiesTo=math.max(Count-Mod.Settings.PestilenceStrength,0);
+							terrMod2.SetArmiesTo=math.max(Count-Mod.Settings.PestCardStrength,0);
 							PestilenceOrder[CurrentIndex]=terrMod2;
 							CurrentIndex=CurrentIndex+1;
 			--addOrder(WL.GameOrderEvent.Create(terr.OwnerPlayerID,'Pestilence',{},{terrMod2}));
-							if (Count<=Mod.Settings.PestilenceStrength) and tablelength(terr.NumArmies.SpecialUnits)<1 then
+							if (Count<=Mod.Settings.PestCardStrength) and tablelength(terr.NumArmies.SpecialUnits)<1 then
 						
 								terrMod = WL.TerritoryModification.Create(terr.ID);
 								terrMod.SetOwnerOpt=WL.PlayerID.Neutral;
