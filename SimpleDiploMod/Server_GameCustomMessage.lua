@@ -84,12 +84,12 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		end
 		publicGameData.War[playerID] = remainingwar;
 		Mod.PublicGameData = publicGameData;
-		local privateGameData = Mod.PrivateGameData;
-		if(privateGameData.Cantdeclare == nil)then
-			privateGameData.Cantdeclare = ",";
-		end
-		privateGameData.Cantdeclare = privateGameData.Cantdeclare .. an .. "," .. playerID .. ",";
-		Mod.PrivateGameData = privateGameData;
+		--local privateGameData = Mod.PrivateGameData;
+		--if(privateGameData.Cantdeclare == nil)then
+		--	privateGameData.Cantdeclare = ",";
+		--end
+		--privateGameData.Cantdeclare = privateGameData.Cantdeclare .. an .. "," .. playerID .. ",";
+		--Mod.PrivateGameData = privateGameData;
 	end
 	if(payload.Message == "Request Data")then
 		
