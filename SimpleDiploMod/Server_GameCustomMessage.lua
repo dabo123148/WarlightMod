@@ -26,7 +26,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				rg.Message ='The Offer has been submitted';
 				setReturnTable(rg);
 			else
-				rg.Message ='He has already a pending peace offer by you.';
+				rg.Message ='The player has already a pending peace offer by you.';
 				setReturnTable(rg);
 			end
 		else
@@ -123,4 +123,11 @@ function stringtotable(variable)
 		end
 	end
 	return newtable;
+end
+function tablelength(T)
+	local count = 0;
+	for _,elem in pairs(T)do
+		count = count + 1;
+	end
+	return count;
 end
