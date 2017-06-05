@@ -160,12 +160,12 @@ function toname(playerid,game)
 	for _,playerinfo in pairs(game.ServerGame.Game.Players)do
 		if(playerid == playerinfo.ID)then
 			return tostring(playerid) .. " " .. tostring(playerinfo.ID);
-			local name = playerinfo.DisplayName(nil, false);
-			if(name == nil or name == "")then
-				return "fehler";
-			else
-				return name;
-			end
+			--local name = playerinfo.DisplayName(nil, false);
+			--if(name == nil or name == "")then
+			--	return "fehler";
+			--else
+			--	return name;
+			--end
 		end
 	end
 	return "Error. Please report to dabo1.";
