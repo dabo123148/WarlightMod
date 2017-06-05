@@ -191,7 +191,7 @@ function toname(playerid,game)
 	for _,playerinfo in pairs(game.ServerGame.Game.Players)do
 		if(playerid == playerinfo.ID)then
 			local name = playerinfo.DisplayName(nil, false);
-			if(name == nil or name = "")then
+			if(name == nil or name == "")then
 				return "fehler";
 			else
 				return name;
