@@ -87,9 +87,9 @@ function OpenPendingRequests()
 		--	horz = UI.CreateHorizontalLayoutGroup(root);
 		--	UI.CreateLabel(horz).SetText("Test " .. obj);
 		--end
-		RecentPlayerID=0;
+		RecentPlayerID={};
 		while(peacesplit[num] ~= nil and peacesplit[num+1] ~= nil)do
-			RecentPlayerID=tonumber(peacesplit[num]);
+			RecentPlayerID[num]=tonumber(peacesplit[num]);
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offer by " .. toname(tonumber(peacesplit[num]),Game));
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
@@ -110,7 +110,7 @@ function OpenPendingRequests()
 			else
 				
 				local function Call()
-					AcceptPeaceOffer(RecentPlayerID);
+					AcceptPeaceOffer(RecentPlayerID[num]);
 				end
 				local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept").SetOnClick(Call);
 				
