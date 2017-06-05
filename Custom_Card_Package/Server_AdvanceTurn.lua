@@ -22,6 +22,7 @@ end
 
 function Server_AdvanceTurn_End(game,addOrder)
 	PGD = Mod.PlayerGameData;
+	PuGD = Mod.PublicGameData;
 	for playerID in pairs(game.ServerGame.Game.PlayingPlayers) do
 		--addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 1)',''));
 		if(playerID>50)then
@@ -36,6 +37,40 @@ function Server_AdvanceTurn_End(game,addOrder)
 				end
 				addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece. You now have '..PGD[playerID].PestCards..' Cards and '..PGD[playerID].PestCardPieces..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.',''));
 			end
+		end
+		if(Mod.PublicGameData.PestilenceStadium[playerID]~=nil)then
+			PestTerrs={};
+			if(Mod.PublicGameData.PestilenceStadium[playerID]==1)then
+				PuGD.PestilenceStadium=2;
+			else
+				if(Mod.PublicGameDatamPestilenceStadium[playerID]==2)then
+					standing=game.ServerGame.LatestTurnStanding;
+					CurrentIndex=1;
+					PestilenceOrder={};
+					for _,terr in pairs(standing.Territories) do
+						if terr.OwnerPlayerID==playerID then
+							Count = terr.NumArmies.NumArmies;
+							terrMod2=WL.TerritoryModification.Create(terr.ID);
+							terrMod2.SetArmiesTo=math.max(Count-Mod.Settings.PestilenceStrength,0);
+							PestilenceOrder[CurrentIndex]=terrMod2;
+							CurrentIndex=CurrentIndex+1;
+			--addOrder(WL.GameOrderEvent.Create(terr.OwnerPlayerID,'Pestilence',{},{terrMod2}));
+							if (Count<=Mod.Settings.PestilenceStrength) and tablelength(terr.NumArmies.SpecialUnits)<1 then
+						
+								terrMod = WL.TerritoryModification.Create(terr.ID);
+								terrMod.SetOwnerOpt=WL.PlayerID.Neutral;
+								PestilenceOrder[CurrentIndex]=terrMod;
+								CurrentIndex=CurrentIndex+1;
+				
+				--addOrder(WL.GameOrderEvent.Create(terr.OwnerPlayerID,"Pestilence",{},{terrMod}));
+							end
+			
+						end
+					end
+					addOrder(WL.GameOrderEvent.Create(playerID,'Pestilence',nil,PestilenceOrder));
+				end
+			end
+			
 		end
 	end
 	Mod.PlayerGameData=PGD;
