@@ -48,7 +48,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		local num = 1;
 		local remainingoffers = ",";
 		while(offers[num]~=nil and offers[num+1]~=nil)do
-			if(tonumber(offers[num])==an)then
+			if(tonumber(offers[num])==tonumber(an))then
 				preis = tonumber(offers[num+1]);
 			else
 				remainingoffers = remainingoffers .. offers[num] .. "," .. offers[num+1] .. ",";
@@ -69,7 +69,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		remainingoffers = ",";
 		num = 1;
 		while(offers[num]~=nil and offers[num+1]~=nil)do
-			if(tonumber(offers[num])~=playerID)then
+			if(tonumber(offers[num])~=tonumber(playerID))then
 				remainingoffers = remainingoffers .. offers[num] .. "," .. offers[num+1] .. ",";
 			end
 			num = num + 2;
