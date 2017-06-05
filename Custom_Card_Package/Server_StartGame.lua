@@ -8,7 +8,7 @@ function Server_StartGame(game,standing)
     end
   end
   local publicGameData = Mod.PublicGameData;
-  publicGameData={PestilenceStrengths={}};
+  publicGameData={PestilenceStrengths={},PestilenceStrengthsApplied={}};
   
   Mod.PublicGameData=publicGameData;
   Mod.PlayerGameData = playerGameData;
