@@ -121,7 +121,7 @@ function OpenPendingRequests()
 end
 
 function AcceptPeaceOffer(playerID)
-	UI.Alert(playerID);
+	UI.Alert('Accept Peace Offer Test '..tostring(playerID));
 end
 
 
