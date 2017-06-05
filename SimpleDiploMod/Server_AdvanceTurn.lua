@@ -112,6 +112,9 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		end
 	end
 	RemainingDeclerations = {};
+	local pGameData = Mod.PublicGameData;
+	pGameData.Cantdeclare = nil;
+	Mod.PublicGameData = pGameData;
 	--if(Mod.Settings.SeeAllyTerritories)then
 		--play on every ally a reconnaisance card
 		--for _, player in pairs(AllPlayerIDs)do
