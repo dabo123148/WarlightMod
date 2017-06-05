@@ -111,7 +111,7 @@ function OpenPendingRequests()
 				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You haven't the money to accept this offer.");
 			else
 				local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
-				local locNum={Knopf=button,spieler=tonumber(peacesplit[num]};
+				local locNum={Knopf=button,spieler=tonumber(peacesplit[num])};
 				AllEvilFuncs[num]=function() local InNum = locNum; AcceptPeaceOffer(InNum); end;
 				button.SetOnClick(AllEvilFuncs[num]);
 				
