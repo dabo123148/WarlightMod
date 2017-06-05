@@ -115,8 +115,8 @@ function OpenPendingRequests()
 end
 function execute(func)
 end
-function AcceptorDeny()
-	UI.Alert(button.GetText());
+function AcceptorDeny(knopf)
+	UI.Alert(knopf.GetText());
 end
 function toname(playerid,game)
 	for _,playerinfo in pairs(game.Game.Players)do
