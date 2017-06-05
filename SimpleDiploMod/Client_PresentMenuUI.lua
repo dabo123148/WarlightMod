@@ -83,9 +83,13 @@ function OpenPendingRequests()
 	if(Mod.PlayerGameData.Peaceoffers~=nil)then
 		local peacesplit = stringtotable(Mod.PlayerGameData.Peaceoffers);
 		local num = 1;
+		for _,obj in pairs(peacesplit)do
+			horz = UI.CreateHorizontalLayoutGroup(root);
+			UI.CreateLabel(horz).SetText("Test " .. obj);
+		end
 		while(peacesplit[num] ~= nil)do
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offer by " .. toname(tonumber(peacesplit),Game));
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offer by " .. toname(tonumber(peacesplit[num]),Game));
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			if(peacesplit[num+1] == "0")then
 				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("This Peace Offer is for free");
@@ -93,7 +97,7 @@ function OpenPendingRequests()
 				if(tonumber(peacesplit[num+1]) > 0)then
 					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You need to pay " .. tonumber(peacesplit[num+1]) .. " Coins if you accept");
 				else
-					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("He will pay " .. tonumber(peacesplit[num+1]) .. " Coins if you accept");
+					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("He will pay you " .. tonumber(peacesplit[num+1]) .. " Coins if you accept");
 				end
 			end
 			num = num +2;
