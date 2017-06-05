@@ -96,6 +96,7 @@ function OpenPendingRequests()
 					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("He will pay " .. tonumber(peacesplit[num+1]) .. " Coins if you accept");
 				end
 			end
+			num = num +2;
 		end
 	end
 end
