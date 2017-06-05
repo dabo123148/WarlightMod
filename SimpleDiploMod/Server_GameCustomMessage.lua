@@ -57,7 +57,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		end
 		playerGameData[playerID].Peaceoffers = remainingoffers;
 		
-		local testmg = "";
+		local testmg = {};
 		testmg.Message = remainingoffers;
 		setReturnTable(testmg);
 		
