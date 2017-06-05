@@ -194,7 +194,7 @@ function toname(playerid,game)
 			if(name == nil)then
 				return "fehler";
 			else
-				return name;
+				return tablelength(stringtochararray(name));
 			end
 		end
 	end
