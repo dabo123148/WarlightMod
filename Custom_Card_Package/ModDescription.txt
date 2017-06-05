@@ -1,1 +1,6 @@
-The Army Count on every own Territory will be reduced by the Pestilence Strength after every turn. If there are no armies left, the territory will go neutral. Territories with a commander on it won't go neutral.
+This Mod adds a couple of User-Created Cards. Already added:
+  -Pestilence Card
+    -> Adds Pestilece Cards to the game. A player you play a Pestilence Card on will loose [Pestilence Strength] troops on every Territory in the end of his next! turn. Territories with 0 armies left will go Neutral.
+    
+In development:
+  
