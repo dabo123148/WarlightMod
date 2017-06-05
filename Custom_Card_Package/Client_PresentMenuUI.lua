@@ -37,9 +37,11 @@ end
 function ClearUI()
   if(vertPest~=nil)then
     UI.Destroy(vertPest);
+    vertPest = nil;
   end
-	if(vertPestCard~=nil)then
+  if(vertPestCard~=nil)then
     UI.Destroy(vertPestCard);
+		vertPestCard=nil;
   end
 end
 
