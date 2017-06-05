@@ -51,7 +51,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			if(tonumber(offers[num])==an)then
 				preis = tonumber(offers[num+1]);
 			else
-				remainingoffers = remainingoffers .. offers[num] .. "," .. ofefers[num+1] .. ",";
+				remainingoffers = remainingoffers .. offers[num] .. "," .. offers[num+1] .. ",";
 			end
 			num = num + 2;
 		end
@@ -61,7 +61,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			if(tonumber(offers[num])==playerID)then
 				preis = tonumber(offers[num+1]);
 			else
-				remainingoffers = remainingoffers .. offers[num] .. "," .. ofefers[num+1] .. ",";
+				remainingoffers = remainingoffers .. offers[num] .. "," .. offers[num+1] .. ",";
 			end
 			num = num + 2;
 		end
