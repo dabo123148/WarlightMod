@@ -13,7 +13,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			local num = 1;
 			local match = false;
 			while(existingofferssplit[num] ~=nil)do
-				if(tonumber(existingofferssplit[num]) == target)then
+				if(tonumber(existingofferssplit[num]) == playerID)then
 					match = true;
 				end
 				num=num+2;
