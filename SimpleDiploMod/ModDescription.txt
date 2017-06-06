@@ -5,7 +5,7 @@ War/Peace System(currently working on money for peace):
   -Bomb Card counts as Declearation(depends on settings(comming soon))
   -Spy Card counts as Declearation(depends on settings)(comming soon)
 Allianze System(in combination with War System):
-  -Persons you are allied with declear war on persons, who declear war on you
+  -Players you are allied with declear war on players, who declear war on you
   -You can see the territories of your allies(depends on settings)(comming soon)
 Ingame currency(currently in development):
   -You get money for killing armies and for every turn(number depends on settings)(comming soon)
