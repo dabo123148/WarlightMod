@@ -39,7 +39,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if(InWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID) == true)then
 			else
 				skipThisOrder(WL.ModOrderControl.Skip);
-				--War declaration
 				if(Mod.Settings.AllowAIDeclaration == false or Mod.Settings.AIsdeclearAIs  == false)then
 					local Match1 = false;
 					local Match2 = false;
@@ -91,10 +90,8 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			if(Mod.PublicGameData.War[P1] ~= nil)then
 				local with = Mod.PublicGameData.War[P1] .. tostring(P2) .. ",";
 				publicGameData.War[P1] = with;
-				--addNewOrder(WL.GameOrderEvent.Create(P1, "Test1", nil,{}));
 			else
 				publicGameData.War[P1] = "," .. tostring(P2) .. ",";
-				--addNewOrder(WL.GameOrderEvent.Create(P1, "Test2", nil,{}));
 			end
 			addNewOrder(WL.GameOrderEvent.Create(P1, "Declared war on " .. toname(P2,game), nil,{}));
 			local P3 = P2;
@@ -103,10 +100,8 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			if(Mod.PublicGameData.War[P1] ~= nil)then
 				local with = Mod.PublicGameData.War[P1] .. tostring(P2) .. ",";
 				publicGameData.War[P1] = with;
-				--addNewOrder(WL.GameOrderEvent.Create(P1, "Test3", nil,{}));
 			else
 				publicGameData.War[P1] = "," .. tostring(P2) .. ",";
-				--addNewOrder(WL.GameOrderEvent.Create(P1, "Test4", nil,{}));
 			end
 			Mod.PublicGameData = publicGameData;
 		end
@@ -115,6 +110,12 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	local privateGameData = Mod.PrivateGameData;
 	privateGameData.Cantdeclare = ",";
 	Mod.PrivateGameData = privateGameData;
+	--Giving Money per turn
+	local playerGameData = Mod.PlayerGameData;
+	for _,spieler in pairs(AllPlayerIDs)do
+		playerGameData[spieler].Money = playerGameData[spieler].Money + 20;--Giving Money per turn
+	end
+	Mod.PlayerGameData = playerGameData;
 	--if(Mod.Settings.SeeAllyTerritories)then
 		--play on every ally a reconnaisance card
 		--for _, player in pairs(AllPlayerIDs)do
