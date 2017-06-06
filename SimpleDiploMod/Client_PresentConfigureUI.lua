@@ -44,6 +44,10 @@ function Client_PresentConfigureUI(rootParent)
 	if(BombCardRequireWarinit == nil)then
 		BombCardRequireWarinit = true;
 	end
+	local MoneyPerBoughtArmyinit = Mod.Settings.MoneyPerBoughtArmy;
+	if(MoneyPerBoughtArmyinit == nil)then
+		MoneyPerBoughtArmyinit = true;
+	end
 	local texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('AI Settings');
    	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
@@ -72,7 +76,10 @@ function Client_PresentConfigureUI(rootParent)
 	inputMoneyPerCapturedTerritory = UI.CreateNumberInputField(texthorz).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerCapturedTerritoryinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('Money per captured bonus');
-	inputMoneyPerCapturedBonusinit = UI.CreateNumberInputField(texthorz).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerCapturedBonusinit);
+	inputMoneyPerCapturedBonus = UI.CreateNumberInputField(texthorz).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerCapturedBonusinit);
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	UI.CreateLabel(texthorz).SetText('Money per bought army');
+	inputMoneyPerBoughtArmy = UI.CreateNumberInputField(texthorz).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerBoughtArmyinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('Cards, that Require War');
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
