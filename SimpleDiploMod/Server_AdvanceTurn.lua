@@ -113,7 +113,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	--Giving Money per turn
 	local playerGameData = Mod.PlayerGameData;
 	for _,spieler in pairs(AllPlayerIDs)do
-		error('Spieler : ' .. spieler);
+		error('Spieler : ' .. spieler .. " " ..playerGameData[spieler].Money);
 		playerGameData[spieler].Money = 80;--playerGameData[spieler].Money + 20;--Giving Money per turn
 	end
 	Mod.PlayerGameData = playerGameData;
