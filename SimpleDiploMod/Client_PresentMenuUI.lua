@@ -121,7 +121,7 @@ function OpenPendingRequests()
 				locNumzwei.Spieler = tonumber(peacesplit[num]);
 				locNumzwei.Message = "Decline Peace";
 				AllEvilFuncs[num+1]=function() local InNumzwei = locNumzwei; AcceptPeaceOffer(InNumzwei); end;
-				button.SetOnClick(AllEvilFuncs[num+1]);
+				buttonzwei.SetOnClick(AllEvilFuncs[num+1]);
 				
 			end
 			num = num +2;
