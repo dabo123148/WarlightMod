@@ -113,7 +113,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	end
 	RemainingDeclerations = {};
 	local privateGameData = Mod.PrivateGameData;
-	privateGameData.Cantdeclare = nil;
+	privateGameData.Cantdeclare = ",";
 	Mod.PrivateGameData = privateGameData;
 	--if(Mod.Settings.SeeAllyTerritories)then
 		--play on every ally a reconnaisance card
@@ -177,18 +177,14 @@ function DeclearWar(Player1,Player2)
 		end
 		if(Match == false)then
 			local privateGameDatasplit = stringtotable(Mod.PrivateGameData.Cantdeclare);
-			--error(Mod.PrivateGameData.Cantdeclare);
 			local num = 1;
-			if(Mod.PrivateGameData.Cantdeclare~=nil)then
-				while(privateGameDatasplit[num] ~= nil and privateGameDatasplit[num+1] ~= nil and privateGameDatasplit[num+1] ~= "")do
-					if(tonumber(privateGameDatasplit[num]) == Player1 or tonumber(privateGameDatasplit[num+1]) == Player1)then
-						if(tonumber(privateGameDatasplit[num]) == Player2 or tonumber(privateGameDatasplit[num+1]) == Player2)then
-							Match = true;
-							--error(tonumber(privateGameDatasplit[num]) .." " .. tonumber(privateGameDatasplit[num+1]).. " " .. Player1 .. " " .. Player2);
-						end
+			while(privateGameDatasplit[num] ~= nil and privateGameDatasplit[num+1] ~= nil and privateGameDatasplit[num+1] ~= "")do
+				if(tonumber(privateGameDatasplit[num]) == Player1 or tonumber(privateGameDatasplit[num+1]) == Player1)then
+					if(tonumber(privateGameDatasplit[num]) == Player2 or tonumber(privateGameDatasplit[num+1]) == Player2)then
+						Match = true;
 					end
-					num = num + 2;
 				end
+				num = num + 2;
 			end
 			if(Match == false)then
 				RemainingDeclerations[tablelength(RemainingDeclerations)] = "," .. Player1 .. "," ..Player2;
