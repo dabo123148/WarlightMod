@@ -115,6 +115,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	local privateGameData = Mod.PrivateGameData;
 	privateGameData.Cantdeclare = nil;
 	Mod.PublicGameData = privateGameData;
+	addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, privateGameData.Cantdeclare, nil,{}));
 	--if(Mod.Settings.SeeAllyTerritories)then
 		--play on every ally a reconnaisance card
 		--for _, player in pairs(AllPlayerIDs)do
