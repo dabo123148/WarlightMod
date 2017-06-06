@@ -43,18 +43,23 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(result.IsAttack and game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID ~= WL.PlayerID.Neutral)then
 			if(InWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID) == true)then
 				if(result.IsSuccessful)then
-					local playerGameData = Mod.PlayerGameData;
-					local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 					for _,spieler in pairs(AllPlayerIDs)do
 						if(spieler == order.PlayerID)then
-							playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money+ result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy;
-						end
-						if(spieler == toowner)then
-							playerGameData[toowner].Money = playerGameData[toowner].Money + result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy;
+							playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money+ Mod.Settings.MoneyPerCapturedTerritory;
 						end
 					end
-					Mod.PlayerGameData = playerGameData;
 				end
+				local playerGameData = Mod.PlayerGameData;
+				local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
+				for _,spieler in pairs(AllPlayerIDs)do
+					if(spieler == order.PlayerID)then
+						playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money+ result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy;
+					end
+					if(spieler == toowner)then
+						playerGameData[toowner].Money = playerGameData[toowner].Money + result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy;
+					end
+				end
+				Mod.PlayerGameData = playerGameData;
 			else
 				skipThisOrder(WL.ModOrderControl.Skip);
 				if(Mod.Settings.AllowAIDeclaration == false or Mod.Settings.AIsdeclearAIs  == false)then
