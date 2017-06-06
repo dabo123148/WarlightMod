@@ -52,10 +52,10 @@ function Client_PresentConfigureUI(rootParent)
 	AIsdeclearAIsinitcheckbox = UI.CreateCheckBox(texthorz).SetText('Allow AIs to declare war on AIs').SetIsChecked(AIsdeclearAIsinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('Allianze Settings');
-	horz = UI.CreateHorizontalLayoutGroup(rootParent);
-	SeeAllyTerritoriesCheckbox = UI.CreateCheckBox(horz).SetText('Allow Players to see the territories of their allies').SetIsChecked(SeeAllyTerritoriesinit);
-	horz = UI.CreateHorizontalLayoutGroup(rootParent);
-	PublicAlliesCheckbox = UI.CreateCheckBox(horz).SetText('Allow everyone to see every ally').SetIsChecked(PublicAlliesinit);
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	SeeAllyTerritoriesCheckbox = UI.CreateCheckBox(texthorz).SetText('Allow Players to see the territories of their allies').SetIsChecked(SeeAllyTerritoriesinit);
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	PublicAlliesCheckbox = UI.CreateCheckBox(texthorz).SetText('Allow everyone to see every ally').SetIsChecked(PublicAlliesinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('Shop System');
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
@@ -76,7 +76,7 @@ function Client_PresentConfigureUI(rootParent)
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('Cards, that Require War');
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
-	inputSanctionCardRequireWar = UI.CreateCheckBox(horz).SetText('Sanction Card').SetIsChecked(SanctionCardRequireWarinit);
+	inputSanctionCardRequireWar = UI.CreateCheckBox(texthorz).SetText('Sanction Card').SetIsChecked(SanctionCardRequireWarinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
-	inputBombCardRequireWar = UI.CreateCheckBox(horz).SetText('Bomb Card').SetIsChecked(BombCardRequireWarinit);
+	inputBombCardRequireWar = UI.CreateCheckBox(texthorz).SetText('Bomb Card').SetIsChecked(BombCardRequireWarinit);
 end
