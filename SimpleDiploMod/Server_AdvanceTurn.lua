@@ -177,6 +177,7 @@ function DeclearWar(Player1,Player2)
 		end
 		if(Match == false)then
 			local privateGameDatasplit = stringtotable(Mod.PrivateGameData.Cantdeclare);
+			error(Mod.PrivateGameData.Cantdeclare);
 			local num = 1;
 			if(Mod.PrivateGameData.Cantdeclare~=nil)then
 				while(privateGameDatasplit[num] ~= nil and privateGameDatasplit[num+1] ~= nil and privateGameDatasplit[num+1] ~= "")do
