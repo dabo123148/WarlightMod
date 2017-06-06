@@ -1,0 +1,6 @@
+This Mod adds:
+War/Peace System(currently working on money for peace)
+Allianze System(in combination with War System)
+Ingame currency(currently in development)
+Tradesystem(comming soon)
+AIs for Diplos(complete)
