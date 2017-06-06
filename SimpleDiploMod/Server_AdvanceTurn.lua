@@ -26,6 +26,11 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 					Match = true;
 				end
 			end
+			for _,knownAI in pairs(knownAIs)do
+				if(CheckingID == knownAI)then
+					Match = true;
+				end
+			end
 			if(Match == false)then
 				AllPlayerIDs[tablelength(AllPlayerIDs)] = CheckingID;
 			end
