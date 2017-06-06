@@ -183,7 +183,7 @@ function DeclearWar(Player1,Player2)
 					if(tonumber(privateGameDatasplit[num]) == Player1 or tonumber(privateGameDatasplit[num+1]) == Player1)then
 						if(tonumber(privateGameDatasplit[num]) == Player2 or tonumber(privateGameDatasplit[num+1]) == Player2)then
 							--Match = true;
-							error(tonumber(privateGameDatasplit[num]) .." " .. tonumber(privateGameDatasplit[num+1]).. " " .. Player1 .. " " Player2);
+							error(tonumber(privateGameDatasplit[num]) .." " .. tonumber(privateGameDatasplit[num+1]).. " " .. Player1 .. " " .. Player2);
 						end
 					end
 					num = num + 2;
