@@ -89,7 +89,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			DeclearWar(order.PlayerID,order.SanctionedPlayerID);
 		end
 	end
-	if(order.proxyType == "GameOrderPlayCardSanctions")then
+	if(order.proxyType == "GameOrderPlayCardBomb")then
 		if(InWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID) == false)then
 			skipThisOrder(WL.ModOrderControl.Skip);
 			DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID);
