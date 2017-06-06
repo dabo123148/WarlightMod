@@ -112,10 +112,14 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	Mod.PrivateGameData = privateGameData;
 	--Giving Money per turn
 	local playerGameData = Mod.PlayerGameData;
+	local spielerliste = "";
+	
 	for _,spieler in pairs(AllPlayerIDs)do
-		error('Spieler : ' .. spieler .. " " ..playerGameData[spieler].Money);
-		playerGameData[spieler].Money = 80;--playerGameData[spieler].Money + 20;--Giving Money per turn
+		spielerliste = spielerliste .. " " .. spieler;
+		--error('Spieler : ' .. spieler .. " " ..playerGameData[spieler].Money);
+		--playerGameData[spieler].Money = 80;--playerGameData[spieler].Money + 20;--Giving Money per turn
 	end
+	error(spielerliste);
 	Mod.PlayerGameData = playerGameData;
 	--if(Mod.Settings.SeeAllyTerritories)then
 		--play on every ally a reconnaisance card
