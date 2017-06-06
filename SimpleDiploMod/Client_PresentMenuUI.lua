@@ -271,6 +271,7 @@ function PlayerButton(player)
 end
 function DeleteUI()
 	--horz = UI.CreateHorizontalLayoutGroup(root);
+	moneyobj.SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 	if(textelem ~= nil)then
 		UI.Destroy(textelem);
 		textelem = nil;
