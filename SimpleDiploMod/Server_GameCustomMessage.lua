@@ -30,8 +30,32 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				setReturnTable(rg);
 			end
 		else
+			local publicGameData = Mod.PublicGameData;
+			local remainingwar = ",";
+			local withtable = stringtotable(Mod.PublicGameData.War[target]);
+			for _,with in pairs(withtable) do
+				if(tonumber(with)~=playerID)then
+					remainingwar = remainingwar .. with .. ",";
+				end
+			end
+			publicGameData.War[target] = remainingwar;
+			remainingwar = ",";
+			local withtable = stringtotable(Mod.PublicGameData.War[playerID]);
+			for _,with in pairs(withtable) do
+				if(tonumber(with)~=target)then
+					remainingwar = remainingwar .. with .. ",";
+				end
+			end
+			publicGameData.War[playerID] = remainingwar;
+			Mod.PublicGameData = publicGameData;
+			local privateGameData = Mod.PrivateGameData;
+			if(privateGameData.Cantdeclare == nil)then
+				privateGameData.Cantdeclare = ",";
+			end
+			privateGameData.Cantdeclare = privateGameData.Cantdeclare .. target .. "," .. playerID .. ",";
+			Mod.PrivateGameData = privateGameData;
 			local rg = {};
-			rg.Message = 'Peace to AI';
+			rg.Message = 'The AI accepted your offer';
 			setReturnTable(rg);
 			--accept peace cause ai
 		end
