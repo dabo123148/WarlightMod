@@ -116,11 +116,11 @@ function OpenPendingRequests()
 				--= {Knopf=button,spieler=tonumber(peacesplit[num])};
 				AllEvilFuncs[num]=function() local InNum = locNum; AcceptPeaceOffer(InNum); end;
 				button.SetOnClick(AllEvilFuncs[num]);
-				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
-				locNum= {};
-				locNum.Spieler = tonumber(peacesplit[num]);
-				locNum.Message = "Decline Peace";
-				AllEvilFuncs[num+1]=function() local InNum = locNum; AcceptPeaceOffer(InNum); end;
+				local buttonzwei = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
+				local locNumzwei= {};
+				locNumzwei.Spieler = tonumber(peacesplit[num]);
+				locNumzwei.Message = "Decline Peace";
+				AllEvilFuncs[num+1]=function() local InNumzwei = locNumzwei; AcceptPeaceOffer(InNumzwei); end;
 				button.SetOnClick(AllEvilFuncs[num+1]);
 				
 			end
