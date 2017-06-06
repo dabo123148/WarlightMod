@@ -176,18 +176,20 @@ function DeclearWar(Player1,Player2)
 			end
 		end
 		if(Match == false)then
-			local privateGameDatasplit = stringtotable(Mod.PrivateGameData.Cantdeclare);
-			local num = 1;
-			while(privateGameDatasplit[num] ~= nil and privateGameDatasplit[num+1] ~= nil and privateGameDatasplit[num+1] ~= "")do
-				if(tonumber(privateGameDatasplit[num]) == Player1 or tonumber(privateGameDatasplit[num+1]) == Player1)then
-					if(tonumber(privateGameDatasplit[num]) == Player2 or tonumber(privateGameDatasplit[num+1]) == Player2)then
-						Match = true;
+			if(Mod.PrivateGameData.Cantdeclare ~= nil)then
+				local privateGameDatasplit = stringtotable(Mod.PrivateGameData.Cantdeclare);
+				local num = 1;
+				while(privateGameDatasplit[num] ~= nil and privateGameDatasplit[num+1] ~= nil and privateGameDatasplit[num+1] ~= "")do
+					if(tonumber(privateGameDatasplit[num]) == Player1 or tonumber(privateGameDatasplit[num+1]) == Player1)then
+						if(tonumber(privateGameDatasplit[num]) == Player2 or tonumber(privateGameDatasplit[num+1]) == Player2)then
+							Match = true;
+						end
 					end
+					num = num + 2;
 				end
-				num = num + 2;
-			end
-			if(Match == false)then
-				RemainingDeclerations[tablelength(RemainingDeclerations)] = "," .. Player1 .. "," ..Player2;
+				if(Match == false)then
+					RemainingDeclerations[tablelength(RemainingDeclerations)] = "," .. Player1 .. "," ..Player2;
+				end
 			end
 		end
 	else
