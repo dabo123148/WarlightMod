@@ -112,9 +112,16 @@ function OpenPendingRequests()
 				local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
 				local locNum= {};
 				locNum.Spieler = tonumber(peacesplit[num]);
+				locNum.Message = "Accept Peace";
 				--= {Knopf=button,spieler=tonumber(peacesplit[num])};
 				AllEvilFuncs[num]=function() local InNum = locNum; AcceptPeaceOffer(InNum); end;
 				button.SetOnClick(AllEvilFuncs[num]);
+				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
+				locNum= {};
+				locNum.Spieler = tonumber(peacesplit[num]);
+				locNum.Message = "Decline Peace";
+				AllEvilFuncs[num+1]=function() local InNum = locNum; AcceptPeaceOffer(InNum); end;
+				button.SetOnClick(AllEvilFuncs[num+1]);
 				
 			end
 			num = num +2;
@@ -124,7 +131,7 @@ end
 
 function AcceptPeaceOffer(data)
 	local payload = {};
-	payload.Message = "Accept Peace";
+	payload.Message = data.Message;
 	payload.TargetPlayerID = data.Spieler;
 	Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	
 				if(returnvalue.Message == 0)then
