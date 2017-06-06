@@ -42,6 +42,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == "GameOrderAttackTransfer")then
 		if(result.IsAttack and game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID ~= WL.PlayerID.Neutral)then
 			if(InWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID) == true)then
+				local playerGameData = Mod.PlayerGameData;
 				if(result.IsSuccessful)then
 					for _,spieler in pairs(AllPlayerIDs)do
 						if(spieler == order.PlayerID)then
@@ -49,7 +50,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						end
 					end
 				end
-				local playerGameData = Mod.PlayerGameData;
 				local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 				for _,spieler in pairs(AllPlayerIDs)do
 					if(spieler == order.PlayerID)then
