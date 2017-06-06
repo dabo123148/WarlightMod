@@ -25,7 +25,7 @@ end
 function PlayPestCard()
   ClearUI();
   vertPestCard=UI.CreateVerticalLayoutGroup(rootParent);
-  PestCardText0=UI.CreateLabel(vertPestCard).SetText('Select the player you want to play the Card on: ');
+  PestCardText0=UI.CreateLabel(vertPestCard).SetText('Select the player you want to play the Card on. Players who are already pestilenced will not be shown. Dont play 2 cards on one player, they are not stackable.');
   local Pestfuncs={};
   for playerID in pairs(Game.Game.Players) do
 		
