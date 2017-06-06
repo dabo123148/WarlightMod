@@ -103,14 +103,54 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	end
 	if(order.proxyType == "GameOrderPlayCardSanctions" and Mod.Settings.SanctionCardRequireWar)then
 		if(InWar(order.PlayerID,order.SanctionedPlayerID) == false)then
+			local Match1 = false;
+			local Match2 = false;
+			for _, AI in pairs(AllAIs)do
+				if(order.PlayerID == AI)then
+					Match1 = true;
+				end
+				if(order.SanctionedPlayerID == AI)then
+					Match2 = true;
+				end
+			end
+			if(Match1 == false)then
+				DeclearWar(order.PlayerID,order.SanctionedPlayerID);
+			else
+				if(Mod.Settings.AllowAIDeclaration and Match2 == false)then
+					DeclearWar(order.PlayerID,order.SanctionedPlayerID);
+				else
+					if(Mod.Settings.AIsdeclearAIs and Match2 == true)then
+						DeclearWar(order.PlayerID,order.SanctionedPlayerID);
+					end
+				end
+			end
 			skipThisOrder(WL.ModOrderControl.Skip);
-			DeclearWar(order.PlayerID,order.SanctionedPlayerID);
 		end
 	end
 	if(order.proxyType == "GameOrderPlayCardBomb" and Mod.Settings.BombCardRequireWar)then
 		if(InWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID) == false)then
+			local Match1 = false;
+			local Match2 = false;
+			for _, AI in pairs(AllAIs)do
+				if(order.PlayerID == AI)then
+					Match1 = true;
+				end
+				if(game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID == AI)then
+					Match2 = true;
+				end
+			end
+			if(Match1 == false)then
+				DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID);
+			else
+				if(Mod.Settings.AllowAIDeclaration and Match2 == false)then
+					DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID);
+				else
+					if(Mod.Settings.AIsdeclearAIs and Match2 == true)then
+						DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID);
+					end
+				end
+			end
 			skipThisOrder(WL.ModOrderControl.Skip);
-			DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID);
 		end
 	end
 end
