@@ -78,7 +78,7 @@ function Client_PresentConfigureUI(rootParent)
 	UI.CreateLabel(texthorz).SetText('Money per captured bonus');
 	inputMoneyPerCapturedBonus = UI.CreateNumberInputField(texthorz).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerCapturedBonusinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
-	UI.CreateLabel(texthorz).SetText('Money per bought army');
+	UI.CreateLabel(texthorz).SetText('Price per army');
 	inputMoneyPerBoughtArmy = UI.CreateNumberInputField(texthorz).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerBoughtArmyinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('Cards, that Require War');
