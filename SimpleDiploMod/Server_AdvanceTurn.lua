@@ -84,6 +84,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 	end
 	if(order.proxyType == "GameOrderPlayCardSanctions")then
+		error(order.PlayerID .. " " .. order.SanctionedPlayerID);
 		if(IsWar(order.PlayerID,order.SanctionedPlayerID) == false)then
 			skipThisOrder(WL.ModOrderControl.Skip);
 			DeclearWar(order.PlayerID,order.SanctionedPlayerID);
