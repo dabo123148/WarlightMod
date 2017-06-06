@@ -42,7 +42,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == "GameOrderAttackTransfer")then
 		if(result.IsAttack and game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID ~= WL.PlayerID.Neutral)then
 			if(InWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID) == true)then
-				if(order.IsSuccessful)then
+				if(result.IsSuccessful)then
 					local playerGameData = Mod.PlayerGameData;
 					local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 					playerGameData[order.PlayerID].Money = playerGameData[order.PlayerID].Money + result.AttackingArmiesKilled*Mod.Settings.MoneyPerKilledArmy;
