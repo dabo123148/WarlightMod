@@ -83,6 +83,18 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 	end
+	if(order.proxyType == "GameOrderPlayCardSanctions")
+		if(IsWar(order.PlayerID,order.SanctionedPlayerID) == false)then
+			skipThisOrder(WL.ModOrderControl.Skip);
+			DeclearWar(order.PlayerID,order.SanctionedPlayerID);
+		end
+	end
+	if(order.proxyType == "GameOrderPlayCardSanctions")
+		if(IsWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID) == false)then
+			skipThisOrder(WL.ModOrderControl.Skip);
+			DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID);
+		end
+	end
 end
 function Server_AdvanceTurn_End (game,addNewOrder)
 	--add new Allys
