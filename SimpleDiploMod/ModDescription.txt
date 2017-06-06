@@ -2,6 +2,7 @@ This Mod adds:
 War/Peace System(currently working on money for peace):
   -After you declared War on someone, you have to wait one turn before you can attack him
   -Sanction Card counts as Declearation(depends on settings(comming soon))
+  -Bomb Card counts as Declearation(depends on settings(comming soon))
   -Spy Card counts as Declearation(depends on settings)(comming soon)
 Allianze System(in combination with War System):
   -Persons you are allied with declear war on persons, who declear war on you
