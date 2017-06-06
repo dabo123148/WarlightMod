@@ -42,6 +42,13 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == "GameOrderAttackTransfer")then
 		if(result.IsAttack and game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID ~= WL.PlayerID.Neutral)then
 			if(InWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID) == true)then
+				if(order.IsSuccessful)then
+					local playerGameData = Mod.PlayerGameData;
+					local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
+					playerGameData[order.PlayerID].Money = playerGameData[order.PlayerID].Money + result.AttackingArmiesKilled*Mod.Settings.MoneyPerKilledArmy;
+					playerGameData[toowner].Money = playerGameData[toowner].Money + result.DefendingArmiesKilled*Mod.Settings.MoneyPerKilledArmy;
+					Mod.PlayerGameData = playerGameData;
+				end
 			else
 				skipThisOrder(WL.ModOrderControl.Skip);
 				if(Mod.Settings.AllowAIDeclaration == false or Mod.Settings.AIsdeclearAIs  == false)then
@@ -83,13 +90,13 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 	end
-	if(order.proxyType == "GameOrderPlayCardSanctions")then
+	if(order.proxyType == "GameOrderPlayCardSanctions" and Mod.Settings.SanctionCardRequireWar)then
 		if(InWar(order.PlayerID,order.SanctionedPlayerID) == false)then
 			skipThisOrder(WL.ModOrderControl.Skip);
 			DeclearWar(order.PlayerID,order.SanctionedPlayerID);
 		end
 	end
-	if(order.proxyType == "GameOrderPlayCardBomb")then
+	if(order.proxyType == "GameOrderPlayCardBomb" and Mod.Settings.BombCardRequireWar)then
 		if(InWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID) == false)then
 			skipThisOrder(WL.ModOrderControl.Skip);
 			DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID);
@@ -130,7 +137,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	--Giving Money per turn
 	local playerGameData = Mod.PlayerGameData;
 	for _,spieler in pairs(AllPlayerIDs)do
-		playerGameData[spieler].Money = playerGameData[spieler].Money + 20;--Giving Money per turn
+		playerGameData[spieler].Money = playerGameData[spieler].Money + Mod.Settings.MoneyPerTurn;--Giving Money per turn
 	end
 	Mod.PlayerGameData = playerGameData;
 	--if(Mod.Settings.SeeAllyTerritories)then
