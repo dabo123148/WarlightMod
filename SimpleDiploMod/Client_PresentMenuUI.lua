@@ -137,7 +137,11 @@ function AcceptPeaceOffer(data)
 				if(returnvalue.Message == 0)then
 					UI.Alert("I am sorry, but " .. toname(data.Spieler,Game) .. " hasn't the money to pay you");
 				else
-					UI.Alert("You are now again in peace with " .. toname(data.Spieler,Game));
+					if(data.Message == "Decline Peace")then
+						UI.Alert('You declined " .. toname(data.Spieler,Game) .. " Peace Offer";
+					else
+						UI.Alert("You are now again in peace with " .. toname(data.Spieler,Game));
+					end
 				end
 			end);
 	OpenPendingRequests();
@@ -148,12 +152,7 @@ function AcceptorDeny(knopf)
 	UI.Alert(knopf.GetText());
 end
 function toname(playerid,game)
-	for _,playerinfo in pairs(game.Game.Players)do
-		if(playerid == playerinfo.ID)then
-			return playerinfo.DisplayName(nil, false);
-		end
-	end
-	return "Error. Please report to dabo1.";
+	return game.Game.Players[playerid].DisplayName(nil, false);
 end
 function Openshop(rootParent)
 	--DeleteUI();
