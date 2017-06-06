@@ -41,6 +41,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		setReturnTable(rg);
   	end
 	if(payload.Message == "Accept Peace" or payload.Message == "Decline Peace")then
+		error('Aufgerufen');
 		local playerGameData = Mod.PlayerGameData;
 		local an = payload.TargetPlayerID;
 		local preis = 0;
@@ -102,6 +103,8 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			end
 			privateGameData.Cantdeclare = privateGameData.Cantdeclare .. an .. "," .. playerID .. ",";
 			Mod.PrivateGameData = privateGameData;
+		else
+			Mod.PlayerGameData=playerGameData;
 		end
 	end
 	if(payload.Message == "Request Data")then
