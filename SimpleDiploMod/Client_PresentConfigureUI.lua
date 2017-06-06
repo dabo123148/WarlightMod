@@ -46,7 +46,7 @@ function Client_PresentConfigureUI(rootParent)
 	end
 	local MoneyPerBoughtArmyinit = Mod.Settings.MoneyPerBoughtArmy;
 	if(MoneyPerBoughtArmyinit == nil)then
-		MoneyPerBoughtArmyinit = true;
+		MoneyPerBoughtArmyinit = 2;
 	end
 	local texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('AI Settings');
