@@ -21,7 +21,6 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			local rg = {};
 			if(match == false)then
 				playerGameData[target] = {Peaceoffers=existingpeaceoffers .. playerID .. "," .. preis .. ",",Money=Mod.PlayerGameData[target].Money};
-				print(playerGameData[target].Peaceoffers);
 				Mod.PlayerGameData=playerGameData;
 				rg.Message ='The Offer has been submitted';
 				setReturnTable(rg);
