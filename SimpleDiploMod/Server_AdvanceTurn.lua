@@ -187,9 +187,9 @@ function DeclearWar(Player1,Player2)
 					end
 					num = num + 2;
 				end
-				if(Match == false)then
-					RemainingDeclerations[tablelength(RemainingDeclerations)] = "," .. Player1 .. "," ..Player2;
-				end
+			end
+			if(Match == false)then
+				RemainingDeclerations[tablelength(RemainingDeclerations)] = "," .. Player1 .. "," ..Player2;
 			end
 		end
 	else
