@@ -46,8 +46,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					local playerGameData = Mod.PlayerGameData;
 					local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 					local newmoney = tonumber(result.AttackingArmiesKilled.NumArmies)*tonumber(Mod.Settings.MoneyPerKilledArmy);
-					
-					error("Test" ..Mod.PlayerGameData[order.PlayerID].Money);
 					local currentmoney = Mod.PlayerGameData[order.PlayerID].Money;
 					newmoney = newmoney+currentmoney;
 					playerGameData[order.PlayerID].Money = newmoney;
