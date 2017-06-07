@@ -29,7 +29,10 @@ function OpenOfferPeace()
 	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Offer peace to: ");
 	TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
-	commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Offer").SetOnClick(commitofferpeace);
+	UI.CreateLabel(horzobjlist[1]).SetText('How many money are you willing to pay for peace');
+	Moneyforpeace = UI.CreateNumberInputField(horzobjlist[1]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
+	commitbutton = UI.CreateButton(horzobjlist[3]).SetText("Offer").SetOnClick(commitofferpeace);
 end
 function commitofferpeace()
 	local offerto = TargetPlayerBtn.GetText();
