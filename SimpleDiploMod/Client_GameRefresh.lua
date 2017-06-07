@@ -31,9 +31,11 @@ function Client_GameRefresh(game)
 	if(Nachricht ~= "")then
 		UI.Alert(Nachricht);
 	end
-	local payload = {};
-	payload.Message = "Read";
-	game.SendGameCustomMessage("Sending read confirmation...", payload, function(returnvalue)end);
+	if(Mod.PlayerGameData.NeueNachrichten ~= nil and Mod.PlayerGameData.NeueNachrichten ~= "")then
+		local payload = {};
+		payload.Message = "Read";
+		game.SendGameCustomMessage("Sending read confirmation...", payload, function(returnvalue)end);
+	end
 end
 function toname(playerid,game)
 	return game.Game.Players[tonumber(playerid)].DisplayName(nil, false);
