@@ -1,5 +1,10 @@
 function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	print('Custom Message');
+	if(payload.Message == "Read")then
+		local playerGameData = Mod.PlayerGameData;
+		playerGameData[playerID].NeueNachrichten = nil;
+		Mod.PlayerGameData = playerGameData;
+	end
  	if(payload.Message == "Peace")then
 		local target = payload.TargetPlayerID;
 		local preis = payload.Preis;
