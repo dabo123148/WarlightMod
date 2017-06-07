@@ -157,6 +157,7 @@ end
 function Server_AdvanceTurn_End (game,addNewOrder)
 	--add new Allys
 	--add new war decleartions
+	local playerGameData = Mod.PlayerGameData;
 	if(RemainingDeclerations ~= nil)then
 		for _,newwar in pairs(RemainingDeclerations)do
 			local P1 = tonumber(stringtotable(newwar)[1]);
@@ -179,6 +180,16 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				publicGameData.War[P1] = "," .. tostring(P2) .. ",";
 			end
 			Mod.PublicGameData = publicGameData;
+			for _, spieler in pairs(AllPlayerIDs)do
+				if(playerGameData[spieler].NeueNachrichten==nil)then
+					playerGameData[spieler].NeueNachrichten = ",";
+				end
+				if(playerGameData[spieler].Nachrichten==nil)then
+					playerGameData[spieler].Nachrichten = ",";
+				end
+				playerGameData[spieler].NeueNachrichten = playerGameData[spieler].NeueNachrichten ..  P2 .. ",0," .. game.Game.NumberOfTurns ..",".. P1 .. ",";
+				playerGameData[spieler].Nachrichten = playerGameData[spieler].Nachrichten ..  P2 .. ",0,".. game.Game.NumberOfTurns.."," .. P1 .. ",";
+			end
 		end
 	end
 	RemainingDeclerations = {};
@@ -186,7 +197,6 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	privateGameData.Cantdeclare = ",";
 	Mod.PrivateGameData = privateGameData;
 	--Giving Money per turn
-	local playerGameData = Mod.PlayerGameData;
 	for _,spieler in pairs(AllPlayerIDs)do
 		playerGameData[spieler].Money = playerGameData[spieler].Money + Mod.Settings.MoneyPerTurn;--Giving Money per turn
 	end
