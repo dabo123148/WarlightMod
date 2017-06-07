@@ -16,7 +16,7 @@ function Client_PresentConfigureUI(rootParent)
 	if initialValue2 == nil then initialValue2 = 25; end
 
 	horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
-	UI.CreateLabel(horz1).SetText('Connected Territory Damage in %');
+	UI.CreateLabel(horz1).SetText('Connected Territories Damage in %');
    	inputConnectedTerritoryDamage = UI.CreateNumberInputField(horz1)
 		.SetSliderMinValue(0)
 		.SetSliderMaxValue(100)
@@ -27,13 +27,13 @@ function Client_PresentConfigureUI(rootParent)
 	if initFriendlyfire == nil then initFriendlyfire = true; end
 	
 	horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
-  	InputFriendlyfire = UI.CreateCheckBox(horz1).SetText('Can harm itself').SetIsChecked(initFriendlyfire);
+  	InputFriendlyfire = UI.CreateCheckBox(horz1).SetText('Can harm yourself').SetIsChecked(initFriendlyfire);
 	
 	local initAfterDeployment = Mod.Settings.Friendlyfire;
 	if initAfterDeployment == nil then initAfterDeployment = true; end
 	
 	horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
-  	InputAfterDeployment = UI.CreateCheckBox(horz1).SetText('After Deployment but before any option of changing the owner').SetOnValueChanged(OnClickAfterDeployment);
+  	InputAfterDeployment = UI.CreateCheckBox(horz1).SetText('After Deployment but before Gift and Blockade Cards').SetOnValueChanged(OnClickAfterDeployment);
 	horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
   	InputBeforeDeployment = UI.CreateCheckBox(horz1).SetText('Before Deployment').SetOnValueChanged(OnClickBeforeDeployment);
 	if(initAfterDeployment == true)then
