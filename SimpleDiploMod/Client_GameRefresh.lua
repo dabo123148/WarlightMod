@@ -29,7 +29,7 @@ function Client_GameRefresh(game)
     		end
   	end
 	if(Nachricht ~= "")then
-		UI.Alert('Nachricht');
+		UI.Alert(Nachricht);
 	end
 end
 function toname(playerid,game)
