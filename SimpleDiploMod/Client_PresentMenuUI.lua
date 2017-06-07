@@ -30,24 +30,52 @@ function OpenOfferPeace()
 	TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[1]).SetText('How many money are you willing to pay for peace');
-	Moneyforpeace = UI.CreateNumberInputField(horzobjlist[1]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+	Moneyyoupayforpeace = UI.CreateNumberInputField(horzobjlist[1]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+	horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
+	UI.CreateLabel(horzobjlist[2]).SetText('How many money do you want for peace');
+	Moneyyougetforpeace = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
 	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
-	commitbutton = UI.CreateButton(horzobjlist[3]).SetText("Offer").SetOnClick(commitofferpeace);
+	UI.CreateLabel(horzobjlist[3]).SetText('How many turns do you want to last your peace');
+	peaceduration = UI.CreateNumberInputField(horzobjlist[3]).SetSliderMinValue(0).SetSliderMaxValue(10).SetValue(1);
+	horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
+	commitbutton = UI.CreateButton(horzobjlist[4]).SetText("Offer").SetOnClick(commitofferpeace);
 end
 function commitofferpeace()
 	local offerto = TargetPlayerBtn.GetText();
-	local myID = Game.Us.ID;
 	local Preis = 0;
+	local duration = peaceduration.GetValue();
+	if(Moneyyoupayforpeace.GetValue() ~= 0)then
+		Preis = -Moneyyoupayforpeace.GetValue();
+	else
+		Preis = Moneyyougetforpeace.GetValue();
+	end
 	if(offerto == "Select player...")then
 		UI.Alert('You need to choose a player first');
 	else
-		local payload = {};
-		payload.Message = "Peace";
-		payload.TargetPlayerID = getplayerid(offerto,Game);
-		payload.Preis = Preis;
-		Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
-			UI.Alert(returnvalue.Message);
-			end);
+		if(Moneyyoupayforpeace.GetValue() ~= 0 and Moneyyougetforpeace.GetValue() ~= 0)then
+			UI.Alert('You cannot want money and pay money for peace at the same time');
+		else
+			if(Moneyyoupayforpeace.GetValue() < 0 or Moneyyougetforpeace.GetValue() < 0)then
+				UI.Alert('Money can not be negative');
+			else
+				if(duration < 1)then
+					UI.Alert('Duration must be at least 1 Turn');
+				else
+					if(duration > 10)then
+						UI.Alert('To prevent this game from getting stuck, peace can not last longer than 10 turns');
+					else
+						local payload = {};
+						payload.Message = "Peace";
+						payload.TargetPlayerID = getplayerid(offerto,Game);
+						payload.Preis = Preis;
+						payload.duration = duration;
+						Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
+							UI.Alert(returnvalue.Message);
+							end);
+					end
+				end
+			end
+		end
 	end
 end
 function TargetPlayerClickedOfferPeace()
