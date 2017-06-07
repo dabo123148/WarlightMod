@@ -26,19 +26,21 @@ end
 function OpenOfferPeace()
 	DeleteUI();
 	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Offer peace to: ");
-	TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
+	textelem = UI.CreateLabel(horzobjlist[0]).SetText("AIs won't take your money or pay you money");
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
-	UI.CreateLabel(horzobjlist[1]).SetText('How many money are you willing to pay for peace');
-	Moneyyoupayforpeace = UI.CreateNumberInputField(horzobjlist[1]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+	textelem = UI.CreateLabel(horzobjlist[1]).SetText("Offer peace to: ");
+	TargetPlayerBtn = UI.CreateButton(horzobjlist[1]).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
 	horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
-	UI.CreateLabel(horzobjlist[2]).SetText('How many money do you want for peace');
-	Moneyyougetforpeace = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+	UI.CreateLabel(horzobjlist[2]).SetText('How many money are you willing to pay for peace');
+	Moneyyoupayforpeace = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
 	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
-	UI.CreateLabel(horzobjlist[3]).SetText('How many turns do you want to last your peace');
-	peaceduration = UI.CreateNumberInputField(horzobjlist[3]).SetSliderMinValue(0).SetSliderMaxValue(10).SetValue(1);
+	UI.CreateLabel(horzobjlist[3]).SetText('How many money do you want for peace');
+	Moneyyougetforpeace = UI.CreateNumberInputField(horzobjlist[3]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
 	horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
-	commitbutton = UI.CreateButton(horzobjlist[4]).SetText("Offer").SetOnClick(commitofferpeace);
+	UI.CreateLabel(horzobjlist[4]).SetText('How many turns do you want to last your peace');
+	peaceduration = UI.CreateNumberInputField(horzobjlist[4]).SetSliderMinValue(0).SetSliderMaxValue(10).SetValue(1);
+	horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
+	commitbutton = UI.CreateButton(horzobjlist[5]).SetText("Offer").SetOnClick(commitofferpeace);
 end
 function commitofferpeace()
 	local offerto = TargetPlayerBtn.GetText();
