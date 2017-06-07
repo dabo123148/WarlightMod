@@ -1,20 +1,39 @@
 function Client_GameRefresh(game)
-  if(Mod.PlayerGameData.Peaceoffers~=nil)then
-    if(tablelength(stringtotable(Mod.PlayerGameData.Peaceoffers))>0)then
-    	UI.Alert('You have ' .. tablelength(stringtotable(Mod.PlayerGameData.Peaceoffers))/2-0.5 .. ' open peace requests');
-	--UI.Alert(Mod.PlayerGameData.Peaceoffers);
-    end
-  end
-  if(Mod.PlayerGameData.Allyoffers~=nil)then
-    if(tablelength(stringtotable(Mod.PlayerGameData.Allyoffers))>0)then
-      UI.Alert('You have ' .. tablelength(stringtotable(Mod.PlayerGameData.Allyoffers)) .. ' open ally requests');
-    end
-  end
-  if(Mod.PlayerGameData.PendingTradements~=nil)then
-    if(tablelength(PendingTradements)>0)then
-      UI.Alert('You have ' .. tablelength(PendingTradements) .. ' open tradement requests');
-    end
-  end
+	local Nachricht = "";
+	if(Mod.PlayerGameData.NeueNachrichten ~= nil and Mod.PlayerGameData.NeueNachrichten ~= "")then
+		local NeueNachrichtensplit = stringtotable(Mod.PlayerGameData.NeueNachrichten);
+		local num = 1;
+		while(NeueNachrichtensplit[num] ~= nil and NeueNachrichtensplit[num+1] ~= nil and NeueNachrichtensplit[num+2] ~= nil and NeueNachrichtensplit[num+3] ~= nil)do
+			if(NeueNachrichtensplit[num+1] == "0")then
+				Nachricht = Nachricht .. "\n" .. toname(NeueNachrichtensplit[num]) .. "declared war on " .. toname(NeueNachrichtensplit[num+3]) .. "in turn " .. NeueNachrichtensplit[num+2];
+			end
+			if(NeueNachrichtensplit[num+1] == "1")then
+				Nachricht = Nachricht .. "\n" .. toname(NeueNachrichtensplit[num]) .. "accepted the peace offer by " .. toname(NeueNachrichtensplit[num+3]) .. "until turn " .. NeueNachrichtensplit[num+2];
+			end
+			num = num + 4;
+		end
+	end
+  	if(Mod.PlayerGameData.Peaceoffers~=nil)then
+    		if(tablelength(stringtotable(Mod.PlayerGameData.Peaceoffers))>0)then
+    			Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(stringtotable(Mod.PlayerGameData.Peaceoffers))/2-0.5 .. ' open peace requests';
+   		end
+  	end
+  	if(Mod.PlayerGameData.Allyoffers~=nil)then
+    		if(tablelength(stringtotable(Mod.PlayerGameData.Allyoffers))>0)then
+      			Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(stringtotable(Mod.PlayerGameData.Allyoffers)) .. ' open ally requests';
+    		end
+ 	 end
+  	if(Mod.PlayerGameData.PendingTradements~=nil)then
+    		if(tablelength(PendingTradements)>0)then
+      			Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(PendingTradements) .. ' open tradement requests';
+    		end
+  	end
+	if(Nachricht ~= "")then
+		UI.Alert('Nachricht');
+	end
+end
+function toname(playerid,game)
+	return game.Game.Players[playerid].DisplayName(nil, false);
 end
 function tablelength(T)
 	local count = 0;
