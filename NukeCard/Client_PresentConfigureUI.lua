@@ -33,7 +33,7 @@ function Client_PresentConfigureUI(rootParent)
 	if initAfterDeployment == nil then initAfterDeployment = true; end
 	
 	horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
-  	InputAfterDeployment = UI.CreateCheckBox(horz1).SetText('After Deployment but before Gift Cards').SetOnValueChanged(OnClickAfterDeployment);
+  	InputAfterDeployment = UI.CreateCheckBox(horz1).SetText('After Deployment but before Gift and Blockade Cards').SetOnValueChanged(OnClickAfterDeployment);
 	horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
   	InputBeforeDeployment = UI.CreateCheckBox(horz1).SetText('Before Deployment').SetOnValueChanged(OnClickBeforeDeployment);
 	if(initAfterDeployment == true)then
