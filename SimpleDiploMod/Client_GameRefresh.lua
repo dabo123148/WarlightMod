@@ -32,7 +32,7 @@ function Client_GameRefresh(game)
 		UI.Alert(Nachricht);
 	end
 	local payload = {};
-	payload.Message = "Read;
+	payload.Message = "Read";
 	Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)end);
 end
 function toname(playerid,game)
