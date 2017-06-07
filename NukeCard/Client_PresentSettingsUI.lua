@@ -25,7 +25,7 @@ function Client_PresentSettingsUI(rootParent)
 	vert = UI.CreateVerticalLayoutGroup(rootParent);
 	if(Mod.Settings.AfterDeployment ~= nil)then
 		if(Mod.Settings.AfterDeployment)then
-			UI.CreateLabel(vert).SetText('Territories get nuked AFTER Deployment but before Gift Cards take effect');
+			UI.CreateLabel(vert).SetText('Territories get nuked AFTER Deployment but before Gift and Blockade Cards take effect');
 		else
 			UI.CreateLabel(vert).SetText('Territories get nuked BEFORE Deployment');
 		end
