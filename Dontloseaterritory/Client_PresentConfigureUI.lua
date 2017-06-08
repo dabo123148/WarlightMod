@@ -7,6 +7,6 @@ function Client_PresentConfigureUI(rootParent)
     
     local horz = UI.CreateHorizontalLayoutGroup(rootParent);
   	  InputNoTerritory = UI.CreateCheckBox(horz)
-		.SetText('If this is disabled, a player has lost if a player takes one of his starting territories, else he has also lost if any of his territories is taken.')
+		.SetText('If this is disabled, you lose the game once you lose any of your starting territories. If enabled, you lose the game if ANY of yours territories are taken.')
 		.SetIsChecked(initialValue);
 end
