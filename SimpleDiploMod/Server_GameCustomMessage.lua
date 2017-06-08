@@ -8,6 +8,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
  	if(payload.Message == "Peace")then
 		local target = payload.TargetPlayerID;
 		local preis = payload.Preis;
+		local dauer = payload.
 		if(target> 50)then
 			local playerGameData = Mod.PlayerGameData;
 			local existingpeaceoffers = ",";
@@ -25,7 +26,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			end
 			local rg = {};
 			if(match == false)then
-				playerGameData[target] = {Peaceoffers=existingpeaceoffers .. playerID .. "," .. preis .. ",",Money=Mod.PlayerGameData[target].Money};
+				playerGameData[target] = {Peaceoffers=existingpeaceoffers .. playerID .. "," .. preis .. "," .. dauer .. ",",Money=Mod.PlayerGameData[target].Money};
 				Mod.PlayerGameData=playerGameData;
 				rg.Message ='The Offer has been submitted';
 				setReturnTable(rg);
@@ -72,16 +73,18 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		local playerGameData = Mod.PlayerGameData;
 		local an = payload.TargetPlayerID;
 		local preis = 0;
+		local dauer = 0;
 		offers = stringtotable(playerGameData[playerID].Peaceoffers);
 		local num = 1;
 		local remainingoffers = ",";
-		while(offers[num]~=nil and offers[num+1]~=nil and offers[num+1]~="")do
+		while(offers[num]~=nil and offers[num+1]~=nil and offers[num+2]~=nil and offers[num+2]~="")do
 			if(tonumber(offers[num])==tonumber(an))then
 				preis = tonumber(offers[num+1]);
+				dauer = tonumber(offers[num+2]);
 			else
-				remainingoffers = remainingoffers .. offers[num] .. "," .. offers[num+1] .. ",";
+				remainingoffers = remainingoffers .. offers[num] .. "," .. offers[num+1] .. "," .. offers[num+2] .. ",";
 			end
-			num = num + 2;
+			num = num + 3;
 		end
 		if(remainingoffers == ",")then
 			playerGameData[playerID].Peaceoffers = nil;
@@ -91,11 +94,11 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		offers = stringtotable(playerGameData[an].Peaceoffers);
 		remainingoffers = ",";
 		num = 1;
-		while(offers[num]~=nil and offers[num+1]~=nil and offers[num+1]~="")do
+		while(offers[num]~=nil and offers[num+1]~=nil and offers[num+2]~=nil and offers[num+2]~="")do
 			if(tonumber(offers[num])~=tonumber(playerID))then
-				remainingoffers = remainingoffers .. offers[num] .. "," .. offers[num+1] .. ",";
+				remainingoffers = remainingoffers .. offers[num] .. "," .. offers[num+1] .. "," .. offers[num+2] .. ",";
 			end
-			num = num + 2;
+			num = num + 3;
 		end
 		if(remainingoffers == ",")then
 			playerGameData[an].Peaceoffers = nil;
@@ -125,10 +128,14 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			publicGameData.War[playerID] = remainingwar;
 			Mod.PublicGameData = publicGameData;
 			local privateGameData = Mod.PrivateGameData;
-			if(privateGameData.Cantdeclare == nil)then
-				privateGameData.Cantdeclare = ",";
+			num = game.Game.NumberOfTurns;
+			while(num < game.Game.NumberOfTurns+dauer)do
+				if(privateGameData.Cantdeclare[num] == nil)then
+					privateGameData.Cantdeclare[num] = ",";
+				end
+				privateGameData.Cantdeclare[num] = privateGameData.Cantdeclare[num] .. an .. "," .. playerID .. ",";
+				num = num +1;
 			end
-			privateGameData.Cantdeclare = privateGameData.Cantdeclare .. an .. "," .. playerID .. ",";
 			Mod.PrivateGameData = privateGameData;
 		else
 			Mod.PlayerGameData=playerGameData;
