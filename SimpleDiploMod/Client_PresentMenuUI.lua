@@ -154,9 +154,11 @@ function OpenPendingRequests()
 				if(requiredmoney > 0)then
 					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You need to pay " .. peacesplit[num+1] .. " Coins if you accept");
 				else
-					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("He will pay you " .. peacesplit[num+1] .. " Coins if you accept");
+					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("He will pay you " .. peacesplit[num+1]*-1 .. " Coins if you accept");
 				end
 			end
+			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("The Peace will last for " .. toname(tonumber(peacesplit[num+2]),Game) .. " Turns. After that you can declare again war on him.");
 			local mymoney = tonumber(Mod.PlayerGameData.Money);
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			if(requiredmoney > mymoney)then
