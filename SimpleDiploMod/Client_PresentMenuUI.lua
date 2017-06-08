@@ -9,6 +9,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	offerpeacebutton = nil;
 	offerallianzebutton = nil;
 	pendingrequestbutton = nil;
+	oldermessagesbutton = nil;
 	Game = game;
 	root = rootParent;
 	setMaxSize(450, 350);
@@ -109,6 +110,22 @@ function OpenMenu()
 	offerallianzebutton = UI.CreateButton(vert).SetText("Offer Alliance").SetOnClick(OpenOfferAlliance);
   	--UI.CreateLabel(horz).SetText("Pending Requests");
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
+	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function() if(Mod.PlayerGameData.Nachrichten ~=nil)then
+				local Nachricht = "";
+				local Nachrichtensplit = stringtotable(Mod.PlayerGameData.NeueNachrichten);
+				local num = 1;
+				while(Nachrichtensplit[num] ~= nil and Nachrichtensplit[num+1] ~= nil and Nachrichtensplit[num+2] ~= nil and Nachrichtensplit[num+3] ~= nil)do
+					if(Nachrichtensplit[num+1] == "0")then
+						Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " declared war on " .. getname(Nachrichtensplit[num+3],Game) .. " in turn " .. Nachrichtensplit[num+2];
+					end
+					if(NeueNachrichtensplit[num+1] == "1")then
+						Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " accepted the peace offer by " .. getname(Nachrichtensplit[num+3],Game) .. " until turn " .. Nachrichtensplit[num+2];
+					end
+					num = num + 4;
+				end
+				UI.Alert(Nachricht);
+			end
+		end);
 end
 function OpenPendingRequests()
 	DeleteUI();
@@ -336,6 +353,10 @@ function DeleteUI()
 	if(pendingrequestbutton ~= nil)then
 		UI.Destroy(pendingrequestbutton);
 		pendingrequestbutton = nil;
+	end
+	if(oldermessagesbutton ~= nil)then
+		UI.Destroy(oldermessagesbutton);
+		oldermessagesbutton = nil;
 	end
 	for _,horzobj in pairs(horzobjlist)do
 		UI.Destroy(horzobj);
