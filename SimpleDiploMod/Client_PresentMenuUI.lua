@@ -123,7 +123,11 @@ function OpenMenu()
 					end
 					num = num + 4;
 				end
-				UI.Alert(Nachricht);
+				if(Nachricht == "")then
+					UI.Alert("There is currently no history for this Mod");
+				else
+					UI.Alert(Nachricht);
+				end
 			end
 		end);
 end
