@@ -194,7 +194,9 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	end
 	RemainingDeclerations = {};
 	local privateGameData = Mod.PrivateGameData;
-	privateGameData.Cantdeclare[game.Game.NumberOfTurns] = ",";
+	if(privateGameData.Cantdeclare~= nil)then
+		privateGameData.Cantdeclare[game.Game.NumberOfTurns] = ",";
+	end
 	Mod.PrivateGameData = privateGameData;
 	--Giving Money per turn
 	for _,spieler in pairs(AllPlayerIDs)do
