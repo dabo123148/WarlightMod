@@ -74,18 +74,18 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						end
 					end
 					if(Match1 == false)then
-						DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID);
+						DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID,game);
 					else
 						if(Mod.Settings.AllowAIDeclaration and Match2 == false)then
-							DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID);
+							DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID,game);
 						else
 							if(Mod.Settings.AIsdeclearAIs and Match2 == true)then
-								DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID);
+								DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID,game);
 							end
 						end
 					end
 				else
-					DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID);
+					DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID,game);
 				end
 			end
 		end
@@ -93,7 +93,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == "GameOrderCustom")then
 		if(check(order.Message,"Declared war on"))then
 			if(InWar(order.PlayerID,order.Payload) == false)then
-				DeclearWar(order.PlayerID,tonumber(order.Payload));
+				DeclearWar(order.PlayerID,tonumber(order.Payload),game);
 			end
 		end
 		if(check(order.Message,"Removed ally with"))then
@@ -114,13 +114,13 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				end
 			end
 			if(Match1 == false)then
-				DeclearWar(order.PlayerID,order.SanctionedPlayerID);
+				DeclearWar(order.PlayerID,order.SanctionedPlayerID,game);
 			else
 				if(Mod.Settings.AllowAIDeclaration and Match2 == false)then
-					DeclearWar(order.PlayerID,order.SanctionedPlayerID);
+					DeclearWar(order.PlayerID,order.SanctionedPlayerID,game);
 				else
 					if(Mod.Settings.AIsdeclearAIs and Match2 == true)then
-						DeclearWar(order.PlayerID,order.SanctionedPlayerID);
+						DeclearWar(order.PlayerID,order.SanctionedPlayerID,game);
 					end
 				end
 			end
@@ -140,13 +140,13 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				end
 			end
 			if(Match1 == false)then
-				DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID);
+				DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID,game);
 			else
 				if(Mod.Settings.AllowAIDeclaration and Match2 == false)then
-					DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID);
+					DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID,game);
 				else
 					if(Mod.Settings.AIsdeclearAIs and Match2 == true)then
-						DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID);
+						DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID,game);
 					end
 				end
 			end
@@ -245,7 +245,7 @@ end
 function RemoveWar(Player1,Player2)
 	
 end
-function DeclearWar(Player1,Player2)
+function DeclearWar(Player1,Player2,game)
 	print('Declear War');
 	--Allys declear war on order.PlayerID if not allied with order.PlayerID
 	if(IsAlly(Player1,Player2)==false and InWar(Player1,Player2) == false)then
