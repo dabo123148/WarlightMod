@@ -1,1 +1,1 @@
-This Mod allows special units to revive 100% of the lost armies on connected territories to them. That won't work, if they are killed by a bomb card or if a spezial unit is involved in any way into the attack(for example the attack comes from a territoy with a spezial unit.
+This Mod allows special units to revive 100% of the lost armies in the territories connected to the special units. The effect won't work if they are killed by a bomb card or if a special unit is involved in any way in the attack (including if the attack comes from a territoy with a special unit.)
