@@ -158,7 +158,7 @@ function OpenPendingRequests()
 				end
 			end
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("The Peace will last for " .. toname(tonumber(peacesplit[num+2]),Game) .. " Turns. After that you can declare again war on him.");
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("The Peace will last for " .. tonumber(peacesplit[num+2]) .. " Turns. After that you can declare again war on him.");
 			local mymoney = tonumber(Mod.PlayerGameData.Money);
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			if(requiredmoney > mymoney)then
