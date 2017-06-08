@@ -110,8 +110,8 @@ function OpenMenu()
 	offerallianzebutton = UI.CreateButton(vert).SetText("Offer Alliance").SetOnClick(OpenOfferAlliance);
   	--UI.CreateLabel(horz).SetText("Pending Requests");
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
-	if(Mod.PlayerGameData.Nachrichten ~=nil)then
-		oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function() 
+	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function()
+		if(Mod.PlayerGameData.Nachrichten ~=nil)then
 			local Nachricht = " ";
 			local Nachrichtensplit = stringtotable(Mod.PlayerGameData.Nachrichten);
 			local num = 1;
@@ -125,10 +125,10 @@ function OpenMenu()
 				num = num + 4;
 			end
 			UI.Alert(Nachricht);
-		end);
-	else
-		UI.Alert("There is currently no history for this Mod");
-	end
+		else
+			UI.Alert("There is currently no history for this Mod");
+		end
+	end);
 end
 function OpenPendingRequests()
 	DeleteUI();
