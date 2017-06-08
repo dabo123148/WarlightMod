@@ -116,10 +116,10 @@ function OpenMenu()
 				local num = 1;
 				while(Nachrichtensplit[num] ~= nil and Nachrichtensplit[num+1] ~= nil and Nachrichtensplit[num+2] ~= nil and Nachrichtensplit[num+3] ~= nil)do
 					if(Nachrichtensplit[num+1] == "0")then
-						Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " declared war on " .. getname(Nachrichtensplit[num+3],Game) .. " in turn " .. Nachrichtensplit[num+2];
+						Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " declared war on " .. toname(Nachrichtensplit[num+3],Game) .. " in turn " .. Nachrichtensplit[num+2];
 					end
 					if(NeueNachrichtensplit[num+1] == "1")then
-						Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " accepted the peace offer by " .. getname(Nachrichtensplit[num+3],Game) .. " until turn " .. Nachrichtensplit[num+2];
+						Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " accepted the peace offer by " .. toname(Nachrichtensplit[num+3],Game) .. " until turn " .. Nachrichtensplit[num+2];
 					end
 					num = num + 4;
 				end
