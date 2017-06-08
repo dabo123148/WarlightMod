@@ -5,10 +5,10 @@ function Client_GameRefresh(game)
 		local num = 1;
 		while(NeueNachrichtensplit[num] ~= nil and NeueNachrichtensplit[num+1] ~= nil and NeueNachrichtensplit[num+2] ~= nil and NeueNachrichtensplit[num+3] ~= nil)do
 			if(NeueNachrichtensplit[num+1] == "0")then
-				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " declared war on " .. getname(NeueNachrichtensplit[num+3],game) .. "in turn " .. NeueNachrichtensplit[num+2];
+				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " declared war on " .. getname(NeueNachrichtensplit[num+3],game) .. " in turn " .. NeueNachrichtensplit[num+2];
 			end
 			if(NeueNachrichtensplit[num+1] == "1")then
-				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " accepted the peace offer by " .. getname(NeueNachrichtensplit[num+3],game) .. "until turn " .. NeueNachrichtensplit[num+2];
+				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " accepted the peace offer by " .. getname(NeueNachrichtensplit[num+3],game) .. " until turn " .. NeueNachrichtensplit[num+2];
 			end
 			num = num + 4;
 		end
