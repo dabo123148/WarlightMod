@@ -110,26 +110,25 @@ function OpenMenu()
 	offerallianzebutton = UI.CreateButton(vert).SetText("Offer Alliance").SetOnClick(OpenOfferAlliance);
   	--UI.CreateLabel(horz).SetText("Pending Requests");
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
-	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function() if(Mod.PlayerGameData.Nachrichten ~=nil)then
-				local Nachricht = " ";
-				local Nachrichtensplit = stringtotable(Mod.PlayerGameData.Nachrichten);
-				local num = 1;
-				while(Nachrichtensplit[num] ~= nil and Nachrichtensplit[num+1] ~= nil and Nachrichtensplit[num+2] ~= nil and Nachrichtensplit[num+3] ~= nil)do
-					if(Nachrichtensplit[num+1] == "0")then
-						Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " declared war on " .. toname(tonumber(Nachrichtensplit[num+3]),Game) .. " in turn " .. Nachrichtensplit[num+2];
-					end
-					if(Nachrichtensplit[num+1] == "1")then
-						Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " accepted the peace offer by " .. toname(tonumber(Nachrichtensplit[num+3]),Game) .. " until turn " .. Nachrichtensplit[num+2];
-					end
-					num = num + 4;
+	if(Mod.PlayerGameData.Nachrichten ~=nil)then
+		oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function() 
+			local Nachricht = " ";
+			local Nachrichtensplit = stringtotable(Mod.PlayerGameData.Nachrichten);
+			local num = 1;
+			while(Nachrichtensplit[num] ~= nil and Nachrichtensplit[num+1] ~= nil and Nachrichtensplit[num+2] ~= nil and Nachrichtensplit[num+3] ~= nil)do
+				if(Nachrichtensplit[num+1] == "0")then
+					Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " declared war on " .. toname(tonumber(Nachrichtensplit[num+3]),Game) .. " in turn " .. Nachrichtensplit[num+2];
 				end
-				if(Nachricht == " ")then
-					UI.Alert("There is currently no history for this Mod");
-				else
-					UI.Alert(Nachricht);
+				if(Nachrichtensplit[num+1] == "1")then
+					Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " accepted the peace offer by " .. toname(tonumber(Nachrichtensplit[num+3]),Game) .. " until turn " .. Nachrichtensplit[num+2];
 				end
+				num = num + 4;
 			end
+			UI.Alert(Nachricht);
 		end);
+	else
+		UI.Alert("There is currently no history for this Mod");
+	end
 end
 function OpenPendingRequests()
 	DeleteUI();
