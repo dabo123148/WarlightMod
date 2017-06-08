@@ -37,27 +37,31 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		else
 			local publicGameData = Mod.PublicGameData;
 			local remainingwar = ",";
-			local withtable = stringtotable(Mod.PublicGameData.War[target]);
+			local withtable = stringtotable(Mod.PublicGameData.War[an]);
 			for _,with in pairs(withtable) do
 				if(tonumber(with)~=playerID)then
 					remainingwar = remainingwar .. with .. ",";
 				end
 			end
-			publicGameData.War[target] = remainingwar;
+			publicGameData.War[an] = remainingwar;
 			remainingwar = ",";
 			local withtable = stringtotable(Mod.PublicGameData.War[playerID]);
 			for _,with in pairs(withtable) do
-				if(tonumber(with)~=target)then
+				if(tonumber(with)~=an)then
 					remainingwar = remainingwar .. with .. ",";
 				end
 			end
 			publicGameData.War[playerID] = remainingwar;
 			Mod.PublicGameData = publicGameData;
 			local privateGameData = Mod.PrivateGameData;
-			if(privateGameData.Cantdeclare == nil)then
-				privateGameData.Cantdeclare = ",";
+			num = game.Game.NumberOfTurns;
+			while(num < game.Game.NumberOfTurns+dauer)do
+				if(privateGameData.Cantdeclare[num] == nil)then
+					privateGameData.Cantdeclare[num] = ",";
+				end
+				privateGameData.Cantdeclare[num] = privateGameData.Cantdeclare[num] .. an .. "," .. playerID .. ",";
+				num = num +1;
 			end
-			privateGameData.Cantdeclare = privateGameData.Cantdeclare .. target .. "," .. playerID .. ",";
 			Mod.PrivateGameData = privateGameData;
 			local rg = {};
 			rg.Message = 'The AI accepted your offer';
