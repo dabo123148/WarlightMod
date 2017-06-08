@@ -8,7 +8,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
  	if(payload.Message == "Peace")then
 		local target = payload.TargetPlayerID;
 		local preis = payload.Preis;
-		local dauer = payload.
+		local dauer = payload.duration;
 		if(target> 50)then
 			local playerGameData = Mod.PlayerGameData;
 			local existingpeaceoffers = ",";
