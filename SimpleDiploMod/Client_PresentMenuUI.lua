@@ -112,7 +112,7 @@ function OpenMenu()
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
 	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function() if(Mod.PlayerGameData.Nachrichten ~=nil)then
 				local Nachricht = "";
-				local Nachrichtensplit = stringtotable(Mod.PlayerGameData.NeueNachrichten);
+				local Nachrichtensplit = stringtotable(Mod.PlayerGameData.Nachrichten);
 				local num = 1;
 				while(Nachrichtensplit[num] ~= nil and Nachrichtensplit[num+1] ~= nil and Nachrichtensplit[num+2] ~= nil and Nachrichtensplit[num+3] ~= nil)do
 					if(Nachrichtensplit[num+1] == "0")then
