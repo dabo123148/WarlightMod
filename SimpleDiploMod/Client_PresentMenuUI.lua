@@ -111,7 +111,7 @@ function OpenMenu()
   	--UI.CreateLabel(horz).SetText("Pending Requests");
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
 	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function() if(Mod.PlayerGameData.Nachrichten ~=nil)then
-				local Nachricht = "";
+				local Nachricht = " ";
 				local Nachrichtensplit = stringtotable(Mod.PlayerGameData.Nachrichten);
 				local num = 1;
 				while(Nachrichtensplit[num] ~= nil and Nachrichtensplit[num+1] ~= nil and Nachrichtensplit[num+2] ~= nil and Nachrichtensplit[num+3] ~= nil)do
@@ -123,7 +123,7 @@ function OpenMenu()
 					end
 					num = num + 4;
 				end
-				if(Nachricht == "")then
+				if(Nachricht == " ")then
 					UI.Alert("There is currently no history for this Mod");
 				else
 					UI.Alert(Nachricht);
