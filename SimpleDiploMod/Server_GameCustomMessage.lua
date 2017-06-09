@@ -86,6 +86,12 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			local playerGameData = Mod.PlayerGameData;
 			for _,pID in pairs(AllPlayerIDs)do
 				if(pID == playerID or pID == target)then
+					if(playerGameData[pID].NeueNachrichten == nil)then
+						playerGameData[pID].NeueNachrichten = ",";
+					end
+					if(playerGameData[pID].Nachrichten == nil)then
+						playerGameData[pID].Nachrichten = ",";
+					end
 					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",2," .. ",," .. target .. ",";
 					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. ",," .. target .. ",";
 				else
@@ -144,6 +150,12 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			playerGameData[playerID].Money = Mod.PlayerGameData[playerID].Money - preis;
 			for _,pID in pairs(AllPlayerIDs)do
 				if(pID == playerID or pID == target)then
+					if(playerGameData[pID].NeueNachrichten == nil)then
+						playerGameData[pID].NeueNachrichten = ",";
+					end
+					if(playerGameData[pID].Nachrichten == nil)then
+						playerGameData[pID].Nachrichten = ",";
+					end
 					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",2," .. ",," .. an .. ",";
 					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. ",," .. an .. ",";
 				else
@@ -185,6 +197,12 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		else
 			for _,pID in pairs(AllPlayerIDs)do
 				if(pID == playerID or pID == target)then
+					if(playerGameData[pID].NeueNachrichten == nil)then
+						playerGameData[pID].NeueNachrichten = ",";
+					end
+					if(playerGameData[pID].Nachrichten == nil)then
+						playerGameData[pID].Nachrichten = ",";
+					end
 					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",3," .. ",," .. an .. ",";
 					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",3,".. ",," .. an .. ",";
 				else
