@@ -251,7 +251,7 @@ function Openshop(rootParent)
 						local orders = Game.Orders;
 						table.insert(orders, armybuyorder);
 						Game.Orders=orders;
-						UI.Alert(Game.Us.ID .. " " .. Nachricht .. " " .. pay.Count);
+						UI.Alert(terr.ID);
 					end
 				end
 			end
