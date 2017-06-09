@@ -120,7 +120,11 @@ function OpenMenu()
 					Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " declared war on " .. toname(tonumber(Nachrichtensplit[num+3]),Game) .. " in turn " .. Nachrichtensplit[num+2];
 				end
 				if(Nachrichtensplit[num+1] == "1")then
-					Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " offered " .. toname(tonumber(Nachrichtensplit[num+3]),Game) .. " peace for " .. Nachrichtensplit[num+2] .. " turns";
+					if(tonumer(Nachrichtensplit[num+2])>1)then
+						Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " offered " .. toname(tonumber(Nachrichtensplit[num+3]),Game) .. " peace for " .. Nachrichtensplit[num+2] .. " turns";
+					else
+						Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " offered " .. toname(tonumber(Nachrichtensplit[num+3]),Game) .. " peace for " .. Nachrichtensplit[num+2] .. " turn";
+					end
 				end
 				if(Nachrichtensplit[num+1] == "2")then
 					Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " accepted the peace offer by " .. toname(tonumber(Nachrichtensplit[num+3]),Game) .. " until turn " .. Nachrichtensplit[num+2];
