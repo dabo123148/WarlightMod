@@ -5,6 +5,7 @@ function getplayerIDs(game)
 			rgvalue[tablelength(rgvalue)+1] = playerinfo.ID;
 		end
 	end
+	return rgvalue;
 end
 function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	AllPlayerIDs = getplayerIDs(game);
