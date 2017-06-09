@@ -213,7 +213,7 @@ function AcceptorDeny(knopf)
 	UI.Alert(knopf.GetText());
 end
 function toname(playerid,game)
-	if(playerid~=nil)ten
+	if(playerid~=nil)then
 		return game.Game.Players[playerid].DisplayName(nil, false);
 	else
 		return "Bug"
