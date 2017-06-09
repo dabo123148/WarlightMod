@@ -224,7 +224,19 @@ function toname(playerid,game)
 	end
 end
 function Openshop(rootParent)
-	--DeleteUI();
+	DeleteUI();
+	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Buy Armies");
+	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+	territory = UI.CreateButton(horzobjlist[1]).SetText("Select territory...").SetOnClick(TargetTerritoryClicked);
+	horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
+	Count = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
+	commitbutton = UI.CreateButton(horzobjlist[3]).SetText("Add Order").SetOnClick(function() for _,terr in pairs(Game.Map.Territories)do
+		if(terr.Name == territory)then
+			table.insert(orders, WL.GameOrderCustom.Create(myID, "Buy Armies (Count)", terr.ID)); end);
+		end
+	end
 end
 function OpenDeclarWar()
 	DeleteUI();
@@ -266,10 +278,8 @@ end
 function TargetPlayerClicked()
 	local options = {};
 	if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
-		print('Test');
 		local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us.ID]);
 		for _,playerinstanze in pairs(Game.Game.Players)do
-			print('Test2');
 			local Match = false;
 			for _,with in pairs(inwarwith)do
 				if(tostring(with) == tostring(playerinstanze.ID))then
@@ -277,19 +287,12 @@ function TargetPlayerClicked()
 				end
 			end
 			if(Match == false)then
-				print('insert');
 				if(playerinstanze.ID ~= Game.Us.ID)then
 					table.insert(options,playerinstanze);
 				end
 			end
 		end
 	else	
-		if(Mod.PublicGameData.War ~=nil)then
-			print(Mod.PublicGameData.War[Game.Us.ID]);
-		else
-			print('neu?');
-		end
-		print('Test3');
 		for _,playerinstanze in pairs(Game.Game.Players)do
 			if(playerinstanze.ID ~= Game.Us.ID)then
 				table.insert(options,playerinstanze);
@@ -298,6 +301,17 @@ function TargetPlayerClicked()
 	end
 	options = map(options, PlayerButton);
 	UI.PromptFromList("Select the player you'd like to declare war on", options);
+end
+function TargetTerritoryClicked()
+	local options = {};
+	local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us.ID]);
+	for _,terr in pairs(Game.LatestStanding.Territories)do
+		if(terr.OwnerPlayerID  == Game.Us.ID)then
+			table.insert(options,Game.Map.Territories[terr.ID].Name);
+		end
+	end
+	options = map(options, PlayerButton);
+	UI.PromptFromList("Select the territory you'd like to place the armies on", options);
 end
 function declare()
 	local declareon = TargetPlayerBtn.GetText();
