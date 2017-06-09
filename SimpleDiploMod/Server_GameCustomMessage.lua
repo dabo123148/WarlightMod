@@ -38,6 +38,12 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			--playerGameData[target].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",1,".. duration .. "," .. target .. ",";
 			for _,pID in pairs(AllPlayerIDs)do
 				if(pID ~= playerID or pID ~= target)then
+					if(playerGameData[pID].NeueNachrichten == nil)then
+						playerGameData[pID].NeueNachrichten = ",";
+					end
+					if(playerGameData[pID].Nachrichten == nil)then
+						playerGameData[pID].Nachrichten = ",";
+					end
 					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",1," .. dauer .. "," .. target .. ",";
 					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",1," .. dauer .. "," .. target .. ",";
 				else
