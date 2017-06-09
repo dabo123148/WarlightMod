@@ -117,16 +117,16 @@ function OpenMenu()
 			local num = 1;
 			while(Nachrichtensplit[num] ~= nil and Nachrichtensplit[num+1] ~= nil and Nachrichtensplit[num+2] ~= nil and Nachrichtensplit[num+3] ~= nil)do
 				if(Nachrichtensplit[num+1] == "0")then
-					Nachricht = Nachricht .. "\n" .. getname(Nachrichtensplit[num],Game) .. " declared war on " .. toname(Nachrichtensplit[num+3],Game) .. " in turn " .. Nachrichtensplit[num+2];
+					Nachricht = Nachricht .. "\n" .. getname(tonumber(Nachrichtensplit[num]),Game) .. " declared war on " .. toname(tonumber(Nachrichtensplit[num+3]),Game) .. " in turn " .. Nachrichtensplit[num+2];
 				end
 				if(Nachrichtensplit[num+1] == "1")then
-					Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " offered " .. toname(Nachrichtensplit[num+3],Game) .. " peace for " .. Nachrichtensplit[num+2] .. " turns";
+					Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " offered " .. toname(tonumber(Nachrichtensplit[num+3]),Game) .. " peace for " .. Nachrichtensplit[num+2] .. " turns";
 				end
 				if(Nachrichtensplit[num+1] == "2")then
-					Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " accepted the peace offer by " .. toname(Nachrichtensplit[num+3],Game) .. " until turn " .. Nachrichtensplit[num+2];
+					Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " accepted the peace offer by " .. toname(tonumber(Nachrichtensplit[num+3]),Game) .. " until turn " .. Nachrichtensplit[num+2];
 				end
 				if(Nachrichtensplit[num+1] == "3")then
-					Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " declined the peace offer off " .. toname(Nachrichtensplit[num+3],Game);
+					Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " declined the peace offer off " .. toname(tonumber(Nachrichtensplit[num+3]),Game);
 				end
 				num = num + 4;
 			end
