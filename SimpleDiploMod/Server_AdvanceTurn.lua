@@ -187,8 +187,8 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				if(playerGameData[spieler].Nachrichten==nil)then
 					playerGameData[spieler].Nachrichten = ",";
 				end
-				playerGameData[spieler].NeueNachrichten = playerGameData[spieler].NeueNachrichten ..  P2 .. ",0," .. game.Game.NumberOfTurns ..",".. P1 .. ",";
-				playerGameData[spieler].Nachrichten = playerGameData[spieler].Nachrichten ..  P2 .. ",0,".. game.Game.NumberOfTurns.."," .. P1 .. ",";
+				playerGameData[spieler].NeueNachrichten = playerGameData[spieler].NeueNachrichten ..  P2 .. ",0," .. game.Game.NumberOfTurns+1 ..",".. P1 .. ",";
+				playerGameData[spieler].Nachrichten = playerGameData[spieler].Nachrichten ..  P2 .. ",0,".. game.Game.NumberOfTurns+1.."," .. P1 .. ",";
 			end
 		end
 	end
