@@ -250,7 +250,6 @@ function Openshop(rootParent)
 						UI.Alert('Test');
 					end
 				end
-				UI.Alert('Test2');
 			end
 		end
 	end)
