@@ -144,10 +144,10 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			playerGameData[playerID].Money = Mod.PlayerGameData[playerID].Money - preis;
 			for _,pID in pairs(AllPlayerIDs)do
 				if(pID == playerID or pID == target)then
-					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",2," .. ",," .. target .. ",";
-					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. ",," .. target .. ",";
+					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",2," .. ",," .. an .. ",";
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. ",," .. an .. ",";
 				else
-					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. ",," .. target .. ",";
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. ",," .. an .. ",";
 				end
 			end
 			Mod.PlayerGameData=playerGameData;
@@ -185,10 +185,10 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		else
 			for _,pID in pairs(AllPlayerIDs)do
 				if(pID == playerID or pID == target)then
-					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",3," .. ",," .. target .. ",";
-					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",3,".. ",," .. target .. ",";
+					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",3," .. ",," .. an .. ",";
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",3,".. ",," .. an .. ",";
 				else
-					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",3,".. ",," .. target .. ",";
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",3,".. ",," .. an .. ",";
 					--View out of other playerIDs
 				end
 			end
