@@ -8,7 +8,13 @@ function Client_GameRefresh(game)
 				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " declared war on " .. getname(NeueNachrichtensplit[num+3],game) .. " in turn " .. NeueNachrichtensplit[num+2];
 			end
 			if(NeueNachrichtensplit[num+1] == "1")then
+				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " offered " .. getname(NeueNachrichtensplit[num+3],game) .. " peace for " .. NeueNachrichtensplit[num+2] .. " turns";
+			end
+			if(NeueNachrichtensplit[num+1] == "2")then
 				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " accepted the peace offer by " .. getname(NeueNachrichtensplit[num+3],game) .. " until turn " .. NeueNachrichtensplit[num+2];
+			end
+			if(NeueNachrichtensplit[num+1] == "3")then
+				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " declined the peace offer off " .. getname(NeueNachrichtensplit[num+3],game);
 			end
 			num = num + 4;
 		end
