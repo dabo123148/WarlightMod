@@ -240,16 +240,6 @@ function Openshop(rootParent)
 		end
 	end)
 end
-function TerritoryButton(terr)
-	local name = terr.Name;
-	local ret = {};
-	ret["text"] = name;
-	ret["selected"] = function() 
-		TargetPlayerBtn.SetText(name);
-		TargetPlayerID = terr.ID;
-	end
-	return ret;
-end
 function OpenDeclarWar()
 	DeleteUI();
 	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
@@ -316,7 +306,6 @@ function TargetPlayerClicked()
 end
 function TargetTerritoryClicked()
 	local options = {};
-	local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us.ID]);
 	for _,terr in pairs(Game.LatestStanding.Territories)do
 		if(terr.OwnerPlayerID  == Game.Us.ID)then
 			table.insert(options,Game.Map.Territories[terr.ID]);
@@ -324,6 +313,15 @@ function TargetTerritoryClicked()
 	end
 	options = map(options, TerritoryButton);
 	UI.PromptFromList("Select the territory you'd like to place the armies on", options);
+end
+function TerritoryButton(terr)
+	local name = terr.Name;
+	local ret = {};
+	ret["text"] = name;
+	ret["selected"] = function() 
+		territory.SetText(name);
+	end
+	return ret;
 end
 function declare()
 	local declareon = TargetPlayerBtn.GetText();
