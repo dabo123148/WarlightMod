@@ -110,7 +110,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				if(wants > 0)then
 					local effect = WL.TerritoryModification.Create(to);
 					effect.SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[to].NumArmies.NumArmies + wants;
-					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. Count .. " Armies", {}, {effect}));
+					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. wants .. " Armies", {}, {effect}));
 					playerdata = Mod.PlayerGameData;
 					--Here must come a army bought message(just for the one player)
 					playerdata[order.PlayerID].Money = playerdata[order.PlayerID].Money - Mod.Settings.MoneyPerBoughtArmy*wants;
