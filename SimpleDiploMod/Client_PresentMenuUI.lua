@@ -235,7 +235,7 @@ function Openshop(rootParent)
 	commitbutton = UI.CreateButton(horzobjlist[3]).SetText("Add Order").SetOnClick(function() 
 		for _,terr in pairs(Game.Map.Territories)do
 			if(terr.Name == territory)then
-				table.insert(orders, WL.GameOrderCustom.Create(myID, "Buy Armies (Count)", terr.ID)); end);
+				table.insert(orders, WL.GameOrderCustom.Create(myID, "Buy Armies (Count)", terr.ID)));
 			end
 		end
 	end)
