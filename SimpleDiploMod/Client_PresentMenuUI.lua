@@ -251,7 +251,16 @@ function Openshop(rootParent)
 						local orders = Game.Orders;
 						table.insert(orders, armybuyorder);
 						Game.Orders=orders;
-						UI.Alert(terr.ID);
+						UI.Alert("Test " terr.ID);
+						if(terr.ID = "")then
+								UI.Alert("Test1");
+						end
+						if(terr.ID = " ")then
+								UI.Alert("Test2");
+						end
+						if(terr.ID = nil)then
+								UI.Alert("Test3");
+						end
 					end
 				end
 			end
