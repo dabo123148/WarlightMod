@@ -246,8 +246,10 @@ function Openshop(rootParent)
 						pay.terrID = terr.ID;
 						pay.Count = Anzahl;
 						table.insert(Game.Orders, WL.GameOrderCustom.Create(Game.Us.ID, "Buy Armies (" .. Anzahl .. ") for " .. terr.Name , pay));
+						UI.Alert('Test');
 					end
 				end
+				UI.Alert('Test2');
 			end
 		end
 	end)
