@@ -126,7 +126,7 @@ function OpenMenu()
 					Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " accepted the peace offer by " .. toname(tonumber(Nachrichtensplit[num+3]),Game) .. " until turn " .. Nachrichtensplit[num+2];
 				end
 				if(Nachrichtensplit[num+1] == "3")then
-					Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " declined the peace offer off " .. toname(tonumber(Nachrichtensplit[num+3]),Game);
+					Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " declined the peace offer by " .. toname(tonumber(Nachrichtensplit[num+3]),Game);
 				end
 				num = num + 4;
 			end
