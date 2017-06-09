@@ -213,7 +213,11 @@ function AcceptorDeny(knopf)
 	UI.Alert(knopf.GetText());
 end
 function toname(playerid,game)
-	return game.Game.Players[playerid].DisplayName(nil, false);
+	if(playerid~=nil)ten
+		return game.Game.Players[playerid].DisplayName(nil, false);
+	else
+		return "Bug"
+	end
 end
 function Openshop(rootParent)
 	--DeleteUI();
