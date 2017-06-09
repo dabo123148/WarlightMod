@@ -1,5 +1,13 @@
+function getplayerIDs(game)
+	local rgvalue = {};
+	for _,playerinfo in pairs(game.ServerGame.Game.Players)do
+		if(playerinfo.ID > 50)then
+			rgvalue[tablelength(rgvalue)+1] = playerinfo.ID;
+		end
+	end
+end
 function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
-	print('Custom Message');
+	AllPlayerIDs = getplayerIDs(game);
 	if(payload.Message == "Read")then
 		local playerGameData = Mod.PlayerGameData;
 		playerGameData[playerID].NeueNachrichten = nil;
@@ -25,8 +33,17 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				num=num+2;
 			end
 			local rg = {};
+			for _,pID in pairs(AllPlayerIDs)do
+				if(pID == playerID or pID == target)then
+					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",1," .. target ..",".. P1 .. ",";
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",1,".. target.."," .. P1 .. ",";
+				else
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",1,".. target.."," .. P1 .. ",";
+					--View out of other playerIDs
+				end
+			end
 			if(match == false)then
-				playerGameData[target] = {Peaceoffers=existingpeaceoffers .. playerID .. "," .. preis .. "," .. dauer .. ",",Money=Mod.PlayerGameData[target].Money};
+				playerGameData[target].Peaceoffers = existingpeaceoffers .. playerID .. "," .. preis .. "," .. dauer .. ",";
 				Mod.PlayerGameData=playerGameData;
 				rg.Message ='The Offer has been submitted';
 				setReturnTable(rg);
@@ -70,7 +87,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		end
 	else
 		local rg = {};
-		rg.Message = 'Fehler';
+		rg.Message = 'Bug';
 		setReturnTable(rg);
   	end
 	if(payload.Message == "Accept Peace" or payload.Message == "Decline Peace")then
@@ -112,6 +129,15 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		if(payload.Message == "Accept Peace")then
 			playerGameData[an].Money = Mod.PlayerGameData[an].Money + preis;
 			playerGameData[playerID].Money = Mod.PlayerGameData[playerID].Money - preis;
+			for _,pID in pairs(AllPlayerIDs)do
+				if(pID == playerID or pID == target)then
+					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",2," .. target ..",".. P1 .. ",";
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. target.."," .. P1 .. ",";
+				else
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. target.."," .. P1 .. ",";
+					--View out of other playerIDs
+				end
+			end
 			Mod.PlayerGameData=playerGameData;
 			local publicGameData = Mod.PublicGameData;
 			local remainingwar = ",";
@@ -145,6 +171,15 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			end
 			Mod.PrivateGameData = privateGameData;
 		else
+			for _,pID in pairs(AllPlayerIDs)do
+				if(pID == playerID or pID == target)then
+					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",3," .. target ..",".. P1 .. ",";
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",3,".. target.."," .. P1 .. ",";
+				else
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",3,".. target.."," .. P1 .. ",";
+					--View out of other playerIDs
+				end
+			end
 			Mod.PlayerGameData=playerGameData;
 		end
 	end
