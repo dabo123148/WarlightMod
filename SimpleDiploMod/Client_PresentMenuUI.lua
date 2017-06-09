@@ -116,17 +116,17 @@ function OpenMenu()
 			local Nachrichtensplit = stringtotable(Mod.PlayerGameData.Nachrichten);
 			local num = 1;
 			while(Nachrichtensplit[num] ~= nil and Nachrichtensplit[num+1] ~= nil and Nachrichtensplit[num+2] ~= nil and Nachrichtensplit[num+3] ~= nil)do
-				if(NeueNachrichtensplit[num+1] == "0")then
-					Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " declared war on " .. getname(NeueNachrichtensplit[num+3],game) .. " in turn " .. NeueNachrichtensplit[num+2];
+				if(Nachrichtensplit[num+1] == "0")then
+					Nachricht = Nachricht .. "\n" .. getname(Nachrichtensplit[num],Game) .. " declared war on " .. toname(Nachrichtensplit[num+3],Game) .. " in turn " .. Nachrichtensplit[num+2];
 				end
-				if(NeueNachrichtensplit[num+1] == "1")then
-					Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " offered " .. getname(NeueNachrichtensplit[num+3],game) .. " peace for " .. NeueNachrichtensplit[num+2] .. " turns";
+				if(Nachrichtensplit[num+1] == "1")then
+					Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " offered " .. toname(Nachrichtensplit[num+3],Game) .. " peace for " .. Nachrichtensplit[num+2] .. " turns";
 				end
-				if(NeueNachrichtensplit[num+1] == "2")then
-					Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " accepted the peace offer by " .. getname(NeueNachrichtensplit[num+3],game) .. " until turn " .. NeueNachrichtensplit[num+2];
+				if(Nachrichtensplit[num+1] == "2")then
+					Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " accepted the peace offer by " .. toname(Nachrichtensplit[num+3],Game) .. " until turn " .. Nachrichtensplit[num+2];
 				end
-				if(NeueNachrichtensplit[num+1] == "3")then
-					Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " declined the peace offer off " .. getname(NeueNachrichtensplit[num+3],game);
+				if(Nachrichtensplit[num+1] == "3")then
+					Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " declined the peace offer off " .. toname(Nachrichtensplit[num+3],Game);
 				end
 				num = num + 4;
 			end
