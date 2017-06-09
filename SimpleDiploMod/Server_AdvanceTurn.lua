@@ -112,6 +112,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					effect.SetArmiesTo = game.ServerGame.LatestTurnStanding[to].Armies.NumArmies + wants;
 					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. Count .. " Armies", {}, {effect}));
 				end
+				playerdata = Mod.PlayerGameData;
+				playerdata[order.PlayerID].Money = playerdata[order.PlayerID].Money - Mod.Settings.MoneyPerBoughtArmy*wants;
+				Mod.PlayerGameData = playerdata;
 			end
 		end
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
