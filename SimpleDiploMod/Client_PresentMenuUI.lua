@@ -233,13 +233,21 @@ function Openshop(rootParent)
 	Countobj = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
 	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
 	commitbutton = UI.CreateButton(horzobjlist[3]).SetText("Add Order").SetOnClick(function() 
-		for _,terr in pairs(Game.Map.Territories)do
-			if(terr.Name == territory.GetText())then
-				local Anzahl = Countobj.GetValue();
-				local pay = {};
-				pay.terrID = terr.ID;
-				pay.Count = Anzahl;
-				table.insert(orders, WL.GameOrderCustom.Create(Game.Us.ID, "Buy Armies (" .. Anzahl .. ")", pay));
+		if(territory.GetText() == "Select territory...")then
+			UI.Alert('You need to select a territory first');
+		else
+			local Anzahl = Countobj.GetValue();
+			if(Anzahl< 1)then
+				UI.Alert('Invailid Count');
+			else
+				for _,terr in pairs(Game.Map.Territories)do
+					if(terr.Name == territory.GetText())then
+						local pay = {};
+						pay.terrID = terr.ID;
+						pay.Count = Anzahl;
+						table.insert(Game.Orders, WL.GameOrderCustom.Create(Game.Us.ID, "Buy Armies (" .. Anzahl .. ") for " .. terr.Name , pay));
+					end
+				end
 			end
 		end
 	end)
