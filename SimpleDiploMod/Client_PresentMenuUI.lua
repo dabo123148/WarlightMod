@@ -243,24 +243,12 @@ function Openshop(rootParent)
 				for _,terr in pairs(Game.Map.Territories)do
 					--UI.Alert(terr.Name .. " " .. territory.GetText());
 					if(terr.Name == territory.GetText())then
-						local pay = {};
-						pay.terrID = terr.ID;
-						pay.Count = Anzahl;
+						local pay = "," .. terr.ID .. "," .. Anzahl;
 						local Nachricht = "Buy Armies (" .. Anzahl .. ") for " .. terr.Name;
 						local armybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, Nachricht, pay);
 						local orders = Game.Orders;
 						table.insert(orders, armybuyorder);
 						Game.Orders=orders;
-						UI.Alert("Test ".. terr.ID);
-						if(terr.ID == "")then
-								UI.Alert("Test1");
-						end
-						if(terr.ID == " ")then
-								UI.Alert("Test2");
-						end
-						if(terr.ID == nil)then
-								UI.Alert("Test3");
-						end
 					end
 				end
 			end
