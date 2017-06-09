@@ -101,7 +101,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 		if(check(order.Message,"Buy Armies"))then
 			local to = order.Payload.terrID;
-			if(game.ServerGame.LatestTurnStanding[to].OwnerPlayerID == order.PlayerID)then
+			if(game.ServerGame.LatestTurnStanding.Territories[to].OwnerPlayerID == order.PlayerID)then
 				local money = Mod.PlayerGameData[to].Money;
 				local wants = order.Payload.Count;
 				while(wants > 0 and Mod.Settings.MoneyPerBoughtArmy*wants > money)do
