@@ -241,6 +241,7 @@ function Openshop(rootParent)
 				UI.Alert('Invailid Count');
 			else
 				for _,terr in pairs(Game.Map.Territories)do
+					UI.Alert(terr.Name .. " " .. territory.GetText());
 					if(terr.Name == territory.GetText())then
 						local pay = {};
 						pay.terrID = terr.ID;
