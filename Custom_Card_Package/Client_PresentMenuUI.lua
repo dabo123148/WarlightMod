@@ -47,9 +47,10 @@ end
 
 function Pestilence(playerID)
   ClearUI();
-	
+	orders=Game.Orders;
 	--Game.SendGameCustomMessage('Waiting for the server to respond...',{PestCardPlayer=playerID},PestCardPlayedCallback);
 	table.insert(orders, WL.GameOrderCustom.Create(Game.Us.ID, "Play a Pestilence Card on " .. toname(playerID,Game), 'Pestilence|'..tostring(playerID)));
+	Game.Orders=orders;
 	PestCards=PestCards-1;
 end
 
