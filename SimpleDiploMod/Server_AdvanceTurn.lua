@@ -99,6 +99,21 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(check(order.Message,"Removed ally with"))then
 			
 		end
+		if(check(order.Message,"Buy Armies"))then
+			local to = order.Payload.terrID;
+			if(game.ServerGame.LatestTurnStanding[to].OwnerPlayerID == order.PlayerID)then
+				local money = Mod.PlayerGameData[to].Money;
+				local wants = order.Payload.Count;
+				while(wants > 0 and Mod.Settings.MoneyPerBoughtArmy*wants > money)do
+					wants = wants-1;
+				end
+				if(wants > 0)then
+					local effect = WL.TerritoryModification.Create(to);
+					effect.SetArmiesTo = game.ServerGame.LatestTurnStanding[to].Armies.NumArmies + wants;
+					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. Count .. " Armies", {}, {effect}));
+				end
+			end
+		end
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 	end
 	if(order.proxyType == "GameOrderPlayCardSanctions" and Mod.Settings.SanctionCardRequireWar)then
