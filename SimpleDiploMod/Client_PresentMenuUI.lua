@@ -236,7 +236,10 @@ function Openshop(rootParent)
 		for _,terr in pairs(Game.Map.Territories)do
 			if(terr.Name == territory.GetText())then
 				local Anzahl = Countobj.GetValue();
-				table.insert(orders, WL.GameOrderCustom.Create(Game.Us.ID, "Buy Armies (Count)", { terrID=terr.ID,Count=Anzahl}));
+				local pay = {};
+				pay.terrID = terr.ID;
+				pay.Count = Anzahl;
+				table.insert(orders, WL.GameOrderCustom.Create(Game.Us.ID, "Buy Armies (" .. Anzahl .. ")", pay));
 			end
 		end
 	end)
