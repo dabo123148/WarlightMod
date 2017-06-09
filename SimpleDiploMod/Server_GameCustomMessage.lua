@@ -83,6 +83,16 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				num = num +1;
 			end
 			Mod.PrivateGameData = privateGameData;
+			local playerGameData = Mod.PlayerGameData;
+			for _,pID in pairs(AllPlayerIDs)do
+				if(pID == playerID or pID == target)then
+					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",2," .. ",," .. target .. ",";
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. ",," .. target .. ",";
+				else
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. ",," .. target .. ",";
+				end
+			end
+			Mod.PlayerGameData=playerGameData;
 			local rg = {};
 			rg.Message = 'The AI accepted your offer';
 			setReturnTable(rg);
@@ -134,11 +144,10 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			playerGameData[playerID].Money = Mod.PlayerGameData[playerID].Money - preis;
 			for _,pID in pairs(AllPlayerIDs)do
 				if(pID == playerID or pID == target)then
-					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",2," .. target .. ",," .. P1 .. ",";
-					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. target .. ",," .. P1 .. ",";
+					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",2," .. ",," .. target .. ",";
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. ",," .. target .. ",";
 				else
-					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. target .. ",," .. P1 .. ",";
-					--View out of other playerIDs
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. ",," .. target .. ",";
 				end
 			end
 			Mod.PlayerGameData=playerGameData;
@@ -176,10 +185,10 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		else
 			for _,pID in pairs(AllPlayerIDs)do
 				if(pID == playerID or pID == target)then
-					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",3," .. target .. ",," .. P1 .. ",";
-					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",3,".. target .. ",," .. P1 .. ",";
+					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",3," .. ",," .. target .. ",";
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",3,".. ",," .. target .. ",";
 				else
-					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",3,".. target .. ",," .. P1 .. ",";
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",3,".. ",," .. target .. ",";
 					--View out of other playerIDs
 				end
 			end
