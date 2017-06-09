@@ -100,10 +100,10 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			
 		end
 		if(check(order.Message,"Buy Armies"))then
-			local to = order.Payload.terrID;
+			local to = tonumber(stringtotable(order.Payload)[1]);
 			if(game.ServerGame.LatestTurnStanding.Territories[to].OwnerPlayerID == order.PlayerID)then
 				local money = Mod.PlayerGameData[to].Money;
-				local wants = order.Payload.Count;
+				local wants = tonumber(stringtotable(order.Payload)[2]);
 				while(wants > 0 and Mod.Settings.MoneyPerBoughtArmy*wants > money)do
 					wants = wants-1;
 				end
@@ -111,10 +111,11 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					local effect = WL.TerritoryModification.Create(to);
 					effect.SetArmiesTo = game.ServerGame.LatestTurnStanding[to].Armies.NumArmies + wants;
 					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. Count .. " Armies", {}, {effect}));
+					playerdata = Mod.PlayerGameData;
+					--Here must come a army bought message(just for the one player)
+					playerdata[order.PlayerID].Money = playerdata[order.PlayerID].Money - Mod.Settings.MoneyPerBoughtArmy*wants;
+					Mod.PlayerGameData = playerdata;
 				end
-				playerdata = Mod.PlayerGameData;
-				playerdata[order.PlayerID].Money = playerdata[order.PlayerID].Money - Mod.Settings.MoneyPerBoughtArmy*wants;
-				Mod.PlayerGameData = playerdata;
 			end
 		end
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
