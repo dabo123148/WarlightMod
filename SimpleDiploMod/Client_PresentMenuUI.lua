@@ -140,6 +140,49 @@ function OpenMenu()
 		end
 	end);
 end
+function OpenOfferAlliance()
+	DeleteUI();
+	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Offer Allianze To: ");
+	TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerClicked);
+	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+	commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Offer").SetOnClick(declare);
+end
+function TargetPlayerClickedOfferAllianze()
+	local inwarwith = {};
+	if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
+		inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us.ID]);
+	end
+	local allianzesplit = {};
+	if(Mod.PlayerGameData.Allianze ~= nil)then
+		local allianzesplit = stringtotable(Mod.PlayerGameData.Allianze);
+	end
+	local options = {};
+	for _,playerinstanze in pairs(Game.Game.Players)do
+		local match = false;
+		for _,with in pairs(inwarwith)do
+			if(tostring(with) == tostring(playerinstanze.ID))then
+				match=true;
+			end
+		end
+		for _,with in pairs(allianzesplit)do
+			if(tostring(with) == tostring(playerinstanze.ID))then
+				match=true;
+			end
+		end
+		if(match == false)then
+			if(playerinstanze.ID > 50)then
+				table.insert(options,playerinstanze);
+			end
+		end
+	end
+	if(options == {})then
+		UI.Alert('You are not able to ally to anyone at the moment');
+	else
+		options = map(options, PlayerButton);
+		UI.PromptFromList("Select the player you'd like to offer an allianze to", options);
+	end
+end
 function OpenPendingRequests()
 	DeleteUI();
 	if(Mod.PlayerGameData.Peaceoffers~=nil)then
