@@ -73,6 +73,9 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.MoneyPerBoughtArmy <0)then
 		alert('You cannot ear money for buying armies');
 	end
+	if(Mod.Settings.MoneyPerBoughtArmy ==0)then
+		alert('The price per army must be grader than 0');
+	end
 	Mod.Settings.SanctionCardRequireWar = inputSanctionCardRequireWar.GetIsChecked();
 	if(Mod.Settings.SanctionCardRequireWar == nil)then
 		Mod.Settings.SanctionCardRequireWar = true;
