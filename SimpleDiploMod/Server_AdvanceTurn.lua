@@ -49,6 +49,15 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money+ Mod.Settings.MoneyPerCapturedTerritory;
 						end
 					end
+					local match = false;
+					for _,terrid in pairs(game.Map.Bonuses[game.Map.Territories[order.To]].Territories)do
+						if(game.ServerGame.Territories[terrid].OwnerPlayerID ~= order.PlayerID and terrid ~= order.to)then
+							match = true;
+						end
+					end
+					if(match == true)then
+						playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money+ Mod.Settings.MoneyPerCapturedBonus;
+					end
 				end
 				local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 				for _,spieler in pairs(AllPlayerIDs)do
