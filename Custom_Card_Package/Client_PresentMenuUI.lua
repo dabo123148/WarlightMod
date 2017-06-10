@@ -13,7 +13,7 @@ end
 function ShowFirstMenu()
   if(Mod.Settings.PestCardIn)then
 		PestCardsPlayed=0;
-		for(order in pairs(Game.Orders))do
+		for order in pairs(Game.Orders) do
 			if(order.proxyType=="GameOrderCustom")then
 				if(order.Payload~=nil)then
 					if(split(order.Payload,'|')[1]=='Pestilence')then
