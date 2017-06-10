@@ -7,10 +7,13 @@ function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
     PestCards=0;
   end
   setMaxSize(450, 350);
-  ShowFirstMenu();
+	if(game.Us.ID~=nil)then
+  	ShowFirstMenu();
+	end
 end
   
 function ShowFirstMenu()
+	
   if(Mod.Settings.PestCardIn)then
 		PestCardsPlayed=0;
 		for order in pairs(Game.Orders) do
