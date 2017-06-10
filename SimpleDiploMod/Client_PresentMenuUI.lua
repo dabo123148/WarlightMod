@@ -171,7 +171,7 @@ function TargetPlayerClickedOfferAllianze()
 			end
 		end
 		if(match == false)then
-			if(playerinstanze.ID > 50)then
+			if(playerinstanze.IsAI == false)then
 				table.insert(options,playerinstanze);
 			end
 		end
