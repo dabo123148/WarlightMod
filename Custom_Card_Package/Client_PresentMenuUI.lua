@@ -12,10 +12,21 @@ end
   
 function ShowFirstMenu()
   if(Mod.Settings.PestCardIn)then
+		PestCardsPlayed=0;
+		for(order in pairs(Game.Orders))do
+			if(order.proxyType=="GameOrderCustom")then
+				if(order.Payload~=nil)then
+					if(split(order.Payload,'|')[1]=='Pestilence')then
+						PestCardsPlayed=PestCardsPlayed+1;
+					end
+				end
+			end
+	  end
+		PestCardsFree=PestCards-PestCardsPlayed;
     vertPest=UI.CreateVerticalLayoutGroup(rootParent);
     PestText0=UI.CreateLabel(vertPest).SetText('Pestilence Card: ');
-    PestText1=UI.CreateLabel(vertPest).SetText('      You have got '..tostring(PestCards)..' Cards and '..tostring(Mod.PlayerGameData.PestCardPieces)..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.');
-    if(PestCards>0)then
+    PestText1=UI.CreateLabel(vertPest).SetText('      You have got '..tostring(PestCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.PestCardPieces)..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.');
+    if(PestCardsFree>0)then
       PestButton1=UI.CreateButton(vertPest).SetText('Play Pestilence Card').SetOnClick(PlayPestCard);
     end
   end
@@ -51,7 +62,6 @@ function Pestilence(playerID)
 	--Game.SendGameCustomMessage('Waiting for the server to respond...',{PestCardPlayer=playerID},PestCardPlayedCallback);
 	table.insert(orders, WL.GameOrderCustom.Create(Game.Us.ID, "Play a Pestilence Card on " .. toname(playerID,Game), 'Pestilence|'..tostring(playerID)));
 	Game.Orders=orders;
-	PestCards=PestCards-1;
 end
 
 function PestCardPlayedCallback()
