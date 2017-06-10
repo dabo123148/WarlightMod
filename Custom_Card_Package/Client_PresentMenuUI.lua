@@ -14,10 +14,9 @@ function ShowFirstMenu()
   if(Mod.Settings.PestCardIn)then
 		PestCardsPlayed=0;
 		for order in pairs(Game.Orders) do
-			print(order);
-			if(order.proxyType=="GameOrderCustom")then
-				if(order.Payload~=nil)then
-					if(split(order.Payload,'|')[1]=='Pestilence')then
+			if(Game.Orders[order].proxyType=="GameOrderCustom")then
+				if(Game.Orders[order].Payload~=nil)then
+					if(split(Game.Orders[order].Payload,'|')[1]=='Pestilence')then
 						PestCardsPlayed=PestCardsPlayed+1;
 					end
 				end
