@@ -50,8 +50,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						end
 					end
 					local match = false;
-					for _,terrid in pairs(game.Map.Bonuses[game.Map.Territories[order.To]].Territories)do
-						if(game.ServerGame.Territories[terrid].OwnerPlayerID ~= order.PlayerID and terrid ~= order.to)then
+					for _,terrid in pairs(game.Map.Bonuses[game.Map.Territories[order.To].PartOfBonuses].Territories)do
+						if(game.ServerGame.Territories[terrid].OwnerPlayerID ~= order.PlayerID and terrid ~= order.To)then
 							match = true;
 						end
 					end
