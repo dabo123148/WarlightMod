@@ -107,7 +107,7 @@ function OpenMenu()
 	--UI.CreateLabel(horz).SetText("Offer Peace");
 	offerpeacebutton = UI.CreateButton(vert).SetText("Offer Peace").SetOnClick(OpenOfferPeace);
 	--UI.CreateLabel(horz).SetText("Offer Allianze");
-	offerallianzebutton = UI.CreateButton(vert).SetText("Offer Alliance").SetOnClick(OpenOfferAlliance);
+	offerallianzebutton = UI.CreateButton(vert).SetText("Offer Alliance - not implemented").SetOnClick(OpenOfferAlliance);
   	--UI.CreateLabel(horz).SetText("Pending Requests");
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
 	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function()
