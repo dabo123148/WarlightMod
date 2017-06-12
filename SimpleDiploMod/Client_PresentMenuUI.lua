@@ -18,6 +18,11 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(vert).SetText("You cannot use the Diplomacy game, cause you aren't in the game");
 		return;
 	end
+	if(Mod.PlayerGameData == nil or Mod.PlayerGameData.Money == nil)then
+		vert = UI.CreateVerticalLayoutGroup(rootParent);
+		UI.CreateLabel(vert).SetText("You cannot use this menu in the distribution phase");
+		return;
+	end
   	horz = UI.CreateHorizontalLayoutGroup(root);
  	moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 	mainmenu = UI.CreateButton(horz).SetText("Main Menu").SetOnClick(OpenMenu);
