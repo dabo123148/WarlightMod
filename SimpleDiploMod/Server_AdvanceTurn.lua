@@ -113,8 +113,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if(game.ServerGame.LatestTurnStanding.Territories[to].OwnerPlayerID == order.PlayerID)then
 				local money = Mod.PlayerGameData[order.PlayerID].Money;
 				local wants = tonumber(stringtotable(order.Payload)[2]);
-				while(wants > 0 and Mod.Settings.MoneyPerBoughtArmy*wants > money)do
-					wants = wants-1;
+				if(Mod.Settings.MoneyPerBoughtArmy*wants > money)then
+					wants = math.floor(money/Mod.Settings.MoneyPerBoughtArmy);
 				end
 				if(wants > 0)then
 					local effect = WL.TerritoryModification.Create(to);
