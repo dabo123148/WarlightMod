@@ -15,6 +15,7 @@ function Client_GameRefresh(game)
 				end
 			end
 			if(NeueNachrichtensplit[num+1] == "2")then
+				print(NeueNachrichtensplit[num+2]);
 				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " accepted the peace offer by " .. getname(NeueNachrichtensplit[num+3],game) .. " until turn " .. tostring(tonumber(NeueNachrichtensplit[num+2])+1);
 			end
 			if(NeueNachrichtensplit[num+1] == "3")then
