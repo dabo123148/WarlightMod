@@ -175,8 +175,9 @@ function TargetPlayerClickedOfferAllianze()
 				match=true;
 			end
 		end
+		print('Test2');
 		if(match == false)then
-			print(playerinstanze.IsAI .. playerinstanze.DisplayName(nil, false));
+			print("Test " ..playerinstanze.IsAI .. playerinstanze.DisplayName(nil, false));
 			if(playerinstanze.IsAI == false)then
 				table.insert(options,playerinstanze);
 			end
