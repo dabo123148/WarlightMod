@@ -16,6 +16,7 @@ Ingame currency:
   -You can buy cards for money(depends on settings)(comming soon)
   -You can offer money for territories/bonuses(comming soon)
   -You can buy armies of persons you are not in war with(comming soon)
+  -You can buy armies of the shop for a definded price
 Tradesystem(comming soon):
   -See ingame currency
 AIs for Diplos(complete):
