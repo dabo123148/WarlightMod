@@ -8,7 +8,11 @@ Allianze System(not implemented):
   -Players you are allied with declear war on players, who declear war on you(comming soon)
   -You can see the territories of your allies(depends on settings)(comming soon)
 Ingame currency:
-  -You get money for killing armies and for every turn(number depends on settings)
+  -You get money for(depends for every point on the settings): - killing armies
+                                                               - taking territories
+                                                               - every turn
+                                                               - taking bonuses
+                                                               - Game start
   -You can buy cards for money(depends on settings)(comming soon)
   -You can offer money for territories/bonuses(comming soon)
   -You can buy armies of persons you are not in war with(comming soon)
