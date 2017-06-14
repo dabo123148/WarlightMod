@@ -57,7 +57,15 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							end
 						end
 						if(match == true)then
-							playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money + Mod.Settings.MoneyPerCapturedBonus;
+							local match2 = false;
+							for _,pid in pairs(AllPlayerIDs)do
+								if(pid == order.PlayerID)then
+									match2 = true;
+								end
+							end
+							if(match2 == true)then
+								playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money + Mod.Settings.MoneyPerCapturedBonus;
+							end
 						end
 					end
 				end
