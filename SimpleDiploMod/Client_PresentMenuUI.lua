@@ -163,6 +163,7 @@ function TargetPlayerClickedOfferAllianze()
 		local allianzesplit = stringtotable(Mod.PlayerGameData.Allianze);
 	end
 	local options = {};
+	local match2 = false;
 	for _,playerinstanze in pairs(Game.Game.Players)do
 		local match = false;
 		for _,with in pairs(inwarwith)do
@@ -177,11 +178,12 @@ function TargetPlayerClickedOfferAllianze()
 		end
 		if(match == false)then
 			if(playerinstanze.IsAI == false and playerinstanze.ID ~= Game.Us.ID)then
+				match2 = true;
 				table.insert(options,playerinstanze);
 			end
 		end
 	end
-	if(options == {})then
+	if(match2 == false)then
 		UI.Alert('You are not able to ally to anyone at the moment');
 	else
 		options = map(options, PlayerButton);
