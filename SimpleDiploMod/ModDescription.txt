@@ -1,17 +1,17 @@
 This Mod adds:
-War/Peace System(currently working on money for peace):
+War/Peace System:
   -After you declared War on someone, you have to wait one turn before you can attack him
-  -Sanction Card counts as Declearation(depends on settings(comming soon))
-  -Bomb Card counts as Declearation(depends on settings(comming soon))
+  -Sanction Card counts as Declearation(depends on settings)
+  -Bomb Card counts as Declearation(depends on settings)
   -Spy Card counts as Declearation(depends on settings)(comming soon)
-Allianze System(in combination with War System):
-  -Players you are allied with declear war on players, who declear war on you
+Allianze System(not implemented):
+  -Players you are allied with declear war on players, who declear war on you(comming soon)
   -You can see the territories of your allies(depends on settings)(comming soon)
-Ingame currency(currently in development):
-  -You get money for killing armies and for every turn(number depends on settings)(comming soon)
-  -You can buy cards for money(depends on settings)
-  -You can offer money for territories/bonuses
-  -You can buy armies of persons you are not in war with
+Ingame currency:
+  -You get money for killing armies and for every turn(number depends on settings)
+  -You can buy cards for money(depends on settings)(comming soon)
+  -You can offer money for territories/bonuses(comming soon)
+  -You can buy armies of persons you are not in war with(comming soon)
 Tradesystem(comming soon):
   -See ingame currency
 AIs for Diplos(complete):
