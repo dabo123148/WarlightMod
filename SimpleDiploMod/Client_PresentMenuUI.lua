@@ -149,7 +149,7 @@ function OpenOfferAlliance()
 	DeleteUI();
 	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Offer Allianze To: ");
-	TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerClicked);
+	TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferAllianze);
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
 	commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Offer").SetOnClick(declare);
 end
@@ -175,9 +175,7 @@ function TargetPlayerClickedOfferAllianze()
 				match=true;
 			end
 		end
-		print('Test2');
 		if(match == false)then
-			print("Test " ..playerinstanze.IsAI .. playerinstanze.DisplayName(nil, false));
 			if(playerinstanze.IsAI == false)then
 				table.insert(options,playerinstanze);
 			end
