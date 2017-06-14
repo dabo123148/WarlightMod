@@ -253,19 +253,20 @@ function getplayerid(playername,game)
 end
 function toname(playerid,game)
 	local test = "";
-	for _,playerinfo in pairs(game.ServerGame.Game.Players)do
-		if(playerid == playerinfo.ID)then
+	return game.ServerGame.Game.Players[playerid].DisplayName(nil, false);
+	--for _,playerinfo in pairs(game.ServerGame.Game.Players)do
+	--	if(playerid == playerinfo.ID)then
 			--return tostring(playerid) .. " " .. tostring(playerinfo.ID);
 			--local name = playerinfo.DisplayName(nil, false);
-			local name = playerinfo.Color.Name;
-			if(name == nil or name == "")then
-				return "fehler";
-			else
-				return name;
-			end
-		end
-	end
-	return "Error. Please report to dabo1.";
+	--		local name = playerinfo.Color.Name;
+	--		if(name == nil or name == "")then
+	--			return "fehler";
+	--		else
+	--			return name;
+	--		end
+	--	end
+	--end
+	--return "Error. Please report to dabo1.";
 end
 function RemoveAlly(Player1,Player2)
 	
