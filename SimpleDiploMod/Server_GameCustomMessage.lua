@@ -162,10 +162,10 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 					if(playerGameData[pID].Nachrichten == nil)then
 						playerGameData[pID].Nachrichten = ",";
 					end
-					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",2," .. "," .. an .. ",";
-					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. "," .. an .. ",";
+					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",2," ..tostring(game.Game.NumberOfTurns+dauer).. "," .. an .. ",";
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,"..tostring(game.Game.NumberOfTurns+dauer).. "," .. an .. ",";
 				else
-					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. "," .. an .. ",";
+					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. tostring(game.Game.NumberOfTurns+dauer).. "," .. an .. ",";
 				end
 			end
 			Mod.PlayerGameData=playerGameData;
