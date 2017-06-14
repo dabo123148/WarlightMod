@@ -22,6 +22,9 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 			if(split(gameOrder.Payload,'|')[1]=='Pestilence')then
 				PGD=Mod.PublicGameData;
 				PGD.PestilenceStadium[tonumber(split(gameOrder.Payload,'|')[2])]=1;
+				PlGD=Mod.PlayerGameData;
+				PlGD[gameOrder.playerID].PestCards=PlGD[gameOrder.playerID].PestCards-1;
+				Mod.PlayerGameData=PlGD;
 				Mod.PublicGameData=PGD;
 			end
 		end
