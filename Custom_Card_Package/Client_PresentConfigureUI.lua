@@ -127,8 +127,11 @@ function IncludeExcludeNukeCard()
 		NukeCardStartPiecesBox=UI.CreateNumberInputField(horzlist[11]).SetSliderMinValue(0).SetSliderMaxValue(20).SetValue(NukeCardStartPiecesinit);
 		print('T14');
 		if(Mod.Settings.AfterDeployment==nil)then
+			print('T16');
 			AfterDeploymentToggle.SetIsChecked(true);
+			print('T17');
 			BeforeDeploymentToggle.SetIsChecked(false);
+			print('T18');
 		end
 		print('T15');
 	end
