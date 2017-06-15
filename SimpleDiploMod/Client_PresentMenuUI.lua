@@ -335,13 +335,15 @@ function Openshop(rootParent)
 	horzobjlist[12] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[12]).SetText("Sell Territory");
 	horzobjlist[13] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[13]).SetText("Select a territory");
+	territory = UI.CreateButton(horzobjlist[13]).SetText("Select territory...").SetOnClick(TargetTerritoryClicked);
 	horzobjlist[14] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[14]).SetText("Select a player, you want to offer it to");
 	horzobjlist[15] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[15]).SetText("What are you willing to pay");
+	Moneyyoupayforpeace = UI.CreateNumberInputField(horzobjlist[15]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
 	horzobjlist[16] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[16]).SetText("What do you want for the territory");
+	Moneyyougetforpeace = UI.CreateNumberInputField(horzobjlist[16]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
 	horzobjlist[17] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[17]).SetText("Send request");
 end
