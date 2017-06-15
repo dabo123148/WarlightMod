@@ -20,7 +20,7 @@ function Client_PresentConfigureUI(rootParent)
 	end
 	horzlist = {};
 	horzlist[0] = UI.CreateHorizontalLayoutGroup(rootParent);
-	PestCardCheckbox=UI.CreateCheckBox(horzlist[0]).SetText('Include Pestilence Card').SetIsChecked(PestCardIn).SetOnValueChanged(IncludeExcludePestilenzCard);
+	PestCardCheckbox=UI.CreateCheckBox(horzlist[0]).SetText('Include Pestilence Card').SetIsChecked(PestCardIninit).SetOnValueChanged(IncludeExcludePestilenzCard);
 	horzlist[1] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[2] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[3] = UI.CreateHorizontalLayoutGroup(rootParent);
