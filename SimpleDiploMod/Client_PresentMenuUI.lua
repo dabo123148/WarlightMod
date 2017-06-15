@@ -105,15 +105,10 @@ function TargetPlayerClickedOfferPeace()
 end
 function OpenMenu()
 	DeleteUI();
-	--UI.CreateLabel(horz).SetText("Shop");
-	openshopbutton = UI.CreateButton(vert).SetText("Shop").SetOnClick(Openshop);
- 	--UI.CreateLabel(horz).SetText("Declare War");
+	openshopbutton = UI.CreateButton(vert).SetText("Trading").SetOnClick(Openshop);
 	declarewarbutton = UI.CreateButton(vert).SetText("Declare War").SetOnClick(OpenDeclarWar);
-	--UI.CreateLabel(horz).SetText("Offer Peace");
 	offerpeacebutton = UI.CreateButton(vert).SetText("Offer Peace").SetOnClick(OpenOfferPeace);
-	--UI.CreateLabel(horz).SetText("Offer Allianze");
 	offerallianzebutton = UI.CreateButton(vert).SetText("Offer Alliance - not implemented").SetOnClick(OpenOfferAlliance);
-  	--UI.CreateLabel(horz).SetText("Pending Requests");
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
 	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function()
 		if(Mod.PlayerGameData.Nachrichten ~=nil)then
@@ -304,6 +299,34 @@ function Openshop(rootParent)
 			end
 		end
 	end)
+	horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[4]).SetText(" ");
+	horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[5]).SetText("Buy Territory");
+	horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[6]).SetText("Select a territory");
+	horzobjlist[7] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[7]).SetText("Select a player, you want to buy it from");
+	horzobjlist[8] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[8]).SetText("What are you willing to pay");
+	horzobjlist[9] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[9]).SetText("What do you want for the territory");
+	horzobjlist[10] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[10]).SetText("Send request");
+	horzobjlist[11] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[11]).SetText(" ");
+	horzobjlist[12] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[12]).SetText("Sell Territory");
+	horzobjlist[13] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[13]).SetText("Select a territory");
+	horzobjlist[14] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[14]).SetText("Select a player, you want to offer it to");
+	horzobjlist[15] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[15]).SetText("What are you willing to pay");
+	horzobjlist[16] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[16]).SetText("What do you want for the territory");
+	horzobjlist[17] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[17]).SetText("Send request");
 end
 function OpenDeclarWar()
 	DeleteUI();
