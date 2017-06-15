@@ -48,6 +48,9 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 		end
 	end
 	if(deployed == false)then
+		if(Mod.Settings.AfterDeployment~= nil and Mod.Settings.AfterDeployment == false)then
+			deployed = true;
+		end
 		if(gameOrder.proxyType == 'GameOrderAttackTransfer') then
 			deployed = true;
 		end
@@ -89,6 +92,25 @@ end
 
 
 function Server_AdvanceTurn_End(game,addOrder)
+	if(deployed == false)then
+		deployed = true;
+		for _, order in pairs(AusstehendeNukes)do
+			local Effect = {};
+			local targetterritoryid = tonumber(split(order.Payload,'|')[2]);
+				for _,conn in pairs(game.Map.Territories[targetterritoryid].ConnectedTo) do
+					if(game.ServerGame.LatestTurnStanding.Territories[conn.ID].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == true)then
+						Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(conn.ID);
+						Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*(1-(Mod.Settings.NukeCardConnectedTerritoryDamage/100));
+					end
+				end
+				if(game.ServerGame.LatestTurnStanding.Territories[targetterritoryid].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == true)then
+					Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(targetterritoryid);
+					Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[targetterritoryid].NumArmies.NumArmies*(1-(Mod.Settings.NukeCardMainTerritoryDamage/100));
+				end
+				addOrder(WL.GameOrderEvent.Create(order.PlayerID,'Nuked ' .. game.Map.Territories[targetterritoryid].Name,{},Effect));
+			end
+		end
+	end
 	PGD = Mod.PlayerGameData;
 	PuGD = Mod.PublicGameData;
 	for playerID in pairs(game.ServerGame.Game.PlayingPlayers) do
