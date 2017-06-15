@@ -130,7 +130,7 @@ function IncludeExcludeNukeCard()
 			print('T16');
 			AfterDeploymentToggle.SetIsChecked(true);
 			print('T17');
-			BeforeDeploymentToggle.SetIsChecked(false);
+			BeforeDeploymentToggle.SetIsChecked(true);
 			print('T18');
 		end
 		print('T15');
