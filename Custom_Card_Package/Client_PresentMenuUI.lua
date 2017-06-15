@@ -7,7 +7,7 @@ function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
     PestCards=0;
   end
   setMaxSize(450, 350);
-	if(game.Us.ID~=nil)then
+	if(game.Us~=nil)then
   	ShowFirstMenu();
 	end
 end
