@@ -6,7 +6,7 @@ function Client_SaveConfigureUI(alert)
                  Mod.Settings.PestCardPiecesNeeded=PestCardPiecesNeededBox.GetValue();
                  Mod.Settings.PestCardStartPieces=PestCardStartPiecesBox.GetValue();
         end
-        Mod.Settings.NukeCardIn =PestCardCheckbox.GetIsChecked();
+        Mod.Settings.NukeCardIn =NukeCardCheckbox.GetIsChecked();
         if(Mod.Settings.NukeCardIn == true)then
                 Mod.Settings.AfterDeployment = AfterDeploymentToggle.GetValue;
                 Mod.Settings.Friendlyfire=FriendlyfireToggle.GetIsChecked();
