@@ -1,4 +1,4 @@
-function Server_AdvanceTurn_End(game,addOrder)
+function Server_AdvanceTurn_Start(game,addOrder)
 	AusstehendeNukes = {};
 	PlGD=Mod.PlayerGameData;
 	for _,playerID in pairs(game.ServerGame.Game.PlayingPlayers) do
