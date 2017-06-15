@@ -97,18 +97,17 @@ function Server_AdvanceTurn_End(game,addOrder)
 		for _, order in pairs(AusstehendeNukes)do
 			local Effect = {};
 			local targetterritoryid = tonumber(split(order.Payload,'|')[2]);
-				for _,conn in pairs(game.Map.Territories[targetterritoryid].ConnectedTo) do
-					if(game.ServerGame.LatestTurnStanding.Territories[conn.ID].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == true)then
-						Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(conn.ID);
-						Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*(1-(Mod.Settings.NukeCardConnectedTerritoryDamage/100));
-					end
+			for _,conn in pairs(game.Map.Territories[targetterritoryid].ConnectedTo) do
+				if(game.ServerGame.LatestTurnStanding.Territories[conn.ID].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == true)then
+					Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(conn.ID);
+					Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*(1-(Mod.Settings.NukeCardConnectedTerritoryDamage/100));
 				end
-				if(game.ServerGame.LatestTurnStanding.Territories[targetterritoryid].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == true)then
-					Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(targetterritoryid);
-					Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[targetterritoryid].NumArmies.NumArmies*(1-(Mod.Settings.NukeCardMainTerritoryDamage/100));
-				end
-				addOrder(WL.GameOrderEvent.Create(order.PlayerID,'Nuked ' .. game.Map.Territories[targetterritoryid].Name,{},Effect));
 			end
+			if(game.ServerGame.LatestTurnStanding.Territories[targetterritoryid].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == true)then
+				Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(targetterritoryid);
+				Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[targetterritoryid].NumArmies.NumArmies*(1-(Mod.Settings.NukeCardMainTerritoryDamage/100));
+			end
+			addOrder(WL.GameOrderEvent.Create(order.PlayerID,'Nuked ' .. game.Map.Territories[targetterritoryid].Name,{},Effect));
 		end
 	end
 	PGD = Mod.PlayerGameData;
