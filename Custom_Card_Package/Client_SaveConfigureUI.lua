@@ -14,5 +14,11 @@ function Client_SaveConfigureUI(alert)
                 Mod.Settings.NukeCardStartPieces=NukeCardStartPiecesBox.GetValue();
                 Mod.Settings.NukeCardMainTerritoryDamage=NukeCardMainTerritoryDamageSlider.GetValue();
                 Mod.Settings.NukeCardConnectedTerritoryDamage=NukeCardConnectedTerritoryDamageSlider.GetValue();
+                if(Mod.Settings.NukeCardMainTerritoryDamage<0 or Mod.Settings.NukeCardConnectedTerritoryDamage<0)then
+                        alert('To be fair, negative damage is blocked for the nuke card');
+                end
+                 if(Mod.Settings.NukeCardMainTerritoryDamage>100 or Mod.Settings.NukeCardConnectedTerritoryDamage>100)then
+                        alert('You cannot deal more than 100% Damage');
+                end
         end
 end
