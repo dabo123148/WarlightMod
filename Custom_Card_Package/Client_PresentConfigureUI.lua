@@ -47,7 +47,7 @@ function Client_PresentConfigureUI(rootParent)
 	if(Mod.Settings.NukeCardMainTerritoryDamage ~= nil)then
    		NukeCardMainTerritoryDamageinit=Mod.Settings.NukeCardMainTerritoryDamage;
 	end
-	NukeCardConnectedTerritoryDamageinit=11;
+	NukeCardConnectedTerritoryDamageinit=25;
 	if(Mod.Settings.NukeCardConnectedTerritoryDamage ~= nil)then
    		NukeCardConnectedTerritoryDamageinit=Mod.Settings.NukeCardConnectedTerritoryDamage;
 	end
