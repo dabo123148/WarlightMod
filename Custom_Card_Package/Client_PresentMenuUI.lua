@@ -53,7 +53,7 @@ function ShowFirstMenu()
 	  	NukeCardsFree=NukeCards-NukeCardsPlayed;
     	  	vertPest=UI.CreateVerticalLayoutGroup(rootParent);
           	PestText0=UI.CreateLabel(vertPest).SetText('Nuke Card: ');
-          	PestText1=UI.CreateLabel(vertPest).SetText('      You have got '..tostring(NukeCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.NukeCardPieces)..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.');
+          	PestText1=UI.CreateLabel(vertPest).SetText('      You have got '..tostring(NukeCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.NukeCardPieces)..'/'..Mod.Settings.NukeCardPiecesNeeded..' Pieces.');
           	if(NukeCardsFree>0)then
     			PestButton1=UI.CreateButton(vertPest).SetText('Play Nuke Card').SetOnClick(PlayNukeCard);
     	 	end
