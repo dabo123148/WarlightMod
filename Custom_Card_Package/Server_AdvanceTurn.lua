@@ -59,13 +59,17 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 			for _, order in pairs(AusstehendeNukes)do
 				local Effect = {};
 				local targetterritoryid = tonumber(split(order.Payload,'|')[2]);
+				print('Test2');
 				for _,conn in pairs(game.Map.Territories[targetterritoryid].ConnectedTo) do
+					print('Test1');
 					if(game.ServerGame.LatestTurnStanding.Territories[conn.ID].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == true)then
+						print('Terr2');
 						Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(conn.ID);
 						Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*(1-(Mod.Settings.NukeCardConnectedTerritoryDamage/100));
 					end
 				end
 				if(game.ServerGame.LatestTurnStanding.Territories[targetterritoryid].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == true)then
+					print('Terr1');
 					Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(targetterritoryid);
 					Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*(1-(Mod.Settings.NukeCardMainTerritoryDamage/100));
 				end
