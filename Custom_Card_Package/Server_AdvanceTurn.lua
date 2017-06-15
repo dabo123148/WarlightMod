@@ -37,7 +37,7 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 				Mod.PublicGameData=PGD;
 			end
 			if(split(gameOrder.Payload,'|')[1]=='Nuke')then
-				skip(WL.ModOrderControll.SkipAndSupressSkippedMessage);
+				skip(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 			end
 		end
 	end
