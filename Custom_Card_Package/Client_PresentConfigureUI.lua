@@ -93,10 +93,15 @@ function IncludeExcludeNukeCard()
 	if(NukeCardMainTerritoryDamageSlider ~= nil)then
 		UI.Destroy(text4);
 		UI.Destroy(NukeCardMainTerritoryDamageSlider);
-		UI.Destroy(text5);
 		UI.Destroy(NukeCardConnectedTerritoryDamageSlider);
+		UI.Destroy(FriendlyfireToggle);
+		UI.Destroy(AfterDeploymentToggle);
+		UI.Destroy(BeforeDeploymentToggle);
+		UI.Destroy(text5);
+		UI.Destroy(NukeCardPiecesNeededBox);
 		UI.Destroy(text6);
-		UI.Destroy(PestCardStartPiecesBox);
+		UI.Destroy(NukeCardStartPiecesBox);
+		UI.Destroy(text7);
 		NukeCardMainTerritoryDamageSlider = nil;
 	else
 		text4 = UI.CreateLabel(horzlist[5]).SetText('Main Territory Damage in %:');
