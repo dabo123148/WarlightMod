@@ -324,10 +324,14 @@ function Openshop(rootParent)
 	textelem = UI.CreateLabel(horzobjlist[6]).SetText("Select a territory");
 	horzobjlist[7] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[7]).SetText("Select a player, you want to buy it from");
-	horzobjlist[8] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[8]).SetText("What are you willing to pay");
-	horzobjlist[9] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[9]).SetText("What do you want for the territory");
+	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+		horzobjlist[8] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[8]).SetText("What are you willing to pay");
+		Moneyyoupayforterritorybuy = UI.CreateNumberInputField(horzobjlist[8]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+		horzobjlist[9] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[9]).SetText("What do you want for the territory");
+		Moneyyougetterritorybuy = UI.CreateNumberInputField(horzobjlist[9]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+	end
 	horzobjlist[10] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[10]).SetText("Send request");
 	horzobjlist[11] = UI.CreateHorizontalLayoutGroup(root);
@@ -338,12 +342,14 @@ function Openshop(rootParent)
 	territory = UI.CreateButton(horzobjlist[13]).SetText("Select territory...").SetOnClick(TargetTerritoryClicked);
 	horzobjlist[14] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[14]).SetText("Select a player, you want to offer it to");
-	horzobjlist[15] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[15]).SetText("What are you willing to pay");
-	Moneyyoupayforpeace = UI.CreateNumberInputField(horzobjlist[15]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
-	horzobjlist[16] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[16]).SetText("What do you want for the territory");
-	Moneyyougetforpeace = UI.CreateNumberInputField(horzobjlist[16]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+		horzobjlist[15] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[15]).SetText("What are you willing to pay");
+		Moneyyoupayforterritorysell = UI.CreateNumberInputField(horzobjlist[15]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+		horzobjlist[16] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[16]).SetText("What do you want for the territory");
+		Moneyyougetforterritorysell = UI.CreateNumberInputField(horzobjlist[16]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+	end
 	horzobjlist[17] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[17]).SetText("Send request");
 end
