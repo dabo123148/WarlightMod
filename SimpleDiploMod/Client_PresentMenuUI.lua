@@ -36,12 +36,14 @@ function OpenOfferPeace()
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[1]).SetText("Offer peace to: ");
 	TargetPlayerBtn = UI.CreateButton(horzobjlist[1]).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
-	horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
-	UI.CreateLabel(horzobjlist[2]).SetText('How much money are you willing to pay for peace');
-	Moneyyoupayforpeace = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
-	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
-	UI.CreateLabel(horzobjlist[3]).SetText('How much money do you want for peace');
-	Moneyyougetforpeace = UI.CreateNumberInputField(horzobjlist[3]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+		horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[2]).SetText('How much money are you willing to pay for peace');
+		Moneyyoupayforpeace = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+		horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[3]).SetText('How much money do you want for peace');
+		Moneyyougetforpeace = UI.CreateNumberInputField(horzobjlist[3]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+	end
 	horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[4]).SetText('How many turns do you want to last your peace');
 	peaceduration = UI.CreateNumberInputField(horzobjlist[4]).SetSliderMinValue(0).SetSliderMaxValue(10).SetValue(1);
@@ -52,18 +54,20 @@ function commitofferpeace()
 	local offerto = TargetPlayerBtn.GetText();
 	local Preis = 0;
 	local duration = peaceduration.GetValue();
-	if(Moneyyoupayforpeace.GetValue() ~= 0)then
-		Preis = -Moneyyoupayforpeace.GetValue();
-	else
-		Preis = Moneyyougetforpeace.GetValue();
+	if(Moneyyoupayforpeace ~= nil)then
+		if(Moneyyoupayforpeace.GetValue() ~= 0)then
+			Preis = -Moneyyoupayforpeace.GetValue();
+		else
+			Preis = Moneyyougetforpeace.GetValue();
+		end
 	end
 	if(offerto == "Select player...")then
 		UI.Alert('You need to choose a player first');
 	else
-		if(Moneyyoupayforpeace.GetValue() ~= 0 and Moneyyougetforpeace.GetValue() ~= 0)then
+		if(Moneyyoupayforpeace ~= nil and Moneyyoupayforpeace.GetValue() ~= 0 and Moneyyougetforpeace.GetValue() ~= 0)then
 			UI.Alert('You cannot want money and pay money for peace at the same time');
 		else
-			if(Moneyyoupayforpeace.GetValue() < 0 or Moneyyougetforpeace.GetValue() < 0)then
+			if(Moneyyoupayforpeace ~= nil and Moneyyoupayforpeace.GetValue() < 0 or Moneyyougetforpeace.GetValue() < 0)then
 				UI.Alert('Money can not be negative');
 			else
 				if(duration < 1)then
@@ -270,36 +274,38 @@ function toname(playerid,game)
 end
 function Openshop(rootParent)
 	DeleteUI();
-	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Buy Armies");
-	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
-	territory = UI.CreateButton(horzobjlist[1]).SetText("Select territory...").SetOnClick(TargetTerritoryClicked);
-	horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
-	UI.CreateLabel(horzobjlist[2]).SetText('Army number: ');
-	Countobj = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
-	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
-	commitbutton = UI.CreateButton(horzobjlist[3]).SetText("Add Order").SetOnClick(function() 
-		if(territory.GetText() == "Select territory...")then
-			UI.Alert('You need to select a territory first');
-		else
-			local Anzahl = Countobj.GetValue();
-			if(Anzahl< 1)then
-				UI.Alert('Invailid Count');
+	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[0]).SetText("Buy Armies");
+		horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+		territory = UI.CreateButton(horzobjlist[1]).SetText("Select territory...").SetOnClick(TargetTerritoryClicked);
+		horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[2]).SetText('Army number: ');
+		Countobj = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
+		horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
+		commitbutton = UI.CreateButton(horzobjlist[3]).SetText("Add Order").SetOnClick(function() 
+			if(territory.GetText() == "Select territory...")then
+				UI.Alert('You need to select a territory first');
 			else
-				for _,terr in pairs(Game.Map.Territories)do
-					--UI.Alert(terr.Name .. " " .. territory.GetText());
-					if(terr.Name == territory.GetText())then
-						local pay = "," .. terr.ID .. "," .. Anzahl;
-						local Nachricht = "Buy Armies (" .. Anzahl .. ") for " .. terr.Name;
-						local armybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, Nachricht, pay);
-						local orders = Game.Orders;
-						table.insert(orders, armybuyorder);
-						Game.Orders=orders;
+				local Anzahl = Countobj.GetValue();
+				if(Anzahl< 1)then
+					UI.Alert('Invailid Count');
+				else
+					for _,terr in pairs(Game.Map.Territories)do
+						--UI.Alert(terr.Name .. " " .. territory.GetText());
+						if(terr.Name == territory.GetText())then
+							local pay = "," .. terr.ID .. "," .. Anzahl;
+							local Nachricht = "Buy Armies (" .. Anzahl .. ") for " .. terr.Name;
+							local armybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, Nachricht, pay);
+							local orders = Game.Orders;
+							table.insert(orders, armybuyorder);
+							Game.Orders=orders;
+						end
 					end
 				end
 			end
-		end
-	end)
+		end)
+	end
 	horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[4]).SetText(" ");
 	horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
