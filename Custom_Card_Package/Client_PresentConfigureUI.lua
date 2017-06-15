@@ -93,9 +93,9 @@ function IncludeExcludeNukeCard()
 		NukeCardMainTerritoryDamageSlider = nil;
 	else
 		text4 = UI.CreateLabel(horzlist[5]).SetText('Main Territory Damage in %:');
-		NukeCardMainTerritoryDamageSlider = UI.CreateNumberInputField(horzlist[1]).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(NukeCardMainTerritoryDamageinit).SetWholeNumbers(true);
+		NukeCardMainTerritoryDamageSlider = UI.CreateNumberInputField(horzlist[5]).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(NukeCardMainTerritoryDamageinit).SetWholeNumbers(true);
 		text5 = UI.CreateLabel(horzlist[6]).SetText('Connected Territories Damage in %');
-		NukeCardConnectedTerritoryDamageSlider = UI.CreateNumberInputField(horz1).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(NukeCardConnectedTerritoryDamageinit).SetWholeNumbers(true);
+		NukeCardConnectedTerritoryDamageSlider = UI.CreateNumberInputField(horzlist[6]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(NukeCardConnectedTerritoryDamageinit).SetWholeNumbers(true);
 		FriendlyfireToggle = UI.CreateCheckBox(horzlist[7]).SetText('Can harm yourself').SetIsChecked(Friendlyfireinit);
 		AfterDeploymentToggle = UI.CreateCheckBox(horzlist[8]).SetText('After Deployment but before Gift and Blockade Cards').SetOnValueChanged(OnClickAfterDeployment);
 		BeforeDeploymentToggle = UI.CreateCheckBox(horzlist[9]).SetText('Before Deployment').SetOnValueChanged(OnClickBeforeDeployment);
