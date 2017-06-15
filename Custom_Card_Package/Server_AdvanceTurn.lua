@@ -1,3 +1,19 @@
+function Server_AdvanceTurn_End(game,addOrder)
+	AusstehendeNukes = {};
+	PlGD=Mod.PlayerGameData;
+	for _,order in pairs(game.ServerGame.ActiveTurnOrders)do
+		if(gameOrder.proxyType=='GameOrderCustom')then
+			if(gameOrder.Payload~=nil)then
+				if(split(gameOrder.Payload,'|')[1]=='Nuke')then
+					AusstehendeNukes[tablelength(AusstehendeNukes)+1] = order;
+					PlGD[gameOrder.PlayerID].PestCards=PlGD[order.PlayerID].NukeCards-1;
+				end
+			end
+		end
+	end
+	Mod.PlayerGameData=PlGD;
+	deployed = false;
+end
 function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 	
 	if(gameOrder.proxyType=='GameOrderAttackTransfer')then
@@ -20,6 +36,43 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 				Mod.PlayerGameData=PlGD;
 				Mod.PublicGameData=PGD;
 			end
+			if(split(gameOrder.Payload,'|')[1]=='Nuke')then
+				skip(WL.ModOrderControll.SkipAndSupressSkippedMessage);
+			end
+		end
+	end
+	if(deployed == false)then
+		if(order.proxyType == 'GameOrderAttackTransfer') then
+			deployed = true;
+		end
+		if(order.proxyType == 'GameOrderPlayCardAbandon') then
+			deployed = true;
+		end
+		if(order.proxyType == 'GameOrderPlayCardGift') then
+			deployed = true;
+		end
+		if(order.proxyType == 'GameOrderPlayCardBlockade') then
+			deployed = true;
+		end
+		if(deployed == true)then
+			skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
+			for _, order in pairs(AusstehendeNukes)do
+				local Effect = {};
+				local targetterritoryid = tonumber(split(order.Payload,'|')[2]);
+				for _,conn in pairs(game.Map.Territories[targetterritoryid].ConnectedTo) do
+					if(game.ServerGame.LatestTurnStanding.Territories[conn.ID].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == true)then
+						Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(conn.ID);
+						Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*(1-(Mod.Settings.NukeCardConnectedTerritoryDamage/100));
+					end
+				end
+				if(game.ServerGame.LatestTurnStanding.Territories[targetterritoryid].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == true)then
+					Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(targetterritoryid);
+					Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*(1-(Mod.Settings.NukeCardMainTerritoryDamage/100));
+				end
+				addOrder(WL.GameOrderEvent.Create(order.PlayerID,'Nuked ' .. game.Map.Territories[targetterritoryid].Name,{},Effect);
+			end
+			AusstehendeNukes = {};
+			addOrder(gameOrder);
 		end
 	end
 end
