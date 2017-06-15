@@ -115,18 +115,22 @@ function IncludeExcludeNukeCard()
 		text4 = UI.CreateLabel(horzlist[5]).SetText('Main Territory Damage in %:');
 		NukeCardMainTerritoryDamageSlider = UI.CreateNumberInputField(horzlist[5]).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(NukeCardMainTerritoryDamageinit).SetWholeNumbers(true);
 		text5 = UI.CreateLabel(horzlist[6]).SetText('Connected Territories Damage in %');
+		print('T12');
 		NukeCardConnectedTerritoryDamageSlider = UI.CreateNumberInputField(horzlist[6]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(NukeCardConnectedTerritoryDamageinit).SetWholeNumbers(true);
 		FriendlyfireToggle = UI.CreateCheckBox(horzlist[7]).SetText('Can harm yourself').SetIsChecked(Friendlyfireinit);
 		AfterDeploymentToggle = UI.CreateCheckBox(horzlist[8]).SetText('After Deployment but before Gift and Blockade Cards').SetOnValueChanged(OnClickAfterDeployment);
 		BeforeDeploymentToggle = UI.CreateCheckBox(horzlist[9]).SetText('Before Deployment').SetOnValueChanged(OnClickBeforeDeployment);
+		print('T13');
 		text6 = UI.CreateLabel(horzlist[10]).SetText('Card Pieces Needed:');
 		NukeCardPiecesNeededBox=UI.CreateNumberInputField(horzlist[10]).SetSliderMinValue(1).SetSliderMaxValue(20).SetValue(NukeCardPiecesNeededinit);
 		text7 = UI.CreateLabel(horzlist[11]).SetText('Card Pieces given at the beginning of the game:');
 		NukeCardStartPiecesBox=UI.CreateNumberInputField(horzlist[11]).SetSliderMinValue(0).SetSliderMaxValue(20).SetValue(NukeCardStartPiecesinit);
+		print('T14');
 		if(Mod.Settings.AfterDeployment==nil)then
 			AfterDeploymentToggle.SetIsChecked(true);
 			BeforeDeploymentToggle.SetIsChecked(false);
 		end
+		print('T15');
 	end
 	print('T4');
 end
