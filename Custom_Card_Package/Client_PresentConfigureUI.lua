@@ -37,11 +37,11 @@ function Client_PresentConfigureUI(rootParent)
 	end
 	NukeCardPiecesNeededinit=11;
 	if(Mod.Settings.NukeCardPiecesNeeded ~= nil)then
-   		PestCardPiecesNeededinit=Mod.Settings.NukeCardPiecesNeeded;
+   		NukeCardPiecesNeededinit=Mod.Settings.NukeCardPiecesNeeded;
 	end
 	NukeCardStartPiecesinit=11;
 	if(Mod.Settings.NukeCardStartPieces ~= nil)then
-   		PestCardStartPiecesinit=Mod.Settings.NukeCardStartPieces;
+   		NukeCardStartPiecesinit=Mod.Settings.NukeCardStartPieces;
 	end
 	NukeCardMainTerritoryDamageinit=50;
 	if(Mod.Settings.NukeCardMainTerritoryDamage ~= nil)then
