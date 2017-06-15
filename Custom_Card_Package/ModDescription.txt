@@ -1,7 +1,10 @@
 This Mod adds a couple of User-Created Cards. Already added:
   -Pestilence Card
-    -> Adds Pestilence Cards to the game. A player you play a Pestilence Card on will lose [Pestilence Strength] troops on every Territory in the end of his next turn. Territories with 0 armies left will go Neutral.
-    
+    -> Adds Pestilence Cards to the game. A player you play a Pestilence Card on will lose [Pestilence Strength] troops on every Territory 
+   in the end of his next turn. Territories with 0 armies left will go Neutral.
+  -Nuke Card
+    -->This mod removes armies from the territory you select and from its connected territories. If the percentage set is greater than 1,  at least one army always gets killed, because it is rounded up. If you want, you can also allow/forbid players to harm themself. You can also configure when the order should happen (before or after deployments).
+
 In development:
   -Vanish Card
   
