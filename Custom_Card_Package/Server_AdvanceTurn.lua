@@ -5,9 +5,9 @@ function Server_AdvanceTurn_Start(game,addOrder)
       		if(playerID.ID>50)then
 			for _,order in pairs(game.ServerGame.ActiveTurnOrders[playerID.ID])do
 				print('T');
-				if(gameOrder.proxyType=='GameOrderCustom')then
-					if(gameOrder.Payload~=nil)then
-						if(split(gameOrder.Payload,'|')[1]=='Nuke')then
+				if(order.proxyType=='GameOrderCustom')then
+					if(order.Payload~=nil)then
+						if(split(order.Payload,'|')[1]=='Nuke')then
 							print('Test');
 							AusstehendeNukes[tablelength(AusstehendeNukes)+1] = order;
 							PlGD[gameOrder.PlayerID].PestCards=PlGD[order.PlayerID].NukeCards-1;
