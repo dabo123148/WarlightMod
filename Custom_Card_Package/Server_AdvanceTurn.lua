@@ -61,7 +61,7 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 			deployed = true;
 		end
 		if(deployed == true)then
-			skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
+			skip(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 			for _, order in pairs(AusstehendeNukes)do
 				local Effect = {};
 				local targetterritoryid = tonumber(split(order.Payload,'|')[2]);
