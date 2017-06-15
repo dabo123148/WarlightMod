@@ -2,18 +2,11 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 	
 	if(gameOrder.proxyType=='GameOrderAttackTransfer')then
 		local playerID=gameOrder.PlayerID;
-		--addOrder(WL.GameOrderCustom.Create(playerID,'Test 1',''));
 		if(gameOrder.PlayerID>50)then
-			--addOrder(WL.GameOrderCustom.Create(playerID,'Test 2',''));
-			--addOrder(WL.GameOrderCustom.Create(playerID,'Test 3',''));
 			if(result.IsSuccessful and result.IsAttack)then
-				--addOrder(WL.GameOrderCustom.Create(playerID,'Test 4',''));
-				if(Mod.Settings.PestCardIn)then
-					--addOrder(WL.GameOrderCustom.Create(playerID,'Test 5',''));
-					local PGD=Mod.PlayerGameData;
-					PGD[gameOrder.PlayerID].SuccessfullyAttacked=1;
-					Mod.PlayerGameData=PGD;
-				end
+				local PGD=Mod.PlayerGameData;
+				PGD[gameOrder.PlayerID].SuccessfullyAttacked=1;
+				Mod.PlayerGameData=PGD;
 			end
 		end
 	end
@@ -49,7 +42,7 @@ function Server_AdvanceTurn_End(game,addOrder)
 					end
 					addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece. You now have '..PGD[playerID].PestCards..' Cards and '..PGD[playerID].PestCardPieces..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.',''));
 				end
-				if(Mod.Settings.NukeCardIn~=nil and Mod.Settings.NukeCardIn)then
+				if(Mod.Settings.NukeCardIn ~=nil and Mod.Settings.NukeCardIn)then
 					PGD[playerID].NukeCardPieces=Mod.PlayerGameData[playerID].NukeCardPieces+1;
 					if(Mod.PlayerGameData[playerID].NukeCardPieces+1>=Mod.Settings.NukeCardPiecesNeeded)then
 						PGD[playerID].NukeCards=Mod.PlayerGameData[playerID].NukeCards+1;
