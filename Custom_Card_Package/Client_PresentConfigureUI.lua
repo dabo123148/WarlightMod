@@ -1,7 +1,7 @@
 
 function Client_PresentConfigureUI(rootParent)
    	root=rootParent;
-   	 
+   	 print('T6');
    	PestCardIninit=false;
 	if(Mod.Settings.PestCardIn ~= nil)then
    		PestCardIninit=Mod.Settings.PestCardIn;
@@ -25,6 +25,7 @@ function Client_PresentConfigureUI(rootParent)
 	horzlist[2] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[3] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[4] = UI.CreateHorizontalLayoutGroup(rootParent);
+	print('T7');
 	if(PestCardIninit == true)then
 		IncludeExcludePestilenzCard();
 	end
@@ -52,6 +53,7 @@ function Client_PresentConfigureUI(rootParent)
 	if(Mod.Settings.NukeCardConnectedTerritoryDamage ~= nil)then
    		NukeCardConnectedTerritoryDamageinit=Mod.Settings.NukeCardConnectedTerritoryDamage;
 	end
+	print('T8');
 	NukeCardCheckbox=UI.CreateCheckBox(horzlist[4]).SetText('Include Nuke Card').SetIsChecked(NukeCardIninit).SetOnValueChanged(IncludeExcludeNukeCard);
 	horzlist[5] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[6] = UI.CreateHorizontalLayoutGroup(rootParent);
@@ -70,8 +72,10 @@ function Client_PresentConfigureUI(rootParent)
 			BeforeDeploymentToggle.SetIsChecked(true);
 		end
 	end
+	print('T9');
 end
 function IncludeExcludePestilenzCard()
+	print('T5');
 	if(PestCardStrengthSlider ~= nil)then
 		UI.Destroy(text1);
 		UI.Destroy(PestCardStrengthSlider);
@@ -88,8 +92,10 @@ function IncludeExcludePestilenzCard()
 		text3 = UI.CreateLabel(horzlist[3]).SetText('Card Pieces given at the beginning of the game:');
 		PestCardStartPiecesBox=UI.CreateNumberInputField(horzlist[3]).SetSliderMinValue(0).SetSliderMaxValue(20).SetValue(PestCardStartPiecesinit);
 	end
+	print('T6');
 end
 function IncludeExcludeNukeCard()
+	print('T3');
 	if(NukeCardMainTerritoryDamageSlider ~= nil)then
 		UI.Destroy(text4);
 		UI.Destroy(NukeCardMainTerritoryDamageSlider);
@@ -120,11 +126,14 @@ function IncludeExcludeNukeCard()
 			BeforeDeploymentToggle.SetIsChecked(false);
 		end
 	end
+	print('T4');
 end
 function OnClickAfterDeployment()
+	print('T1');
 	if(AfterDeploymentToggle.GetIsChecked())then
 		BeforeDeploymentToggle.SetIsChecked(false);
 	else
 		BeforeDeploymentToggle.SetIsChecked(true);
 	end
+	print('T2');
 end
