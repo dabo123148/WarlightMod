@@ -27,7 +27,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
  		moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 	else
-		moneyobj = UI.CreateLabel(horz).SetText('The ingame currency system is disabled');
+		moneyobj = UI.CreateLabel(horz).SetText('The money system is disabled');
 	end
 	mainmenu = UI.CreateButton(horz).SetText("Main Menu").SetOnClick(OpenMenu);
 	vert = UI.CreateVerticalLayoutGroup(rootParent);
