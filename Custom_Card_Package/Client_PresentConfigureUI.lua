@@ -77,9 +77,9 @@ function IncludeExcludePestilenzCard()
 		text1 = UI.CreateLabel(horzlist[1]).SetText('Pestilence Card Strength:');
 		PestCardStrengthSlider = UI.CreateNumberInputField(horzlist[1]).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(PestCardStrengthinit);
 		text2 = UI.CreateLabel(horzlist[2]).SetText('Card Pieces Needed:');
-		PestCardPiecesNeededBox=UI.CreateNumberInputField(horzlist[2]).SetSliderMinValue(1).SetSliderMaxValue(20).SetValue(PestCardPiecesNeeded);
+		PestCardPiecesNeededBox=UI.CreateNumberInputField(horzlist[2]).SetSliderMinValue(1).SetSliderMaxValue(20).SetValue(PestCardPiecesNeededinit);
 		text3 = UI.CreateLabel(horzlist[3]).SetText('Card Pieces given at the beginning of the game:');
-		PestCardStartPiecesBox=UI.CreateNumberInputField(horzlist[3]).SetSliderMinValue(0).SetSliderMaxValue(20).SetValue(PestCardStartPieces);
+		PestCardStartPiecesBox=UI.CreateNumberInputField(horzlist[3]).SetSliderMinValue(0).SetSliderMaxValue(20).SetValue(PestCardStartPiecesinit);
 	end
 end
 function IncludeExcludeNukeCard()
