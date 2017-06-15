@@ -10,7 +10,7 @@ function Server_AdvanceTurn_Start(game,addOrder)
 						if(split(order.Payload,'|')[1]=='Nuke')then
 							print('Test');
 							AusstehendeNukes[tablelength(AusstehendeNukes)+1] = order;
-							PlGD[gameOrder.PlayerID].PestCards=PlGD[order.PlayerID].NukeCards-1;
+							PlGD[playerID.ID].PestCards=PlGD[playerID.ID].NukeCards-1;
 						end
 					end
 				end
