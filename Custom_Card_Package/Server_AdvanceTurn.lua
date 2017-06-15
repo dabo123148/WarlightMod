@@ -3,7 +3,7 @@ function Server_AdvanceTurn_Start(game,addOrder)
 	PlGD=Mod.PlayerGameData;
 	for _,playerID in pairs(game.ServerGame.Game.PlayingPlayers) do
       		if(playerID.ID>50)then
-			for _,order in pairs(game.ServerGame.ActiveTurnOrders[playerID])do
+			for _,order in pairs(game.ServerGame.ActiveTurnOrders[playerID.ID])do
 				print('T');
 				if(gameOrder.proxyType=='GameOrderCustom')then
 					if(gameOrder.Payload~=nil)then
