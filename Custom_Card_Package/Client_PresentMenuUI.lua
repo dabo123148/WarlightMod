@@ -6,6 +6,12 @@ function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
   if(PestCards==nil)then
     PestCards=0;
   end
+	if(Mod.PlayerGameData.NukeCards~=nil)then
+		NukeCards=Mod.PlayerGameData.NukeCards;
+  		if(PestCards==nil)then
+   			NukeCards=0;
+  		end
+	end
   setMaxSize(450, 350);
 	if(game.Us~=nil)then
   	ShowFirstMenu();
@@ -14,7 +20,7 @@ end
   
 function ShowFirstMenu()
 	
-  if(Mod.Settings.PestCardIn)then
+	if(Mod.Settings.PestCardIn)then
 		PestCardsPlayed=0;
 		for order in pairs(Game.Orders) do
 			if(Game.Orders[order].proxyType=="GameOrderCustom")then
@@ -24,15 +30,34 @@ function ShowFirstMenu()
 					end
 				end
 			end
-	  end
+	  	end
 		PestCardsFree=PestCards-PestCardsPlayed;
-    vertPest=UI.CreateVerticalLayoutGroup(rootParent);
-    PestText0=UI.CreateLabel(vertPest).SetText('Pestilence Card: ');
-    PestText1=UI.CreateLabel(vertPest).SetText('      You have got '..tostring(PestCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.PestCardPieces)..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.');
-    if(PestCardsFree>0)then
-      PestButton1=UI.CreateButton(vertPest).SetText('Play Pestilence Card').SetOnClick(PlayPestCard);
-    end
-  end
+    		vertPest=UI.CreateVerticalLayoutGroup(rootParent);
+    		PestText0=UI.CreateLabel(vertPest).SetText('Pestilence Card: ');
+    		PestText1=UI.CreateLabel(vertPest).SetText('      You have got '..tostring(PestCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.PestCardPieces)..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.');
+    		if(PestCardsFree>0)then
+      			PestButton1=UI.CreateButton(vertPest).SetText('Play Pestilence Card').SetOnClick(PlayPestCard);
+    		end
+  	end
+	if(Mod.Settings.NukeCardIn ~= nil and Mod.Settings.NukeCardIn)then
+		NukeCardsPlayed=0;
+		for order in pairs(Game.Orders) do
+			if(Game.Orders[order].proxyType=="GameOrderCustom")then
+				if(Game.Orders[order].Payload~=nil)then
+					if(split(Game.Orders[order].Payload,'|')[1]=='Nuke')then
+						NukeCardsPlayed=NukeCardsPlayed+1;
+					end
+				end
+			end
+	  	end
+	  	NukeCardsFree=NukeCards-NukeCardsPlayed;
+    	  	vertPest=UI.CreateVerticalLayoutGroup(rootParent);
+          	PestText0=UI.CreateLabel(vertPest).SetText('Nuke Card: ');
+          	PestText1=UI.CreateLabel(vertPest).SetText('      You have got '..tostring(NukeCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.NukeCardPieces)..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.');
+          	if(NukeCardsFree>0)then
+    			PestButton1=UI.CreateButton(vertPest).SetText('Play Nuke Card').SetOnClick(PlayNukeCard);
+    	 	end
+   	end
 end
 
 
