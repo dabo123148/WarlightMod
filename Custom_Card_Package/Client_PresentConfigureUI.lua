@@ -19,7 +19,7 @@ function Client_PresentConfigureUI(rootParent)
    		PestCardStartPiecesinit=Mod.Settings.PestCardStartPieces;
 	end
 	local horzlist = {};
-	local horzlist[0] = UI.CreateHorizontalLayoutGroup(rootParent);
+	horzlist[0] = UI.CreateHorizontalLayoutGroup(rootParent);
 	PestCardCheckbox=UI.CreateCheckBox(horzlist[0]).SetText('Include Pestilence Card').SetIsChecked(PestCardIn).SetOnValueChanged(function() 
 			UI.CreateLabel(horzlist[1]).SetText('Pestilence Card Strength:');
 			PestCardStrengthSlider = UI.CreateNumberInputField(horzlist[1]).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(PestCardStrengthinit);
@@ -28,10 +28,10 @@ function Client_PresentConfigureUI(rootParent)
 			UI.CreateLabel(horzlist[3]).SetText('Card Pieces given at the beginning of the game:');
 			PestCardStartPiecesBox=UI.CreateNumberInputField(horzlist[3]).SetSliderMinValue(0).SetSliderMaxValue(20).SetValue(PestCardStartPieces);
 		end);
-	local horzlist[1] = UI.CreateHorizontalLayoutGroup(rootParent);
-	local horzlist[2] = UI.CreateHorizontalLayoutGroup(rootParent);
-	local horzlist[3] = UI.CreateHorizontalLayoutGroup(rootParent);
-	local horzlist[4] = UI.CreateHorizontalLayoutGroup(rootParent);
+	horzlist[1] = UI.CreateHorizontalLayoutGroup(rootParent);
+	horzlist[2] = UI.CreateHorizontalLayoutGroup(rootParent);
+	horzlist[3] = UI.CreateHorizontalLayoutGroup(rootParent);
+	horzlist[4] = UI.CreateHorizontalLayoutGroup(rootParent);
 	--PestCardCheckbox=UI.CreateCheckBox(horzlist[0]).SetText('Include Nuke Card').SetIsChecked(PestCardIn).SetOnValueChanged(PestCardCheckBoxChanged);
 end
 
