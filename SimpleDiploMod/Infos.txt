@@ -1,0 +1,4 @@
+War declaration: Person die erklärt,0,Zugnummer,ziel,
+Peace: anbieter,1,dauer,ziel,
+Peace accept: accepter,2,bis Zug,target,
+Peace denied: ablehner,3,,angebot von,
