@@ -97,6 +97,7 @@ end
 function IncludeExcludeNukeCard()
 	print('T3');
 	if(NukeCardMainTerritoryDamageSlider ~= nil)then
+		print('T10');
 		UI.Destroy(text4);
 		UI.Destroy(NukeCardMainTerritoryDamageSlider);
 		UI.Destroy(NukeCardConnectedTerritoryDamageSlider);
@@ -110,6 +111,7 @@ function IncludeExcludeNukeCard()
 		UI.Destroy(text7);
 		NukeCardMainTerritoryDamageSlider = nil;
 	else
+		print('T11');
 		text4 = UI.CreateLabel(horzlist[5]).SetText('Main Territory Damage in %:');
 		NukeCardMainTerritoryDamageSlider = UI.CreateNumberInputField(horzlist[5]).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(NukeCardMainTerritoryDamageinit).SetWholeNumbers(true);
 		text5 = UI.CreateLabel(horzlist[6]).SetText('Connected Territories Damage in %');
