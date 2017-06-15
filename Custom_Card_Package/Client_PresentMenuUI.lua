@@ -73,7 +73,7 @@ function map(array, func)
 	end
 	return new_array;
 end
-function PlayerButton(terr)
+function SelectTerritory(terr)
 	local name = terr.Name;
 	local ret = {};
 	ret["text"] = name;
