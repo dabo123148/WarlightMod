@@ -10,4 +10,8 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.MainTerritoryDamage < 0 or Mod.Settings.ConnectedTerritoryDamage<0)then
 		alert('To be fair, I deactivate negative Damage')
 	end
+	if(Mod.Settings.Alertshown==false)then
+		alert('This Mod has been Moved to the Mod custom card package. If you still want to create a game with this version, simply repress the submit button');
+	end
+	Mod.Settings.Alertshown = true;
 end
