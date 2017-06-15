@@ -48,16 +48,16 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 		end
 	end
 	if(deployed == false)then
-		if(order.proxyType == 'GameOrderAttackTransfer') then
+		if(gameOrder.proxyType == 'GameOrderAttackTransfer') then
 			deployed = true;
 		end
-		if(order.proxyType == 'GameOrderPlayCardAbandon') then
+		if(gameOrder.proxyType == 'GameOrderPlayCardAbandon') then
 			deployed = true;
 		end
-		if(order.proxyType == 'GameOrderPlayCardGift') then
+		if(gameOrder.proxyType == 'GameOrderPlayCardGift') then
 			deployed = true;
 		end
-		if(order.proxyType == 'GameOrderPlayCardBlockade') then
+		if(gameOrder.proxyType == 'GameOrderPlayCardBlockade') then
 			deployed = true;
 		end
 		if(deployed == true)then
