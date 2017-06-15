@@ -1,14 +1,17 @@
 function Server_AdvanceTurn_End(game,addOrder)
 	AusstehendeNukes = {};
 	PlGD=Mod.PlayerGameData;
-	for _,order in pairs(game.ServerGame.ActiveTurnOrders)do
-		print('T');
-		if(gameOrder.proxyType=='GameOrderCustom')then
-			if(gameOrder.Payload~=nil)then
-				if(split(gameOrder.Payload,'|')[1]=='Nuke')then
-					print('Test');
-					AusstehendeNukes[tablelength(AusstehendeNukes)+1] = order;
-					PlGD[gameOrder.PlayerID].PestCards=PlGD[order.PlayerID].NukeCards-1;
+	for playerID in pairs(game.ServerGame.Game.PlayingPlayers) do
+      		if(playerID>50)then
+		for _,order in pairs(game.ServerGame.ActiveTurnOrders[playerID])do
+			print('T');
+			if(gameOrder.proxyType=='GameOrderCustom')then
+				if(gameOrder.Payload~=nil)then
+					if(split(gameOrder.Payload,'|')[1]=='Nuke')then
+						print('Test');
+						AusstehendeNukes[tablelength(AusstehendeNukes)+1] = order;
+						PlGD[gameOrder.PlayerID].PestCards=PlGD[order.PlayerID].NukeCards-1;
+					end
 				end
 			end
 		end
