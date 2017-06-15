@@ -3,9 +3,11 @@ function Client_PresentSettingsUI(rootParent)
 	UI.CreateLabel(rootParent).SetText('AI Settings');
 	UI.CreateLabel(rootParent).SetText('AIs are allowed to declare war on player : ' .. booltostring(Mod.Settings.AllowAIDeclaration));
 	UI.CreateLabel(rootParent).SetText('AIs are allowed to declare war on AIs : ' .. booltostring(Mod.Settings.AIsdeclearAIs));
+	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Alliance Settings');
 	UI.CreateLabel(rootParent).SetText('Allied players can see your territories : ' .. booltostring(Mod.Settings.SeeAllyTerritories));
 	UI.CreateLabel(rootParent).SetText('Allies are visible to everyone : ' .. booltostring(Mod.Settings.PublicAllies));
+	UI.CreateLabel(rootParent).SetText(' ');
 	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
 	UI.CreateLabel(rootParent).SetText('Tradement System');
 	UI.CreateLabel(rootParent).SetText('Player starting money : ' .. Mod.Settings.StartMoney);
@@ -18,6 +20,7 @@ function Client_PresentSettingsUI(rootParent)
 		UI.CreateLabel(rootParent).SetText('Tradement System');
 		UI.CreateLabel(rootParent).SetText('The Trading System has been disabled');
 	end
+	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Cards that require War');
 	UI.CreateLabel(rootParent).SetText('Sanction Cards can only be played on players you are in war with : ' .. booltostring(Mod.Settings.SanctionCardRequireWar));
 	UI.CreateLabel(rootParent).SetText('Bomb Cards can only be played on players you are in war with : ' .. booltostring(Mod.Settings.BombCardRequireWar));
