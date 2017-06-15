@@ -63,6 +63,14 @@ function Client_PresentConfigureUI(rootParent)
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('Shop System');
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	UI.CreateButton(buttonlayer).SetText('Change the settings, so that the shop is dissabled').SetOnClick(function() 
+			inputStartMoney.SetValue(0);
+			inputMoneyPerTurn.SetValue(0);
+			inputMoneyPerKilledArmy.SetValue(0);
+			inputMoneyPerCapturedTerritory.SetValue(0);
+			inputMoneyPerCapturedBonus.SetValue(0);
+		end);
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('Starting Money');
 	inputStartMoney = UI.CreateNumberInputField(texthorz).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(StartMoneyinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
