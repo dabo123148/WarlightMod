@@ -62,6 +62,13 @@ function Client_PresentConfigureUI(rootParent)
 	horzlist[11] = UI.CreateHorizontalLayoutGroup(rootParent);
 	if(NukeCardIn==true)then
 		IncludeExcludeNukeCard();
+		if(Mod.Settings.AfterDeployment==true)then
+			AfterDeploymentToggle.SetIsChecked(true);
+			BeforeDeploymentToggle.SetIsChecked(false);
+		else
+			AfterDeploymentToggle.SetIsChecked(false);
+			BeforeDeploymentToggle.SetIsChecked(true);
+		end
 	end
 end
 function IncludeExcludePestilenzCard()
@@ -100,9 +107,13 @@ function IncludeExcludeNukeCard()
 		AfterDeploymentToggle = UI.CreateCheckBox(horzlist[8]).SetText('After Deployment but before Gift and Blockade Cards').SetOnValueChanged(OnClickAfterDeployment);
 		BeforeDeploymentToggle = UI.CreateCheckBox(horzlist[9]).SetText('Before Deployment').SetOnValueChanged(OnClickBeforeDeployment);
 		text6 = UI.CreateLabel(horzlist[10]).SetText('Card Pieces Needed:');
-		NukeCardConnectedTerritoryDamageSlider=UI.CreateNumberInputField(horzlist[10]).SetSliderMinValue(1).SetSliderMaxValue(20).SetValue(NukeCardPiecesNeededinit);
+		NukeCardPiecesNeededBox=UI.CreateNumberInputField(horzlist[10]).SetSliderMinValue(1).SetSliderMaxValue(20).SetValue(NukeCardPiecesNeededinit);
 		text7 = UI.CreateLabel(horzlist[11]).SetText('Card Pieces given at the beginning of the game:');
 		NukeCardStartPiecesBox=UI.CreateNumberInputField(horzlist[11]).SetSliderMinValue(0).SetSliderMaxValue(20).SetValue(NukeCardStartPiecesinit);
+		if(Mod.Settings.AfterDeployment==nil)then
+			AfterDeploymentToggle.SetIsChecked(true);
+			BeforeDeploymentToggle.SetIsChecked(false);
+		end
 	end
 end
 function OnClickAfterDeployment()
