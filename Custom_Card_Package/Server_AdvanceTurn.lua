@@ -77,7 +77,7 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 				if(game.ServerGame.LatestTurnStanding.Territories[targetterritoryid].OwnerPlayerID ~= order.PlayerID or Mod.Settings.Friendlyfire == true)then
 					print('Terr1');
 					Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(targetterritoryid);
-					Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[conn.ID].NumArmies.NumArmies*(1-(Mod.Settings.NukeCardMainTerritoryDamage/100));
+					Effect[tablelength(Effect)].SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[targetterritoryid].NumArmies.NumArmies*(1-(Mod.Settings.NukeCardMainTerritoryDamage/100));
 				end
 				addOrder(WL.GameOrderEvent.Create(order.PlayerID,'Nuked ' .. game.Map.Territories[targetterritoryid].Name,{},Effect));
 			end
