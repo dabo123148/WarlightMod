@@ -51,7 +51,7 @@ function Client_PresentConfigureUI(rootParent)
 	if(Mod.Settings.NukeCardConnectedTerritoryDamage ~= nil)then
    		NukeCardConnectedTerritoryDamageinit=Mod.Settings.NukeCardConnectedTerritoryDamage;
 	end
-	NukeCardCheckbox=UI.CreateCheckBox(horzlist[4]).SetText('Include Nuke Card - not included yet').SetIsChecked(NukeCardIninit).SetOnValueChanged(IncludeExcludeNukeCard);
+	NukeCardCheckbox=UI.CreateCheckBox(horzlist[4]).SetText('Include Nuke Card by dabo1').SetIsChecked(NukeCardIninit).SetOnValueChanged(IncludeExcludeNukeCard);
 	horzlist[5] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[6] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[7] = UI.CreateHorizontalLayoutGroup(rootParent);
