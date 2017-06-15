@@ -41,13 +41,22 @@ function Server_AdvanceTurn_End(game,addOrder)
 			--addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 2)' .. Mod.PlayerGameData[playerID].SuccessfullyAttacked,''));
 			if(Mod.PlayerGameData[playerID].SuccessfullyAttacked==1)then
 				--addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 3)',''));
-				
-				PGD[playerID].PestCardPieces=Mod.PlayerGameData[playerID].PestCardPieces+1;
-				if(Mod.PlayerGameData[playerID].PestCardPieces+1>=Mod.Settings.PestCardPiecesNeeded)then
-					PGD[playerID].PestCards=Mod.PlayerGameData[playerID].PestCards+1;
-					PGD[playerID].PestCardPieces=0;
+				if(Mod.Settings.PestCardIn)then
+					PGD[playerID].PestCardPieces=Mod.PlayerGameData[playerID].PestCardPieces+1;
+					if(Mod.PlayerGameData[playerID].PestCardPieces+1>=Mod.Settings.PestCardPiecesNeeded)then
+						PGD[playerID].PestCards=Mod.PlayerGameData[playerID].PestCards+1;
+						PGD[playerID].PestCardPieces=0;
+					end
+					addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece. You now have '..PGD[playerID].PestCards..' Cards and '..PGD[playerID].PestCardPieces..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.',''));
 				end
-				addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece. You now have '..PGD[playerID].PestCards..' Cards and '..PGD[playerID].PestCardPieces..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.',''));
+				if(Mod.Settings.NukeCardIn~=nil and Mod.Settings.NukeCardIn)then
+					PGD[playerID].NukeCardPieces=Mod.PlayerGameData[playerID].NukeCardPieces+1;
+					if(Mod.PlayerGameData[playerID].NukeCardPieces+1>=Mod.Settings.NukeCardPiecesNeeded)then
+						PGD[playerID].NukeCards=Mod.PlayerGameData[playerID].NukeCards+1;
+						PGD[playerID].NukeCardPieces=0;
+					end
+					addOrder(WL.GameOrderCustom.Create(playerID,'Added Nuke Card Piece. You now have '..PGD[playerID].NukeCards..' Cards and '..PGD[playerID].NukeCardPieces..'/'..Mod.Settings.NukeCardPiecesNeeded..' Pieces.',''));
+				end
 			end
 		end
 		--print(tostring(Mod.PublicGameData.PestilenceStadium));
