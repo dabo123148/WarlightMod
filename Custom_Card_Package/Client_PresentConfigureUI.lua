@@ -51,7 +51,7 @@ function Client_PresentConfigureUI(rootParent)
 	if(Mod.Settings.NukeCardConnectedTerritoryDamage ~= nil)then
    		NukeCardConnectedTerritoryDamageinit=Mod.Settings.NukeCardConnectedTerritoryDamage;
 	end
-	--NukeCardCheckbox=UI.CreateCheckBox(horzlist[4]).SetText('Include Nuke Card - not included yet').SetIsChecked(NukeCardIninit).SetOnValueChanged(IncludeExcludeNukeCard);
+	NukeCardCheckbox=UI.CreateCheckBox(horzlist[4]).SetText('Include Nuke Card - not included yet').SetIsChecked(NukeCardIninit).SetOnValueChanged(IncludeExcludeNukeCard);
 	horzlist[5] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[6] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[7] = UI.CreateHorizontalLayoutGroup(rootParent);
@@ -59,16 +59,16 @@ function Client_PresentConfigureUI(rootParent)
 	horzlist[9] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[10] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[11] = UI.CreateHorizontalLayoutGroup(rootParent);
-	--if(NukeCardIninit==true)then
-		--IncludeExcludeNukeCard();
-		--if(Mod.Settings.AfterDeployment==true)then
-		--	AfterDeploymentToggle.SetIsChecked(true);
-		--	BeforeDeploymentToggle.SetIsChecked(false);
-		--else
-		--	AfterDeploymentToggle.SetIsChecked(false);
-		--	BeforeDeploymentToggle.SetIsChecked(true);
-		--end
-	--end
+	if(NukeCardIninit==true)then
+		IncludeExcludeNukeCard();
+		if(Mod.Settings.AfterDeployment==true)then
+			AfterDeploymentToggle.SetIsChecked(true);
+			BeforeDeploymentToggle.SetIsChecked(false);
+		else
+			AfterDeploymentToggle.SetIsChecked(false);
+			BeforeDeploymentToggle.SetIsChecked(true);
+		end
+	end
 end
 function IncludeExcludePestilenzCard()
 	if(PestCardStrengthSlider ~= nil)then
