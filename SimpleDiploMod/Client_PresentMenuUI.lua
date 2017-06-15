@@ -275,6 +275,7 @@ function Openshop(rootParent)
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
 	territory = UI.CreateButton(horzobjlist[1]).SetText("Select territory...").SetOnClick(TargetTerritoryClicked);
 	horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
+	UI.CreateLabel(horzobjlist[2]).SetText('Army number: ');
 	Countobj = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
 	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
 	commitbutton = UI.CreateButton(horzobjlist[3]).SetText("Add Order").SetOnClick(function() 
