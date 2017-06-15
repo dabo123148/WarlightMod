@@ -59,7 +59,7 @@ function Client_PresentConfigureUI(rootParent)
 	horzlist[9] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[10] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[11] = UI.CreateHorizontalLayoutGroup(rootParent);
-	if(NukeCardIn==true)then
+	if(NukeCardIninit==true)then
 		IncludeExcludeNukeCard();
 		if(Mod.Settings.AfterDeployment==true)then
 			AfterDeploymentToggle.SetIsChecked(true);
@@ -104,7 +104,7 @@ function IncludeExcludeNukeCard()
 		NukeCardMainTerritoryDamageSlider = nil;
 	else
 		text4 = UI.CreateLabel(horzlist[5]).SetText('Main Territory Damage in %:');
-		NukeCardMainTerritoryDamageSlider = UI.CreateNumberInputField(horzlist[5]).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(NukeCardMainTerritoryDamageinit).SetWholeNumbers(true);
+		NukeCardMainTerritoryDamageSlider = UI.CreateNumberInputField(horzlist[5]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(NukeCardMainTerritoryDamageinit).SetWholeNumbers(true);
 		text5 = UI.CreateLabel(horzlist[6]).SetText('Connected Territories Damage in %');
 		NukeCardConnectedTerritoryDamageSlider = UI.CreateNumberInputField(horzlist[6]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(NukeCardConnectedTerritoryDamageinit).SetWholeNumbers(true);
 		FriendlyfireToggle = UI.CreateCheckBox(horzlist[7]).SetText('Can harm yourself').SetIsChecked(Friendlyfireinit);
