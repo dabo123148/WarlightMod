@@ -21,4 +21,7 @@ function Client_SaveConfigureUI(alert)
                         alert('You cannot deal more than 100% Damage');
                 end
         end
+        if(Mod.Settings.NukeCardIn==false and Mod.Settings.PestCardIn==false)then
+                 alert('There must be at least one card implemented');
+        end
 end
