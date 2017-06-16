@@ -493,7 +493,7 @@ function map(array, func)
 	end
 	return new_array;
 end
-function map(array, func,knopf)
+function zusammen(array, func,knopf)
 	local new_array = {};
 	local i = 1;
 	for _,v in pairs(array) do
