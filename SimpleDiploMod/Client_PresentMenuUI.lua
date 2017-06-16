@@ -506,7 +506,7 @@ function PlayerButtonCustom(player,knopf)
 	local ret = {};
 	ret["text"] = player;
 	ret["selected"] = function() 
-		knopf.SetText(name);
+		knopf.SetText(player);
 	end
 	return ret;
 end
