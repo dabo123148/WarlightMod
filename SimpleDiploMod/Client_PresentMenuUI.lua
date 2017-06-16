@@ -356,14 +356,18 @@ function Openshop(rootParent)
 					end
 					if(Match == false)then
 						if(playerinstanze.ID ~= Game.Us.ID)then
-							table.insert(options,playerinstanze.DisplayName(nil, false));
+							if(playerinstanze.IsAI == false)then
+								table.insert(options,playerinstanze.DisplayName(nil, false));
+							end
 						end
 					end
 				end
 			else	
 				for _,playerinstanze in pairs(Game.Game.Players)do
 					if(playerinstanze.ID ~= Game.Us.ID)then
-						table.insert(options,playerinstanze.DisplayName(nil, false));
+						if(playerinstanze.IsAI == false)then
+							table.insert(options,playerinstanze.DisplayName(nil, false));
+						end
 					end
 				end
 			end
