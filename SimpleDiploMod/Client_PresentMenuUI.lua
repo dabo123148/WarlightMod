@@ -342,6 +342,34 @@ function Openshop(rootParent)
 	territory = UI.CreateButton(horzobjlist[13]).SetText("Select territory...").SetOnClick(TargetTerritoryClicked);
 	horzobjlist[14] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[14]).SetText("Select a player, you want to offer it to");
+	SelectPlayerBtn2 = UI.CreateButton(horzobjlist[14]).SetText("Select Player...").SetOnClick(function() 
+			local options = {};
+			options[0] = "everyone(doesn't include persons you are in war with)";
+			if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
+				local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us.ID]);
+				for _,playerinstanze in pairs(Game.Game.Players)do
+					local Match = false;
+					for _,with in pairs(inwarwith)do
+						if(tostring(with) == tostring(playerinstanze.ID))then
+							Match = true;
+						end
+					end
+					if(Match == false)then
+						if(playerinstanze.ID ~= Game.Us.ID)then
+							table.insert(options,playerinstanze.DisplayName(nil, false));
+						end
+					end
+				end
+			else	
+				for _,playerinstanze in pairs(Game.Game.Players)do
+					if(playerinstanze.ID ~= Game.Us.ID)then
+						table.insert(options,playerinstanze.DisplayName(nil, false));
+					end
+				end
+			end
+			options = zusammen(options, PlayerButtonCustom,SelectPlayerBtn2);
+			UI.PromptFromList("Select the player you'd like to declare war on", options);
+		end);
 	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
 		horzobjlist[15] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[15]).SetText("What are you willing to pay");
@@ -464,6 +492,23 @@ function map(array, func)
 		i = i + 1;
 	end
 	return new_array;
+end
+function map(array, func,knopf)
+	local new_array = {};
+	local i = 1;
+	for _,v in pairs(array) do
+		new_array[i] = func(v,knopf);
+		i = i + 1;
+	end
+	return new_array;
+end
+function PlayerButtonCustom(player,knopf)
+	local ret = {};
+	ret["text"] = player;
+	ret["selected"] = function() 
+		knopf.SetText(name);
+	end
+	return ret;
 end
 function PlayerButton(player)
 	local name = player.DisplayName(nil, false);
