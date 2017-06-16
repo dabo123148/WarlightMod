@@ -344,7 +344,7 @@ function Openshop(rootParent)
 	textelem = UI.CreateLabel(horzobjlist[14]).SetText("Select a player, you want to offer it to");
 	SelectPlayerBtn2 = UI.CreateButton(horzobjlist[14]).SetText("Select Player...").SetOnClick(function() 
 			local options = {};
-			options[0] = "everyone(doesn't include persons you are in war with)";
+			options[0] = "everyone(does not include persons you are in war with)";
 			if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
 				local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us.ID]);
 				for _,playerinstanze in pairs(Game.Game.Players)do
