@@ -383,8 +383,8 @@ function Openshop(rootParent)
 		Moneyyougetforterritorysell = UI.CreateNumberInputField(horzobjlist[16]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
 	end
 	horzobjlist[17] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[17]).SetText("Send request");
-	UI.CreateButton(horzobjlist[14]).SetText("Confirm").SetOnClick(function() 
+	--textelem = UI.CreateLabel(horzobjlist[17]).SetText("Send request");
+	UI.CreateButton(horzobjlist[17]).SetText("Send request").SetOnClick(function() 
 			if(Moneyyoupayforterritorysell~=nil and Moneyyoupayforterritorysellzwei.GetValue() ~= 0 and Moneyyougetforterritorysellzwei.GetValue() ~= 0)then
 				UI.Alert('You cannot pay and get money at the same time');
 				return;
