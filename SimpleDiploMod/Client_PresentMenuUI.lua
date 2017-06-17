@@ -410,12 +410,13 @@ function Openshop(rootParent)
 				end
 			end
 			local PlayerID = 0;
-			if(
+			if(SelectPlayerBtn2.GetText() ~= "everyone(does not include persons you are in war with)")then
+				PlayerID = getplayerid(offerto,Game);
+			end
 			local payload = {};
 			payload.Message = "Territory Sell";
-			payload.TargetPlayerID = getplayerid(offerto,Game);
+			payload.TargetPlayerID = PlayerID;
 			payload.Preis = Preis;
-			payload.duration = duration;
 			Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
 					UI.Alert(returnvalue.Message);
 				end);
