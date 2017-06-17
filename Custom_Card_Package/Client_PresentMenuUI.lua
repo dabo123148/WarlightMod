@@ -19,7 +19,7 @@ function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
 end
   
 function ShowFirstMenu()
-	
+	ClearUI();
 	if(Mod.Settings.PestCardIn)then
 		PestCardsPlayed=0;
 		for order in pairs(Game.Orders) do
@@ -125,9 +125,13 @@ function ClearUI()
     UI.Destroy(vertPest);
     vertPest = nil;
   end
+ if(vertNuke~=nil)then
+    UI.Destroy(vertNuke);
+    vertNuke = nil;
+  end
   if(vertPestCard~=nil)then
     UI.Destroy(vertPestCard);
-		vertPestCard=nil;
+	vertPestCard=nil;
   end
 end
 
