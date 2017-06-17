@@ -321,7 +321,7 @@ function Openshop(rootParent)
 	horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[5]).SetText("Buy Territory");
 	horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[6]).SetText("Select a territory");
+	territoryeins = UI.CreateLabel(horzobjlist[6]).SetText("Select a territory");
 	horzobjlist[7] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[7]).SetText("Select a player, you want to buy it from");
 	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
@@ -377,15 +377,15 @@ function Openshop(rootParent)
 	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
 		horzobjlist[15] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[15]).SetText("What are you willing to pay");
-		Moneyyoupayforterritorysell = UI.CreateNumberInputField(horzobjlist[15]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+		Moneyyoupayforterritorysellzwei = UI.CreateNumberInputField(horzobjlist[15]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
 		horzobjlist[16] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[16]).SetText("What do you want for the territory");
-		Moneyyougetforterritorysell = UI.CreateNumberInputField(horzobjlist[16]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+		Moneyyougetforterritorysellzwei = UI.CreateNumberInputField(horzobjlist[16]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
 	end
 	horzobjlist[17] = UI.CreateHorizontalLayoutGroup(root);
 	--textelem = UI.CreateLabel(horzobjlist[17]).SetText("Send request");
 	UI.CreateButton(horzobjlist[17]).SetText("Send request").SetOnClick(function() 
-			if(Moneyyoupayforterritorysell~=nil and Moneyyoupayforterritorysellzwei.GetValue() ~= 0 and Moneyyougetforterritorysellzwei.GetValue() ~= 0)then
+			if(Moneyyoupayforterritorysellzwei~=nil and Moneyyoupayforterritorysellzwei.GetValue() ~= 0 and Moneyyougetforterritorysellzwei.GetValue() ~= 0)then
 				UI.Alert('You cannot pay and get money at the same time');
 				return;
 			end
@@ -406,7 +406,7 @@ function Openshop(rootParent)
 				if(Moneyyoupayforterritorysellzwei.GetValue() > 0)then
 					Preis = Moneyyoupayforterritorysellzwei.GetValue();
 				else
-					Preis = Moneyyougetforterritorysellzwei.GetValue();
+					Preis = -Moneyyougetforterritorysellzwei.GetValue();
 				end
 			end
 			local PlayerID = 0;
