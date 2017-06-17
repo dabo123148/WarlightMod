@@ -397,7 +397,7 @@ function Openshop(rootParent)
 				UI.Alert('You need to select a player first.');
 				return;
 			end
-			if(territoryzwei.GetText() == "Select territory...")then
+			if(territory.GetText() == "Select territory...")then
 				UI.Alert('You need to select a territorxy first.');
 				return;
 			end
@@ -413,14 +413,24 @@ function Openshop(rootParent)
 			if(SelectPlayerBtn2.GetText() ~= "everyone(does not include persons you are in war with)")then
 				PlayerID = getplayerid(offerto,Game);
 			end
+			local TargetTerritoryID = getterritoryid(territory.GetText());
 			local payload = {};
 			payload.Message = "Territory Sell";
 			payload.TargetPlayerID = PlayerID;
+			payload.TargetTerritoryID = TargetTerritoryID;
 			payload.Preis = Preis;
 			Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
 					UI.Alert(returnvalue.Message);
 				end);
 		end)
+end
+function getterritoryid(name)
+	for _,terr in pairs(Game.Map.Territories)do
+		if(terr.Name == name)then
+			return terr.ID;
+		end
+	end
+	return 0;
 end
 function OpenDeclarWar()
 	DeleteUI();
