@@ -90,7 +90,6 @@ function SelectTerritory(terr)
 end
 function PlayPestCard()
   ClearUI();
-	ShowFirstMenu();
   vertPestCard=UI.CreateVerticalLayoutGroup(rootParent);
   PestCardText0=UI.CreateLabel(vertPestCard).SetText('Select the player you want to play the Card on. Players who are already pestilenced will not be shown. Dont play 2 cards on one player, they are not stackable.');
   local Pestfuncs={};
@@ -118,6 +117,7 @@ function Pestilence(playerID)
 	--Game.SendGameCustomMessage('Waiting for the server to respond...',{PestCardPlayer=playerID},PestCardPlayedCallback);
 	table.insert(orders, WL.GameOrderCustom.Create(Game.Us.ID, "Play a Pestilence Card on " .. toname(playerID,Game), 'Pestilence|'..tostring(playerID)));
 	Game.Orders=orders;
+	ShowFirstMenu();
 end
 
 function PestCardPlayedCallback()
