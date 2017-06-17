@@ -219,7 +219,35 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			Mod.PlayerGameData=playerGameData;
 		end
 	end
-	if(payload.Message == "Request Data")then
+	if(payload.Message == "Territory Sell")then
+		local target = payload.TargetPlayerID;
+		local Preis = payload.Preis;
+		local targetterr = payload.TargetTerritoryID;
+		local existingterroffers = ",";
+		local playerGameData = Mod.PlayerGameData;
+ 		--if(playerGameData[target].Terroffers~=nil)then
+		--	existingterroffers=playerGameData[target].Terroffers;
+		--end
+		--local existingofferssplit = stringtotable(existingterroffers);
+		--local num = 1;
+		--local match = false;
+		--while(existingofferssplit[num] ~=nil and existingofferssplit[num+1] ~=nil)do
+		--	if(tonumber(existingofferssplit[num]) == playerID and tonumber(existingofferssplit[num+1]) == targetterr)then
+		--		match = true;
+		--	end
+		--	num=num+3;
+		--end
+		--local rg = {};
+		--if(match == false)then
+		--	if(target == 0)then
+		--	end
+		--	existingterroffers = existingterroffers .. playerID .. ',' .. targetterr .. ',' .. Preis .. ',';
+		--else
+		--	rg.Message ='The player has already a pending territory sell offer by you for that territory.';
+		--	setReturnTable(rg);
+		--end
+	end
+	if(payload.Message == "Territory Sell Accept")then
 		
 	end
 end
