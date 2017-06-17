@@ -51,13 +51,9 @@ function ShowFirstMenu()
 			end
 	  	end
 	  	NukeCardsFree=NukeCards-NukeCardsPlayed;
-		if(vertNuke==nil)then
-    	  		vertNuke=UI.CreateVerticalLayoutGroup(rootParent);
-          		NukeText0=UI.CreateLabel(vertNuke).SetText('Nuke Card: ');
-          		NukeText1=UI.CreateLabel(vertNuke).SetText('      You have got '..tostring(NukeCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.NukeCardPieces)..'/'..Mod.Settings.NukeCardPiecesNeeded..' Pieces.');
-		else
-			NukeText1.SetText('      You have got '..tostring(NukeCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.NukeCardPieces)..'/'..Mod.Settings.NukeCardPiecesNeeded..' Pieces.');
-		end
+    	  	vertNuke=UI.CreateVerticalLayoutGroup(rootParent);
+          	NukeText0=UI.CreateLabel(vertNuke).SetText('Nuke Card: ');
+          	NukeText1=UI.CreateLabel(vertNuke).SetText('      You have got '..tostring(NukeCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.NukeCardPieces)..'/'..Mod.Settings.NukeCardPiecesNeeded..' Pieces.');
 		if(NukeCardsFree>0)then
     			NukeButton1=UI.CreateButton(vertNuke).SetText('Play Nuke Card').SetOnClick(PlayNukeCard);
     	 	end
