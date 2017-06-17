@@ -1,21 +1,28 @@
 function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
-  rootParent=RootParent;
-  Game=game;
-  vertPestCard=nil;
-  PestCards=Mod.PlayerGameData.PestCards;
-  if(PestCards==nil)then
-    PestCards=0;
-  end
+	if(game.Us~=nil)then
+ 		ShowFirstMenu();
+	else
+		UI.Alert('Spectators can not play cars');
+		return;
+	end
+	if(game.Game.NumberOfTurns < 1)then
+		UI.Alert('During the distribution you can not play cards');
+		return;
+	end
+	rootParent=RootParent;
+  	Game=game;
+  	vertPestCard=nil;
+  	PestCards=Mod.PlayerGameData.PestCards;
+  	if(PestCards==nil)then
+  	 	PestCards=0;
+  	end
 	if(Mod.PlayerGameData.NukeCards~=nil)then
 		NukeCards=Mod.PlayerGameData.NukeCards;
   		if(PestCards==nil)then
    			NukeCards=0;
   		end
 	end
-  setMaxSize(450, 350);
-	if(game.Us~=nil)then
-  	ShowFirstMenu();
-	end
+  	setMaxSize(450, 350);
 end
   
 function ShowFirstMenu()
