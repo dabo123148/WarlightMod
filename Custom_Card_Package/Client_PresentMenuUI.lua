@@ -1,7 +1,5 @@
 function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
-	if(game.Us~=nil)then
- 		ShowFirstMenu();
-	else
+	if(game.Us==nil)then
 		UI.Alert('Spectators can not play cars');
 		return;
 	end
@@ -22,13 +20,14 @@ function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
    			NukeCards=0;
   		end
 	end
+	ShowFirstMenu();
   	setMaxSize(450, 350);
 end
   
 function ShowFirstMenu()
 	if(Mod.Settings.PestCardIn)then
 		PestCardsPlayed=0;
-		for order in pairs(Game.Orders) do
+		for _,order in pairs(Game.Orders) do
 			if(Game.Orders[order].proxyType=="GameOrderCustom")then
 				if(Game.Orders[order].Payload~=nil)then
 					if(split(Game.Orders[order].Payload,'|')[1]=='Pestilence')then
@@ -47,7 +46,7 @@ function ShowFirstMenu()
   	end
 	if(Mod.Settings.NukeCardIn ~= nil and Mod.Settings.NukeCardIn)then
 		NukeCardsPlayed=0;
-		for order in pairs(Game.Orders) do
+		for _,order in pairs(Game.Orders) do
 			if(Game.Orders[order].proxyType=="GameOrderCustom")then
 				if(Game.Orders[order].Payload~=nil)then
 					if(split(Game.Orders[order].Payload,'|')[1]=='Nuke')then
