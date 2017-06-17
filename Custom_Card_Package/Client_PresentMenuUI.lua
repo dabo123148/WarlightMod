@@ -55,12 +55,15 @@ function ShowFirstMenu()
     	  		vertNuke=UI.CreateVerticalLayoutGroup(rootParent);
           		NukeText0=UI.CreateLabel(vertNuke).SetText('Nuke Card: ');
           		NukeText1=UI.CreateLabel(vertNuke).SetText('      You have got '..tostring(NukeCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.NukeCardPieces)..'/'..Mod.Settings.NukeCardPiecesNeeded..' Pieces.');
-          	else
+          		if(NukeCardsFree>0)then
+    				NukeButton1=UI.CreateButton(vertNuke).SetText('Play Nuke Card').SetOnClick(PlayNukeCard);
+    	 		end
+		else
 			NukeText1.SetText('      You have got '..tostring(NukeCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.NukeCardPieces)..'/'..Mod.Settings.NukeCardPiecesNeeded..' Pieces.');
+			if(NukeCardsFree==0)then
+    				Destroy(NukeButton1);
+    	 		end
 		end
-		if(NukeCardsFree>0)then
-    			NukeButton1=UI.CreateButton(vertNuke).SetText('Play Nuke Card').SetOnClick(PlayNukeCard);
-    	 	end
    	end
 end
 
