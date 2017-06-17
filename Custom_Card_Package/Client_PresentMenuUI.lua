@@ -19,7 +19,6 @@ function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
 end
   
 function ShowFirstMenu()
-	ClearUI();
 	if(Mod.Settings.PestCardIn)then
 		PestCardsPlayed=0;
 		for order in pairs(Game.Orders) do
