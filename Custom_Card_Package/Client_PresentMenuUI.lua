@@ -51,11 +51,15 @@ function ShowFirstMenu()
 			end
 	  	end
 	  	NukeCardsFree=NukeCards-NukeCardsPlayed;
-    	  	vertNuke=UI.CreateVerticalLayoutGroup(rootParent);
-          	PestText0=UI.CreateLabel(vertNuke).SetText('Nuke Card: ');
-          	PestText1=UI.CreateLabel(vertNuke).SetText('      You have got '..tostring(NukeCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.NukeCardPieces)..'/'..Mod.Settings.NukeCardPiecesNeeded..' Pieces.');
-          	if(NukeCardsFree>0)then
-    			PestButton1=UI.CreateButton(vertNuke).SetText('Play Nuke Card').SetOnClick(PlayNukeCard);
+		if(vertNuke==nil)then
+    	  		vertNuke=UI.CreateVerticalLayoutGroup(rootParent);
+          		NukeText0=UI.CreateLabel(vertNuke).SetText('Nuke Card: ');
+          		NukeText1=UI.CreateLabel(vertNuke).SetText('      You have got '..tostring(NukeCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.NukeCardPieces)..'/'..Mod.Settings.NukeCardPiecesNeeded..' Pieces.');
+          	else
+			NukeText1.SetText('      You have got '..tostring(NukeCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.NukeCardPieces)..'/'..Mod.Settings.NukeCardPiecesNeeded..' Pieces.');
+		end
+		if(NukeCardsFree>0)then
+    			NukeButton1=UI.CreateButton(vertNuke).SetText('Play Nuke Card').SetOnClick(PlayNukeCard);
     	 	end
    	end
 end
@@ -80,6 +84,7 @@ function SelectTerritory(terr)
 	ret["selected"] = function() 
 		local orders = Game.Orders;
 		table.insert(orders, WL.GameOrderCustom.Create(Game.Us.ID, "Play a Pestilence Card on " .. name, 'Nuke|'..terr.ID));
+		ShowFirstMenu();
 		Game.Orders = orders;
 	end
 	return ret;
