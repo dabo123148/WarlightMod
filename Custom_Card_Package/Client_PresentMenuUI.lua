@@ -70,6 +70,7 @@ end
 function PlayNukeCard()
 	options = map(Game.Map.Territories,SelectTerritory);
 	UI.PromptFromList("Select the territory, you like to nuke", options);
+	Destroy(vertPest);
 end
 function map(array, func)
 	local new_array = {};
