@@ -3,6 +3,7 @@ function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
 		UI.Alert('Spectators can not play cars');
 		return;
 	end
+	UI.Alert(game.Game.NumberOfTurns);
 	if(game.Game.NumberOfTurns < 1)then
 		UI.Alert('During the distribution you can not play cards');
 		return;
