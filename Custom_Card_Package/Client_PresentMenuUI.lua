@@ -80,7 +80,7 @@ function SelectTerritory(terr)
 	ret["selected"] = function() 
 		local orders = Game.Orders;
 		table.insert(orders, WL.GameOrderCustom.Create(Game.Us.ID, "Play a Pestilence Card on " .. name, 'Nuke|'..terr.ID));
-		ShowFirstMenu();
+		NukeText1.SetText('      You have got '..tostring(NukeCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.NukeCardPieces)..'/'..Mod.Settings.NukeCardPiecesNeeded..' Pieces.');
 		Game.Orders = orders;
 	end
 	return ret;
@@ -106,9 +106,6 @@ function PlayPestCard()
 			end
 		end
   end
-	Destroy(NukeButton1);
-	Destroy(vertNuke);
-	vertNuke = nil;
 end
 
 function Pestilence(playerID)
