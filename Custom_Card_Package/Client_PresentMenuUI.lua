@@ -113,6 +113,9 @@ function PlayPestCard()
 			end
 		end
   end
+	Destroy(NukeButton1);
+	Destroy(vertNuke);
+	vertNuke = nil;
 end
 
 function Pestilence(playerID)
