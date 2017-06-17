@@ -10,6 +10,7 @@ function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
   	if(PestCards==nil)then
   	 	PestCards=0;
   	end
+	NukeCards = -1;
 	if(Mod.PlayerGameData.NukeCards~=nil)then
 		NukeCards=Mod.PlayerGameData.NukeCards;
   		if(PestCards==nil)then
@@ -41,6 +42,9 @@ function ShowFirstMenu()
     		end
   	end
 	if(Mod.Settings.NukeCardIn ~= nil and Mod.Settings.NukeCardIn)then
+		if(NukeCards == -1)then
+			UI.Alert('There is a bug. Please reload the game.');
+		end
 		NukeCardsPlayed=0;
 		for _,order in pairs(Game.Orders) do
 			if(Game.Orders[order].proxyType=="GameOrderCustom")then
