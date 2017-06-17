@@ -25,9 +25,9 @@ function ShowFirstMenu()
 	if(Mod.Settings.PestCardIn)then
 		PestCardsPlayed=0;
 		for _,order in pairs(Game.Orders) do
-			if(Game.Orders[order].proxyType=="GameOrderCustom")then
-				if(Game.Orders[order].Payload~=nil)then
-					if(split(Game.Orders[order].Payload,'|')[1]=='Pestilence')then
+			if(order.proxyType=="GameOrderCustom")then
+				if(order.Payload~=nil)then
+					if(split(order.Payload,'|')[1]=='Pestilence')then
 						PestCardsPlayed=PestCardsPlayed+1;
 					end
 				end
@@ -47,9 +47,9 @@ function ShowFirstMenu()
 		end
 		NukeCardsPlayed=0;
 		for _,order in pairs(Game.Orders) do
-			if(Game.Orders[order].proxyType=="GameOrderCustom")then
-				if(Game.Orders[order].Payload~=nil)then
-					if(split(Game.Orders[order].Payload,'|')[1]=='Nuke')then
+			if(order.proxyType=="GameOrderCustom")then
+				if(order.Payload~=nil)then
+					if(split(order.Payload,'|')[1]=='Nuke')then
 						NukeCardsPlayed=NukeCardsPlayed+1;
 					end
 				end
