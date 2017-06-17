@@ -384,6 +384,42 @@ function Openshop(rootParent)
 	end
 	horzobjlist[17] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[17]).SetText("Send request");
+	UI.CreateButton(horzobjlist[14]).SetText("Confirm").SetOnClick(function() 
+			if(Moneyyoupayforterritorysell~=nil and Moneyyoupayforterritorysellzwei.GetValue() ~= 0 and Moneyyougetforterritorysellzwei.GetValue() ~= 0)then
+				UI.Alert('You cannot pay and get money at the same time');
+				return;
+			end
+			if(Moneyyoupayforterritorysell~=nil and Moneyyoupayforterritorysellzwei.GetValue() < 0 and Moneyyougetforterritorysellzwei.GetValue() < 0)then
+				UI.Alert('Negative Money is banned.');
+				return;
+			end
+			if(SelectPlayerBtn2.GetText() == "Select Player...")then
+				UI.Alert('You need to select a player first.');
+				return;
+			end
+			if(territoryzwei.GetText() == "Select territory...")then
+				UI.Alert('You need to select a territorxy first.');
+				return;
+			end
+			local Preis = 0;
+			if(Moneyyoupayforterritorysellzwei ~=nil)then
+				if(Moneyyoupayforterritorysellzwei.GetValue() > 0)then
+					Preis = Moneyyoupayforterritorysellzwei.GetValue();
+				else
+					Preis = Moneyyougetforterritorysellzwei.GetValue();
+				end
+			end
+			local PlayerID = 0;
+			if(
+			local payload = {};
+			payload.Message = "Territory Sell";
+			payload.TargetPlayerID = getplayerid(offerto,Game);
+			payload.Preis = Preis;
+			payload.duration = duration;
+			Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
+					UI.Alert(returnvalue.Message);
+				end);
+		end)
 end
 function OpenDeclarWar()
 	DeleteUI();
