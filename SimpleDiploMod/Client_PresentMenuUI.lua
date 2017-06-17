@@ -398,7 +398,7 @@ function Openshop(rootParent)
 				return;
 			end
 			if(territory.GetText() == "Select territory...")then
-				UI.Alert('You need to select a territorxy first.');
+				UI.Alert('You need to select a territory first.');
 				return;
 			end
 			local Preis = 0;
