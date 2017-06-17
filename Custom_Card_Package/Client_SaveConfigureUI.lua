@@ -8,7 +8,7 @@ function Client_SaveConfigureUI(alert)
         end
         Mod.Settings.NukeCardIn =NukeCardCheckbox.GetIsChecked();
         if(Mod.Settings.NukeCardIn == true)then
-                Mod.Settings.AfterDeployment = AfterDeploymentToggle.GetValue();
+                Mod.Settings.AfterDeployment = AfterDeploymentToggle.GetIsChecked();
                 Mod.Settings.Friendlyfire=FriendlyfireToggle.GetIsChecked();
                 Mod.Settings.NukeCardPiecesNeeded=NukeCardPiecesNeededBox.GetValue();
                 Mod.Settings.NukeCardStartPieces=NukeCardStartPiecesBox.GetValue();
