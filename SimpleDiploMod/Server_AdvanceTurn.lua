@@ -121,7 +121,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(check(order.Message,"Buy Armies"))then
 			local to = tonumber(stringtotable(order.Payload)[1]);
 			if(game.ServerGame.LatestTurnStanding.Territories[to].OwnerPlayerID == order.PlayerID)then
-				local money = Mod.PlayerGameData[order.PlayerID].Money;
+				local money = tonumber(Mod.PlayerGameData[order.PlayerID].Money);
 				local wants = tonumber(stringtotable(order.Payload)[2]);
 				if(Mod.Settings.MoneyPerBoughtArmy*wants > money)then
 					wants = math.floor(money/Mod.Settings.MoneyPerBoughtArmy);
