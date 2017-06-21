@@ -508,7 +508,7 @@ function TargetTerritoryClicked(knopf)
 			table.insert(options,Game.Map.Territories[terr.ID]);
 		end
 	end
-	options = zusammen(options, TerritoryButton,knopf);
+	options = zusammen(options, TerritoryButtonCustom,knopf);
 	UI.PromptFromList("Select the territory you'd like to place the armies on", options);
 end
 function TerritoryButton(terr)
@@ -517,6 +517,15 @@ function TerritoryButton(terr)
 	ret["text"] = name;
 	ret["selected"] = function() 
 		territory.SetText(name);
+	end
+	return ret;
+end
+function TerritoryButtonCustom(terr,knopf)
+	local name = terr.Name;
+	local ret = {};
+	ret["text"] = name;
+	ret["selected"] = function() 
+		knopf.SetText(name);
 	end
 	return ret;
 end
@@ -572,7 +581,6 @@ function PlayerButton(player)
 	ret["text"] = name;
 	ret["selected"] = function() 
 		TargetPlayerBtn.SetText(name);
-		TargetPlayerID = player.ID;
 	end
 	return ret;
 end
