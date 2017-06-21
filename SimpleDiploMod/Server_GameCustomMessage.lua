@@ -220,7 +220,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		end
 	end
 	if(payload.Message == "Territory Sell")then
-		local target = payload.TargetPlayerID;
+		local target = payload.TargetPlayerID;--target == 0 = everyone
 		local Preis = payload.Preis;
 		local targetterr = payload.TargetTerritoryID;
 		local existingterroffers = ",";
@@ -246,9 +246,6 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		--	rg.Message ='The player has already a pending territory sell offer by you for that territory.';
 		--	setReturnTable(rg);
 		--end
-	end
-	if(payload.Message == "Territory Sell Accept")then
-		
 	end
 end
 function stringtotable(variable)
