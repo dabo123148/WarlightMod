@@ -284,11 +284,11 @@ function toname(playerid,game)
 end
 function Openshop(rootParent)
 	DeleteUI();
+	AllFuncs={};
 	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
 		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[0]).SetText("Buy Armies");
 		horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
-		AllFuncs={};
 		AllFuncs[0]=function() TargetTerritoryClicked(territory1); end;
 		territory1 = UI.CreateButton(horzobjlist[1]).SetText("Select territory...").SetOnClick(AllEvilFuncs[0]);
 		horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
@@ -341,7 +341,7 @@ function Openshop(rootParent)
 	horzobjlist[12] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[12]).SetText("Sell Territory");
 	horzobjlist[13] = UI.CreateHorizontalLayoutGroup(root);
-	AllFuncs[1]=function() TargetTerritoryClicked(territory1); end;
+	AllFuncs[1]=function() TargetTerritoryClicked(territory2); end;
 	territory2 = UI.CreateButton(horzobjlist[13]).SetText("Select territory...").SetOnClick(TargetTerritoryClicked(AllFuncs[1]));
 	horzobjlist[14] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[14]).SetText("Select a player, you want to offer it to");
