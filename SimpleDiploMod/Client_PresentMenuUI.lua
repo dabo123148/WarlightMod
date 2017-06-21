@@ -291,7 +291,7 @@ function Openshop(rootParent)
 		horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
 		territory1 = UI.CreateButton(horzobjlist[1]).SetText("Select territory...");
 		AllFuncs[0]=function() TargetTerritoryClicked(territory1); end;
-		territory1.SetOnClick(AllEvilFuncs[0]);
+		territory1.SetOnClick(AllFuncs[0]);
 		horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
 		UI.CreateLabel(horzobjlist[2]).SetText('Army number: ');
 		Countobj = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
