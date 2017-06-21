@@ -66,32 +66,32 @@ function commitofferpeace()
 		else
 			Preis = Moneyyougetforpeace.GetValue();
 		end
+		if(Moneyyoupayforpeace.GetValue() ~= 0 and Moneyyougetforpeace.GetValue() ~= 0)then
+			UI.Alert('You cannot want money and pay money for peace at the same time');
+			return;
+		end
+		if(Moneyyoupayforpeace.GetValue() < 0 or Moneyyougetforpeace.GetValue() < 0)then
+			UI.Alert('Money can not be negative');
+			return;
+		end
 	end
 	if(offerto == "Select player...")then
 		UI.Alert('You need to choose a player first');
 	else
-		if(Moneyyoupayforpeace ~= nil and Moneyyoupayforpeace.GetValue() ~= 0 and Moneyyougetforpeace.GetValue() ~= 0)then
-			UI.Alert('You cannot want money and pay money for peace at the same time');
+		if(duration < 1)then
+			UI.Alert('Duration must be at least 1 Turn');
 		else
-			if(Moneyyoupayforpeace ~= nil and Moneyyoupayforpeace.GetValue() < 0 or Moneyyougetforpeace.GetValue() < 0)then
-				UI.Alert('Money can not be negative');
+			if(duration > 10)then
+				UI.Alert('To prevent this game from getting stuck, peace can not last longer than 10 turns');
 			else
-				if(duration < 1)then
-					UI.Alert('Duration must be at least 1 Turn');
-				else
-					if(duration > 10)then
-						UI.Alert('To prevent this game from getting stuck, peace can not last longer than 10 turns');
-					else
-						local payload = {};
-						payload.Message = "Peace";
-						payload.TargetPlayerID = getplayerid(offerto,Game);
-						payload.Preis = Preis;
-						payload.duration = duration;
-						Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
-							UI.Alert(returnvalue.Message);
-							end);
-					end
-				end
+				local payload = {};
+				payload.Message = "Peace";
+				payload.TargetPlayerID = getplayerid(offerto,Game);
+				payload.Preis = Preis;
+				payload.duration = duration;
+				Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
+					UI.Alert(returnvalue.Message);
+					end);
 			end
 		end
 	end
