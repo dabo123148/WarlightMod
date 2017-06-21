@@ -289,8 +289,9 @@ function Openshop(rootParent)
 		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[0]).SetText("Buy Armies");
 		horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+		territory1 = UI.CreateButton(horzobjlist[1]).SetText("Select territory...");
 		AllFuncs[0]=function() TargetTerritoryClicked(territory1); end;
-		territory1 = UI.CreateButton(horzobjlist[1]).SetText("Select territory...").SetOnClick(AllEvilFuncs[0]);
+		territory1..SetOnClick(AllEvilFuncs[0]);
 		horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
 		UI.CreateLabel(horzobjlist[2]).SetText('Army number: ');
 		Countobj = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
@@ -341,8 +342,9 @@ function Openshop(rootParent)
 	horzobjlist[12] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[12]).SetText("Sell Territory");
 	horzobjlist[13] = UI.CreateHorizontalLayoutGroup(root);
+	territory2 = UI.CreateButton(horzobjlist[13]).SetText("Select territory...");
 	AllFuncs[1]=function() TargetTerritoryClicked(territory2); end;
-	territory2 = UI.CreateButton(horzobjlist[13]).SetText("Select territory...").SetOnClick(TargetTerritoryClicked(AllFuncs[1]));
+	territory2.SetOnClick(TargetTerritoryClicked(AllFuncs[1]));
 	horzobjlist[14] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[14]).SetText("Select a player, you want to offer it to");
 	SelectPlayerBtn2 = UI.CreateButton(horzobjlist[14]).SetText("Select Player...").SetOnClick(function() 
