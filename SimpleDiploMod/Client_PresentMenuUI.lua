@@ -288,7 +288,7 @@ function Openshop(rootParent)
 		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[0]).SetText("Buy Armies");
 		horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
-		territory = UI.CreateButton(horzobjlist[1]).SetText("Select territory...").SetOnClick(TargetTerritoryClicked);
+		territory1 = UI.CreateButton(horzobjlist[1]).SetText("Select territory...").SetOnClick(TargetTerritoryClicked(territory1));
 		horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
 		UI.CreateLabel(horzobjlist[2]).SetText('Army number: ');
 		Countobj = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
@@ -339,7 +339,7 @@ function Openshop(rootParent)
 	horzobjlist[12] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[12]).SetText("Sell Territory");
 	horzobjlist[13] = UI.CreateHorizontalLayoutGroup(root);
-	territory = UI.CreateButton(horzobjlist[13]).SetText("Select territory...").SetOnClick(TargetTerritoryClicked);
+	territory2 = UI.CreateButton(horzobjlist[13]).SetText("Select territory...").SetOnClick(TargetTerritoryClicked(territory2));
 	horzobjlist[14] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[14]).SetText("Select a player, you want to offer it to");
 	SelectPlayerBtn2 = UI.CreateButton(horzobjlist[14]).SetText("Select Player...").SetOnClick(function() 
@@ -496,14 +496,14 @@ function TargetPlayerClicked()
 	options = map(options, PlayerButton);
 	UI.PromptFromList("Select the player you'd like to declare war on", options);
 end
-function TargetTerritoryClicked()
+function TargetTerritoryClicked(knopf)
 	local options = {};
 	for _,terr in pairs(Game.LatestStanding.Territories)do
 		if(terr.OwnerPlayerID  == Game.Us.ID)then
 			table.insert(options,Game.Map.Territories[terr.ID]);
 		end
 	end
-	options = map(options, TerritoryButton);
+	options = zusammen(options, TerritoryButton,knopf);
 	UI.PromptFromList("Select the territory you'd like to place the armies on", options);
 end
 function TerritoryButton(terr)
