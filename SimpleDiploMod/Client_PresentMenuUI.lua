@@ -344,7 +344,7 @@ function Openshop(rootParent)
 	horzobjlist[13] = UI.CreateHorizontalLayoutGroup(root);
 	territory2 = UI.CreateButton(horzobjlist[13]).SetText("Select territory...");
 	AllFuncs[1]=function() TargetTerritoryClicked(territory2); end;
-	territory2.SetOnClick(TargetTerritoryClicked(AllFuncs[1]));
+	territory2.SetOnClick(AllFuncs[1]);
 	horzobjlist[14] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[14]).SetText("Select a player, you want to offer it to");
 	SelectPlayerBtn2 = UI.CreateButton(horzobjlist[14]).SetText("Select Player...").SetOnClick(function() 
