@@ -297,7 +297,7 @@ function Openshop(rootParent)
 		Countobj = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
 		horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
 		commitbutton = UI.CreateButton(horzobjlist[3]).SetText("Add Order").SetOnClick(function() 
-			if(territory.GetText() == "Select territory...")then
+			if(territory1.GetText() == "Select territory...")then
 				UI.Alert('You need to select a territory first');
 			else
 				local Anzahl = Countobj.GetValue();
@@ -305,8 +305,8 @@ function Openshop(rootParent)
 					UI.Alert('Invailid Count');
 				else
 					for _,terr in pairs(Game.Map.Territories)do
-						--UI.Alert(terr.Name .. " " .. territory.GetText());
-						if(terr.Name == territory.GetText())then
+						--UI.Alert(terr.Name .. " " .. territory1.GetText());
+						if(terr.Name == territory1.GetText())then
 							local pay = "," .. terr.ID .. "," .. Anzahl;
 							local Nachricht = "Buy Armies (" .. Anzahl .. ") for " .. terr.Name;
 							local armybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, Nachricht, pay);
@@ -402,7 +402,7 @@ function Openshop(rootParent)
 				UI.Alert('You need to select a player first.');
 				return;
 			end
-			if(territory.GetText() == "Select territory...")then
+			if(territory2.GetText() == "Select territory...")then
 				UI.Alert('You need to select a territory first.');
 				return;
 			end
@@ -418,7 +418,7 @@ function Openshop(rootParent)
 			if(SelectPlayerBtn2.GetText() ~= "everyone(does not include persons you are in war with)")then
 				PlayerID = getplayerid(offerto,Game);
 			end
-			local TargetTerritoryID = getterritoryid(territory.GetText());
+			local TargetTerritoryID = getterritoryid(territory2.GetText());
 			local payload = {};
 			payload.Message = "Territory Sell";
 			payload.TargetPlayerID = PlayerID;
