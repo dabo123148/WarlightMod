@@ -309,7 +309,7 @@ function OpenPendingRequests()
 				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
 				AllEvilFuncs[tablelength(AllEvilFuncs)+1]=function()
 					local payload = {};
-					payload.Message = "Deny Territory Sell';
+					payload.Message = "Deny Territory Sell";
 					payload.TargetPlayerID = tonumber(territorysellsplit[num]);
 					payload.TargetTerritoryID = tonumber(territorysellsplit[num+1]);
 					Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert("You succesfully declined the offer"); end);
