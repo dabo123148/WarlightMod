@@ -197,10 +197,10 @@ function TargetPlayerClickedOfferAllianze()
 end
 function OpenPendingRequests()
 	DeleteUI();
+	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offers",Game);
 	if(Mod.PlayerGameData.Peaceoffers~=nil)then
 		local peacesplit = stringtotable(Mod.PlayerGameData.Peaceoffers);
-		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offers",Game);
 		if(tablelength(peacesplit) == 1)then
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no offer");
@@ -258,12 +258,17 @@ function OpenPendingRequests()
 			end
 			num = num +2;
 		end
+	else
+		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no offer");
+	end
+	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ",Game);
+	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Territory you can buy",Game);
+	if(Mod.PlayerGameData.Terrselloffers ~= nil)then
 		local territorysellsplit = stringtotable(Mod.PlayerGameData.Terrselloffers);
 		num = 1;
-		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ",Game);
-		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Territory you can buy",Game);
 		if(tablelength(Terrselloffers) == 1)then
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no offer");
@@ -272,6 +277,9 @@ function OpenPendingRequests()
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ",Game);
 		end
+	else
+		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no offer");
 	end
 end
 
