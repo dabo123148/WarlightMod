@@ -299,7 +299,7 @@ function OpenPendingRequests()
 				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 				local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
 				AllEvilFuncs[tablelength(AllEvilFuncs)+1]=function()
-					local territorybuyorder = WL.GameOrderCustom.Create(myID, "Buying Territory " .. Game.Map.Territories[tonumber(territorysellsplit[num+1])].Name, "," .. territorysellsplit[num] .. "," .. territorysellsplit[num+1]);
+					local territorybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, "Buying Territory " .. Game.Map.Territories[tonumber(territorysellsplit[num+1])].Name, "," .. territorysellsplit[num] .. "," .. territorysellsplit[num+1]);
 					local orders = Game.Orders;
 					table.insert(orders, territorybuyorder);
 					Game.Orders=orders;
