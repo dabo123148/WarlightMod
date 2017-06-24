@@ -237,7 +237,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 					addedoffers = addedoffers + 1;
 				end
 			end
-			if(addedoffer==>0)then
+			if(addedoffer==0)then
 				rg.Message ='Everyone has already a pending territory sell offer for that territoy by you.';
 				setReturnTable(rg);
 			else
