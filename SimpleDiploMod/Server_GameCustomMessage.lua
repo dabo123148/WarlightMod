@@ -286,8 +286,8 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		end
 		playerdata = Mod.PlayerGameData;
 		playerdata[playerID].Terrselloffers=remainingoffers;
-		playerdata[playerID].Nachrichten = playerGameData[playerID].Nachrichten ..  von .. ",4,".. tostring(game.Game.NumberOfTurns) .. "," .. terr .. ",";
-		playerdata[von].Nachrichten = playerGameData[von].Nachrichten ..  playerID .. ",5,".. tostring(game.Game.NumberOfTurns) .. "," .. terr .. ",";
+		playerdata[playerID].Nachrichten = playerdata[playerID].Nachrichten ..  von .. ",4,".. tostring(game.Game.NumberOfTurns) .. "," .. terr .. ",";
+		playerdata[von].Nachrichten = playerdata[von].Nachrichten ..  playerID .. ",5,".. tostring(game.Game.NumberOfTurns) .. "," .. terr .. ",";
 		Mod.PlayerGameData = playerdata;
 	end
 end
