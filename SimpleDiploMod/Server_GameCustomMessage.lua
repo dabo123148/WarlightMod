@@ -187,6 +187,9 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				end
 				Mod.PrivateGameData = privateGameData;
 			else
+				local rg = {};
+				rg.Message = "1";
+				setReturnTable(rg);
 			end
 		else
 			Mod.PlayerGameData=playerGameData;
