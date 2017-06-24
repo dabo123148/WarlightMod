@@ -142,6 +142,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local playerid = tonumber(payloadsplit[1]);
 			local terrid = tonumber(payloadsplit[2]);
 			playerdata = Mod.PlayerGameData;
+			error(order.Payload);
 			if(playerdata[order.PlayerID].Nachrichten== nil)then
 				playerdata[order.PlayerID].Nachrichten = ",";
 			end
