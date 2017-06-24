@@ -228,12 +228,12 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			local addedoffers = 0;
 			for _,pid in pairs(game.ServerGame.Game.Players)do
 				local existingterroffers = ",";
-				if(playerGameData[target].Terroffers~=nil)then
-					existingterroffers=playerGameData[target].Terroffers;
+				if(playerGameData[pid].Terrselloffers~=nil)then
+					existingterroffers=playerGameData[pid].Terrselloffers;
 				end
 				if(HasTerritoryOffer(existingterroffers,playerID,targetterr)==false)then
 					existingterroffers = existingterroffers .. tostring(playerID) .. ',' .. tostring(targetterr) .. ',' .. Preis .. ',';
-					playerGameData[target].Terroffers = existingterroffers;
+					playerGameData[pid].Terrselloffers = existingterroffers;
 					addedoffers = addedoffers + 1;
 				end
 			end
@@ -247,15 +247,15 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			end
 		else
 			local existingterroffers = ",";
-			if(playerGameData[target].Terroffers~=nil)then
-				existingterroffers=playerGameData[target].Terroffers;
+			if(playerGameData[target].Terrselloffers~=nil)then
+				existingterroffers=playerGameData[target].Terrselloffers;
 			end
 			if(HasTerritoryOffer(existingterroffers,playerID,targetterr))then
 				rg.Message ='The player has already a pending territory sell offer by you for that territory.';
 				setReturnTable(rg);
 			else
 				existingterroffers = existingterroffers .. tostring(playerID) .. ',' .. tostring(targetterr) .. ',' .. Preis .. ',';
-				playerGameData[target].Terroffers = existingterroffers;
+				playerGameData[target].Terrselloffers = existingterroffers;
 				Mod.PlayerGameData = playerGameData;
 			end
 		end
