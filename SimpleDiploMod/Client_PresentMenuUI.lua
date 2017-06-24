@@ -298,19 +298,23 @@ function OpenPendingRequests()
 			else
 				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 				local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
+				local num2 = num;
 				AllEvilFuncs[tablelength(AllEvilFuncs)+1]=function()
-					local territorybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, "Buying Territory " .. Game.Map.Territories[tonumber(territorysellsplit[num+1])].Name, "," .. territorysellsplit[num] .. "," .. territorysellsplit[num+1]);
+					local newnum = num2;
+					local territorybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, "Buying Territory " .. Game.Map.Territories[tonumber(territorysellsplit[newnum+1])].Name, "," .. territorysellsplit[newnum] .. "," .. territorysellsplit[newnum+1]);
 					local orders = Game.Orders;
 					table.insert(orders, territorybuyorder);
 					Game.Orders=orders;
 				end;
 				button.SetOnClick(AllEvilFuncs[tablelength(AllEvilFuncs)]);
 				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
+				local num3 = num;
 				AllEvilFuncs[tablelength(AllEvilFuncs)+1]=function()
+					local newnum = num3;
 					local payload = {};
 					payload.Message = "Deny Territory Sell";
-					payload.TargetPlayerID = tonumber(territorysellsplit[num]);
-					payload.TargetTerritoryID = tonumber(territorysellsplit[num+1]);
+					payload.TargetPlayerID = tonumber(territorysellsplit[newnum]);
+					payload.TargetTerritoryID = tonumber(territorysellsplit[newnum+1]);
 					Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert("You succesfully declined the offer"); end);
 					OpenPendingRequests();
 				end;
