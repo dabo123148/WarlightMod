@@ -252,7 +252,6 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			if(playerGameData[target].Terrselloffers~=nil)then
 				existingterroffers=playerGameData[target].Terrselloffers;
 			end
-			--error(existingterroffers .. ' ' .. playerID .. ' ' .. targetterr);
 			if(HasTerritoryOffer(existingterroffers,playerID,targetterr))then
 				rg.Message ='The player has already a pending territory sell offer by you for that territory.';
 				setReturnTable(rg);
@@ -268,6 +267,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 end
 function HasTerritoryOffer(data,von,terr)
 	local num = 1;
+	data = stringtotable(data);
 	while(data[num] ~= nil)do
 		if(tonumber(data[num]) == von)then
 			if(tonumber(data[num+1]) == terr)then
