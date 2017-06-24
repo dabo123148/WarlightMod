@@ -305,7 +305,6 @@ function OpenPendingRequests()
 					Game.Orders=orders;
 				end;
 				button.SetOnClick(AllEvilFuncs[tablelength(AllEvilFuncs)]);
-				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
 				AllEvilFuncs[tablelength(AllEvilFuncs)+1]=function()
 					local payload = {};
