@@ -271,6 +271,24 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			end
 		end
 	end
+	if(payload.Message == "Deny Territory Sell")then
+		local removed = false;
+		local von = tonumber(payload.TargetPlayerID);
+		local terr = tonumber(payload.TargetTerritoryID);
+		local num = 1;
+		local existingterroffers = stringtochartable(Mod.PlayerGameData[playerID].Terrselloffers);
+		local remainingoffers = ",";
+		while(existingterroffers[num+2] ~= nil)do
+			if(tonumber(existingterroffers[num]) ~= von and tonumber(existingterroffers[num+1]) ~= terr)then
+				remainingoffers = remainingoffers .. existingterroffers[num] .. ",".. existingterroffers[num+1] .. "," .. existingterroffers[num+2] .. ",";
+			end
+		end
+		playerdata = Mod.PlayerGameData;
+		playerdata[playerID].Terrselloffers=remainingoffers;
+		playerdata[playerID].Nachrichten = playerGameData[playerID].Nachrichten ..  von .. ",4,".. tostring(game.Game.NumberOfTurns) .. "," .. terr .. ",";
+		playerdata[von].Nachrichten = playerGameData[von].Nachrichten ..  playerID .. ",5,".. tostring(game.Game.NumberOfTurns) .. "," .. terr .. ",";
+		Mod.PlayerGameData = playerdata;
+	end
 end
 function HasTerritoryOffer(data,von,terr)
 	local num = 1;
