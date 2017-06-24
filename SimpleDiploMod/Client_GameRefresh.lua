@@ -54,6 +54,7 @@ function Client_GameRefresh(game)
 	end
 end
 function getname(playerid,game)
+	print(playerid);
 	return game.Game.Players[tonumber(playerid)].DisplayName(nil, false);
 end
 function tablelength(T)
