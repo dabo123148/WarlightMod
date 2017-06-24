@@ -220,11 +220,27 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		end
 	end
 	if(payload.Message == "Territory Sell")then
-		local target = payload.TargetPlayerID;--target == 0 = everyone
+		local target = tonumber(payload.TargetPlayerID);--target == 0 = everyone
 		local Preis = payload.Preis;
 		local targetterr = payload.TargetTerritoryID;
-		local existingterroffers = ",";
 		local playerGameData = Mod.PlayerGameData;
+		if(target == 0)then
+			--option everyone
+			local returnmessage = "";
+			
+		else
+			local existingterroffers = ",";
+			if(playerGameData[target].Terroffers~=nil)then
+				existingterroffers=playerGameData[target].Terroffers;
+			end
+			if(HasTerritoryOffer(existingterroffers,playerID,targetterr))then
+				rg.Message ='The player has already a pending territory sell offer by you for that territory.';
+				setReturnTable(rg);
+			else
+				existingterroffers = existingterroffers .. tostring(playerID) .. ',' .. tostring(targetterr) .. ',' .. Preis .. ',';
+				playerGameData[target].Terroffers = existingterroffers;
+			end
+		end
  		--if(playerGameData[target].Terroffers~=nil)then
 		--	existingterroffers=playerGameData[target].Terroffers;
 		--end
@@ -247,6 +263,18 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		--	setReturnTable(rg);
 		--end
 	end
+end
+function HasTerritoryOffer(data,von,terr)
+	local num = 1;
+	while(data[num] ~= nil)do
+		if(tonumber(data[num]) == von)then
+			if(tonumber(data[num+1]) == terr)then
+				return true;
+			end
+		end
+		num = num+3;
+	end
+	return false;
 end
 function stringtotable(variable)
 	local chartable = {};
