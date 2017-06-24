@@ -279,7 +279,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		local existingterroffers = stringtotable(Mod.PlayerGameData[playerID].Terrselloffers);
 		local remainingoffers = ",";
 		while(existingterroffers[num+2] ~= nil)do
-			if(tonumber(existingterroffers[num]) ~= von and tonumber(existingterroffers[num+1]) ~= terr)then
+			if(tonumber(existingterroffers[num]) ~= von or tonumber(existingterroffers[num+1]) ~= terr)then
 				remainingoffers = remainingoffers .. existingterroffers[num] .. ",".. existingterroffers[num+1] .. "," .. existingterroffers[num+2] .. ",";
 			end
 			num = num+3;
