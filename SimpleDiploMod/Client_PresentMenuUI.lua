@@ -269,7 +269,7 @@ function OpenPendingRequests()
 	if(Mod.PlayerGameData.Terrselloffers ~= nil)then
 		local territorysellsplit = stringtotable(Mod.PlayerGameData.Terrselloffers);
 		num = 1;
-		if(tablelength(Terrselloffers) == 1)then
+		if(tablelength(territorysellsplit) == 1)then
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no offer");
 		end
