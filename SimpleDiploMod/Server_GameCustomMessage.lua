@@ -286,6 +286,12 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		end
 		playerdata = Mod.PlayerGameData;
 		playerdata[playerID].Terrselloffers=remainingoffers;
+		if(playerdata[playerID].Nachrichten== nil)then
+			playerdata[playerID].Nachrichten = ",";
+		end
+		if(playerdata[von].Nachrichten== nil)then
+			playerdata[von].Nachrichten = ",";
+		end
 		playerdata[playerID].Nachrichten = playerdata[playerID].Nachrichten ..  von .. ",4,".. tostring(game.Game.NumberOfTurns) .. "," .. terr .. ",";
 		playerdata[von].Nachrichten = playerdata[von].Nachrichten ..  playerID .. ",5,".. tostring(game.Game.NumberOfTurns) .. "," .. terr .. ",";
 		Mod.PlayerGameData = playerdata;
