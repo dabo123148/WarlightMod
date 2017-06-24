@@ -306,7 +306,7 @@ function OpenPendingRequests()
 				local num2 = num;
 				AllEvilFuncs[tablelength(AllEvilFuncs)+1]=function()
 					local newnum = num2;
-					local territorybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, "Buying Territory " .. Game.Map.Territories[tonumber(territorysellsplit[newnum+1])].Name, "," .. territorysellsplit[newnum] .. "," .. territorysellsplit[newnum+1]);
+					local territorybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, "Buy Territory " .. Game.Map.Territories[tonumber(territorysellsplit[newnum+1])].Name, "," .. territorysellsplit[newnum] .. "," .. territorysellsplit[newnum+1]);
 					local orders = Game.Orders;
 					table.insert(orders, territorybuyorder);
 					Game.Orders=orders;
