@@ -276,6 +276,22 @@ function OpenPendingRequests()
 		while(territorysellsplit[num] ~= nil and territorysellsplit[num+1] ~= nil and territorysellsplit[num+2] ~= nil)do
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ",Game);
+			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(tonumber(territorysellsplit[num]),Game) ' wants to sell you ' Game.Map.Territories[territorysellsplit[num+1].Name);
+			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+			local Price = tonumber(territorysellsplit[num+2]);
+			if(Price ~= 0)then
+				if(Price > 0)then
+					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("If you want to accept, you need to pay " .. Price);
+				else
+					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("If you want to accept, he will pay you" .. (Preis*-1));
+				end
+			else
+				if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("The offer is for free");
+				end
+			end
+			num = num + 3;
 		end
 	else
 		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
