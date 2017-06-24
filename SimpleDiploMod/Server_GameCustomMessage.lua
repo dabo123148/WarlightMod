@@ -284,18 +284,24 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			end
 			num = num+3;
 		end
-		playerdata = Mod.PlayerGameData;
+		local playerdata = Mod.PlayerGameData;
 		playerdata[playerID].Terrselloffers=remainingoffers;
-		if(playerdata[playerID].Nachrichten== nil)then
-			playerdata[playerID].Nachrichten = ",";
-		end
-		if(playerdata[von].Nachrichten== nil)then
-			playerdata[von].Nachrichten = ",";
-		end
-		playerdata[playerID].Nachrichten = playerdata[playerID].Nachrichten ..  von .. ",4,".. tostring(game.Game.NumberOfTurns) .. "," .. terr .. ",";
-		playerdata[von].Nachrichten = playerdata[von].Nachrichten ..  playerID .. ",5,".. tostring(game.Game.NumberOfTurns) .. "," .. terr .. ",";
 		Mod.PlayerGameData = playerdata;
+		addmessage(von .. ",4,".. tostring(game.Game.NumberOfTurns) .. "," .. terr .. ",",playerID);
+		addmessage(playerID .. ",5,".. tostring(game.Game.NumberOfTurns) .. "," .. terr .. ",",playerID);
 	end
+end
+function addmessage(message,spieler)
+	local playerdata = Mod.PlayerGameData;
+	if(playerdata[playerID].Nachrichten== nil)then
+		playerdata[playerID].Nachrichten = ",";
+	end
+	if(playerdata[playerID].NeueNachrichten== nil)then
+		playerdata[playerID].NeueNachrichten = ",";
+	end
+	playerdata[spieler].Nachrichten = playerdata[spieler].Nachrichten .. message;
+	playerdata[spieler].NeueNachrichten = playerdata[spieler].NeueNachrichten .. message;
+	Mod.PlayerGameData = playerdata;
 end
 function HasTerritoryOffer(data,von,terr)
 	local num = 1;
