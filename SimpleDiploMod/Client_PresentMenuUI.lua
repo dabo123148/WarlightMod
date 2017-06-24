@@ -199,6 +199,7 @@ function OpenPendingRequests()
 	DeleteUI();
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offers",Game);
+	AllEvilFuncs={};
 	if(Mod.PlayerGameData.Peaceoffers~=nil)then
 		local peacesplit = stringtotable(Mod.PlayerGameData.Peaceoffers);
 		if(tablelength(peacesplit) == 1)then
@@ -211,12 +212,11 @@ function OpenPendingRequests()
 		--	UI.CreateLabel(horz).SetText("Test " .. obj);
 		--end
 		RecentPlayerID={};
-		AllEvilFuncs={};
 		
 		while(peacesplit[num] ~= nil and peacesplit[num+1] ~= nil and peacesplit[num+1] ~= "")do
 			RecentPlayerID[num]=tonumber(peacesplit[num]);
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ",Game);
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ");
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offer by " .. toname(tonumber(peacesplit[num]),Game));
 			if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
@@ -246,14 +246,14 @@ function OpenPendingRequests()
 				locNum.Spieler = tonumber(peacesplit[num]);
 				locNum.Message = "Accept Peace";
 				--= {Knopf=button,spieler=tonumber(peacesplit[num])};
-				AllEvilFuncs[num]=function() local InNum = locNum; AcceptPeaceOffer(InNum); end;
-				button.SetOnClick(AllEvilFuncs[num]);
+				AllEvilFuncs[tablelength(AllEvilFuncs)+1]=function() local InNum = locNum; AcceptPeaceOffer(InNum); end;
+				button.SetOnClick(AllEvilFuncs[tablelength(AllEvilFuncs)]);
 				local buttonzwei = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
 				local locNumzwei= {};
 				locNumzwei.Spieler = tonumber(peacesplit[num]);
 				locNumzwei.Message = "Decline Peace";
-				AllEvilFuncs[num+1]=function() local InNumzwei = locNumzwei; AcceptPeaceOffer(InNumzwei); end;
-				buttonzwei.SetOnClick(AllEvilFuncs[num+1]);
+				AllEvilFuncs[tablelength(AllEvilFuncs)+1]=function() local InNumzwei = locNumzwei; AcceptPeaceOffer(InNumzwei); end;
+				buttonzwei.SetOnClick(AllEvilFuncs[tablelength(AllEvilFuncs)]);
 				
 			end
 			num = num +2;
@@ -265,7 +265,7 @@ function OpenPendingRequests()
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ",Game);
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Territory you can buy",Game);
+	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Territory you can buy");
 	if(Mod.PlayerGameData.Terrselloffers ~= nil)then
 		local territorysellsplit = stringtotable(Mod.PlayerGameData.Terrselloffers);
 		num = 1;
@@ -275,7 +275,7 @@ function OpenPendingRequests()
 		end
 		while(territorysellsplit[num] ~= nil and territorysellsplit[num+1] ~= nil and territorysellsplit[num+2] ~= nil)do
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ",Game);
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ");
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(tonumber(territorysellsplit[num]),Game) .. ' wants to sell you ' .. Game.Map.Territories[tonumber(territorysellsplit[num+1])].Name);
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
@@ -292,6 +292,31 @@ function OpenPendingRequests()
 				end
 			end
 			num = num + 3;
+			if(Price > tonumber(Mod.PlayerGameData.Money))then
+				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have not the money to pay for that territory");
+			else
+				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+				local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
+				AllEvilFuncs[tablelength(AllEvilFuncs)+1]=function()
+					local territorybuyorder = WL.GameOrderCustom.Create(myID, "Buying Territory " .. Game.Map.Territories[tonumber(territorysellsplit[num+1])].Name, "," .. territorysellsplit[num] .. "," .. territorysellsplit[num+1]);
+					local orders = Game.Orders;
+					table.insert(orders, territorybuyorder);
+					Game.Orders=orders;
+				end;
+				button.SetOnClick(AllEvilFuncs[tablelength(AllEvilFuncs)]);
+				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
+				AllEvilFuncs[tablelength(AllEvilFuncs)+1]=function()
+					local payload = {};
+					payload.Message = "Deny Territory Sell;
+					payload.TargetPlayerID = tonumber(territorysellsplit[num]);
+					payload.TargetTerritoryID = tonumber(territorysellsplit[num+1]);
+					Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert("You succesfully declined the offer"); end);
+					OpenPendingRequests();
+				end;
+				button.SetOnClick(AllEvilFuncs[tablelength(AllEvilFuncs)]);
+			end
 		end
 	else
 		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
@@ -367,24 +392,24 @@ function Openshop(rootParent)
 		horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[4]).SetText(" ");
 	end
-	horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[5]).SetText("Buy Territory");
-	horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
-	territoryeins = UI.CreateLabel(horzobjlist[6]).SetText("Select a territory");
-	horzobjlist[7] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[7]).SetText("Select a player, you want to buy it from");
-	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
-		horzobjlist[8] = UI.CreateHorizontalLayoutGroup(root);
-		textelem = UI.CreateLabel(horzobjlist[8]).SetText("What are you willing to pay");
-		Moneyyoupayforterritorybuy = UI.CreateNumberInputField(horzobjlist[8]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
-		horzobjlist[9] = UI.CreateHorizontalLayoutGroup(root);
-		textelem = UI.CreateLabel(horzobjlist[9]).SetText("What do you want for the territory");
-		Moneyyougetterritorybuy = UI.CreateNumberInputField(horzobjlist[9]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
-	end
-	horzobjlist[10] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[10]).SetText("Send request");
-	horzobjlist[11] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[11]).SetText(" ");
+	--horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
+	--textelem = UI.CreateLabel(horzobjlist[5]).SetText("Buy Territory");
+	--horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
+	--territoryeins = UI.CreateLabel(horzobjlist[6]).SetText("Select a territory");
+	--horzobjlist[7] = UI.CreateHorizontalLayoutGroup(root);
+	--textelem = UI.CreateLabel(horzobjlist[7]).SetText("Select a player, you want to buy it from");
+	--if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+	--	horzobjlist[8] = UI.CreateHorizontalLayoutGroup(root);
+	--	textelem = UI.CreateLabel(horzobjlist[8]).SetText("What are you willing to pay");
+	--	Moneyyoupayforterritorybuy = UI.CreateNumberInputField(horzobjlist[8]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+	--	horzobjlist[9] = UI.CreateHorizontalLayoutGroup(root);
+	--	textelem = UI.CreateLabel(horzobjlist[9]).SetText("What do you want for the territory");
+	--	Moneyyougetterritorybuy = UI.CreateNumberInputField(horzobjlist[9]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+	--end
+	--horzobjlist[10] = UI.CreateHorizontalLayoutGroup(root);
+	--textelem = UI.CreateLabel(horzobjlist[10]).SetText("Send request");
+	--horzobjlist[11] = UI.CreateHorizontalLayoutGroup(root);
+	--textelem = UI.CreateLabel(horzobjlist[11]).SetText(" ");
 	horzobjlist[12] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[12]).SetText("Sell Territory");
 	horzobjlist[13] = UI.CreateHorizontalLayoutGroup(root);
