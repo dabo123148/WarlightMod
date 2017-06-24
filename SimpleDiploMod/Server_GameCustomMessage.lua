@@ -221,7 +221,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	if(payload.Message == "Territory Sell")then
 		local target = tonumber(payload.TargetPlayerID);--target == 0 = everyone
 		local Preis = payload.Preis;
-		local targetterr = payload.TargetTerritoryID;
+		local targetterr = tonumber(payload.TargetTerritoryID);
 		local playerGameData = Mod.PlayerGameData;
 		if(target == 0)then
 			--option everyone
