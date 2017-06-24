@@ -276,7 +276,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		local von = tonumber(payload.TargetPlayerID);
 		local terr = tonumber(payload.TargetTerritoryID);
 		local num = 1;
-		local existingterroffers = stringtochartable(Mod.PlayerGameData[playerID].Terrselloffers);
+		local existingterroffers = stringtotable(Mod.PlayerGameData[playerID].Terrselloffers);
 		local remainingoffers = ",";
 		while(existingterroffers[num+2] ~= nil)do
 			if(tonumber(existingterroffers[num]) ~= von and tonumber(existingterroffers[num+1]) ~= terr)then
