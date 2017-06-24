@@ -9,6 +9,7 @@ function getplayerIDs(game)
 end
 function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	AllPlayerIDs = getplayerIDs(game);
+	local rg = {};
 	if(payload.Message == "Read")then
 		local playerGameData = Mod.PlayerGameData;
 		playerGameData[playerID].NeueNachrichten = nil;
@@ -105,13 +106,11 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				end
 			end
 			Mod.PlayerGameData=playerGameData;
-			local rg = {};
 			rg.Message = 'The AI accepted your offer';
 			setReturnTable(rg);
 			--accept peace cause ai
 		end
 	else
-		local rg = {};
 		rg.Message = 'Bug';
 		setReturnTable(rg);
   	end
@@ -226,8 +225,26 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		local playerGameData = Mod.PlayerGameData;
 		if(target == 0)then
 			--option everyone
-			local returnmessage = "";
-			
+			local addedoffers = 0;
+			for _,pid in pairs(game.ServerGame.Game.Players)do
+				local existingterroffers = ",";
+				if(playerGameData[target].Terroffers~=nil)then
+					existingterroffers=playerGameData[target].Terroffers;
+				end
+				if(HasTerritoryOffer(existingterroffers,playerID,targetterr)==false)then
+					existingterroffers = existingterroffers .. tostring(playerID) .. ',' .. tostring(targetterr) .. ',' .. Preis .. ',';
+					playerGameData[target].Terroffers = existingterroffers;
+					addedoffers = addedoffers + 1;
+				end
+			end
+			if(addedoffer==>0)then
+				rg.Message ='Everyone has already a pending territory sell offer for that territoy by you.';
+				setReturnTable(rg);
+			else
+				rg.Message ='You successfully added ' .. tostring(addedoffer) .. ' Territory Sell Offers ';
+				setReturnTable(rg);
+				Mod.PlayerGameData = playerGameData;
+			end
 		else
 			local existingterroffers = ",";
 			if(playerGameData[target].Terroffers~=nil)then
@@ -239,29 +256,9 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			else
 				existingterroffers = existingterroffers .. tostring(playerID) .. ',' .. tostring(targetterr) .. ',' .. Preis .. ',';
 				playerGameData[target].Terroffers = existingterroffers;
+				Mod.PlayerGameData = playerGameData;
 			end
 		end
- 		--if(playerGameData[target].Terroffers~=nil)then
-		--	existingterroffers=playerGameData[target].Terroffers;
-		--end
-		--local existingofferssplit = stringtotable(existingterroffers);
-		--local num = 1;
-		--local match = false;
-		--while(existingofferssplit[num] ~=nil and existingofferssplit[num+1] ~=nil)do
-		--	if(tonumber(existingofferssplit[num]) == playerID and tonumber(existingofferssplit[num+1]) == targetterr)then
-		--		match = true;
-		--	end
-		--	num=num+3;
-		--end
-		--local rg = {};
-		--if(match == false)then
-		--	if(target == 0)then
-		--	end
-		--	existingterroffers = existingterroffers .. playerID .. ',' .. targetterr .. ',' .. Preis .. ',';
-		--else
-		--	rg.Message ='The player has already a pending territory sell offer by you for that territory.';
-		--	setReturnTable(rg);
-		--end
 	end
 end
 function HasTerritoryOffer(data,von,terr)
