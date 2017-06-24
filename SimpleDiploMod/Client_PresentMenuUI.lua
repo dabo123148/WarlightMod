@@ -341,10 +341,14 @@ function AcceptPeaceOffer(data)
 				if(returnvalue.Message == 0)then
 					UI.Alert("I am sorry, but " .. toname(data.Spieler,Game) .. " hasn't the money to pay you");
 				else
-					if(data.Message == "Decline Peace")then
-						UI.Alert('You declined ' .. toname(data.Spieler,Game) .. " Peace Offer");
+					if(returnvalue.Message == 1)then
+						UI.Alert("The Peace Offer doesn't exist any longer");
 					else
-						UI.Alert("You are now again in peace with " .. toname(data.Spieler,Game));
+						if(data.Message == "Decline Peace")then
+							UI.Alert('You declined ' .. toname(data.Spieler,Game) .. " Peace Offer");
+						else
+							UI.Alert("You are now again in peace with " .. toname(data.Spieler,Game));
+						end
 					end
 				end
 			end);
