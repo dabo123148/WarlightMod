@@ -141,10 +141,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local payloadsplit = stringtotable(order.Payload);
 			local playerid = tonumber(payloadsplit[1]);
 			local terrid = tonumber(payloadsplit[2]);
-			playerdata = Mod.PlayerGameData;
-			if(playerdata[order.PlayerID].Nachrichten== nil)then
-				playerdata[order.PlayerID].Nachrichten = ",";
-			end
+			local playerdata = Mod.PlayerGameData;
 			if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID == playerid)then
 				if(playerdata[playerid].Nachrichten== nil)then
 					playerdata[playerid].Nachrichten = ",";
@@ -160,8 +157,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				end
 				if(Preis < 0 and tonumber(playerdata[playerid].Money) < Preis*-1)then
 					--Seller hasn't the money to pay the person who tries buys the territory
-					playerdata[order.PlayerID].Nachrichten = playerdata[order.PlayerID].Nachrichten .. playerid.. ",7,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",";
-					Mod.PlayerGameData = playerdata;
+					addmessage(playerid.. ",7,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
 				else
 					--all players have the requirements for the offer
 					--> buying the territory now
@@ -170,9 +166,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect}));
 				end
 			else
-				playerdata[order.PlayerID].Nachrichten = playerdata[order.PlayerID].Nachrichten .. ",6,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",";
-				Mod.PlayerGameData = playerdata;
+				addmessage(",6,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
 			end
+			Mod.PlayerGameData = playerdata;
 		end
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 	end
@@ -442,4 +438,16 @@ function check(message,variable)
 		num = num + 1;
 	end
 	return match;
+end
+function addmessage(message,spieler)
+	local playerdata = Mod.PlayerGameData;
+	if(playerdata[playerID].Nachrichten== nil)then
+		playerdata[playerID].Nachrichten = ",";
+	end
+	if(playerdata[playerID].NeueNachrichten== nil)then
+		playerdata[playerID].NeueNachrichten = ",";
+	end
+	playerdata[spieler].Nachrichten = playerdata[spieler].Nachrichten .. message;
+	playerdata[spieler].NeueNachrichten = playerdata[spieler].NeueNachrichten .. message;
+	Mod.PlayerGameData = playerdata;
 end
