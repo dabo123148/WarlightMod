@@ -21,10 +21,10 @@ function Client_GameRefresh(game)
 				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " declined the peace offer of " .. getname(NeueNachrichtensplit[num+3],game);
 			end
 			if(NeueNachrichtensplit[num+1] == "4")then
-				Nachricht = Nachricht .. "\n" .. "You declined the territory sell offer of " .. getname(NeueNachrichtensplit[num],game) .. " for " .. game.Map.Territories[tonumber(NeueNachrichtensplit[num+3])].Name .. " in turn " .. NeueNachrichtensplit[num+3];
+				Nachricht = Nachricht .. "\n" .. "You declined the territory sell offer of " .. getname(NeueNachrichtensplit[num],game) .. " for " .. game.Map.Territories[tonumber(NeueNachrichtensplit[num+3])].Name .. " in turn " .. NeueNachrichtensplit[num+2];
 			end
 			if(NeueNachrichtensplit[num+1] == "5")then
-				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " declined your territory sell offer for " .. game.Map.Territories[tonumber(NeueNachrichtensplit[num+3])].Name .. " in turn " .. NeueNachrichtensplit[num+3];
+				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " declined your territory sell offer for " .. game.Map.Territories[tonumber(NeueNachrichtensplit[num+3])].Name .. " in turn " .. NeueNachrichtensplit[num+2];
 			end
 			num = num + 4;
 		end
