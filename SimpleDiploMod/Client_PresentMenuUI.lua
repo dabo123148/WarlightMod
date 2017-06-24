@@ -462,6 +462,7 @@ function getterritoryid(name)
 			return terr.ID;
 		end
 	end
+	UI.Alert('Territory could not be found. Please report this to dabo1');
 	return 0;
 end
 function OpenDeclarWar()
