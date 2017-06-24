@@ -277,7 +277,7 @@ function OpenPendingRequests()
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ",Game);
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(tonumber(territorysellsplit[num]),Game) ' wants to sell you ' Game.Map.Territories[tonumber(territorysellsplit[num+1])].Name);
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(tonumber(territorysellsplit[num]),Game) .. ' wants to sell you ' .. Game.Map.Territories[tonumber(territorysellsplit[num+1])].Name);
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			local Price = tonumber(territorysellsplit[num+2]);
 			if(Price ~= 0)then
