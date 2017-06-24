@@ -199,6 +199,12 @@ function OpenPendingRequests()
 	DeleteUI();
 	if(Mod.PlayerGameData.Peaceoffers~=nil)then
 		local peacesplit = stringtotable(Mod.PlayerGameData.Peaceoffers);
+		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offers",Game);
+		if(tablelength(peacesplit) == 1)then
+			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no offer");
+		end
 		local num = 1;
 		--for _,obj in pairs(peacesplit)do
 		--	horz = UI.CreateHorizontalLayoutGroup(root);
@@ -209,6 +215,8 @@ function OpenPendingRequests()
 		
 		while(peacesplit[num] ~= nil and peacesplit[num+1] ~= nil and peacesplit[num+1] ~= "")do
 			RecentPlayerID[num]=tonumber(peacesplit[num]);
+			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ",Game);
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offer by " .. toname(tonumber(peacesplit[num]),Game));
 			if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
@@ -249,6 +257,20 @@ function OpenPendingRequests()
 				
 			end
 			num = num +2;
+		end
+		local territorysellsplit = stringtotable(Mod.PlayerGameData.Terrselloffers);
+		num = 1;
+		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ",Game);
+		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Territory you can buy",Game);
+		if(tablelength(Terrselloffers) == 1)then
+			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no offer");
+		end
+		while(territorysellsplit[num] ~= nil and territorysellsplit[num+1] ~= nil and territorysellsplit[num+2] ~= nil)do
+			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ",Game);
 		end
 	end
 end
