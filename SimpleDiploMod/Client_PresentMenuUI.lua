@@ -143,10 +143,10 @@ function OpenMenu()
 					Nachricht = Nachricht .. "\n" .. toname(tonumber(Nachrichtensplit[num]),Game) .. " declined the peace offer by " .. toname(tonumber(Nachrichtensplit[num+3]),Game);
 				end
 				if(Nachrichtensplit[num+1] == "4")then
-					Nachricht = Nachricht .. "\n" .. "You declined the territory sell offer of " .. getname(Nachrichtensplit[num],game) .. " for " .. game.Map.Territories[tonumber(Nachrichtensplit[num+3])].Name .. " in turn " .. Nachrichtensplit[num+3];
+					Nachricht = Nachricht .. "\n" .. "You declined the territory sell offer of " .. toname(Nachrichtensplit[num],game) .. " for " .. game.Map.Territories[tonumber(Nachrichtensplit[num+3])].Name .. " in turn " .. Nachrichtensplit[num+3];
 				end
 				if(Nachrichtensplit[num+1] == "5")then
-					Nachricht = Nachricht .. "\n" .. getname(Nachrichtensplit[num],game) .. "declined your territory sell offer for " .. game.Map.Territories[tonumber(Nachrichtensplit[num+3])].Name .. " in turn " .. Nachrichtensplit[num+3];
+					Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],game) .. "declined your territory sell offer for " .. game.Map.Territories[tonumber(Nachrichtensplit[num+3])].Name .. " in turn " .. Nachrichtensplit[num+3];
 				end
 				num = num + 4;
 			end
