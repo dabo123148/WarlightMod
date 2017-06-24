@@ -226,6 +226,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		if(target == 0)then
 			--option everyone
 			local addedoffers = 0;
+			local alreadyoffered = -1;
 			for _,pid in pairs(game.ServerGame.Game.Players)do
 				if(pid.IsAI == false and pid.ID ~= playerID)then
 					local existingterroffers = ",";
@@ -237,13 +238,19 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 						playerGameData[pid.ID].Terrselloffers = existingterroffers;
 						addedoffers = addedoffers + 1;
 					end
+				else
+					alreadyoffered = alreadyoffered + 1;
 				end
 			end
 			if(addedoffers==0)then
 				rg.Message ='Everyone has already a pending territory sell offer for that territoy by you.';
 				setReturnTable(rg);
 			else
-				rg.Message ='You successfully added ' .. tostring(addedoffers) .. ' Territory Sell Offers ';
+				if(alreadyoffered > 0)then
+					rg.Message ='You successfully added ' .. tostring(addedoffers) .. ' Territory Sell Offers ' .. '\n' .. tostring(alreadyoffered) .. ' players had already a territory sell offer for that territory';
+				else
+					rg.Message ='You successfully added ' .. tostring(addedoffers) .. ' Territory Sell Offers';
+				end
 				setReturnTable(rg);
 				Mod.PlayerGameData = playerGameData;
 			end
