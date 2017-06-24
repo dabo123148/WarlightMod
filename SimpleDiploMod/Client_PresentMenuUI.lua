@@ -291,7 +291,6 @@ function OpenPendingRequests()
 					UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("The offer is for free");
 				end
 			end
-			num = num + 3;
 			if(Price > tonumber(Mod.PlayerGameData.Money))then
 				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have not the money to pay for that territory");
@@ -320,6 +319,7 @@ function OpenPendingRequests()
 				end;
 				button.SetOnClick(AllEvilFuncs[tablelength(AllEvilFuncs)]);
 			end
+			num = num + 3;
 		end
 	else
 		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
