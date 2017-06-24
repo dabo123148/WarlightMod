@@ -293,11 +293,11 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 end
 function addmessage(message,spieler)
 	local playerdata = Mod.PlayerGameData;
-	if(playerdata[playerID].Nachrichten== nil)then
-		playerdata[playerID].Nachrichten = ",";
+	if(playerdata[spieler].Nachrichten== nil)then
+		playerdata[spieler].Nachrichten = ",";
 	end
-	if(playerdata[playerID].NeueNachrichten== nil)then
-		playerdata[playerID].NeueNachrichten = ",";
+	if(playerdata[spieler].NeueNachrichten== nil)then
+		playerdata[spieler].NeueNachrichten = ",";
 	end
 	playerdata[spieler].Nachrichten = playerdata[spieler].Nachrichten .. message;
 	playerdata[spieler].NeueNachrichten = playerdata[spieler].NeueNachrichten .. message;
