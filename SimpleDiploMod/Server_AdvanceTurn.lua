@@ -142,7 +142,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local playerid = tonumber(payloadsplit[1]);
 			local terrid = tonumber(payloadsplit[2]);
 			playerdata = Mod.PlayerGameData;
-			error(order.Payload);
 			if(playerdata[order.PlayerID].Nachrichten== nil)then
 				playerdata[order.PlayerID].Nachrichten = ",";
 			end
@@ -166,7 +165,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				else
 					--all players have the requirements for the offer
 					--> buying the territory now
-					local effect = WL.TerritoryModification.Create(terrID);
+					local effect = WL.TerritoryModification.Create(terrid);
 					effect.SetOwnerOpt = order.PlayerID;
 					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect}));
 				end
