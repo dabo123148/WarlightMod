@@ -282,6 +282,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			if(tonumber(existingterroffers[num]) ~= von and tonumber(existingterroffers[num+1]) ~= terr)then
 				remainingoffers = remainingoffers .. existingterroffers[num] .. ",".. existingterroffers[num+1] .. "," .. existingterroffers[num+2] .. ",";
 			end
+			num = num+3;
 		end
 		playerdata = Mod.PlayerGameData;
 		playerdata[playerID].Terrselloffers=remainingoffers;
