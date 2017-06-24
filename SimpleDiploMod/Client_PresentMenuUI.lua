@@ -446,6 +446,7 @@ function Openshop(rootParent)
 			end
 			local PlayerID = getplayerid(SelectPlayerBtn2.GetText(),Game);
 			local TargetTerritoryID = getterritoryid(territory2.GetText());
+			print(TargetTerritoryID);
 			local payload = {};
 			payload.Message = "Territory Sell";
 			payload.TargetPlayerID = PlayerID;
