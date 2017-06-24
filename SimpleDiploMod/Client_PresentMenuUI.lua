@@ -265,7 +265,7 @@ function OpenPendingRequests()
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ",Game);
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Territory you can buy");
+	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Territories you can buy");
 	if(Mod.PlayerGameData.Terrselloffers ~= nil)then
 		local territorysellsplit = stringtotable(Mod.PlayerGameData.Terrselloffers);
 		num = 1;
