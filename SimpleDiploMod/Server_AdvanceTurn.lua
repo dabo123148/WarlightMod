@@ -137,6 +137,43 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				end
 			end
 		end
+		if(check(order.Message,"Buy Territory"))then
+			local payloadsplit = stringtotable(order.Payload);
+			local playerid = tonumber(payloadsplit[1]);
+			local terrid = tonumber(payloadsplit[2]);
+			playerdata = Mod.PlayerGameData;
+			if(playerdata[order.PlayerID].Nachrichten== nil)then
+				playerdata[order.PlayerID].Nachrichten = ",";
+			end
+			if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID == playerid)then
+				if(playerdata[playerid].Nachrichten== nil)then
+					playerdata[playerid].Nachrichten = ",";
+				end
+				local terrsellofferssplit = stringtotable(playerdata[order.PlayerID].Terrselloffers);
+				local num = 1;
+				local Preis = 0;
+				while(terrsellofferssplit[num+3] ~=nil)do
+					if(terrsellofferssplit[num] == tostring(playerid) and terrsellofferssplit[num+1] == tostring(terrid))then
+						Preis = tonumber(terrsellofferssplit[num+2]);
+					end
+					num = num +3;
+				end
+				if(Preis < 0 and tonumber(playerdata[playerid].Money) < Preis*-1)then
+					--Seller hasn't the money to pay the person who tries buys the territory
+					playerdata[order.PlayerID].Nachrichten = playerdata[order.PlayerID].Nachrichten .. playerid.. ",7,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",";
+					Mod.PlayerGameData = playerdata;
+				else
+					--all players have the requirements for the offer
+					--> buying the territory now
+					local effect = WL.TerritoryModification.Create(terrID);
+					effect.SetOwnerOpt = order.PlayerID;
+					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect}));
+				end
+			else
+				playerdata[order.PlayerID].Nachrichten = playerdata[order.PlayerID].Nachrichten .. ",6,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",";
+				Mod.PlayerGameData = playerdata;
+			end
+		end
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 	end
 	if(order.proxyType == "GameOrderPlayCardSanctions" and Mod.Settings.SanctionCardRequireWar)then
