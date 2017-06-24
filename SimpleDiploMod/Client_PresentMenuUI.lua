@@ -444,10 +444,7 @@ function Openshop(rootParent)
 					Preis = -Moneyyougetforterritorysellzwei.GetValue();
 				end
 			end
-			local PlayerID = 0;
-			if(SelectPlayerBtn2.GetText() ~= "everyone(does not include persons you are in war with)")then
-				PlayerID = getplayerid(offerto,Game);
-			end
+			local PlayerID = getplayerid(offerto,Game);
 			local TargetTerritoryID = getterritoryid(territory2.GetText());
 			local payload = {};
 			payload.Message = "Territory Sell";
