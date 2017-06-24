@@ -227,14 +227,16 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			--option everyone
 			local addedoffers = 0;
 			for _,pid in pairs(game.ServerGame.Game.Players)do
-				local existingterroffers = ",";
-				if(playerGameData[pid.ID].Terrselloffers~=nil)then
-					existingterroffers=playerGameData[pid.ID].Terrselloffers;
-				end
-				if(HasTerritoryOffer(existingterroffers,playerID,targetterr)==false)then
-					existingterroffers = existingterroffers .. tostring(playerID) .. ',' .. tostring(targetterr) .. ',' .. Preis .. ',';
-					playerGameData[pid.ID].Terrselloffers = existingterroffers;
-					addedoffers = addedoffers + 1;
+				if(pid.IsAI == false)then
+					local existingterroffers = ",";
+					if(playerGameData[pid.ID].Terrselloffers~=nil)then
+						existingterroffers=playerGameData[pid.ID].Terrselloffers;
+					end
+					if(HasTerritoryOffer(existingterroffers,playerID,targetterr)==false)then
+						existingterroffers = existingterroffers .. tostring(playerID) .. ',' .. tostring(targetterr) .. ',' .. Preis .. ',';
+						playerGameData[pid.ID].Terrselloffers = existingterroffers;
+						addedoffers = addedoffers + 1;
+					end
 				end
 			end
 			if(addedoffer==0)then
