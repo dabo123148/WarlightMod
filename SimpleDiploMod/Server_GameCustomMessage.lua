@@ -259,6 +259,8 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				existingterroffers = existingterroffers .. tostring(playerID) .. ',' .. tostring(targetterr) .. ',' .. Preis .. ',';
 				playerGameData[target].Terrselloffers = existingterroffers;
 				Mod.PlayerGameData = playerGameData;
+				rg.Message ='The player recieved the offer.';
+				setReturnTable(rg);
 			end
 		end
 	end
