@@ -227,7 +227,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			--option everyone
 			local addedoffers = 0;
 			for _,pid in pairs(game.ServerGame.Game.Players)do
-				if(pid.IsAI == false)then
+				if(pid.IsAI == false and pid ~= playerID)then
 					local existingterroffers = ",";
 					if(playerGameData[pid.ID].Terrselloffers~=nil)then
 						existingterroffers=playerGameData[pid.ID].Terrselloffers;
