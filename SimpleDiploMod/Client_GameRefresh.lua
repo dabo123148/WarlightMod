@@ -26,6 +26,18 @@ function Client_GameRefresh(game)
 			if(NeueNachrichtensplit[num+1] == "5")then
 				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " declined your territory sell offer for " .. game.Map.Territories[tonumber(NeueNachrichtensplit[num+3])].Name .. " in turn " .. NeueNachrichtensplit[num+2];
 			end
+			if(NeueNachrichtensplit[num+1] == "6")then
+				Nachricht = Nachricht .. "\n" .. "You were unable to buy " .. game.Map.Territories[tonumber(NeueNachrichtensplit[num+3])].Name .. " cause " .. getname(NeueNachrichtensplit[num],game) .. " doesn't own it when you tried to buy it in turn " .. NeueNachrichtensplit[num+2];
+			end
+			if(NeueNachrichtensplit[num+1] == "7")then
+				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " hadn't the money to pay you for " .. game.Map.Territories[tonumber(NeueNachrichtensplit[num+3])].Name .. " in turn " .. NeueNachrichtensplit[num+2];
+			end
+			if(NeueNachrichtensplit[num+1] == "8")then
+				Nachricht = Nachricht .. "\n" .. "You hadn't the money to pay for " .. game.Map.Territories[tonumber(NeueNachrichtensplit[num+3])].Name .. " in turn " .. NeueNachrichtensplit[num+2];
+			end
+			if(NeueNachrichtensplit[num+1] == "9")then
+				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " bought " .. game.Map.Territories[tonumber(NeueNachrichtensplit[num+3])].Name .. " in turn " .. NeueNachrichtensplit[num+2];
+			end
 			num = num + 4;
 		end
 	end
