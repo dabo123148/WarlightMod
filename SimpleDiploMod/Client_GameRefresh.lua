@@ -52,8 +52,8 @@ function Client_GameRefresh(game)
     		end
  	 end
   	if(Mod.PlayerGameData.Terrselloffers~=nil)then
-    		if(tablelength(stringtotable(Terrselloffers))>0)then
-      			Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(stringtotable(Terrselloffers))/3-1 .. ' open tradement requests';
+    		if(tablelength(stringtotable(Mod.PlayerGameData.Terrselloffers))>0)then
+      			Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(stringtotable(Mod.PlayerGameData.Terrselloffers))/3-1 .. ' open tradement requests';
     		end
   	end
 	if(Nachricht ~= "")then
