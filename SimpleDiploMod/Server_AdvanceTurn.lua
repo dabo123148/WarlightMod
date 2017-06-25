@@ -160,7 +160,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						addmessage(playerid .. ",7,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
 					else
 						if(Preis > 0 and playerdata[order.PlayerID].Money < Preis)then
-							addmessage(playerid .. ",8,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
+							addmessage(",8,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
 						else
 							--all players have the requirements for the offer
 							--> buying the territory now
@@ -188,7 +188,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					end
 				end
 			else
-				addmessage(",6,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
+				addmessage(playerid .. ",6," .. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
 			end
 		end
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
