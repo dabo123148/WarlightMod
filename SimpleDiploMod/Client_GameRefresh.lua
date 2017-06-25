@@ -52,7 +52,7 @@ function Client_GameRefresh(game)
     		end
  	 end
   	if(Mod.PlayerGameData.Terrselloffers~=nil)then
-    		if(tablelength(stringtotable(Mod.PlayerGameData.Terrselloffers))>0)then
+    		if(tablelength(stringtotable(Mod.PlayerGameData.Terrselloffers))>2)then
       			Nachricht = Nachricht .. "\n" .. 'You have ' .. (tablelength(stringtotable(Mod.PlayerGameData.Terrselloffers))-1)/3 .. ' open territory tradement requests';
     		end
   	end
