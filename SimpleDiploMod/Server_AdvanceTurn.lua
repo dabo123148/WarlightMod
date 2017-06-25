@@ -149,26 +149,45 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				local terrsellofferssplit = stringtotable(playerdata[order.PlayerID].Terrselloffers);
 				local num = 1;
 				local Preis = 0;
+				local exists = false;
 				while(terrsellofferssplit[num+3] ~=nil)do
 					if(terrsellofferssplit[num] == tostring(playerid) and terrsellofferssplit[num+1] == tostring(terrid))then
 						Preis = tonumber(terrsellofferssplit[num+2]);
 					end
 					num = num +3;
+					exists = true;
 				end
-				if(Preis < 0 and tonumber(playerdata[playerid].Money) < Preis*-1)then
-					--Seller hasn't the money to pay the person who tries buys the territory
-					addmessage(playerid.. ",7,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
-				else
-					--all players have the requirements for the offer
-					--> buying the territory now
-					local effect = WL.TerritoryModification.Create(terrid);
-					effect.SetOwnerOpt = order.PlayerID;
-					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect}));
+				if(exists == true)then
+					if(Preis < 0 and tonumber(playerdata[playerid].Money) < Preis*-1)then
+						--Seller hasn't the money to pay the person who tries buys the territory
+						addmessage(playerid.. ",7,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
+					else
+						if(Preis > 0 and playerdata[order.PlayerID].Money < Preis)then
+							addmessage(playerid.. ",8,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
+						else
+							--all players have the requirements for the offer
+							--> buying the territory now
+							local effect = WL.TerritoryModification.Create(terrid);
+							effect.SetOwnerOpt = order.PlayerID;
+							addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect}));
+							for _,pid in pairs(game.ServerGame.Game.Players)do
+								num = 1;
+								terrsellofferssplit = stringtotable(playerdata[pid].Terrselloffers);
+								playerdata[pid].Terrselloffers = ","
+								while(terrsellofferssplit[num+3] ~=nil)do
+									if(terrsellofferssplit[num] ~= tostring(playerid) or terrsellofferssplit[num+1] ~= tostring(terrid))then
+										playerdata[order.PlayerID].Terrselloffers = playerdata[order.PlayerID].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
+									end
+									num = num + 3;
+								end
+							end
+							Mod.PlayerGameData = playerdata;
+						end
+					end
 				end
 			else
 				addmessage(",6,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
 			end
-			Mod.PlayerGameData = playerdata;
 		end
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 	end
