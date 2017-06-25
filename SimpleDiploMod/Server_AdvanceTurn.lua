@@ -1,38 +1,25 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
 	AllAIs = {};
-	for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-		local CheckingID = terr.OwnerPlayerID;
-		if(CheckingID ~= WL.PlayerID.Neutral)then
-			if(game.Game.Players[CheckingID].IsAI)then
-				local Match = false;
-				for _,knownAIs in pairs(AllAIs)do
-					if(CheckingID == knownAIs)then
-						Match = true;
-					end
-				end
-				if(Match == false)then
-					AllAIs[tablelength(AllAIs)] = CheckingID;
-				end
-			end
-		end
-	end
 	AllPlayerIDs = {};
-	for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
+	for _,pid in pairs(game.ServerGame.Game.Players)do
 		local Match = false;
-		local CheckingID = terr.OwnerPlayerID;
-		if(CheckingID ~= WL.PlayerID.Neutral)then
-			for _,knownPlayers in pairs(AllPlayerIDs)do
-				if(CheckingID == knownPlayers)then
-					Match = true;
-				end
-			end
-			for _,knownAI in pairs(AllAIs)do
-				if(CheckingID == knownAI)then
+		if(pid.IsAI)then
+			for _,knownAIs in pairs(AllAIs)do
+				if(pid.ID == knownAIs)then
 					Match = true;
 				end
 			end
 			if(Match == false)then
-				AllPlayerIDs[tablelength(AllPlayerIDs)] = CheckingID;
+				AllAIs[tablelength(AllAIs)] = pid.ID;
+			end
+		else
+			for _,knownPlayers in pairs(AllPlayerIDs)do
+				if(pid.ID == knownPlayers)then
+					Match = true;
+				end
+			end
+			if(Match == false)then
+				AllPlayerIDs[tablelength(AllPlayerIDs)] = pid.ID;
 			end
 		end
 	end
