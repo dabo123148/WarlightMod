@@ -262,6 +262,15 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				publicGameData.War[P1] = "," .. tostring(P2) .. ",";
 			end
 			addNewOrder(WL.GameOrderEvent.Create(P1, "Declared war on " .. toname(P2,game), nil,{}));
+			local num = 1;
+			local terrsellofferssplit = stringtotable(playerdata[P1].Terrselloffers);
+			playerdata[P1].Terrselloffers = ","
+			while(terrsellofferssplit[num+3] ~=nil)do
+				if(terrsellofferssplit[num] ~= tostring(P2))then
+					playerdata[P1].Terrselloffers = playerdata[P1].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
+				end
+				num = num + 3;
+			end
 			local P3 = P2;
 			P2 = P1;
 			P1 = P3;
@@ -270,6 +279,15 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				publicGameData.War[P1] = with;
 			else
 				publicGameData.War[P1] = "," .. tostring(P2) .. ",";
+			end
+			num = 1;
+			terrsellofferssplit = stringtotable(playerdata[P1].Terrselloffers);
+			playerdata[P1].Terrselloffers = ","
+			while(terrsellofferssplit[num+3] ~=nil)do
+				if(terrsellofferssplit[num] ~= tostring(P2))then
+					playerdata[P1].Terrselloffers = playerdata[P1].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
+				end
+				num = num + 3;
 			end
 			Mod.PublicGameData = publicGameData;
 			for _, spieler in pairs(AllPlayerIDs)do
