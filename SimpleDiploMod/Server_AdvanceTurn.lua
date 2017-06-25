@@ -68,7 +68,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				Mod.PlayerGameData = playerGameData;
 			else
 				skipThisOrder(WL.ModOrderControl.Skip);
-				if(Mod.Settings.AllowAIDeclaration == false or Mod.Settings.AIsdeclearAIs  == false)then
+				if(Mod.Settings.AllowAIDeclaration == true or Mod.Settings.AIsdeclearAIs  == true)then
 					local Match1 = false;
 					local Match2 = false;
 					for _, AI in pairs(AllAIs)do
@@ -79,19 +79,17 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							Match2 = true;
 						end
 					end
-					if(Match1 == false)then
-						DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID,game);
-					else
+					if(Match1 == true)then
 						if(Mod.Settings.AllowAIDeclaration and Match2 == false)then
+							--AI declares on player
 							DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID,game);
 						else
 							if(Mod.Settings.AIsdeclearAIs and Match2 == true)then
+								--Ai declares on AI
 								DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID,game);
 							end
 						end
 					end
-				else
-					DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID,game);
 				end
 			end
 		end
@@ -101,9 +99,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if(InWar(order.PlayerID,order.Payload) == false)then
 				DeclearWar(order.PlayerID,tonumber(order.Payload),game);
 			end
-		end
-		if(check(order.Message,"Removed ally with"))then
-			
 		end
 		if(check(order.Message,"Buy Armies"))then
 			local to = tonumber(stringtotable(order.Payload)[1]);
