@@ -55,7 +55,7 @@ function Client_PresentConfigureUI(rootParent)
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	AIsdeclearAIsinitcheckbox = UI.CreateCheckBox(texthorz).SetText('Allow AIs to declare war on AIs').SetIsChecked(AIsdeclearAIsinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
-	UI.CreateLabel(texthorz).SetText('Allianze Settings');
+	UI.CreateLabel(texthorz).SetText('Allianze Settings - this system will come in a later version, but that would be a bigger change, I added the settings for that already');
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	SeeAllyTerritoriesCheckbox = UI.CreateCheckBox(texthorz).SetText('Allow Players to see the territories of their allies').SetIsChecked(SeeAllyTerritoriesinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
