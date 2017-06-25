@@ -173,14 +173,13 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							for _,pid in pairs(game.ServerGame.Game.Players)do
 								if(pid.IsAI == false)then
 									num = 1;
-										terrsellofferssplit = stringtotable(playerdata[pid.ID].Terrselloffers);
-										playerdata[pid.ID].Terrselloffers = ","
-										while(terrsellofferssplit[num+3] ~=nil)do
-											if(terrsellofferssplit[num] ~= tostring(playerid) or terrsellofferssplit[num+1] ~= tostring(terrid))then
-												playerdata[pid.ID].Terrselloffers = playerdata[pid.ID].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
-											end
-											num = num + 3;
+									terrsellofferssplit = stringtotable(playerdata[pid.ID].Terrselloffers);
+									playerdata[pid.ID].Terrselloffers = ","
+									while(terrsellofferssplit[num+3] ~=nil)do
+										if(terrsellofferssplit[num] ~= tostring(playerid) or terrsellofferssplit[num+1] ~= tostring(terrid))then
+											playerdata[pid.ID].Terrselloffers = playerdata[pid.ID].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
 										end
+										num = num + 3;
 									end
 								end
 							end
