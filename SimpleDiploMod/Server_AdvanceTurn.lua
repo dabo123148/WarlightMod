@@ -263,11 +263,11 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			end
 			addNewOrder(WL.GameOrderEvent.Create(P1, "Declared war on " .. toname(P2,game), nil,{}));
 			local num = 1;
-			local terrsellofferssplit = stringtotable(playerdata[P1].Terrselloffers);
-			playerdata[P1].Terrselloffers = ","
+			local terrsellofferssplit = stringtotable(playerGameData[P1].Terrselloffers);
+			playerGameData[P1].Terrselloffers = ","
 			while(terrsellofferssplit[num+3] ~=nil)do
 				if(terrsellofferssplit[num] ~= tostring(P2))then
-					playerdata[P1].Terrselloffers = playerdata[P1].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
+					playerGameData[P1].Terrselloffers = playerGameData[P1].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
 				end
 				num = num + 3;
 			end
@@ -281,11 +281,11 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				publicGameData.War[P1] = "," .. tostring(P2) .. ",";
 			end
 			num = 1;
-			terrsellofferssplit = stringtotable(playerdata[P1].Terrselloffers);
-			playerdata[P1].Terrselloffers = ","
+			terrsellofferssplit = stringtotable(playerGameData[P1].Terrselloffers);
+			playerGameData[P1].Terrselloffers = ","
 			while(terrsellofferssplit[num+3] ~=nil)do
 				if(terrsellofferssplit[num] ~= tostring(P2))then
-					playerdata[P1].Terrselloffers = playerdata[P1].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
+					playerGameData[P1].Terrselloffers = playerGameData[P1].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
 				end
 				num = num + 3;
 			end
