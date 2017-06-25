@@ -221,9 +221,9 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 						existingterroffers = existingterroffers .. tostring(playerID) .. ',' .. tostring(targetterr) .. ',' .. Preis .. ',';
 						playerGameData[pid.ID].Terrselloffers = existingterroffers;
 						addedoffers = addedoffers + 1;
+					else
+						alreadyoffered = alreadyoffered + 1;
 					end
-				else
-					alreadyoffered = alreadyoffered + 1;
 				end
 			end
 			if(addedoffers==0)then
