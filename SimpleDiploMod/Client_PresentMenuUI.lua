@@ -162,7 +162,8 @@ function OpenMenu()
 				end
 				num = num + 4;
 			end
-			UI.Alert(Nachricht);
+			--UI.Alert(Nachricht);
+			UI.Alert(Mod.PlayerGameData.Nachrichten);
 		else
 			UI.Alert("There is currently no history for this Mod");
 		end
