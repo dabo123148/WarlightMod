@@ -167,8 +167,10 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							local effect = WL.TerritoryModification.Create(terrid);
 							effect.SetOwnerOpt = order.PlayerID;
 							addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect}));
+							Mod.PlayerGameData = playerdata;
 							for _,pid in pairs(game.ServerGame.Game.Players)do
 								if(pid.IsAI == false)then
+									playerdata = Mod.PlayerGameData;
 									if(playerdata[pid.ID].Terrselloffers ~= nil)then
 										num = 1;
 										terrsellofferssplit = stringtotable(playerdata[pid.ID].Terrselloffers);
@@ -180,10 +182,10 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 											num = num + 3;
 										end
 									end
+									Mod.PlayerGameData = playerdata;
 									addmessage(order.PlayerID .. ",9,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",pid.ID);
 								end
 							end
-							Mod.PlayerGameData = playerdata;
 						end
 					end
 				end
