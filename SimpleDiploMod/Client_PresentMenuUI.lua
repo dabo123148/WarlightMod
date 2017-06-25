@@ -148,6 +148,18 @@ function OpenMenu()
 				if(Nachrichtensplit[num+1] == "5")then
 					Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " declined your territory sell offer for " .. Game.Map.Territories[tonumber(Nachrichtensplit[num+3])].Name .. " in turn " .. Nachrichtensplit[num+2];
 				end
+				if(Nachrichtensplit[num+1] == "6")then
+					Nachricht = Nachricht .. "\n" .. "You were unable to buy " .. Game.Map.Territories[tonumber(Nachrichtensplit[num+3])].Name .. " cause " .. getname(Nachrichtensplit[num],game) .. " doesn't own it when you tried to buy it in turn " .. Nachrichtensplit[num+2];
+				end
+				if(Nachrichtensplit[num+1] == "7")then
+					Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " hadn't the money to pay you for " .. Game.Map.Territories[tonumber(Nachrichtensplit[num+3])].Name .. " in turn " .. Nachrichtensplit[num+2];
+				end
+				if(Nachrichtensplit[num+1] == "8")then
+					Nachricht = Nachricht .. "\n" .. "You hadn't the money to pay for " .. Game.Map.Territories[tonumber(Nachrichtensplit[num+3])].Name .. " in turn " .. Nachrichtensplit[num+2];
+				end
+				if(Nachrichtensplit[num+1] == "9")then
+					Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " bought " .. Game.Map.Territories[tonumber(Nachrichtensplit[num+3])].Name .. " in turn " .. Nachrichtensplit[num+2];
+				end
 				num = num + 4;
 			end
 			UI.Alert(Nachricht);
