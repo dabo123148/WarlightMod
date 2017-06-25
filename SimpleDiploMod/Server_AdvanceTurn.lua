@@ -143,9 +143,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local terrid = tonumber(payloadsplit[2]);
 			local playerdata = Mod.PlayerGameData;
 			if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID == playerid)then
-				if(playerdata[playerid].Nachrichten== nil)then
-					playerdata[playerid].Nachrichten = ",";
-				end
 				local terrsellofferssplit = stringtotable(playerdata[order.PlayerID].Terrselloffers);
 				local num = 1;
 				local Preis = 0;
@@ -160,10 +157,10 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				if(exists == true)then
 					if(Preis < 0 and tonumber(playerdata[playerid].Money) < Preis*-1)then
 						--Seller hasn't the money to pay the person who tries buys the territory
-						addmessage(playerid.. ",7,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
+						addmessage(playerid .. ",7,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
 					else
 						if(Preis > 0 and playerdata[order.PlayerID].Money < Preis)then
-							addmessage(playerid.. ",8,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
+							addmessage(playerid .. ",8,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
 						else
 							--all players have the requirements for the offer
 							--> buying the territory now
@@ -171,7 +168,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							effect.SetOwnerOpt = order.PlayerID;
 							addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect}));
 							for _,pid in pairs(game.ServerGame.Game.Players)do
-								if(pid.IsAI == false)then
+								if(pid.IsAI == false and playerdata[pid.ID].Terrselloffers ~= nil)then
 									num = 1;
 									terrsellofferssplit = stringtotable(playerdata[pid.ID].Terrselloffers);
 									playerdata[pid.ID].Terrselloffers = ","
@@ -184,6 +181,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 								end
 							end
 							Mod.PlayerGameData = playerdata;
+							addmessage(order.PlayerID .. ",9,".. tostring(game.Game.NumberOfTurns) .. "," .. terrid .. ",",order.PlayerID);
 						end
 					end
 				end
