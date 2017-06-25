@@ -164,8 +164,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						else
 							--all players have the requirements for the offer
 							--> buying the territory now
-							playerdata[order.PlayerID] = playerdata[order.PlayerID] - Preis;
-							playerdata[playerid] = playerdata[playerid] + Preis;
+							playerdata[order.PlayerID].Money = playerdata[order.PlayerID].Money - Preis;
+							playerdata[playerid].Money = playerdata[playerid].Money + Preis;
 							local effect = WL.TerritoryModification.Create(terrid);
 							effect.SetOwnerOpt = order.PlayerID;
 							addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect}));
