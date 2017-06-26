@@ -391,12 +391,14 @@ function DeclearWar(Player1,Player2,game)
 	end
 end
 function InWar(Player1,Player2)
+	print('I1');
 	if(Mod.PublicGameData.War == nil)then
 		print('neu gesetzt');
 		local publicGameData = Mod.PublicGameData;
  		publicGameData.War={};
 		Mod.PublicGameData=publicGameData;
 	end
+	print('I2');
 	if(Mod.PublicGameData.War[Player1] ~= nil)then
 		local with = stringtotable(Mod.PublicGameData.War[Player1]);
 		for _,pID in pairs(with)do
@@ -407,6 +409,7 @@ function InWar(Player1,Player2)
 			end
 		end
 	end
+	print('I3');
 	return false;
 end
 function DeclearAlly(Player1,Player2)
