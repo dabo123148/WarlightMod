@@ -250,13 +250,15 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			addNewOrder(WL.GameOrderEvent.Create(P1, "Declared war on " .. toname(P2,game), nil,{}));
 			local num = 1;
 			if(game.ServerGame.Game.Players[P1].IsAI == false)then
-				local terrsellofferssplit = stringtotable(playerGameData[P1].Terrselloffers);
-				playerGameData[P1].Terrselloffers = ","
-				while(terrsellofferssplit[num+3] ~=nil)do
-					if(terrsellofferssplit[num] ~= tostring(P2))then
-						playerGameData[P1].Terrselloffers = playerGameData[P1].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
+				if(playerGameData[P1].Terrselloffers~=nil)then
+					local terrsellofferssplit = stringtotable(playerGameData[P1].Terrselloffers);
+					playerGameData[P1].Terrselloffers = ","
+					while(terrsellofferssplit[num+3] ~=nil)do
+						if(terrsellofferssplit[num] ~= tostring(P2))then
+							playerGameData[P1].Terrselloffers = playerGameData[P1].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
+						end
+						num = num + 3;
 					end
-					num = num + 3;
 				end
 			end
 			local P3 = P2;
@@ -270,13 +272,15 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			end
 			if(game.ServerGame.Game.Players[P1].IsAI == false)then
 				num = 1;
-				terrsellofferssplit = stringtotable(playerGameData[P1].Terrselloffers);
-				playerGameData[P1].Terrselloffers = ","
-				while(terrsellofferssplit[num+3] ~=nil)do
-					if(terrsellofferssplit[num] ~= tostring(P2))then
-						playerGameData[P1].Terrselloffers = playerGameData[P1].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
+				if(playerGameData[P1].Terrselloffers~=nil)then
+					terrsellofferssplit = stringtotable(playerGameData[P1].Terrselloffers);
+					playerGameData[P1].Terrselloffers = ","
+					while(terrsellofferssplit[num+3] ~=nil)do
+						if(terrsellofferssplit[num] ~= tostring(P2))then
+							playerGameData[P1].Terrselloffers = playerGameData[P1].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
+						end
+						num = num + 3;
 					end
-					num = num + 3;
 				end
 			end
 			Mod.PublicGameData = publicGameData;
