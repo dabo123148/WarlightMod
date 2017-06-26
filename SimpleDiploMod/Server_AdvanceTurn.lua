@@ -354,6 +354,7 @@ function DeclearWar(Player1,Player2,game)
 		if(RemainingDeclerations == nil)then
 			RemainingDeclerations = {};
 		end
+		print('D2');
 		local Match = false;
 		for _,newwar in pairs(RemainingDeclerations)do
 			local P1 = tonumber(stringtotable(newwar)[1]);
@@ -364,9 +365,10 @@ function DeclearWar(Player1,Player2,game)
 				end
 			end
 		end
+		print('D3');
 		if(Match == false)then
 			if(Mod.PrivateGameData.Cantdeclare ~= nil and Mod.PrivateGameData.Cantdeclare[game.Game.NumberOfTurns] ~= nil)then
-				print('D2');
+				print('D4');
 				local privateGameDatasplit = stringtotable(Mod.PrivateGameData.Cantdeclare[game.Game.NumberOfTurns]);
 				local num = 1;
 				while(privateGameDatasplit[num] ~= nil and privateGameDatasplit[num+1] ~= nil and privateGameDatasplit[num+1] ~= "")do
@@ -377,12 +379,13 @@ function DeclearWar(Player1,Player2,game)
 					end
 					num = num + 2;
 				end
-				print('D3');
+				print('D5');
 			end
 			if(Match == false)then
 				RemainingDeclerations[tablelength(RemainingDeclerations)] = "," .. Player1 .. "," ..Player2;
 			end
 		end
+		print('D6');
 	else
 		RemoveAlly(Player1,Player2);
 	end
