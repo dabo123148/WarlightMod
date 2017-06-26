@@ -366,6 +366,7 @@ function DeclearWar(Player1,Player2,game)
 		end
 		if(Match == false)then
 			if(Mod.PrivateGameData.Cantdeclare ~= nil and Mod.PrivateGameData.Cantdeclare[game.Game.NumberOfTurns] ~= nil)then
+				print('D2');
 				local privateGameDatasplit = stringtotable(Mod.PrivateGameData.Cantdeclare[game.Game.NumberOfTurns]);
 				local num = 1;
 				while(privateGameDatasplit[num] ~= nil and privateGameDatasplit[num+1] ~= nil and privateGameDatasplit[num+1] ~= "")do
@@ -376,6 +377,7 @@ function DeclearWar(Player1,Player2,game)
 					end
 					num = num + 2;
 				end
+				print('D3');
 			end
 			if(Match == false)then
 				RemainingDeclerations[tablelength(RemainingDeclerations)] = "," .. Player1 .. "," ..Player2;
