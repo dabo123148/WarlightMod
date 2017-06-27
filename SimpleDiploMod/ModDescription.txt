@@ -1,6 +1,7 @@
 When you create a game with this mod and need more players, add me(dabo1)
 This Mod adds:
 War/Peace System:
+  -Attacks DON'T count as declaration
   -After you declared War on someone, you have to wait one turn before you can attack him
   -Sanction Card counts as Declearation(depends on settings)
   -Bomb Card counts as Declearation(depends on settings)
