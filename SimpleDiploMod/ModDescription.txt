@@ -3,13 +3,13 @@ This Mod adds:
 War/Peace System:
   -Attacks DON'T count as declaration
   -After you declared War on someone, you have to wait one turn before you can attack him
-  -Sanction Card counts as Declearation(depends on settings)
-  -Bomb Card counts as Declearation(depends on settings)
-Allianze System(not implemented/currently just a placeholder):
-  -Players you are allied with declear war on players, who declear war on you(comming soon)
-  -You can see the territories of your allies(depends on settings)(comming soon)
+  -A Sanction Card can be used as a Declaration (depends on settings)
+  -A Bomb Card can be used as a Declaration (depends on settings)
+Alliance System(not included/currently just a placeholder):
+  -Players you are allied with automatically declare war on players declaring war on you (comming soon)
+  -You will be able to see territories owned by your allies through the fog. (depends on settings)(comming soon)
 Ingame currency:
-  -You get money for(depends for every point on the settings): - killing armies
+  -You get money for(each item depends on the settings):       - killing armies
                                                                - taking territories
                                                                - every turn
                                                                - taking bonuses
