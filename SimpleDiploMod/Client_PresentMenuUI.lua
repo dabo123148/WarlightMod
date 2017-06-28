@@ -170,11 +170,17 @@ function OpenMenu()
 end
 function OpenOfferAlliance()
 	DeleteUI();
-	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Offer Allianze To: ");
-	TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferAllianze);
-	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
-	commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Offer").SetOnClick(declare);
+	if(game.Us.ID ~= 520078)then
+		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[0]).SetText("The allianze system is banned for you until it is completed");
+		UI.Alert("The allianze system is banned for you until it is completed");
+	else
+		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[0]).SetText("Offer Allianze To: ");
+		TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferAllianze);
+		horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+		commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Offer").SetOnClick(declare);
+	end
 end
 function TargetPlayerClickedOfferAllianze()
 	local inwarwith = {};
