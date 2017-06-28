@@ -170,7 +170,7 @@ function OpenMenu()
 end
 function OpenOfferAlliance()
 	DeleteUI();
-	if(game.Us.ID ~= 520078)then
+	if(Game.Us.ID ~= 520078)then
 		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[0]).SetText("The allianze system is banned for you until it is completed");
 		UI.Alert("The allianze system is banned for you until it is completed");
