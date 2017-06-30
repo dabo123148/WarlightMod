@@ -15,6 +15,15 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		playerGameData[playerID].NeueNachrichten = nil;
 		Mod.PlayerGameData = playerGameData;
 	end
+	if(payload.Message == "Gift Money")then
+		local playerGameData = Mod.PlayerGameData;
+		local target = tonumber(payload.TargetPlayerID);
+		playerGameData[playerID].Money = playerGameData[playerID].Money - tonumber(payload.Wert);
+		playerGameData[target].Money = playerGameData[target].Money + tonumber(payload.Wert);
+		Mod.PlayerGameData = playerGameData;
+		addmessage(target .. ",10,".. tostring(game.Game.NumberOfTurns) .. "," .. tostring(payload.Wert) .. ",",playerID);
+		addmessage(playerID .. ",11,".. tostring(game.Game.NumberOfTurns) .. "," .. tostring(payload.Wert) .. ",",target);
+	end
  	if(payload.Message == "Peace")then
 		local target = payload.TargetPlayerID;
 		local preis = payload.Preis;
