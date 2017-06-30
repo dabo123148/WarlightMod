@@ -422,6 +422,25 @@ function Openshop(rootParent)
 		end)
 		horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[4]).SetText(" ");
+		horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[5]).SetText("Gift Money");
+		if(Game.Us.ID ~= 520078)then
+			horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
+			textelem = UI.CreateLabel(horzobjlist[6]).SetText("Select a player, you want to buy it from");
+			SelectPlayerBtn3 = UI.CreateButton(horzobjlist[6]).SetText("Select Player...").SetOnClick(function() 
+				local options = {};
+				options = zusammen(options, PlayerButtonCustom,SelectPlayerBtn3);
+				UI.PromptFromList("Select the player you'd like to gift the money to", options);
+				end);
+			horzobjlist[7] = UI.CreateHorizontalLayoutGroup(root);
+			GiftMoneyValue = UI.CreateNumberInputField(horzobjlist[7]).SetSliderMinValue(1).SetSliderMaxValue(100).SetValue(1);
+			UI.CreateButton(horzobjlist[8]).SetText("Send Money").SetOnClick(function() end);
+		else
+			horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
+			textelem = UI.CreateLabel(horzobjlist[6]).SetText("The feature is still in development and so it's limited");
+		end
+		horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[4]).SetText(" ");
 	end
 	--horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
 	--textelem = UI.CreateLabel(horzobjlist[5]).SetText("Buy Territory");
@@ -479,7 +498,7 @@ function Openshop(rootParent)
 				end
 			end
 			options = zusammen(options, PlayerButtonCustom,SelectPlayerBtn2);
-			UI.PromptFromList("Select the player you'd like to declare war on", options);
+			UI.PromptFromList("Select the player you'd like to offer it to", options);
 		end);
 	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
 		horzobjlist[15] = UI.CreateHorizontalLayoutGroup(root);
