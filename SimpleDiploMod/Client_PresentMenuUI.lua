@@ -469,7 +469,6 @@ function Openshop(rootParent)
 					Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue) 
 						UI.Alert("You succesfully gifted " .. SelectPlayerBtn3.GetText() .. " the money");
 					end);
-					UI.Alert(returnvalue.Message);
 				end);
 		else
 			horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
