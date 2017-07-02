@@ -442,6 +442,7 @@ function Openshop(rootParent)
 				end);
 			horzobjlist[7] = UI.CreateHorizontalLayoutGroup(root);
 			GiftMoneyValue = UI.CreateNumberInputField(horzobjlist[7]).SetSliderMinValue(1).SetSliderMaxValue(100).SetValue(1);
+			horzobjlist[8] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateButton(horzobjlist[8]).SetText("Send Money").SetOnClick(function() end);
 		else
 			horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
