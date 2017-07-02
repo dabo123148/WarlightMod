@@ -21,8 +21,8 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		playerGameData[playerID].Money = playerGameData[playerID].Money - tonumber(payload.Wert);
 		playerGameData[target].Money = playerGameData[target].Money + tonumber(payload.Wert);
 		Mod.PlayerGameData = playerGameData;
-		addmessage(target .. ",10,".. tostring(game.Game.NumberOfTurns) .. "," .. tostring(payload.Wert) .. ",",playerID);
-		addmessage(playerID .. ",11,".. tostring(game.Game.NumberOfTurns) .. "," .. tostring(payload.Wert) .. ",",target);
+		addmessage(target .. ",10,".. tostring(game.Game.NumberOfTurns+1) .. "," .. tostring(payload.Wert) .. ",",playerID);
+		addmessage(playerID .. ",11,".. tostring(game.Game.NumberOfTurns+1) .. "," .. tostring(payload.Wert) .. ",",target);
 	end
  	if(payload.Message == "Peace")then
 		local target = payload.TargetPlayerID;
