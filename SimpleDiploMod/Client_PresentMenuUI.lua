@@ -432,48 +432,43 @@ function Openshop(rootParent)
 		textelem = UI.CreateLabel(horzobjlist[4]).SetText(" ");
 		horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[5]).SetText("Gift Money");
-		if(Game.Us.ID == 520078 or Game.Us.ID == 517210)then
-			horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
-			textelem = UI.CreateLabel(horzobjlist[6]).SetText("Select the player you'd like to gift the money to");
-			SelectPlayerBtn3 = UI.CreateButton(horzobjlist[6]).SetText("Select Player...").SetOnClick(function() 
-				local options = {};
-				for _,playerinstanze in pairs(Game.Game.Players)do
-					if(playerinstanze.IsAI == false)then
-						table.insert(options,playerinstanze.DisplayName(nil, false));
-					end
+		horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[6]).SetText("Select the player you'd like to gift the money to");
+		SelectPlayerBtn3 = UI.CreateButton(horzobjlist[6]).SetText("Select Player...").SetOnClick(function() 
+			local options = {};
+			for _,playerinstanze in pairs(Game.Game.Players)do
+				if(playerinstanze.IsAI == false)then
+					table.insert(options,playerinstanze.DisplayName(nil, false));
 				end
-				options = zusammen(options, PlayerButtonCustom,SelectPlayerBtn3);
-				UI.PromptFromList("Select the player you'd like to gift the money to", options);
-				end);
-			horzobjlist[7] = UI.CreateHorizontalLayoutGroup(root);
-			GiftMoneyValue = UI.CreateNumberInputField(horzobjlist[7]).SetSliderMinValue(1).SetSliderMaxValue(100).SetValue(1);
-			horzobjlist[8] = UI.CreateHorizontalLayoutGroup(root);
-			UI.CreateButton(horzobjlist[8]).SetText("Send Money").SetOnClick(function()
-					local money = GiftMoneyValue.GetValue();
-					if(money < 1)then
-						UI.Alert("Money must be positive");
-						return;
-					end
-					if(money > tonumber(Mod.PlayerGameData.Money))then
-						UI.Alert("You haven't the money");
-						return;
-					end
-					if(SelectPlayerBtn3.GetText() == "Select Player...")then
-						UI.Alert("You need to select a player first");
-						return;
-					end
-					local payload = {};
-					payload.Message = "Gift Money";
-					payload.Wert = money;
-					payload.TargetPlayerID = getplayerid(SelectPlayerBtn3.GetText(),Game);
-					Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue) 
-						UI.Alert("You succesfully gifted " .. SelectPlayerBtn3.GetText() .. " the money");
-					end);
-				end);
-		else
-			horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
-			textelem = UI.CreateLabel(horzobjlist[6]).SetText("The feature is still in development and so it's limited");
-		end
+			end
+			options = zusammen(options, PlayerButtonCustom,SelectPlayerBtn3);
+			UI.PromptFromList("Select the player you'd like to gift the money to", options);
+		end);
+		horzobjlist[7] = UI.CreateHorizontalLayoutGroup(root);
+		GiftMoneyValue = UI.CreateNumberInputField(horzobjlist[7]).SetSliderMinValue(1).SetSliderMaxValue(100).SetValue(1);
+		horzobjlist[8] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateButton(horzobjlist[8]).SetText("Send Money").SetOnClick(function()
+			local money = GiftMoneyValue.GetValue();
+			if(money < 1)then
+				UI.Alert("Money must be positive");
+				return;
+			end
+			if(money > tonumber(Mod.PlayerGameData.Money))then
+				UI.Alert("You haven't the money");
+				return;
+			end
+			if(SelectPlayerBtn3.GetText() == "Select Player...")then
+				UI.Alert("You need to select a player first");
+				return;
+			end
+			local payload = {};
+			payload.Message = "Gift Money";
+			payload.Wert = money;
+			payload.TargetPlayerID = getplayerid(SelectPlayerBtn3.GetText(),Game);
+			Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue) 
+				UI.Alert("You succesfully gifted " .. SelectPlayerBtn3.GetText() .. " the money");
+			end);
+		end);
 		horzobjlist[9] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[9]).SetText(" ");
 	end
