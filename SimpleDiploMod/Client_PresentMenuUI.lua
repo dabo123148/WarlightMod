@@ -326,6 +326,10 @@ function OpenPendingRequests()
 					local newnum = num2;
 					local territorybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, "Buy Territory " .. Game.Map.Territories[tonumber(territorysellsplit[newnum+1])].Name, "," .. territorysellsplit[newnum] .. "," .. territorysellsplit[newnum+1]);
 					local orders = Game.Orders;
+					if(Game.Us.HasCommittedOrders == true)then
+						UI.Alert("You need to uncommit first");
+						return;
+					end
 					table.insert(orders, territorybuyorder);
 					Game.Orders=orders;
 				end;
@@ -413,6 +417,10 @@ function Openshop(rootParent)
 							local Nachricht = "Buy Armies (" .. Anzahl .. ") for " .. terr.Name;
 							local armybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, Nachricht, pay);
 							local orders = Game.Orders;
+							if(Game.Us.HasCommittedOrders == true)then
+								UI.Alert("You need to uncommit first");
+								return;
+							end
 							table.insert(orders, armybuyorder);
 							Game.Orders=orders;
 						end
