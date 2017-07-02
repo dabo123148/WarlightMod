@@ -160,6 +160,12 @@ function OpenMenu()
 				if(Nachrichtensplit[num+1] == "9")then
 					Nachricht = Nachricht .. "\n" .. toname(Nachrichtensplit[num],Game) .. " bought " .. Game.Map.Territories[tonumber(Nachrichtensplit[num+3])].Name .. " in turn " .. Nachrichtensplit[num+2];
 				end
+				if(Nachrichtensplit[num+1] == "10")then
+					Nachricht = Nachricht .. "\n" .. "You gifted " .. toname(Nachrichtensplit[num],Game) .. " " .. tonumber(Nachrichtensplit[num+3]) .. " money in turn " .. Nachrichtensplit[num+2];
+				end
+				if(Nachrichtensplit[num+1] == "11")then
+					Nachricht = Nachricht .. "\n" .. "You recieved " .. tonumber(Nachrichtensplit[num+3]) .. " money by " ..toname(Nachrichtensplit[num],Game) .. " in turn " .. Nachrichtensplit[num+2];
+				end
 				num = num + 4;
 			end
 			UI.Alert(Nachricht);
