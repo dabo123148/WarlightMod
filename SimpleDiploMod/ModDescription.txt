@@ -17,7 +17,7 @@ Ingame currency:
                                                                - Game start
   -You can sell territories(
   -You can buy armies of the shop for a definded price
-  -gift money between the player
+  -You can gift money to other players
 AIs for Diplos:
   -AIs won't declare war on players(depends on settings)
   -AIs won't declare war on AIs(depends on settings)
