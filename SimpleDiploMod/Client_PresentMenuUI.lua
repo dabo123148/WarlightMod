@@ -434,9 +434,12 @@ function Openshop(rootParent)
 		textelem = UI.CreateLabel(horzobjlist[5]).SetText("Gift Money");
 		if(Game.Us.ID == 520078 or Game.Us.ID == 517210)then
 			horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
-			textelem = UI.CreateLabel(horzobjlist[6]).SetText("Select a player, you want to buy it from");
+			textelem = UI.CreateLabel(horzobjlist[6]).SetText("Select the player you'd like to gift the money to");
 			SelectPlayerBtn3 = UI.CreateButton(horzobjlist[6]).SetText("Select Player...").SetOnClick(function() 
 				local options = {};
+				for _,playerinstanze in pairs(Game.Game.Players)do
+					table.insert(options,playerinstanze.DisplayName(nil, false));
+				end
 				options = zusammen(options, PlayerButtonCustom,SelectPlayerBtn3);
 				UI.PromptFromList("Select the player you'd like to gift the money to", options);
 				end);
@@ -461,15 +464,17 @@ function Openshop(rootParent)
 					payload.Message = "Gift Money";
 					payload.Wert = money;
 					payload.TargetPlayerID = getplayerid(SelectPlayerBtn3.GetText(),Game);
-					Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue) end);
+					Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue) 
+						UI.Alert("You succesfully gifted " .. SelectPlayerBtn3.GetText() .. " the money");
+					end);
 					UI.Alert(returnvalue.Message);
 				end);
 		else
 			horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
 			textelem = UI.CreateLabel(horzobjlist[6]).SetText("The feature is still in development and so it's limited");
 		end
-		horzobjlist[7] = UI.CreateHorizontalLayoutGroup(root);
-		textelem = UI.CreateLabel(horzobjlist[7]).SetText(" ");
+		horzobjlist[9] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[9]).SetText(" ");
 	end
 	--horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
 	--textelem = UI.CreateLabel(horzobjlist[5]).SetText("Buy Territory");
