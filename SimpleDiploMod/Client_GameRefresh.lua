@@ -38,6 +38,12 @@ function Client_GameRefresh(game)
 			if(NeueNachrichtensplit[num+1] == "9")then
 				Nachricht = Nachricht .. "\n" .. getname(NeueNachrichtensplit[num],game) .. " bought " .. game.Map.Territories[tonumber(NeueNachrichtensplit[num+3])].Name .. " in turn " .. NeueNachrichtensplit[num+2];
 			end
+			if(NeueNachrichtensplit[num+1] == "10")then
+				Nachricht = Nachricht .. "\n" .. "You gifted " .. getname(NeueNachrichtensplit[num],game) .. " " .. tonumber(NeueNachrichtensplit[num+3]) .. " money in turn " .. NeueNachrichtensplit[num+2];
+			end
+			if(NeueNachrichtensplit[num+1] == "11")then
+				Nachricht = Nachricht .. "\n" .. "You recieved " .. tonumber(NeueNachrichtensplit[num+3]) .. " money by " ..getname(NeueNachrichtensplit[num],game) .. " in turn " .. NeueNachrichtensplit[num+2];
+			end
 			num = num + 4;
 		end
 	end
