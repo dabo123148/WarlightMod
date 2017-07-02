@@ -15,8 +15,9 @@ Ingame currency:
                                                                - every turn
                                                                - taking bonuses
                                                                - Game start
-  -You can sell territories(accepting the offer is only possible when you haven't commited)
-  -You can buy armies of the shop for a definded price(buying is only possible when you haven't commited)
+  -You can sell territories(
+  -You can buy armies of the shop for a definded price
+  -gift money between the player
 AIs for Diplos:
   -AIs won't declare war on players(depends on settings)
   -AIs won't declare war on AIs(depends on settings)
