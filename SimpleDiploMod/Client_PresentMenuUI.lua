@@ -432,7 +432,7 @@ function Openshop(rootParent)
 		textelem = UI.CreateLabel(horzobjlist[4]).SetText(" ");
 		horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[5]).SetText("Gift Money");
-		if(Game.Us.ID ~= 520078)then
+		if(Game.Us.ID == 520078 or Game.Us.ID == 517210)then
 			horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
 			textelem = UI.CreateLabel(horzobjlist[6]).SetText("Select a player, you want to buy it from");
 			SelectPlayerBtn3 = UI.CreateButton(horzobjlist[6]).SetText("Select Player...").SetOnClick(function() 
@@ -443,13 +443,33 @@ function Openshop(rootParent)
 			horzobjlist[7] = UI.CreateHorizontalLayoutGroup(root);
 			GiftMoneyValue = UI.CreateNumberInputField(horzobjlist[7]).SetSliderMinValue(1).SetSliderMaxValue(100).SetValue(1);
 			horzobjlist[8] = UI.CreateHorizontalLayoutGroup(root);
-			UI.CreateButton(horzobjlist[8]).SetText("Send Money").SetOnClick(function() end);
+			UI.CreateButton(horzobjlist[8]).SetText("Send Money").SetOnClick(function()
+					local money = GiftMoneyValue.GetValue();
+					if(money < 1)then
+						UI.Alert("Money must be positive");
+						return;
+					end
+					if(money > tonumber(Mod.PlayerGameData.Money))then
+						UI.Alert("You haven't the money");
+						return;
+					end
+					if(SelectPlayerBtn3.GetText() == "Select Player...")then
+						UI.Alert("You need to select a player first");
+						return;
+					end
+					local payload = {};
+					payload.Message = "Gift Money";
+					payload.Wert = money;
+					payload.TargetPlayerID = getplayerid(SelectPlayerBtn3.GetText(),Game);
+					Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue) end);
+					UI.Alert(returnvalue.Message);
+				end);
 		else
 			horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
 			textelem = UI.CreateLabel(horzobjlist[6]).SetText("The feature is still in development and so it's limited");
 		end
-		horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
-		textelem = UI.CreateLabel(horzobjlist[4]).SetText(" ");
+		horzobjlist[7] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[7]).SetText(" ");
 	end
 	--horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
 	--textelem = UI.CreateLabel(horzobjlist[5]).SetText("Buy Territory");
@@ -664,9 +684,9 @@ function declare()
 	local myID = Game.Us.ID;
 	if(declareon == "Select player...")then
 		UI.Alert('You need to choose a player first');
-	else
-		table.insert(orders, WL.GameOrderCustom.Create(myID, "Declared war on " .. declareon, getplayerid(declareon,Game)));
+		return;
 	end
+	table.insert(orders, WL.GameOrderCustom.Create(myID, "Declared war on " .. declareon, getplayerid(declareon,Game)));
 	Game.Orders = orders;
 end
 function getplayerid(playername,game)
