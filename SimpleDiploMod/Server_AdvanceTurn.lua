@@ -3,7 +3,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	AllPlayerIDs = {};
 	for _,pid in pairs(game.ServerGame.Game.Players)do
 		local Match = false;
-		if(pid.IsAI)then
+		if(pid.IsAIOrHumanTurnedIntoAI)then
 			for _,knownAIs in pairs(AllAIs)do
 				if(pid.ID == knownAIs)then
 					Match = true;
