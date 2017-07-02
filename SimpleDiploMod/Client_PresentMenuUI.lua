@@ -438,7 +438,9 @@ function Openshop(rootParent)
 			SelectPlayerBtn3 = UI.CreateButton(horzobjlist[6]).SetText("Select Player...").SetOnClick(function() 
 				local options = {};
 				for _,playerinstanze in pairs(Game.Game.Players)do
-					table.insert(options,playerinstanze.DisplayName(nil, false));
+					if(playerinstanze.IsAI == false)then
+						table.insert(options,playerinstanze.DisplayName(nil, false));
+					end
 				end
 				options = zusammen(options, PlayerButtonCustom,SelectPlayerBtn3);
 				UI.PromptFromList("Select the player you'd like to gift the money to", options);
