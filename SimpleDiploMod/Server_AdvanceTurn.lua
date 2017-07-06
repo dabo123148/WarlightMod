@@ -82,12 +82,12 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					if(Match1 == true)then
 						if(Mod.Settings.AllowAIDeclaration and Match2 == false)then
 							--AI declares on player
-							--error("Spielerid3 " .. order.PlayerID);
+							error("Spielerid3 " .. order.PlayerID);
 							DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID,game);
 						else
 							if(Mod.Settings.AIsdeclearAIs and Match2 == true)then
 								--Ai declares on AI
-								--error("Spielerid4 " .. order.PlayerID);
+								error("Spielerid4 " .. order.PlayerID);
 								DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID,game);
 							end
 						end
