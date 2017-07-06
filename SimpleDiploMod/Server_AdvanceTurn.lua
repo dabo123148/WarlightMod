@@ -235,7 +235,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	end
 end
 function Server_AdvanceTurn_End (game,addNewOrder)
-	error("Fehler");
 	--add new Allys
 	--add new war decleartions
 	local playerGameData = Mod.PlayerGameData;
