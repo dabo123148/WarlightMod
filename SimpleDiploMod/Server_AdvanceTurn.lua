@@ -13,6 +13,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 				AllAIs[tablelength(AllAIs)] = pid.ID;
 			end
 		else
+			error("Spielerid " .. pid.ID);
 			for _,knownPlayers in pairs(AllPlayerIDs)do
 				if(pid.ID == knownPlayers)then
 					Match = true;
@@ -23,6 +24,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 			end
 		end
 	end
+	error("Fehler");
 	Attacksbetween = {};
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
