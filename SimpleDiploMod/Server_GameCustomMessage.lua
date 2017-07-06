@@ -96,12 +96,6 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			Mod.PrivateGameData = privateGameData;
 			for _,pID in pairs(AllPlayerIDs)do
 				if(pID == playerID or pID == target)then
-					if(playerGameData[pID].NeueNachrichten == nil)then
-						playerGameData[pID].NeueNachrichten = ",";
-					end
-					if(playerGameData[pID].Nachrichten == nil)then
-						playerGameData[pID].Nachrichten = ",";
-					end
 					addmessage(playerID .. ",2," .. tostring(game.Game.NumberOfTurns+dauer) .. "," .. target .. ",",pID);
 				else
 					addmessage(playerID .. ",2,".. tostring(game.Game.NumberOfTurns+dauer) .. "," .. target .. ",",pID);
