@@ -102,10 +102,9 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 					if(playerGameData[pID].Nachrichten == nil)then
 						playerGameData[pID].Nachrichten = ",";
 					end
-					playerGameData[pID].NeueNachrichten = playerGameData[pID].NeueNachrichten ..  playerID .. ",2," .. tostring(game.Game.NumberOfTurns+dauer) .. "," .. target .. ",";
-					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. tostring(game.Game.NumberOfTurns+dauer) .. "," .. target .. ",";
+					addmessage(playerID .. ",2," .. tostring(game.Game.NumberOfTurns+dauer) .. "," .. target .. ",",pID);
 				else
-					playerGameData[pID].Nachrichten = playerGameData[pID].Nachrichten ..  playerID .. ",2,".. tostring(game.Game.NumberOfTurns+dauer) .. "," .. target .. ",";
+					addmessage(playerID .. ",2,".. tostring(game.Game.NumberOfTurns+dauer) .. "," .. target .. ",",pID);
 				end
 			end
 			rg.Message = 'The AI accepted your offer';
