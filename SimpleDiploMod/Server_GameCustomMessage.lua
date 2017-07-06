@@ -82,6 +82,9 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			publicGameData.War[playerID] = remainingwar;
 			Mod.PublicGameData = publicGameData;
 			local privateGameData = Mod.PrivateGameData;
+			if(privateGameData.Cantdeclare == nil)then
+				privateGameData.Cantdeclare = {};
+			end
 			num = game.Game.NumberOfTurns;
 			while(num < game.Game.NumberOfTurns+dauer)do
 				if(privateGameData.Cantdeclare[num] == nil)then
@@ -183,11 +186,11 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				publicGameData.War[playerID] = remainingwar;
 				Mod.PublicGameData = publicGameData;
 				local privateGameData = Mod.PrivateGameData;
+				if(privateGameData.Cantdeclare==nil)then
+					privateGameData.Cantdeclare = {};
+				end
 				num = game.Game.NumberOfTurns;
 				while(num < game.Game.NumberOfTurns+dauer)do
-					if(privateGameData.Cantdeclare==nil)then
-						privateGameData.Cantdeclare = {};
-					end
 					if(privateGameData.Cantdeclare[num] == nil)then
 						privateGameData.Cantdeclare[num] = ",";
 					end
