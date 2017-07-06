@@ -13,7 +13,6 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 				AllAIs[tablelength(AllAIs)] = pid.ID;
 			end
 		else
-			error("Spielerid " .. pid.ID);
 			for _,knownPlayers in pairs(AllPlayerIDs)do
 				if(pid.ID == knownPlayers)then
 					Match = true;
@@ -24,7 +23,6 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 			end
 		end
 	end
-	error("Fehler");
 	Attacksbetween = {};
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
@@ -75,6 +73,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					local Match2 = false;
 					for _, AI in pairs(AllAIs)do
 						if(order.PlayerID == AI)then
+							error("Spielerid2 " .. order.PlayerID);
 							Match1 = true;
 						end
 						if(game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID == AI)then
@@ -235,6 +234,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	end
 end
 function Server_AdvanceTurn_End (game,addNewOrder)
+	error("Fehler");
 	--add new Allys
 	--add new war decleartions
 	local playerGameData = Mod.PlayerGameData;
