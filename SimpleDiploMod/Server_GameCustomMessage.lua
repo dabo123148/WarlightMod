@@ -10,6 +10,23 @@ end
 function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	AllPlayerIDs = getplayerIDs(game);
 	local rg = {};
+	if(payload.Message == "Offer Allianze")then
+		local target = tonumber(payload.TargetPlayerID);
+		local preis = tonumber(payload.Wert);
+		for _,pid in pairs(game.Game.Players)do
+			if(pid.IsAI == true)then
+				if(Mod.Settings.PublicAllies == true or (pid.ID == playerID or pid.ID == target))then
+					local playerGameData = Mod.PlayerGameData;
+					if(playerGameData[pid.ID].PendingAllianzes == nil)then
+						playerGameData[pid.ID].PendingAllianzes = ",";
+					end
+					playerGameData[pid.ID].PendingAllianzes = playerGameData[pid.ID].PendingAllianzes .. playerID .. "," .. target .. "," .. preis .. ",";
+					Mod.PlayerGameData = playerGameData;
+					addmessage(playerID .. ",12,".. tostring(game.Game.NumberOfTurns+1) .. "," .. tostring(payload.Wert) .. ",",target);
+				end
+			end
+		end
+	end
 	if(payload.Message == "Read")then
 		local playerGameData = Mod.PlayerGameData;
 		playerGameData[playerID].NeueNachrichten = nil;
