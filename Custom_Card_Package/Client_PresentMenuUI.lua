@@ -3,6 +3,10 @@ function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
 		UI.Alert('Spectators can not play cars');
 		return;
 	end
+	if(Mod.PlayerGameData == nil and Mod.PlayerGameData.PestCards == nil and Mod.PlayerGameData.PestCards == nil)then
+		UI.Alert('You cannot play cards during distribution');
+		return;
+	end
 	rootParent=RootParent;
   	Game=game;
   	vertPestCard=nil;
@@ -66,6 +70,10 @@ function ShowFirstMenu()
 end
 
 function PlayNukeCard()
+	if(Game.Us.HasCommittedOrders == true)then
+		UI.Alert("You need to uncommit first");
+		return;
+	end
 	options = map(Game.Map.Territories,SelectTerritory);
 	UI.PromptFromList("Select the territory, you like to nuke", options);
 end
@@ -95,30 +103,33 @@ function SelectTerritory(terr)
 	return ret;
 end
 function PlayPestCard()
-  ClearUI();
-  vertPestCard=UI.CreateVerticalLayoutGroup(rootParent);
-  PestCardText0=UI.CreateLabel(vertPestCard).SetText('Select the player you want to play the Card on. Players who are already pestilenced will not be shown. Dont play 2 cards on one player, they are not stackable.');
-  local Pestfuncs={};
-  for playerID in pairs(Game.Game.Players) do
-		
-    if(playerID~=Game.Us.ID)then
-      if(Mod.PublicGameData.PestilenceStadium[playerID]~=nil)then
+	if(Game.Us.HasCommittedOrders == true)then
+		UI.Alert("You need to uncommit first");
+		return;
+	end
+	ClearUI();
+	vertPestCard=UI.CreateVerticalLayoutGroup(rootParent);
+	PestCardText0=UI.CreateLabel(vertPestCard).SetText('Select the player you want to play the Card on. Players who are already pestilenced will not be shown. Dont play 2 cards on one player, they are not stackable.');
+	local Pestfuncs={};
+	for playerID in pairs(Game.Game.Players) do
+		if(playerID~=Game.Us.ID)then
+     			if(Mod.PublicGameData.PestilenceStadium[playerID]~=nil)then
 				if(Mod.PublicGameData.PestilenceStadium[playerID]==0)then
-      		local locPlayerID=playerID;
-      		Pestfuncs[playerID]=function() Pestilence(locPlayerID); end;
-      		local pestPlayerButton = UI.CreateButton(vertPestCard).SetText(toname(playerID,Game)).SetOnClick(Pestfuncs[playerID]);
-    		end
+      					local locPlayerID=playerID;
+      					Pestfuncs[playerID]=function() Pestilence(locPlayerID); end;
+      					local pestPlayerButton = UI.CreateButton(vertPestCard).SetText(toname(playerID,Game)).SetOnClick(Pestfuncs[playerID]);
+    				end
 			else
 				local locPlayerID=playerID;
-      	Pestfuncs[playerID]=function() Pestilence(locPlayerID); end;
-      	local pestPlayerButton = UI.CreateButton(vertPestCard).SetText(toname(playerID,Game)).SetOnClick(Pestfuncs[playerID]);
+      				Pestfuncs[playerID]=function() Pestilence(locPlayerID); end;
+      				local pestPlayerButton = UI.CreateButton(vertPestCard).SetText(toname(playerID,Game)).SetOnClick(Pestfuncs[playerID]);
 			end
 		end
-  end
+	end
 end
 
 function Pestilence(playerID)
-  ClearUI();
+	ClearUI();
 	orders=Game.Orders;
 	--Game.SendGameCustomMessage('Waiting for the server to respond...',{PestCardPlayer=playerID},PestCardPlayedCallback);
 	table.insert(orders, WL.GameOrderCustom.Create(Game.Us.ID, "Play a Pestilence Card on " .. toname(playerID,Game), 'Pestilence|'..tostring(playerID)));
@@ -131,18 +142,18 @@ function PestCardPlayedCallback()
 end
 
 function ClearUI()
-  if(vertPest~=nil)then
-    UI.Destroy(vertPest);
-    vertPest = nil;
-  end
- if(vertNuke~=nil)then
-    UI.Destroy(vertNuke);
-    vertNuke = nil;
-  end
-  if(vertPestCard~=nil)then
-    UI.Destroy(vertPestCard);
-	vertPestCard=nil;
-  end
+	if(vertPest~=nil)then
+		UI.Destroy(vertPest);
+		vertPest = nil;
+	end
+	if(vertNuke~=nil)then
+		UI.Destroy(vertNuke);
+		vertNuke = nil;
+	end
+	if(vertPestCard~=nil)then
+		UI.Destroy(vertPestCard);
+		vertPestCard=nil;
+	end
 end
 
 ---------------------------------------------
@@ -154,12 +165,12 @@ end
 ---------------------------------------------
 
 function Contains(array,object)
-  for obj in pairs(array) do
-    if(obj==object)then
-      return true;
-    end
-  end
-  return false;
+	for obj in pairs(array) do
+		if(obj==object)then
+			return true;
+		end
+	end
+	return false;
 end
 
 function toname(playerid,game)
@@ -171,9 +182,9 @@ function toname(playerid,game)
 	return "Error - Player ID not found. Please report to melwei[PG].";
 end
 function tablelength(T)
-  local count = 0
-  for _ in pairs(T) do count = count + 1 end
-  return count
+	local count = 0
+	for _ in pairs(T) do count = count + 1 end
+	return count
 end
 function split(inputstr, sep)
         if sep == nil then
