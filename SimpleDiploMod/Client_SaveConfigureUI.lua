@@ -87,4 +87,8 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.MoneyPerBoughtArmy < Mod.Settings.MoneyPerKilledArmy)then
 		alert('You cannot set the army price higher than the money you earn per killed army');
 	end
+	Mod.Settings.AdminAccess = inputAdminaccess.GetValue();
+	if(Mod.Settings.AdminAccess == nil)then
+		Mod.Settings.AdminAccess = true;
+	end
 end
