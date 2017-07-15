@@ -48,20 +48,34 @@ function Client_PresentConfigureUI(rootParent)
 	if(MoneyPerBoughtArmyinit == nil)then
 		MoneyPerBoughtArmyinit = 2;
 	end
+	local Adminaccessinit = Mod.Settings.Adminaccess;
+	if(Adminaccessinit == nil)then
+		Adminaccessinit = true;
+	end
 	local texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('AI Settings');
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	UI.CreateLabel(texthorz).SetText(' ');
    	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	AIDeclerationcheckbox = UI.CreateCheckBox(texthorz).SetText('Allow AIs to declare war on Player').SetIsChecked(AIDeclerationinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	AIsdeclearAIsinitcheckbox = UI.CreateCheckBox(texthorz).SetText('Allow AIs to declare war on AIs').SetIsChecked(AIsdeclearAIsinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	UI.CreateLabel(texthorz).SetText(' ');
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('Allianze Settings - this system will come in a later version, but that would be a bigger change, I added the settings for that already');
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	UI.CreateLabel(texthorz).SetText(' ');
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	SeeAllyTerritoriesCheckbox = UI.CreateCheckBox(texthorz).SetText('Allow Players to see the territories of their allies').SetIsChecked(SeeAllyTerritoriesinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	PublicAlliesCheckbox = UI.CreateCheckBox(texthorz).SetText('Allow everyone to see every ally').SetIsChecked(PublicAlliesinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	UI.CreateLabel(texthorz).SetText(' ');
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('Shop System');
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	UI.CreateLabel(texthorz).SetText(' ');
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateButton(texthorz).SetText('Change the settings, so that the shop is dissabled').SetOnClick(function() 
 			inputStartMoney.SetValue(0);
@@ -97,9 +111,21 @@ function Client_PresentConfigureUI(rootParent)
 	UI.CreateLabel(texthorz).SetText('Price per army');
 	inputMoneyPerBoughtArmy = UI.CreateNumberInputField(texthorz).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerBoughtArmyinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	UI.CreateLabel(texthorz).SetText(' ');
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	UI.CreateLabel(texthorz).SetText('Cards, that Require War');
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	UI.CreateLabel(texthorz).SetText(' ');
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	inputSanctionCardRequireWar = UI.CreateCheckBox(texthorz).SetText('Sanction Card').SetIsChecked(SanctionCardRequireWarinit);
 	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
 	inputBombCardRequireWar = UI.CreateCheckBox(texthorz).SetText('Bomb Card').SetIsChecked(BombCardRequireWarinit);
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	UI.CreateLabel(texthorz).SetText(' ');
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	UI.CreateLabel(texthorz).SetText('Other Settings');
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	UI.CreateLabel(texthorz).SetText(' ');
+	texthorz = UI.CreateHorizontalLayoutGroup(rootParent);
+	inputAdminaccess = UI.CreateCheckBox(texthorz).SetText('Allow me(dabo1) to access and edit all data to identify and fix bugs runtime and other diagnostic functions').SetIsChecked(Adminaccessinit);
 end
