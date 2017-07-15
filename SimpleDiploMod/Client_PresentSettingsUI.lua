@@ -23,6 +23,8 @@ function Client_PresentSettingsUI(rootParent)
 	UI.CreateLabel(rootParent).SetText('Cards that require War');
 	UI.CreateLabel(rootParent).SetText('Sanction Cards can only be played on players you are in war with : ' .. booltostring(Mod.Settings.SanctionCardRequireWar));
 	UI.CreateLabel(rootParent).SetText('Bomb Cards can only be played on players you are in war with : ' .. booltostring(Mod.Settings.BombCardRequireWar));
+	UI.CreateLabel(rootParent).SetText(' ');
+	UI.CreateLabel(rootParent).SetText('Other Settings');
 	UI.CreateLabel(rootParent).SetText('dabo1 has access to all data for fixing bugs and other diagnostic functions runtime : ' .. booltostring(Mod.Settings.AdminAccess));
 end
 function booltostring(variable)
