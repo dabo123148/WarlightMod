@@ -48,7 +48,7 @@ function Client_PresentConfigureUI(rootParent)
 	if(MoneyPerBoughtArmyinit == nil)then
 		MoneyPerBoughtArmyinit = 2;
 	end
-	local Adminaccessinit = Mod.Settings.Adminaccess;
+	local Adminaccessinit = Mod.Settings.AdminAccess;
 	if(Adminaccessinit == nil)then
 		Adminaccessinit = true;
 	end
