@@ -41,9 +41,49 @@ function Client_PresentConfigureUI(rootParent)
 	if(SanctionCardRequireWarinit == nil)then
 		SanctionCardRequireWarinit = true;
 	end
+	SanctionCardRequirePeaceinit = Mod.Settings.SanctionCardRequirePeace;
+	if(SanctionCardRequirePeaceinit == nil)then
+		SanctionCardRequirePeaceinit = false;
+	end
+	SanctionCardRequireAllyinit = Mod.Settings.SanctionCardRequireAlly;
+	if(SanctionCardRequireAllyinit == nil)then
+		SanctionCardRequireAllyinit = false;
+	end
 	BombCardRequireWarinit = Mod.Settings.BombCardRequireWar;
 	if(BombCardRequireWarinit == nil)then
 		BombCardRequireWarinit = true;
+	end
+	BombCardRequirePeaceinit = Mod.Settings.BombCardRequirePeace;
+	if(BombCardRequirePeaceinit == nil)then
+		BombCardRequirePeaceinit = false;
+	end
+	BombCardRequireAllyinit = Mod.Settings.BombCardRequireAlly;
+	if(BombCardRequireAllyinit == nil)then
+		BombCardRequireAllyinit = false;
+	end
+	SpyCardRequireWarinit = Mod.Settings.SpyCardRequireWar;
+	if(SpyCardRequireWarinit == nil)then
+		SpyCardRequireWarinit = true;
+	end
+	SpyCardRequirePeaceinit = Mod.Settings.SpyCardRequirePeace;
+	if(SpyCardRequirePeaceinit == nil)then
+		SpyCardRequirePeaceinit = false;
+	end
+	SpyCardRequireAllyinit = Mod.Settings.SpyCardRequireAlly;
+	if(SpyCardRequireAllyinit == nil)then
+		SpyCardRequireAllyinit = false;
+	end
+	GiftCardRequireWarinit = Mod.Settings.GiftCardRequireWar;
+	if(GiftCardRequireWarinit == nil)then
+		GiftCardRequireWarinit = false;
+	end
+	GiftCardRequirePeaceinit = Mod.Settings.GiftCardRequirePeace;
+	if(GiftCardRequirePeaceinit == nil)then
+		GiftCardRequirePeaceinit = false;
+	end
+	GiftCardRequireAllyinit = Mod.Settings.GiftCardRequireAlly;
+	if(GiftCardRequireAllyinit == nil)then
+		GiftCardRequireAllyinit = true;
 	end
 	MoneyPerBoughtArmyinit = Mod.Settings.MoneyPerBoughtArmy;
 	if(MoneyPerBoughtArmyinit == nil)then
