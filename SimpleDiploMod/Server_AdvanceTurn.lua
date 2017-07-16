@@ -179,61 +179,28 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 	end
-	if(order.proxyType == "GameOrderPlayCardSanctions" and Mod.Settings.SanctionCardRequireWar)then
-		if(InWar(order.PlayerID,order.SanctionedPlayerID) == false)then
-			local Match1 = false;
-			local Match2 = false;
-			for _, AI in pairs(AllAIs)do
-				if(order.PlayerID == AI)then
-					Match1 = true;
-				end
-				if(order.SanctionedPlayerID == AI)then
-					Match2 = true;
-				end
-			end
-			if(Match1 == false)then
-				DeclearWar(order.PlayerID,order.SanctionedPlayerID,game);
-			else
-				if(Mod.Settings.AllowAIDeclaration and Match2 == false)then
-					DeclearWar(order.PlayerID,order.SanctionedPlayerID,game);
-				else
-					if(Mod.Settings.AIsdeclearAIs and Match2 == true)then
-						DeclearWar(order.PlayerID,order.SanctionedPlayerID,game);
-					end
-				end
-			end
+	if(order.proxyType == "GameOrderPlayCardSanctions")then
+		if(IsPlayable(order.PlayerID,order.SanctionedPlayerID,game,Mod.Settings.SanctionCardRequireWar,Mod.Settings.SanctionCardRequirePeace,Mod.Settings.SanctionCardRequireAlly) == false)then
 			skipThisOrder(WL.ModOrderControl.Skip);
 		end
 	end
-	if(order.proxyType == "GameOrderPlayCardBomb" and Mod.Settings.BombCardRequireWar)then
-		if(InWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID) == false)then
-			local Match1 = false;
-			local Match2 = false;
-			for _, AI in pairs(AllAIs)do
-				if(order.PlayerID == AI)then
-					Match1 = true;
-				end
-				if(game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID == AI)then
-					Match2 = true;
-				end
-			end
-			if(Match1 == false)then
-				DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID,game);
-			else
-				if(Mod.Settings.AllowAIDeclaration and Match2 == false)then
-					DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID,game);
-				else
-					if(Mod.Settings.AIsdeclearAIs and Match2 == true)then
-						DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID,game);
-					end
-				end
-			end
+	if(order.proxyType == "GameOrderPlayCardBomb")then
+		if(IsPlayable(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID,game,Mod.Settings.BombCardRequireWar,Mod.Settings.BombCardRequirePeace,Mod.Settings.BombCardRequireAlly) == false)then
+			skipThisOrder(WL.ModOrderControl.Skip);
+		end
+	end
+	if(order.proxyType == "GameOrderPlayCardSpy")then
+		if(IsPlayable(order.PlayerID,order.TargetPlayerID,game,Mod.Settings.SpyCardRequireWar,Mod.Settings.SpyCardRequirePeace,Mod.Settings.SpyCardRequireAlly) == false)then
+			skipThisOrder(WL.ModOrderControl.Skip);
+		end
+	end
+	if(order.proxyType == "GameOrderPlayCardGift")then
+		if(IsPlayable(order.PlayerID,order.GiftTo,game,Mod.Settings.GiftCardRequireWar,Mod.Settings.GiftCardRequirePeace,Mod.Settings.GiftCardRequireAlly) == false)then
 			skipThisOrder(WL.ModOrderControl.Skip);
 		end
 	end
 end
 function Server_AdvanceTurn_End (game,addNewOrder)
-	--add new Allys
 	--add new war decleartions
 	local playerGameData = Mod.PlayerGameData;
 	if(RemainingDeclerations ~= nil)then
@@ -308,7 +275,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	end
 	Mod.PlayerGameData = playerGameData;
 	--if(Mod.Settings.SeeAllyTerritories)then
-		--play on every ally a reconnaisance card
+		--play on every ally territory a reconnaisance card
 		--for _, player in pairs(AllPlayerIDs)do
 			--for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 				--if(IsAlly(player,terr.OwnerPlayerID))then
@@ -328,37 +295,64 @@ function getplayerid(playername,game)
 	return 0;
 end
 function toname(playerid,game)
-	local test = "";
 	return game.ServerGame.Game.Players[playerid].DisplayName(nil, false);
-	--for _,playerinfo in pairs(game.ServerGame.Game.Players)do
-	--	if(playerid == playerinfo.ID)then
-			--return tostring(playerid) .. " " .. tostring(playerinfo.ID);
-			--local name = playerinfo.DisplayName(nil, false);
-	--		local name = playerinfo.Color.Name;
-	--		if(name == nil or name == "")then
-	--			return "fehler";
-	--		else
-	--			return name;
-	--		end
-	--	end
-	--end
-	--return "Error. Please report to dabo1.";
 end
 function RemoveAlly(Player1,Player2)
 	
 end
-function RemoveWar(Player1,Player2)
-	
+function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,requireallysetting)
+	if(requirepeacesetting == nil and requireallysetting == nil)then
+		if(InWar(Player1,Player2)==false and requirewarsetting ~= nil and requirewarsetting == true)then
+			--Declare war
+			if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
+				if(Mod.Settings.AllowAIDeclaration == true and game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == false)then
+					DeclearWar(Player1,Player2,game);
+				end
+				if(Mod.Settings.AIsdeclearAIs == true and game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
+					DeclearWar(Player1,Player2,game);
+				end
+			else
+				DeclearWar(Player1,Player2,game);
+			end
+			return false;
+		else
+			return true;
+		end
+	else
+		if(requirepeacesetting == true and InWar(Player1,Player2) == false and IsAlly(Player1,Player2) == false)then
+			return true;
+		end
+		if(requireallysetting == true and IsAlly(Player1,Player2) == true)then
+			return true;
+		end
+		if(requirewarsetting == true)then
+			if(InWar(Player1,Player2) == true)then
+				return true;
+			else
+				--Declare war
+				if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
+					if(Mod.Settings.AllowAIDeclaration == true and game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == false)then
+						DeclearWar(Player1,Player2,game);
+					end
+					if(Mod.Settings.AIsdeclearAIs == true and game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
+						DeclearWar(Player1,Player2,game);
+					end
+				else
+					DeclearWar(Player1,Player2,game);
+				end
+				return false;
+			end
+		end
+		return false;
+	end
 end
 function DeclearWar(Player1,Player2,game)
 	print('Declear War');
 	--Allys declear war on order.PlayerID if not allied with order.PlayerID
 	if(IsAlly(Player1,Player2)==false and InWar(Player1,Player2) == false)then
-		print('D1');
 		if(RemainingDeclerations == nil)then
 			RemainingDeclerations = {};
 		end
-		print('D2');
 		local Match = false;
 		for _,newwar in pairs(RemainingDeclerations)do
 			local P1 = tonumber(stringtotable(newwar)[1]);
@@ -369,10 +363,8 @@ function DeclearWar(Player1,Player2,game)
 				end
 			end
 		end
-		print('D3');
 		if(Match == false)then
 			if(Mod.PrivateGameData.Cantdeclare ~= nil and Mod.PrivateGameData.Cantdeclare[game.Game.NumberOfTurns] ~= nil)then
-				print('D4');
 				local privateGameDatasplit = stringtotable(Mod.PrivateGameData.Cantdeclare[game.Game.NumberOfTurns]);
 				local num = 1;
 				while(privateGameDatasplit[num] ~= nil and privateGameDatasplit[num+1] ~= nil and privateGameDatasplit[num+1] ~= "")do
@@ -383,13 +375,11 @@ function DeclearWar(Player1,Player2,game)
 					end
 					num = num + 2;
 				end
-				print('D5');
 			end
 			if(Match == false)then
 				RemainingDeclerations[tablelength(RemainingDeclerations)] = "," .. Player1 .. "," ..Player2;
 			end
 		end
-		print('D6');
 	else
 		RemoveAlly(Player1,Player2);
 	end
