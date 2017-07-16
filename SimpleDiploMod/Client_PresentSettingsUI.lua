@@ -20,20 +20,67 @@ function Client_PresentSettingsUI(rootParent)
 		UI.CreateLabel(rootParent).SetText('The Trading System has been disabled');
 	end
 	UI.CreateLabel(rootParent).SetText(' ');
-	UI.CreateLabel(rootParent).SetText('Cards that require War');
-	UI.CreateLabel(rootParent).SetText('Sanction Cards can only be played on players you are in war with : ' .. booltostring(Mod.Settings.SanctionCardRequireWar));
-	UI.CreateLabel(rootParent).SetText('Bomb Cards can only be played on players you are in war with : ' .. booltostring(Mod.Settings.BombCardRequireWar));
+	UI.CreateLabel(rootParent).SetText('Card Settings');
+	UI.CreateLabel(rootParent).SetText('Sanction Card');
+	if(AlwaysPlayable(Mod.Settings.SanctionCardRequireWar,Mod.Settings.SanctionCardRequirePeace,Mod.Settings.SanctionCardRequireAlly))then
+		UI.CreateLabel(rootParent).SetText('You can play a Sanction Card on everybody');
+	else
+		UI.CreateLabel(rootParent).SetText('Sanction Cards can be played on players you are in war with : ' .. booltostring(Mod.Settings.SanctionCardRequireWar));
+		UI.CreateLabel(rootParent).SetText('Sanction Cards can be played on players you are in peace with : ' .. booltostring(Mod.Settings.SanctionCardRequirePeace,false));
+		UI.CreateLabel(rootParent).SetText('Sanction Cards can be played on players you are in allied with : ' .. booltostring(Mod.Settings.SanctionCardRequireAlly,false));
+	end
+	UI.CreateLabel(rootParent).SetText('Bomb Card');
+	if(AlwaysPlayable(Mod.Settings.BombCardRequireWar,Mod.Settings.BombCardRequirePeace,Mod.Settings.BombCardRequireAlly))then
+		UI.CreateLabel(rootParent).SetText('You can play a Bomb Card on everybody');
+	else
+		UI.CreateLabel(rootParent).SetText('Bomb Cards can be played on players you are in war with : ' .. booltostring(Mod.Settings.BombCardRequireWar));
+		UI.CreateLabel(rootParent).SetText('Bomb Cards can be played on players you are in peace with : ' .. booltostring(Mod.Settings.BombCardRequirePeace,false));
+		UI.CreateLabel(rootParent).SetText('Bomb Cards can be played on players you are in allied with : ' .. booltostring(Mod.Settings.BombCardRequireAlly,false));
+	end
+	UI.CreateLabel(rootParent).SetText('Spy Card');
+	if(AlwaysPlayable(Mod.Settings.SpyCardRequireWar,Mod.Settings.SpyCardRequirePeace,Mod.Settings.SpyCardRequireAlly))then
+		UI.CreateLabel(rootParent).SetText('You can play a Spy Card on everybody');
+	else
+		UI.CreateLabel(rootParent).SetText('Spy Cards can be played on players you are in war with : ' .. booltostring(Mod.Settings.SpyCardRequireWar));
+		UI.CreateLabel(rootParent).SetText('Spy Cards can be played on players you are in peace with : ' .. booltostring(Mod.Settings.SpyCardRequirePeace));
+		UI.CreateLabel(rootParent).SetText('Spy Cards can be played on players you are in allied with : ' .. booltostring(Mod.Settings.SpyCardRequireAlly));
+	end
+	UI.CreateLabel(rootParent).SetText('Gift Card');
+	if(AlwaysPlayable(Mod.Settings.GiftCardRequireWar,Mod.Settings.GiftCardRequirePeace,Mod.Settings.GiftCardRequireAlly))then
+		UI.CreateLabel(rootParent).SetText('You can play a Gift Card on everybody');
+	else
+		UI.CreateLabel(rootParent).SetText('Gift Cards can be played on players you are in war with : ' .. booltostring(Mod.Settings.GiftCardRequireWar));
+		UI.CreateLabel(rootParent).SetText('Gift Cards can be played on players you are in peace with : ' .. booltostring(Mod.Settings.GiftCardRequirePeace));
+		UI.CreateLabel(rootParent).SetText('Gift Cards can be played on players you are in allied with : ' .. booltostring(Mod.Settings.GiftCardRequireAlly));
+	end
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Other Settings');
-	UI.CreateLabel(rootParent).SetText('dabo1 has access to all data for fixing bugs and other diagnostic functions runtime : ' .. booltostring(Mod.Settings.AdminAccess));
+	UI.CreateLabel(rootParent).SetText('dabo1 has access to all data for fixing bugs and other diagnostic functions runtime : ' .. booltostring(Mod.Settings.AdminAccess,false));
 end
-function booltostring(variable)
+function booltostring(variable,default)
 	if(variable == nil)then
-		return "No";
+		return default;
 	end
 	if(variable)then
 		return "Yes";
 	else
 		return "No";
 	end
+end
+function AlwaysPlayable(warsetting,peacesetting,allysetting)
+	if(peacesetting == nil and allysetting == nil)then
+		if(warsetting == nil)then
+			return true;
+		else
+			if(warsetting)then
+				return false;
+			else
+				return true;
+			end
+		end
+	end
+	if(peacesetting and allysetting and warsetting)then
+		return true;
+	end
+	return false;
 end
