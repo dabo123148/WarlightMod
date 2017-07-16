@@ -4,8 +4,7 @@ This Mod adds:
 War/Peace System:
   -Attacks DON'T count as declaration
   -After you declared War on someone, you have to wait one turn before you can attack him
-  -A Sanction Card can be used as a Declaration (depends on settings)
-  -A Bomb Card can be used as a Declaration (depends on settings)
+  -Sanction, Bomb, Gift, Spy Card can be configurated, that they are just playable if you are in war/peace/ally with the persons you play them on
 Alliance System(not included/currently just a placeholder):
   -Players you are allied with automatically declare war on players declaring war on you (coming soon)
   -You will be able to see territories owned by your allies through the fog. (depends on settings)(coming soon)
