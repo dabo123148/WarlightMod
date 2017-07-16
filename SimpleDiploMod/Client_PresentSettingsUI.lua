@@ -59,7 +59,11 @@ function Client_PresentSettingsUI(rootParent)
 end
 function booltostring(variable,default)
 	if(variable == nil)then
-		return default;
+		if(default)then
+			return "Yes";
+		else
+			return "No";
+		end
 	end
 	if(variable)then
 		return "Yes";
