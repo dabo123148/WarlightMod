@@ -218,6 +218,7 @@ function DeleteUI()
 	end
 end
 function ReloadUI()
+	Save();
 	DeleteUI();
 	ShowUI();
 end
