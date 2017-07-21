@@ -2,7 +2,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	AllAIs = {};
 	AllPlayerIDs = {};
 	local orders= "";
-	for _,pid in pairs(game.ServerGame.Game.Players)do
+	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
 		local Match = false;
 		if(pid.IsAIOrHumanTurnedIntoAI)then
 			for _,knownAIs in pairs(AllAIs)do
@@ -23,8 +23,8 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 				AllPlayerIDs[tablelength(AllPlayerIDs)] = pid.ID;
 			end
 		end
-		for _,order in pairs(game.ServerGame.ActiveTurnOrders) do
-			orders = orders .. " " .. order.proxyType;
+		for _,order in pairs(game.ServerGame.ActiveTurnOrders[pid.ID]) do
+				orders = orders .. " " .. ordertest;
 		end
 	end
 	error(orders);
