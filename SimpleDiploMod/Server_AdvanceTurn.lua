@@ -204,6 +204,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			skipThisOrder(WL.ModOrderControl.Skip);
 		end
 	end
+	error("orderend");
 end
 function Server_AdvanceTurn_End (game,addNewOrder)
 	--add new war decleartions
