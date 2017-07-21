@@ -26,7 +26,6 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	Attacksbetween = {};
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
-	error("order");
 	if(order.proxyType == "GameOrderAttackTransfer")then
 		if(result.IsAttack and game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID ~= WL.PlayerID.Neutral)then
 			if(InWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID) == true)then
@@ -96,6 +95,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 	end
 	if(order.proxyType == "GameOrderCustom")then
+		error("order custom");
 		if(check(order.Message,"Declared war on"))then
 			if(InWar(order.PlayerID,order.Payload) == false)then
 				DeclearWar(order.PlayerID,tonumber(order.Payload),game);
@@ -181,21 +181,25 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 	end
 	if(order.proxyType == "GameOrderPlayCardSanctions")then
+		error("sanction");
 		if(IsPlayable(order.PlayerID,order.SanctionedPlayerID,game,Mod.Settings.SanctionCardRequireWar,Mod.Settings.SanctionCardRequirePeace,Mod.Settings.SanctionCardRequireAlly) == false)then
 			skipThisOrder(WL.ModOrderControl.Skip);
 		end
 	end
 	if(order.proxyType == "GameOrderPlayCardBomb")then
+		error("bomb");
 		if(IsPlayable(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.TargetTerritoryID].OwnerPlayerID,game,Mod.Settings.BombCardRequireWar,Mod.Settings.BombCardRequirePeace,Mod.Settings.BombCardRequireAlly) == false)then
 			skipThisOrder(WL.ModOrderControl.Skip);
 		end
 	end
 	if(order.proxyType == "GameOrderPlayCardSpy")then
+		error("spy");
 		if(IsPlayable(order.PlayerID,order.TargetPlayerID,game,Mod.Settings.SpyCardRequireWar,Mod.Settings.SpyCardRequirePeace,Mod.Settings.SpyCardRequireAlly) == false)then
 			skipThisOrder(WL.ModOrderControl.Skip);
 		end
 	end
 	if(order.proxyType == "GameOrderPlayCardGift")then
+		error("gift");
 		if(IsPlayable(order.PlayerID,order.GiftTo,game,Mod.Settings.GiftCardRequireWar,Mod.Settings.GiftCardRequirePeace,Mod.Settings.GiftCardRequireAlly) == false)then
 			skipThisOrder(WL.ModOrderControl.Skip);
 		end
