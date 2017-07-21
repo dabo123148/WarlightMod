@@ -228,7 +228,7 @@ function Save()
 	SeeAllyTerritoriesinit = SeeAllyTerritoriesCheckbox.GetIsChecked();
 	PublicAlliesinit = PublicAlliesCheckbox.GetIsChecked();
 	if(StartMoneyinit ~= 0 or MoneyPerTurninit ~= 0 or MoneyPerKilledArmyinit ~= 0 or MoneyPerCapturedTerritoryinit ~= 0 or MoneyPerCapturedBonusinit ~= 0)then
-		if(inputStartMoney.GetValue() ~= nil)then
+		if(inputStartMoney ~= nil)then
 			StartMoneyinit = inputStartMoney.GetValue();
 			MoneyPerTurninit = inputMoneyPerTurn.GetValue();
 			MoneyPerKilledArmyinit = inputMoneyPerKilledArmy.GetValue();
