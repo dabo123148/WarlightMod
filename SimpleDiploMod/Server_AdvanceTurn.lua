@@ -353,7 +353,7 @@ function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,r
 	end
 end
 function DeclearWar(Player1,Player2,game)
-	print('Declear War');
+	error('Declear War');
 	--Allys declear war on order.PlayerID if not allied with order.PlayerID
 	if(IsAlly(Player1,Player2)==false and InWar(Player1,Player2) == false)then
 		if(RemainingDeclerations == nil)then
@@ -391,7 +391,7 @@ function DeclearWar(Player1,Player2,game)
 	end
 end
 function InWar(Player1,Player2)
-	print('I1');
+	error("inWar");
 	if(Mod.PublicGameData.War == nil)then
 		print('neu gesetzt');
 		local publicGameData = Mod.PublicGameData;
