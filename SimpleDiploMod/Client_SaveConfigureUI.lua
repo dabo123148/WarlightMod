@@ -16,9 +16,11 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.PublicAllies == nil)then
 		Mod.Settings.PublicAllies = true;
 	end
-	Mod.Settings.StartMoney = inputStartMoney.GetValue();
+	if(inputStartMoney ~= nil)then
+		Mod.Settings.StartMoney = inputStartMoney.GetValue();
+	end
 	if(Mod.Settings.StartMoney == nil)then
-		Mod.Settings.StartMoney = 100;
+		Mod.Settings.StartMoney = 0;
 	end
 	if(Mod.Settings.StartMoney >10000)then
 		alert('Start Money is too high');
@@ -26,9 +28,11 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.StartMoney <-10000)then
 		alert('Start Money is too low');
 	end
-	Mod.Settings.MoneyPerTurn = inputMoneyPerTurn.GetValue();
+	if(inputMoneyPerTurn ~= nil)then
+		Mod.Settings.MoneyPerTurn = inputMoneyPerTurn.GetValue();
+	end
 	if(Mod.Settings.MoneyPerTurn == nil)then
-		Mod.Settings.MoneyPerTurn = 5;
+		Mod.Settings.MoneyPerTurn = 0;
 	end
 	if(Mod.Settings.MoneyPerTurn >10000)then
 		alert('Money per turn is too high');
@@ -36,9 +40,11 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.MoneyPerTurn <-10000)then
 		alert('Money per turn is too low');
 	end
-	Mod.Settings.MoneyPerKilledArmy = inputMoneyPerKilledArmy.GetValue();
+	if(inputMoneyPerKilledArmy ~= nil)then
+		Mod.Settings.MoneyPerKilledArmy = inputMoneyPerKilledArmy.GetValue();
+	end
 	if(Mod.Settings.MoneyPerKilledArmy == nil)then
-		Mod.Settings.MoneyPerKilledArmy = 1;
+		Mod.Settings.MoneyPerKilledArmy = 0;
 	end
 	if(Mod.Settings.MoneyPerKilledArmy >10000)then
 		alert('Money per killed army is too high');
@@ -46,9 +52,11 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.MoneyPerKilledArmy <-10000)then
 		alert('Money per killed army is too low');
 	end
-	Mod.Settings.MoneyPerCapturedTerritory = inputMoneyPerCapturedTerritory.GetValue();
+	if(inputMoneyPerCapturedTerritory ~= nil)then
+		Mod.Settings.MoneyPerCapturedTerritory = inputMoneyPerCapturedTerritory.GetValue();
+	end
 	if(Mod.Settings.MoneyPerCapturedTerritory == nil)then
-		Mod.Settings.MoneyPerCapturedTerritory = 1;
+		Mod.Settings.MoneyPerCapturedTerritory = 0;
 	end
 	if(Mod.Settings.MoneyPerCapturedTerritory >10000)then
 		alert('Money per captured territory is too high');
@@ -56,9 +64,11 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.MoneyPerCapturedTerritory <-10000)then
 		alert('Money per captured territory is too low');
 	end
-	Mod.Settings.MoneyPerCapturedBonus = inputMoneyPerCapturedBonus.GetValue();
+	if(inputMoneyPerCapturedBonus ~= nil)then
+		Mod.Settings.MoneyPerCapturedBonus = inputMoneyPerCapturedBonus.GetValue();
+	end
 	if(Mod.Settings.MoneyPerCapturedBonus == nil)then
-		Mod.Settings.MoneyPerCapturedBonus = 1;
+		Mod.Settings.MoneyPerCapturedBonus = 0;
 	end
 	if(Mod.Settings.MoneyPerCapturedBonus >10000)then
 		alert('Money per captured bonus is too high');
@@ -66,9 +76,11 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.MoneyPerCapturedBonus <-10000)then
 		alert('Money per captured bonus is too low');
 	end
-	Mod.Settings.MoneyPerBoughtArmy = inputMoneyPerBoughtArmy.GetValue();
+	if(inputMoneyPerBoughtArmy == nil)then
+		Mod.Settings.MoneyPerBoughtArmy = inputMoneyPerBoughtArmy.GetValue();
+	end
 	if(Mod.Settings.MoneyPerBoughtArmy == nil)then
-		Mod.Settings.MoneyPerBoughtArmy = 1;
+		Mod.Settings.MoneyPerBoughtArmy = 0;
 	end
 	if(Mod.Settings.MoneyPerBoughtArmy <0)then
 		alert('You cannot ear money for buying armies');
@@ -125,7 +137,7 @@ function Client_SaveConfigureUI(alert)
 		Mod.Settings.GiftCardRequireAlly = true;
 	end
 	if(Mod.Settings.MoneyPerBoughtArmy < Mod.Settings.MoneyPerKilledArmy)then
-		alert('You cannot set the army price higher than the money you earn per killed army');
+		alert('You cannot set the the money you earn per killed army higher than the price per army');
 	end
 	Mod.Settings.AdminAccess = inputAdminaccess.GetIsChecked();
 	if(Mod.Settings.AdminAccess == nil)then
