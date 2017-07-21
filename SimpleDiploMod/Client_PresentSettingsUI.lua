@@ -26,37 +26,37 @@ function Client_PresentSettingsUI(rootParent)
 	if(AlwaysPlayable(Mod.Settings.SanctionCardRequireWar,Mod.Settings.SanctionCardRequirePeace,Mod.Settings.SanctionCardRequireAlly))then
 		UI.CreateLabel(rootParent).SetText('You can play a Sanction Card on everybody').SetColor('#FF0000');
 	else
-		UI.CreateLabel(rootParent).SetText('Sanction Cards can be played on players you are in war with : ' .. booltostring(Mod.Settings.SanctionCardRequireWar));
-		UI.CreateLabel(rootParent).SetText('Sanction Cards can be played on players you are in peace with : ' .. booltostring(Mod.Settings.SanctionCardRequirePeace,false));
-		UI.CreateLabel(rootParent).SetText('Sanction Cards can be played on players you are allied with : ' .. booltostring(Mod.Settings.SanctionCardRequireAlly,false));
+		CreateLine('Sanction Cards can be played on players you are in war with : ', Mod.Settings.SanctionCardRequireWar,true,false);
+		CreateLine('Sanction Cards can be played on players you are in peace with : ', Mod.Settings.SanctionCardRequirePeace,false,false);
+		CreateLine('Sanction Cards can be played on players you are allied with : ', Mod.Settings.SanctionCardRequireAlly,false,false);
 	end
 	UI.CreateLabel(rootParent).SetText('Bomb Card');
 	if(AlwaysPlayable(Mod.Settings.BombCardRequireWar,Mod.Settings.BombCardRequirePeace,Mod.Settings.BombCardRequireAlly))then
 		UI.CreateLabel(rootParent).SetText('You can play a Bomb Card on everybody').SetColor('#FF0000');
 	else
-		UI.CreateLabel(rootParent).SetText('Bomb Cards can be played on players you are in war with : ' .. booltostring(Mod.Settings.BombCardRequireWar));
-		UI.CreateLabel(rootParent).SetText('Bomb Cards can be played on players you are in peace with : ' .. booltostring(Mod.Settings.BombCardRequirePeace,false));
-		UI.CreateLabel(rootParent).SetText('Bomb Cards can be played on players you are allied with : ' .. booltostring(Mod.Settings.BombCardRequireAlly,false));
+		CreateLine('Bomb Cards can be played on players you are in war with : ', Mod.Settings.BombCardRequireWar,true,false);
+		CreateLine('Bomb Cards can be played on players you are in peace with : ', Mod.Settings.BombCardRequirePeace,false,false);
+		CreateLine('Bomb Cards can be played on players you are allied with : ', Mod.Settings.BombCardRequireAlly,false,false);
 	end
 	UI.CreateLabel(rootParent).SetText('Spy Card');
 	if(AlwaysPlayable(Mod.Settings.SpyCardRequireWar,Mod.Settings.SpyCardRequirePeace,Mod.Settings.SpyCardRequireAlly))then
 		UI.CreateLabel(rootParent).SetText('You can play a Spy Card on everybody').SetColor('#FF0000');
 	else
-		UI.CreateLabel(rootParent).SetText('Spy Cards can be played on players you are in war with : ' .. booltostring(Mod.Settings.SpyCardRequireWar));
-		UI.CreateLabel(rootParent).SetText('Spy Cards can be played on players you are in peace with : ' .. booltostring(Mod.Settings.SpyCardRequirePeace));
-		UI.CreateLabel(rootParent).SetText('Spy Cards can be played on players you are allied with : ' .. booltostring(Mod.Settings.SpyCardRequireAlly));
+		CreateLine('Spy Cards can be played on players you are in war with : ', Mod.Settings.SpyCardRequireWar,true,false);
+		CreateLine('Spy Cards can be played on players you are in peace with : ', Mod.Settings.SpyCardRequirePeace,false,false);
+		CreateLine('Spy Cards can be played on players you are allied with : ', Mod.Settings.SpyCardRequireAlly,false,false);
 	end
 	UI.CreateLabel(rootParent).SetText('Gift Card');
 	if(AlwaysPlayable(Mod.Settings.GiftCardRequireWar,Mod.Settings.GiftCardRequirePeace,Mod.Settings.GiftCardRequireAlly))then
 		UI.CreateLabel(rootParent).SetText('You can play a Gift Card on everybody').SetColor('#FF0000');
 	else
-		UI.CreateLabel(rootParent).SetText('Gift Cards can be played on players you are in war with : ' .. booltostring(Mod.Settings.GiftCardRequireWar));
-		UI.CreateLabel(rootParent).SetText('Gift Cards can be played on players you are in peace with : ' .. booltostring(Mod.Settings.GiftCardRequirePeace));
-		UI.CreateLabel(rootParent).SetText('Gift Cards can be played on players you are allied with : ' .. booltostring(Mod.Settings.GiftCardRequireAlly));
+		CreateLine('Gift Cards can be played on players you are in war with : ', Mod.Settings.GiftCardRequireWar,false,false);
+		CreateLine('Gift Cards can be played on players you are in peace with : ', Mod.Settings.GiftCardRequirePeace,false,false);
+		CreateLine('Gift Cards can be played on players you are allied with : ', Mod.Settings.GiftCardRequireAlly,true,false);
 	end
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Other Settings');
-	UI.CreateLabel(rootParent).SetText('dabo1 has access to all data for fixing bugs and other diagnostic functions runtime : ' .. booltostring(Mod.Settings.AdminAccess,false));
+	CreateLine('dabo1 has access to all data for fixing bugs and other diagnostic functions runtime : ', Mod.Settings.AdminAccess,false,true);
 end
 function CreateLine(settingname,variable,default,important)
 	local lab = UI.CreateLabel(root);
