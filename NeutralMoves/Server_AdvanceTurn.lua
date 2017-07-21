@@ -1,5 +1,8 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
 	executed = false;
+	if(tablelength(game.ServerGame.LatestTurnStanding.Territories) > 500)then
+		executed = true;
+	end
 end
 function Server_AdvanceTurn_End(game,addNewOrder)
 	error("Ende");
@@ -31,4 +34,11 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 			end
 		end
 	end
+end
+function tablelength(arr)
+	local num = 0;
+	for _,elem in pairs(arr)do
+		num = num + 1;
+	end
+	return num;
 end
