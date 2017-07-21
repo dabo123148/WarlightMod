@@ -80,7 +80,7 @@ function Client_SaveConfigureUI(alert)
 		Mod.Settings.MoneyPerBoughtArmy = inputMoneyPerBoughtArmy.GetValue();
 	end
 	if(Mod.Settings.MoneyPerBoughtArmy == nil)then
-		Mod.Settings.MoneyPerBoughtArmy = 0;
+		Mod.Settings.MoneyPerBoughtArmy = 1;
 	end
 	if(Mod.Settings.MoneyPerBoughtArmy <0)then
 		alert('You cannot ear money for buying armies');
