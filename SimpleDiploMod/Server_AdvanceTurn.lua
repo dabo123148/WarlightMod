@@ -23,7 +23,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 				AllPlayerIDs[tablelength(AllPlayerIDs)] = pid.ID;
 			end
 		end
-		for _,order in pairs(game.ServerGame.ActiveTurnOrders[pid.ID]) do
+		for _,order in pairs(game.ServerGame.ActiveTurnOrders) do
 			orders = orders .. " " .. order.proxyType;
 		end
 	end
