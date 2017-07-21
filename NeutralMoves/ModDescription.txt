@@ -1,1 +1,1 @@
-Neutral territories transfer their armies between each other at the end of the turn.
+Neutral territories transfer their armies between each other at the end of the turn. This Mod only works for maps with less than or equal to 500 territories.
