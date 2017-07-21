@@ -5,7 +5,6 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	end
 end
 function Server_AdvanceTurn_End(game,addNewOrder)
-	error("Ende");
 	local currentarmies = {};
 	if(executed == false) then
 		executed = true;
