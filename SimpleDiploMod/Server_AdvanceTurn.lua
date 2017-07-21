@@ -23,6 +23,11 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 			end
 		end
 	end
+	local orders= "";
+	for _,order in pairs(game.ServerGame.ActiveTurnOrders) do
+		orders = orders .. " " .. order;
+	end
+	error(orders);
 	Attacksbetween = {};
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
