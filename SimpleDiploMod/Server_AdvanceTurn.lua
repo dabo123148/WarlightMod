@@ -202,6 +202,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 end
 function Server_AdvanceTurn_End (game,addNewOrder)
 	--add new war decleartions
+	error("End");
 	local playerGameData = Mod.PlayerGameData;
 	if(RemainingDeclerations ~= nil)then
 		for _,newwar in pairs(RemainingDeclerations)do
