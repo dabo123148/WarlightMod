@@ -100,7 +100,7 @@ function Client_PresentConfigureUI(rootParent)
 	ShowUI();
 end
 function ShowUI()
-	horzlist = {};
+	hotzlist = {};
 	hotzlist[0] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	UI.CreateLabel(hotzlist[0]).SetText('AI Settings');
    	hotzlist[1] = UI.CreateHorizontalLayoutGroup(rootParentobj);
@@ -213,7 +213,7 @@ function ShowUI()
 	inputAdminaccess = UI.CreateCheckBox(hotzlist[44]).SetText('Allow dabo1 to access and edit all data to identify and fix bugs runtime andfor other diagnostic functions').SetIsChecked(Adminaccessinit);
 end
 function DeleteUI()
-	for _,horizont in horzlist do
+	for _,horizont in hotzlist do
 		UI.Destroy(horizont);
 	end
 end
