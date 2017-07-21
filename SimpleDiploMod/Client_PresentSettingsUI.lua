@@ -3,22 +3,22 @@ function Client_PresentSettingsUI(rootParent)
 	root = rootParent;
 	UI.CreateLabel(rootParent).SetText('AI Settings');
 	CreateLine('AIs are allowed to declare war on player : ', Mod.Settings.AllowAIDeclaration,true,true);
-	UI.CreateLabel(rootParent).SetText('AIs are allowed to declare war on AIs : ' .. booltostring(Mod.Settings.AIsdeclearAIs));
+	CreateLine('AIs are allowed to declare war on AIs : ', Mod.Settings.AIsdeclearAIs,true,true);
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Alliance Settings - this system will come in a later version, but that would be a bigger change, so I added the settings for that already, but they have at the moment no effect');
-	UI.CreateLabel(rootParent).SetText('Allied players can see your territories : ' .. booltostring(Mod.Settings.SeeAllyTerritories));
-	UI.CreateLabel(rootParent).SetText('Allies are visible to everyone : ' .. booltostring(Mod.Settings.PublicAllies));
+	CreateLine('Allied players can see your territories : ', Mod.Settings.SeeAllyTerritories,true,true);
+	CreateLine('Allies are visible to everyone : ', Mod.Settings.PublicAllies,true,true);
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Tradement System');
 	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
-		UI.CreateLabel(rootParent).SetText('Player starting money : ' .. Mod.Settings.StartMoney);
-		UI.CreateLabel(rootParent).SetText('Extra money per turn : ' .. Mod.Settings.MoneyPerTurn);
-		UI.CreateLabel(rootParent).SetText('Extra money per killed army : ' .. Mod.Settings.MoneyPerKilledArmy);
-		UI.CreateLabel(rootParent).SetText('Extra money per captured territory : ' .. Mod.Settings.MoneyPerCapturedTerritory);
-		UI.CreateLabel(rootParent).SetText('Extra money per captured bonus : ' .. Mod.Settings.MoneyPerCapturedBonus);
-		UI.CreateLabel(rootParent).SetText('Price per army : ' .. Mod.Settings.MoneyPerBoughtArmy);
+		CreateLine('Player starting money : ', Mod.Settings.StartMoney,100,false);
+		CreateLine('Extra money per turn : ', Mod.Settings.MoneyPerTurn,5,false);
+		CreateLine('Extra money per killed army : ', Mod.Settings.MoneyPerKilledArmy,1,false);
+		CreateLine('Extra money per captured territory : ', Mod.Settings.MoneyPerCapturedTerritory,5,false);
+		CreateLine('Extra money per captured bonus : ', Mod.Settings.MoneyPerCapturedBonus,10,false);
+		CreateLine('Price per army : ', Mod.Settings.MoneyPerBoughtArmy,1,false);
 	else
-		UI.CreateLabel(rootParent).SetText('The Trading System has been disabled');
+		UI.CreateLabel(rootParent).SetText('The Trading System has been disabled').SetColor('#FF0000');
 	end
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Card Settings');
