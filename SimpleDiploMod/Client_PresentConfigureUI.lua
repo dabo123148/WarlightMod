@@ -223,6 +223,27 @@ function ReloadUI()
 	ShowUI();
 end
 function Save()
-	Adminaccessinit = inputAdminaccess.GetIsChecked();
-	AIDeclerationinit = AIDeclerationcheckbox.GetIsChecked();
+	AllowAIDeclarationinit = AIDeclerationcheckbox.GetIsChecked();
+	AIsdeclearAIsinit = AIsdeclearAIsinitcheckbox.GetIsChecked();
+	SeeAllyTerritoriesinit = SeeAllyTerritoriesCheckbox.GetIsChecked();
+	PublicAlliesinit = PublicAlliesCheckbox.GetIsChecked();
+	StartMoneyinit = inputStartMoney.GetValue();
+	MoneyPerTurninit = inputMoneyPerTurn.GetValue();
+	MoneyPerKilledArmyinit = inputMoneyPerKilledArmy.GetValue();
+	MoneyPerCapturedTerritoryinit = inputMoneyPerCapturedTerritory.GetValue();
+	MoneyPerCapturedBonusinit = inputMoneyPerCapturedBonus.GetValue();
+	MoneyPerBoughtArmyinit = inputMoneyPerBoughtArmy.GetValue();
+	SanctionCardRequireWarinit = inputSanctionCardRequireWar.GetIsChecked();
+	SanctionCardRequirePeaceinit = inputSanctionCardRequirePeace.GetIsChecked();
+	SanctionCardRequireAllyinit = inputSanctionCardRequireAlly.GetIsChecked();
+	BombCardRequireWarinit = inputBombCardRequireWar.GetIsChecked();
+	BombCardRequirePeaceinit = inputBombCardRequirePeace.GetIsChecked();
+	BombCardRequireAllyinit = inputBombCardRequireAlly.GetIsChecked();
+	SpyCardRequireWarinit = inputSpyCardRequireWar.GetIsChecked();
+	SpyCardRequirePeaceinit = inputSpyCardRequirePeace.GetIsChecked();
+	SpyCardRequireAllyinit = inputSpyCardRequireAlly.GetIsChecked();
+	GiftCardRequireWarinit = inputGiftCardRequireWar.GetIsChecked();
+	GiftCardRequirePeaceinit = inputGiftCardRequirePeace.GetIsChecked();
+	GiftCardRequireAllyinit = inputGiftCardRequireAlly.GetIsChecked();
+	AdminAccessinit = inputAdminaccess.GetIsChecked();
 end
