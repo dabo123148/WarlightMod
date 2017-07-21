@@ -76,7 +76,7 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.MoneyPerCapturedBonus <-10000)then
 		alert('Money per captured bonus is too low');
 	end
-	if(inputMoneyPerBoughtArmy == nil)then
+	if(inputMoneyPerBoughtArmy ~= nil)then
 		Mod.Settings.MoneyPerBoughtArmy = inputMoneyPerBoughtArmy.GetValue();
 	end
 	if(Mod.Settings.MoneyPerBoughtArmy == nil)then
