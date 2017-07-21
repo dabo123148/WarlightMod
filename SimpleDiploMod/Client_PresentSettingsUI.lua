@@ -1,7 +1,8 @@
 
 function Client_PresentSettingsUI(rootParent)
+	root = rootParent;
 	UI.CreateLabel(rootParent).SetText('AI Settings');
-	UI.CreateLabel(rootParent).SetText('AIs are allowed to declare war on player : ' .. booltostring(Mod.Settings.AllowAIDeclaration));
+	CreateLine('AIs are allowed to declare war on player : ', Mod.Settings.AllowAIDeclaration,true,true);
 	UI.CreateLabel(rootParent).SetText('AIs are allowed to declare war on AIs : ' .. booltostring(Mod.Settings.AIsdeclearAIs));
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Alliance Settings - this system will come in a later version, but that would be a bigger change, so I added the settings for that already, but they have at the moment no effect');
@@ -56,6 +57,21 @@ function Client_PresentSettingsUI(rootParent)
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Other Settings');
 	UI.CreateLabel(rootParent).SetText('dabo1 has access to all data for fixing bugs and other diagnostic functions runtime : ' .. booltostring(Mod.Settings.AdminAccess,false));
+end
+function CreateLine(settingname,variable,default,important)
+	local lab = UI.CreateLabel(root);
+	if(variable == true or variable == false)then
+		lab.SetText(settingname .. booltostring(variable,default));
+	else
+		lab.SetText(settingname .. variable);
+	end
+	if(varaible ~= default)then
+		if(important == true)then
+			lab.SetColor('#FF0000');
+		else
+			lab.SetColor('#FFFF00');
+		end
+	end
 end
 function booltostring(variable,default)
 	if(variable == nil)then
