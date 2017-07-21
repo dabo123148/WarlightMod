@@ -198,7 +198,7 @@ function ShowUI()
 	hotzlist[36] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	UI.CreateLabel(hotzlist[36]).SetText(' ');
 	hotzlist[37] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(hotzlist[38]).SetText('Gift Card');
+	UI.CreateLabel(hotzlist[37]).SetText('Gift Card');
 	hotzlist[39] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	inputGiftCardRequireWar = UI.CreateCheckBox(hotzlist[39]).SetText('Gift Cards require war').SetIsChecked(GiftCardRequireWarinit);
 	hotzlist[40] = UI.CreateHorizontalLayoutGroup(rootParentobj);
