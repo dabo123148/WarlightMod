@@ -213,7 +213,7 @@ function ShowUI()
 	inputAdminaccess = UI.CreateCheckBox(hotzlist[44]).SetText('Allow dabo1 to access and edit all data to identify and fix bugs runtime andfor other diagnostic functions').SetIsChecked(Adminaccessinit);
 end
 function DeleteUI()
-	for _,horizont in hotzlist do
+	for _,horizont in pairs(hotzlist) do
 		UI.Destroy(horizont);
 	end
 end
