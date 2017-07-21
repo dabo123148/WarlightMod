@@ -65,7 +65,7 @@ function CreateLine(settingname,variable,default,important)
 	else
 		lab.SetText(settingname .. variable);
 	end
-	if(varaible ~= default)then
+	if(variable ~= default)then
 		if(important == true)then
 			lab.SetColor('#FF0000');
 		else
