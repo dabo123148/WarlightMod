@@ -24,7 +24,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 			end
 		end
 		for _,order in pairs(game.ServerGame.ActiveTurnOrders[pid.ID]) do
-				orders = orders .. " " .. order;
+				orders = orders .. " " .. order.proxyType;
 		end
 	end
 	error(orders);
