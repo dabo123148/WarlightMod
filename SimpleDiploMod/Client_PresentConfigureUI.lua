@@ -120,39 +120,43 @@ function ShowUI()
 	hotzlist[8] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	UI.CreateLabel(hotzlist[8]).SetText('Shop System');
 	hotzlist[9] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateButton(hotzlist[9]).SetText('Change the settings, so that the shop is dissabled').SetOnClick(function() 
-			inputStartMoney.SetValue(0);
-			inputMoneyPerTurn.SetValue(0);
-			inputMoneyPerKilledArmy.SetValue(0);
-			inputMoneyPerCapturedTerritory.SetValue(0);
-			inputMoneyPerCapturedBonus.SetValue(0);
+	if(StartMoneyinit == 0 and MoneyPerTurninit == 0 and MoneyPerKilledArmyinit == 0 and MoneyPerCapturedTerritoryinit == 0 and MoneyPerCapturedBonusinit == 0)then
+		UI.CreateButton(hotzlist[9]).SetText('Activate Shop').SetOnClick(function() 
+			StartMoneyinit = 100;
+			MoneyPerTurninit = 5;
+			MoneyPerKilledArmyinit = 1;
+			MoneyPerCapturedTerritoryinit = 5;
+			MoneyPerCapturedBonusinit = 10;
+			ReloadUI();
 		end);
-	hotzlist[10] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateButton(hotzlist[10]).SetText('Change the settings, so that the shop is active').SetOnClick(function() 
-			inputStartMoney.SetValue(100);
-			inputMoneyPerTurn.SetValue(5);
-			inputMoneyPerKilledArmy.SetValue(1);
-			inputMoneyPerCapturedTerritory.SetValue(5);
-			inputMoneyPerCapturedBonus.SetValue(10);
+	else
+		UI.CreateButton(hotzlist[9]).SetText('Disable Shop').SetOnClick(function() 
+			StartMoneyinit = 0;
+			MoneyPerTurninit = 0;
+			MoneyPerKilledArmyinit = 0;
+			MoneyPerCapturedTerritoryinit = 0;
+			MoneyPerCapturedBonusinit = 0;
+			ReloadUI();
 		end);
-	hotzlist[11] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(hotzlist[11]).SetText('Starting Money');
-	inputStartMoney = UI.CreateNumberInputField(hotzlist[11]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(StartMoneyinit);
-	hotzlist[12] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(hotzlist[12]).SetText('Money per turn');
-	inputMoneyPerTurn = UI.CreateNumberInputField(hotzlist[12]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerTurninit);
-	hotzlist[13] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(hotzlist[13]).SetText('Money per killed army');
-	inputMoneyPerKilledArmy = UI.CreateNumberInputField(hotzlist[13]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerKilledArmyinit);
-	hotzlist[14] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(hotzlist[14]).SetText('Money per captured territory');
-	inputMoneyPerCapturedTerritory = UI.CreateNumberInputField(hotzlist[14]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerCapturedTerritoryinit);
-	hotzlist[15] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(hotzlist[15]).SetText('Money per captured bonus');
-	inputMoneyPerCapturedBonus = UI.CreateNumberInputField(hotzlist[15]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerCapturedBonusinit);
-	hotzlist[16] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(hotzlist[16]).SetText('Price per army');
-	inputMoneyPerBoughtArmy = UI.CreateNumberInputField(hotzlist[16]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerBoughtArmyinit);
+		hotzlist[11] = UI.CreateHorizontalLayoutGroup(rootParentobj);
+		UI.CreateLabel(hotzlist[11]).SetText('Starting Money');
+		inputStartMoney = UI.CreateNumberInputField(hotzlist[11]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(StartMoneyinit);
+		hotzlist[12] = UI.CreateHorizontalLayoutGroup(rootParentobj);
+		UI.CreateLabel(hotzlist[12]).SetText('Money per turn');
+		inputMoneyPerTurn = UI.CreateNumberInputField(hotzlist[12]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerTurninit);
+		hotzlist[13] = UI.CreateHorizontalLayoutGroup(rootParentobj);
+		UI.CreateLabel(hotzlist[13]).SetText('Money per killed army');
+		inputMoneyPerKilledArmy = UI.CreateNumberInputField(hotzlist[13]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerKilledArmyinit);
+		hotzlist[14] = UI.CreateHorizontalLayoutGroup(rootParentobj);
+		UI.CreateLabel(hotzlist[14]).SetText('Money per captured territory');
+		inputMoneyPerCapturedTerritory = UI.CreateNumberInputField(hotzlist[14]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerCapturedTerritoryinit);
+		hotzlist[15] = UI.CreateHorizontalLayoutGroup(rootParentobj);
+		UI.CreateLabel(hotzlist[15]).SetText('Money per captured bonus');
+		inputMoneyPerCapturedBonus = UI.CreateNumberInputField(hotzlist[15]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerCapturedBonusinit);
+		hotzlist[16] = UI.CreateHorizontalLayoutGroup(rootParentobj);
+		UI.CreateLabel(hotzlist[16]).SetText('Price per army');
+		inputMoneyPerBoughtArmy = UI.CreateNumberInputField(hotzlist[16]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerBoughtArmyinit);
+	end
 	hotzlist[17] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	UI.CreateLabel(hotzlist[17]).SetText(' ');
 	hotzlist[18] = UI.CreateHorizontalLayoutGroup(rootParentobj);
@@ -177,17 +181,6 @@ function ShowUI()
 	inputBombCardRequireAlly = UI.CreateCheckBox(hotzlist[27]).SetText('Bomb Cards require ally').SetIsChecked(BombCardRequireAllyinit);
 	hotzlist[28] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	UI.CreateLabel(hotzlist[28]).SetText(' ');
-	hotzlist[29] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(hotzlist[29]).SetText('Start War');
-	hotzlist[30] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateButton(hotzlist[30]).SetText('Add War(Currently just a placeholder)').SetOnClick(function() 
-			local slot1 = "";
-			local slot2 = "";
-			local canbepeace = true;
-			ReloadUI();
-		end);
-	hotzlist[31] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(hotzlist[31]).SetText(' ');
 	hotzlist[32] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	UI.CreateLabel(hotzlist[32]).SetText('Spy Card');
 	hotzlist[33] = UI.CreateHorizontalLayoutGroup(rootParentobj);
@@ -227,12 +220,16 @@ function Save()
 	AIsdeclearAIsinit = AIsdeclearAIsinitcheckbox.GetIsChecked();
 	SeeAllyTerritoriesinit = SeeAllyTerritoriesCheckbox.GetIsChecked();
 	PublicAlliesinit = PublicAlliesCheckbox.GetIsChecked();
-	StartMoneyinit = inputStartMoney.GetValue();
-	MoneyPerTurninit = inputMoneyPerTurn.GetValue();
-	MoneyPerKilledArmyinit = inputMoneyPerKilledArmy.GetValue();
-	MoneyPerCapturedTerritoryinit = inputMoneyPerCapturedTerritory.GetValue();
-	MoneyPerCapturedBonusinit = inputMoneyPerCapturedBonus.GetValue();
-	MoneyPerBoughtArmyinit = inputMoneyPerBoughtArmy.GetValue();
+	if(StartMoneyinit ~= 0 or MoneyPerTurninit ~= 0 or MoneyPerKilledArmyinit ~= 0 or MoneyPerCapturedTerritoryinit ~= 0 or MoneyPerCapturedBonusinit ~= 0)then
+		if(inputStartMoney.GetValue() ~= nil)then
+			StartMoneyinit = inputStartMoney.GetValue();
+			MoneyPerTurninit = inputMoneyPerTurn.GetValue();
+			MoneyPerKilledArmyinit = inputMoneyPerKilledArmy.GetValue();
+			MoneyPerCapturedTerritoryinit = inputMoneyPerCapturedTerritory.GetValue();
+			MoneyPerCapturedBonusinit = inputMoneyPerCapturedBonus.GetValue();
+			MoneyPerBoughtArmyinit = inputMoneyPerBoughtArmy.GetValue();
+		end
+	end
 	SanctionCardRequireWarinit = inputSanctionCardRequireWar.GetIsChecked();
 	SanctionCardRequirePeaceinit = inputSanctionCardRequirePeace.GetIsChecked();
 	SanctionCardRequireAllyinit = inputSanctionCardRequireAlly.GetIsChecked();
