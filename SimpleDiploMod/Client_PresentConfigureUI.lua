@@ -136,6 +136,12 @@ function ShowUI()
 			MoneyPerKilledArmyinit = 0;
 			MoneyPerCapturedTerritoryinit = 0;
 			MoneyPerCapturedBonusinit = 0;
+			inputStartMoney = nil;
+			inputMoneyPerTurn = nil;
+			inputMoneyPerKilledArmy = nil;
+			inputMoneyPerCapturedTerritory = nil;
+			inputMoneyPerCapturedBonus = nil;
+			inputMoneyPerBoughtArmy = nil;
 			ReloadUI();
 		end);
 		hotzlist[11] = UI.CreateHorizontalLayoutGroup(rootParentobj);
