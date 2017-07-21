@@ -223,7 +223,7 @@ function ReloadUI()
 	ShowUI();
 end
 function Save()
-	AllowAIDeclarationinit = AIDeclerationcheckbox.GetIsChecked();
+	AIDeclerationinit  = AIDeclerationcheckbox.GetIsChecked();
 	AIsdeclearAIsinit = AIsdeclearAIsinitcheckbox.GetIsChecked();
 	SeeAllyTerritoriesinit = SeeAllyTerritoriesCheckbox.GetIsChecked();
 	PublicAlliesinit = PublicAlliesCheckbox.GetIsChecked();
@@ -249,5 +249,5 @@ function Save()
 	GiftCardRequireWarinit = inputGiftCardRequireWar.GetIsChecked();
 	GiftCardRequirePeaceinit = inputGiftCardRequirePeace.GetIsChecked();
 	GiftCardRequireAllyinit = inputGiftCardRequireAlly.GetIsChecked();
-	AdminAccessinit = inputAdminaccess.GetIsChecked();
+	Adminaccessinit = inputAdminaccess.GetIsChecked();
 end
