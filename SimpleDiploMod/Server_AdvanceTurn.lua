@@ -26,6 +26,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	Attacksbetween = {};
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
+	error("order");
 	if(order.proxyType == "GameOrderAttackTransfer")then
 		if(result.IsAttack and game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID ~= WL.PlayerID.Neutral)then
 			if(InWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID) == true)then
