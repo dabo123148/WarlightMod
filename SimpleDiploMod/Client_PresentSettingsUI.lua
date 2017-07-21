@@ -16,7 +16,7 @@ function Client_PresentSettingsUI(rootParent)
 		CreateLine('Extra money per killed army : ', Mod.Settings.MoneyPerKilledArmy,1,false);
 		CreateLine('Extra money per captured territory : ', Mod.Settings.MoneyPerCapturedTerritory,5,false);
 		CreateLine('Extra money per captured bonus : ', Mod.Settings.MoneyPerCapturedBonus,10,false);
-		CreateLine('Price per army : ', Mod.Settings.MoneyPerBoughtArmy,1,false);
+		CreateLine('Price per army : ', Mod.Settings.MoneyPerBoughtArmy,2,false);
 	else
 		UI.CreateLabel(rootParent).SetText('The Trading System has been disabled').SetColor('#FF0000');
 	end
@@ -24,7 +24,7 @@ function Client_PresentSettingsUI(rootParent)
 	UI.CreateLabel(rootParent).SetText('Card Settings');
 	UI.CreateLabel(rootParent).SetText('Sanction Card');
 	if(AlwaysPlayable(Mod.Settings.SanctionCardRequireWar,Mod.Settings.SanctionCardRequirePeace,Mod.Settings.SanctionCardRequireAlly))then
-		UI.CreateLabel(rootParent).SetText('You can play a Sanction Card on everybody');
+		UI.CreateLabel(rootParent).SetText('You can play a Sanction Card on everybody').SetColor('#FF0000');
 	else
 		UI.CreateLabel(rootParent).SetText('Sanction Cards can be played on players you are in war with : ' .. booltostring(Mod.Settings.SanctionCardRequireWar));
 		UI.CreateLabel(rootParent).SetText('Sanction Cards can be played on players you are in peace with : ' .. booltostring(Mod.Settings.SanctionCardRequirePeace,false));
@@ -32,7 +32,7 @@ function Client_PresentSettingsUI(rootParent)
 	end
 	UI.CreateLabel(rootParent).SetText('Bomb Card');
 	if(AlwaysPlayable(Mod.Settings.BombCardRequireWar,Mod.Settings.BombCardRequirePeace,Mod.Settings.BombCardRequireAlly))then
-		UI.CreateLabel(rootParent).SetText('You can play a Bomb Card on everybody');
+		UI.CreateLabel(rootParent).SetText('You can play a Bomb Card on everybody').SetColor('#FF0000');
 	else
 		UI.CreateLabel(rootParent).SetText('Bomb Cards can be played on players you are in war with : ' .. booltostring(Mod.Settings.BombCardRequireWar));
 		UI.CreateLabel(rootParent).SetText('Bomb Cards can be played on players you are in peace with : ' .. booltostring(Mod.Settings.BombCardRequirePeace,false));
@@ -40,7 +40,7 @@ function Client_PresentSettingsUI(rootParent)
 	end
 	UI.CreateLabel(rootParent).SetText('Spy Card');
 	if(AlwaysPlayable(Mod.Settings.SpyCardRequireWar,Mod.Settings.SpyCardRequirePeace,Mod.Settings.SpyCardRequireAlly))then
-		UI.CreateLabel(rootParent).SetText('You can play a Spy Card on everybody');
+		UI.CreateLabel(rootParent).SetText('You can play a Spy Card on everybody').SetColor('#FF0000');
 	else
 		UI.CreateLabel(rootParent).SetText('Spy Cards can be played on players you are in war with : ' .. booltostring(Mod.Settings.SpyCardRequireWar));
 		UI.CreateLabel(rootParent).SetText('Spy Cards can be played on players you are in peace with : ' .. booltostring(Mod.Settings.SpyCardRequirePeace));
@@ -48,7 +48,7 @@ function Client_PresentSettingsUI(rootParent)
 	end
 	UI.CreateLabel(rootParent).SetText('Gift Card');
 	if(AlwaysPlayable(Mod.Settings.GiftCardRequireWar,Mod.Settings.GiftCardRequirePeace,Mod.Settings.GiftCardRequireAlly))then
-		UI.CreateLabel(rootParent).SetText('You can play a Gift Card on everybody');
+		UI.CreateLabel(rootParent).SetText('You can play a Gift Card on everybody').SetColor('#FF0000');
 	else
 		UI.CreateLabel(rootParent).SetText('Gift Cards can be played on players you are in war with : ' .. booltostring(Mod.Settings.GiftCardRequireWar));
 		UI.CreateLabel(rootParent).SetText('Gift Cards can be played on players you are in peace with : ' .. booltostring(Mod.Settings.GiftCardRequirePeace));
