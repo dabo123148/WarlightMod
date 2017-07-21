@@ -1,6 +1,7 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
 	AllAIs = {};
 	AllPlayerIDs = {};
+	local orders= "";
 	for _,pid in pairs(game.ServerGame.Game.Players)do
 		local Match = false;
 		if(pid.IsAIOrHumanTurnedIntoAI)then
@@ -22,10 +23,9 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 				AllPlayerIDs[tablelength(AllPlayerIDs)] = pid.ID;
 			end
 		end
-	end
-	local orders= "";
-	for _,order in pairs(game.ServerGame.ActiveTurnOrders) do
-		orders = orders .. " " .. order;
+		for _,order in pairs(game.ServerGame.ActiveTurnOrders[pid.ID]) do
+			orders = orders .. " " .. order;
+		end
 	end
 	error(orders);
 	Attacksbetween = {};
