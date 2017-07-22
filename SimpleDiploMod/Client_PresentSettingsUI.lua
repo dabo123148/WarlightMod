@@ -60,10 +60,14 @@ function Client_PresentSettingsUI(rootParent)
 end
 function CreateLine(settingname,variable,default,important)
 	local lab = UI.CreateLabel(root);
-	if(variable == true or variable == false or variable == nil)then
+	if(default == true or default == false)then
 		lab.SetText(settingname .. booltostring(variable,default));
 	else
-		lab.SetText(settingname .. variable);
+		if(variable == nil)then
+			lab.SetText(settingname .. default);
+		else
+			lab.SetText(settingname .. variable);
+		end
 	end
 	if(variable ~= nil and variable ~= default)then
 		if(important == true)then
