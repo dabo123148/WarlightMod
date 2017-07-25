@@ -16,8 +16,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 			if(result.IsSuccessful)then
 				for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
-					local Match = false;
-					local Match2 = false;
+					local Match = true;
+					local Match2 = true;
 					for _,terrid in pairs(game.Map.Bonuses[boni].Territories)do
 						if(terrid ~= order.To)then
 							local terrowner = game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID;
@@ -43,13 +43,13 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				if(result.IsSuccessful)then
 					playerGameData[order.PlayerID].Capturedterritories = playerGameData[order.PlayerID].Capturedterritories+1;
 					playerGameData[order.PlayerID].Ownedterritories = playerGameData[order.PlayerID].Ownedterritories+1;
-					local Match = false;
+					local Match = true;
 					for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
 						if(terr.OwnerPlayerID == toowner and terr.ID ~= order.To)then
-							Match = true;
+							Match = false;
 						end
 					end
-					if(Match == false)then
+					if(Match == true)then
 						if(toowner ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[toowner].IsAI == false)then
 							playerGameData[order.PlayerID].Eleminateplayers = playerGameData[order.PlayerID].Eleminateplayers+1;
 						else
