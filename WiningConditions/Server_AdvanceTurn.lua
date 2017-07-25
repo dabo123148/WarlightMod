@@ -47,7 +47,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						end
 					end
 					if(Match == false)then
-						if(game.ServerGame.Game.Players[toowner].IsAI == false)then
+						if(toowner ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[toowner].IsAI == false)then
 							playerGameData[order.PlayerID].Eleminateplayers = playerGameData[order.PlayerID].Eleminateplayers+1;
 						else
 							playerGameData[order.PlayerID].Eleminateais = playerGameData[order.PlayerID].Eleminateais+1;
