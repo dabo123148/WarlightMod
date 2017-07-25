@@ -8,9 +8,14 @@ function Client_PresentConfigureUI(rootParent)
 	
         vert1 = UI.CreateVerticalLayoutGroup(PubRoot);
 	UI.CreateLabel(vert1).SetText('Your Campaign. Enter Commands.');
-	button1 = UI.CreateButton(vert1);
+	horz=UI.CreateHorizontalLayoutGroup(vert1);
+	button1 = UI.CreateButton(horz);
 	button1.SetText('Add Line');
 	button1.SetOnClick(AddLine);
+	button2 = UI.CreateButton(horz);
+	button2.SetText('Delete Line');
+	button2.SetOnClick(AddLine);
+	numbin1 = UI.CreateNumberInputField(horz).SetValue(1).SetPreferredWidth(50).SetPreferredHeight(30);
 	lines = {};
 	fields = {};
 
@@ -18,12 +23,7 @@ end
 
 function AddLine()
 	lineCount=lineCount+1;
-	UI.Destroy(button1);
-	button1=nil;
 	lines[lineCount]=UI.CreateHorizontalLayoutGroup(PubRoot);
 	local Numberindex=UI.CreateLabel(lines[lineCount]).SetText('l'..lineCount..':');
 	fields[lineCount] = UI.CreateTextInputField(lines[lineCount]).SetPreferredWidth(500).SetPreferredHeight(30).SetPlaceholderText('Add Command');
-	button1 = UI.CreateButton(vert1);
-	button1.SetText('Add Line');
-	button1.SetOnClick(AddLine);
 end
