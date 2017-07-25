@@ -7,6 +7,7 @@ function Client_PresentConfigureUI(rootParent)
 	lineCount=0;
 	lines = {};
 	fields = {};
+	adresses = {};
 	
         vert1 = UI.CreateVerticalLayoutGroup(PubRoot);
 	UI.CreateLabel(vert1).SetText('Your Campaign. Enter Commands.');
@@ -29,7 +30,7 @@ end
 function AddLine()
 	lineCount=lineCount+1;
 	lines[lineCount]=UI.CreateHorizontalLayoutGroup(PubRoot);
-	local Numberindex=UI.CreateLabel(lines[lineCount]).SetText('l'..lineCount..':');
+	adresses[lineCount]=UI.CreateLabel(lines[lineCount]).SetText('l'..lineCount..':');
 	fields[lineCount] = UI.CreateTextInputField(lines[lineCount]).SetPreferredWidth(500).SetPreferredHeight(30).SetPlaceholderText('Add Command').SetFlexibleHeight(1);
 	local numbinValue=numbin1.GetValue();
 	print(numbinValue);
@@ -46,7 +47,7 @@ function DeleteLine()
 	for i=1,lineCount+1,1 do
 		if(i>numbinValue) then
 			lines[i-1]=lines[i];
-			fields[i-1].SetText('l'..(i-1)..':');
+			adresses[i-1].SetText('l'..(i-1)..':');
 			if(i==lineCount+1)then
 				lines[i]=nil;
 			end
