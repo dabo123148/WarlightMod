@@ -145,7 +145,7 @@ function checkwin(pid,addNewOrder,game)
 		local effect = {}
 		for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
 			effect[num] = WL.TerritoryModification.Create(terr.ID);
-			effect[num].SetOwnerTo(pid);
+			effect[num].SetOwnerOpt = pid;
 		end
 		addNewOrder(WL.GameOrderEvent.Create(pid, "Win", nil, effect));
 	end
