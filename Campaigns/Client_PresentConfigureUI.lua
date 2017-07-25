@@ -5,7 +5,7 @@ function Client_PresentConfigureUI(rootParent)
 	
 	lineCount=0;
 
-        vert1 = UI.CreateHorizontalLayoutGroup(rootParent);
+        vert1 = UI.CreateVerticalLayoutGroup(rootParent);
 	UI.CreateLabel(vert1).SetText('Your Campaign. Enter Commands.');
 	button1 = UI.CreateButton(vert1);
 	button1.SetText('Add Line');
@@ -19,6 +19,7 @@ function AddLine()
 	lineCount=lineCount+1;
 	UI.Destroy(button1);
 	lines[lineCount]=UI.CreateTextInputField(vert1);
+	lines[lineCount].CharacterLimit = 50;
 	button1 = UI.CreateButton(vert1);
 	button1.SetText('Add Line');
 	button1.SetOnClick(AddLine);
