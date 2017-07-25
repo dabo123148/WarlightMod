@@ -46,6 +46,7 @@ function DeleteLine()
 	for i=1,lineCount+1,1 do
 		if(i>numbinValue) then
 			lines[i-1]=lines[i];
+			fields[i-1].SetText('l'..i-1..':');
 			if(i==lineCount+1)then
 				lines[i]=nil;
 			end
