@@ -30,7 +30,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						playerGameData[order.PlayerID].Capturedbonuses = playerGameData[order.PlayerID].Capturedbonuses+1;
 						playerGameData[order.PlayerID].Ownedbonuses = playerGameData[order.PlayerID].Ownedbonuses+1;
 					end
-					if(Match2 == true and game.ServerGame.Game.Players[toowner].IsAI == false)then
+					if(Match2 == true and toowner ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[toowner].IsAI == false)then
 						playerGameData[order.PlayerID].Lostbonuses = playerGameData[order.PlayerID].Lostbonuses+1;
 						playerGameData[order.PlayerID].Ownedbonuses = playerGameData[order.PlayerID].Ownedbonuses-1;
 					end
@@ -59,7 +59,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				playerGameData[order.PlayerID].Killedarmies = playerGameData[order.PlayerID].Killedarmies+result.DefendingArmiesKilled.NumArmies;
 				checkwin(order.PlayerID,addNewOrder);
 			end
-			if(game.ServerGame.Game.Players[toowner].IsAI == false)then
+			if(toowner ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[toowner].IsAI == false)then
 				if(result.IsSuccessful)then
 					playerGameData[toowner].Lostterritories = playerGameData[toowner].Lostterritories+1;
 					playerGameData[toowner].Ownedterritories = playerGameData[toowner].Ownedterritories-1;
