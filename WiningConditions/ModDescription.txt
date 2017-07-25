@@ -1,0 +1,1 @@
+This Mod allows you to set more wining conditions than just eliminate all players. The condtions count for every player(not for a team). To see your progress open the settings. AIs can't win with the extra wining conditions. Comanders aren't supported. Warning! Don't use this mod on big maps(~1000+ territories)(that could make the game unlayable).
