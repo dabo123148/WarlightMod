@@ -22,6 +22,21 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			checkwin(order.PlayerID,addNewOrder,game);
 		end
 	end
+	if(order.proxyType == "GameOrderPlayCardGift")then
+		local targetterr = order.TerritoryID;
+		if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
+			playerGameData[order.PlayerID].Ownedarmies = playerGameData[order.PlayerID].Ownedarmies - game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies;
+			playerGameData[order.PlayerID].Lostarmies = playerGameData[order.PlayerID].Lostarmies+game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies;
+			playerGameData[order.PlayerID].Lostterritories = playerGameData[order.PlayerID].Lostterritories + 1;
+			playerGameData[order.PlayerID].Ownedterritories = playerGameData[order.PlayerID].Ownedterritories - 1;
+			checkwin(order.PlayerID,addNewOrder,game);
+		end
+		if(game.ServerGame.Game.Players[order.GiftTo].IsAI == false)then
+			playerGameData[order.GiftTo].Ownedarmies = playerGameData[order.GiftTo].Ownedarmies - game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies;
+			playerGameData[order.GiftTo].Ownedterritories = playerGameData[order.GiftTo].Ownedterritories + 1;
+			checkwin(order.GiftTo,addNewOrder,game);
+		end
+	end
 	if(order.proxyType == "GameOrderAttackTransfer")then
 		if(result.IsAttack)then
 			local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
