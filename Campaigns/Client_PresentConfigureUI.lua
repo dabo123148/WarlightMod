@@ -15,7 +15,11 @@ function Client_PresentConfigureUI(rootParent)
 	button2 = UI.CreateButton(horz);
 	button2.SetText('Delete Line');
 	button2.SetOnClick(AddLine);
-	numbin1 = UI.CreateNumberInputField(horz).SetValue(1).SetPreferredWidth(50).SetPreferredHeight(30);
+	numbin1 = UI.CreateNumberInputField(horz).SetValue(1).SetPreferredWidth(50).SetPreferredHeight(30).SetSliderMinValue(1).SetSliderMaxValue(1);
+	lineCount=lineCount+1;
+	lines[lineCount]=UI.CreateHorizontalLayoutGroup(PubRoot);
+	local Numberindex=UI.CreateLabel(lines[lineCount]).SetText('l'..lineCount..':');
+	fields[lineCount] = UI.CreateTextInputField(lines[lineCount]).SetPreferredWidth(500).SetPreferredHeight(30).SetPlaceholderText('Add Command');
 	lines = {};
 	fields = {};
 
@@ -26,4 +30,6 @@ function AddLine()
 	lines[lineCount]=UI.CreateHorizontalLayoutGroup(PubRoot);
 	local Numberindex=UI.CreateLabel(lines[lineCount]).SetText('l'..lineCount..':');
 	fields[lineCount] = UI.CreateTextInputField(lines[lineCount]).SetPreferredWidth(500).SetPreferredHeight(30).SetPlaceholderText('Add Command');
+	UI.Destroy(numbin1);
+	numbin1 = UI.CreateNumberInputField(horz).SetValue(1).SetPreferredWidth(50).SetPreferredHeight(30).SetSliderMinValue(1).SetSliderMaxValue(lineCount);
 end
