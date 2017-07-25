@@ -57,8 +57,8 @@ function DeleteLine()
 	
 			if(i==lineCount+1)then
 				print('Deleted i:'..i);
-				lines[i]=nil;
 				UI.Destroy(lines[i]);
+				lines[i]=nil;
 			end
 		end		
 	end
