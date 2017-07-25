@@ -20,8 +20,8 @@ function Server_StartGame(game,standing)
 	for _,terr in pairs(standing.Territories)do
 		if(terr.OwnerPlayerID ~= WL.PlayerID.Neutral)then
 			if(game.ServerGame.Game.PlayingPlayers[terr.OwnerPlayerID].IsAI == false)then
-				playerGameData[pid.ID].Ownedterritories = playerGameData[pid.ID].Ownedterritories+1;
-				playerGameData[pid.ID].Ownedarmies = playerGameData[pid.ID].Ownedarmies+terr.NumArmies.NumArmies;
+				playerGameData[terr.OwnerPlayerID].Ownedterritories = playerGameData[terr.OwnerPlayerID].Ownedterritories+1;
+				playerGameData[terr.OwnerPlayerID].Ownedarmies = playerGameData[terr.OwnerPlayerID].Ownedarmies+terr.NumArmies.NumArmies;
 			end
 		end
 	end
