@@ -22,9 +22,11 @@ function CreateLine(settingname,completed,variable,default)
 		completed = -1;
 	end
 	if(variable == nil)then
-		lab.SetText(settingname .. completed .. '/' .. default);
+		--lab.SetText(settingname .. completed .. '/' .. default);
+		lab.SetText(settingname .. default);
 	else
-		lab.SetText(settingname .. completed .. '/' .. variable);
+		--lab.SetText(settingname .. completed .. '/' .. variable);
+		lab.SetText(settingname .. variable);
 	end
 	if(variable ~= default)then
 		lab.SetColor('#FF0000');
