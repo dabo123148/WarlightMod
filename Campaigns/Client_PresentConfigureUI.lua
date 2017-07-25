@@ -34,7 +34,7 @@ function AddLine()
 	fields[lineCount] = UI.CreateTextInputField(lines[lineCount]).SetPreferredWidth(500).SetPreferredHeight(30).SetPlaceholderText('Add Command').SetFlexibleHeight(1);
 	local numbinValue=numbin1.GetValue();
 	print(numbinValue);
-	UI.Destroy(numbin1);
+	--UI.Destroy(numbin1);
 	numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue).SetPreferredWidth(50).SetPreferredHeight(30);
 end
 function DeleteLine()
@@ -48,9 +48,9 @@ function DeleteLine()
 		print('i:'..i);
 		if(i>numbinValue) then
 			print('Accepted i:'..i);
-			if (i-1>numbinValue) then
-				UI.Destroy(lines[i-1]);
-			end
+			--if (i-1>numbinValue) then
+			UI.Destroy(lines[i-1]);
+			--end
 			lines[i-1]=UI.CreateHorizontalLayoutGroup(PubRoot);
 			adresses[i-1]=UI.CreateLabel(lines[i-1]).SetText('l'..(i-1)..':');
 			fields[i-1] = UI.CreateTextInputField(lines[i-1]).SetPreferredWidth(500).SetPreferredHeight(30).SetText(fields[i].GetText()).SetFlexibleHeight(1);
@@ -58,6 +58,7 @@ function DeleteLine()
 			if(i==lineCount+1)then
 				print('Deleted i:'..i);
 				lines[i]=nil;
+				Delete(lines[i]);
 			end
 		end		
 	end
