@@ -64,8 +64,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					playerGameData[toowner].Lostterritories = playerGameData[toowner].Lostterritories+1;
 					playerGameData[toowner].Ownedterritories = playerGameData[toowner].Ownedterritories-1;
 				end
-				playerGameData[order.PlayerID].Killedarmies = playerGameData[order.PlayerID].Killedarmies+result.AttackingArmiesKilled.NumArmies;
-				playerGameData[order.PlayerID].Lostarmies = playerGameData[order.PlayerID].Lostarmies+result.DefendingArmiesKilled.NumArmies;
+				playerGameData[toowner].Killedarmies = playerGameData[toowner].Killedarmies+result.AttackingArmiesKilled.NumArmies;
+				playerGameData[toowner].Lostarmies = playerGameData[toowner].Lostarmies+result.DefendingArmiesKilled.NumArmies;
 				checkwin(toowner,addNewOrder);
 			end
 		end
