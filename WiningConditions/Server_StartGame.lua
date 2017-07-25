@@ -2,6 +2,7 @@ function Server_StartGame(game,standing)
    local playerGameData = Mod.PlayerGameData;
 	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
 		if(pid.IsAI == false)then
+			playerGameData[pid] = {};
 			playerGameData[pid].Capturedterritories = 0;
 			playerGameData[pid].Lostterritories = 0;
 			playerGameData[pid].Ownedterritories = 0;
