@@ -32,7 +32,7 @@ function AddLine()
 	local Numberindex=UI.CreateLabel(lines[lineCount]).SetText('l'..lineCount..':');
 	fields[lineCount] = UI.CreateTextInputField(lines[lineCount]).SetPreferredWidth(500).SetPreferredHeight(30).SetPlaceholderText('Add Command');
 	local numbinValue=numbin1.Value;
-	console.log(numbinValue);
+	print(numbinValue);
 	UI.Destroy(numbin1);
 	numbin1 = UI.CreateNumberInputField(horz).SetValue(numbinValue).SetPreferredWidth(50).SetPreferredHeight(30).SetSliderMinValue(1).SetSliderMaxValue(lineCount);
 end
