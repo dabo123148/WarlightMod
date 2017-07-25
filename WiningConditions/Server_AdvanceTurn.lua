@@ -1,5 +1,6 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
 	playerGameData = Mod.PlayerGameData;
+	recalculate = {};
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.PlayerID == WL.PlayerID.Neutral)then
@@ -8,6 +9,19 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == "GameOrderDeploy")then
 		if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
 			playerGameData[order.PlayerID].Ownedarmies = playerGameData[order.PlayerID].Ownedarmies+order.NumArmies;
+			checkwin(order.PlayerID,addNewOrder,game);
+		end
+	end
+	if(order.proxyType == "GameOrderPlayCardBomb")then
+		local targetterr = order.TargetTerritoryID;
+		if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
+			playerGameData[order.PlayerID].Killedarmies = playerGameData[order.PlayerID].Killedarmies+game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies/2;
+			checkwin(order.PlayerID,addNewOrder,game);
+		end
+		local player2 = game.ServerGame.LatestTurnStanding.Territories[targetterr].OwnerPlayerID;
+		if(game.ServerGame.Game.Players[player2].IsAI == false)then
+			playerGameData[player2].Lostarmies = playerGameData[player2].Lostarmies+game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies/2;
+			playerGameData[player2].Ownedarmies = playerGameData[player2].Ownedarmies - game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies/2;;
 			checkwin(order.PlayerID,addNewOrder,game);
 		end
 	end
