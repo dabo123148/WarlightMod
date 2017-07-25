@@ -5,9 +5,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.PlayerID == WL.PlayerID.Neutral)then
 		return;
 	end
-	if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
-		error(playerGameData[order.PlayerID].Ownedarmies);
-	end
 	if(order.proxyType == "GameOrderDeploy")then
 		if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
 			playerGameData[order.PlayerID].Ownedarmies = playerGameData[order.PlayerID].Ownedarmies+order.NumArmies;
@@ -109,6 +106,7 @@ function checkwin(pid,addNewOrder)
 		end
 	end
 	if(Mod.Settings.Ownedbonuses ~= 0)then
+		error(playerGameData[pid].Ownedbonuses);
 		if(playerGameData[pid].Ownedbonuses >= Mod.Settings.Ownedbonuses)then
 			completed = completed + 1;
 		end
