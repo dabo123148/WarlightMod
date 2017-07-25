@@ -47,7 +47,9 @@ function DeleteLine()
 		numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue)
 							 .SetPreferredWidth(50).SetPreferredHeight(30);
 	else
-		numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue).SetPreferredWidth(50).SetPreferredHeight(30);
+		numbinValue=numbinValue-1;
+		numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue)
+							 .SetPreferredWidth(50).SetPreferredHeight(30);
 
 	end
 		
