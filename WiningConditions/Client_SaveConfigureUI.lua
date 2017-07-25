@@ -1,6 +1,7 @@
 
 function Client_SaveConfigureUI(alert)
 	Alert = alert;
+	TakenSettings = nil;
   	Mod.Settings.Conditionsrequiredforwin = inputConditionsrequiredforwin.GetValue();
 	TakenSettings = 0;
 	InRange(Mod.Settings.Conditionsrequiredforwin);
