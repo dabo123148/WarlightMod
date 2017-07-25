@@ -20,7 +20,7 @@ function AddLine()
 	lineCount=lineCount+1;
 	UI.Destroy(button1);
 	lines[lineCount]=UI.CreateHorizontalLayoutGroup(PubRoot);
-	local Numberindex=UI.CreateLabel(lines[lineCount]).SetText('lineCount');
+	local Numberindex=UI.CreateLabel(lines[lineCount]).SetText('l'..lineCount..':');
 	fields[lineCount] = UI.CreateTextInputField(lines[lineCount]).SetPreferredWidth(500).SetPreferredHeight(30).SetPlaceholderText('Add Command');
 	button1 = UI.CreateButton(vert1);
 	button1.SetText('Add Line');
