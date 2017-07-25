@@ -34,5 +34,5 @@ function AddLine()
 	local numbinValue=numbin1.GetValue();
 	print(numbinValue);
 	UI.Destroy(numbin1);
-	numbin1 = UI.CreateNumberInputField(horz).SetValue(numbinValue).SetPreferredWidth(50).SetPreferredHeight(30).SetSliderMinValue(1).SetSliderMaxValue(lineCount);
+	numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue).SetPreferredWidth(50).SetPreferredHeight(30);
 end
