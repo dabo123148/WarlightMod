@@ -18,7 +18,7 @@ end
 function AddLine()
 	lineCount=lineCount+1;
 	UI.Destroy(button1);
-	lines[lineCount]=UI.CreateTextInputField(vert1).SetPreferredWidth(200).SetPreferredHeight(30).SetPlaceHolderText('Add Command');
+	lines[lineCount]=UI.CreateTextInputField(vert1).SetPreferredWidth(200).SetPreferredHeight(30).SetPlaceholderText('Add Command');
 	button1 = UI.CreateButton(vert1);
 	button1.SetText('Add Line');
 	button1.SetOnClick(AddLine);
