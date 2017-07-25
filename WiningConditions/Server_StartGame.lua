@@ -1,5 +1,5 @@
 function Server_StartGame(game,standing)
-   local playerGameData = Mod.PlayerGameData;
+   	local playerGameData = Mod.PlayerGameData;
 	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
 		if(pid.IsAI == false)then
 			playerGameData[pid.ID] = {};
@@ -17,5 +17,26 @@ function Server_StartGame(game,standing)
 			playerGameData[pid.ID].Eleminateaisandplayers = 0;
 		end
 	end
-   Mod.PlayerGameData = playerGameData;
+	for _,terr in pairs(standing.Territories)do
+		if(game.ServerGame.Game.PlayingPlayers[terr.OwnerPlayerID].IsAI == false)then
+			playerGameData[pid.ID].Ownedterritories = playerGameData[pid.ID].Ownedterritories+1;
+			playerGameData[pid.ID].Ownedarmies = playerGameData[pid.ID].Ownedarmies+terr.NumArmies.NumArmies;
+		end
+	end
+	for _,boni in pairs(game.Map.Bonuses)do
+		local Match = true;
+		for _,terrid in pairs(boni.Territories)do
+			if(pid == nil)then
+				pid = standing.Territories[terrid].OwnerPlayerID;
+			end
+			if(pid ~= standing.Territories[terrid].OwnerPlayerID)then
+				Match = false;
+			end
+		end
+		if(Match == true)then
+			playerGameData[pid].Ownedbonuses = playerGameData[pid].Ownedbonuses+1;
+		end
+		pid = nil;
+	end
+   	Mod.PlayerGameData = playerGameData;
 end
