@@ -34,8 +34,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						playerGameData[order.PlayerID].Ownedbonuses = playerGameData[order.PlayerID].Ownedbonuses+1;
 					end
 					if(Match2 == true and toowner ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[toowner].IsAI == false)then
-						playerGameData[order.PlayerID].Lostbonuses = playerGameData[order.PlayerID].Lostbonuses+1;
-						playerGameData[order.PlayerID].Ownedbonuses = playerGameData[order.PlayerID].Ownedbonuses-1;
+						playerGameData[toowner].Lostbonuses = playerGameData[toowner].Lostbonuses + 1;
+						playerGameData[toowner].Ownedbonuses = playerGameData[toowner].Ownedbonuses - 1;
 					end
 				end
 			end
