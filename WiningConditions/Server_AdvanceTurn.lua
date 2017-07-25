@@ -78,62 +78,62 @@ function checkwin(pid,addNewOrder)
 	local completed = 0;
 	local required = Mod.Settings.Conditionsrequiredforwin;
 	if(Mod.Settings.Capturedterritories ~= 0)then
-		if(playerGameData.Capturedterritories >= Mod.Settings.Capturedterritories)then
+		if(playerGameData[pid].Capturedterritories >= Mod.Settings.Capturedterritories)then
 			completed = completed + 1;
 		end
 	end
 	if(Mod.Settings.Lostterritories ~= 0)then
-		if(playerGameData.Lostterritories >= Mod.Settings.Lostterritories)then
+		if(playerGameData[pid].Lostterritories >= Mod.Settings.Lostterritories)then
 			completed = completed + 1;
 		end
 	end
 	if(Mod.Settings.Ownedterritories ~= 0)then
-		if(playerGameData.Ownedterritories >= Mod.Settings.Ownedterritories)then
+		if(playerGameData[pid].Ownedterritories >= Mod.Settings.Ownedterritories)then
 			completed = completed + 1;
 		end
 	end
 	if(Mod.Settings.Capturedbonuses ~= 0)then
-		if(playerGameData.Capturedbonuses >= Mod.Settings.Capturedbonuses)then
+		if(playerGameData[pid].Capturedbonuses >= Mod.Settings.Capturedbonuses)then
 			completed = completed + 1;
 		end
 	end
 	if(Mod.Settings.Lostbonuses ~= 0)then
-		if(playerGameData.Lostbonuses >= Mod.Settings.Lostbonuses)then
+		if(playerGameData[pid].Lostbonuses >= Mod.Settings.Lostbonuses)then
 			completed = completed + 1;
 		end
 	end
 	if(Mod.Settings.Ownedbonuses ~= 0)then
-		if(playerGameData.Ownedbonuses >= Mod.Settings.Ownedbonuses)then
+		if(playerGameData[pid].Ownedbonuses >= Mod.Settings.Ownedbonuses)then
 			completed = completed + 1;
 		end
 	end
 	if(Mod.Settings.Killedarmies ~= 0)then
-		if(playerGameData.Killedarmies >= Mod.Settings.Killedarmies)then
+		if(playerGameData[pid].Killedarmies >= Mod.Settings.Killedarmies)then
 			completed = completed + 1;
 		end
 	end
 	if(Mod.Settings.Lostarmies ~= 0)then
-		if(playerGameData.Lostarmies >= Mod.Settings.Lostarmies)then
+		if(playerGameData[pid].Lostarmies >= Mod.Settings.Lostarmies)then
 			completed = completed + 1;
 		end
 	end
 	if(Mod.Settings.Ownedarmies ~= 0)then
-		if(playerGameData.Ownedarmies >= Mod.Settings.Ownedarmies)then
+		if(playerGameData[pid].Ownedarmies >= Mod.Settings.Ownedarmies)then
 			completed = completed + 1;
 		end
 	end
 	if(Mod.Settings.Eleminateais ~= 0)then
-		if(playerGameData.Eleminateais >= Mod.Settings.Eleminateais)then
+		if(playerGameData[pid].Eleminateais >= Mod.Settings.Eleminateais)then
 			completed = completed + 1;
 		end
 	end
 	if(Mod.Settings.Eleminateplayers ~= 0)then
-		if(playerGameData.Eleminateplayers >= Mod.Settings.Eleminateplayers)then
+		if(playerGameData[pid].Eleminateplayers >= Mod.Settings.Eleminateplayers)then
 			completed = completed + 1;
 		end
 	end
 	if(Mod.Settings.Eleminateaisandplayers ~= 0)then
-		if(playerGameData.Eleminateaisandplayers >= Mod.Settings.Eleminateaisandplayers)then
+		if(playerGameData[pid].Eleminateaisandplayers >= Mod.Settings.Eleminateaisandplayers)then
 			completed = completed + 1;
 		end
 	end
