@@ -106,7 +106,6 @@ function checkwin(pid,addNewOrder)
 		end
 	end
 	if(Mod.Settings.Ownedbonuses ~= 0)then
-		error(playerGameData[pid].Ownedbonuses);
 		if(playerGameData[pid].Ownedbonuses >= Mod.Settings.Ownedbonuses)then
 			completed = completed + 1;
 		end
