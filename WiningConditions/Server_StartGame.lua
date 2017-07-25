@@ -18,9 +18,11 @@ function Server_StartGame(game,standing)
 		end
 	end
 	for _,terr in pairs(standing.Territories)do
-		if(game.ServerGame.Game.PlayingPlayers[terr.OwnerPlayerID].IsAI == false)then
-			playerGameData[pid.ID].Ownedterritories = playerGameData[pid.ID].Ownedterritories+1;
-			playerGameData[pid.ID].Ownedarmies = playerGameData[pid.ID].Ownedarmies+terr.NumArmies.NumArmies;
+		if(terr.OwnerPlayerID ~= WL.PlayerID.Neutral)then
+			if(game.ServerGame.Game.PlayingPlayers[terr.OwnerPlayerID].IsAI == false)then
+				playerGameData[pid.ID].Ownedterritories = playerGameData[pid.ID].Ownedterritories+1;
+				playerGameData[pid.ID].Ownedarmies = playerGameData[pid.ID].Ownedarmies+terr.NumArmies.NumArmies;
+			end
 		end
 	end
 	for _,boni in pairs(game.Map.Bonuses)do
@@ -34,7 +36,9 @@ function Server_StartGame(game,standing)
 			end
 		end
 		if(Match == true)then
-			playerGameData[pid].Ownedbonuses = playerGameData[pid].Ownedbonuses+1;
+			if(pid ~= WL.PlayerID.Neutral)then
+				playerGameData[pid].Ownedbonuses = playerGameData[pid].Ownedbonuses+1;
+			end
 		end
 		pid = nil;
 	end
