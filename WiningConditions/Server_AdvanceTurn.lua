@@ -2,7 +2,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	playerGameData = Mod.PlayerGameData;
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
-	if(order.Player == WL.PlayerID.Neutral)then
+	if(order.PlayerID == WL.PlayerID.Neutral)then
 		return;
 	end
 	if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
