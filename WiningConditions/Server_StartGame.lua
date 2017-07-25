@@ -6,7 +6,7 @@ function Server_StartGame(game,standing)
 			playerGameData[pid.ID] = {};
 			playerGameData[pid.ID].Capturedterritories = 0;
 			playerGameData[pid.ID].Lostterritories = 0;
-			playerGameData[pid.ID].Ownedterritories = 3;
+			playerGameData[pid.ID].Ownedterritories = 0;
 			playerGameData[pid.ID].Capturedbonuses = 0;
 			playerGameData[pid.ID].Lostbonuses = 0;
 			playerGameData[pid.ID].Ownedbonuses = 0;
@@ -15,7 +15,7 @@ function Server_StartGame(game,standing)
 			playerGameData[pid.ID].Ownedarmies = 0;
 			playerGameData[pid.ID].Eleminateais = 0;
 			playerGameData[pid.ID].Eleminateplayers = 0;
-			playerGameData[pid.ID].Eleminateaisandplayers = 3;
+			playerGameData[pid.ID].Eleminateaisandplayers = 0;
 			print("Test2");
 		end
 	end
