@@ -45,10 +45,13 @@ function DeleteLine()
 	UI.Destroy(numbin1);
 	numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue).SetPreferredWidth(50).SetPreferredHeight(30);
 	for i=1,lineCount+1,1 do
+		print('i:'..i);
 		if(i>numbinValue) then
+			print('Accepted i:'..i);
 			lines[i-1]=lines[i];
 			adresses[i-1].SetText('l'..(i-1)..':');
 			if(i==lineCount+1)then
+				print('Deleted i:'..i);
 				lines[i]=nil;
 			end
 		end		
