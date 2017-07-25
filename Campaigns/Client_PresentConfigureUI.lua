@@ -16,7 +16,7 @@ function Client_PresentConfigureUI(rootParent)
 end
 
 function AddLine()
-	LineCount=LineCount+1;
+	lineCount=lineCount+1;
 	UI.Destroy(button1);
 	lines[LineCount]=UI.CreateTextInputField(vert1);
 	button1 = UI.CreateButton(vert1);
