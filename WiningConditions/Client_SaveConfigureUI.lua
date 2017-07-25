@@ -31,7 +31,7 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.Eleminateaisandplayers > 39 or Mod.Settings.Eleminateplayers > 39 or Mod.Settings.Eleminateais > 39)then
 		alert("this many players can't be in a game");
 	end
-	if(TakenSettings > Mod.Settings.Conditionsrequiredforwin)then
+	if(TakenSettings < Mod.Settings.Conditionsrequiredforwin)then
 		alert("there are more conditions required to win than conditions set");
 	end
 	if(Mod.Settings.Conditionsrequiredforwin == 0)then
