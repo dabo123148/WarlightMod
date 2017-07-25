@@ -18,7 +18,7 @@ end
 function CreateLine(settingname,completed,variable,default)
 	local lab = UI.CreateLabel(root);
 	if(completed == nil)then
-		completed = 0;
+		completed = -1;
 	end
 	if(variable == nil)then
 		lab.SetText(settingname .. completed .. '/' .. default);
