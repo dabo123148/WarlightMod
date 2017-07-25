@@ -74,28 +74,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				Mod.PlayerGameData = playerGameData;
 			else
 				skipThisOrder(WL.ModOrderControl.Skip);
-				if(Mod.Settings.AllowAIDeclaration == true or Mod.Settings.AIsdeclearAIs  == true)then
-					local Match1 = false;
-					local Match2 = false;
-					for _, AI in pairs(AllAIs)do
-						if(order.PlayerID == AI)then
-							Match1 = true;
-						end
-						if(game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID == AI)then
-							Match2 = true;
-						end
-					end
-					if(Match1 == true)then
-						if(Mod.Settings.AllowAIDeclaration and Match2 == false)then
-							--AI declares on player
-							DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID,game);
-						else
-							if(Mod.Settings.AIsdeclearAIs and Match2 == true)then
-								--Ai declares on AI
-								DeclearWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID,game);
-							end
-						end
-					end
+				if(game.ServerGame.Players[order.PlayerID].IsAIOrHumanTurnedIntoAI == true)then
+					DeclearWar(order.PlayerID,toowner,game);
 				end
 			end
 		end
@@ -361,6 +341,14 @@ end
 function DeclearWar(Player1,Player2,game)
 	--Allys declear war on order.PlayerID if not allied with order.PlayerID
 	if(IsAlly(Player1,Player2)==false and InWar(Player1,Player2) == false)then
+		if(game.ServerGame.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
+			if(game.ServerGame.Players[Player2].IsAIOrHumanTurnedIntoAI == true and Mod.Settings.AllowAIDeclaration == false)then
+				return;
+			end
+			if(game.ServerGame.Players[Player2].IsAIOrHumanTurnedIntoAI == false and Mod.Settings.AIsdeclearAIs == false)then
+				return;
+			end
+		end
 		if(RemainingDeclerations == nil)then
 			RemainingDeclerations = {};
 		end
