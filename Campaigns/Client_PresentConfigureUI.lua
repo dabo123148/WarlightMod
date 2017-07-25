@@ -48,7 +48,7 @@ function DeleteLine()
 		print('i:'..i);
 		if(i>numbinValue) then
 			print('Accepted i:'..i);
-			lines[i-1]=lines[i];
+			fields[i-1].Text=('Changed '..fields[i].GetText());
 			adresses[i-1].SetText('l'..(i-1)..':');
 			if(i==lineCount+1)then
 				print('Deleted i:'..i);
