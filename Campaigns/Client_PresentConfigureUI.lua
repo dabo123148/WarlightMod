@@ -21,7 +21,7 @@ function Client_PresentConfigureUI(rootParent)
 	lineCount=lineCount+1;
 	lines[lineCount]=UI.CreateHorizontalLayoutGroup(PubRoot);
 	local Numberindex=UI.CreateLabel(lines[lineCount]).SetText('l'..lineCount..':');
-	fields[lineCount] = UI.CreateTextInputField(lines[lineCount]).SetPreferredWidth(500).SetPreferredHeight(30).SetPlaceholderText('Add Command');
+	fields[lineCount] = UI.CreateTextInputField(lines[lineCount]).SetPreferredWidth(500).SetPreferredHeight(30).SetPlaceholderText('Add Command').SetFlexibleHeight(1);
 	
 
 end
@@ -34,5 +34,5 @@ function AddLine()
 	local numbinValue=numbin1.GetValue();
 	print(numbinValue);
 	UI.Destroy(numbin1);
-	numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue).SetPreferredWidth(50).SetPreferredHeight(30);
+	numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue).SetPreferredWidth(50).SetPreferredHeight(30).SetFlexibleHaight(1);
 end
