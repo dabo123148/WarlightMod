@@ -38,7 +38,7 @@ function Server_StartGame(game,standing)
 			end
 		end
 		if(Match == true)then
-			if(pid ~= WL.PlayerID.Neutral)then
+			if(pid ~= WL.PlayerID.Neutral and game.ServerGame.Game.PlayingPlayers[pid].IsAI == false)then
 				playerGameData[pid].Ownedbonuses = playerGameData[pid].Ownedbonuses+1;
 			end
 		end
