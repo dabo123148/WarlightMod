@@ -34,12 +34,12 @@ function AddLine()
 	fields[lineCount] = UI.CreateTextInputField(lines[lineCount]).SetPreferredWidth(500).SetPreferredHeight(30).SetPlaceholderText('Add Command').SetFlexibleHeight(1);
 	local numbinValue=numbin1.GetValue();
 	print(numbinValue);
-	--UI.Destroy(numbin1);
+	UI.Destroy(numbin1);
 	numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue).SetPreferredWidth(50).SetPreferredHeight(30);
 end
 function DeleteLine()
 	lineCount=lineCount-1;
-	UI.Destroy(lines[numbin1.GetValue()]);
+	--UI.Destroy(lines[numbin1.GetValue()]);
 	local numbinValue=numbin1.GetValue();
 	print(numbinValue);
 	UI.Destroy(numbin1);
