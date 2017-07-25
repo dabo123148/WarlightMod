@@ -5,6 +5,8 @@ function Client_PresentConfigureUI(rootParent)
 	if initialValue1 == nil then initialValue1 = {}; end
 	
 	lineCount=0;
+	lines = {};
+	fields = {};
 	
         vert1 = UI.CreateVerticalLayoutGroup(PubRoot);
 	UI.CreateLabel(vert1).SetText('Your Campaign. Enter Commands.');
@@ -20,8 +22,7 @@ function Client_PresentConfigureUI(rootParent)
 	lines[lineCount]=UI.CreateHorizontalLayoutGroup(PubRoot);
 	local Numberindex=UI.CreateLabel(lines[lineCount]).SetText('l'..lineCount..':');
 	fields[lineCount] = UI.CreateTextInputField(lines[lineCount]).SetPreferredWidth(500).SetPreferredHeight(30).SetPlaceholderText('Add Command');
-	lines = {};
-	fields = {};
+	
 
 end
 
