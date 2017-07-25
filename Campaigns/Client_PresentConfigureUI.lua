@@ -1,16 +1,25 @@
 
 function Client_PresentConfigureUI(rootParent)
-	local initialValue1 = Mod.Settings.PestilenceStrength;
-	if initialValue1 == nil then initialValue1 = 1; end
-    
+	local initialValue1 = Mod.Settings.Campaign;
+	if initialValue1 == nil then initialValue1 = {}; end
+	
+	lineCount=0;
 
-    local horz1 = UI.CreateHorizontalLayoutGroup(rootParent);
-	UI.CreateLabel(horz1).SetText('Pestilence Card');
-	PestCardCheckbox=horz1.CreateCheckBox;
-	PestCardCheckbox.OnValueChanged=PestCardCheckBoxChanged;
+        vert1 = UI.CreateHorizontalLayoutGroup(rootParent);
+	UI.CreateLabel(vert1).SetText('Your Campaign. Enter Commands.');
+	button1 = UI.CreateButton(vert1);
+	button1.SetText('Add Line');
+	button1.SetOnClick(AddLine);
+	lines = {};
+	
 
 end
 
-function PestCardCheckBoxChanged()
-
+function AddLine()
+	LineCount=LineCount+1;
+	UI.Destroy(button1);
+	lines[LineCount]=UI.CreateTextInputField(vert1);
+	button1 = UI.CreateButton(vert1);
+	button1.SetText('Add Line');
+	button1.SetOnClick(AddLine);
 end
