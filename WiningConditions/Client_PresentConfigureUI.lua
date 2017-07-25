@@ -61,7 +61,7 @@ function ShowUI()
 	local conditionnumber = 14;
 	while(num <= conditionnumber)do
 		hotzlist[num] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-		num = num + 1:
+		num = num + 1;
 	end
 	UI.CreateLabel(hotzlist[0]).SetText('To disable a condition, set it to 0');
 	UI.CreateLabel(hotzlist[1]).SetText('Conditions required for win');
