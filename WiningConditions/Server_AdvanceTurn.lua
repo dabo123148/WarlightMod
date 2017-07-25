@@ -15,7 +15,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
 					local Match = false;
 					local Match2 = false;
-					for _,terrid in pairs(boni.Territories)do
+					for _,terrid in pairs(game.Map.Bonuses[boni].Territories)do
 						if(terrid ~= order.To)then
 							local terrowner = game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID;
 							if(terrowner ~= toowner)then
