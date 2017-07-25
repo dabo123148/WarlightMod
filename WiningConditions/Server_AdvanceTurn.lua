@@ -3,6 +3,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == "GameOrderDeploy")then
+		error(order.PlayerID);
 		playerGameData[order.PlayerID].Ownedarmies = playerGameData[order.PlayerID].Ownedarmies+order.NumArmies;
 		checkwin(order.PlayerID,addNewOrder);
 	end
