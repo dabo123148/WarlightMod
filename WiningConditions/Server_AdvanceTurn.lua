@@ -8,7 +8,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == "GameOrderDeploy")then
 		if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
 			playerGameData[order.PlayerID].Ownedarmies = playerGameData[order.PlayerID].Ownedarmies+order.NumArmies;
-			checkwin(order.PlayerID,addNewOrder);
+			checkwin(order.PlayerID,addNewOrder,game);
 		end
 	end
 	if(order.proxyType == "GameOrderAttackTransfer")then
@@ -60,7 +60,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				end
 				playerGameData[order.PlayerID].Lostarmies = playerGameData[order.PlayerID].Lostarmies+result.AttackingArmiesKilled.NumArmies;
 				playerGameData[order.PlayerID].Killedarmies = playerGameData[order.PlayerID].Killedarmies+result.DefendingArmiesKilled.NumArmies;
-				checkwin(order.PlayerID,addNewOrder);
+				checkwin(order.PlayerID,addNewOrder,game);
 			end
 			if(toowner ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[toowner].IsAI == false)then
 				if(result.IsSuccessful)then
@@ -69,7 +69,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				end
 				playerGameData[toowner].Killedarmies = playerGameData[toowner].Killedarmies+result.AttackingArmiesKilled.NumArmies;
 				playerGameData[toowner].Lostarmies = playerGameData[toowner].Lostarmies+result.DefendingArmiesKilled.NumArmies;
-				checkwin(toowner,addNewOrder);
+				checkwin(toowner,addNewOrder,game);
 			end
 		end
 	end
@@ -77,7 +77,7 @@ end
 function Server_AdvanceTurn_End (game,addNewOrder)
 	Mod.PlayerGameData = playerGameData;
 end
-function checkwin(pid,addNewOrder)
+function checkwin(pid,addNewOrder,game)
 	local completed = 0;
 	local required = Mod.Settings.Conditionsrequiredforwin;
 	if(Mod.Settings.Capturedterritories ~= 0)then
