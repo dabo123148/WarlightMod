@@ -19,11 +19,49 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			playerGameData[order.PlayerID].Killedarmies = playerGameData[order.PlayerID].Killedarmies+game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies;
 			playerGameData[order.PlayerID].Lostterritories = playerGameData[order.PlayerID].Lostterritories + 1;
 			playerGameData[order.PlayerID].Ownedterritories = playerGameData[order.PlayerID].Ownedterritories - 1;
+			for _,boni in pairs(game.Map.Territories[targetterr].PartOfBonuses)do
+				local Match = true;
+				for _,terrid in pairs(game.Map.Bonuses[boni].Territories)do
+					if(terrid ~= order.To)then
+						local terrowner = game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID;
+						if(terrowner ~= order.PlayerID)then
+							Match = false;
+						end
+					end
+				end
+				if(Match == true)then
+					playerGameData[order.PlayerID].Capturedbonuses = playerGameData[order.PlayerID].Lostbonuses + 1;
+					playerGameData[order.PlayerID].Ownedbonuses = playerGameData[order.PlayerID].Ownedbonuses - 1;
+				end
+			end
 			checkwin(order.PlayerID,addNewOrder,game);
 		end
 	end
 	if(order.proxyType == "GameOrderPlayCardGift")then
 		local targetterr = order.TerritoryID;
+		for _,boni in pairs(game.Map.Territories[targetterr].PartOfBonuses)do
+			local Match = true;
+			local Match2 = true;
+			for _,terrid in pairs(game.Map.Bonuses[boni].Territories)do
+				if(terrid ~= targetterr)then
+					local terrowner = game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID;
+					if(terrowner ~= toowner)then
+						Match2 = false;
+					end
+					if(terrowner ~= order.PlayerID)then
+						Match = false;
+					end
+				end
+			end
+			if(Match == true and game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
+				playerGameData[order.PlayerID].Capturedbonuses = playerGameData[order.PlayerID].Lostbonuses+1;
+				playerGameData[order.PlayerID].Ownedbonuses = playerGameData[order.PlayerID].Ownedbonuses - 1;
+			end
+			if(Match2 == true and toowner ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[toowner].IsAI == false)then
+				playerGameData[toowner].Lostbonuses = playerGameData[toowner].Capturedbonuses + 1;
+				playerGameData[toowner].Ownedbonuses = playerGameData[toowner].Ownedbonuses + 1;
+			end
+		end
 		if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
 			playerGameData[order.PlayerID].Ownedarmies = playerGameData[order.PlayerID].Ownedarmies - game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies;
 			playerGameData[order.PlayerID].Lostarmies = playerGameData[order.PlayerID].Lostarmies+game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies;
