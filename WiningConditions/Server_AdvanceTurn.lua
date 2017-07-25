@@ -141,7 +141,7 @@ function checkwin(pid,addNewOrder,game)
 		end
 	end
 	if(completed >= required)then
-		local num = 0;
+		local num = 1;
 		local effect = {}
 		for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
 			effect[num] = WL.TerritoryModification.Create(terr.ID);
