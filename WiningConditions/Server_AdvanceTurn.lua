@@ -183,10 +183,10 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	end
 	for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 		if(terr.OwnerPlayerID ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[terr.OwnerPlayerID].IsAI == false)then
-			if(playerGameData.HoldTerritories[terr.OwnerPlayerID][terr.ID] == nil)then
-				playerGameData.HoldTerritories[terr.OwnerPlayerID][terr.ID] = 0;
+			if(playerGameData[terr.OwnerPlayerID].HoldTerritories[terr.ID] == nil)then
+				playerGameData[terr.OwnerPlayerID].HoldTerritories[terr.ID] = 0;
 			end
-			playerGameData.HoldTerritories[terr.OwnerPlayerID][terr.ID] = playerGameData.HoldTerritories[terr.OwnerPlayerID][terr.ID] + 1;
+			playerGameData[terr.OwnerPlayerID].HoldTerritories[terr.ID] = playerGameData[terr.OwnerPlayerID].HoldTerritories[terr.ID] + 1;
 		end
 	end
 	Mod.PlayerGameData = playerGameData;
