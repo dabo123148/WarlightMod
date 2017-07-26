@@ -30,7 +30,12 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 					CreateLine('Hold the territory ' .. condition.Terrname ..  ' for this many turns : ',"not owned", condition.Turnnum,-1);
 				end
 			else
-				CreateLine('Hold the territory ' .. condition.Terrname ..  ' for this many turns : ',"", condition.Turnnum,-1);
+				local terrid = getterrid(game,condition.Terrname);
+				if(terrid == -1)then
+					UI.CreateLabel(rootParent).SetText("Warning the territory " .. condition.Terrname .. " doesn't exist").SetColor('#FF0000');
+				else
+					CreateLine('Hold the territory ' .. condition.Terrname ..  ' for this many turns : ',"", condition.Turnnum,-1);
+				end
 			end
 		end
 		if(hasterr == true)then
@@ -44,7 +49,7 @@ function getterrid(game,name)
 			return terr.ID;
 		end
 	end
-	return 0;
+	return -1;
 end
 function CreateLine(settingname,completed,variable,default)
 	local lab = UI.CreateLabel(root);
