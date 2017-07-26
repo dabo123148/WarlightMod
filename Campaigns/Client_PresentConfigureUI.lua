@@ -66,12 +66,14 @@ function DeleteLine()
 	if(lineCount==0)then
 		UI.Destroy(lines[1]);
 	else
+		
 		if(lineCount==numbinValue-1)then
 			UI.Destroy(lines[numbinValue]);
 			lines[numbinValue]=nil;
 			fields[numbinValue]=nil;
 			adresses[numbinValue]=nil;
 		else
+			print(numbinValue..' in, Count: '..lineCount);
 			for i=1,lineCount+1,1 do
 				print('i:'..i);
 				if(i>numbinValue) then
