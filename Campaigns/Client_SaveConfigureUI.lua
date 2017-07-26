@@ -1,6 +1,8 @@
 
 function Client_SaveConfigureUI(alert)
     
-    Mod.Settings.PestilenceStrength = numberInputField1.GetValue();
-
+    Mod.Settings.CampaignCode = {};
+    for elem in pairs(fields) do
+        Mod.Settings.CampaignCode[elem]=fields[elem].GetText();
+    end
 end
