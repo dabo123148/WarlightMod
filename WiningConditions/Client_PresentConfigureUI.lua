@@ -53,6 +53,7 @@ function Client_PresentConfigureUI(rootParent)
 	if(Eleminateaisandplayersinit == nil)then
 		Eleminateaisandplayersinit = 0;
 	end
+	terrconditioninit = Mod.Settings.terrcondition
 	if(terrconditioninit == nil)then
 		terrconditioninit = {};
 	end
