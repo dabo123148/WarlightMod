@@ -49,49 +49,51 @@ function AddLine()
 	numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue).SetPreferredWidth(50).SetPreferredHeight(30);
 end
 function DeleteLine()
-	lineCount=lineCount-1;
-	--UI.Destroy(lines[numbin1.GetValue()]);
-	local numbinValue=numbin1.GetValue();
-	print(numbinValue);
-	UI.Destroy(numbin1);
-	if(numbinValue<=lineCount)then
-		numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue)
-							 .SetPreferredWidth(50).SetPreferredHeight(30);
-	else
-		numbinValue=numbinValue-1;
-		numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue)
-							 .SetPreferredWidth(50).SetPreferredHeight(30);
-
-		numbinValue=numbinValue+1;
-	end
-	if(lineCount==0)then
-		UI.Destroy(lines[1]);
-	else
-		
-		if(lineCount==numbinValue-1)then
-			UI.Destroy(lines[numbinValue]);
-			lines[numbinValue]=nil;
-			fields[numbinValue]=nil;
-			adresses[numbinValue]=nil;
+	if(lineCount>0)then
+		lineCount=lineCount-1;
+		--UI.Destroy(lines[numbin1.GetValue()]);
+		local numbinValue=numbin1.GetValue();
+		print(numbinValue);
+		UI.Destroy(numbin1);
+		if(numbinValue<=lineCount)then
+			numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue)
+								 .SetPreferredWidth(50).SetPreferredHeight(30);
 		else
-			print(numbinValue..' in, Count: '..lineCount);
-			for i=1,lineCount+1,1 do
-				print('i:'..i);
-				if(i>numbinValue) then
-					print('Accepted i:'..i);
-					--if (i-1>numbinValue) then
-					UI.Destroy(lines[i-1]);
-					--end
-					lines[i-1]=UI.CreateHorizontalLayoutGroup(PubRoot);
-					adresses[i-1]=UI.CreateLabel(lines[i-1]).SetText('l'..(i-1)..':');
+			numbinValue=numbinValue-1;
+			numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue)
+								 .SetPreferredWidth(50).SetPreferredHeight(30);
+	
+			numbinValue=numbinValue+1;
+		end
+		if(lineCount==0)then
+			UI.Destroy(lines[1]);
+		else
+		
+			if(lineCount==numbinValue-1)then
+				UI.Destroy(lines[numbinValue]);
+				lines[numbinValue]=nil;
+				fields[numbinValue]=nil;
+				adresses[numbinValue]=nil;
+			else
+				print(numbinValue..' in, Count: '..lineCount);
+				for i=1,lineCount+1,1 do
+					print('i:'..i);
+					if(i>numbinValue) then
+						print('Accepted i:'..i);
+						--if (i-1>numbinValue) then
+						UI.Destroy(lines[i-1]);
+						--end
+						lines[i-1]=UI.CreateHorizontalLayoutGroup(PubRoot);
+						adresses[i-1]=UI.CreateLabel(lines[i-1]).SetText('l'..(i-1)..':');
 						fields[i-1] = UI.CreateTextInputField(lines[i-1]).SetPreferredWidth(500).SetPreferredHeight(30).SetText(fields[i].GetText()).SetFlexibleHeight(1);
-			
-					if(i==lineCount+1)then
-						print('Deleted i:'..i);
-						UI.Destroy(lines[i]);
-						lines[i]=nil;
-					end
-				end		
+				
+						if(i==lineCount+1)then
+							print('Deleted i:'..i);
+							UI.Destroy(lines[i]);
+							lines[i]=nil;
+						end
+					end		
+				end
 			end
 		end
 	end
