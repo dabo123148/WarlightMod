@@ -1,4 +1,7 @@
 This Mod allows you to create your own Campaigns/Story Scenarios!
+
+Click the link above and then 'ModDescription.txt' to see the full description of this Mod, including all commands!
+
 Right now, I am working on the Singleplayer version of it, implementing this for the Multiplayer will be much harder and will make your Input much more complex. So I will first keep it simple - for me and for you - and will (maybe) include the Multiplayer Features later.
 
 To create your Campaign, you have to add it into the "Code" Lines in the Mod's options. There are several commands for you to use:
