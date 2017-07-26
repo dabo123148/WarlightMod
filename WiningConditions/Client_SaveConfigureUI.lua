@@ -28,6 +28,23 @@ function Client_SaveConfigureUI(alert)
 	InRange(Mod.Settings.Eleminateplayers);
 	Mod.Settings.Eleminateaisandplayers = inputEleminateaisandplayers.GetValue();
 	InRange(Mod.Settings.Eleminateaisandplayers);
+	Mod.Settings.terrcondition = {};
+	local num = 1;
+	for _,terrcondition in pairs(inputterrcondition)do
+		if(terrcondition.Terrname ~= nil and terrcondition.Terrname.GetText() ~= "")then
+			Mod.Settings.terrcondition[num] = {};
+			Mod.Settings.terrcondition[num].Terrname = terrcondition.Terrname.GetText();
+			Mod.Settings.terrcondition[num].Turnnum = terrcondition.Terrname.GetValue();
+			if(Turnnum>10)then
+				alert("The number of turns per territory can't be higher than 10 to prevent the game from stucking");
+			end
+			if(setting<0)then
+				alert("Numbers can't be negative");
+			end
+			TakenSettings = TakenSettings + 1;
+			num = num + 1;
+		end
+	end
 	if(Mod.Settings.Eleminateaisandplayers > 39 or Mod.Settings.Eleminateplayers > 39 or Mod.Settings.Eleminateais > 39)then
 		alert("this many players can't be in a game");
 	end
