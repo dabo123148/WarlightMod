@@ -105,6 +105,7 @@ function ShowUI()
 		UI.CreateLabel(inputterrcondition[num].horz).SetText("Turns");
 		UI.CreateButton(inputterrcondition[num].horz).SetText('Remove condition').SetOnClick(function() 
 			UI.Destroy(inputterrcondition[num].horz);
+			inputterrcondition[num].Terrname = nil;
 		end);
 	end
 	horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
@@ -121,6 +122,7 @@ function newTerritoryCondition()
 	UI.CreateLabel(inputterrcondition[num].horz).SetText("Turns");
 	UI.CreateButton(inputterrcondition[num].horz).SetText('Remove condition').SetOnClick(function() 
 		UI.Destroy(inputterrcondition[num].horz);
+		inputterrcondition[num].Terrname = nil;
 	end);
 	horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	knopf = UI.CreateButton(horz).SetText('new territory condition').SetOnClick(newTerritoryCondition);
