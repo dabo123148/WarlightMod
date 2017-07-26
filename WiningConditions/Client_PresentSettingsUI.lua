@@ -15,6 +15,16 @@ function Client_PresentSettingsUI(rootParent)
 	CreateLine('Eliminated this many AIs : ',Mod.PlayerGameData.Eleminateais, Mod.Settings.Eleminateais,0);
 	CreateLine('Eliminated this many players : ',Mod.PlayerGameData.Eleminateplayers, Mod.Settings.Eleminateplayers,0);
 	CreateLine('Eliminated this many AIs and players : ',Mod.PlayerGameData.Eleminateaisandplayers, Mod.Settings.Eleminateaisandplayers,0);
+	if(Mod.Settings.terrcondition ~= nil)then
+		local hasterr = false;
+		for _,condition in pairs(Mod.Settings.terrcondition)do
+			hasterr = true;
+			UI.CreateLabel(rootParent).SetText("You need to hold the territory " .. condition.Terrname .. " for " .. condition.Numturns .. " turns").SetColor('#FF0000');
+		end
+		if(hasterr == true)then
+			UI.CreateLabel(rootParent).SetText("If you lose one of the territories, the condition restarts, when you get it again").SetColor('#FF0000');
+		end
+	end
 end
 function CreateLine(settingname,completed,variable,default)
 	local lab = UI.CreateLabel(root);
