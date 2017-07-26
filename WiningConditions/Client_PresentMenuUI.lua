@@ -35,7 +35,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 end
 function getterrid(game,name)
 	for _,terr in pairs(game.Map.Territories)do
-		if(terr.name == name)then
+		if(terr.Name == name)then
 			return terr.ID;
 		end
 	end
