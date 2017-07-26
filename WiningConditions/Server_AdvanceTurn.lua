@@ -174,7 +174,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	
 end
 function Server_AdvanceTurn_End (game,addNewOrder)
-	for _,pid in pairs(game.ServerGame.Players)do
+	for _,pid in pairs(game.ServerGame.Game.Players)do
 		if(pid.IsAI == false)then
 			if(playerGameData[pid.ID].HoldTerritories == nil)then
 				playerGameData[pid.ID].HoldTerritories = {};
@@ -182,7 +182,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		end
 	end
 	for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-		if(terr.OwnerPlayerID ~= WL.PlayerID.Neutral and game.ServerGame.Players[terr.OwnerPlayerID].IsAI == false)then
+		if(terr.OwnerPlayerID ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[terr.OwnerPlayerID].IsAI == false)then
 			if(playerGameData.HoldTerritories[terr.OwnerPlayerID][terr.ID] == nil)then
 				playerGameData.HoldTerritories[terr.OwnerPlayerID][terr.ID] = 0;
 			end
