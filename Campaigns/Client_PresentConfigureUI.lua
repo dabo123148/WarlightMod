@@ -1,8 +1,9 @@
 
 function Client_PresentConfigureUI(rootParent)
 	PubRoot=rootParent;
-	local initialValue1 = Mod.Settings.Campaign;
-	if initialValue1 == nil then initialValue1 = {}; end
+	local initialValue1 = Mod.Settings.CampaignCode;
+	
+	
 	
 	lineCount=0;
 	lines = {};
@@ -19,12 +20,21 @@ function Client_PresentConfigureUI(rootParent)
 	button2.SetText('Delete Line');
 	button2.SetOnClick(DeleteLine);
 	numbin1 = UI.CreateNumberInputField(horz).SetValue(1).SetPreferredWidth(50).SetPreferredHeight(30).SetSliderMinValue(1).SetSliderMaxValue(1);
-	lineCount=lineCount+1;
-	lines[lineCount]=UI.CreateHorizontalLayoutGroup(PubRoot);
-	local Numberindex=UI.CreateLabel(lines[lineCount]).SetText('l'..lineCount..':');
-	fields[lineCount] = UI.CreateTextInputField(lines[lineCount]).SetPreferredWidth(500).SetPreferredHeight(30).SetPlaceholderText('Add Command').SetFlexibleHeight(1);
-	
-
+	if(initialValue==nil)then
+		AddLine();
+	else
+		for i in pairs(initialValue1) do
+			lineCount=lineCount+1;
+			lines[lineCount]=UI.CreateHorizontalLayoutGroup(PubRoot);
+			adresses[lineCount]=UI.CreateLabel(lines[lineCount]).SetText('l'..lineCount..':');
+			fields[lineCount] = UI.CreateTextInputField(lines[lineCount]).SetPreferredWidth(500).SetPreferredHeight(30).SetPlaceholderText('Add Command')
+										     .SetFlexibleHeight(1).SetText(initialValue[i]);
+			local numbinValue=numbin1.GetValue();
+			print(numbinValue);
+			UI.Destroy(numbin1);
+			numbin1 = UI.CreateNumberInputField(horz).SetSliderMinValue(1).SetSliderMaxValue(lineCount).SetValue(numbinValue).SetPreferredWidth(50).SetPreferredHeight(30);
+		end
+	end
 end
 
 function AddLine()
@@ -52,24 +62,27 @@ function DeleteLine()
 							 .SetPreferredWidth(50).SetPreferredHeight(30);
 
 	end
+	if(lineCount==0)then
+		UI.Destroy(lines[1]);
+	else
+		for i=1,lineCount+1,1 do
+			print('i:'..i);
+			if(i>numbinValue) then
+				print('Accepted i:'..i);
+				--if (i-1>numbinValue) then
+				UI.Destroy(lines[i-1]);
+				--end
+				lines[i-1]=UI.CreateHorizontalLayoutGroup(PubRoot);
+				adresses[i-1]=UI.CreateLabel(lines[i-1]).SetText('l'..(i-1)..':');
+				fields[i-1] = UI.CreateTextInputField(lines[i-1]).SetPreferredWidth(500).SetPreferredHeight(30).SetText(fields[i].GetText()).SetFlexibleHeight(1);
 		
-	for i=1,lineCount+1,1 do
-		print('i:'..i);
-		if(i>numbinValue) then
-			print('Accepted i:'..i);
-			--if (i-1>numbinValue) then
-			UI.Destroy(lines[i-1]);
-			--end
-			lines[i-1]=UI.CreateHorizontalLayoutGroup(PubRoot);
-			adresses[i-1]=UI.CreateLabel(lines[i-1]).SetText('l'..(i-1)..':');
-			fields[i-1] = UI.CreateTextInputField(lines[i-1]).SetPreferredWidth(500).SetPreferredHeight(30).SetText(fields[i].GetText()).SetFlexibleHeight(1);
-	
-			if(i==lineCount+1)then
-				print('Deleted i:'..i);
-				UI.Destroy(lines[i]);
-				lines[i]=nil;
-			end
-		end		
+				if(i==lineCount+1)then
+					print('Deleted i:'..i);
+					UI.Destroy(lines[i]);
+					lines[i]=nil;
+				end
+			end		
+		end
 	end
 end
 
