@@ -22,15 +22,24 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		local hasterr = false;
 		for _,condition in pairs(Mod.Settings.terrcondition)do
 			hasterr = true;
-			CreateLine('Hold the territory ' .. condition.Terrname ..  ' for this many turns : ',Mod.PlayerGameData.HoldTerritories[getterrid(condition.Terrname)], condition.Turnnum,-1);
+			if(Mod.PlayerGameData.HoldTerritories[getterrid(game,condition.Terrname)] ~= nil)then
+				CreateLine('Hold the territory ' .. condition.Terrname ..  ' for this many turns : ',Mod.PlayerGameData.HoldTerritories[getterrid(game,condition.Terrname)], condition.Turnnum,-1);
+			else
+				CreateLine('Hold the territory ' .. condition.Terrname ..  ' for this many turns : ',"", condition.Turnnum,-1);
+			end
 		end
 		if(hasterr == true)then
 			UI.CreateLabel(rootParent).SetText("If you lose one of the territories, the condition restarts, when you get it again").SetColor('#FF0000');
 		end
 	end
 end
-function getterrid(name)
-	
+function getterrid(game,name)
+	for _,terr in pairs(game.Map.Territories)do
+		if(terr.name == name)then
+			return terr.ID;
+		end
+	end
+	return 0;
 end
 function CreateLine(settingname,completed,variable,default)
 	local lab = UI.CreateLabel(root);
@@ -38,9 +47,17 @@ function CreateLine(settingname,completed,variable,default)
 		completed = 0;
 	end
 	if(variable == nil)then
-		lab.SetText(settingname .. completed .. '/' .. default);
+		if(completed ~= "")then
+			lab.SetText(settingname .. completed .. '/' .. default);
+		else
+			lab.SetText(settingname .. default);
+		end
 	else
-		lab.SetText(settingname .. completed .. '/' .. variable);
+		if(completed ~= "")then
+			lab.SetText(settingname .. completed .. '/' .. variable);
+		else
+			lab.SetText(settingname .. variable);
+		end
 	end
 	if(variable ~= default)then
 		lab.SetColor('#FF0000');
