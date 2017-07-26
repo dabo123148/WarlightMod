@@ -34,11 +34,11 @@ function Client_SaveConfigureUI(alert)
 		if(terrcondition.Terrname ~= nil and terrcondition.Terrname.GetText() ~= "")then
 			Mod.Settings.terrcondition[num] = {};
 			Mod.Settings.terrcondition[num].Terrname = terrcondition.Terrname.GetText();
-			Mod.Settings.terrcondition[num].Turnnum = terrcondition.Terrname.GetValue();
-			if(Turnnum>10)then
+			Mod.Settings.terrcondition[num].Turnnum = terrcondition.Turnnum.GetValue();
+			if(Mod.Settings.terrcondition[num].Turnnum>10)then
 				alert("The number of turns per territory can't be higher than 10 to prevent the game from stucking");
 			end
-			if(setting<0)then
+			if(Mod.Settings.terrcondition[num].Turnnum<0)then
 				alert("Numbers can't be negative");
 			end
 			TakenSettings = TakenSettings + 1;
