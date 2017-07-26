@@ -31,7 +31,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			playerGameData[order.PlayerID].HoldTerritories = {};
 		end
 		if(playerGameData[order.PlayerID].HoldTerritories[targetterr] == nil)then
-			playerGameData[order.PlayerID].HoldTerritories[targetterr] = 0;
+			playerGameData[order.PlayerID].HoldTerritories[targetterr] = nil;
 		end
 		if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
 			playerGameData[order.PlayerID].Ownedarmies = playerGameData[order.PlayerID].Ownedarmies - game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies;
@@ -63,7 +63,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			playerGameData[order.PlayerID].HoldTerritories = {};
 		end
 		if(playerGameData[order.PlayerID].HoldTerritories[targetterr] == nil)then
-			playerGameData[order.PlayerID].HoldTerritories[targetterr] = 0;
+			playerGameData[order.PlayerID].HoldTerritories[targetterr] = nil;
 		end
 		for _,boni in pairs(game.Map.Territories[targetterr].PartOfBonuses)do
 			local Match = true;
@@ -147,6 +147,12 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						end
 						playerGameData[order.PlayerID].Eleminateaisandplayers = playerGameData[order.PlayerID].Eleminateaisandplayers+1;
 					end
+					if(playerGameData[order.PlayerID].HoldTerritories == nil)then
+						playerGameData[order.PlayerID].HoldTerritories = {};
+					end
+					if(playerGameData[order.PlayerID].HoldTerritories[order.To] == nil)then
+						playerGameData[order.PlayerID].HoldTerritories[order.To] = 0;
+					end
 				end
 				playerGameData[order.PlayerID].Ownedarmies = playerGameData[order.PlayerID].Ownedarmies - result.AttackingArmiesKilled.NumArmies;
 				playerGameData[order.PlayerID].Lostarmies = playerGameData[order.PlayerID].Lostarmies+result.AttackingArmiesKilled.NumArmies;
@@ -161,7 +167,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						playerGameData[toowner].HoldTerritories = {};
 					end
 					if(playerGameData[toowner].HoldTerritories[order.To] == nil)then
-						playerGameData[toowner].HoldTerritories[order.To] = 0;
+						playerGameData[toowner].HoldTerritories[order.To] = nil;
 					end
 				end
 				playerGameData[toowner].Ownedarmies = playerGameData[toowner].Ownedarmies - result.DefendingArmiesKilled.NumArmies;
@@ -187,6 +193,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				playerGameData[terr.OwnerPlayerID].HoldTerritories[terr.ID] = 0;
 			end
 			playerGameData[terr.OwnerPlayerID].HoldTerritories[terr.ID] = playerGameData[terr.OwnerPlayerID].HoldTerritories[terr.ID] + 1;
+			checkwin(terr.OwnerPlayerID,addNewOrder,game)
 		end
 	end
 	Mod.PlayerGameData = playerGameData;
@@ -255,7 +262,18 @@ function checkwin(pid,addNewOrder,game)
 		end
 	end
 	if(Mod.Settings.terrcondition ~= nil)then
-		
+		for _,condition in pairs(Mod.Settings.terrcondition)do
+			if(playerGameData[pid].HoldTerritories ~= nil)then
+				local terrid = getterrid(game,condition.Terrname);
+				if(terrid ~= -1)then
+					if(playerGameData[pid].HoldTerritories[terrid] ~= nil)then
+						if(playerGameData[pid].HoldTerritories[terrid] >= tonumber(condition.Turnnum))then
+							completed = completed + 1;
+						end
+					end
+				end
+			end
+		end
 	end
 	if(completed >= required)then
 		local num = 1;
@@ -267,4 +285,12 @@ function checkwin(pid,addNewOrder,game)
 		end
 		addNewOrder(WL.GameOrderEvent.Create(pid, "Win", nil, effect));
 	end
+end
+function getterrid(game,name)
+	for _,terr in pairs(game.Map.Territories)do
+		if(terr.Name == name)then
+			return terr.ID;
+		end
+	end
+	return -1;
 end
