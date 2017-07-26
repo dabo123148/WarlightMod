@@ -18,6 +18,19 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	CreateLine('Eliminated this many AIs : ',Mod.PlayerGameData.Eleminateais, Mod.Settings.Eleminateais,0);
 	CreateLine('Eliminated this many players : ',Mod.PlayerGameData.Eleminateplayers, Mod.Settings.Eleminateplayers,0);
 	CreateLine('Eliminated this many AIs and players : ',Mod.PlayerGameData.Eleminateaisandplayers, Mod.Settings.Eleminateaisandplayers,0);
+	if(Mod.Settings.terrcondition ~= nil)then
+		local hasterr = false;
+		for _,condition in pairs(Mod.Settings.terrcondition)do
+			hasterr = true;
+			CreateLine('Hold the territory ' .. condition.Terrname ..  ' for this many turns : ',Mod.PlayerGameData.HoldTerritories[getterrid(condition.Terrname)], condition.Turnnum,-1);
+		end
+		if(hasterr == true)then
+			UI.CreateLabel(rootParent).SetText("If you lose one of the territories, the condition restarts, when you get it again").SetColor('#FF0000');
+		end
+	end
+end
+function getterrid(name)
+	
 end
 function CreateLine(settingname,completed,variable,default)
 	local lab = UI.CreateLabel(root);
