@@ -22,8 +22,13 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		local hasterr = false;
 		for _,condition in pairs(Mod.Settings.terrcondition)do
 			hasterr = true;
-			if(Mod.PlayerGameData.HoldTerritories[getterrid(game,condition.Terrname)] ~= nil)then
-				CreateLine('Hold the territory ' .. condition.Terrname ..  ' for this many turns : ',Mod.PlayerGameData.HoldTerritories[getterrid(game,condition.Terrname)], condition.Turnnum,-1);
+			if(Mod.PlayerGameData.HoldTerritories ~= nil and Mod.PlayerGameData.HoldTerritories[getterrid(game,condition.Terrname)] ~= nil)then
+				local terrid = getterrid(game,condition.Terrname);
+				if(game.LatestStanding.Territories[terrid].OwnerPlayerID == game.Us.ID)then
+				 	CreateLine('Hold the territory ' .. condition.Terrname ..  ' for this many turns : ',Mod.PlayerGameData.HoldTerritories[terrid], condition.Turnnum,-1);
+				else
+					CreateLine('Hold the territory ' .. condition.Terrname ..  ' for this many turns : ',"not owned", condition.Turnnum,-1);
+				end
 			else
 				CreateLine('Hold the territory ' .. condition.Terrname ..  ' for this many turns : ',"", condition.Turnnum,-1);
 			end
