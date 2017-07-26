@@ -99,9 +99,10 @@ function ShowUI()
 		local num = tablelength(inputterrcondition)-1;
 		inputterrcondition[num].horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
 		inputterrcondition[num].Terrname = UI.CreateTextInputField(inputterrcondition[num].horz).SetPlaceholderText('Enter territory name').SetText(terrcondition.Terrname).SetPreferredWidth(200).SetPreferredHeight(30);
-		UI.CreateLabel(inputterrcondition[num].horz).SetText("Turns required");
+		UI.CreateLabel(inputterrcondition[num].horz).SetText("must be hold for");
 		inputterrcondition[num].Turnnum = UI.CreateNumberInputField(inputterrcondition[num].horz).SetSliderMinValue(0).SetSliderMaxValue(10).SetValue(terrcondition.Turnnum);
-		UI.CreateButton(horz).SetText('new territory condition').SetOnClick(function() 
+		UI.CreateLabel(inputterrcondition[num].horz).SetText("Turns");
+		UI.CreateButton(inputterrcondition[num].horz).SetText('Remove condition').SetOnClick(function() 
 			UI.Destroy(inputterrcondition[num]);
 			while(inputterrcondition[num+1] ~= nil)do
 				inputterrcondition[num] = inputterrcondition[num+1];
@@ -118,9 +119,10 @@ function newTerritoryCondition()
 	local num = tablelength(inputterrcondition)-1;
 	inputterrcondition[num].horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	inputterrcondition[num].Terrname = UI.CreateTextInputField(inputterrcondition[num].horz).SetPlaceholderText('Enter territory name').SetText("").SetPreferredWidth(200).SetPreferredHeight(30);
-	UI.CreateLabel(inputterrcondition[num].horz).SetText("Turns required");
+	UI.CreateLabel(inputterrcondition[num].horz).SetText("must be hold for");
 	inputterrcondition[num].Turnnum = UI.CreateNumberInputField(inputterrcondition[num].horz).SetSliderMinValue(0).SetSliderMaxValue(10).SetValue(0);
-	UI.CreateButton(horz).SetText('new territory condition').SetOnClick(function() 
+	UI.CreateLabel(inputterrcondition[num].horz).SetText("Turns");
+	UI.CreateButton(inputterrcondition[num].horz).SetText('Remove condition').SetOnClick(function() 
 		UI.Destroy(inputterrcondition[num]);
 		while(inputterrcondition[num+1] ~= nil)do
 			inputterrcondition[num] = inputterrcondition[num+1];
