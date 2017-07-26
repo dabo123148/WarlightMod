@@ -20,7 +20,7 @@ function Client_PresentConfigureUI(rootParent)
 	button2.SetText('Delete Line');
 	button2.SetOnClick(DeleteLine);
 	numbin1 = UI.CreateNumberInputField(horz).SetValue(1).SetPreferredWidth(50).SetPreferredHeight(30).SetSliderMinValue(1).SetSliderMaxValue(1);
-	if(initialValue==nil)then
+	if(initialValue1==nil)then
 		AddLine();
 		print('TEST');
 	else
