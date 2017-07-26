@@ -99,7 +99,7 @@ function ShowUI()
 		local num = tablelength(inputterrcondition)-1;
 		inputterrcondition[num].horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
 		inputterrcondition[num].Terrname = UI.CreateTextInputField(inputterrcondition[num].horz).SetPlaceholderText('Enter territory name').SetText(terrcondition.Terrname).SetPreferredWidth(200).SetPreferredHeight(30);
-		inputterrcondition[num].Turnnum = UI.CreateNumberInputField(num].horz).SetSliderMinValue(0).SetSliderMaxValue(10).SetPlaceholderText('Hold duration').SetValue(terrcondition.Turnnum);
+		inputterrcondition[num].Turnnum = UI.CreateNumberInputField(inputterrcondition[num].horz).SetSliderMinValue(0).SetSliderMaxValue(10).SetPlaceholderText('Hold duration').SetValue(terrcondition.Turnnum);
 		UI.CreateButton(horz).SetText('new territory condition').SetOnClick(function() 
 			UI.Destroy(inputterrcondition[num]);
 			while(inputterrcondition[num+1] ~= nil)do
@@ -116,8 +116,8 @@ function newTerritoryCondition()
 	inputterrcondition[tablelength(inputterrcondition)] = {};
 	local num = tablelength(inputterrcondition)-1;
 	inputterrcondition[num].horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	inputterrcondition[num].Terrname = UI.CreateTextInputField(inputterrcondition[num].horz).SetPlaceholderText('Enter territory name').SetText(terrcondition.Terrname).SetPreferredWidth(200).SetPreferredHeight(30);
-	inputterrcondition[num].Turnnum = UI.CreateNumberInputField(num].horz).SetSliderMinValue(0).SetSliderMaxValue(10).SetPlaceholderText('Hold duration').SetValue(terrcondition.Turnnum);
+	inputterrcondition[num].Terrname = UI.CreateTextInputField(inputterrcondition[num].horz).SetPlaceholderText('Enter territory name').SetText("").SetPreferredWidth(200).SetPreferredHeight(30);
+	inputterrcondition[num].Turnnum = UI.CreateNumberInputField(inputterrcondition[num].horz).SetSliderMinValue(0).SetSliderMaxValue(10).SetPlaceholderText('Hold duration').SetValue(0);
 	UI.CreateButton(horz).SetText('new territory condition').SetOnClick(function() 
 		UI.Destroy(inputterrcondition[num]);
 		while(inputterrcondition[num+1] ~= nil)do
