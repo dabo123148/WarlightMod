@@ -19,7 +19,7 @@ function Client_PresentSettingsUI(rootParent)
 		local hasterr = false;
 		for _,condition in pairs(Mod.Settings.terrcondition)do
 			hasterr = true;
-			UI.CreateLabel(rootParent).SetText("You need to hold the territory " .. condition.Terrname .. " for " .. condition.Numturns .. " turns").SetColor('#FF0000');
+			UI.CreateLabel(rootParent).SetText("You need to hold the territory " .. condition.Terrname .. " for " .. condition.Turnnum .. " turns").SetColor('#FF0000');
 		end
 		if(hasterr == true)then
 			UI.CreateLabel(rootParent).SetText("If you lose one of the territories, the condition restarts, when you get it again").SetColor('#FF0000');
