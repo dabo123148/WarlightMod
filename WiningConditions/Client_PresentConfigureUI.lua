@@ -104,15 +104,10 @@ function ShowUI()
 		UI.CreateLabel(inputterrcondition[num].horz).SetText("Turns");
 		UI.CreateButton(inputterrcondition[num].horz).SetText('Remove condition').SetOnClick(function() 
 			UI.Destroy(inputterrcondition[num].horz);
-			while(inputterrcondition[num+1] ~= nil)do
-				inputterrcondition[num] = inputterrcondition[num+1];
-				num = num +1;
-			end
-			inputterrcondition[num] = nil;
 		end);
 	end
-	--horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	--knopf = UI.CreateButton(horz).SetText('new territory condition').SetOnClick(newTerritoryCondition);
+	horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
+	knopf = UI.CreateButton(horz).SetText('new territory condition').SetOnClick(newTerritoryCondition);
 end
 function newTerritoryCondition()
 	UI.Destroy(horz);
@@ -125,11 +120,6 @@ function newTerritoryCondition()
 	UI.CreateLabel(inputterrcondition[num].horz).SetText("Turns");
 	UI.CreateButton(inputterrcondition[num].horz).SetText('Remove condition').SetOnClick(function() 
 		UI.Destroy(inputterrcondition[num].horz);
-		while(inputterrcondition[num+1] ~= nil)do
-			inputterrcondition[num] = inputterrcondition[num+1];
-			num = num +1;
-		end
-		inputterrcondition[num] = nil;
 	end);
 	horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	knopf = UI.CreateButton(horz).SetText('new territory condition').SetOnClick(newTerritoryCondition);
