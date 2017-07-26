@@ -103,11 +103,12 @@ function ShowUI()
 		inputterrcondition[num].Turnnum = UI.CreateNumberInputField(inputterrcondition[num].horz).SetSliderMinValue(0).SetSliderMaxValue(10).SetValue(terrcondition.Turnnum);
 		UI.CreateLabel(inputterrcondition[num].horz).SetText("Turns");
 		UI.CreateButton(inputterrcondition[num].horz).SetText('Remove condition').SetOnClick(function() 
-			UI.Destroy(inputterrcondition[num]);
+			local Destroyhorz = inputterrcondition[num];
 			while(inputterrcondition[num+1] ~= nil)do
 				inputterrcondition[num] = inputterrcondition[num+1];
 				num = num +1;
 			end
+			UI.Destroy(Destroyhorz);
 		end);
 	end
 	horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
@@ -123,11 +124,12 @@ function newTerritoryCondition()
 	inputterrcondition[num].Turnnum = UI.CreateNumberInputField(inputterrcondition[num].horz).SetSliderMinValue(0).SetSliderMaxValue(10).SetValue(0);
 	UI.CreateLabel(inputterrcondition[num].horz).SetText("Turns");
 	UI.CreateButton(inputterrcondition[num].horz).SetText('Remove condition').SetOnClick(function() 
-		UI.Destroy(inputterrcondition[num]);
+		local Destroyhorz = inputterrcondition[num];
 		while(inputterrcondition[num+1] ~= nil)do
 			inputterrcondition[num] = inputterrcondition[num+1];
 			num = num +1;
 		end
+		UI.Destroy(Destroyhorz);
 	end);
 	horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	knopf = UI.CreateButton(horz).SetText('new territory condition').SetOnClick(newTerritoryCondition);
