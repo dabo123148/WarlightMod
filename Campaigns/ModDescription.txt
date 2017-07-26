@@ -14,3 +14,9 @@ Example 2: message 'Stuff' go to l3,1,5 will first execute line 3, then line 1, 
 2.1.) [player] owns [territory] - When the player owns the territory (time recommended, e.g. when Player owns Prag  at Turn End)
 2.2.) [player] owns [territories] - Same as 2.1.), but in [territories] multiple territories can be listed (seperated by commas). The player must own all of them to continue. any,any,any,Prag will execute the command when the player owns Prag and 3 other territories.
 3.) [player] attacks [territory] ['from'+territory (optional)]. When the player attacks the territory.
+
+
+In later updates, I am going to add:
+- more commands!
+- easy-to-create Quest System!
+- and more...
