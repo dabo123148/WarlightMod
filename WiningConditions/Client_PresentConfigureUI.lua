@@ -108,6 +108,7 @@ function ShowUI()
 				inputterrcondition[num] = inputterrcondition[num+1];
 				num = num +1;
 			end
+			inputterrcondition[num] = nil;
 		end);
 	end
 	horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
@@ -128,6 +129,7 @@ function newTerritoryCondition()
 			inputterrcondition[num] = inputterrcondition[num+1];
 			num = num +1;
 		end
+		inputterrcondition[num] = nil;
 	end);
 	horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	knopf = UI.CreateButton(horz).SetText('new territory condition').SetOnClick(newTerritoryCondition);
