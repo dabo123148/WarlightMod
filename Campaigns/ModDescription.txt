@@ -1,1 +1,16 @@
-The Army Count on every own Territory will be reduced by the Pestilence Strength after every turn. If there are no armies left, the territory will go neutral. Territories with a commander on it won't go neutral.
+This Mod allows you to create your own Campaigns/Story Scenarios!
+Right now, I am working on the Singleplayer version of it, implementing this for the Multiplayer will be much harder and will make your Input much more complex. So I will first keep it simple - for me and for you - and will (maybe) include the Multiplayer Features later.
+
+To create your Campaign, you have to add it into the "Code" Lines in the Mod's options. There are several commands for you to use:
+- message [text]; one of the most important commands for creating your story. Will open a text window for the user.
+Example: message 'Welcome to this world!' will open a window with the text Welcome to this world. You need to put the text in '...'
+
+- go to ['l'+number]; THE most important command of all. Include at the end of a line to show which line will be executed next. You can enter multiple lines, split by commas, to execute multiple lines in an specific order.
+Example: message 'Stuff' go to l3 will open a window with the text Stuff and then execute line 3.
+Example 2: message 'Stuff' go to l3,1,5 will first execute line 3, then line 1, and then line 5.
+
+- when [action] ['at'+time (optional)] do [command]. Will execute the [command] when the [action] happens. The time describes when the Mod should check if the [action] is happening. Possible actions:
+1.) [player] takes [territory] - [player] can be Player or Enemy, [territory] ist the Territory's name (or 'any' if no specific territory is adressed). When the player successfully attacks the territory.
+2.1.) [player] owns [territory] - When the player owns the territory (time recommended, e.g. when Player owns Prag  at Turn End)
+2.2.) [player] owns [territories] - Same as 2.1.), but in [territories] multiple territories can be listed (seperated by commas). The player must own all of them to continue. any,any,any,Prag will execute the command when the player owns Prag and 3 other territories.
+3.) [player] attacks [territory] ['from'+territory (optional)]. When the player attacks the territory.
