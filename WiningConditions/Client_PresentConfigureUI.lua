@@ -53,6 +53,9 @@ function Client_PresentConfigureUI(rootParent)
 	if(Eleminateaisandplayersinit == nil)then
 		Eleminateaisandplayersinit = 0;
 	end
+	if(terrconditioninit == nil)then
+		terrconditioninit = {};
+	end
 	ShowUI();
 end
 function ShowUI()
@@ -90,4 +93,45 @@ function ShowUI()
 	inputEleminateplayers = UI.CreateNumberInputField(hotzlist[12]).SetSliderMinValue(0).SetSliderMaxValue(39).SetValue(Eleminateplayersinit);
 	UI.CreateLabel(hotzlist[13]).SetText('Eliminated this many AIs and players');
 	inputEleminateaisandplayers = UI.CreateNumberInputField(hotzlist[13]).SetSliderMinValue(0).SetSliderMaxValue(39).SetValue(Eleminateaisandplayersinit);
+	inputterrcondition = {};
+	for _,terrcondition in pairs(terrconditioninit)do
+		inputterrcondition[tablelength(inputterrcondition)] = {};
+		local num = tablelength(inputterrcondition)-1;
+		inputterrcondition[num].horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
+		inputterrcondition[num].Terrname = UI.CreateTextInputField(inputterrcondition[num].horz).SetPlaceholderText('Enter territory name').SetText(terrcondition.Terrname).SetPreferredWidth(200).SetPreferredHeight(30);
+		inputterrcondition[num].Turnnum = UI.CreateNumberInputField(num].horz).SetSliderMinValue(0).SetSliderMaxValue(10).SetPlaceholderText('Hold duration').SetValue(terrcondition.Turnnum);
+		UI.CreateButton(horz).SetText('new territory condition').SetOnClick(function() 
+			UI.Destroy(inputterrcondition[num]);
+			while(inputterrcondition[num+1] ~= nil)do
+				inputterrcondition[num] = inputterrcondition[num+1];
+				num = num +1;
+			end
+		end);
+	end
+	horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
+	knopf = UI.CreateButton(horz).SetText('new territory condition').SetOnClick(newTerritoryCondition);
+end
+function newTerritoryCondition()
+	UI.Destroy(horz);
+	inputterrcondition[tablelength(inputterrcondition)] = {};
+	local num = tablelength(inputterrcondition)-1;
+	inputterrcondition[num].horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
+	inputterrcondition[num].Terrname = UI.CreateTextInputField(inputterrcondition[num].horz).SetPlaceholderText('Enter territory name').SetText(terrcondition.Terrname).SetPreferredWidth(200).SetPreferredHeight(30);
+	inputterrcondition[num].Turnnum = UI.CreateNumberInputField(num].horz).SetSliderMinValue(0).SetSliderMaxValue(10).SetPlaceholderText('Hold duration').SetValue(terrcondition.Turnnum);
+	UI.CreateButton(horz).SetText('new territory condition').SetOnClick(function() 
+		UI.Destroy(inputterrcondition[num]);
+		while(inputterrcondition[num+1] ~= nil)do
+			inputterrcondition[num] = inputterrcondition[num+1];
+			num = num +1;
+		end
+	end);
+	horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
+	knopf = UI.CreateButton(horz).SetText('new territory condition').SetOnClick(newTerritoryCondition);
+end
+function tablelength(arr)
+	local num = 0;
+	for _,elem in pairs(arr)do
+		num = num + 1;
+	end
+	return num;
 end
