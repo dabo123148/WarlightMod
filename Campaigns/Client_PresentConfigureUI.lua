@@ -22,6 +22,7 @@ function Client_PresentConfigureUI(rootParent)
 	numbin1 = UI.CreateNumberInputField(horz).SetValue(1).SetPreferredWidth(50).SetPreferredHeight(30).SetSliderMinValue(1).SetSliderMaxValue(1);
 	if(initialValue==nil)then
 		AddLine();
+		print('TEST');
 	else
 		for i in pairs(initialValue1) do
 			lineCount=lineCount+1;
