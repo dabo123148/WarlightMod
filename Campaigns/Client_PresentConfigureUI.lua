@@ -66,23 +66,30 @@ function DeleteLine()
 	if(lineCount==0)then
 		UI.Destroy(lines[1]);
 	else
-		for i=1,lineCount+1,1 do
-			print('i:'..i);
-			if(i>numbinValue) then
-				print('Accepted i:'..i);
-				--if (i-1>numbinValue) then
-				UI.Destroy(lines[i-1]);
-				--end
-				lines[i-1]=UI.CreateHorizontalLayoutGroup(PubRoot);
-				adresses[i-1]=UI.CreateLabel(lines[i-1]).SetText('l'..(i-1)..':');
-				fields[i-1] = UI.CreateTextInputField(lines[i-1]).SetPreferredWidth(500).SetPreferredHeight(30).SetText(fields[i].GetText()).SetFlexibleHeight(1);
-		
-				if(i==lineCount+1)then
-					print('Deleted i:'..i);
-					UI.Destroy(lines[i]);
-					lines[i]=nil;
-				end
-			end		
+		if(lineCount==numbinValue-1)then
+			UI.Destroy(lines[numbinValue]);
+			lines[numbinValue]=nil;
+			fields[numbinValue]=nil;
+			adresses[numbinValue]=nil;
+		else
+			for i=1,lineCount+1,1 do
+				print('i:'..i);
+				if(i>numbinValue) then
+					print('Accepted i:'..i);
+					--if (i-1>numbinValue) then
+					UI.Destroy(lines[i-1]);
+					--end
+					lines[i-1]=UI.CreateHorizontalLayoutGroup(PubRoot);
+					adresses[i-1]=UI.CreateLabel(lines[i-1]).SetText('l'..(i-1)..':');
+						fields[i-1] = UI.CreateTextInputField(lines[i-1]).SetPreferredWidth(500).SetPreferredHeight(30).SetText(fields[i].GetText()).SetFlexibleHeight(1);
+			
+					if(i==lineCount+1)then
+						print('Deleted i:'..i);
+						UI.Destroy(lines[i]);
+						lines[i]=nil;
+					end
+				end		
+			end
 		end
 	end
 end
