@@ -29,7 +29,7 @@ function Client_PresentConfigureUI(rootParent)
 			lines[lineCount]=UI.CreateHorizontalLayoutGroup(PubRoot);
 			adresses[lineCount]=UI.CreateLabel(lines[lineCount]).SetText('l'..lineCount..':');
 			fields[lineCount] = UI.CreateTextInputField(lines[lineCount]).SetPreferredWidth(500).SetPreferredHeight(30).SetPlaceholderText('Add Command')
-										     .SetFlexibleHeight(1).SetText(initialValue[i]);
+										     .SetFlexibleHeight(1).SetText(initialValue1[i]);
 			local numbinValue=numbin1.GetValue();
 			print(numbinValue);
 			UI.Destroy(numbin1);
