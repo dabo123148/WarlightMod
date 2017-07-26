@@ -67,7 +67,7 @@ function ShowUI()
 		hotzlist[num] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 		num = num + 1;
 	end
-	UI.CreateLabel(hotzlist[0]).SetText('To disable a condition, set it to 0');
+	UI.CreateLabel(hotzlist[0]).SetText('To disable a condition, set it to 0(except territory conditions, they are disabled through the remove button)');
 	UI.CreateLabel(hotzlist[1]).SetText('Conditions required for win');
 	inputConditionsrequiredforwin = UI.CreateNumberInputField(hotzlist[1]).SetSliderMinValue(1).SetSliderMaxValue(11).SetValue(Conditionsrequiredforwinit);
 	UI.CreateLabel(hotzlist[2]).SetText('Captured this many territories');
