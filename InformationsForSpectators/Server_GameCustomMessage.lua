@@ -29,7 +29,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				end
 			end
 			if(works and pid ~= WL.PlayerID.Neutral)then
-				rg[terr.OwnerPlayerID].Numberofbonuses = rg[terr.OwnerPlayerID].Numberofbonuses + 1;
+				rg[pid].Numberofbonuses = rg[pid].Numberofbonuses + 1;
 			end
 		end
 		setReturnTable(rg);
