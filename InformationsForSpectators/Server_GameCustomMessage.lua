@@ -10,7 +10,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		end
 		rg[WL.PlayerID.Neutral] = {};
 		rg[WL.PlayerID.Neutral].Numberofterritories = 0;
-		rg[WL.PlayerID.NeutralID].NumberofArmies = 0;
+		rg[WL.PlayerID.Neutral].NumberofArmies = 0;
 		for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 			rg[terr.OwnerPlayerID].Numberofterritories = rg[terr.OwnerPlayerID].Numberofterritories + 1;
 			rg[terr.OwnerPlayerID].NumberofArmies = rg[terr.OwnerPlayerID].NumberofArmies + terr.NumArmies.NumArmies;
