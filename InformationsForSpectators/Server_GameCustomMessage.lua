@@ -15,7 +15,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			rg[terr.OwnerPlayerID].Numberofterritories = rg[terr.OwnerPlayerID].Numberofterritories + 1;
 			rg[terr.OwnerPlayerID].NumberofArmies = rg[terr.OwnerPlayerID].NumberofArmies + terr.NumArmies.NumArmies;
 		end
-		for _boni in pairs(game.Map.Bonuses)do
+		for _,boni in pairs(game.Map.Bonuses)do
 			local works = true;
 			local pid = WL.PlayerID.Neutral;
 			for _,terrid in pairs(boni.Territories)do
