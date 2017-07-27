@@ -5,10 +5,13 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(vert).SetText("Just spectators can view the data");
 		return;
 	end
+	if(Mod.PublicGameData.Daten == nil)then
+		vert = UI.CreateVerticalLayoutGroup(rootParent);
+		UI.CreateLabel(vert).SetText("During distribution is no data avalible");
+		return;
+	end
 	setMaxSize(400,400);
-	local payload = {};
-	payload.Message = "Request Data";
-	game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
+	returnvalue = Mod.PublicGameData.Daten;
 			AddLine("Neutral");
 			AddLine("Owned Territories : " .. returnvalue[WL.PlayerID.Neutral].Numberofterritories);
 			AddLine("Owned Armies : " .. returnvalue[WL.PlayerID.Neutral].NumberofArmies);
