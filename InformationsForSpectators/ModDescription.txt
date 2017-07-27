@@ -1,4 +1,4 @@
-This Mod gives the following data to every players(or just spectators(depends on the settings)):
+This Mod gives the following data to every player(or just spectators(depends on the settings)):
 -Owned Territory Number
 -Owned Bonus Number
 -Income
