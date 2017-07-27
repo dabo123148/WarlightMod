@@ -3,7 +3,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	if (game.Us ~= nil and Mod.Settings.JustSpectator) then
 		vert = UI.CreateVerticalLayoutGroup(rootParent);
 		UI.CreateLabel(vert).SetText("Just spectators can view the data");
-		--return;
+		return;
 	end
 	setMaxSize(400,400);
 	local payload = {};
