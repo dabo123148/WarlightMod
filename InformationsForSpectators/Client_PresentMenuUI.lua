@@ -7,7 +7,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	end
 	local payload = {};
 	payload.Message = "Request Data";
-	Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
+	game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
 			AddLine("Neutral");
 			AddLine("Owned Territories : " .. returnvalue[WL.PlayerID.Neutral].Numberofterritories);
 			AddLine("Owned Armies : " .. returnvalue[WL.PlayerID.Neutral].NumberofArmies);
