@@ -21,7 +21,9 @@ function Server_AdvanceTurn_End(game, addNewOrder)
 				local terrowner = game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID;
 				if(terrowner ~= WL.PlayerID.Neutral)then
 					if(pid ~= WL.PlayerID.Neutral)then
-						works = false;
+						if(pid ~= terrowner)then
+							works = false;
+						end
 					else
 						pid = terrowner;
 					end
