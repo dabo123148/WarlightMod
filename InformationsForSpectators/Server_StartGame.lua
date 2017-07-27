@@ -1,4 +1,4 @@
-function Server_StartGame(game,standing)
+function Server_StartGame(game, standing)
  local rg = {};
 		for _,pid in pairs(game.ServerGame.Game.Players)do
 			rg[pid.ID] = {};
