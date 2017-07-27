@@ -17,7 +17,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		end
 		for _boni in pairs(game.Map.Bonuses)do
 			local works = true;
-			local pid = WL.playerID.Neutral;
+			local pid = WL.PlayerID.Neutral;
 			for _,terrid in pairs(boni.Territories)do
 				local terrowner = game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID;
 				if(terrowner ~= WL.PlayerID.Neutral)then
