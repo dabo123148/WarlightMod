@@ -1,6 +1,6 @@
 function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	root = rootParent;
-	if (game.Us ~= nil amd Mod.Settings.JustSpectator) then
+	if (game.Us ~= nil and Mod.Settings.JustSpectator) then
 		vert = UI.CreateVerticalLayoutGroup(rootParent);
 		UI.CreateLabel(vert).SetText("Just spectators can view the data");
 		--return;
