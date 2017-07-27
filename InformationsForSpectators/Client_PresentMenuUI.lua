@@ -26,7 +26,6 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 					AddLine("");
 				end
 			end
-		end);
 end
 function ShowData(data)
 	AddLine("Owned Territories : " .. data.Numberofterritories);
