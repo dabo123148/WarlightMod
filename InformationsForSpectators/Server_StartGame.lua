@@ -10,7 +10,7 @@ function Server_StartGame(game, standing)
 		rg[WL.PlayerID.Neutral] = {};
 		rg[WL.PlayerID.Neutral].Numberofterritories = 0;
 		rg[WL.PlayerID.Neutral].NumberofArmies = 0;
-		for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
+		for _,terr in pairs(standing.Territories)do
 			rg[terr.OwnerPlayerID].Numberofterritories = rg[terr.OwnerPlayerID].Numberofterritories + 1;
 			rg[terr.OwnerPlayerID].NumberofArmies = rg[terr.OwnerPlayerID].NumberofArmies + terr.NumArmies.NumArmies;
 		end
@@ -18,7 +18,7 @@ function Server_StartGame(game, standing)
 			local works = true;
 			local pid = WL.PlayerID.Neutral;
 			for _,terrid in pairs(boni.Territories)do
-				local terrowner = game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID;
+				local terrowner = standing.Territories[terrid].OwnerPlayerID;
 				if(terrowner ~= WL.PlayerID.Neutral)then
 					if(pid ~= WL.PlayerID.Neutral)then
 						works = false;
