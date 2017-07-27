@@ -5,14 +5,17 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(vert).SetText("Just spectators can view the data");
 		--return;
 	end
+	setMaxSize(400,400);
 	local payload = {};
 	payload.Message = "Request Data";
 	game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
 			AddLine("Neutral");
 			AddLine("Owned Territories : " .. returnvalue[WL.PlayerID.Neutral].Numberofterritories);
 			AddLine("Owned Armies : " .. returnvalue[WL.PlayerID.Neutral].NumberofArmies);
+			AddLine("");
 			for _,pid in pairs(game.Game.Players)do
 				if(game.Game.PlayingPlayers[pid.ID] ~= nil)then
+					AddLine(pid.DisplayName(nil, false));
 					ShowData(returnvalue[pid.ID]);
 				else
 					AddLine(pid.DisplayName(nil, false));
@@ -27,6 +30,7 @@ function ShowData(data)
 	AddLine("Owned Bonuses : " .. data.Numberofbonuses);
 	AddLine("Owned Armies : " .. data.NumberofArmies);
 	AddLine("Income : " .. data.Income);
+	AddLine("");
 end
 function AddLine(content)
 	local horz = UI.CreateHorizontalLayoutGroup(root);
