@@ -6,7 +6,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			rg[pid.ID].Numberofbonuses = 0;
 			rg[pid.ID].Numberofterritories = 0;
 			rg[pid.ID].NumberofArmies = 0;
-			rg[pid.ID].Income = pid.Income(0, game.ServerGame.LatestTurnStanding, false, false);
+			rg[pid.ID].Income = pid.Income(0, game.ServerGame.LatestTurnStanding, false, false).Total;
 		end
 		rg[WL.PlayerID.Neutral] = {};
 		rg[WL.PlayerID.Neutral].Numberofterritories = 0;
