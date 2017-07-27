@@ -27,7 +27,9 @@ function Server_AdvanceTurn_End(game, addNewOrder)
 					end
 				end
 			end
+		print(pid);
 			if(works and pid ~= WL.PlayerID.Neutral)then
+			print("Test1");
 				rg[pid].Numberofbonuses = rg[pid].Numberofbonuses + 1;
 			end
 		end
