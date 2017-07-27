@@ -29,7 +29,7 @@ function ShowData(data)
 	AddLine("Owned Territories : " .. data.Numberofterritories);
 	AddLine("Owned Bonuses : " .. data.Numberofbonuses);
 	AddLine("Owned Armies : " .. data.NumberofArmies);
-	AddLine("Income : " .. data.Income);
+	AddLine("Income : " .. data.Income.Total);
 	AddLine("");
 end
 function AddLine(content)
