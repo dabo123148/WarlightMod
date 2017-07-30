@@ -346,16 +346,6 @@ function DeclearWar(Player1,Player2,game)
 	--Allys declear war on order.PlayerID if not allied with order.PlayerID
 	if(IsAlly(Player1,Player2)==false and InWar(Player1,Player2) == false)then
 		if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
-			if(game.ServerGame.Game.Players[Player2] == nil)then
-				error(tostring(Player2));
-				error("Fehler1");
-			end
-			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == nil)then
-				error("Fehler2");
-			end
-			if(Mod.Settings.AllowAIDeclaration == nil)then
-				error("Fehler3");
-			end
 			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true and Mod.Settings.AllowAIDeclaration == false)then
 				return;
 			end
