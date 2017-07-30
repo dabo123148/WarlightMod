@@ -73,6 +73,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				end
 				Mod.PlayerGameData = playerGameData;
 			else
+				local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 				skipThisOrder(WL.ModOrderControl.Skip);
 				if(game.ServerGame.Game.Players[order.PlayerID].IsAIOrHumanTurnedIntoAI == true)then
 					DeclearWar(order.PlayerID,toowner,game);
@@ -293,6 +294,9 @@ function RemoveAlly(Player1,Player2)
 	
 end
 function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,requireallysetting)
+	if(Player2 == WL.PlayerID.Neutral)then
+		return true;
+	end
 	if(requirepeacesetting == nil and requireallysetting == nil)then
 		if(InWar(Player1,Player2)==false and requirewarsetting ~= nil and requirewarsetting == true)then
 			--Declare war
