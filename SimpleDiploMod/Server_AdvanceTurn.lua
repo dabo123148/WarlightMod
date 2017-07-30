@@ -74,7 +74,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				Mod.PlayerGameData = playerGameData;
 			else
 				skipThisOrder(WL.ModOrderControl.Skip);
-				if(game.ServerGame.Players[order.PlayerID].IsAIOrHumanTurnedIntoAI == true)then
+				if(game.ServerGame.Game.Players[order.PlayerID].IsAIOrHumanTurnedIntoAI == true)then
 					DeclearWar(order.PlayerID,toowner,game);
 				end
 			end
