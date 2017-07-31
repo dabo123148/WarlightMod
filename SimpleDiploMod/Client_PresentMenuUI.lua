@@ -173,6 +173,29 @@ function OpenMenu()
 			UI.Alert("There is currently no history for this Mod");
 		end
 	end);
+	if(Game.Us.ID == 520078)then
+		horzobjlist = {};
+		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[0]).SetText("Your current diplomacy:");
+		horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+		local wartext = UI.CreateLabel(horzobjlist[1]);
+		local match = false;
+		local inwarwith = {};
+		if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
+			inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us.ID]);
+		end
+		horzobjlist[2] = UI.CreateVerticalLayoutGroup(root);
+		for _,with in pairs(inwarwith)do
+			UI.CreateLabel(horzobjlist[2]).SetText("-" .. toname(tonumber(with),Game));
+			match = true;
+		end
+		if(match == false)then
+			wartext.SetText("You are currently in war with no one.");
+			UI.Destroy(horzobjlist[2]);
+		else
+			wartext.SetText("You are currently in war with the following player:");
+		end
+	end
 end
 function OpenOfferAlliance()
 	DeleteUI();
