@@ -186,9 +186,11 @@ function OpenMenu()
 		end
 		horzobjlist[2] = UI.CreateVerticalLayoutGroup(root);
 		for _,with in pairs(inwarwith)do
-			print(with);
-			UI.CreateLabel(horzobjlist[2]).SetText("-" .. toname(tonumber(with),Game));
-			match = true;
+			if(witch ~= "")then
+				print(with);
+				UI.CreateLabel(horzobjlist[2]).SetText("-" .. toname(tonumber(with),Game));
+				match = true;
+			end
 		end
 		if(match == false)then
 			wartext.SetText("You are currently in war with no one.");
