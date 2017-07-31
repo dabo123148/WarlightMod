@@ -173,56 +173,54 @@ function OpenMenu()
 			UI.Alert("There is currently no history for this Mod");
 		end
 	end);
-	if(Game.Us.ID == 520078)then
-		horzobjlist = {};
-		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horzobjlist[0]).SetText("Your current diplomacy:");
-		horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
-		local wartext = UI.CreateLabel(horzobjlist[1]);
-		local match = false;
-		local inwarwith = {};
-		if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
-			inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us.ID]);
+	horzobjlist = {};
+	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+	UI.CreateLabel(horzobjlist[0]).SetText("Your current diplomacy:");
+	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+	local wartext = UI.CreateLabel(horzobjlist[1]);
+	local match = false;
+	local inwarwith = {};
+	if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
+		inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us.ID]);
+	end
+	horzobjlist[2] = UI.CreateVerticalLayoutGroup(root);
+	for _,pd in pairs(Game.Game.PlayingPlayers)do
+		for _,with in pairs(inwarwith)do
+			if(tonumber(with) == pd.ID)then
+				UI.CreateLabel(horzobjlist[2]).SetText("-" .. toname(tonumber(with),Game));
+				match = true;
+			end
 		end
-		horzobjlist[2] = UI.CreateVerticalLayoutGroup(root);
-		for _,pd in pairs(Game.Game.PlayingPlayers)do
+	end
+	if(match == false)then
+		wartext.SetText("You are currently in war with no one.");
+		UI.Destroy(horzobjlist[2]);
+	else
+		wartext.SetText("You are currently in war with the following player:");
+	end
+	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
+	wartext = UI.CreateLabel(horzobjlist[3]);
+	match = false;
+	horzobjlist[4] = UI.CreateVerticalLayoutGroup(root);
+	for _,pd in pairs(Game.Game.PlayingPlayers)do
+		if(pd.ID ~= Game.Us.ID)then
+			local match2 = false;
 			for _,with in pairs(inwarwith)do
 				if(tonumber(with) == pd.ID)then
-					UI.CreateLabel(horzobjlist[2]).SetText("-" .. toname(tonumber(with),Game));
-					match = true;
+					match2 = true
 				end
 			end
-		end
-		if(match == false)then
-			wartext.SetText("You are currently in war with no one.");
-			UI.Destroy(horzobjlist[2]);
-		else
-			wartext.SetText("You are currently in war with the following player:");
-		end
-		horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
-		wartext = UI.CreateLabel(horzobjlist[3]);
-		match = false;
-		horzobjlist[4] = UI.CreateVerticalLayoutGroup(root);
-		for _,pd in pairs(Game.Game.PlayingPlayers)do
-			if(pd.ID ~= Game.Us.ID)then
-				local match2 = false;
-				for _,with in pairs(inwarwith)do
-					if(tonumber(with) == pd.ID)then
-						match2 = true
-					end
-				end
-				if(match2 == false)then
-					UI.CreateLabel(horzobjlist[4]).SetText("-" .. toname(pd.ID,Game));
-					match = true;
-				end
+			if(match2 == false)then
+				UI.CreateLabel(horzobjlist[4]).SetText("-" .. toname(pd.ID,Game));
+				match = true;
 			end
 		end
-		if(match == false)then
-			wartext.SetText("You are currently in peace with no one.");
-			UI.Destroy(horzobjlist[4]);
-		else
-			wartext.SetText("You are currently in peace with the following player:");
-		end
+	end
+	if(match == false)then
+		wartext.SetText("You are currently in peace with no one.");
+		UI.Destroy(horzobjlist[4]);
+	else
+		wartext.SetText("You are currently in peace with the following player:");
 	end
 end
 function OpenOfferAlliance()
