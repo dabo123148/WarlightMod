@@ -185,11 +185,12 @@ function OpenMenu()
 			inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us.ID]);
 		end
 		horzobjlist[2] = UI.CreateVerticalLayoutGroup(root);
-		for _,with in pairs(inwarwith)do
-			if(with ~= "" and with ~= nil and with ~= " ")then
-				print("Test " .. with .. "end");
-				UI.CreateLabel(horzobjlist[2]).SetText("-" .. toname(tonumber(with),Game));
-				match = true;
+		for _,pd in pairs(Game.Game.PlayingPlayers)do
+			for _,with in pairs(inwarwith)do
+				if(tonumber(with) == pd.ID)then
+					UI.CreateLabel(horzobjlist[2]).SetText("-" .. toname(tonumber(with),Game));
+					match = true;
+				end
 			end
 		end
 		if(match == false)then
@@ -197,6 +198,28 @@ function OpenMenu()
 			UI.Destroy(horzobjlist[2]);
 		else
 			wartext.SetText("You are currently in war with the following player:");
+		end
+		horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
+		wartext = UI.CreateLabel(horzobjlist[3]);
+		match = false;
+		horzobjlist[4] = UI.CreateVerticalLayoutGroup(root);
+		for _,pd in pairs(Game.Game.PlayingPlayers)do
+			local match2 = false;
+			for _,with in pairs(inwarwith)do
+				if(tonumber(with) == pd.ID)then
+					match2 = true
+				end
+			end
+			if(match2 == false)then
+				UI.CreateLabel(horzobjlist[4]).SetText("-" .. toname(pd.ID,Game));
+				match = true;
+			end
+		end
+		if(match == false)then
+			wartext.SetText("You are currently in peace with no one.");
+			UI.Destroy(horzobjlist[4]);
+		else
+			wartext.SetText("You are currently in peace with the following player:");
 		end
 	end
 end
