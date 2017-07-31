@@ -1,5 +1,10 @@
 function Client_GameRefresh(clientGame) 
   if(clientGame.Us~=nil)then
+    if(Mod.PublicGameData.PestilenceStadium==nil)then
+        local publicGameData = Mod.PublicGameData;
+        publicGameData={PestilenceStadium={}};
+        Mod.PublicGameData=publicGameData;
+    end
     if(Mod.PublicGameData.PestilenceStadium[clientGame.Us.ID]~=nil)then
       if(Mod.PublicGameData.PestilenceStadium[clientGame.Us.ID]==1)then
         --if(Mod.Settings.PestCardStrength==1)then
