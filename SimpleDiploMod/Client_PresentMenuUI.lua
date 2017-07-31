@@ -204,15 +204,17 @@ function OpenMenu()
 		match = false;
 		horzobjlist[4] = UI.CreateVerticalLayoutGroup(root);
 		for _,pd in pairs(Game.Game.PlayingPlayers)do
-			local match2 = false;
-			for _,with in pairs(inwarwith)do
-				if(tonumber(with) == pd.ID)then
-					match2 = true
+			if(pd.ID ~= Game.Us.ID)then
+				local match2 = false;
+				for _,with in pairs(inwarwith)do
+					if(tonumber(with) == pd.ID)then
+						match2 = true
+					end
 				end
-			end
-			if(match2 == false)then
-				UI.CreateLabel(horzobjlist[4]).SetText("-" .. toname(pd.ID,Game));
-				match = true;
+				if(match2 == false)then
+					UI.CreateLabel(horzobjlist[4]).SetText("-" .. toname(pd.ID,Game));
+					match = true;
+				end
 			end
 		end
 		if(match == false)then
