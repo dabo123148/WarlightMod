@@ -3,7 +3,7 @@ function Client_PresentMenuUI(RootParent, setMaxSize, setScrollable, game,close)
 		UI.Alert('Spectators can not play cars');
 		return;
 	end
-	if(Mod.PlayerGameData == nil and Mod.PlayerGameData.PestCards == nil and Mod.PlayerGameData.PestCards == nil)then
+	if(Mod.PlayerGameData.PestCards == nil and Mod.PlayerGameData.NukeCards == nil)then
 		UI.Alert('You cannot play cards during distribution');
 		return;
 	end
