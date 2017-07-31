@@ -186,7 +186,7 @@ function OpenMenu()
 		end
 		horzobjlist[2] = UI.CreateVerticalLayoutGroup(root);
 		for _,with in pairs(inwarwith)do
-			if(witch ~= "")then
+			if(witch ~= "" and with ~= nil)then
 				print(with);
 				UI.CreateLabel(horzobjlist[2]).SetText("-" .. toname(tonumber(with),Game));
 				match = true;
