@@ -92,7 +92,7 @@ function SelectTerritory(terr)
 	ret["text"] = name;
 	ret["selected"] = function() 
 		local orders = Game.Orders;
-		table.insert(orders, WL.GameOrderCustom.Create(Game.Us.ID, "Play a Pestilence Card on " .. name, 'Nuke|'..terr.ID));
+		table.insert(orders, WL.GameOrderCustom.Create(Game.Us.ID, "Play a Nuke Card on " .. name, 'Nuke|'..terr.ID));
 		NukeCardsFree=NukeCardsFree-1;
 		if(NukeCardsFree == 0)then
 			UI.Destroy(NukeButton1);
