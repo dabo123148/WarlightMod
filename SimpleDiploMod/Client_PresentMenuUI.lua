@@ -195,6 +195,7 @@ function OpenMenu()
 	if(match == false)then
 		wartext.SetText("You are currently in war with no one.");
 		UI.Destroy(horzobjlist[2]);
+		horzobjlist[2] = nil;
 	else
 		wartext.SetText("You are currently in war with the following player:");
 	end
@@ -219,6 +220,7 @@ function OpenMenu()
 	if(match == false)then
 		wartext.SetText("You are currently in peace with no one.");
 		UI.Destroy(horzobjlist[4]);
+		horzobjlist[4] = nil;
 	else
 		wartext.SetText("You are currently in peace with the following player:");
 	end
