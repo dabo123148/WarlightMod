@@ -171,10 +171,10 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				playerGameData[playerID].Money = Mod.PlayerGameData[playerID].Money - preis;
 				Mod.PlayerGameData=playerGameData;
 				for _,pID in pairs(AllPlayerIDs)do
-					if(pID == playerID or pID == target)then
-						addmessage(playerID .. ",2,"..tostring(game.Game.NumberOfTurns+dauer).. "," .. an .. ",",pID);
+					if(pID.ID == playerID or pID.ID == target)then
+						addmessage(playerID .. ",2,"..tostring(game.Game.NumberOfTurns+dauer).. "," .. an .. ",",pID.ID);
 					else
-						addmessage(playerID .. ",2,".. tostring(game.Game.NumberOfTurns+dauer).. "," .. an .. ",",pID);
+						addmessage(playerID .. ",2,".. tostring(game.Game.NumberOfTurns+dauer).. "," .. an .. ",",pID.ID);
 					end
 				end
 				local publicGameData = Mod.PublicGameData;
@@ -216,10 +216,10 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		else
 			Mod.PlayerGameData=playerGameData;
 			for _,pID in pairs(AllPlayerIDs)do
-				if(pID == playerID or pID == target)then
-					addmessage(playerID .. ",3,".. "," .. an .. ",",pID);
+				if(pID.ID == playerID or pID.ID == target)then
+					addmessage(playerID .. ",3,".. "," .. an .. ",",pID.ID);
 				else
-					addmessage(playerID .. ",3,".. "," .. an .. ",",pID);
+					addmessage(playerID .. ",3,".. "," .. an .. ",",pID.ID);
 				end
 			end
 		end
