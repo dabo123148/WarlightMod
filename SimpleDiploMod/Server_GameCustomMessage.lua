@@ -1,14 +1,4 @@
-function getplayerIDs(game)
-	local rgvalue = {};
-	for _,playerinfo in pairs(game.ServerGame.Game.Players)do
-		if(playerinfo.ID > 50)then
-			rgvalue[tablelength(rgvalue)+1] = playerinfo.ID;
-		end
-	end
-	return rgvalue;
-end
 function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
-	AllPlayerIDs = getplayerIDs(game);
 	local rg = {};
 	--if(payload.Message == "Offer Allianze")then
 	--	local target = tonumber(payload.TargetPlayerID);
@@ -96,11 +86,11 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 					playerGameData[target].Peaceoffers = remainingoffers;
 				end
 				Mod.PlayerGameData = playerGameData;
-				for _,pID in pairs(AllPlayerIDs)do
-					if(pID == playerID or pID == target)then
-						addmessage(playerID .. ",2,"..tostring(game.Game.NumberOfTurns+dauer).. "," .. target .. ",",pID);
+				for _,pID in pairs(game.ServerGame.Game.Players)do
+					if(pID.ID == playerID or pID.ID == target)then
+						addmessage(playerID .. ",2,"..tostring(game.Game.NumberOfTurns+dauer).. "," .. target .. ",",pID.ID);
 					else
-						addmessage(playerID .. ",2,".. tostring(game.Game.NumberOfTurns+dauer).. "," .. target .. ",",pID);
+						addmessage(playerID .. ",2,".. tostring(game.Game.NumberOfTurns+dauer).. "," .. target .. ",",pID.ID);
 					end
 				end
 				local publicGameData = Mod.PublicGameData;
@@ -154,11 +144,11 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				if(match == false)then
 					playerGameData[target].Peaceoffers = existingpeaceoffers .. playerID .. "," .. preis .. "," .. dauer .. ",";
 					Mod.PlayerGameData=playerGameData;
-					for _,pID in pairs(AllPlayerIDs)do
-						if(pID ~= playerID or pID ~= target)then
-							addmessage(playerID .. ",1," .. dauer .. ",".. target .. ",",pID);
+					for _,pID in pairs(game.ServerGame.Game.Players)do
+						if(pID.ID ~= playerID or pID.ID ~= target)then
+							addmessage(playerID .. ",1," .. dauer .. ",".. target .. ",",pID.ID);
 						else
-							addmessage(playerID .. ",1," .. dauer .. ",".. target .. ",",pID);
+							addmessage(playerID .. ",1," .. dauer .. ",".. target .. ",",pID.ID);
 						end
 					end
 					rg.Message ='The Offer has been submitted';
@@ -200,11 +190,11 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				num = num +1;
 			end
 			Mod.PrivateGameData = privateGameData;
-			for _,pID in pairs(AllPlayerIDs)do
-				if(pID == playerID or pID == target)then
-					addmessage(playerID .. ",2," .. tostring(game.Game.NumberOfTurns+dauer) .. "," .. target .. ",",pID);
+			for _,pID in pairs(game.ServerGame.Game.Player)do
+				if(pID.ID == playerID or pID.ID == target)then
+					addmessage(playerID .. ",2," .. tostring(game.Game.NumberOfTurns+dauer) .. "," .. target .. ",",pID.ID);
 				else
-					addmessage(playerID .. ",2,".. tostring(game.Game.NumberOfTurns+dauer) .. "," .. target .. ",",pID);
+					addmessage(playerID .. ",2,".. tostring(game.Game.NumberOfTurns+dauer) .. "," .. target .. ",",pID.ID);
 				end
 			end
 			rg.Message = 'The AI accepted your offer';
@@ -259,11 +249,11 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				playerGameData[an].Money = Mod.PlayerGameData[an].Money + preis;
 				playerGameData[playerID].Money = Mod.PlayerGameData[playerID].Money - preis;
 				Mod.PlayerGameData=playerGameData;
-				for _,pID in pairs(AllPlayerIDs)do
-					if(pID == playerID or pID == target)then
-						addmessage(playerID .. ",2,"..tostring(game.Game.NumberOfTurns+dauer).. "," .. an .. ",",pID);
+				for _,pID in pairs(game.ServerGame.Game.Players)do
+					if(pID.ID == playerID or pID.ID == target)then
+						addmessage(playerID .. ",2,"..tostring(game.Game.NumberOfTurns+dauer).. "," .. an .. ",",pID.ID);
 					else
-						addmessage(playerID .. ",2,".. tostring(game.Game.NumberOfTurns+dauer).. "," .. an .. ",",pID);
+						addmessage(playerID .. ",2,".. tostring(game.Game.NumberOfTurns+dauer).. "," .. an .. ",",pID.ID);
 					end
 				end
 				local publicGameData = Mod.PublicGameData;
@@ -304,11 +294,11 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			end
 		else
 			Mod.PlayerGameData=playerGameData;
-			for _,pID in pairs(AllPlayerIDs)do
-				if(pID == playerID or pID == target)then
-					addmessage(playerID .. ",3,".. "," .. an .. ",",pID);
+			for _,pID in pairs(game.ServerGame.Game.Players)do
+				if(pID.ID == playerID or pID.ID == target)then
+					addmessage(playerID .. ",3,".. "," .. an .. ",",pID.ID);
 				else
-					addmessage(playerID .. ",3,".. "," .. an .. ",",pID);
+					addmessage(playerID .. ",3,".. "," .. an .. ",",pID.ID);
 				end
 			end
 		end
@@ -387,16 +377,18 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	end
 end
 function addmessage(message,spieler)
-	local playerdata = Mod.PlayerGameData;
-	if(playerdata[spieler].Nachrichten== nil)then
-		playerdata[spieler].Nachrichten = ",";
+	if(Mod.PlayerGameData[spieler] ~= nil)then
+		local playerdata = Mod.PlayerGameData;
+		if(playerdata[spieler].Nachrichten== nil)then
+			playerdata[spieler].Nachrichten = ",";
+		end
+		if(playerdata[spieler].NeueNachrichten== nil)then
+			playerdata[spieler].NeueNachrichten = ",";
+		end
+		playerdata[spieler].Nachrichten = playerdata[spieler].Nachrichten .. message;
+		playerdata[spieler].NeueNachrichten = playerdata[spieler].NeueNachrichten .. message;
+		Mod.PlayerGameData = playerdata;
 	end
-	if(playerdata[spieler].NeueNachrichten== nil)then
-		playerdata[spieler].NeueNachrichten = ",";
-	end
-	playerdata[spieler].Nachrichten = playerdata[spieler].Nachrichten .. message;
-	playerdata[spieler].NeueNachrichten = playerdata[spieler].NeueNachrichten .. message;
-	Mod.PlayerGameData = playerdata;
 end
 function HasTerritoryOffer(data,von,terr)
 	local num = 1;
