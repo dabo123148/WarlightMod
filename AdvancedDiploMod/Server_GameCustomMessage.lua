@@ -259,39 +259,6 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		Mod.PlayerGameData = playerGameData;
 	end
 end
-function stringtotable(variable)
-	local chartable = {};
-	if(variable ~= nil)then
-		while(string.len(variable)>0)do
-			chartable[tablelength(chartable)] = string.sub(variable, 1 , 1);
-			variable = string.sub(variable, 2);
-		end
-		local newtable = {};
-		local tablepos = 0;
-		local executed = false;
-		for _, elem in pairs(chartable)do
-			if(elem == ",")then
-				tablepos = tablepos + 1;
-				newtable[tablepos] = "";
-				executed = true;
-			else
-				if(executed == false)then
-					tablepos = tablepos + 1;
-					newtable[tablepos] = "";
-					executed = true;
-				end
-				if(newtable[tablepos] == nil)then
-					newtable[tablepos] = elem;
-				else
-					newtable[tablepos] = newtable[tablepos] .. elem;
-				end
-			end
-		end
-		return newtable;
-	else
-		return {};
-	end
-end
 function tablelength(T)
 	local count = 0;
 	for _,elem in pairs(T)do
