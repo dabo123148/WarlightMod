@@ -81,7 +81,7 @@ function ShowHistory(datentable,game,ende)
 			teildaten =  getname(data.Buyer,game) .. " tried to buy " .. getterrname(data.terrid,game) .. " from you, but he hadn't enough money";
 		end
 		if(teildaten ~= "")then
-			daten = daten .. "Turn " .. data.Turn .. ":".. teildaten .. "\n";
+			daten = daten .. "Turn " .. tostring(data.Turn+1) .. ":".. teildaten .. "\n";
 		end
 	end
 	if(daten ~= "")then
