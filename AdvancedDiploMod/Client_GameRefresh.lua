@@ -8,7 +8,7 @@ function Client_GameRefresh(game)
       		Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(Mod.PlayerGameData.Allyoffers) .. ' open ally requests';
     	end
     	if(tablelength(Mod.PlayerGameData.Terrselloffers)>0)then
-      		Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(Mod.PlayerGameData.Terrselloffers) .. ' open territory tradement requests';
+      		Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(Mod.PlayerGameData.TerritorySellOffers) .. ' open territory tradement requests';
     	end
 	ShowHistory(Mod.PlayerGameData.NeueNachrichten,game,Nachricht);
 end
