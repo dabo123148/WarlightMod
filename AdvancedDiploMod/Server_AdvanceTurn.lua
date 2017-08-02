@@ -143,9 +143,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 								if(pid.IsAI == false)then
 									if(playerGameData[pid.ID].TerritorySellOffers[von] ~= nil)then
 										playerGameData[pid.ID].TerritorySellOffers[von][terrid] = nil;
-									end
-									if(tablelength(playerGameData[pid.ID].TerritorySellOffers[von]) == 0)then
-										playerGameData[pid.ID].TerritorySellOffers[von] = nil;
+										if(tablelength(playerGameData[pid.ID].TerritorySellOffers[von]) == 0)then
+											playerGameData[pid.ID].TerritorySellOffers[von] = nil;
+										end
 									end
 									if(pid.ID ~= order.PlayerID and pid.ID ~= von)then
 										message = {};
