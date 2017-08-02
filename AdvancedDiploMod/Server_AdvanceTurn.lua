@@ -106,7 +106,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						message.YourMoney = GetMoney(playerid,playerGameData)
 						message.terrid = terrid;
 						message.Turn = game.Game.NumberOfTurns;
-						addmessage(message,playerid);
+						addmessage(message,von);
 					else
 						if(Preis > 0 and GetMoney(order.PlayerID,playerGameData) < Preis)then
 							--you haven't enough money
@@ -124,7 +124,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							message.Preis = Preis;
 							message.terrid = terrid;
 							message.Turn = game.Game.NumberOfTurns;
-							addmessage(message,playerid);
+							addmessage(message,von);
 						else
 							--all players have the requirements for the offer
 							--> buying the territory now
