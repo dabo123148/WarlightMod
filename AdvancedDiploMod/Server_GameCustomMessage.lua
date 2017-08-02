@@ -4,19 +4,21 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	local rg = {};
 	if(payload.Message == "Offer Allianze")then
 		local target = tonumber(payload.TargetPlayerID);
-		local preis = tonumber(payload.Wert);
-		for _,pid in pairs(game.Game.Players)do
-			if(pid.IsAI == true)then
-				if(Mod.Settings.PublicAllies == true or (pid.ID == playerID or pid.ID == target))then
-					local playerGameData = Mod.PlayerGameData;
-					if(playerGameData[pid.ID].PendingAllianzes == nil)then
-						playerGameData[pid.ID].PendingAllianzes = ",";
-					end
-					playerGameData[pid.ID].PendingAllianzes = playerGameData[pid.ID].PendingAllianzes .. playerID .. "," .. target .. "," .. preis .. ",";
-					Mod.PlayerGameData = playerGameData;
-					--addmessagecustom(playerID .. ",12,".. tostring(game.Game.NumberOfTurns+1) .. "," .. tostring(payload.Wert) .. ",",target);
-				end
-			end
+		if(playerGameData[target].AllyOffers[playerID] == nil)
+			playerGameData[target].AllyOffers[playerID] = {};
+			playerGameData[target].AllyOffers[playerID].OfferedBy = playerID;
+			playerGameData[target].AllyOffers[playerID].OfferedInTurn = game.Game.NumberOfTurns;
+			local message = {};
+			message.OfferedBy = playerID;
+			message.OfferedTo = target;
+			message.Turn = game.Game.NumberOfTurns;
+			message.Type = 15;
+			addmessagecustom(message,playerID);
+			addmessagecustom(message,target);
+			Mod.PublicGameData = publicGameData;
+		else
+			rg.Message = "The Player has already a pending ally offer by you";
+			setReturnTable(rg);
 		end
 	end
 	if(payload.Message == "Read")then
@@ -35,6 +37,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		message.Menge = payload.Wert;
 		addmessagecustom(message,playerID);
 		addmessagecustom(message,target);
+		Mod.PublicGameData = publicGameData;
 		rg.Message = "The Money has been gifted.";
 		setReturnTable(rg);
 	end
