@@ -122,7 +122,7 @@ function OpenMenu()
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
 	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function()
 		if(tablelength(Mod.PlayerGameData.Nachrichten)~=0)then
-			ShowHistory(Mod.PlayerGameData.Nachrichten,game,"");
+			ShowHistory(Mod.PlayerGameData.Nachrichten,Game,"");
 		else
 			UI.Alert("There is currently no history for this Mod");
 		end
