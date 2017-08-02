@@ -76,7 +76,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local terrid = tonumber(payloadsplit[2]);
 			local playerGameData = Mod.PlayerGameData;
 			if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID == von)then
-				local terrselloffer = GetOffer(playerGameData[order.PlayerID].TerritorySellOffers,order.PlayerID,von,terrid);
+				local terrselloffer = GetOffer(playerGameData[order.PlayerID].TerritorySellOffers,von,terrid);
 				if(Terrselloffer == nil)then
 					--Terrselloffer doesn't exist anylonger
 					local message = {};
