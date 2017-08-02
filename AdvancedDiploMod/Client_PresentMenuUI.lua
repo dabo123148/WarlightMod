@@ -24,6 +24,16 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(vert).SetText("You cannot use this menu in the distribution phase");
 		return;
 	end
+	playersallowedtotest = {};
+	playersallowedtotest[520078] = true;
+	playersallowedtotest[415569] = true;
+	playersallowedtotest[517210] = true;
+	if(playersallowedtotest[game.Us.ID] ~= nil)then
+		horz = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horz).SetText("Your account has testing activated. So please don't use one of the following features in any other game then a testing game:");
+		horz = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horz).SetText("-Allianzes");
+	end
   	horz = UI.CreateHorizontalLayoutGroup(root);
 	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
  		moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
@@ -173,7 +183,7 @@ function OpenMenu()
 end
 function OpenOfferAlliance()
 	DeleteUI();
-	if(Game.Us.ID ~= 520078)then
+	if(playersallowedtotest[Game.Us.ID])then
 		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[0]).SetText("The allianze system is banned for you until it is completed");
 		UI.Alert("The allianze system is banned for you until it is completed");
