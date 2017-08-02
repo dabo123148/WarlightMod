@@ -37,39 +37,27 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if(InWar(order.PlayerID,game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID) == true)then
 				local playerGameData = Mod.PlayerGameData;
 				if(result.IsSuccessful)then
-					for _,spieler in pairs(AllPlayerIDs)do
-						if(spieler == order.PlayerID)then
-							playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money+ Mod.Settings.MoneyPerCapturedTerritory;
+					if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
+						playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money+ Mod.Settings.MoneyPerCapturedTerritory;
+						for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
+							local match = false;
+							for _,terrid in pairs(game.Map.Bonuses[boni].Territories)do
+								if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID ~= order.PlayerID and terrid ~= order.To)then
+									match = true;
+								end
+							end
+							if(match == true)then
+								playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money + Mod.Settings.MoneyPerCapturedBonus;
+							end
 						end
 					end
-					--for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
-					--	local match = false;
-					--	for _,terrid in pairs(game.Map.Bonuses[boni].Territories)do
-					--		if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID ~= order.PlayerID and terrid ~= order.To)then
-					--			match = true;
-					--		end
-					--	end
-					--	if(match == true)then
-					--		local match2 = false;
-					--		for _,pid in pairs(AllPlayerIDs)do
-					--			if(pid == order.PlayerID)then
-					--				match2 = true;
-					--			end
-					--		end
-					--		if(match2 == true)then
-					--			playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money + Mod.Settings.MoneyPerCapturedBonus;
-					--		end
-					--	end
-					--end
+				end
+				if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
+					playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money+ result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy;
 				end
 				local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
-				for _,spieler in pairs(AllPlayerIDs)do
-					if(spieler == order.PlayerID)then
-						playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money+ result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy;
-					end
-					if(spieler == toowner)then
-						playerGameData[toowner].Money = playerGameData[toowner].Money + result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy;
-					end
+				if(toowner ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[toowner].IsAI == false)then
+					playerGameData[toowner].Money = playerGameData[toowner].Money + result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy;
 				end
 				Mod.PlayerGameData = playerGameData;
 			else
