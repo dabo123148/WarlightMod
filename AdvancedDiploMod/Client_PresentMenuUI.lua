@@ -152,10 +152,10 @@ function OpenMenu()
 	end
 	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
 	if(tablelength(Game.Game.Players)-tablelength(Mod.PublicGameData.War[Game.Us.ID])-tablelength(Mod.PlayerGameData.Allianzen)~=0)then
-		UI.CreateLabel(horzobjlist[3]).SetText("You are currently in peace with no one.");
-	else
 		UI.CreateLabel(horzobjlist[3]).SetText("You are currently in peace with the following player:");
 		horzobjlist[4] = UI.CreateVerticalLayoutGroup(root);
+	else
+		UI.CreateLabel(horzobjlist[3]).SetText("You are currently in peace with no one.");
 	end
 	for _,pd in pairs(Game.Game.PlayingPlayers)do
 		if(pd.ID ~= Game.Us.ID)then
@@ -178,10 +178,10 @@ function OpenMenu()
 	end
 	horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
 	if(tablelength(Mod.PlayerGameData.Allianzen)~=0)then
-		UI.CreateLabel(horzobjlist[5]).SetText("You are currently allied with no one.");
-	else
 		UI.CreateLabel(horzobjlist[5]).SetText("You are currently allied with the following player:");
 		horzobjlist[6] = UI.CreateVerticalLayoutGroup(root);
+	else
+		UI.CreateLabel(horzobjlist[5]).SetText("You are currently allied with no one.");
 	end
 	for _,with in pairs(Mod.PlayerGameData.Allianzen)do
 		UI.CreateLabel(horzobjlist[6]).SetText("-" .. toname(with,Game));
