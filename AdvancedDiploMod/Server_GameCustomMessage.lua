@@ -267,8 +267,8 @@ function tablelength(T)
 	return count;
 end
 function addmessagecustom(message,spieler)
-	playerGameData[spieler].Nachrichten[tablelength(playerGameData[spieler].Nachrichten+1)] = message;
-	playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten+1)] = message;
+	playerGameData[spieler].Nachrichten[tablelength(playerGameData[spieler].Nachrichten)+1] = message;
+	playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten)+1] = message;
 end
 function GetOffer(offertype,spieler1,spieler2,terr)
 	if(offertype ~= nil)then
