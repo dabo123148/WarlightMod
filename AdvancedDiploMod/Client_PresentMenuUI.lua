@@ -340,6 +340,19 @@ function OpenPendingRequests()
 		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no offer");
 	end
+	if(playersallowedtotest[Game.Us.ID] ~= nil)then
+		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Alliance Offers");
+		if(tablelength(Mod.PlayerGameData.AllyOffers) ~= 0)then
+			for _,allyoffer in pairs(Mod.PlayerGameData.AllyOffers)do
+				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(allyoffer.OfferedBy,Game) .. " offers you an alliance");
+			end
+		else
+			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no offer");
+		end
+	end
 end
 
 function AcceptPeaceOffer(data)
