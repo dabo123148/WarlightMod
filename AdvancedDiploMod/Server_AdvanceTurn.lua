@@ -18,17 +18,19 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if(result.IsSuccessful)then
 				if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
 					AddMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedTerritory,playerGameData);
-					for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
-						local match = true;
-						for _,terrid in pairs(game.Map.Bonuses[boni].Territories)do
-							if(terrid ~= order.To)then
-								if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID ~= order.PlayerID)then
-									match = false;--> this bonus isn't captured
+					if(Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+						for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
+							local match = true;
+							for _,terrid in pairs(game.Map.Bonuses[boni].Territories)do
+								if(terrid ~= order.To)then
+									if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID ~= order.PlayerID)then
+										match = false;--> this bonus isn't captured
+									end
 								end
 							end
-						end
-						if(match == true)then
-							AddMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedBonus,playerGameData);
+							if(match == true)then
+								AddMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedBonus,playerGameData);
+							end
 						end
 					end
 				end
