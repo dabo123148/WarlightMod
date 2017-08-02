@@ -1,6 +1,6 @@
 require('Money');
 function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
-	local playerGameData = Mod.PlayerGameData;
+	playerGameData = Mod.PlayerGameData;
 	local rg = {};
 	if(payload.Message == "Offer Allianze")then
 		local target = tonumber(payload.TargetPlayerID);
