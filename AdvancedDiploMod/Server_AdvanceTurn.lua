@@ -74,7 +74,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local payloadsplit = stringtotable(order.Payload);
 			local von = tonumber(payloadsplit[1]);
 			local terrid = tonumber(payloadsplit[2]);
-			error("von:" .. von .. "terrid:" .. terrid);
 			local playerGameData = Mod.PlayerGameData;
 			if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID == von)then
 				local terrselloffer = GetOffer(playerGameData[order.PlayerID].TerritorySellOffers,von,terrid);
@@ -86,10 +85,12 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					message.terrid = terrid;
 					message.Turn = game.Game.NumberOfTurns;
 					addmessage(message,order.PlayerID);
+					error("order existiert nicht");
 				else
 					local Preis = Terrselloffer.Preis;
 					if(exists == true)then
 						if(Preis < 0 and GetMoney(playerid,playerGameData) < Preis*-1)then
+							error("seller nicht genug geld");
 							--Seller hasn't the money to pay the person who tries buys the territory
 							local message = {};
 							message.Type = 4;
@@ -109,6 +110,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						else
 							if(Preis > 0 and GetMoney(order.PlayerID,playerGameData) < Preis)then
 								--you haven't enough money
+								error("kaufer nicht genug geld");
 								local message = {};
 								message.Type = 5;
 								message.Von = von;
