@@ -415,13 +415,13 @@ function addmessage(message,spieler)
 end
 function GetOffer(offerType,spieler2,terr)
 	if(offerType ~= nil)then
-		if(offerType[spieler1][spieler2] ~= nil)then
+		if(offerType[spieler2] ~= nil)then
 			if(terr ~= nil)then
-				if(offerType[spieler1][spieler2][terr] ~= nil)then
-					return offerType[spieler1][spieler2][terr];
+				if(offerType[spieler2][terr] ~= nil)then
+					return offerType[spieler2][terr];
 				end
 			else
-				return offerType[spieler1][spieler2];
+				return offerType[spieler2];
 			end
 		end
 	end
