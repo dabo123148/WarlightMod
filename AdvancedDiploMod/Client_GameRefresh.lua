@@ -1,5 +1,8 @@
 require('History');
 function Client_GameRefresh(game)
+	if(game.Us == nil)then
+		return;
+	end
 	local Nachricht = "";
     	if(tablelength(Mod.PlayerGameData.Peaceoffers)>0)then
     		Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(Mod.PlayerGameData.Peaceoffers) .. ' open peace requests';
