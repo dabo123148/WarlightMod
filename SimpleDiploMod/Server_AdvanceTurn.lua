@@ -42,25 +42,25 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money+ Mod.Settings.MoneyPerCapturedTerritory;
 						end
 					end
-					for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
-						local match = false;
-						for _,terrid in pairs(game.Map.Bonuses[boni].Territories)do
-							if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID ~= order.PlayerID and terrid ~= order.To)then
-								match = true;
-							end
-						end
-						if(match == true)then
-							local match2 = false;
-							for _,pid in pairs(AllPlayerIDs)do
-								if(pid == order.PlayerID)then
-									match2 = true;
-								end
-							end
-							if(match2 == true)then
-								playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money + Mod.Settings.MoneyPerCapturedBonus;
-							end
-						end
-					end
+					--for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
+					--	local match = false;
+					--	for _,terrid in pairs(game.Map.Bonuses[boni].Territories)do
+					--		if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID ~= order.PlayerID and terrid ~= order.To)then
+					--			match = true;
+					--		end
+					--	end
+					--	if(match == true)then
+					--		local match2 = false;
+					--		for _,pid in pairs(AllPlayerIDs)do
+					--			if(pid == order.PlayerID)then
+					--				match2 = true;
+					--			end
+					--		end
+					--		if(match2 == true)then
+					--			playerGameData[order.PlayerID].Money = Mod.PlayerGameData[order.PlayerID].Money + Mod.Settings.MoneyPerCapturedBonus;
+					--		end
+					--	end
+					--end
 				end
 				local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 				for _,spieler in pairs(AllPlayerIDs)do
@@ -191,7 +191,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			skipThisOrder(WL.ModOrderControl.Skip);
 		end
 	end
-	error("Test");
 end
 function Server_AdvanceTurn_End (game,addNewOrder)
 	--add new war decleartions
