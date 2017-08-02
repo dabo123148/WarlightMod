@@ -258,6 +258,8 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		message.Type = 9;
 		addmessagecustom(message,von);
 		Mod.PlayerGameData = playerGameData;
+		rg.Message = "You succesfully denied the territory sell offer";
+		setReturnTable(rg);
 	end
 end
 function tablelength(T)
