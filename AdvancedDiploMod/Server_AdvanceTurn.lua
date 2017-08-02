@@ -418,12 +418,17 @@ function addmessage(message,spieler)
 end
 function GetOffer(offerType,spieler2,terr)
 	if(offerType ~= nil)then
+		error("Test1");
 		if(offerType[spieler2] ~= nil)then
+			error("Test2");
 			if(terr ~= nil)then
+				error("Test3");
 				if(offerType[spieler2][terr] ~= nil)then
+					error("Test4");
 					return offerType[spieler2][terr];
 				end
 			else
+				error("Test5");
 				return offerType[spieler2];
 			end
 		end
