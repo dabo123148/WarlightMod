@@ -76,7 +76,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local terrid = tonumber(payloadsplit[2]);
 			local playerGameData = Mod.PlayerGameData;
 			if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID == von)then
-				local terrselloffer = GetOffer(playerGameData[order.PlayerID].Terrselloffers,order.PlayerID,von,terrid);
+				local terrselloffer = GetOffer(playerGameData[order.PlayerID].TerritorySellOffers,order.PlayerID,von,terrid);
 				if(Terrselloffer == nil)then
 					--Terrselloffer doesn't exist anylonger
 					local message = {};
@@ -142,8 +142,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 								--this is the message all other players can see(price is removed)
 								for _,pid in pairs(game.ServerGame.Game.Players)do
 									if(pid.IsAI == false)then
-										if(playerGameData[pid.ID].Terrselloffers[von] ~= nil)then
-											playerGameData[pid.ID].Terrselloffers[von][terrid] = nil;
+										if(playerGameData[pid.ID].TerritorySellOffers[von] ~= nil)then
+											playerGameData[pid.ID].TerritorySellOffers[von][terrid] = nil;
 										end
 										if(tablelength(playerGameData[pid.ID].TerritorySellOffers[von]) == 0)then
 											playerGameData[pid.ID].TerritorySellOffers[von] = nil;
