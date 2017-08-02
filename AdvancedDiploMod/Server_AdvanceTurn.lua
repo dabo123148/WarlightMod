@@ -66,6 +66,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					message.Count = wants;
 					message.Preis = money;
 					message.terrid = to;
+					message.Turn = game.Game.NumberOfTurns;
 					addmessage(message,order.PlayerID);
 				end
 			end
