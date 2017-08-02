@@ -4,7 +4,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	local rg = {};
 	if(payload.Message == "Offer Allianze")then
 		local target = tonumber(payload.TargetPlayerID);
-		if(playerGameData[target].AllyOffers[playerID] == nil)
+		if(playerGameData[target].AllyOffers[playerID] == nil)then
 			playerGameData[target].AllyOffers[playerID] = {};
 			playerGameData[target].AllyOffers[playerID].OfferedBy = playerID;
 			playerGameData[target].AllyOffers[playerID].OfferedInTurn = game.Game.NumberOfTurns;
