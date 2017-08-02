@@ -197,6 +197,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 					if(playerGameData[pid.ID].TerritorySellOffers[playerID][targetterr] == nil)then
 						playerGameData[pid.ID].TerritorySellOffers[playerID][targetterr] = {};
 						playerGameData[pid.ID].TerritorySellOffers[playerID][targetterr].Preis = Preis;
+						playerGameData[pid.ID].TerritorySellOffers[playerID][targetterr].Player = playerID;
 						playerGameData[pid.ID].TerritorySellOffers[playerID][targetterr].terrID = targetterr;
 						playerGameData[pid.ID].TerritorySellOffers[playerID][targetterr].OfferedInTurn = game.Game.NumberOfTurns;
 						addedoffers = addedoffers + 1;
