@@ -6,8 +6,8 @@ end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == "GameOrderAttackTransfer")then
 		if(result.IsAttack)then
-			if(WL.PlayerID.Neutral == toowner or InWar(order.PlayerID,toowner))then
-				local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
+			local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
+			if(WL.PlayerID.Neutral == toowner or order.PlayerID == WL.PlayerID.Neutral or InWar(order.PlayerID,toowner))then
 				if(order.PlayerID ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
 					AddMoney(order.PlayerID,result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy,playerGameData);
 				end
@@ -33,7 +33,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					end
 				end
 			end
-			if(toowner ~= WL.PlayerID.Neutral)then
+			if(toowner ~= WL.PlayerID.Neutral and order.PlayerID ~= WL.PlayerID.Neutral)then
 				if(InWar(order.PlayerID,toowner) == false)then
 					skipThisOrder(WL.ModOrderControl.Skip);
 					if(game.ServerGame.Game.Players[order.PlayerID].IsAIOrHumanTurnedIntoAI == true)then
