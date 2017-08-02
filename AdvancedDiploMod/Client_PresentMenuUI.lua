@@ -562,35 +562,6 @@ function OpenDeclarWar()
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
 	commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Declare").SetOnClick(declare);
 end
-function stringtotable(variable)
-	chartable = {};
-	while(string.len(variable)>0)do
-		chartable[tablelength(chartable)] = string.sub(variable, 1 , 1);
-		variable = string.sub(variable, 2);
-	end
-	local newtable = {};
-	local tablepos = 0;
-	local executed = false;
-	for _, elem in pairs(chartable)do
-		if(elem == ",")then
-			tablepos = tablepos + 1;
-			newtable[tablepos] = "";
-			executed = true;
-		else
-			if(executed == false)then
-				tablepos = tablepos + 1;
-				newtable[tablepos] = "";
-				executed = true;
-			end
-			if(newtable[tablepos] == nil)then
-				newtable[tablepos] = elem;
-			else
-				newtable[tablepos] = newtable[tablepos] .. elem;
-			end
-		end
-	end
-	return newtable;
-end
 function TargetPlayerClicked()
 	local options = {};
 	for _,playerinstanze in pairs(Game.Game.Players)do
