@@ -15,7 +15,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			message.Type = 15;
 			addmessagecustom(message,playerID);
 			addmessagecustom(message,target);
-			Mod.PublicGameData = publicGameData;
+			Mod.PlayerGameData = playerGameData;
 			rg.Message = "The Player recieved the ally offer";
 			setReturnTable(rg);
 		else
