@@ -14,7 +14,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 					end
 					playerGameData[pid.ID].PendingAllianzes = playerGameData[pid.ID].PendingAllianzes .. playerID .. "," .. target .. "," .. preis .. ",";
 					Mod.PlayerGameData = playerGameData;
-					addmessagecustom(playerID .. ",12,".. tostring(game.Game.NumberOfTurns+1) .. "," .. tostring(payload.Wert) .. ",",target);
+					--addmessagecustom(playerID .. ",12,".. tostring(game.Game.NumberOfTurns+1) .. "," .. tostring(payload.Wert) .. ",",target);
 				end
 			end
 		end
