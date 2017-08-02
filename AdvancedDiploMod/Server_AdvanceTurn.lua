@@ -6,7 +6,7 @@ end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == "GameOrderAttackTransfer")then
 		if(result.IsAttack)then
-			if(WL.PlayerID.Neutral == toowner or InWar(order.PlayerID,toowner)then
+			if(WL.PlayerID.Neutral == toowner or InWar(order.PlayerID,toowner))then
 				local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 				if(order.PlayerID ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
 					AddMoney(order.PlayerID,result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy,playerGameData);
