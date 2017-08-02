@@ -470,11 +470,10 @@ function Openshop(rootParent)
 			local options = {};
 			options[0] = "everyone(does not include persons you are in war with)";
 			if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
-				local inwarwith = stringtotable(Mod.PublicGameData.War[Game.Us.ID]);
 				for _,playerinstanze in pairs(Game.Game.Players)do
 					local Match = false;
-					for _,with in pairs(inwarwith)do
-						if(tostring(with) == tostring(playerinstanze.ID))then
+					for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
+						if(with == playerinstanze.ID)then
 							Match = true;
 						end
 					end
