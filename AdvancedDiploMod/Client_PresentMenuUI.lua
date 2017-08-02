@@ -527,9 +527,9 @@ function Openshop(rootParent)
 			local Preis = 0;
 			if(Moneyyoupayforterritorysellzwei ~=nil)then
 				if(Moneyyoupayforterritorysellzwei.GetValue() > 0)then
-					Preis = Moneyyoupayforterritorysellzwei.GetValue();
+					Preis = -Moneyyoupayforterritorysellzwei.GetValue();
 				else
-					Preis = -Moneyyougetforterritorysellzwei.GetValue();
+					Preis = Moneyyougetforterritorysellzwei.GetValue();
 				end
 			end
 			local PlayerID = getplayerid(SelectPlayerBtn2.GetText(),Game);
