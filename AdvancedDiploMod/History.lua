@@ -40,10 +40,10 @@ function ShowHistory(datentable,game,ende)
 			teildaten =  "You bought " .. tostring(data.Count) .. " armies for " .. getterrname(data.terrid,game) .. ". The total price was " .. tostring(data.Preis);
 		end
 		if(data.Type == 8)then
-			teildaten =  "You declined the territory sell offer from " .. getname(data.Von,game) .. " for the territory " .. getterrname(data.terrid,game);
+			teildaten =  "You declined the territory sell offer from " .. getname(data.Von,game) .. " for the territory " .. getterrname(data.TerrID,game);
 		end
 		if(data.Type == 9)then
-			teildaten = getname(data.Revoker,game) .. " declined your territory sell offer for the territory " .. getterrname(data.terrid,game);
+			teildaten = getname(data.Revoker,game) .. " declined your territory sell offer for the territory " .. getterrname(data.TerrID,game);
 		end
 		if(data.Type == 10)then
 			if(data.Acceptor == game.Us.ID)then
