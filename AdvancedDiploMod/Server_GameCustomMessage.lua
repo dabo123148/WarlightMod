@@ -2,6 +2,22 @@ require('Money');
 function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	playerGameData = Mod.PlayerGameData;
 	local rg = {};
+	if(payload.Message == "Accept Allianze" or payload.Message == "Deny Allianze")then
+		if(playerGameData[playerID].AllyOffers[payload.OfferedBy] == nil)then
+			--offer doesn't exist any longer
+			rg.Message = "The Ally offer doesn't exist, maybe you already accepted or declined it. The next time you reload the game, it shouldn't be shown there.";
+			setReturnTable(rg);
+		else
+			playerGameData[playerID].AllyOffers[payload.OfferedBy] = nil;
+			if(payload.Message == "Accept Allianze")then
+				playerGameData[playerID].Allianzen[tablelength(playerGameData[playerID].Allianzen)+1] = payload.OfferedBy;
+				playerGameData[payload.OfferedBy].Allianzen[tablelength(playerGameData[payload.OfferedBy].Allianzen)+1] = playerID;
+				--accept ally message
+			else
+				--declined ally message
+			end
+		end	
+	end
 	if(payload.Message == "Offer Allianze")then
 		local target = tonumber(payload.TargetPlayerID);
 		if(playerGameData[target].AllyOffers[playerID] == nil)then
