@@ -419,7 +419,6 @@ end
 function GetOffer(offerType,spieler2,terr)
 	if(offerType ~= nil)then
 		if(offerType[spieler2] ~= nil)then
-			error("Test2");
 			if(terr ~= nil)then
 				error("Test3");
 				if(offerType[spieler2][terr] ~= nil)then
