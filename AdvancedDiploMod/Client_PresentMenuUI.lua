@@ -242,7 +242,7 @@ function OpenPendingRequests()
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("The Peace will last for " .. tostring(peaceoffer.Duration) .. " Turns. After that you can declare again war on him.");
 			local mymoney = tonumber(Mod.PlayerGameData.Money);
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-			if(requiredmoney > mymoney)then
+			if(peaceoffer.Preis > mymoney)then
 				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You haven't the money to accept this offer.");
 			else
 				local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
