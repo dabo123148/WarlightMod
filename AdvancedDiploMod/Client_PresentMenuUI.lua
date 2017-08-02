@@ -171,7 +171,7 @@ function OpenMenu()
 				end
 			end
 			if(match2 == false)then
-				UI.CreateLabel(horzobjlist[4]).SetText("-" .. toname(pd.ID,Game));
+				--UI.CreateLabel(horzobjlist[4]).SetText("-" .. toname(pd.ID,Game));
 				match = true;
 			end
 		end
