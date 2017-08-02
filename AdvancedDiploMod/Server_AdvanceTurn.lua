@@ -85,6 +85,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					message.terrid = terrid;
 					message.Turn = game.Game.NumberOfTurns;
 					addmessage(message,order.PlayerID);
+					error("Test1");
 				else
 					local Preis = Terrselloffer.Preis;
 					if(exists == true)then
@@ -105,9 +106,11 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							message.terrid = terrid;
 							message.Turn = game.Game.NumberOfTurns;
 							addmessage(message,playerid);
+							error("Test2");
 						else
 							if(Preis > 0 and GetMoney(order.PlayerID,playerGameData) < Preis)then
 								--you haven't enough money
+								error("Test3");
 								local message = {};
 								message.Type = 5;
 								message.Von = von;
@@ -124,6 +127,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 								message.Turn = game.Game.NumberOfTurns;
 								addmessage(message,playerid);
 							else
+								error("Test4");
 								--all players have the requirements for the offer
 								--> buying the territory now
 								Pay(order.PlayerID,playerid,Preis,playerGameData);
