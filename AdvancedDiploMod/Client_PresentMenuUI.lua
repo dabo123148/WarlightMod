@@ -192,7 +192,16 @@ function OpenOfferAlliance()
 		textelem = UI.CreateLabel(horzobjlist[0]).SetText("Offer Allianze To: ");
 		TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferAllianze);
 		horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
-		commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Offer").SetOnClick(declare);
+		commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Offer").SetOnClick(function()
+				if(TargetPlayerBtn.GetText() == "Select player...")then
+					UI.Alert('You need to choose a player first');
+					return;
+				end
+				local payload = {};
+				payload.Message = "Offer Allianze";
+				payload.TargetPlayerID = getplayerid(TargetPlayerBtn.GetText() ,Game);
+				Game.SendGameCustomMessage("Offering...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
+			end);
 	end
 end
 function TargetPlayerClickedOfferAllianze()
