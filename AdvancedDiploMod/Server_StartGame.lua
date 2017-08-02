@@ -8,7 +8,7 @@ function Server_StartGame(game,standing)
 			playerGameData[pid.ID] = {};
 			playerGameData[pid.ID].Money = Mod.Settings.StartMoney;
 			playerGameData[pid.ID].TerritorySellOffers = {};
-			playerGameData[pid.ID].PeaceOffers = {};
+			playerGameData[pid.ID].Peaceoffers = {};
 			playerGameData[pid.ID].AllyOffers = {};
 			playerGameData[pid.ID].Allianzen = {};
 			playerGameData[pid.ID].Nachrichten = {};
