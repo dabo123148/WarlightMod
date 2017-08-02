@@ -340,6 +340,8 @@ function OpenPendingRequests()
 		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no offer");
 	end
+	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("");
 	if(playersallowedtotest[Game.Us.ID] ~= nil)then
 		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Alliance Offers");
