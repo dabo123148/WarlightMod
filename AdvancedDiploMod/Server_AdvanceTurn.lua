@@ -85,82 +85,76 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					message.terrid = terrid;
 					message.Turn = game.Game.NumberOfTurns;
 					addmessage(message,order.PlayerID);
-					error("Test1");
 				else
 					local Preis = Terrselloffer.Preis;
-					if(exists == true)then
-						if(Preis < 0 and GetMoney(playerid,playerGameData) < Preis*-1)then
-							--Seller hasn't the money to pay the person who tries buys the territory
+					if(Preis < 0 and GetMoney(playerid,playerGameData) < Preis*-1)then
+						--Seller hasn't the money to pay the person who tries buys the territory
+						local message = {};
+						message.Type = 4;
+						message.Von = von;
+						message.Preis = Preis;
+						message.terrid = terrid;
+						message.Turn = game.Game.NumberOfTurns;
+						addmessage(message,order.PlayerID);
+						message = {};
+						message.Type = 13;
+						message.Buyer = order.PlayerID;
+						message.Preis = Preis;
+						message.YourMoney = GetMoney(playerid,playerGameData)
+						message.terrid = terrid;
+						message.Turn = game.Game.NumberOfTurns;
+						addmessage(message,playerid);
+					else
+						if(Preis > 0 and GetMoney(order.PlayerID,playerGameData) < Preis)then
+							--you haven't enough money
 							local message = {};
-							message.Type = 4;
+							message.Type = 5;
 							message.Von = von;
 							message.Preis = Preis;
+							message.YourMoney = GetMoney(order.PlayerID,playerGameData);
 							message.terrid = terrid;
 							message.Turn = game.Game.NumberOfTurns;
 							addmessage(message,order.PlayerID);
 							message = {};
-							message.Type = 13;
+							message.Type = 14;
 							message.Buyer = order.PlayerID;
 							message.Preis = Preis;
-							message.YourMoney = GetMoney(playerid,playerGameData)
 							message.terrid = terrid;
 							message.Turn = game.Game.NumberOfTurns;
 							addmessage(message,playerid);
-							error("Test2");
 						else
-							if(Preis > 0 and GetMoney(order.PlayerID,playerGameData) < Preis)then
-								--you haven't enough money
-								error("Test3");
-								local message = {};
-								message.Type = 5;
-								message.Von = von;
-								message.Preis = Preis;
-								message.YourMoney = GetMoney(order.PlayerID,playerGameData);
-								message.terrid = terrid;
-								message.Turn = game.Game.NumberOfTurns;
-								addmessage(message,order.PlayerID);
-								message = {};
-								message.Type = 14;
-								message.Buyer = order.PlayerID;
-								message.Preis = Preis;
-								message.terrid = terrid;
-								message.Turn = game.Game.NumberOfTurns;
-								addmessage(message,playerid);
-							else
-								error("Test4");
-								--all players have the requirements for the offer
-								--> buying the territory now
-								Pay(order.PlayerID,playerid,Preis,playerGameData);
-								local effect = WL.TerritoryModification.Create(terrid);
-								effect.SetOwnerOpt = order.PlayerID;
-								addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect}));
-								local message = {};
-								message.Type = 6;
-								message.Von = von;
-								message.buyer = order.PlayerID;
-								message.Preis = Preis;
-								message.terrid = terrid;
-								message.Turn = game.Game.NumberOfTurns;
-								addmessage(message,order.PlayerID);
-								addmessage(message,von);
-								--this is the message all other players can see(price is removed)
-								for _,pid in pairs(game.ServerGame.Game.Players)do
-									if(pid.IsAI == false)then
-										if(playerGameData[pid.ID].TerritorySellOffers[von] ~= nil)then
-											playerGameData[pid.ID].TerritorySellOffers[von][terrid] = nil;
-										end
-										if(tablelength(playerGameData[pid.ID].TerritorySellOffers[von]) == 0)then
-											playerGameData[pid.ID].TerritorySellOffers[von] = nil;
-										end
-										if(pid.ID ~= order.PlayerID and pid.ID ~= von)then
-											message = {};
-											message.Type = 6;
-											message.Von = von;
-											message.buyer = order.PlayerID;
-											message.terrid = terrid;
-											message.Turn = game.Game.NumberOfTurns;
-											addmessage(message,pid.ID);
-										end
+							--all players have the requirements for the offer
+							--> buying the territory now
+							Pay(order.PlayerID,playerid,Preis,playerGameData);
+							local effect = WL.TerritoryModification.Create(terrid);
+							effect.SetOwnerOpt = order.PlayerID;
+							addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect}));
+							local message = {};
+							message.Type = 6;
+							message.Von = von;
+							message.buyer = order.PlayerID;
+							message.Preis = Preis;
+							message.terrid = terrid;
+							message.Turn = game.Game.NumberOfTurns;
+							addmessage(message,order.PlayerID);
+							addmessage(message,von);
+							--this is the message all other players can see(price is removed)
+							for _,pid in pairs(game.ServerGame.Game.Players)do
+								if(pid.IsAI == false)then
+									if(playerGameData[pid.ID].TerritorySellOffers[von] ~= nil)then
+										playerGameData[pid.ID].TerritorySellOffers[von][terrid] = nil;
+									end
+									if(tablelength(playerGameData[pid.ID].TerritorySellOffers[von]) == 0)then
+										playerGameData[pid.ID].TerritorySellOffers[von] = nil;
+									end
+									if(pid.ID ~= order.PlayerID and pid.ID ~= von)then
+										message = {};
+										message.Type = 6;
+										message.Von = von;
+										message.buyer = order.PlayerID;
+										message.terrid = terrid;
+										message.Turn = game.Game.NumberOfTurns;
+										addmessage(message,pid.ID);
 									end
 								end
 							end
