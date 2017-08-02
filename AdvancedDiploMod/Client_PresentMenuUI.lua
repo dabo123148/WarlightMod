@@ -289,7 +289,7 @@ function OpenPendingRequests()
 		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no offer");
 	end
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ",Game);
+	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ");
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Territories you can buy");
 	if(tablelength(Mod.PlayerGameData.TerritorySellOffers) ~= 0)then
