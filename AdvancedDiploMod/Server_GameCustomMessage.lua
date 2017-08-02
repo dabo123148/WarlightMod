@@ -46,15 +46,15 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			rg.Message = "To prevent this game from stucking, I limited the max duration of peace to 10turns";
 			setReturnTable(rg);
 		end
-		if(game.ServerGame.Game.Players[player].IsAIOrHumanTurnedIntoAI ==false)then
-			if(playerGameData[player].Peaceoffers[playerid] ~= nil)then
+		if(game.ServerGame.Game.Players[player].IsAIOrHumanTurnedIntoAI == false)then
+			if(playerGameData[player].Peaceoffers[playerID] ~= nil)then
 				rg.Message = "The Player has already a pending peace offer by you";
 				setReturnTable(rg);
 			else
-				playerGameData[player].Peaceoffers[playerid] = {};
-				playerGameData[player].Peaceoffers[playerid].Duration = dauer;
-				playerGameData[player].Peaceoffers[playerid].Preis = preis;
-				playerGameData[player].Peaceoffers[playerid].Offerby = playerID;
+				playerGameData[player].Peaceoffers[playerID] = {};
+				playerGameData[player].Peaceoffers[playerID].Duration = dauer;
+				playerGameData[player].Peaceoffers[playerID].Preis = preis;
+				playerGameData[player].Peaceoffers[playerID].Offerby = playerID;
 				Mod.PlayerGameData=playerGameData;
 				rg.Message = "The Offer has been submitted";
 				setReturnTable(rg);
