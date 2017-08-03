@@ -28,6 +28,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 					addmessagecustom(message,playerID);
 					addmessagecustom(message,payload.OfferedBy);
 				end
+				Mod.PlayerGameData = playerGameData;
 				rg.Message = "You successfuly accepted the ally offer.";
 				setReturnTable(rg);
 			else
@@ -39,6 +40,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				message.Type = 17;
 				addmessagecustom(message,playerID);
 				addmessagecustom(message,payload.OfferedBy);
+				Mod.PlayerGameData = playerGameData;
 				rg.Message = "You successfuly declined the ally offer.";
 				setReturnTable(rg);
 			end
