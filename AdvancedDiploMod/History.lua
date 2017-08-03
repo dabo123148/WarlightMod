@@ -89,18 +89,18 @@ function ShowHistory(datentable,game,ende)
 		end
 		if(data.Type == 16)then
 			if(data.OfferedBy == game.Us.ID)then
-				teildaten =  "You are now allied with " .. getname(data.OfferedTo,game);
+				teildaten =  "You are now allied with " .. getname(data.AcceptedBy,game);
 			end
-			if(data.OfferedTo == game.Us.ID)then
+			if(data.AcceptedBy == game.Us.ID)then
 				teildaten =  "You are now allied with " .. getname(data.OfferedBy,game);
 			end
-			if(data.OfferedBy ~= game.Us.ID and data.OfferedTo ~= game.Us.ID)then
-				teildaten =  getname(data.OfferedBy,game) .. " and "  .. getname(data.OfferedTo,game) .. " are now allied";
+			if(data.OfferedBy ~= game.Us.ID and data.AcceptedBy ~= game.Us.ID)then
+				teildaten =  getname(data.OfferedBy,game) .. " and "  .. getname(data.AcceptedBy,game) .. " are now allied";
 			end
 		end
 		if(data.Type == 17)then
 			if(data.OfferedBy == game.Us.ID)then
-				teildaten =  getname(data.OfferedTo,game) .. " declined your alliance offer";
+				teildaten =  getname(data.DeclinedBy,game) .. " declined your alliance offer";
 			else
 				teildaten =  "You declined " .. getname(data.OfferedBy,game) .. " alliance offer";
 			end
