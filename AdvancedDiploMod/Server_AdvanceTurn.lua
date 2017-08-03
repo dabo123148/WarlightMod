@@ -382,10 +382,12 @@ function InWar(Player1,Player2)
 	return false;
 end
 function IsAlly(Player1,Player2)
-	for _,pID in pairs(playerGameData[Player1].Allianzen)do
-		if(pID == Player2)then
-			--both players are allied
-			return true;
+	if(game.ServerGame.Game.Players[Player1].IsAI == false)then
+		for _,pID in pairs(playerGameData[Player1].Allianzen)do
+			if(pID == Player2)then
+				--both players are allied
+				return true;
+			end
 		end
 	end
 	return false;
