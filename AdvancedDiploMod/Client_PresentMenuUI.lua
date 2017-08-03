@@ -334,7 +334,7 @@ function OpenPendingRequests()
 						local payload = {};
 						payload.Message = "Deny Territory Sell";
 						payload.TargetPlayerID = terroffer.Player;
-						payload.TargetTerritoryID = terroffer.terrID
+						payload.TargetTerritoryID = terroffer.terrID;
 						Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
 						OpenPendingRequests();
 					end;
@@ -355,6 +355,25 @@ function OpenPendingRequests()
 			for _,allyoffer in pairs(Mod.PlayerGameData.AllyOffers)do
 				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(allyoffer.OfferedBy,Game) .. " offers you an alliance");
+				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
+				local onclick=function()
+					local payload = {};
+					payload.Message = "Deny Allianze";
+					payload.OfferedBy = allyoffer.OfferedBy;
+					Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
+					OpenPendingRequests();
+					end;
+				button.SetOnClick(AllEvilFuncs[tablelength(onclick)]);
+				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
+				local onclick2=function()
+					local payload = {};
+					payload.Message = "Accept Allianze";
+					payload.OfferedBy = allyoffer.OfferedBy;
+					Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
+					OpenPendingRequests();
+					end;
+				button.SetOnClick(AllEvilFuncs[tablelength(onclick2)]);
 			end
 		else
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
