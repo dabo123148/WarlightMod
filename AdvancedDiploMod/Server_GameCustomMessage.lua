@@ -115,30 +115,29 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				setReturnTable(rg);
 			else
 				if(game.ServerGame.Game.Players[player].IsAI == false)then
-					
-					local message = {};
-					message.Von = player;
-					message.Acceptor = playerID;
-					message.Dauer = dauer;
-					message.Turn = game.Game.NumberOfTurns;
-					message.Type = 10;
-					message.Preis = 0;
-					addmessagecustom(message,playerID);
-					addmessagecustom(message,player);
-					message = {};
-					message.Von = player;
-					message.Acceptor = playerID;
-					message.Dauer = dauer;
-					message.Turn = game.Game.NumberOfTurns;
-					message.Type = 10;
-					for _,pid in pairs(game.ServerGame.Game.Players)do
-						if(pid.IsAI == false and pid.ID ~= player and pid.ID ~= playerID)then
-							addmessagecustom(message,pid.ID);
-						end
-					end
+					--since human ais can have peaceoffers, before the turn into ai, this removes the old orders
 					playerGameData[playerID].Peaceoffers[player] = nil;
-					Mod.PlayerGameData=playerGameData;
 				end
+				local message = {};
+				message.Von = player;
+				message.Acceptor = playerID;
+				message.Dauer = dauer;
+				message.Turn = game.Game.NumberOfTurns;
+				message.Type = 10;
+				message.Preis = 0;
+				addmessagecustom(message,playerID);
+				message = {};
+				message.Von = player;
+				message.Acceptor = playerID;
+				message.Dauer = dauer;
+				message.Turn = game.Game.NumberOfTurns;
+				message.Type = 10;
+				for _,pid in pairs(game.ServerGame.Game.Players)do
+					if(pid.IsAI == false and pid.ID ~= player and pid.ID ~= playerID)then
+						addmessagecustom(message,pid.ID);
+					end
+				end
+				Mod.PlayerGameData=playerGameData;
 				publicGameData = Mod.PublicGameData;
 				local remainingwar = {};
 				for _,with in pairs(publicGameData.War[player]) do
