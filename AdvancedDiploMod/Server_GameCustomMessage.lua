@@ -10,6 +10,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		else
 			playerGameData[playerID].AllyOffers[payload.OfferedBy] = nil;
 			if(payload.Message == "Accept Allianze")then
+				playerGameData[payload.OfferedBy].AllyOffers[playerID] = nil;
 				playerGameData[playerID].Allianzen[tablelength(playerGameData[playerID].Allianzen)+1] = payload.OfferedBy;
 				playerGameData[payload.OfferedBy].Allianzen[tablelength(playerGameData[payload.OfferedBy].Allianzen)+1] = playerID;
 				--accept ally message
