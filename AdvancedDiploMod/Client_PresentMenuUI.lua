@@ -364,7 +364,7 @@ function OpenPendingRequests()
 					Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
 					OpenPendingRequests();
 					end;
-				button.SetOnClick(AllEvilFuncs[tablelength(onclick)]);
+				button.SetOnClick(onclick);
 				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
 				local onclick2=function()
 					local payload = {};
@@ -373,7 +373,7 @@ function OpenPendingRequests()
 					Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
 					OpenPendingRequests();
 					end;
-				button.SetOnClick(AllEvilFuncs[tablelength(onclick2)]);
+				button.SetOnClick(onclick2);
 			end
 		else
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
