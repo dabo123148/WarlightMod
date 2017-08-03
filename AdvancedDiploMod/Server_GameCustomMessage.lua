@@ -13,8 +13,34 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				playerGameData[playerID].Allianzen[tablelength(playerGameData[playerID].Allianzen)+1] = payload.OfferedBy;
 				playerGameData[payload.OfferedBy].Allianzen[tablelength(playerGameData[payload.OfferedBy].Allianzen)+1] = playerID;
 				--accept ally message
+				local message = {};
+				message.OfferedBy = payload.OfferedBy;
+				message.AcceptedBy = playerID;
+				message.Turn = game.Game.NumberOfTurns;
+				message.Type = 16;
+				if(Mod.Settings.PublicAllies == true)then
+					for _,pd in pairs(game.ServerGame.Game.Players)do
+						if(pd.IsAI == false)then
+							addmessagecustom(message,pd.ID);
+						end
+					end
+				else
+					addmessagecustom(message,playerID);
+					addmessagecustom(message,payload.OfferedBy);
+				end
+				rg.Message = "You successfuly accepted the ally offer.";
+				setReturnTable(rg);
 			else
 				--declined ally message
+				local message = {};
+				message.OfferedBy = payload.OfferedBy;
+				message.DeclinedBy = playerID;
+				message.Turn = game.Game.NumberOfTurns;
+				message.Type = 17;
+				addmessagecustom(message,playerID);
+				addmessagecustom(message,payload.OfferedBy);
+				rg.Message = "You successfuly declined the ally offer.";
+				setReturnTable(rg);
 			end
 		end	
 	end
