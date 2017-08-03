@@ -365,7 +365,7 @@ function OpenPendingRequests()
 					OpenPendingRequests();
 					end;
 				button.SetOnClick(onclick);
-				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
+				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
 				local onclick2=function()
 					local payload = {};
 					payload.Message = "Accept Allianze";
