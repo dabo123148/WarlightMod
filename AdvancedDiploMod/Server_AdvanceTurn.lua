@@ -40,6 +40,11 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					skipThisOrder(WL.ModOrderControl.Skip);
 					if(game.ServerGame.Game.Players[order.PlayerID].IsAIOrHumanTurnedIntoAI == true)then
 						DeclareWar(order.PlayerID,toowner,game);
+						if(game.ServerGame.Game.Players[toowner].IsAI == false)then
+							for _,with in pairs(playerGameData[toowner].Allianzen)do
+								DeclareWar(with,order.PlayerID,game);
+							end
+						end
 					end
 				end
 			end
