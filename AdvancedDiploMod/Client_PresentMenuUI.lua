@@ -144,8 +144,10 @@ function OpenMenu()
 	if(tablelength(Mod.PublicGameData.War[Game.Us.ID])~=0)then
 		UI.CreateLabel(horzobjlist[1]).SetText("You are currently in war with the following player:");
 		horzobjlist[2] = UI.CreateVerticalLayoutGroup(root);
+		offerpeacebutton.SetInteractable(true);
 	else
-		UI.CreateLabel(horzobjlist[1]).SetText("You are currently in war with no one.");			
+		UI.CreateLabel(horzobjlist[1]).SetText("You are currently in war with no one.");
+		offerpeacebutton.SetInteractable(false);
 	end
 	for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
 		UI.CreateLabel(horzobjlist[2]).SetText("-" .. toname(with,Game));
@@ -154,8 +156,12 @@ function OpenMenu()
 	if(tablelength(Game.Game.Players)-tablelength(Mod.PublicGameData.War[Game.Us.ID])-tablelength(Mod.PlayerGameData.Allianzen)~=0)then
 		UI.CreateLabel(horzobjlist[3]).SetText("You are currently in peace with the following player:");
 		horzobjlist[4] = UI.CreateVerticalLayoutGroup(root);
+		declarewarbutton.SetInteractable(true);
+		offerallianzebutton.SetInteractable(true);
 	else
 		UI.CreateLabel(horzobjlist[3]).SetText("You are currently in peace with no one.");
+		declarewarbutton.SetInteractable(false);
+		offerallianzebutton.SetInteractable(false);
 	end
 	for _,pd in pairs(Game.Game.PlayingPlayers)do
 		if(pd.ID ~= Game.Us.ID)then
