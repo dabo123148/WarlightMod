@@ -636,6 +636,11 @@ function TargetPlayerClicked()
 				Match = true;
 			end
 		end
+		for _,with in pairs(Mod.PlayerGameData.Allianzen)do
+			if(with == playerinstanze.ID)then
+				Match = true;
+			end
+		end
 		if(Match == false)then
 			if(playerinstanze.ID ~= Game.Us.ID)then
 				table.insert(options,playerinstanze);
