@@ -344,7 +344,7 @@ function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,r
 	end
 end
 function DeclareWar(Player1,Player2,game)
-	if(IsAlly(Player1,Player2)==false and InWar(Player1,Player2) == false)then
+	if(IsAlly(Player1,Player2,game)==false and InWar(Player1,Player2) == false)then
 		if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
 			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true and Mod.Settings.AllowAIDeclaration == false)then
 				return;
@@ -381,7 +381,7 @@ function InWar(Player1,Player2)
 	end
 	return false;
 end
-function IsAlly(Player1,Player2)
+function IsAlly(Player1,Player2,game)
 	if(game.ServerGame.Game.Players[Player1].IsAI == false)then
 		for _,pID in pairs(playerGameData[Player1].Allianzen)do
 			if(pID == Player2)then
