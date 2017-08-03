@@ -80,6 +80,31 @@ function ShowHistory(datentable,game,ende)
 		if(data.Type == 14)then
 			teildaten =  getname(data.Buyer,game) .. " tried to buy " .. getterrname(data.terrid,game) .. " from you, but he hadn't enough money";
 		end
+		if(data.Type == 15)then
+			if(data.OfferedBy == game.Us.ID)then
+				teildaten =  "You offered " ..getname(data.OfferedTo,game) .. " an alliance";
+			else
+				teildaten =  getname(data.OfferedBy,game) .. " offered you an alliance";
+			end
+		end
+		if(data.Type == 16)then
+			if(data.OfferedBy == game.Us.ID)then
+				teildaten =  "You are now allied with " .. getname(data.OfferedTo,game);
+			end
+			if(data.OfferedTo == game.Us.ID)then
+				teildaten =  "You are now allied with " .. getname(data.OfferedBy,game);
+			end
+			if(data.OfferedBy ~= game.Us.ID and data.OfferedTo ~= game.Us.ID)then
+				teildaten =  getname(data.OfferedBy,game) .. " and "  .. getname(data.OfferedTo,game) .. " are now allied";
+			end
+		end
+		if(data.Type == 17)then
+			if(data.OfferedBy == game.Us.ID)then
+				teildaten =  getname(data.OfferedTo,game) .. " declined your alliance offer";
+			else
+				teildaten =  "You declined " .. getname(data.OfferedBy,game) .. " alliance offer";
+			end
+		end
 		if(teildaten ~= "")then
 			daten = daten .. "Turn " .. tostring(data.Turn+1) .. ":".. teildaten .. "\n";
 		end
