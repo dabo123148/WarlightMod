@@ -50,6 +50,11 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(check(order.Message,"Declared war on"))then
 			if(InWar(order.PlayerID,order.Payload) == false)then
 				DeclareWar(order.PlayerID,tonumber(order.Payload),game);
+				if(game.ServerGame.Game.Players[tonumber(order.Payload)].IsAI == false)then
+					for _,with in pairs(playerGameData[tonumber(order.Payload)].Allianzen)do
+						DeclareWar(with,order.PlayerID,game);
+					end
+				end
 			end
 		end
 		if(check(order.Message,"Buy Armies"))then
@@ -268,14 +273,27 @@ function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,r
 		if(InWar(Player1,Player2)==false and requirewarsetting ~= nil and requirewarsetting == true)then
 			--Declare war
 			if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
-				if(Mod.Settings.AllowAIDeclaration == true and game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == false)then
+				if(Mod.Settings.AllowAIDeclaration == true and game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == false)then
 					DeclareWar(Player1,Player2,game);
+					if(game.ServerGame.Game.Players[Player2].IsAI == false)then
+						for _,with in pairs(playerGameData[Player2].Allianzen)do
+							DeclareWar(with,Player1,game);
+						end
+					end
 				end
-				if(Mod.Settings.AIsDeclareAIs == true and game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
+				if(Mod.Settings.AIsDeclareAIs == true and game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true)then
 					DeclareWar(Player1,Player2,game);
+					if(game.ServerGame.Game.Players[Player2].IsAI == false)then
+						for _,with in pairs(playerGameData[Player2].Allianzen)do
+							DeclareWar(with,Player1,game);
+						end
+					end
 				end
 			else
 				DeclareWar(Player1,Player2,game);
+				for _,with in pairs(playerGameData[Player2].Allianzen)do
+					DeclareWar(with,Player1,game);
+				end
 			end
 			return false;
 		else
@@ -294,14 +312,25 @@ function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,r
 			else
 				--Declare war
 				if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
-					if(Mod.Settings.AllowAIDeclaration == true and game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == false)then
+					if(Mod.Settings.AllowAIDeclaration == true and game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == false)then
 						DeclareWar(Player1,Player2,game);
+						for _,with in pairs(playerGameData[Player2].Allianzen)do
+							DeclareWar(with,Player1,game);
+						end
 					end
-					if(Mod.Settings.AIsDeclareAIs == true and game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
+					if(Mod.Settings.AIsDeclareAIs == true and game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true)then
 						DeclareWar(Player1,Player2,game);
+						if(game.ServerGame.Game.Players[Player2].IsAI == false)then
+							for _,with in pairs(playerGameData[Player2].Allianzen)do
+								DeclareWar(with,Player1,game);
+							end
+						end
 					end
 				else
 					DeclareWar(Player1,Player2,game);
+					for _,with in pairs(playerGameData[Player2].Allianzen)do
+						DeclareWar(with,Player1,game);
+					end
 				end
 				return false;
 			end
@@ -310,7 +339,6 @@ function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,r
 	end
 end
 function DeclareWar(Player1,Player2,game)
-	--Allys Declare war on order.PlayerID if not allied with order.PlayerID
 	if(IsAlly(Player1,Player2)==false and InWar(Player1,Player2) == false)then
 		if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
 			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true and Mod.Settings.AllowAIDeclaration == false)then
@@ -337,22 +365,24 @@ function DeclareWar(Player1,Player2,game)
 		RemainingDeclerations[tablelength(RemainingDeclerations)+1] = {};
 		RemainingDeclerations[tablelength(RemainingDeclerations)].S1 = Player1;
 		RemainingDeclerations[tablelength(RemainingDeclerations)].S2 = Player2;
-	else
-		RemoveAlly(Player1,Player2);
 	end
 end
 function InWar(Player1,Player2)	
-	if(Mod.PublicGameData.War[Player1] ~= nil)then
-		for _,pID in pairs(Mod.PublicGameData.War[Player1])do
-			if(pID == Player2)then
-				--both players are in war
-				return true;
-			end
+	for _,pID in pairs(Mod.PublicGameData.War[Player1])do
+		if(pID == Player2)then
+			--both players are in war
+			return true;
 		end
 	end
 	return false;
 end
 function IsAlly(Player1,Player2)
+	for _,pID in pairs(playerGameData[Player1].Allianzen)do
+		if(pID == Player2)then
+			--both players are allied
+			return true;
+		end
+	end
 	return false;
 end
 function tablelength(T)
