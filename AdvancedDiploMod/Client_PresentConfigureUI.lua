@@ -136,6 +136,7 @@ function ShowUI()
 			MoneyPerKilledArmyinit = 0;
 			MoneyPerCapturedTerritoryinit = 0;
 			MoneyPerCapturedBonusinit = 0;
+			inputBasicMoneySystem = nil;
 			inputStartMoney = nil;
 			inputMoneyPerTurn = nil;
 			inputMoneyPerKilledArmy = nil;
