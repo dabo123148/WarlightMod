@@ -2,6 +2,7 @@ require('Money');
 function Server_AdvanceTurn_Start (game,addNewOrder)
 	playerGameData = Mod.PlayerGameData;
 	RemainingDeclerations = {};
+	RemainingAllyCancels = {};
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == "GameOrderAttackTransfer")then
@@ -51,6 +52,22 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 	end
 	if(order.proxyType == "GameOrderCustom")then
+		if(check(order.Message,"Cancel Alliance with"))then
+			local cancelwith = tonumber(order.Payload);
+			local match = false;
+			for _,canceldata in pairs(RemainingAllyCancels)do
+				if(canceldata.S1 == order.PlayerID or canceldata.S1 == cancelwith)then
+					if(canceldata.S2 == order.PlayerID or canceldata.S2 == cancelwith)then
+						match = true;
+					end
+				end
+			end
+			if(match == false)then
+				RemainingAllyCancels[tablelength(RemainingAllyCancels)+1] = {};
+				RemainingAllyCancels[tablelength(RemainingAllyCancels)].S1 = order.PlayerID;
+				RemainingAllyCancels[tablelength(RemainingAllyCancels)].S2 = cancelwith;
+			end
+		end
 		if(check(order.Message,"Declared war on"))then
 			if(InWar(order.PlayerID,order.Payload) == false)then
 				DeclareWar(order.PlayerID,tonumber(order.Payload),game);
@@ -240,6 +257,38 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		end
 	end
 	RemainingDeclerations = {};
+	for _,canceldata in pairs(RemainingAllyCancels)do
+		local remainingwar = {};
+		for _,with in pairs(playerGameData[canceldata.S1])do
+			if(with ~= canceldata.S2)then
+				remainingwar[tablelength(remainingwar)+1] = with;
+			end
+		end
+		playerGameData[canceldata.S1] = remainingwar;
+		remainingwar = {};
+		for _,with in pairs(playerGameData[canceldata.S2])do
+			if(with ~= canceldata.S1)then
+				remainingwar[tablelength(remainingwar)+1] = with;
+			end
+		end
+		playerGameData[canceldata.S2] = remainingwar;
+		local message = {};
+		message.Type = 18;
+		message.S1 = canceldata.S1;
+		message.S2 = canceldata.S2;
+		message.Turn = game.Game.NumberOfTurns;
+		if(Mod.Settings.PublicAllies)then
+			for _,pd in pairs(game.ServerGame.Game.Players)do
+				if(pd.IsAI == false)then
+					addMessage(message,pd.ID);
+				end
+			end
+		else
+			addMessage(message,canceldata.S1);
+			addMessage(message,canceldata.S2);
+		end
+	end
+	RemainingAllyCancels = {};
 	--reducing the number of turns a player cant declare war on an other
 	for _,pid in pairs(game.ServerGame.Game.Players)do
 		for _,pid2 in pairs(game.ServerGame.Game.Players)do
