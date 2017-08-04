@@ -16,6 +16,12 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.PublicAllies == nil)then
 		Mod.Settings.PublicAllies = true;
 	end
+	if(inputBasicMoneySystem ~= nil)then
+		Mod.Settings.BasicMoneySystem = inputBasicMoneySystem.GetIsChecked();
+	end
+	if(Mod.Settings.BasicMoneySystem == nil)then
+		Mod.Settings.BasicMoneySystem = false;
+	end
 	if(inputStartMoney ~= nil)then
 		Mod.Settings.StartMoney = inputStartMoney.GetValue();
 	end
@@ -85,9 +91,6 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.MoneyPerBoughtArmy <0)then
 		alert('You cannot ear money for buying armies');
 	end
-	if(Mod.Settings.MoneyPerBoughtArmy ==0)then
-		alert('The price per army must be grader than 0');
-	end
 	Mod.Settings.SanctionCardRequireWar = inputSanctionCardRequireWar.GetIsChecked();
 	if(Mod.Settings.SanctionCardRequireWar == nil)then
 		Mod.Settings.SanctionCardRequireWar = true;
@@ -136,8 +139,10 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.GiftCardRequireAlly == nil)then
 		Mod.Settings.GiftCardRequireAlly = true;
 	end
-	if(Mod.Settings.MoneyPerBoughtArmy < Mod.Settings.MoneyPerKilledArmy)then
-		alert('You cannot set the the money you earn per killed army higher than the price per army');
+	if(Mod.Settings.MoneyPerBoughtArmy ~= 0)then
+		if(Mod.Settings.MoneyPerBoughtArmy < Mod.Settings.MoneyPerKilledArmy)then
+			alert('You cannot set the the money you earn per killed army higher than the price per army');
+		end
 	end
 	Mod.Settings.AdminAccess = inputAdminaccess.GetIsChecked();
 	if(Mod.Settings.AdminAccess == nil)then
