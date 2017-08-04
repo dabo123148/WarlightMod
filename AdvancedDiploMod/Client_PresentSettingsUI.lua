@@ -17,7 +17,11 @@ function Client_PresentSettingsUI(rootParent)
 		CreateLine('Extra money per killed army : ', Mod.Settings.MoneyPerKilledArmy,1,false);
 		CreateLine('Extra money per captured territory : ', Mod.Settings.MoneyPerCapturedTerritory,5,false);
 		CreateLine('Extra money per captured bonus : ', Mod.Settings.MoneyPerCapturedBonus,10,false);
-		CreateLine('Price per army : ', Mod.Settings.MoneyPerBoughtArmy,2,false);
+		if(Mod.Settings.MoneyPerBoughtArmy == 0)then
+			UI.CreateLabel(rootParent).SetText('The buy armies function of this mod has been disabled').SetColor('#FF0000');
+		else
+			CreateLine('Price per army : ', Mod.Settings.MoneyPerBoughtArmy,2,false);
+		end
 	else
 		UI.CreateLabel(rootParent).SetText('The Trading System has been disabled').SetColor('#FF0000');
 	end
