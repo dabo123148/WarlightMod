@@ -226,25 +226,20 @@ function OpenCancelAlliance()
 end
 function OpenOfferAlliance()
 	DeleteUI();
-	if(playersallowedtotest[Game.Us.ID] == nil)then
-		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
-		textelem = UI.CreateLabel(horzobjlist[0]).SetText("The allianze system is banned for you until it is completed");
-		UI.Alert("The allianze system is banned for you until it is completed");
-	else
-		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
-		textelem = UI.CreateLabel(horzobjlist[0]).SetText("Offer Allianze To: ");
-		TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferAllianze);
-		horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
-		commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Offer").SetOnClick(function()
-				if(TargetPlayerBtn.GetText() == "Select player...")then
-					UI.Alert('You need to choose a player first');
-					return;
-				end
-				local payload = {};
-				payload.Message = "Offer Allianze";
-				payload.TargetPlayerID = getplayerid(TargetPlayerBtn.GetText() ,Game);
-				Game.SendGameCustomMessage("Offering...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
-			end);
+	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Offer Allianze To: ");
+	TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferAllianze);
+	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+	commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Offer").SetOnClick(function()
+			if(TargetPlayerBtn.GetText() == "Select player...")then
+				UI.Alert('You need to choose a player first');
+				return;
+			end
+			local payload = {};
+			payload.Message = "Offer Allianze";
+			payload.TargetPlayerID = getplayerid(TargetPlayerBtn.GetText() ,Game);
+			Game.SendGameCustomMessage("Offering...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
+		end);
 	end
 end
 function TargetPlayerSelectCancelAlliance()
@@ -403,37 +398,35 @@ function OpenPendingRequests()
 	end
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("");
-	if(playersallowedtotest[Game.Us.ID] ~= nil)then
-		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Alliance Offers");
-		if(tablelength(Mod.PlayerGameData.AllyOffers) ~= 0)then
-			for _,allyoffer in pairs(Mod.PlayerGameData.AllyOffers)do
-				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(allyoffer.OfferedBy,Game) .. " offers you an alliance");
-				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
-				local onclick=function()
-					local payload = {};
-					payload.Message = "Deny Allianze";
-					payload.OfferedBy = allyoffer.OfferedBy;
-					Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
-					OpenPendingRequests();
-					end;
-				button.SetOnClick(onclick);
-				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
-				local onclick2=function()
-					local payload = {};
-					payload.Message = "Accept Allianze";
-					payload.OfferedBy = allyoffer.OfferedBy;
-					Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
-					OpenPendingRequests();
-					end;
-				button.SetOnClick(onclick2);
-			end
-		else
+	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Alliance Offers");
+	if(tablelength(Mod.PlayerGameData.AllyOffers) ~= 0)then
+		for _,allyoffer in pairs(Mod.PlayerGameData.AllyOffers)do
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no offer");
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(allyoffer.OfferedBy,Game) .. " offers you an alliance");
+			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+			button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
+			local onclick=function()
+				local payload = {};
+				payload.Message = "Deny Allianze";
+				payload.OfferedBy = allyoffer.OfferedBy;
+				Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
+				OpenPendingRequests();
+				end;
+			button.SetOnClick(onclick);
+			button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
+			local onclick2=function()
+				local payload = {};
+				payload.Message = "Accept Allianze";
+				payload.OfferedBy = allyoffer.OfferedBy;
+				Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
+				OpenPendingRequests();
+				end;
+			button.SetOnClick(onclick2);
 		end
+	else
+		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no offer");
 	end
 end
 
