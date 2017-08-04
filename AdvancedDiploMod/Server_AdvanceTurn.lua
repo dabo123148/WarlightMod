@@ -280,7 +280,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		if(Mod.Settings.PublicAllies)then
 			for _,pd in pairs(game.ServerGame.Game.Players)do
 				if(pd.IsAI == false)then
-					addMessage(message,pd.ID);
+					addmessage(message,pd.ID);
 				end
 			end
 		else
