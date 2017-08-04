@@ -234,7 +234,6 @@ function OpenOfferAlliance()
 			payload.TargetPlayerID = getplayerid(TargetPlayerBtn.GetText() ,Game);
 			Game.SendGameCustomMessage("Offering...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
 		end);
-	end
 end
 function TargetPlayerSelectCancelAlliance()
 	local options = {};
