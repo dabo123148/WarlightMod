@@ -35,7 +35,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(horz).SetText("-Allianzes");
 	end
   	horz = UI.CreateHorizontalLayoutGroup(root);
-	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+	if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
  		moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 	else
 		moneyobj = UI.CreateLabel(horz).SetText('The money system is disabled');
@@ -46,14 +46,14 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 end
 function OpenOfferPeace()
 	DeleteUI();
-	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+	if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
 		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[0]).SetText("AIs won't take your money or pay you money");
 	end
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[1]).SetText("Offer peace to: ");
 	TargetPlayerBtn = UI.CreateButton(horzobjlist[1]).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
-	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+	if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
 		horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
 		UI.CreateLabel(horzobjlist[2]).SetText('How much money are you willing to pay for peace');
 		Moneyyoupayforpeace = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
@@ -256,7 +256,7 @@ function OpenPendingRequests()
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ");
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offer by " .. toname(peaceoffer.Offerby,Game));
-			if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+			if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
 				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 				local requiredmoney = tonumber(peaceoffer.Preis);
 				if(requiredmoney == 0)then
@@ -305,7 +305,7 @@ function OpenPendingRequests()
 				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ");
 				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(terroffer.Player,Game) .. ' wants to sell you ' .. Game.Map.Territories[terroffer.terrID].Name);
-				if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+				if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
 					horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 					local Price = terroffer.Preis;
 					if(Price ~= 0)then
@@ -424,43 +424,45 @@ end
 function Openshop(rootParent)
 	DeleteUI();
 	AllFuncs={};
-	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
-		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
-		textelem = UI.CreateLabel(horzobjlist[0]).SetText("Buy Armies");
-		horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
-		territory1 = UI.CreateButton(horzobjlist[1]).SetText("Select territory...");
-		AllFuncs[0]=function() TargetTerritoryClicked(territory1); end;
-		territory1.SetOnClick(AllFuncs[0]);
-		horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horzobjlist[2]).SetText('Army number: ');
-		Countobj = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
-		horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
-		commitbutton = UI.CreateButton(horzobjlist[3]).SetText("Add Order").SetOnClick(function() 
-			if(territory1.GetText() == "Select territory...")then
-				UI.Alert('You need to select a territory first');
-			else
-				local Anzahl = Countobj.GetValue();
-				if(Anzahl< 1)then
-					UI.Alert('Invailid Count');
+	if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
+		if(Mod.Settings.MoneyPerBoughtArmy~=0)then
+			horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+			textelem = UI.CreateLabel(horzobjlist[0]).SetText("Buy Armies");
+			horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+			territory1 = UI.CreateButton(horzobjlist[1]).SetText("Select territory...");
+			AllFuncs[0]=function() TargetTerritoryClicked(territory1); end;
+			territory1.SetOnClick(AllFuncs[0]);
+			horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
+			UI.CreateLabel(horzobjlist[2]).SetText('Army number: ');
+			Countobj = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
+			horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
+			commitbutton = UI.CreateButton(horzobjlist[3]).SetText("Add Order").SetOnClick(function() 
+				if(territory1.GetText() == "Select territory...")then
+					UI.Alert('You need to select a territory first');
 				else
-					for _,terr in pairs(Game.Map.Territories)do
-						--UI.Alert(terr.Name .. " " .. territory1.GetText());
-						if(terr.Name == territory1.GetText())then
-							local pay = "," .. terr.ID .. "," .. Anzahl;
-							local Nachricht = "Buy Armies (" .. Anzahl .. ") for " .. terr.Name;
-							local armybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, Nachricht, pay);
-							local orders = Game.Orders;
-							if(Game.Us.HasCommittedOrders == true)then
-								UI.Alert("You need to uncommit first");
-								return;
+					local Anzahl = Countobj.GetValue();
+					if(Anzahl< 1)then
+						UI.Alert('Invailid Count');
+					else
+						for _,terr in pairs(Game.Map.Territories)do
+							--UI.Alert(terr.Name .. " " .. territory1.GetText());
+							if(terr.Name == territory1.GetText())then
+								local pay = "," .. terr.ID .. "," .. Anzahl;
+								local Nachricht = "Buy Armies (" .. Anzahl .. ") for " .. terr.Name;
+								local armybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, Nachricht, pay);
+								local orders = Game.Orders;
+								if(Game.Us.HasCommittedOrders == true)then
+									UI.Alert("You need to uncommit first");
+									return;
+								end
+								table.insert(orders, armybuyorder);
+								Game.Orders=orders;
 							end
-							table.insert(orders, armybuyorder);
-							Game.Orders=orders;
 						end
 					end
 				end
-			end
-		end)
+			end)
+		end
 		horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[4]).SetText(" ");
 		horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
@@ -511,7 +513,7 @@ function Openshop(rootParent)
 	--territoryeins = UI.CreateLabel(horzobjlist[6]).SetText("Select a territory");
 	--horzobjlist[7] = UI.CreateHorizontalLayoutGroup(root);
 	--textelem = UI.CreateLabel(horzobjlist[7]).SetText("Select a player, you want to buy it from");
-	--if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+	--if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
 	--	horzobjlist[8] = UI.CreateHorizontalLayoutGroup(root);
 	--	textelem = UI.CreateLabel(horzobjlist[8]).SetText("What are you willing to pay");
 	--	Moneyyoupayforterritorybuy = UI.CreateNumberInputField(horzobjlist[8]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
@@ -562,7 +564,7 @@ function Openshop(rootParent)
 			options = zusammen(options, PlayerButtonCustom,SelectPlayerBtn2);
 			UI.PromptFromList("Select the player you'd like to offer it to", options);
 		end);
-	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+	if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
 		horzobjlist[15] = UI.CreateHorizontalLayoutGroup(root);
 		textelem = UI.CreateLabel(horzobjlist[15]).SetText("What are you willing to pay");
 		Moneyyoupayforterritorysellzwei = UI.CreateNumberInputField(horzobjlist[15]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
@@ -735,7 +737,7 @@ function PlayerButton(player)
 end
 function DeleteUI()
 	--horz = UI.CreateHorizontalLayoutGroup(root);
-	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+	if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
 		moneyobj.SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 	end
 	if(textelem ~= nil)then
