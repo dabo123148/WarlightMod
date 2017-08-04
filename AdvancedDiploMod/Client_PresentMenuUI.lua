@@ -254,6 +254,7 @@ function TargetPlayerSelectCancelAlliance()
 		for _,with in pairs(Mod.PlayerGameData.Allianzen)do
 			if(with == playerinstanze.ID)then
 				table.insert(options,playerinstanze);
+				match2 = true;
 			end
 		end
 	end
