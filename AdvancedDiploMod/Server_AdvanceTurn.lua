@@ -284,8 +284,8 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				end
 			end
 		else
-			addMessage(message,canceldata.S1);
-			addMessage(message,canceldata.S2);
+			addmessage(message,canceldata.S1);
+			addmessage(message,canceldata.S2);
 		end
 	end
 	RemainingAllyCancels = {};
