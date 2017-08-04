@@ -11,6 +11,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	offerallianzebutton = nil;
 	pendingrequestbutton = nil;
 	oldermessagesbutton = nil;
+	cancelallianzebutton = nil;
 	Game = game;
 	root = rootParent;
 	setMaxSize(450, 350);
@@ -128,7 +129,8 @@ function OpenMenu()
 	openshopbutton = UI.CreateButton(vert).SetText("Trading").SetOnClick(Openshop);
 	declarewarbutton = UI.CreateButton(vert).SetText("Declare War").SetOnClick(OpenDeclarWar);
 	offerpeacebutton = UI.CreateButton(vert).SetText("Offer Peace").SetOnClick(OpenOfferPeace);
-	offerallianzebutton = UI.CreateButton(vert).SetText("Offer Alliance - not implemented").SetOnClick(OpenOfferAlliance);
+	offerallianzebutton = UI.CreateButton(vert).SetText("Offer Alliance - limited access").SetOnClick(OpenOfferAlliance);
+	cancelallianzebutton = UI.CreateButton(vert).SetText("Cancel Alliance - limited access").SetOnClick(OpenCancelAlliance);
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
 	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function()
 		if(tablelength(Mod.PlayerGameData.Nachrichten)~=0)then
@@ -185,12 +187,41 @@ function OpenMenu()
 	horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
 	if(tablelength(Mod.PlayerGameData.Allianzen)~=0)then
 		UI.CreateLabel(horzobjlist[5]).SetText("You are currently allied with the following player:");
+		cancelallianzebutton.SetInteractable(true);
 		horzobjlist[6] = UI.CreateVerticalLayoutGroup(root);
 	else
 		UI.CreateLabel(horzobjlist[5]).SetText("You are currently allied with no one.");
+		cancelallianzebutton.SetInteractable(false);
 	end
 	for _,with in pairs(Mod.PlayerGameData.Allianzen)do
 		UI.CreateLabel(horzobjlist[6]).SetText("-" .. toname(with,Game));
+	end
+end
+function OpenCancelAlliance()
+	DeleteUI();
+	if(playersallowedtotest[Game.Us.ID] == nil)then
+		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[0]).SetText("The allianze system is banned for you until it is completed");
+		UI.Alert("The allianze system is banned for you until it is completed");
+	else
+		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[0]).SetText("Cancel alliance with: ");
+		TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerSelectCancelAlliance);
+		horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+		commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Offer").SetOnClick(function()
+				if(TargetPlayerBtn.GetText() == "Select player...")then
+					UI.Alert('You need to choose a player first');
+					return;
+				end
+				local cancelorder = WL.GameOrderCustom.Create(Game.Us.ID, "Cancel Allianze with " .. getplayerid(TargetPlayerBtn.GetText() ,Game), getplayerid(TargetPlayerBtn.GetText() ,Game));
+				local orders = Game.Orders;
+				if(Game.Us.HasCommittedOrders == true)then
+					UI.Alert("You need to uncommit first");
+					return;
+				end
+				table.insert(orders, cancelorder);
+				Game.Orders=orders;
+			end);
 	end
 end
 function OpenOfferAlliance()
@@ -214,6 +245,23 @@ function OpenOfferAlliance()
 				payload.TargetPlayerID = getplayerid(TargetPlayerBtn.GetText() ,Game);
 				Game.SendGameCustomMessage("Offering...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
 			end);
+	end
+end
+function TargetPlayerSelectCancelAlliance()
+	local options = {};
+	local match2 = false;
+	for _,playerinstanze in pairs(Game.Game.Players)do
+		for _,with in pairs(Mod.PlayerGameData.Allianzen)do
+			if(with == playerinstanze.ID)then
+				table.insert(options,playerinstanze);
+			end
+		end
+	end
+	if(match2 == false)then
+		UI.Alert('You are not able to ally to anyone at the moment');
+	else
+		options = map(options, PlayerButton);
+		UI.PromptFromList("Select the player you'd like to cancel the alliance with", options);
 	end
 end
 function TargetPlayerClickedOfferAllianze()
@@ -771,6 +819,10 @@ function DeleteUI()
 	if(pendingrequestbutton ~= nil)then
 		UI.Destroy(pendingrequestbutton);
 		pendingrequestbutton = nil;
+	end
+	if(cancelallianzebutton ~= nil)then
+		UI.Destroy(cancelallianzebutton);
+		cancelallianzebutton = nil;
 	end
 	if(oldermessagesbutton ~= nil)then
 		UI.Destroy(oldermessagesbutton);
