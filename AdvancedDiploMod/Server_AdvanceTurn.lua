@@ -264,14 +264,14 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				remainingwar[tablelength(remainingwar)+1] = with;
 			end
 		end
-		playerGameData[canceldata.S1] = remainingwar;
+		playerGameData[canceldata.S1].Allianzen = remainingwar;
 		remainingwar = {};
 		for _,with in pairs(playerGameData[canceldata.S2])do
 			if(with ~= canceldata.S1)then
 				remainingwar[tablelength(remainingwar)+1] = with;
 			end
 		end
-		playerGameData[canceldata.S2] = remainingwar;
+		playerGameData[canceldata.S2].Allianzen = remainingwar;
 		local message = {};
 		message.Type = 18;
 		message.S1 = canceldata.S1;
