@@ -259,14 +259,14 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	RemainingDeclerations = {};
 	for _,canceldata in pairs(RemainingAllyCancels)do
 		local remainingwar = {};
-		for _,with in pairs(playerGameData[canceldata.S1])do
+		for _,with in pairs(playerGameData[canceldata.S1].Allianzen)do
 			if(with ~= canceldata.S2)then
 				remainingwar[tablelength(remainingwar)+1] = with;
 			end
 		end
 		playerGameData[canceldata.S1].Allianzen = remainingwar;
 		remainingwar = {};
-		for _,with in pairs(playerGameData[canceldata.S2])do
+		for _,with in pairs(playerGameData[canceldata.S2].Allianzen)do
 			if(with ~= canceldata.S1)then
 				remainingwar[tablelength(remainingwar)+1] = with;
 			end
