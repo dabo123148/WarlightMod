@@ -213,7 +213,7 @@ function OpenCancelAlliance()
 					UI.Alert('You need to choose a player first');
 					return;
 				end
-				local cancelorder = WL.GameOrderCustom.Create(Game.Us.ID, "Cancel Allianze with " .. getplayerid(TargetPlayerBtn.GetText() ,Game), getplayerid(TargetPlayerBtn.GetText() ,Game));
+				local cancelorder = WL.GameOrderCustom.Create(Game.Us.ID, "Cancel Allianze with " .. TargetPlayerBtn.GetText(), getplayerid(TargetPlayerBtn.GetText() ,Game));
 				local orders = Game.Orders;
 				if(Game.Us.HasCommittedOrders == true)then
 					UI.Alert("You need to uncommit first");
