@@ -217,7 +217,6 @@ function OpenCancelAlliance()
 			table.insert(orders, cancelorder);
 			Game.Orders=orders;
 		end);
-	end
 end
 function OpenOfferAlliance()
 	DeleteUI();
