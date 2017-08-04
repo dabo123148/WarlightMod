@@ -89,9 +89,13 @@ function Client_PresentConfigureUI(rootParent)
 	if(MoneyPerBoughtArmyinit == nil)then
 		MoneyPerBoughtArmyinit = 2;
 	end
-	Adminaccessinit = Mod.Settings.AdminAccess;
-	if(Adminaccessinit == nil)then
-		Adminaccessinit = true;
+	MoneyPerBoughtArmyinit = Mod.Settings.MoneyPerBoughtArmy;
+	if(MoneyPerBoughtArmyinit == nil)then
+		MoneyPerBoughtArmyinit = 2;
+	end
+	BasicMoneySysteminit = Mod.Settings.BasicMoneySystem;
+	if(BasicMoneySysteminit == nil)then
+		BasicMoneySysteminit = false;
 	end
 	ShowUI();
 end
@@ -140,6 +144,8 @@ function ShowUI()
 			inputMoneyPerBoughtArmy = nil;
 			ReloadUI();
 		end);
+		horzlist[45] = UI.CreateHorizontalLayoutGroup(rootParentobj);
+		inputBasicMoneySystem = UI.CreateCheckBox(horzlist[45]).SetText('Use Warlight Comerce System').SetIsChecked(BasicMoneySysteminit);
 		horzlist[11] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 		UI.CreateLabel(horzlist[11]).SetText('Starting Money');
 		inputStartMoney = UI.CreateNumberInputField(horzlist[11]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(StartMoneyinit);
@@ -156,7 +162,7 @@ function ShowUI()
 		UI.CreateLabel(horzlist[15]).SetText('Money per captured bonus');
 		inputMoneyPerCapturedBonus = UI.CreateNumberInputField(horzlist[15]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerCapturedBonusinit);
 		horzlist[16] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-		UI.CreateLabel(horzlist[16]).SetText('Price per army');
+		UI.CreateLabel(horzlist[16]).SetText('Price per army(0=disabled)');
 		inputMoneyPerBoughtArmy = UI.CreateNumberInputField(horzlist[16]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerBoughtArmyinit);
 	end
 	horzlist[17] = UI.CreateHorizontalLayoutGroup(rootParentobj);
@@ -225,12 +231,13 @@ function Save()
 	PublicAlliesinit = PublicAlliesCheckbox.GetIsChecked();
 	if(StartMoneyinit ~= 0 or MoneyPerTurninit ~= 0 or MoneyPerKilledArmyinit ~= 0 or MoneyPerCapturedTerritoryinit ~= 0 or MoneyPerCapturedBonusinit ~= 0)then
 		if(inputStartMoney ~= nil)then
-			StartMoneyinit = inputStartMoney.GetValue();
+			BasicMoneySysteminit = inputBasicMoneySystem.GetValue();
 			MoneyPerTurninit = inputMoneyPerTurn.GetValue();
 			MoneyPerKilledArmyinit = inputMoneyPerKilledArmy.GetValue();
 			MoneyPerCapturedTerritoryinit = inputMoneyPerCapturedTerritory.GetValue();
 			MoneyPerCapturedBonusinit = inputMoneyPerCapturedBonus.GetValue();
 			MoneyPerBoughtArmyinit = inputMoneyPerBoughtArmy.GetValue();
+			StartMoneyinit = inputStartMoney.GetValue();
 		end
 	end
 	SanctionCardRequireWarinit = inputSanctionCardRequireWar.GetIsChecked();
