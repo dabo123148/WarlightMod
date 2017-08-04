@@ -199,29 +199,24 @@ function OpenMenu()
 end
 function OpenCancelAlliance()
 	DeleteUI();
-	if(playersallowedtotest[Game.Us.ID] == nil)then
-		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
-		textelem = UI.CreateLabel(horzobjlist[0]).SetText("The allianze system is banned for you until it is completed");
-		UI.Alert("The allianze system is banned for you until it is completed");
-	else
-		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
-		textelem = UI.CreateLabel(horzobjlist[0]).SetText("Cancel alliance with: ");
-		TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerSelectCancelAlliance);
-		horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
-		commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Offer").SetOnClick(function()
-				if(TargetPlayerBtn.GetText() == "Select player...")then
-					UI.Alert('You need to choose a player first');
-					return;
-				end
-				local cancelorder = WL.GameOrderCustom.Create(Game.Us.ID, "Cancel Alliance with " .. TargetPlayerBtn.GetText(), getplayerid(TargetPlayerBtn.GetText() ,Game));
-				local orders = Game.Orders;
-				if(Game.Us.HasCommittedOrders == true)then
-					UI.Alert("You need to uncommit first");
-					return;
-				end
-				table.insert(orders, cancelorder);
-				Game.Orders=orders;
-			end);
+	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Cancel alliance with: ");
+	TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerSelectCancelAlliance);
+	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+	commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Offer").SetOnClick(function()
+			if(TargetPlayerBtn.GetText() == "Select player...")then
+				UI.Alert('You need to choose a player first');
+				return;
+			end
+			local cancelorder = WL.GameOrderCustom.Create(Game.Us.ID, "Cancel Alliance with " .. TargetPlayerBtn.GetText(), getplayerid(TargetPlayerBtn.GetText() ,Game));
+			local orders = Game.Orders;
+			if(Game.Us.HasCommittedOrders == true)then
+				UI.Alert("You need to uncommit first");
+				return;
+			end
+			table.insert(orders, cancelorder);
+			Game.Orders=orders;
+		end);
 	end
 end
 function OpenOfferAlliance()
