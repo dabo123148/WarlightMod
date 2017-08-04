@@ -55,13 +55,13 @@ function ShowHistory(datentable,game,ende)
 			end
 			if(data.Von == game.Us.ID)then
 				if(data.Preis ~= 0)then
-					teildaten = getname(data.Acceptor,game) .. " accepted your peace offer. You have now peace for " .. tostring(data.Dauer) .. " Turns. The price for that was just " tostring(data.Preis);
+					teildaten = getname(data.Acceptor,game) .. " accepted your peace offer. You have now peace for " .. tostring(data.Duration) .. " Turns. The price for that was just " tostring(data.Preis);
 				else
-					teildaten = getname(data.Acceptor,game) .. " accepted your peace offer. You have now peace for " .. tostring(data.Dauer) .. " Turns";
+					teildaten = getname(data.Acceptor,game) .. " accepted your peace offer. You have now peace for " .. tostring(data.Duration) .. " Turns";
 				end
 			end
 			if(data.Acceptor ~= game.Us.ID and data.Von ~= game.Us.ID)then
-				teildaten = getname(data.Acceptor,game) .. " and " .. getname(data.Von,game) .. " have now peace for " .. tostring(data.Dauer) .. " Turns";
+				teildaten = getname(data.Acceptor,game) .. " and " .. getname(data.Von,game) .. " have now peace for " .. tostring(data.Duration) .. " Turns";
 			end
 		end
 		if(data.Type == 11)then
