@@ -119,9 +119,9 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 					playerGameData[playerID].Peaceoffers[player] = nil;
 				end
 				local message = {};
-				message.Von = player;
-				message.Acceptor = playerID;
-				message.Dauer = dauer;
+				message.Acceptor = player;
+				message.Von = playerID;
+				message.Duration = dauer;
 				message.Turn = game.Game.NumberOfTurns;
 				message.Type = 10;
 				message.Preis = 0;
@@ -129,7 +129,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				message = {};
 				message.Von = player;
 				message.Acceptor = playerID;
-				message.Dauer = dauer;
+				message.Duration = dauer;
 				message.Turn = game.Game.NumberOfTurns;
 				message.Type = 10;
 				for _,pid in pairs(game.ServerGame.Game.Players)do
@@ -192,7 +192,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			local message = {};
 			message.Von = player;
 			message.Acceptor = playerID;
-			message.Dauer = dauer;
+			message.Duration = dauer;
 			message.Turn = game.Game.NumberOfTurns;
 			message.Type = 10;
 			message.Preis = preis;
@@ -201,7 +201,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			message = {};
 			message.Von = player;
 			message.Acceptor = playerID;
-			message.Dauer = dauer;
+			message.Duration = dauer;
 			message.Turn = game.Game.NumberOfTurns;
 			message.Type = 10;
 			for _,pid in pairs(game.ServerGame.Game.Players)do
@@ -218,7 +218,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			local message = {};
 			message.Von = player;
 			message.DeclinedBy = playerID;
-			message.Dauer = playerGameData[playerID].Peaceoffers[player].Duration;
+			message.Duration = playerGameData[playerID].Peaceoffers[player].Duration;
 			message.Turn = game.Game.NumberOfTurns;
 			message.Type = 11;
 			message.Preis = playerGameData[playerID].Peaceoffers[player].Preis;
