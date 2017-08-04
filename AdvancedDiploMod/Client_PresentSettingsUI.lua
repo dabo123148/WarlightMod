@@ -10,7 +10,7 @@ function Client_PresentSettingsUI(rootParent)
 	CreateLine('Allies are visible to everyone : ', Mod.Settings.PublicAllies,true,true);
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Tradement System');
-	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+	if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true)then
 		CreateLine('Use the basic warlight money system : ', Mod.Settings.BasicMoneySystem,false,true);
 		CreateLine('Player starting money : ', Mod.Settings.StartMoney,100,false);
 		CreateLine('Extra money per turn : ', Mod.Settings.MoneyPerTurn,5,false);
