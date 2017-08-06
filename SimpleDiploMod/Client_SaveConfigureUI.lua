@@ -1,5 +1,6 @@
 
 function Client_SaveConfigureUI(alert)
+	alert("This Mod is depreaced, please use the new version of this mod");
   	Mod.Settings.AllowAIDeclaration = AIDeclerationcheckbox.GetIsChecked();
 	if(Mod.Settings.AllowAIDeclaration == nil)then
 		Mod.Settings.AllowAIDeclaration = true;
