@@ -33,7 +33,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		horz = UI.CreateHorizontalLayoutGroup(root);
 		UI.CreateLabel(horz).SetText("Your account has testing activated. So please don't use one of the following features in any other game then a testing game:");
 		horz = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horz).SetText("-Allianzes");
+		UI.CreateLabel(horz).SetText("-all features are currently public");
 	end
   	horz = UI.CreateHorizontalLayoutGroup(root);
 	if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
@@ -129,8 +129,8 @@ function OpenMenu()
 	openshopbutton = UI.CreateButton(vert).SetText("Trading").SetOnClick(Openshop);
 	declarewarbutton = UI.CreateButton(vert).SetText("Declare War").SetOnClick(OpenDeclarWar);
 	offerpeacebutton = UI.CreateButton(vert).SetText("Offer Peace").SetOnClick(OpenOfferPeace);
-	offerallianzebutton = UI.CreateButton(vert).SetText("Offer Alliance - limited access").SetOnClick(OpenOfferAlliance);
-	cancelallianzebutton = UI.CreateButton(vert).SetText("Cancel Alliance - limited access").SetOnClick(OpenCancelAlliance);
+	offerallianzebutton = UI.CreateButton(vert).SetText("Offer Alliance").SetOnClick(OpenOfferAlliance);
+	cancelallianzebutton = UI.CreateButton(vert).SetText("Cancel Alliance").SetOnClick(OpenCancelAlliance);
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
 	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function()
 		if(tablelength(Mod.PlayerGameData.Nachrichten)~=0)then
