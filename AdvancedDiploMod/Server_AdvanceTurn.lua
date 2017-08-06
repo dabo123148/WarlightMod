@@ -21,15 +21,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					AddMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedTerritory,playerGameData);
 					if(Mod.Settings.MoneyPerCapturedBonus ~= 0)then
 						for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
-							local match = true;
-							for _,terrid in pairs(game.Map.Bonuses[boni].Territories)do
-								if(terrid ~= order.To)then
-									if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID ~= order.PlayerID)then
-										match = false;--> this bonus isn't captured
-									end
-								end
-							end
-							if(match == true)then
+							if(ownsbonus(game,boni,order.To,order.PlayerID))then
 								AddMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedBonus,playerGameData);
 							end
 						end
@@ -307,6 +299,16 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		end
 	end
 	Mod.PlayerGameData = playerGameData;
+end
+functions ownsbonus(game,bonusid,ignorterrid,playerID)
+	for _,terrid in pairs(game.Map.Bonuses[bonusid].Territories)do
+		if(terrid ~= ignorterrid)then
+			if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID ~= playerID)then
+				return false;
+			end
+		end
+	end
+	return true;
 end
 function toname(playerid,game)
 	return game.ServerGame.Game.Players[playerid].DisplayName(nil, false);
