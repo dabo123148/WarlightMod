@@ -5,10 +5,6 @@ function Client_PresentSettingsUI(rootParent)
 	CreateLine('AIs are allowed to declare war on player : ', Mod.Settings.AllowAIDeclaration,true,true);
 	CreateLine('AIs are allowed to declare war on AIs : ', Mod.Settings.AIsdeclearAIs,true,true);
 	UI.CreateLabel(rootParent).SetText(' ');
-	UI.CreateLabel(rootParent).SetText('Alliance Settings - this system will come in a later version, but that would be a bigger change, so I added the settings for that already, but they have at the moment no effect');
-	CreateLine('Allied players can see your territories : ', Mod.Settings.SeeAllyTerritories,true,true);
-	CreateLine('Allies are visible to everyone : ', Mod.Settings.PublicAllies,true,true);
-	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Tradement System');
 	if(Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0)then
 		CreateLine('Player starting money : ', Mod.Settings.StartMoney,100,false);
