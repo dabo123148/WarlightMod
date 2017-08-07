@@ -392,10 +392,10 @@ end
 function DeclareWar(Player1,Player2,game)
 	if(IsAlly(Player1,Player2,game)==false and InWar(Player1,Player2) == false)then
 		if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
-			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true and Mod.Settings.AllowAIDeclaration == false)then
+			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == false and Mod.Settings.AllowAIDeclaration == false)then
 				return;
 			end
-			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == false and Mod.Settings.AIsDeclareAIs == false)then
+			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true and Mod.Settings.AIsDeclareAIs == false)then
 				return;
 			end
 		end
