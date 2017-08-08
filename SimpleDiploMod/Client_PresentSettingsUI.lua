@@ -11,7 +11,7 @@ function Client_PresentSettingsUI(rootParent)
 		CreateLine('Extra money per turn : ', Mod.Settings.MoneyPerTurn,5,false);
 		CreateLine('Extra money per killed army : ', Mod.Settings.MoneyPerKilledArmy,1,false);
 		CreateLine('Extra money per captured territory : ', Mod.Settings.MoneyPerCapturedTerritory,5,false);
-		CreateLine('Extra money per captured bonus : ', Mod.Settings.MoneyPerCapturedBonus,10,false);
+		CreateLine('Extra money per captured bonus(disabled(see discription)) : ', Mod.Settings.MoneyPerCapturedBonus,10,false);
 		CreateLine('Price per army : ', Mod.Settings.MoneyPerBoughtArmy,2,false);
 	else
 		UI.CreateLabel(rootParent).SetText('The Trading System has been disabled').SetColor('#FF0000');
