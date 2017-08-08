@@ -12,7 +12,7 @@ Ingame currency:
   -You get money for(each item depends on the settings):       - killing armies
                                                                - taking territories
                                                                - every turn
-                                                               - taking bonuses
+                                                               - (taking bonuses)(disabled to masive performance problems on big maps)
                                                                - Game start
   -You can sell territories(
   -You can buy armies of the shop for a definded price
