@@ -285,7 +285,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	for _,pid in pairs(game.ServerGame.Game.Players)do
 		for _,pid2 in pairs(game.ServerGame.Game.Players)do
 			if(pid.ID ~= pid2.ID)then
-				if(publicGameData.CantDeclare[pid.ID] ~= nil)then
+				if(publicGameData.CantDeclare[pid.ID][pid2.ID] ~= nil)then
 					publicGameData.CantDeclare[pid.ID][pid2.ID] = publicGameData.CantDeclare[pid.ID][pid2.ID] - 1;
 					if(publicGameData.CantDeclare[pid.ID][pid2.ID] == 0)then
 						publicGameData.CantDeclare[pid.ID][pid2.ID] = nil;
