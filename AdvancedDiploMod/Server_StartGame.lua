@@ -16,11 +16,6 @@ function Server_StartGame(game,standing)
 		end
 		publicGameData.War[pid.ID] = {};
 		publicGameData.CantDeclare[pid.ID] = {};
-		for _,pid2 in pairs(game.ServerGame.Game.Players) do
-			if(pid2.ID ~= pid.ID)then
-				publicGameData.CantDeclare[pid.ID][pid2.ID] = 0;
-			end
-		end
 	end
 	Mod.PlayerGameData = playerGameData;
 	Mod.PublicGameData = publicGameData;
