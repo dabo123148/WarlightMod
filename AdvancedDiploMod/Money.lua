@@ -4,7 +4,7 @@ function GetMoney(Spieler,pGameData,game)
 			return pGameData[Spieler].Money;
 		else
 			if(pGameData[Spieler].Money ~= 0)then
-				game.ServerGame.SetPlayerResource(Spieler, WL.ResourceType.Gold,GetMoney(Spieler,pGameData,game)+pGameData[Spieler].Money);
+				game.ServerGame.SetPlayerResource(Spieler, WL.ResourceType.Gold,game.ServerGame.Game.Players[Spieler].Resources[WL.ResourceType.Gold]+pGameData[Spieler].Money);
 				pGameData[Spieler].Money = 0;
 			end
 			return game.ServerGame.Game.Players[Spieler].Resources[WL.ResourceType.Gold];
