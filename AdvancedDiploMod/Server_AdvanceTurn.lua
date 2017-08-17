@@ -299,8 +299,13 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
 		if(pid.IsAI == false)then
 			AddMoney(pid.ID,Mod.Settings.MoneyPerTurn,playerGameData,game);--Giving Money per turn
+			local moneyforplayer = {};
+			moneyforplayer[pid.ID] = {};
+			moneyforplayer[pid.ID][WL.ResourceType.Gold] = playerGameData[pid.ID].Money;
+			addNewOrder(WL.GameOrderEvent.Create(pid.ID, "Recieved Gold from Advanced Diplo Mod", {}, {},moneyforplayer);
 		end
 	end
+	
 	Mod.PlayerGameData = playerGameData;
 end
 function ownsbonus(game,bonusid,ignorterrid,playerID)
