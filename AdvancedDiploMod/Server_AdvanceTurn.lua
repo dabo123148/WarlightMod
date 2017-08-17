@@ -82,7 +82,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					local effect = WL.TerritoryModification.Create(to);
 					effect.SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[to].NumArmies.NumArmies + wants;
 					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. wants .. " Armies", {}, {effect}));
-					RemoveMoney(order.PlayerID,Mod.Settings.MoneyPerBoughtArmy*wants,playerGameData);
+					RemoveMoney(order.PlayerID,Mod.Settings.MoneyPerBoughtArmy*wants,playerGameData,game);
 					local message = {};
 					message.Type = 7;
 					message.Count = wants;
