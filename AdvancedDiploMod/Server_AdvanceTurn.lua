@@ -10,10 +10,10 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 			if(WL.PlayerID.Neutral == toowner or order.PlayerID == WL.PlayerID.Neutral or InWar(order.PlayerID,toowner))then
 				if(order.PlayerID ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
-					AddMoney(order.PlayerID,result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy,playerGameData);
+					AddMoney(order.PlayerID,result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy,playerGameData,game);
 				end
 				if(toowner ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[toowner].IsAI == false)then
-					AddMoney(toowner,result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy,playerGameData);
+					AddMoney(toowner,result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy,playerGameData,game);
 				end
 			end
 			if(result.IsSuccessful)then
@@ -22,7 +22,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					if(Mod.Settings.MoneyPerCapturedBonus ~= 0)then
 						for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
 							if(ownsbonus(game,boni,order.To,order.PlayerID))then
-								AddMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedBonus,playerGameData);
+								AddMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedBonus,playerGameData,game);
 							end
 						end
 					end
@@ -123,7 +123,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						message.Type = 13;
 						message.Buyer = order.PlayerID;
 						message.Preis = Preis;
-						message.YourMoney = GetMoney(playerid,playerGameData)
+						message.YourMoney = GetMoney(playerid,playerGameData,game)
 						message.terrid = terrid;
 						message.Turn = game.Game.NumberOfTurns;
 						addmessage(message,von);
@@ -134,7 +134,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							message.Type = 5;
 							message.Von = von;
 							message.Preis = Preis;
-							message.YourMoney = GetMoney(order.PlayerID,playerGameData);
+							message.YourMoney = GetMoney(order.PlayerID,playerGameData,game);
 							message.terrid = terrid;
 							message.Turn = game.Game.NumberOfTurns;
 							addmessage(message,order.PlayerID);
