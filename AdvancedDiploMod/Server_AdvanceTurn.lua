@@ -18,7 +18,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			end
 			if(result.IsSuccessful)then
 				if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
-					AddMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedTerritory,playerGameData);
+					AddMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedTerritory,playerGameData,game);
 					if(Mod.Settings.MoneyPerCapturedBonus ~= 0)then
 						for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
 							if(ownsbonus(game,boni,order.To,order.PlayerID))then
@@ -298,7 +298,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	--Giving Money per turn
 	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
 		if(pid.IsAI == false)then
-			AddMoney(pid.ID,Mod.Settings.MoneyPerTurn,playerGameData);--Giving Money per turn
+			AddMoney(pid.ID,Mod.Settings.MoneyPerTurn,playerGameData,game);--Giving Money per turn
 		end
 	end
 	Mod.PlayerGameData = playerGameData;
