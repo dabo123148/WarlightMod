@@ -37,7 +37,11 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	end
   	horz = UI.CreateHorizontalLayoutGroup(root);
 	if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
- 		moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
+ 		if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or game.ServerGame.Settings.CommerceGame == false)then
+			moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
+		else
+			moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Game.Game.Players[Game.Us.ID].Resources[WL.ResourceType.Gold];
+		end
 	else
 		moneyobj = UI.CreateLabel(horz).SetText('The money system is disabled');
 	end
