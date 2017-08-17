@@ -303,7 +303,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	end
 	Mod.PlayerGameData = playerGameData;
 end
-functions ownsbonus(game,bonusid,ignorterrid,playerID)
+function ownsbonus(game,bonusid,ignorterrid,playerID)
 	for _,terrid in pairs(game.Map.Bonuses[bonusid].Territories)do
 		if(terrid ~= ignorterrid)then
 			if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID ~= playerID)then
