@@ -1,13 +1,13 @@
 function GetMoney(Spieler,pGameData,game)
 	if(pGameData[Spieler] ~= nil)then
-		if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false)then
+		if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or game.ServerGame.Settings.CommerceGame == false)then
 			return pGameData[Spieler].Money;
 		else
-			if(game.ServerGame.Game.Players[Spieler].Resources[WL.ResourceType.Gold] == nil or game.ServerGame.Game.Players[Spieler].Resources[WL.ResourceType.Gold] == 0)then
-				return 0;
-			else
-				return game.ServerGame.Game.Players[Spieler].Resources[WL.ResourceType.Gold];
+			if(pGameData[Spieler].Money ~= 0)then
+				game.ServerGame.SetPlayerResource(Spieler, WL.ResourceType.Gold,GetMoney(Spieler,pGameData,game)+pGameData[Spieler].Money);
+				pGameData[Spieler].Money = 0;
 			end
+			return game.ServerGame.Game.Players[Spieler].Resources[WL.ResourceType.Gold];
 		end
 	end
 	return 0;
@@ -41,16 +41,17 @@ function AddMoney(Spieler,Amout,pGameData,game)
 	if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false)then
 		pGameData[Spieler].Money = pGameData[Spieler].Money + Amout;
 	else
-		if(game.ServerGame.Game.Players[Spieler].Resources[WL.ResourceType.Gold] == nil)then
-			--game.ServerGame.Game.Players[Spieler].Resources[WL.ResourceType.Gold] = ;
+		if(game.ServerGame.Settings.CommerceGame)then
+			game.ServerGame.SetPlayerResource(Spieler, WL.ResourceType.Gold,GetMoney(Spieler,pGameData,game)+Amout);
 		end
-		pGameData[Spieler].Money = pGameData[Spieler].Money + Amout;
 	end
 end
 function RemoveMoney(Spieler,Amout,pGameData,game)
 	if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false)then
 		pGameData[Spieler].Money = pGameData[Spieler].Money - Amout;
 	else
-		pGameData[Spieler].Money = pGameData[Spieler].Money - Amout;
+		if(game.ServerGame.Settings.CommerceGame)then
+			game.ServerGame.SetPlayerResource(Spieler, WL.ResourceType.Gold,GetMoney(Spieler,pGameData,game)+Amout);
+		end
 	end
 end
