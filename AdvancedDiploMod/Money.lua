@@ -34,12 +34,8 @@ function Pay(Spieler1,Spieler2,Amout,pGameData,game)
 	end
 end
 function AddMoney(Spieler,Amout,pGameData,game)
-	if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false)then
-		pGameData[Spieler].Money = pGameData[Spieler].Money + Amout;
-	end
+	pGameData[Spieler].Money = pGameData[Spieler].Money + Amout;
 end
 function RemoveMoney(Spieler,Amout,pGameData,game)
-	if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false)then
-		pGameData[Spieler].Money = pGameData[Spieler].Money - Amout;
-	end
+	pGameData[Spieler].Money = pGameData[Spieler].Money - Amout;
 end
