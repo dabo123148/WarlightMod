@@ -74,7 +74,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	end
 	if(payload.Message == "Gift Money")then
 		local target = tonumber(payload.TargetPlayerID);
-		Pay(playerID,target,payload.Wert,playerGameData)
+		Pay(playerID,target,payload.Wert,playerGameData,game)
 		Mod.PlayerGameData = playerGameData;
 		local message = {};
 		message.Spender = playerID;
@@ -170,7 +170,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		if(payload.Message == "Accept Peace")then
 			local preis = playerGameData[playerID].Peaceoffers[player].Preis;
 			local dauer = playerGameData[playerID].Peaceoffers[player].Duration;
-			Pay(player,playerID,preis,playerGameData)
+			Pay(player,playerID,preis,playerGameData,game)
 			local remainingwar = {};
 			publicGameData = Mod.PublicGameData;
 			for _,with in pairs(publicGameData.War[player]) do
