@@ -3,10 +3,6 @@ function GetMoney(Spieler,pGameData,game)
 		if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or game.ServerGame.Settings.CommerceGame == false)then
 			return pGameData[Spieler].Money;
 		else
-			if(pGameData[Spieler].Money ~= 0)then
-				game.ServerGame.SetPlayerResource(Spieler, WL.ResourceType.Gold,game.ServerGame.Game.Players[Spieler].Resources[WL.ResourceType.Gold]+pGameData[Spieler].Money);
-				pGameData[Spieler].Money = 0;
-			end
 			return game.ServerGame.Game.Players[Spieler].Resources[WL.ResourceType.Gold];
 		end
 	end
@@ -40,18 +36,10 @@ end
 function AddMoney(Spieler,Amout,pGameData,game)
 	if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false)then
 		pGameData[Spieler].Money = pGameData[Spieler].Money + Amout;
-	else
-		if(game.ServerGame.Settings.CommerceGame)then
-			game.ServerGame.SetPlayerResource(Spieler, WL.ResourceType.Gold,GetMoney(Spieler,pGameData,game)+Amout);
-		end
 	end
 end
 function RemoveMoney(Spieler,Amout,pGameData,game)
 	if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false)then
 		pGameData[Spieler].Money = pGameData[Spieler].Money - Amout;
-	else
-		if(game.ServerGame.Settings.CommerceGame)then
-			game.ServerGame.SetPlayerResource(Spieler, WL.ResourceType.Gold,GetMoney(Spieler,pGameData,game)+Amout);
-		end
 	end
 end
