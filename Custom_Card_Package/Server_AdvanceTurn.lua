@@ -23,8 +23,7 @@ end
 function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 	
 	if(gameOrder.proxyType=='GameOrderAttackTransfer')then
-		local playerID=gameOrder.PlayerID;
-		if(gameOrder.PlayerID>50)then
+		if(gameOrder.PlayerID ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[gameOrder.PlayerID].IsAI == false and Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked ~= 1)then
 			if(result.IsSuccessful and result.IsAttack)then
 				local PGD=Mod.PlayerGameData;
 				PGD[gameOrder.PlayerID].SuccessfullyAttacked=1;
@@ -114,7 +113,7 @@ function Server_AdvanceTurn_End(game,addOrder)
 	PuGD = Mod.PublicGameData;
 	for playerID in pairs(game.ServerGame.Game.PlayingPlayers) do
 		--addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 1)',''));
-		if(playerID>50)then
+		if(playerID.IsAI == false)then
 			--addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 2)' .. Mod.PlayerGameData[playerID].SuccessfullyAttacked,''));
 			if(Mod.PlayerGameData[playerID].SuccessfullyAttacked==1)then
 				--addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 3)',''));
