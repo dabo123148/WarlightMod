@@ -302,7 +302,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			local moneyforplayer = {};
 			moneyforplayer[pid.ID] = {};
 			moneyforplayer[pid.ID][WL.ResourceType.Gold] = playerGameData[pid.ID].Money;
-			addNewOrder(WL.GameOrderEvent.Create(pid.ID, "Recieved " .. playerGameData[pid.ID].Money .. " Gold from Advanced Diplo Mod", {}, {},moneyforplayer));
+			addNewOrder(WL.GameOrderEvent.Create(pid.ID, "Received " .. playerGameData[pid.ID].Money .. " gold from Advanced Diplo Mod", {}, {},moneyforplayer));
 			playerGameData[pid.ID].Money = 0;
 		end
 	end
