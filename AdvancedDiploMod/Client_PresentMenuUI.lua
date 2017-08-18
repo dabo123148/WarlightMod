@@ -798,7 +798,7 @@ end
 function DeleteUI()
 	--horz = UI.CreateHorizontalLayoutGroup(root);
 	if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
-		if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or game.Settings.CommerceGame == false)then
+		if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or Game.Settings.CommerceGame == false)then
 			moneyobj.SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 		else
 			moneyobj.SetText('Current Money: ' .. Game.Game.Players[Game.Us.ID].Resources[WL.ResourceType.Gold]);
