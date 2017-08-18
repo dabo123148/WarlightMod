@@ -29,12 +29,12 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	playersallowedtotest[520078] = true;
 	playersallowedtotest[415569] = true;
 	playersallowedtotest[517210] = true;
-	if(playersallowedtotest[game.Us.ID] ~= nil)then
-		horz = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horz).SetText("Your account has testing activated. So please don't use one of the following features in any other game then a testing game:");
-		horz = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horz).SetText("-all features are currently public");
-	end
+	--if(playersallowedtotest[game.Us.ID] ~= nil)then
+	--	horz = UI.CreateHorizontalLayoutGroup(root);
+	--	UI.CreateLabel(horz).SetText("Your account has testing activated. So please don't use one of the following features in any other game then a testing game:");
+	--	horz = UI.CreateHorizontalLayoutGroup(root);
+	--	UI.CreateLabel(horz).SetText("-all features are currently public");
+	--end
   	horz = UI.CreateHorizontalLayoutGroup(root);
 	if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
  		if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or Game.Settings.CommerceGame == false)then
