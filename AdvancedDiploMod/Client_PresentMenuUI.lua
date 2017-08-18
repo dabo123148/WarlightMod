@@ -364,19 +364,19 @@ function OpenPendingRequests()
 						UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("The offer is for free");
 					end
 				end
-				if(Price ~= nil)then
-					if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or Game.Settings.CommerceGame == false)then
-						if(Price > tonumber(Mod.PlayerGameData.Money))then
-							horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-							UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have not the money to pay for that territory");
-						end
-					else
-						if(Price > tonumber(Game.Game.Players[Game.Us.ID].Resources[WL.ResourceType.Gold]))then
-							horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-							UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have not the money to pay for that territory");
-						end
-					end
-				else
+				--if(Price ~= 0)then
+				--	if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or Game.Settings.CommerceGame == false)then
+				--		if(Price > tonumber(Mod.PlayerGameData.Money))then
+				--			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+				--			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have not the money to pay for that territory");
+				--		end
+				--	else
+				--		if(Price > tonumber(Game.Game.Players[Game.Us.ID].Resources[WL.ResourceType.Gold]))then
+				--			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+				--			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have not the money to pay for that territory");
+				--		end
+				--	end
+				--else
 					horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 					local button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
 					AllEvilFuncs[tablelength(AllEvilFuncs)+1]=function()
@@ -400,7 +400,7 @@ function OpenPendingRequests()
 						OpenPendingRequests();
 					end;
 					button.SetOnClick(AllEvilFuncs[tablelength(AllEvilFuncs)]);
-				end
+				--end
 			end
 		end
 	else
