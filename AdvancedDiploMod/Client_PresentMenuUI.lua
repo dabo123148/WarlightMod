@@ -37,7 +37,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	end
   	horz = UI.CreateHorizontalLayoutGroup(root);
 	if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
- 		if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or game.Settings.CommerceGame == false)then
+ 		if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or Game.Settings.CommerceGame == false)then
 			moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 		else
 			moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Game.Game.Players[Game.Us.ID].Resources[WL.ResourceType.Gold]);
@@ -313,7 +313,7 @@ function OpenPendingRequests()
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("The Peace will last for " .. tostring(peaceoffer.Duration) .. " Turns. After that you can declare again war on him.");
 			local mymoney = 0;
-			if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or game.Settings.CommerceGame == false)then
+			if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or Game.Settings.CommerceGame == false)then
 				mymoney = tonumber(Mod.PlayerGameData.Money);
 			else
 				mymoney = tonumber(tonumber(Game.Game.Players[Game.Us.ID].Resources[WL.ResourceType.Gold]));
@@ -365,7 +365,7 @@ function OpenPendingRequests()
 					end
 				end
 				if(Price ~= nil)then
-					if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or game.Settings.CommerceGame == false)then
+					if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or Game.Settings.CommerceGame == false)then
 						if(Price > tonumber(Mod.PlayerGameData.Money))then
 							horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 							UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have not the money to pay for that territory");
@@ -541,7 +541,7 @@ function Openshop(rootParent)
 				UI.Alert("Money must be positive");
 				return;
 			end
-			if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or game.Settings.CommerceGame == false)then
+			if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or Game.Settings.CommerceGame == false)then
 				if(money > tonumber(Mod.PlayerGameData.Money))then
 					UI.Alert("You haven't the money");
 					return;
