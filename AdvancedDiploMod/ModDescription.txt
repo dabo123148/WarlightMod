@@ -15,9 +15,10 @@ Ingame currency:
                                                                - every turn
                                                                - taking bonuses
                                                                - Game start
-  -You can sell territories(
+  -You can sell territories
   -You can buy armies of the shop for a definded price
   -You can gift money to other players
+  -If the setting basic money system is activated, you get the money in the next turn
 AIs for Diplos:
   -AIs won't declare war on players(depends on settings)
   -AIs won't declare war on AIs(depends on settings)
