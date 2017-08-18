@@ -11,7 +11,7 @@ end
 function Pay(Spieler1,Spieler2,Amout,pGameData,game)
 	if(Amout > 0)then
 		if(GetMoney(Spieler1,pGameData,game) >= Amout)then
-			if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false)then
+			if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or game.ServerGame.Settings.CommerceGame == false)then
 				AddMoney(Spieler1,Amout,pGameData,game);
 				RemoveMoney(Spieler2,Amout,pGameData,game);
 			else
@@ -22,12 +22,12 @@ function Pay(Spieler1,Spieler2,Amout,pGameData,game)
 	else
 		if(Amout < 0)then
 			if(GetMoney(Spieler2,pGameData,game) >= Amout*-1)then
-				if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false)then
+				if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or game.ServerGame.Settings.CommerceGame == false)then
 					RemoveMoney(Spieler1,-Amout,pGameData,game);
-					AddMoney(Spieler2,Amout,pGameData,game);
+					AddMoney(Spieler2,-Amout,pGameData,game);
 				else
-					RemoveMoney(Spieler1,Amout,pGameData,game);
-					AddMoney(Spieler2,Amout,pGameData,game);
+					RemoveMoney(Spieler1,-Amout,pGameData,game);
+					AddMoney(Spieler2,-Amout,pGameData,game);
 				end
 			end
 		end
@@ -36,6 +36,10 @@ end
 function AddMoney(Spieler,Amout,pGameData,game)
 	pGameData[Spieler].Money = pGameData[Spieler].Money + Amout;
 end
-function RemoveMoney(Spieler,Amout,pGameData,game)
-	pGameData[Spieler].Money = pGameData[Spieler].Money - Amout;
+function RemoveMoney(Spieler,Amout,pGameData,game,openedfromcustommessage)
+	if(openedfromcustommessage == nil or Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or game.ServerGame.Settings.CommerceGame == false)then
+		pGameData[Spieler].Money = pGameData[Spieler].Money - Amout;
+	else
+		game.SetPlayerResource(Spieler,WL.ResourceType.Gold,game.ServerGame.Game.Players[Spieler].Resources[WL.ResourceType.Gold]-Amout);
+	end
 end
