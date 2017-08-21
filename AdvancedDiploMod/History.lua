@@ -1,4 +1,4 @@
-function ShowHistory(datentable,game,ende)
+function ShowHistory(datentable,game,ende,readconfirmationoff)
 	local daten = "";
 	for _,data in pairs(datentable)do
 		local teildaten = "";
@@ -120,10 +120,12 @@ function ShowHistory(datentable,game,ende)
 			daten = daten .. "Turn " .. tostring(data.Turn+1) .. ":".. teildaten .. "\n";
 		end
 	end
-	if(daten ~= "")then
-		local payload = {};
-		payload.Message = "Read";
-		game.SendGameCustomMessage("Sending read confirmation...", payload, function(returnvalue)end);
+	if(readconfirmationoff == null)then
+		if(daten ~= "")then
+			local payload = {};
+			payload.Message = "Read";
+			game.SendGameCustomMessage("Sending read confirmation...", payload, function(returnvalue)end);
+		end
 	end
 	daten = daten .. ende;
 	if(daten ~= "")then
