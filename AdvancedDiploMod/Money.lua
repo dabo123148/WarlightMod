@@ -40,6 +40,6 @@ function RemoveMoney(Spieler,Amout,pGameData,game,openedfromcustommessage)
 	if(openedfromcustommessage == nil or Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or game.ServerGame.Settings.CommerceGame == false)then
 		pGameData[Spieler].Money = pGameData[Spieler].Money - Amout;
 	else
-		game.SetPlayerResource(Spieler,WL.ResourceType.Gold,game.ServerGame.Game.Players[Spieler].Resources[WL.ResourceType.Gold]-Amout);
+		--game.SetPlayerResource(Spieler,WL.ResourceType.Gold,game.ServerGame.Game.Players[Spieler].Resources[WL.ResourceType.Gold]-Amout);
 	end
 end
