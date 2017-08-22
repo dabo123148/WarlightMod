@@ -73,7 +73,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(check(order.Message,"Buy Armies"))then
 			local to = tonumber(stringtotable(order.Payload)[1]);
 			if(game.ServerGame.LatestTurnStanding.Territories[to].OwnerPlayerID == order.PlayerID)then
-				local money = GetMoney(order.PlayerID,playerGameData);
+				local money = GetMoney(order.PlayerID,playerGameData,game);
 				local wants = tonumber(stringtotable(order.Payload)[2]);
 				if(Mod.Settings.MoneyPerBoughtArmy*wants > money)then
 					wants = math.floor(money/Mod.Settings.MoneyPerBoughtArmy);
@@ -110,7 +110,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					addmessage(message,order.PlayerID);
 				else
 					local Preis = Terrselloffer.Preis;
-					if(Preis < 0 and GetMoney(playerid,playerGameData) < Preis*-1)then
+					if(Preis < 0 and GetMoney(playerid,playerGameData,game) < Preis*-1)then
 						--Seller hasn't the money to pay the person who tries buys the territory
 						local message = {};
 						message.Type = 4;
@@ -128,7 +128,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						message.Turn = game.Game.NumberOfTurns;
 						addmessage(message,von);
 					else
-						if(Preis > 0 and GetMoney(order.PlayerID,playerGameData) < Preis)then
+						if(Preis > 0 and GetMoney(order.PlayerID,playerGameData,game) < Preis)then
 							--you haven't enough money
 							local message = {};
 							message.Type = 5;
