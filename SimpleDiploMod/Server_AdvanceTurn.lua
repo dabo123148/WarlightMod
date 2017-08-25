@@ -253,7 +253,9 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	Mod.PrivateGameData = privateGameData;
 	--Giving Money per turn
 	for _,spieler in pairs(AllPlayerIDs)do
-		playerGameData[spieler].Money = playerGameData[spieler].Money + Mod.Settings.MoneyPerTurn;--Giving Money per turn
+		if(playerGameData[spieler] ~= nil)then
+			playerGameData[spieler].Money = playerGameData[spieler].Money + Mod.Settings.MoneyPerTurn;--Giving Money per turn
+		end
 	end
 	Mod.PlayerGameData = playerGameData;
 	--if(Mod.Settings.SeeAllyTerritories)then
