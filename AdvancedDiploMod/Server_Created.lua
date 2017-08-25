@@ -1,3 +1,5 @@
 function Server_Created (game,settings)
-  settings.AutoBootEnabled = false;
+  local set = settings;
+  set.AutoBootEnabled = false;
+  settings = set;
 end
