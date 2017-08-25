@@ -1,5 +1,4 @@
 function Server_Created (game,settings)
-  local set = settings;
-  set.AutoBootEnabled = false;
-  settings = set;
+  --autoboot is not writable --> file not required(tested in singleplayer, maybe in multiplayer it works)
+  --settings.AutoBootEnabled = false;
 end
