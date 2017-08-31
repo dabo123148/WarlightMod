@@ -1,4 +1,4 @@
-Don't use this mod woth any other mod with a notifications system, else it may happen that the notifications don't show up.
+Don't use this mod with any other mod with a notifications system, else it may happen that the notifications don't show up.
 When you create a game with this mod and need more players, add me(dabo1)
 This Mod adds:
 War/Peace System:
