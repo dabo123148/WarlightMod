@@ -162,7 +162,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		end
 	end
 	if(payload.Message == "Accept Peace" or payload.Message == "Decline Peace")then
-		local player = payload.TargetPlayerID;
+		local player = tonumber(payload.TargetPlayerID);
 		if(playerGameData[playerID].Peaceoffers[player] == nil)then
 			rg.Message = "The Peace Offer doesn't exist, maybe you already accepted or declined it. The next time you reload the game, it shouldn't be shown there.";
 			setReturnTable(rg);
