@@ -221,14 +221,16 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			end
 			if(game.ServerGame.Game.Players[P1].IsAI == false)then
 				num = 1;
-				if(playerGameData[P1].Terrselloffers~=nil)then
-					terrsellofferssplit = stringtotable(playerGameData[P1].Terrselloffers);
-					playerGameData[P1].Terrselloffers = ","
-					while(terrsellofferssplit[num+3] ~=nil)do
-						if(terrsellofferssplit[num] ~= tostring(P2))then
-							playerGameData[P1].Terrselloffers = playerGameData[P1].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
+				if(playerGameData[P1] ~= nil)then
+					if(playerGameData[P1].Terrselloffers~=nil)then
+						terrsellofferssplit = stringtotable(playerGameData[P1].Terrselloffers);
+						playerGameData[P1].Terrselloffers = ","
+						while(terrsellofferssplit[num+3] ~=nil)do
+							if(terrsellofferssplit[num] ~= tostring(P2))then
+								playerGameData[P1].Terrselloffers = playerGameData[P1].Terrselloffers .. terrsellofferssplit[num] .. "," .. terrsellofferssplit[num+1] .. "," .. terrsellofferssplit[num+2] .. ",";
+							end
+							num = num + 3;
 						end
-						num = num + 3;
 					end
 				end
 			end
