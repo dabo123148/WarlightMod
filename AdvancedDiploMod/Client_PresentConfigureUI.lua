@@ -110,9 +110,9 @@ function ShowUI()
 	horzlist[3] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	UI.CreateLabel(horzlist[3]).SetText(' ');
 	horzlist[4] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(horzlist[4]).SetText('Allianze Settings - this system will come in a later version, but that would be a bigger change, I added the settings for that already');
+	UI.CreateLabel(horzlist[4]).SetText('Allianze Settings');
 	horzlist[5] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	SeeAllyTerritoriesCheckbox = UI.CreateCheckBox(horzlist[5]).SetText('Allow Players to see the territories of their allies').SetIsChecked(SeeAllyTerritoriesinit);
+	SeeAllyTerritoriesCheckbox = UI.CreateCheckBox(horzlist[5]).SetText('Allow Players to see the territories of their allies(not included)').SetIsChecked(SeeAllyTerritoriesinit);
 	horzlist[6] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	PublicAlliesCheckbox = UI.CreateCheckBox(horzlist[6]).SetText('Allow everyone to see every ally').SetIsChecked(PublicAlliesinit);
 	horzlist[7] = UI.CreateHorizontalLayoutGroup(rootParentobj);
