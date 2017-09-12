@@ -347,6 +347,7 @@ function OpenPendingRequests()
 	if(tablelength(Mod.PlayerGameData.TerritorySellOffers) ~= 0)then
 		for _,player in pairs(Mod.PlayerGameData.TerritorySellOffers)do
 			for _,terroffer in pairs(player)do
+				if(Game.Map.Territories[terroffer.terrID] ~= nil)then
 				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(" ");
 				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
@@ -401,6 +402,7 @@ function OpenPendingRequests()
 					end;
 					button.SetOnClick(AllEvilFuncs[tablelength(AllEvilFuncs)]);
 				--end
+				end
 			end
 		end
 	else
