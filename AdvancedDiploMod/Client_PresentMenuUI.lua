@@ -674,7 +674,7 @@ function Openshop(rootParent)
 end
 function getterritoryid(name)
 	for _,terr in pairs(Game.Map.Territories)do
-		if(terr.Name == name)then
+		if(terr.Name .. "(ID:" .. terr.ID .. ")" == name)then
 			return terr.ID;
 		end
 	end
@@ -723,7 +723,7 @@ function TargetTerritoryClicked(knopf)
 	UI.PromptFromList("Select the territory you'd like to place the armies on", options);
 end
 function TerritoryButton(terr)
-	local name = terr.Name;
+	local name = terr.Name .. "(ID:" .. terr.ID .. ")";
 	local ret = {};
 	ret["text"] = name;
 	ret["selected"] = function() 
