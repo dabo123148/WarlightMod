@@ -732,7 +732,7 @@ function TerritoryButton(terr)
 	return ret;
 end
 function TerritoryButtonCustom(terr,knopf)
-	local name = terr.Name;
+	local name = terr.Name .. "(ID:" .. terr.ID .. ")";
 	local ret = {};
 	ret["text"] = name;
 	ret["selected"] = function() 
