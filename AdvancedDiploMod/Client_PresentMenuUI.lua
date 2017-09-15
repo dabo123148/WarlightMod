@@ -147,16 +147,22 @@ function OpenMenu()
 	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[0]).SetText("Your current diplomacy:");
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
-	if(tablelength(Mod.PublicGameData.War[Game.Us.ID])~=0)then
+	horzobjlist[2] = UI.CreateVerticalLayoutGroup(root);
+	local haswar = false;
+	for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
+		if(Game.Game.PlayingPlayers[with] ~= null)then
+			UI.CreateLabel(horzobjlist[2]).SetText("-" .. toname(with,Game));
+			haswar = true;
+		end
+	end
+	if(haswar == false)then
+		UI.Destroy(horzobjlist[2]);
+		UI.CreateLabel(horzobjlist[1]).SetText("You are currently in war with no one.");
+		offerpeacebutton.SetInteractable(false);
+	else
 		UI.CreateLabel(horzobjlist[1]).SetText("You are currently in war with the following player:");
 		horzobjlist[2] = UI.CreateVerticalLayoutGroup(root);
 		offerpeacebutton.SetInteractable(true);
-	else
-		UI.CreateLabel(horzobjlist[1]).SetText("You are currently in war with no one.");
-		offerpeacebutton.SetInteractable(false);
-	end
-	for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
-		UI.CreateLabel(horzobjlist[2]).SetText("-" .. toname(with,Game));
 	end
 	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
 	if(tablelength(Game.Game.Players)-tablelength(Mod.PublicGameData.War[Game.Us.ID])-tablelength(Mod.PlayerGameData.Allianzen)~=0)then
