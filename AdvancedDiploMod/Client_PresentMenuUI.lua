@@ -195,16 +195,21 @@ function OpenMenu()
 		end
 	end
 	horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
-	if(tablelength(Mod.PlayerGameData.Allianzen)~=0)then
+	horzobjlist[6] = UI.CreateVerticalLayoutGroup(root);
+	local hasalliance = false;
+	for _,with in pairs(Mod.PlayerGameData.Allianzen)do
+		if(Game.Game.PlayingPlayers[with] ~= null)then
+			UI.CreateLabel(horzobjlist[6]).SetText("-" .. toname(with,Game));
+			hasalliance = true;
+		end
+	end
+	if(hasalliance)then
 		UI.CreateLabel(horzobjlist[5]).SetText("You are currently allied with the following player:");
 		cancelallianzebutton.SetInteractable(true);
-		horzobjlist[6] = UI.CreateVerticalLayoutGroup(root);
 	else
+		UI.Destroy(horzobjlist[6]);
 		UI.CreateLabel(horzobjlist[5]).SetText("You are currently allied with no one.");
 		cancelallianzebutton.SetInteractable(false);
-	end
-	for _,with in pairs(Mod.PlayerGameData.Allianzen)do
-		UI.CreateLabel(horzobjlist[6]).SetText("-" .. toname(with,Game));
 	end
 end
 function OpenCancelAlliance()
