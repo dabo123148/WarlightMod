@@ -75,9 +75,6 @@ function Client_PresentSettingsUI(rootParent)
 			CreateLine('Gift Cards can be played on players you are allied with : ', Mod.Settings.GiftCardRequireAlly,true,false);
 		end
 	end
-	UI.CreateLabel(rootParent).SetText(' ');
-	UI.CreateLabel(rootParent).SetText('Other Settings');
-	CreateLine('dabo1 has access to all data for fixing bugs and other diagnostic functions runtime : ', Mod.Settings.AdminAccess,false,true);
 end
 function CreateLine(settingname,variable,default,important)
 	local lab = UI.CreateLabel(root);
