@@ -208,12 +208,6 @@ function ShowUI()
 	inputGiftCardRequirePeace = UI.CreateCheckBox(horzlist[40]).SetText('Gift Cards can be played on players you are in peace with').SetIsChecked(GiftCardRequirePeaceinit);
 	horzlist[41] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	inputGiftCardRequireAlly = UI.CreateCheckBox(horzlist[41]).SetText('Gift Cards can be played on ally').SetIsChecked(GiftCardRequireAllyinit);
-	horzlist[42] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(horzlist[42]).SetText(' ');
-	horzlist[43] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(horzlist[43]).SetText('Other Settings');
-	horzlist[44] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	inputAdminaccess = UI.CreateCheckBox(horzlist[44]).SetText('Allow dabo1 to access and edit all data to identify and fix bugs runtime andfor other diagnostic functions').SetIsChecked(Adminaccessinit);
 end
 function DeleteUI()
 	for _,horizont in pairs(horzlist) do
@@ -253,5 +247,4 @@ function Save()
 	GiftCardRequireWarinit = inputGiftCardRequireWar.GetIsChecked();
 	GiftCardRequirePeaceinit = inputGiftCardRequirePeace.GetIsChecked();
 	GiftCardRequireAllyinit = inputGiftCardRequireAlly.GetIsChecked();
-	Adminaccessinit = inputAdminaccess.GetIsChecked();
 end
