@@ -157,6 +157,7 @@ function OpenMenu()
 	end
 	if(haswar == false)then
 		UI.Destroy(horzobjlist[2]);
+		horzobjlist[2] = nil;
 		UI.CreateLabel(horzobjlist[1]).SetText("You are currently in war with no one.");
 		offerpeacebutton.SetInteractable(false);
 	else
@@ -208,6 +209,7 @@ function OpenMenu()
 		cancelallianzebutton.SetInteractable(true);
 	else
 		UI.Destroy(horzobjlist[6]);
+		horzobjlist[6] = nil;
 		UI.CreateLabel(horzobjlist[5]).SetText("You are currently allied with no one.");
 		cancelallianzebutton.SetInteractable(false);
 	end
