@@ -399,6 +399,9 @@ function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,r
 	end
 end
 function DeclareWar(Player1,Player2,game)
+	if(Player1 == Player2)then
+		return;
+	end
 	if(IsAlly(Player1,Player2,game)==false and InWar(Player1,Player2) == false)then
 		if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
 			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == false and Mod.Settings.AllowAIDeclaration == false)then
