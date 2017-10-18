@@ -409,8 +409,8 @@ function DeclareWar(Player1,Player2,game)
 				return;
 			end
 			print(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI);
-			print( Mod.Settings.AIsDeclareAIs);
-			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true and Mod.Settings.AIsDeclareAIs == false)then
+			print( Mod.Settings.AIsdeclearAIs);
+			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true and Mod.Settings.AIsdeclearAIs == false)then
 				return;
 			end
 		end
