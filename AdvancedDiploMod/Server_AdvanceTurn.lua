@@ -388,8 +388,10 @@ function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,r
 					end
 				else
 					DeclareWar(Player1,Player2,game);
-					for _,with in pairs(playerGameData[Player2].Allianzen)do
-						DeclareWar(with,Player1,game);
+					if(game.ServerGame.Game.Players[Player2].IsAI == false)then
+						for _,with in pairs(playerGameData[Player2].Allianzen)do
+							DeclareWar(with,Player1,game);
+						end
 					end
 				end
 				return false;
