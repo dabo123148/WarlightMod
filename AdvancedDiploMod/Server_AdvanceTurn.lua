@@ -405,13 +405,12 @@ function DeclareWar(Player1,Player2,game)
 	if(IsAlly(Player1,Player2,game)==false and InWar(Player1,Player2) == false)then
 		print(tostring(Player1) .. " " .. tostring(Player2));
 		if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
-			print("Test1");
 			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == false and Mod.Settings.AllowAIDeclaration == false)then
-				print("Test2");
 				return;
 			end
+			print(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI);
+			print( Mod.Settings.AIsDeclareAIs);
 			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true and Mod.Settings.AIsDeclareAIs == false)then
-				print("Test3");
 				return;
 			end
 		end
