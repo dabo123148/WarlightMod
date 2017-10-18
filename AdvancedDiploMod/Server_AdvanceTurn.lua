@@ -403,15 +403,18 @@ function DeclareWar(Player1,Player2,game)
 		return;
 	end
 	if(IsAlly(Player1,Player2,game)==false and InWar(Player1,Player2) == false)then
+		print(tostring(Player1) .. " " .. tostring(Player2));
 		if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
+			print("Test1");
 			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == false and Mod.Settings.AllowAIDeclaration == false)then
+				print("Test2");
 				return;
 			end
 			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true and Mod.Settings.AIsDeclareAIs == false)then
+				print("Test3");
 				return;
 			end
 		end
-		print(tostring(Player1) .. " " .. tostring(Player2));
 		for _,newwar in pairs(RemainingDeclerations)do
 			local P1 = newwar.S1;
 			local P2 = newwar.S2;
