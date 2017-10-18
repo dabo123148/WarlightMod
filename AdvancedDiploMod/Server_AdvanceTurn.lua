@@ -411,6 +411,7 @@ function DeclareWar(Player1,Player2,game)
 				return;
 			end
 		end
+		print(tostring(Player1) .. " " .. tostring(Player2);
 		for _,newwar in pairs(RemainingDeclerations)do
 			local P1 = newwar.S1;
 			local P2 = newwar.S2;
