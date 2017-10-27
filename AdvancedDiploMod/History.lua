@@ -120,7 +120,7 @@ function ShowHistory(datentable,game,ende,readconfirmationoff)
 			daten = daten .. "Turn " .. tostring(data.Turn+1) .. ":".. teildaten .. "\n";
 		end
 	end
-	if(readconfirmationoff == null)then
+	if(readconfirmationoff == nil)then
 		if(daten ~= "")then
 			local payload = {};
 			payload.Message = "Read";
@@ -129,7 +129,10 @@ function ShowHistory(datentable,game,ende,readconfirmationoff)
 	end
 	daten = daten .. ende;
 	if(daten ~= "")then
-		UI.Alert(daten);
+		if(lastmessage == nil || lastmessage ~= daten)then
+			lastmessage = daten;
+			UI.Alert(daten);
+		end
 	end
 end
 function getname(playerid,game)
