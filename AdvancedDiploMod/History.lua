@@ -129,7 +129,7 @@ function ShowHistory(datentable,game,ende,readconfirmationoff)
 	end
 	daten = daten .. ende;
 	if(daten ~= "")then
-		if(lastmessage == nil || lastmessage ~= daten)then
+		if(lastmessage == nil or lastmessage ~= daten)then
 			lastmessage = daten;
 			UI.Alert(daten);
 		end
