@@ -6,7 +6,6 @@ function Server_StartGame(game,standing)
 	for _,pid in pairs(game.ServerGame.Game.Players) do
 		if(pid.IsAI == false)then
 			playerGameData[pid.ID] = {};
-			playerGameData[pid.ID].Money = Mod.Settings.StartMoney;
 			playerGameData[pid.ID].TerritorySellOffers = {};
 			playerGameData[pid.ID].Peaceoffers = {};
 			playerGameData[pid.ID].AllyOffers = {};

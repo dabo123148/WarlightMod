@@ -19,12 +19,6 @@ function ShowHistory(datentable,game,ende,readconfirmationoff)
 		if(data.Type == 3)then
 			teildaten =  getname(data.Player,game) .. " was unable to buy " .. getterrname(data.terrid,game) .. " from you cause you didn't onwed it at the moment, he tried to buy it";
 		end
-		if(data.Type == 4)then
-			teildaten =  getname(data.Von,game) .. " hasn't " .. tostring(data.Preis) .." to pay you for " .. getterrname(data.terrid,game);
-		end
-		if(data.Type == 5)then
-			teildaten =  "You were unable to buy " .. getterrname(data.terrid,game) .. " from " .. getname(data.Von,game) .. " cause you only had " .. tostring(data.YourMoney) .. " and not the required " .. tostring(data.Preis) .. " money";
-		end
 		if(data.Type == 6)then
 			if(data.Preis == nil)then
 				teildaten =  getname(data.buyer,game) .. " bought " .. getterrname(data.terrid,game) .." from " .. getname(data.Von,game);
@@ -35,9 +29,6 @@ function ShowHistory(datentable,game,ende,readconfirmationoff)
 					teildaten =  getname(data.buyer,game) .. " bought " .. getterrname(data.terrid,game) .." from you for a price of " .. data.Preis;
 				end
 			end
-		end
-		if(data.Type == 7)then
-			teildaten =  "You bought " .. tostring(data.Count) .. " armies for " .. getterrname(data.terrid,game) .. ". The total price was " .. tostring(data.Preis);
 		end
 		if(data.Type == 8)then
 			teildaten =  "You declined the territory sell offer from " .. getname(data.Von,game) .. " for the territory " .. getterrname(data.TerrID,game);
@@ -73,12 +64,6 @@ function ShowHistory(datentable,game,ende,readconfirmationoff)
 		end
 		if(data.Type == 12)then
 			teildaten =  "The territory sell offer for the territory " .. getterrname(data.terrid,game) .. " by " ..getname(data.Von,game) .. " didn't existed any longer, when you tried to buy it";
-		end
-		if(data.Type == 13)then
-			teildaten =  getname(data.Buyer,game) .. " tried to buy " .. getterrname(data.terrid,game) .. " from you, but you had just " .. tostring(data.YourMoney) .. " of " .. tostring(data.Preis) .. " money";
-		end
-		if(data.Type == 14)then
-			teildaten =  getname(data.Buyer,game) .. " tried to buy " .. getterrname(data.terrid,game) .. " from you, but he hadn't enough money";
 		end
 		if(data.Type == 15)then
 			if(data.OfferedBy == game.Us.ID)then

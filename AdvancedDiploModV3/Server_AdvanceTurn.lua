@@ -1,4 +1,3 @@
-require('Money');
 function Server_AdvanceTurn_Start (game,addNewOrder)
 	playerGameData = Mod.PlayerGameData;
 	RemainingDeclerations = {};
@@ -8,26 +7,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == "GameOrderAttackTransfer")then
 		if(result.IsAttack)then
 			local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
-			if(WL.PlayerID.Neutral == toowner or order.PlayerID == WL.PlayerID.Neutral or InWar(order.PlayerID,toowner))then
-				if(order.PlayerID ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
-					AddMoney(order.PlayerID,result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy,playerGameData,game);
-				end
-				if(toowner ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[toowner].IsAI == false)then
-					AddMoney(toowner,result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy,playerGameData,game);
-				end
-			end
-			if(result.IsSuccessful)then
-				if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
-					AddMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedTerritory,playerGameData,game);
-					if(Mod.Settings.MoneyPerCapturedBonus ~= 0)then
-						for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
-							if(ownsbonus(game,boni,order.To,order.PlayerID))then
-								AddMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedBonus,playerGameData,game);
-							end
-						end
-					end
-				end
-			end
 			if(toowner ~= WL.PlayerID.Neutral and order.PlayerID ~= WL.PlayerID.Neutral)then
 				if(InWar(order.PlayerID,toowner) == false)then
 					skipThisOrder(WL.ModOrderControl.Skip);
@@ -70,29 +49,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				end
 			end
 		end
-		if(check(order.Message,"Buy Armies"))then
-			local to = tonumber(stringtotable(order.Payload)[1]);
-			if(game.ServerGame.LatestTurnStanding.Territories[to].OwnerPlayerID == order.PlayerID)then
-				local money = GetMoney(order.PlayerID,playerGameData,game);
-				local wants = tonumber(stringtotable(order.Payload)[2]);
-				if(Mod.Settings.MoneyPerBoughtArmy*wants > money)then
-					wants = math.floor(money/Mod.Settings.MoneyPerBoughtArmy);
-				end
-				if(wants > 0)then
-					local effect = WL.TerritoryModification.Create(to);
-					effect.SetArmiesTo = game.ServerGame.LatestTurnStanding.Territories[to].NumArmies.NumArmies + wants;
-					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. wants .. " Armies", {}, {effect}));
-					RemoveMoney(order.PlayerID,Mod.Settings.MoneyPerBoughtArmy*wants,playerGameData,game);
-					local message = {};
-					message.Type = 7;
-					message.Count = wants;
-					message.Preis = money;
-					message.terrid = to;
-					message.Turn = game.Game.NumberOfTurns;
-					addmessage(message,order.PlayerID);
-				end
-			end
-		end
 		if(check(order.Message,"Buy Territory"))then
 			local payloadsplit = stringtotable(order.Payload);
 			local von = tonumber(payloadsplit[1]);
@@ -110,76 +66,41 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					addmessage(message,order.PlayerID);
 				else
 					local Preis = Terrselloffer.Preis;
-					if(Preis < 0 and GetMoney(playerid,playerGameData,game) < Preis*-1)then
-						--Seller hasn't the money to pay the person who tries buys the territory
-						local message = {};
-						message.Type = 4;
-						message.Von = von;
-						message.Preis = Preis;
-						message.terrid = terrid;
-						message.Turn = game.Game.NumberOfTurns;
-						addmessage(message,order.PlayerID);
-						message = {};
-						message.Type = 13;
-						message.Buyer = order.PlayerID;
-						message.Preis = Preis;
-						message.YourMoney = GetMoney(playerid,playerGameData,game)
-						message.terrid = terrid;
-						message.Turn = game.Game.NumberOfTurns;
-						addmessage(message,von);
-					else
-						if(Preis > 0 and GetMoney(order.PlayerID,playerGameData,game) < Preis)then
-							--you haven't enough money
-							local message = {};
-							message.Type = 5;
-							message.Von = von;
-							message.Preis = Preis;
-							message.YourMoney = GetMoney(order.PlayerID,playerGameData,game);
-							message.terrid = terrid;
-							message.Turn = game.Game.NumberOfTurns;
-							addmessage(message,order.PlayerID);
-							message = {};
-							message.Type = 14;
-							message.Buyer = order.PlayerID;
-							message.Preis = Preis;
-							message.terrid = terrid;
-							message.Turn = game.Game.NumberOfTurns;
-							addmessage(message,von);
-						else
-							--all players have the requirements for the offer
-							--> buying the territory now
-							Pay(order.PlayerID,von,Preis,playerGameData,game);
-							local effect = WL.TerritoryModification.Create(terrid);
-							effect.SetOwnerOpt = order.PlayerID;
-							addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect}));
-							local message = {};
-							message.Type = 6;
-							message.Von = von;
-							message.buyer = order.PlayerID;
-							message.Preis = Preis;
-							message.terrid = terrid;
-							message.Turn = game.Game.NumberOfTurns;
-							addmessage(message,order.PlayerID);
-							addmessage(message,von);
-							--this is the message all other players can see(price is removed)
-							for _,pid in pairs(game.ServerGame.Game.Players)do
-								if(pid.IsAI == false)then
-									if(playerGameData[pid.ID].TerritorySellOffers[von] ~= nil)then
-										playerGameData[pid.ID].TerritorySellOffers[von][terrid] = nil;
-										if(tablelength(playerGameData[pid.ID].TerritorySellOffers[von]) == 0)then
-											playerGameData[pid.ID].TerritorySellOffers[von] = nil;
-										end
-									end
-									if(pid.ID ~= order.PlayerID and pid.ID ~= von)then
-										message = {};
-										message.Type = 6;
-										message.Von = von;
-										message.buyer = order.PlayerID;
-										message.terrid = terrid;
-										message.Turn = game.Game.NumberOfTurns;
-										addmessage(message,pid.ID);
-									end
+					if(Preis ~= order.CostOpt[WL.ResourceType.Gold]){--securation that the price is right
+						skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
+						return;
+					}
+					--all players have the requirements for the offer
+					--> buying the territory now
+					local effect = WL.TerritoryModification.Create(terrid);
+					effect.SetOwnerOpt = order.PlayerID;
+					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect}));
+					local message = {};
+					message.Type = 6;
+					message.Von = von;
+					message.buyer = order.PlayerID;
+					message.Preis = Preis;
+					message.terrid = terrid;
+					message.Turn = game.Game.NumberOfTurns;
+					addmessage(message,order.PlayerID);
+					addmessage(message,von);
+					--this is the message all other players can see(price is removed)
+					for _,pid in pairs(game.ServerGame.Game.Players)do
+						if(pid.IsAI == false)then
+							if(playerGameData[pid.ID].TerritorySellOffers[von] ~= nil)then
+								playerGameData[pid.ID].TerritorySellOffers[von][terrid] = nil;
+								if(tablelength(playerGameData[pid.ID].TerritorySellOffers[von]) == 0)then
+									playerGameData[pid.ID].TerritorySellOffers[von] = nil;
 								end
+							end
+							if(pid.ID ~= order.PlayerID and pid.ID ~= von)then
+								message = {};
+								message.Type = 6;
+								message.Von = von;
+								message.buyer = order.PlayerID;
+								message.terrid = terrid;
+								message.Turn = game.Game.NumberOfTurns;
+								addmessage(message,pid.ID);
 							end
 						end
 					end
@@ -295,21 +216,6 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		end
 	end
 	Mod.PublicGameData = publicGameData;
-	--Giving Money per turn
-	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
-		if(pid.IsAI == false)then
-			AddMoney(pid.ID,Mod.Settings.MoneyPerTurn,playerGameData,game);--Giving Money per turn
-			if(game.ServerGame.Settings.CommerceGame == false)then
-				
-			else
-				local moneyforplayer = {};
-				moneyforplayer[pid.ID] = {};
-				moneyforplayer[pid.ID][WL.ResourceType.Gold] = playerGameData[pid.ID].Money+game.ServerGame.Game.Players[pid.ID].Resources[WL.ResourceType.Gold];
-				addNewOrder(WL.GameOrderEvent.Create(pid.ID, "Received " .. playerGameData[pid.ID].Money .. " gold from Advanced Diplo Mod", {}, {},moneyforplayer));
-			end
-		end
-	end
-	
 	Mod.PlayerGameData = playerGameData;
 end
 function ownsbonus(game,bonusid,ignorterrid,playerID)
@@ -324,9 +230,6 @@ function ownsbonus(game,bonusid,ignorterrid,playerID)
 end
 function toname(playerid,game)
 	return game.ServerGame.Game.Players[playerid].DisplayName(nil, false);
-end
-function RemoveAlly(Player1,Player2)
-	--removes an ally
 end
 function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,requireallysetting)
 	if(Player2 == WL.PlayerID.Neutral)then
