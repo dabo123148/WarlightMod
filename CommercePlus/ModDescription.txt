@@ -1,0 +1,1 @@
+This Mod allows you to add other income forms that just holding boni for Commerce games. The feature MoneyperCapturedBonus is just for maps with less than 1000 more territories are on your own risk(can happen that you can't commit anylonger) to disable it set it to zero.
