@@ -115,7 +115,7 @@ end
 function TargetPlayerClickedOfferPeace()
 	if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
 		local options = {};
-		for _,playerinstanze in pairs(Game.Game.Players)do
+		for _,playerinstanze in pairs(Game.Game.PlayingPlayers)do
 			for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
 				if(tostring(with) == tostring(playerinstanze.ID))then
 					table.insert(options,playerinstanze);
@@ -255,7 +255,7 @@ end
 function TargetPlayerSelectCancelAlliance()
 	local options = {};
 	local match2 = false;
-	for _,playerinstanze in pairs(Game.Game.Players)do
+	for _,playerinstanze in pairs(Game.Game.PlayingPlayers)do
 		for _,with in pairs(Mod.PlayerGameData.Allianzen)do
 			if(with == playerinstanze.ID)then
 				table.insert(options,playerinstanze);
@@ -273,7 +273,7 @@ end
 function TargetPlayerClickedOfferAllianze()
 	local options = {};
 	local match2 = false;
-	for _,playerinstanze in pairs(Game.Game.Players)do
+	for _,playerinstanze in pairs(Game.Game.PlayingPlayers)do
 		local match = false;
 		for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
 			if(with == playerinstanze.ID)then
@@ -539,7 +539,7 @@ function Openshop(rootParent)
 		textelem = UI.CreateLabel(horzobjlist[6]).SetText("Select the player you'd like to gift the money to");
 		SelectPlayerBtn3 = UI.CreateButton(horzobjlist[6]).SetText("Select Player...").SetOnClick(function() 
 			local options = {};
-			for _,playerinstanze in pairs(Game.Game.Players)do
+			for _,playerinstanze in pairs(Game.Game.PlayingPlayers)do
 				if(playerinstanze.IsAI == false)then
 					table.insert(options,playerinstanze.DisplayName(nil, false));
 				end
@@ -612,7 +612,7 @@ function Openshop(rootParent)
 			local options = {};
 			options[0] = "everyone(does not include persons you are in war with)";
 			if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
-				for _,playerinstanze in pairs(Game.Game.Players)do
+				for _,playerinstanze in pairs(Game.Game.PlayingPlayers)do
 					local Match = false;
 					for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
 						if(with == playerinstanze.ID)then
@@ -628,7 +628,7 @@ function Openshop(rootParent)
 					end
 				end
 			else	
-				for _,playerinstanze in pairs(Game.Game.Players)do
+				for _,playerinstanze in pairs(Game.Game.PlayingPlayers)do
 					if(playerinstanze.ID ~= Game.Us.ID)then
 						if(playerinstanze.IsAI == false)then
 							table.insert(options,playerinstanze.DisplayName(nil, false));
