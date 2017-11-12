@@ -4,25 +4,27 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 		ExtraMoneyPerPlayer[pid.ID] = 0;
 	end
 end
-function ChangeMoney(playerID,value)
+function ChangeMoney(playerID,value,game)
 	if(game.Game.PlayingPlayers[playerID] ~= nil)then
 		ExtraMoneyPerPlayer[playerID] = ExtraMoneyPerPlayer[playerID] + value;
 	end
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
-	if(order.proxyType == "GameOrderAttackTransfer")then
-		if(result.IsAttack)then
-			local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
-			if(toowner ~= order.PlayerID)then
-				ChangeMoney(order.PlayerID,result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy);
-				ChangeMoney(toowner,result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy);
-			end
-			if(result.IsSuccessful)then
-				ChangeMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedTerritory);
-				if(Mod.Settings.MoneyPerCapturedBonus ~= 0)then
-					for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
-						if(ownsbonus(game,boni,order.To,order.PlayerID))then
-							ChangeMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedBonus);
+	if(game.ServerGame.Settings.CommerceGame == true)then
+		if(order.proxyType == "GameOrderAttackTransfer")then
+			if(result.IsAttack)then
+				local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
+				if(toowner ~= order.PlayerID)then
+					ChangeMoney(order.PlayerID,result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy,game);
+					ChangeMoney(toowner,result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy,game);
+				end
+				if(result.IsSuccessful)then
+					ChangeMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedTerritory,game);
+					if(Mod.Settings.MoneyPerCapturedBonus ~= 0)then
+						for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
+							if(ownsbonus(game,boni,order.To,order.PlayerID))then
+								ChangeMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedBonus,game);
+							end
 						end
 					end
 				end
