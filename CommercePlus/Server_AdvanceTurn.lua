@@ -38,7 +38,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			local moneyforplayer = {};
 			moneyforplayer[pid.ID] = {};
 			moneyforplayer[pid.ID][WL.ResourceType.Gold] = ExtraMoneyPerPlayer[pid.ID]+game.ServerGame.Game.Players[pid.ID].Resources[WL.ResourceType.Gold];
-			addNewOrder(WL.GameOrderEvent.Create(pid.ID, "Recieved " .. playerGameData[pid.ID].Money .. " gold from Commerce Plus", {}, {},moneyforplayer));
+			addNewOrder(WL.GameOrderEvent.Create(pid.ID, "Recieved " .. ExtraMoneyPerPlayer[pid.ID] .. " gold from Commerce Plus", {}, {},moneyforplayer));
 		end
 	end
 end
