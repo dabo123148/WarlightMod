@@ -706,7 +706,7 @@ function OpenDeclarWar()
 end
 function TargetPlayerClicked()
 	local options = {};
-	for _,playerinstanze in pairs(Game.Game.Players)do
+	for _,playerinstanze in pairs(Game.Game.PlayingPlayers)do
 		local Match = false;
 		for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
 			if(with == playerinstanze.ID)then
