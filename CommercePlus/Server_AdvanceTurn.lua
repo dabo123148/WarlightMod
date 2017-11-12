@@ -1,5 +1,5 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
-	local ExtraMoneyPerPlayer = {};
+	ExtraMoneyPerPlayer = {};
 	for _,pid in pairs(game.Game.PlayingPlayers) do
 		ExtraMoneyPerPlayer[pid.ID] = 0;
 	end
