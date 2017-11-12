@@ -20,7 +20,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(vert).SetText("You cannot use the Diplomacy Mod, cause you aren't in the game");
 		return;
 	end
-	if(Mod.PlayerGameData == nil or Mod.PlayerGameData.Money == nil)then
+	if(Mod.TurnNumber == 0)then
 		vert = UI.CreateVerticalLayoutGroup(rootParent);
 		UI.CreateLabel(vert).SetText("You cannot use this menu in the distribution phase");
 		return;
