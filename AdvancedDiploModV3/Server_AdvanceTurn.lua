@@ -66,10 +66,10 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					addmessage(message,order.PlayerID);
 				else
 					local Preis = Terrselloffer.Preis;
-					if(Preis ~= order.CostOpt[WL.ResourceType.Gold]){--securation that the price is right
+					if(Preis ~= order.CostOpt[WL.ResourceType.Gold])then--securation that the price is right
 						skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 						return;
-					}
+					end
 					--all players have the requirements for the offer
 					--> buying the territory now
 					local effect = WL.TerritoryModification.Create(terrid);
