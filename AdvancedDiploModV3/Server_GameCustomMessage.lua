@@ -1,4 +1,3 @@
-require('Money');
 function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	playerGameData = Mod.PlayerGameData;
 	local rg = {};
