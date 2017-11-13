@@ -1,3 +1,4 @@
+There are a lot of problems with commerce games, so you shouldn't use this mod at the moment with commerce games.
 Don't use this mod with any other mod with a notifications system, else it may happen that the notifications don't show up.
 When you create a game with this mod and need more players, add me(dabo1)
 This Mod adds:
