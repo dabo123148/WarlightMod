@@ -175,7 +175,7 @@ function OpenMenu()
 		UI.Destroy(horzobjlist[4]);
 		horzobjlist[4] = nil;
 	end
-	if(foundpossibleally)then
+	if(foundpossibleally == false)then
 		offerallianzebutton.SetInteractable(false);
 	end
 	horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
