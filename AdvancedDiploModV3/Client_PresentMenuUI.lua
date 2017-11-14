@@ -138,6 +138,7 @@ function OpenMenu()
 		offerpeacebutton.SetInteractable(true);
 	end
 	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
+	horzobjlist[4] = UI.CreateVerticalLayoutGroup(root);
 	local foundpossibleally = false;
 	local haspeace = false;
 	for _,pd in pairs(Game.Game.PlayingPlayers)do
@@ -165,13 +166,14 @@ function OpenMenu()
 	end
 	if(haspeace)then
 		UI.CreateLabel(horzobjlist[3]).SetText("You are currently in peace with the following player:");
-		horzobjlist[4] = UI.CreateVerticalLayoutGroup(root);
 		declarewarbutton.SetInteractable(true);
 		offerallianzebutton.SetInteractable(true);
 	else
 		UI.CreateLabel(horzobjlist[3]).SetText("You are currently in peace with no one.");
 		declarewarbutton.SetInteractable(false);
 		offerallianzebutton.SetInteractable(false);
+		UI.Destroy(horzobjlist[4]);
+		horzobjlist[4] = nil;
 	end
 	if(foundpossibleally)then
 		offerallianzebutton.SetInteractable(false);
