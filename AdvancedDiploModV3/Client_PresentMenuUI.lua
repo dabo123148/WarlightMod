@@ -390,7 +390,7 @@ function zusammen(array, func,knopf,knopfid)
 end
 function PlayerButtonCustom(player,knopf,knopfid)
 	local ret = {};
-	ret["text"] = player;
+	ret["text"] = toname(player.ID,Game);
 	ret["selected"] = function() 
 		SelectedPlayerID[knopfid] = player.ID;
 		knopf.SetText(player);
