@@ -378,7 +378,8 @@ function getplayerid(playername,game)
 		end
 	end
 	return 0;
-endfunction zusammen(array, func,knopf,knopfid)
+end
+function zusammen(array, func,knopf,knopfid)
 	local new_array = {};
 	local i = 1;
 	for _,v in pairs(array) do
@@ -395,7 +396,8 @@ function PlayerButtonCustom(player,knopf,knopfid)
 		knopf.SetText(player);
 	end
 	return ret;
-endfunction DeleteUI()
+end
+function DeleteUI()
 	if(textelem ~= nil)then
 		UI.Destroy(textelem);
 		textelem = nil;
