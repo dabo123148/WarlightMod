@@ -152,15 +152,15 @@ function OpenMenu()
 			for _,with in pairs(Mod.PlayerGameData.Allianzen)do
 				if(with == pd.ID)then
 					match2 = true
-					if(pd.IsAI == false)then
-						foundpossibleally=true;
-					end
 				end
 			end
 			if(match2 == false)then
 				UI.CreateLabel(horzobjlist[4]).SetText("-" .. toname(pd.ID,Game));
 				match = true;
 				haspeace=true;
+				if(pd.IsAI == false)then
+					foundpossibleally=true;
+				end
 			end
 		end
 	end
