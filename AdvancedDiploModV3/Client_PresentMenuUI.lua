@@ -393,7 +393,7 @@ function PlayerButtonCustom(player,knopf,knopfid)
 	ret["text"] = toname(player.ID,Game);
 	ret["selected"] = function() 
 		SelectedPlayerID[knopfid] = player.ID;
-		knopf.SetText(player);
+		knopf.SetText(ret["text"]);
 	end
 	return ret;
 end
