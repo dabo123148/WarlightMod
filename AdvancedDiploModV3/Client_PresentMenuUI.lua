@@ -12,6 +12,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	pendingrequestbutton = nil;
 	oldermessagesbutton = nil;
 	cancelallianzebutton = nil;
+	SelectedPlayerID = {};
 	Game = game;
 	root = rootParent;
 	setMaxSize(450, 350);
@@ -296,6 +297,12 @@ function Openshop(rootParent)
 	AllFuncs={};
 	if(Game.Settings.CommerceGame)then
 		--Gifting Money
+		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[0]).SetText('Gifting Gold');
+
+		horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[2]).SetText('How many gold do you want to gift');
+		peaceduration = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(10).SetValue(1);
 	end
 	--Selling Territories
 end
@@ -336,7 +343,7 @@ function TargetPlayerClicked()
 			end
 		end
 	end
-	options = map(options, PlayerButton);
+	options = zusammen(options,PlayerButtonCustom,TargetPlayerBtn,1);
 	UI.PromptFromList("Select the player you'd like to declare war on", options);
 end
 function TerritoryButtonCustom(terr,knopf)
@@ -360,7 +367,7 @@ function declare()
 		UI.Alert("You need to uncommit first");
 		return;
 	end
-	table.insert(orders, WL.GameOrderCustom.Create(myID, "Declared war on " .. declareon, getplayerid(declareon,Game)));
+	table.insert(orders, WL.GameOrderCustom.Create(myID, "Declared war on " .. declareon, SelectedPlayerID[1]));
 	Game.Orders = orders;
 end
 function getplayerid(playername,game)
@@ -371,43 +378,24 @@ function getplayerid(playername,game)
 		end
 	end
 	return 0;
-end
-function map(array, func)
+endfunction zusammen(array, func,knopf,knopfid)
 	local new_array = {};
 	local i = 1;
 	for _,v in pairs(array) do
-		new_array[i] = func(v);
+		new_array[i] = func(v,knopf,knopfid);
 		i = i + 1;
 	end
 	return new_array;
 end
-function zusammen(array, func,knopf)
-	local new_array = {};
-	local i = 1;
-	for _,v in pairs(array) do
-		new_array[i] = func(v,knopf);
-		i = i + 1;
-	end
-	return new_array;
-end
-function PlayerButtonCustom(player,knopf)
+function PlayerButtonCustom(player,knopf,knopfid)
 	local ret = {};
 	ret["text"] = player;
 	ret["selected"] = function() 
+		SelectedPlayerID[knopfid] = player.ID;
 		knopf.SetText(player);
 	end
 	return ret;
-end
-function PlayerButton(player)
-	local name = player.DisplayName(nil, false);
-	local ret = {};
-	ret["text"] = name;
-	ret["selected"] = function() 
-		TargetPlayerBtn.SetText(name);
-	end
-	return ret;
-end
-function DeleteUI()
+endfunction DeleteUI()
 	if(textelem ~= nil)then
 		UI.Destroy(textelem);
 		textelem = nil;
