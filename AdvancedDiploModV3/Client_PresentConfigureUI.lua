@@ -3,7 +3,7 @@ function Client_PresentConfigureUI(rootParent)
 	rootParentobj = rootParent;
 	AIDeclerationinit = Mod.Settings.AllowAIDeclaration;
 	if(AIDeclerationinit == nil)then
-		AIDeclerationinit = true;
+		AIDeclerationinit = false;
 	end
 	SeeAllyTerritoriesinit = Mod.Settings.SeeAllyTerritories;
 	if(SeeAllyTerritoriesinit == nil)then

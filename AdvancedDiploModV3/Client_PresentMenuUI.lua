@@ -75,7 +75,7 @@ function commitofferpeace()
 				payload.TargetPlayerID = getplayerid(offerto,Game);
 				payload.Preis = Preis;
 				payload.duration = duration;
-				if(game.Players[payload.TargetPlayerID].IsAI == true and Price ~= 0)then
+				if(Game.Players[payload.TargetPlayerID].IsAI == true and Price ~= 0)then
 					UI.Alert("AIs don't pay money");
 					return;
 				end
@@ -138,16 +138,8 @@ function OpenMenu()
 		offerpeacebutton.SetInteractable(true);
 	end
 	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
-	if(tablelength(Game.Game.Players)-tablelength(Mod.PublicGameData.War[Game.Us.ID])-tablelength(Mod.PlayerGameData.Allianzen)~=0)then
-		UI.CreateLabel(horzobjlist[3]).SetText("You are currently in peace with the following player:");
-		horzobjlist[4] = UI.CreateVerticalLayoutGroup(root);
-		declarewarbutton.SetInteractable(true);
-		offerallianzebutton.SetInteractable(true);
-	else
-		UI.CreateLabel(horzobjlist[3]).SetText("You are currently in peace with no one.");
-		declarewarbutton.SetInteractable(false);
-		offerallianzebutton.SetInteractable(false);
-	end
+	local foundpossibleally = false;
+	local haspeace = false;
 	for _,pd in pairs(Game.Game.PlayingPlayers)do
 		if(pd.ID ~= Game.Us.ID)then
 			local match2 = false;
@@ -159,13 +151,30 @@ function OpenMenu()
 			for _,with in pairs(Mod.PlayerGameData.Allianzen)do
 				if(with == pd.ID)then
 					match2 = true
+					if(pd.IsAI == false)then
+						foundpossibleally=true;
+					end
 				end
 			end
 			if(match2 == false)then
 				UI.CreateLabel(horzobjlist[4]).SetText("-" .. toname(pd.ID,Game));
 				match = true;
+				haspeace=true;
 			end
 		end
+	end
+	if(haspeace)then
+		UI.CreateLabel(horzobjlist[3]).SetText("You are currently in peace with the following player:");
+		horzobjlist[4] = UI.CreateVerticalLayoutGroup(root);
+		declarewarbutton.SetInteractable(true);
+		offerallianzebutton.SetInteractable(true);
+	else
+		UI.CreateLabel(horzobjlist[3]).SetText("You are currently in peace with no one.");
+		declarewarbutton.SetInteractable(false);
+		offerallianzebutton.SetInteractable(false);
+	end
+	if(foundpossibleally)then
+		offerallianzebutton.SetInteractable(false);
 	end
 	horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
 	horzobjlist[6] = UI.CreateVerticalLayoutGroup(root);
