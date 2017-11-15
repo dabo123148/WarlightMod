@@ -12,7 +12,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	pendingrequestbutton = nil;
 	oldermessagesbutton = nil;
 	cancelallianzebutton = nil;
-	SelectedPlayerID = {};
+	SelectedData = {};
 	Game = game;
 	root = rootParent;
 	setMaxSize(450, 350);
@@ -73,7 +73,7 @@ function commitofferpeace()
 			else
 				local payload = {};
 				payload.Message = "Peace";
-				payload.TargetPlayerID = SelectedPlayerID[1];
+				payload.TargetPlayerID = SelectedData[1];
 				payload.Preis = Preis;
 				payload.duration = duration;
 				if(Game.Game.Players[payload.TargetPlayerID].IsAIOrHumanTurnedIntoAI == true and Preis ~= 0)then
@@ -111,11 +111,7 @@ function OpenMenu()
 	cancelallianzebutton = UI.CreateButton(vert).SetText("Cancel Alliance").SetOnClick(OpenCancelAlliance);
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
 	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function()
-		if(tablelength(Mod.PlayerGameData.Nachrichten)~=0)then
-			ShowHistory(Mod.PlayerGameData.Nachrichten,Game,"",true);
-		else
-			UI.Alert("There is currently no history for this Mod");
-		end
+		ShowHistory(Mod.PlayerGameData.Nachrichten,Game,"",true);
 	end);
 	horzobjlist = {};
 	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
@@ -197,6 +193,9 @@ function OpenMenu()
 		UI.CreateLabel(horzobjlist[5]).SetText("You are currently allied with no one.");
 		cancelallianzebutton.SetInteractable(false);
 	end
+	if(tablelength(Mod.PlayerGameData.Nachrichten)==0)then
+		oldermessagesbutton.SetInteractable(false);
+	end
 end
 function OpenCancelAlliance()
 	DeleteUI();
@@ -209,7 +208,7 @@ function OpenCancelAlliance()
 				UI.Alert('You need to choose a player first');
 				return;
 			end
-			local cancelorder = WL.GameOrderCustom.Create(Game.Us.ID, "Cancel Alliance with " .. TargetPlayerBtn.GetText(), SelectedPlayerID[1]);
+			local cancelorder = WL.GameOrderCustom.Create(Game.Us.ID, "Cancel Alliance with " .. TargetPlayerBtn.GetText(), SelectedData[1]);
 			local orders = Game.Orders;
 			if(Game.Us.HasCommittedOrders == true)then
 				UI.Alert("You need to uncommit first");
@@ -232,7 +231,7 @@ function OpenOfferAlliance()
 			end
 			local payload = {};
 			payload.Message = "Offer Allianze";
-			payload.TargetPlayerID = SelectedPlayerID[1];
+			payload.TargetPlayerID = SelectedData[1];
 			Game.SendGameCustomMessage("Offering...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
 		end);
 end
@@ -294,17 +293,30 @@ function toname(playerid,game)
 end
 function Openshop(rootParent)
 	DeleteUI();
-	AllFuncs={};
 	if(Game.Settings.CommerceGame)then
-		--Gifting Money
-		horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horzobjlist[0]).SetText('Gifting Gold');
-
-		horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horzobjlist[2]).SetText('How many gold do you want to gift');
-		peaceduration = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(10).SetValue(1);
+		--gifting money has been removed since already in an other mod and shouldn't be forced in the game
 	end
 	--Selling Territories
+	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Sell territory");
+	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[1]).SetText("Select territory you want to sell");
+	TargetPlayerBtn = UI.CreateButton(horzobjlist[1]).SetText("Select territory...").SetOnClick(TargetPlayerClickedSellTerritory);
+	if(Game.Settings.CommerceGame)then
+		horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[2]).SetText('How many money do you want for the territory(0=free)');
+		peaceduration = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
+	end
+	textelem = UI.CreateLabel(horzobjlist[3]).SetText("Select territory you want to sell");
+	TargetPlayerBtn = UI.CreateButton(horzobjlist[3]).SetText("Select player...").SetOnClick(TargetPlayerClickedUniversal);
+	horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
+	commitbutton = UI.CreateButton(horzobjlist[4]).SetText("Offer").SetOnClick(OfferTerritory);
+end
+function OfferTerritory()
+end
+function TargetPlayerClickedSellTerritory()
+end
+function TargetPlayerClickedUniversal()
 end
 function getterritoryid(name)
 	for _,terr in pairs(Game.Map.Territories)do
@@ -381,7 +393,7 @@ function declare()
 		UI.Alert("You need to uncommit first");
 		return;
 	end
-	table.insert(orders, WL.GameOrderCustom.Create(myID, "Declared war on " .. declareon, SelectedPlayerID[1]));
+	table.insert(orders, WL.GameOrderCustom.Create(myID, "Declared war on " .. declareon, SelectedData[1]));
 	Game.Orders = orders;
 	TargetPlayerBtn.SetText("Select player...");
 end
@@ -407,7 +419,7 @@ function PlayerButtonCustom(player,knopf,knopfid)
 	local ret = {};
 	ret["text"] = toname(player.ID,Game);
 	ret["selected"] = function() 
-		SelectedPlayerID[knopfid] = player.ID;
+		SelectedData[knopfid] = player.ID;
 		knopf.SetText(ret["text"]);
 	end
 	return ret;
