@@ -1,4 +1,5 @@
 function Server_StartGame(game,standing)
+	print("Test");
 	local playerGameData = Mod.PlayerGameData;
 	local publicGameData = Mod.PublicGameData;
 	publicGameData.War = {};
