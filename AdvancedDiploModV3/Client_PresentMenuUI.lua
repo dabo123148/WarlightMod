@@ -21,8 +21,6 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(vert).SetText("You cannot use the Diplomacy Mod, cause you aren't in the game");
 		return;
 	end
-	print(Mod.PlayerGameData);
-	print(Mod.PlayerGameData.TerritorySellOffers);
 	if(Mod.PlayerGameData.TerritorySellOffers ==nil)then
 		vert = UI.CreateVerticalLayoutGroup(rootParent);
 		UI.CreateLabel(vert).SetText("You cannot use this menu in the distribution phase");
@@ -78,7 +76,7 @@ function commitofferpeace()
 				payload.TargetPlayerID = SelectedPlayerID[1];
 				payload.Preis = Preis;
 				payload.duration = duration;
-				if(Game.Game.Players[payload.TargetPlayerID].IsAIOrHumanTurnedIntoAI  == true and Price ~= 0)then
+				if(Game.Game.Players[payload.TargetPlayerID].IsAIOrHumanTurnedIntoAI == true and Preis ~= 0)then
 					UI.Alert("AIs don't pay money");
 					return;
 				end
@@ -138,7 +136,6 @@ function OpenMenu()
 		offerpeacebutton.SetInteractable(false);
 	else
 		UI.CreateLabel(horzobjlist[1]).SetText("You are currently in war with the following player:");
-		horzobjlist[2] = UI.CreateVerticalLayoutGroup(root);
 		offerpeacebutton.SetInteractable(true);
 	end
 	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);

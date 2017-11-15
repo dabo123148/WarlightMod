@@ -1,5 +1,4 @@
 function Server_StartGame(game,standing)
-print("Test");
 	local playerGameData = Mod.PlayerGameData;
 	local publicGameData = Mod.PublicGameData;
 	publicGameData.War = {};
@@ -13,7 +12,6 @@ print("Test");
 			playerGameData[pid.ID].Allianzen = {};
 			playerGameData[pid.ID].Nachrichten = {};
 			playerGameData[pid.ID].NeueNachrichten = {};
-			print("Test3");
 		end
 		publicGameData.War[pid.ID] = {};
 		publicGameData.CantDeclare[pid.ID] = {};
