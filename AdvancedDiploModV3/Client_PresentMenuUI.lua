@@ -343,12 +343,25 @@ function TargetPlayerClickedDeclareWar()
 		if(Match == false)then
 			if(playerinstanze.ID ~= Game.Us.ID)then
 			--don't add, if already declare order existing
-				table.insert(options,playerinstanze);
+				if(ContainsDeclareWarOrder(playerinstanze.ID) == false)then
+					table.insert(options,playerinstanze);
+				end
 			end
 		end
 	end
 	options = zusammen(options,PlayerButtonCustom,TargetPlayerBtn,1);
 	UI.PromptFromList("Select the player you'd like to declare war on", options);
+end
+function ContainsDeclareWarOrder(playerid)
+	local gameorders = Game.Orders;
+	for _,order in pairs(gameorders)do
+		if(order.proxyType == "GameOrderCustom")then
+			if(order.payload == tostring(playerid))then
+				return true;
+			end
+		end
+	end
+	return false;
 end
 function TerritoryButtonCustom(terr,knopf)
 	local name = terr.Name .. "(ID:" .. terr.ID .. ")";
