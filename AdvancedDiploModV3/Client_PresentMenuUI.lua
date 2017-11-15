@@ -356,7 +356,7 @@ function ContainsDeclareWarOrder(playerid)
 	local gameorders = Game.Orders;
 	for _,order in pairs(gameorders)do
 		if(order.proxyType == "GameOrderCustom")then
-			if(order.payload == tostring(playerid))then
+			if(order.Payload == tostring(playerid))then
 				return true;
 			end
 		end
