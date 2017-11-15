@@ -78,7 +78,7 @@ function commitofferpeace()
 				payload.TargetPlayerID = SelectedPlayerID[1];
 				payload.Preis = Preis;
 				payload.duration = duration;
-				if(Game.Players[payload.TargetPlayerID].IsAI == true and Price ~= 0)then
+				if(Game.Game.Players[payload.TargetPlayerID].IsAIOrHumanTurnedIntoAI  == true and Price ~= 0)then
 					UI.Alert("AIs don't pay money");
 					return;
 				end

@@ -76,7 +76,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		local preis = payload.Preis;
 		local dauer = payload.duration;
 		if(dauer > 10)then
-			rg.Message = "To prevent this game from stucking, I limited the max duration of peace to 10turns";
+			rg.Message = "S:To prevent this game from stucking, I limited the max duration of peace to 10turns";
 			setReturnTable(rg);
 		end
 		if(game.ServerGame.Game.Players[player].IsAIOrHumanTurnedIntoAI == false)then
@@ -94,11 +94,11 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			end
 		else
 			if(preis ~= 0)then
-				rg.Message = "AIs don't accept offers that include money";
+				rg.Message = "S:AIs don't accept offers that include money";
 				setReturnTable(rg);
 			else
 				if(game.ServerGame.Game.Players[player].IsAI == false)then
-					--since human ais can have peaceoffers, before the turn into ai, this removes the old orders
+					--since human ais can have peaceoffers, before the turn into ai, this removes the old offers
 					playerGameData[playerID].Peaceoffers[player] = nil;
 				end
 				local message = {};
@@ -107,7 +107,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				message.Duration = dauer;
 				message.Turn = game.Game.NumberOfTurns;
 				message.Type = 10;
-				message.Preis = 0;
+				message.Preis = 0;--this line can be removed and replaced by clientcode to reduce costs
 				addmessagecustom(message,playerID);
 				message = {};
 				message.Von = player;
