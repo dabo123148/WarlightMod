@@ -7,7 +7,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	end
 	if(Mod.PublicGameData.Daten == nil)then
 		vert = UI.CreateVerticalLayoutGroup(rootParent);
-		UI.CreateLabel(vert).SetText("During distribution is no data avalible");
+		UI.CreateLabel(vert).SetText("During distribution no data is available");
 		return;
 	end
 	setMaxSize(400,400);
