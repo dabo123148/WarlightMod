@@ -514,7 +514,7 @@ function Openshop(rootParent)
 					else
 						for _,terr in pairs(Game.Map.Territories)do
 							--UI.Alert(terr.Name .. " " .. territory1.GetText());
-							if(terr.Name == territory1.GetText())then
+							if(terr.Name .. "(ID:" .. terr.ID .. ")" == territory1.GetText())then
 								local pay = "," .. terr.ID .. "," .. Anzahl;
 								local Nachricht = "Buy Armies (" .. Anzahl .. ") for " .. terr.Name;
 								local armybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, Nachricht, pay);
