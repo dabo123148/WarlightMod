@@ -162,7 +162,6 @@ function OpenMenu()
 		offerpeacebutton.SetInteractable(false);
 	else
 		UI.CreateLabel(horzobjlist[1]).SetText("You are currently in war with the following player:");
-		horzobjlist[2] = UI.CreateVerticalLayoutGroup(root);
 		offerpeacebutton.SetInteractable(true);
 	end
 	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
