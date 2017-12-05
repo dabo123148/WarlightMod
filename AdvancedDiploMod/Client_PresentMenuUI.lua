@@ -40,7 +40,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
  		if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or Game.Settings.CommerceGame == false)then
 			moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 		else
-			moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Game.Game.Players[Game.Us.ID].Resources[WL.ResourceType.Gold]);
+			moneyobj = UI.CreateLabel(horz).SetText('Current Money: ' .. Game.LatestStanding.NumResources(Game.Us.ID, WL.ResourceType.Gold));
 		end
 	else
 		moneyobj = UI.CreateLabel(horz).SetText('The money system is disabled');
@@ -328,7 +328,7 @@ function OpenPendingRequests()
 			if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or Game.Settings.CommerceGame == false)then
 				mymoney = tonumber(Mod.PlayerGameData.Money);
 			else
-				mymoney = tonumber(tonumber(Game.Game.Players[Game.Us.ID].Resources[WL.ResourceType.Gold]));
+				mymoney = tonumber(tonumber(Game.LatestStanding.NumResources(Game.Us.ID, WL.ResourceType.Gold)));
 			end
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			if(peaceoffer.Preis > mymoney)then
@@ -815,7 +815,7 @@ function DeleteUI()
 		if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or Game.Settings.CommerceGame == false)then
 			moneyobj.SetText('Current Money: ' .. Mod.PlayerGameData.Money);
 		else
-			moneyobj.SetText('Current Money: ' .. Game.Game.Players[Game.Us.ID].Resources[WL.ResourceType.Gold]);
+			moneyobj.SetText('Current Money: ' .. Game.LatestStanding.NumResources(Game.Us.ID, WL.ResourceType.Gold));
 		end
 	end
 	if(textelem ~= nil)then
