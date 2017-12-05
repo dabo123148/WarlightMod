@@ -3,7 +3,7 @@ function GetMoney(Spieler,pGameData,game)
 		if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or game.ServerGame.Settings.CommerceGame == false)then
 			return pGameData[Spieler].Money;
 		else
-			return game.ServerGame.Game.Players[Spieler].Resources[WL.ResourceType.Gold];
+			return game.ServerGame.LatestTurnStanding.NumResources(Spieler, WL.ResourceType.Gold);
 		end
 	end
 	return 0;
