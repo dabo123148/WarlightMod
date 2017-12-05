@@ -561,7 +561,7 @@ function Openshop(rootParent)
 					return;
 				end
 			else
-				if(money > tonumber(Game.Game.Players[Game.Us.ID].Resources[WL.ResourceType.Gold]))then
+				if(money > tonumber(Game.LatestStanding.NumResources(Game.Us.ID, WL.ResourceType.Gold)))then
 					UI.Alert("You haven't the money");
 					return;
 				end
