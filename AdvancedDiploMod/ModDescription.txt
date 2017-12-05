@@ -1,6 +1,5 @@
-There are a lot of problems with commerce games, so you shouldn't use this mod at the moment with commerce games.
+There are a lot of problems with commerce games, so you shouldn't use this mod at the moment with commerce games(working on fixes, but will result in a split).
 Don't use this mod with any other mod with a notifications system, else it may happen that the notifications don't show up.
-When you create a game with this mod and need more players, add me(dabo1)
 This Mod adds:
 War/Peace System:
   -Attacks DON'T count as declaration
