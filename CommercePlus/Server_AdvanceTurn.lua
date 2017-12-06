@@ -4,7 +4,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 		ExtraMoneyPerPlayer[pid.ID] = 0;
 	end
 end
-function ChangeMoney(playerID,value)
+function ChangeMoney(game,playerID,value)
 	if(game.Game.PlayingPlayers[playerID] ~= nil)then
 		ExtraMoneyPerPlayer[playerID] = ExtraMoneyPerPlayer[playerID] + value;
 	end
@@ -14,15 +14,15 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(result.IsAttack)then
 			local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 			if(toowner ~= order.PlayerID)then
-				ChangeMoney(order.PlayerID,result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy);
-				ChangeMoney(toowner,result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy);
+				ChangeMoney(game,order.PlayerID,result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy);
+				ChangeMoney(game,toowner,result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy);
 			end
 			if(result.IsSuccessful)then
-				ChangeMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedTerritory);
+				ChangeMoney(game,order.PlayerID,Mod.Settings.MoneyPerCapturedTerritory);
 				if(Mod.Settings.MoneyPerCapturedBonus ~= 0)then
 					for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
 						if(ownsbonus(game,boni,order.To,order.PlayerID))then
-							ChangeMoney(order.PlayerID,Mod.Settings.MoneyPerCapturedBonus);
+							ChangeMoney(game,order.PlayerID,Mod.Settings.MoneyPerCapturedBonus);
 						end
 					end
 				end
