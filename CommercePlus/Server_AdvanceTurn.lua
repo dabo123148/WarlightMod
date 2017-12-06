@@ -19,11 +19,11 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if(toowner ~= order.PlayerID)then
 				if(order.PlayerID ~= WL.PlayerID.Neutral)then--required to support for example a neutral attacks mod
 					print("T1");
-					ChangeMoney(game,order.PlayerID,result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy);
+					ChangeMoney(game,order.PlayerID,result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy);
 				end
 				if(toowner ~= WL.PlayerID.Neutral)then--neutral can't get money
 				print("T2");
-					ChangeMoney(game,toowner,result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy);
+					ChangeMoney(game,toowner,result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy);
 				end
 			end
 			if(result.IsSuccessful and order.PlayerID ~= WL.PlayerID.Neutral)then--order.playerID ~= WL.PlayerID.Neutral is required to support for example a neutral attacks mod
