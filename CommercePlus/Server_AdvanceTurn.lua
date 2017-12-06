@@ -5,7 +5,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	end
 end
 function ChangeMoney(game,playerID,value)
-	if(game.Game.PlayingPlayers[playerID] ~= nil)then
+	if(game.Game.PlayingPlayers[playerID] ~= nil)then--could be unnessasary to check
 		ExtraMoneyPerPlayer[playerID] = ExtraMoneyPerPlayer[playerID] + value;
 	end
 end
@@ -14,10 +14,14 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		if(result.IsAttack)then
 			local toowner = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 			if(toowner ~= order.PlayerID)then
-				ChangeMoney(game,order.PlayerID,result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy);
-				ChangeMoney(game,toowner,result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy);
+				if(order.PlayerID ~= WL.PlayerID.Neutral)then--required to support for example a neutral attacks mod
+					ChangeMoney(game,order.PlayerID,result.AttackingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy);
+				end
+				if(toowner ~= WL.PlayerID.Neutral)then--neutral can't get money
+					ChangeMoney(game,toowner,result.DefendingArmiesKilled.NumArmies*Mod.Settings.MoneyPerKilledArmy);
+				end
 			end
-			if(result.IsSuccessful)then
+			if(result.IsSuccessful and order.playerID ~= WL.PlayerID.Neutral)then--order.playerID ~= WL.PlayerID.Neutral is required to support for example a neutral attacks mod
 				ChangeMoney(game,order.PlayerID,Mod.Settings.MoneyPerCapturedTerritory);
 				if(Mod.Settings.MoneyPerCapturedBonus ~= 0)then
 					for _,boni in pairs(game.Map.Territories[order.To].PartOfBonuses)do
