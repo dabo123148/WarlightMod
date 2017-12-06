@@ -26,7 +26,14 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(vert).SetText("You cannot use this menu in the distribution phase");
 		return;
 	end
-  	horz = UI.CreateHorizontalLayoutGroup(root);
+	horz = UI.CreateHorizontalLayoutGroup(root);
+	if(game.Game.PlayingPlayers[game.Us.ID] == nil)then
+		UI.CreateLabel(horz).SetText("You have been eliminated, so you are only able to see your history");
+		oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function()
+			ShowHistory(Mod.PlayerGameData.Nachrichten,Game,"",true);
+		end);
+		return;
+	end
 	mainmenu = UI.CreateButton(horz).SetText("Main Menu").SetOnClick(OpenMenu);
 	vert = UI.CreateVerticalLayoutGroup(rootParent);
 	OpenMenu(rootParent);
@@ -89,7 +96,7 @@ function commitofferpeace()
 	end
 end
 function TargetPlayerClickedOfferPeace()
-	if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then--maybe unnessacary
+	if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then--maybe unnessacary if(code in if still required)
 		local options = {};
 		for _,playerinstanze in pairs(Game.Game.PlayingPlayers)do
 			for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
@@ -113,6 +120,7 @@ function OpenMenu()
 	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function()
 		ShowHistory(Mod.PlayerGameData.Nachrichten,Game,"",true);
 	end);
+	--Disableing buttons that have no function due to the diplomacy and showing the diplomacy
 	horzobjlist = {};
 	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[0]).SetText("Your current diplomacy:");
@@ -143,12 +151,12 @@ function OpenMenu()
 			local match2 = false;
 			for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
 				if(with == pd.ID)then
-					match2 = true
+					match2 = true;
 				end
 			end
 			for _,with in pairs(Mod.PlayerGameData.Allianzen)do
 				if(with == pd.ID)then
-					match2 = true
+					match2 = true;
 				end
 			end
 			if(match2 == false)then
@@ -293,30 +301,70 @@ function toname(playerid,game)
 end
 function Openshop(rootParent)
 	DeleteUI();
+	SelectedData[1] = -1;
+	SelectedData[2] = -1;
 	if(Game.Settings.CommerceGame)then
 		--gifting money has been removed since already in an other mod and shouldn't be forced in the game
+		horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[5]).SetText("The gifting money function with this mod has been removed, since it already exists alone and not everyone wants it in every diplo");
 	end
 	--Selling Territories
 	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Sell territory");
+	UI.CreateLabel(horzobjlist[0]).SetText("Sell territory");
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[1]).SetText("Select territory you want to sell");
-	TargetPlayerBtn = UI.CreateButton(horzobjlist[1]).SetText("Select territory...").SetOnClick(TargetPlayerClickedSellTerritory);
+	UI.CreateLabel(horzobjlist[1]).SetText("Select territory you want to sell");
+	TargetTerritoryBtn = UI.CreateButton(horzobjlist[1]).SetText("Select territory...").SetOnClick(TargetPlayerClickedSellTerritorySelectTerritoy);
 	if(Game.Settings.CommerceGame)then
 		horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
 		UI.CreateLabel(horzobjlist[2]).SetText('How many money do you want for the territory(0=free)');
-		peaceduration = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
+		territoypreis = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
 	end
-	textelem = UI.CreateLabel(horzobjlist[3]).SetText("Select territory you want to sell");
-	TargetPlayerBtn = UI.CreateButton(horzobjlist[3]).SetText("Select player...").SetOnClick(TargetPlayerClickedUniversal);
+	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
+	UI.CreateLabel(horzobjlist[3]).SetText("Select territory you want to sell");
+	TargetPlayerBtn = UI.CreateButton(horzobjlist[3]).SetText("Select player...").SetOnClick(TargetPlayerClickedSellTerritoySelectPlayer);
+	UI.CreateLabel(horzobjlist[3]).SetText("or");
+	UI.CreateButton(horzobjlist[3]).SetText("Select All Players").SetOnClick(function()
+		SelectedData[1]=0;
+		TargetPlayerBtn.SetText("All");
+	end);
 	horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
 	commitbutton = UI.CreateButton(horzobjlist[4]).SetText("Offer").SetOnClick(OfferTerritory);
 end
 function OfferTerritory()
+	local targetterr = SelectedData[2];
+	if(targetterr == -1)then
+		UI.Alert("Please select a territoy first");
+		return;
+	end
+	local target = SelectedData[1];
+	if(target == -1)then
+		UI.Alert("Please select a player to offer the territory to first");
+		return;
+	end
+	local Preis = 0;
+	if(territoypreis ~= null)then
+		Preis = territoypreis.GetValue();
+	end
 end
-function TargetPlayerClickedSellTerritory()
+function TargetPlayerClickedSellTerritorySelectTerritoy()
 end
-function TargetPlayerClickedUniversal()
+function TargetPlayerClickedSellTerritoySelectPlayer()
+	local options = {};
+	for _,playerinstanze in pairs(Game.Game.PlayingPlayers)do
+		local match = false;
+		for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
+			if(with == playerinstanze.ID)then
+				match = true;
+			end
+		end
+		if(match == false)then
+			if(playerinstanze.IsAI == false and playerinstanze.ID ~= Game.Us.ID)then
+				table.insert(options,playerinstanze);
+			end
+		end
+	end
+	options = zusammen(options,PlayerButtonCustom,TargetPlayerBtn,1);
+	UI.PromptFromList("Select the player you'd like to offer the territory to", options);
 end
 function getterritoryid(name)
 	for _,terr in pairs(Game.Map.Territories)do
@@ -324,7 +372,7 @@ function getterritoryid(name)
 			return terr.ID;
 		end
 	end
-	UI.Alert('Territory could not be found. Please report this to dabo1');
+	UI.Alert('Territory ' .. name .. ' could not be found. Please report this to dabo1');
 	return 0;
 end
 function OpenDeclarWar()
