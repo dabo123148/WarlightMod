@@ -5,6 +5,8 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	end
 end
 function ChangeMoney(game,playerID,value)
+	print(playerID);
+	print(value);
 	if(game.Game.PlayingPlayers[playerID] ~= nil)then--could be unnessasary to check
 		ExtraMoneyPerPlayer[playerID] = ExtraMoneyPerPlayer[playerID] + value;
 	end
