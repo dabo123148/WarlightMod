@@ -75,7 +75,6 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	if(payload.Message == "Gift Money")then
 		local target = tonumber(payload.TargetPlayerID);
 		Pay(playerID,target,payload.Wert,playerGameData,game,true)
-		Mod.PlayerGameData = playerGameData;
 		local message = {};
 		message.Spender = playerID;
 		message.Nehmer = target;
@@ -84,7 +83,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		message.Menge = payload.Wert;
 		addmessagecustom(message,playerID);
 		addmessagecustom(message,target);
-		Mod.PublicGameData = publicGameData;
+		Mod.PlayerGameData = playerGameData;
 		rg.Message = "The Money has been gifted.";
 		setReturnTable(rg);
 	end
