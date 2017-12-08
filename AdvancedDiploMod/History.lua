@@ -64,11 +64,19 @@ function ShowHistory(datentable,game,ende,readconfirmationoff)
 				teildaten = getname(data.Acceptor,game) .. " and " .. getname(data.Von,game) .. " have now peace for " .. tostring(data.Duration) .. " Turns";
 			end
 		end
-		if(data.Type == 11)then
-			if(data.DeclinedBy == game.Us.ID)then
-				teildaten =  "You declined the peace offer from " .. getname(data.Von,game);
+		if(data.Type == 11)then --accidentialy double used with gift money and declined peace
+			if(data.Spender ~= nil)then
+				if(data.Spender == game.Us.ID)then
+					teildaten =  "You gifted " .. getname(data.Nehmer,game) .. " " .. data.Menge .. " money";
+				else
+					teildaten =  getname(data.Spender,game) .. " gifted you " .. data.Menge ..  " money";
+				end
 			else
-				teildaten =  getname(data.DeclinedBy,game) .. " declined your peace offer";
+				if(data.DeclinedBy == game.Us.ID)then
+					teildaten =  "You declined the peace offer from " .. getname(data.Von,game);
+				else
+					teildaten =  getname(data.DeclinedBy,game) .. " declined your peace offer";
+				end
 			end
 		end
 		if(data.Type == 12)then
