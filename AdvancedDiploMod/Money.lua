@@ -10,7 +10,7 @@ function GetMoney(Spieler,pGameData,game)
 end
 function Pay(Spieler1,Spieler2,Amout,pGameData,game,openedfromcustommessage)
 	if(Amout > 0)then
-		if(GetMoney(Spieler1,pGameData,game) >= Amout)then
+		if(GetMoney(Spieler2,pGameData,game) >= Amout)then
 			if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or game.ServerGame.Settings.CommerceGame == false)then
 				AddMoney(Spieler1,Amout,pGameData,game);
 				RemoveMoney(Spieler2,Amout,pGameData,game,openedfromcustommessage);
