@@ -322,13 +322,14 @@ function Openshop(rootParent)
 	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[3]).SetText("Select the player you want to sell it to");
 	TargetPlayerBtn = UI.CreateButton(horzobjlist[3]).SetText("Select player...").SetOnClick(TargetPlayerClickedSellTerritoySelectPlayer);
-	UI.CreateLabel(horzobjlist[3]).SetText("or");
-	UI.CreateButton(horzobjlist[3]).SetText("Select All Players").SetOnClick(function()
+	horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
+	UI.CreateLabel(horzobjlist[4]).SetText("or");
+	UI.CreateButton(horzobjlist[4]).SetText("Select All Players").SetOnClick(function()
 		SelectedData[1]=0;
 		TargetPlayerBtn.SetText("All");
 	end);
-	horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
-	commitbutton = UI.CreateButton(horzobjlist[4]).SetText("Offer").SetOnClick(OfferTerritory);
+	horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
+	commitbutton = UI.CreateButton(horzobjlist[5]).SetText("Offer").SetOnClick(OfferTerritory);
 end
 function OfferTerritory()
 	local targetterr = SelectedData[2];
