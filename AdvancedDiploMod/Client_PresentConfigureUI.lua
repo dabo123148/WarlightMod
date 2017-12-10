@@ -146,7 +146,7 @@ function ShowUI()
 			ReloadUI();
 		end);
 		horzlist[45] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-		inputBasicMoneySystem = UI.CreateCheckBox(horzlist[45]).SetText('Use Warlight Comerce System').SetIsChecked(BasicMoneySysteminit);
+		inputBasicMoneySystem = UI.CreateCheckBox(horzlist[45]).SetText('Use Warlight Comerce System').SetIsChecked(BasicMoneySysteminit).SetInteractable(false);
 		horzlist[11] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 		UI.CreateLabel(horzlist[11]).SetText('Starting Money');
 		inputStartMoney = UI.CreateNumberInputField(horzlist[11]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(StartMoneyinit);
