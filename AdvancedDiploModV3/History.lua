@@ -56,10 +56,18 @@ function ShowHistory(datentable,game,ende,readconfirmationoff)
 			end
 		end
 		if(data.Type == 11)then
-			if(data.DeclinedBy == game.Us.ID)then
-				teildaten =  "You declined the peace offer from " .. getname(data.Von,game);
+			if(data.Spender ~= nil)then
+				if(data.Spender == game.Us.ID)then
+					teildaten =  "You declined the peace offer from " .. getname(data.Von,game);
+				else
+					teildaten =  getname(data.DeclinedBy,game) .. " declined your peace offer";
+				end
 			else
-				teildaten =  getname(data.DeclinedBy,game) .. " declined your peace offer";
+				if(data.DeclinedBy == game.Us.ID)then
+					teildaten =  "You declined the peace offer from " .. getname(data.Von,game);
+				else
+					teildaten =  getname(data.DeclinedBy,game) .. " declined your peace offer";
+				end
 			end
 		end
 		if(data.Type == 12)then

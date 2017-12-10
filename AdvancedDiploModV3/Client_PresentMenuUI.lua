@@ -320,7 +320,7 @@ function Openshop(rootParent)
 		territoypreis = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
 	end
 	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
-	UI.CreateLabel(horzobjlist[3]).SetText("Select territory you want to sell");
+	UI.CreateLabel(horzobjlist[3]).SetText("Select the player you want to sell it to");
 	TargetPlayerBtn = UI.CreateButton(horzobjlist[3]).SetText("Select player...").SetOnClick(TargetPlayerClickedSellTerritoySelectPlayer);
 	UI.CreateLabel(horzobjlist[3]).SetText("or");
 	UI.CreateButton(horzobjlist[3]).SetText("Select All Players").SetOnClick(function()
