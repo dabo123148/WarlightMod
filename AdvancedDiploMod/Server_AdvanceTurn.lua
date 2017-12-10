@@ -97,7 +97,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local payloadsplit = stringtotable(order.Payload);
 			local von = tonumber(payloadsplit[1]);
 			local terrid = tonumber(payloadsplit[2]);
-			local playerGameData = Mod.PlayerGameData;
 			if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID == von)then
 				local Terrselloffer = GetOffer(playerGameData[order.PlayerID].TerritorySellOffers,von,terrid);
 				if(Terrselloffer == nil)then
