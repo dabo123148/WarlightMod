@@ -245,16 +245,16 @@ function OpenOfferAlliance()
 end
 function TargetPlayerSelectCancelAlliance()
 	local options = {};
-	local match2 = false;
+	local match = false;
 	for _,playerinstanze in pairs(Game.Game.PlayingPlayers)do
 		for _,with in pairs(Mod.PlayerGameData.Allianzen)do
 			if(with == playerinstanze.ID)then
 				table.insert(options,playerinstanze);
-				match2 = true;
+				match = true;
 			end
 		end
 	end
-	if(match2 == false)then
+	if(match == false)then
 		UI.Alert('You are not able to ally to anyone at the moment');
 	else
 		options = zusammen(options,PlayerButtonCustom,TargetPlayerBtn,1);
@@ -348,6 +348,15 @@ function OfferTerritory()
 	end
 end
 function TargetPlayerClickedSellTerritorySelectTerritoy()
+	local options = {};
+	local match = false;
+	for _,playerinstanze in pairs(Game.ClientGame.LatestStanding.Territories)do
+		if(terr.OwnerPlayerID == Game.Us.ID)then
+			table.insert(options,terr);
+		end
+	end
+	options = zusammen(options,TerritoryButtonCustom,TargetTerritoryBtn,2);
+	UI.PromptFromList("Select the territory you want to sell", options);
 end
 function TargetPlayerClickedSellTerritoySelectPlayer()
 	local options = {};
@@ -421,7 +430,7 @@ function ContainsDeclareWarOrder(playerid)
 	end
 	return false;
 end
-function TerritoryButtonCustom(terr,knopf)
+function TerritoryButtonCustom(terr,knopf,knopfid)
 	local name = terr.Name .. "(ID:" .. terr.ID .. ")";
 	local ret = {};
 	ret["text"] = name;
