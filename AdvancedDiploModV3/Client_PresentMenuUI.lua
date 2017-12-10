@@ -350,11 +350,15 @@ end
 function TargetPlayerClickedSellTerritorySelectTerritoy()
 	local options = {};
 	local match = false;
-	for _,playerinstanze in pairs(Game.ClientGame.LatestStanding.Territories)do
+	print("T1");
+	for _,terr in pairs(Game.ClientGame.LatestStanding.Territories)do
+		print("T2");
 		if(terr.OwnerPlayerID == Game.Us.ID)then
+			print("T3");
 			table.insert(options,terr);
 		end
 	end
+		print("T4");
 	options = zusammen(options,TerritoryButtonCustom,TargetTerritoryBtn,2);
 	UI.PromptFromList("Select the territory you want to sell", options);
 end
