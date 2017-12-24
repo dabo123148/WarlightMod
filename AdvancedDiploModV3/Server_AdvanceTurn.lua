@@ -12,11 +12,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					skipThisOrder(WL.ModOrderControl.Skip);
 					if(game.ServerGame.Game.Players[order.PlayerID].IsAIOrHumanTurnedIntoAI == true)then
 						DeclareWar(order.PlayerID,toowner,game);
-						if(game.ServerGame.Game.Players[toowner].IsAI == false)then
-							for _,with in pairs(playerGameData[toowner].Allianzen)do
-								DeclareWar(with,order.PlayerID,game);
-							end
-						end
 					end
 				end
 			end
@@ -132,7 +127,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			skipThisOrder(WL.ModOrderControl.Skip);
 		end
 	end
-	if(finished == null)then
+	if(finished == nil)then
 		if(order.proxyType == "GameOrderPlayCardSpy")then
 			if(IsPlayable(order.PlayerID,order.TargetPlayerID,game,Mod.Settings.SpyCardRequireWar,Mod.Settings.SpyCardRequirePeace,Mod.Settings.SpyCardRequireAlly) == false)then
 				skipThisOrder(WL.ModOrderControl.Skip);
@@ -204,7 +199,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	RemainingAllyCancels = {};
 	--reducing the number of turns a player cant declare war on an other
 	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
-		if(game.Settings.Cards[WL.CardID.Spy] ~= null)then
+		if(game.Settings.Cards[WL.CardID.Spy] ~= nil)then
 			if(pid.IsAI == false)then
 				for _,pid2 in pairs(playerGameData[pid.ID].Allianzen) do
 					local cardinstance = WL.NoParameterCardInstance.Create(WL.CardID.Spy);
@@ -252,25 +247,12 @@ function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,r
 			if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
 				if(Mod.Settings.AllowAIDeclaration == true and game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == false)then
 					DeclareWar(Player1,Player2,game);
-					if(game.ServerGame.Game.Players[Player2].IsAI == false)then
-						for _,with in pairs(playerGameData[Player2].Allianzen)do
-							DeclareWar(with,Player1,game);
-						end
-					end
 				end
 				if(Mod.Settings.AIsDeclareAIs == true and game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true)then
 					DeclareWar(Player1,Player2,game);
-					if(game.ServerGame.Game.Players[Player2].IsAI == false)then
-						for _,with in pairs(playerGameData[Player2].Allianzen)do
-							DeclareWar(with,Player1,game);
-						end
-					end
 				end
 			else
 				DeclareWar(Player1,Player2,game);
-				for _,with in pairs(playerGameData[Player2].Allianzen)do
-					DeclareWar(with,Player1,game);
-				end
 			end
 			return false;
 		else
@@ -291,25 +273,12 @@ function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,r
 				if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
 					if(Mod.Settings.AllowAIDeclaration == true and game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == false)then
 						DeclareWar(Player1,Player2,game);
-						for _,with in pairs(playerGameData[Player2].Allianzen)do
-							DeclareWar(with,Player1,game);
-						end
 					end
 					if(Mod.Settings.AIsDeclareAIs == true and game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true)then
 						DeclareWar(Player1,Player2,game);
-						if(game.ServerGame.Game.Players[Player2].IsAI == false)then
-							for _,with in pairs(playerGameData[Player2].Allianzen)do
-								DeclareWar(with,Player1,game);
-							end
-						end
 					end
 				else
 					DeclareWar(Player1,Player2,game);
-					if(game.ServerGame.Game.Players[Player2].IsAI == false)then
-						for _,with in pairs(playerGameData[Player2].Allianzen)do
-							DeclareWar(with,Player1,game);
-						end
-					end
 				end
 				return false;
 			end
@@ -317,7 +286,7 @@ function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,r
 		return false;
 	end
 end
-function DeclareWar(Player1,Player2,game)
+function DeclareWar(Player1,Player2,game,hasrevenge)
 	if(Player1 == Player2)then
 		return;
 	end
@@ -332,9 +301,6 @@ function DeclareWar(Player1,Player2,game)
 			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true and Mod.Settings.AIsdeclearAIs == false)then
 				return;
 			end
-		end
-		if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == false)then
-			error(tostring(Player1) .. " " .. tostring(Player2));
 		end
 		for _,newwar in pairs(RemainingDeclerations)do
 			local P1 = newwar.S1;
@@ -353,6 +319,13 @@ function DeclareWar(Player1,Player2,game)
 		RemainingDeclerations[tablelength(RemainingDeclerations)+1] = {};
 		RemainingDeclerations[tablelength(RemainingDeclerations)].S1 = Player1;
 		RemainingDeclerations[tablelength(RemainingDeclerations)].S2 = Player2;
+		if(hasrevenge == nil)then
+			if(game.ServerGame.Game.Players[Player2].IsAI == false)then
+				for _,with in pairs(playerGameData[Player2].Allianzen)do
+					DeclareWar(Player2,Player1,game,true);
+				end
+			end
+		end
 	end
 end
 function InWar(Player1,Player2)	
