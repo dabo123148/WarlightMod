@@ -134,7 +134,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	end
 	if(order.proxyType == "GameOrderPlayCardSpy")then
 		if(IsPlayable(order.PlayerID,order.TargetPlayerID,game,Mod.Settings.SpyCardRequireWar,Mod.Settings.SpyCardRequirePeace,Mod.Settings.SpyCardRequireAlly) == false)then
-			skipThisOrder(WL.ModOrderControl.Skip);
+			--skipThisOrder(WL.ModOrderControl.Skip);
 		end
 	end
 	if(order.proxyType == "GameOrderPlayCardGift")then
