@@ -212,7 +212,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			skipThisOrder(WL.ModOrderControl.Skip);
 		end
 	end
-	if(finished == null)then
+	if(finished == nil)then
 		if(order.proxyType == "GameOrderPlayCardSpy")then
 			if(IsPlayable(order.PlayerID,order.TargetPlayerID,game,Mod.Settings.SpyCardRequireWar,Mod.Settings.SpyCardRequirePeace,Mod.Settings.SpyCardRequireAlly) == false)then
 				skipThisOrder(WL.ModOrderControl.Skip);
@@ -284,7 +284,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	RemainingAllyCancels = {};
 	--reducing the number of turns a player cant declare war on an other
 	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
-		if(game.Settings.Cards[WL.CardID.Spy] ~= null)then
+		if(game.Settings.Cards[WL.CardID.Spy] ~= nil)then
 			if(pid.IsAI == false)then
 				for _,pid2 in pairs(playerGameData[pid.ID].Allianzen) do
 					local cardinstance = WL.NoParameterCardInstance.Create(WL.CardID.Spy);
