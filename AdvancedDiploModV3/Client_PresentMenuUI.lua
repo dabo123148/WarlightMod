@@ -316,15 +316,38 @@ function OpenPendingRequests()
 end
 function ShowPeaceOffers()
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offers",Game);
+	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offers");
 end
 function ShowTerritorySellOffers()
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Territory Sell Offers",Game);
+	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Territory Sell Offers");
 end
 function ShowAllyOffers()
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Ally Offers",Game);
+	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Ally Offers");
+	for _,offer in pairs(Mod.PlayerGameData.AllyOffers)do
+		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(offer.OfferedBy,Game) .. " offers you an alliance");
+		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+		button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
+		local onclick=function()
+			local payload = {};
+			payload.Message = "Deny Allianze";
+			payload.OfferedBy = offer.OfferedBy;
+			Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
+			OpenPendingRequests();
+			end;
+		button.SetOnClick(onclick);
+		button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
+		local onclick2=function()
+			local payload = {};
+			payload.Message = "Accept Allianze";
+			payload.OfferedBy = offer.OfferedBy;
+			Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
+			OpenPendingRequests();
+			end;
+		button.SetOnClick(onclick2);
+	end
 end
 function toname(playerid,game)
 	return game.Game.Players[tonumber(playerid)].DisplayName(nil, false);
