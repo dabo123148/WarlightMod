@@ -247,7 +247,7 @@ function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,r
 		return true;
 	end
 	if(requirepeacesetting == nil and requireallysetting == nil)then
-		if(InWar(Player1,Player2)==false and requirewarsetting ~= nil and requirewarsetting == true)then
+		if(InWar(Player1,Player2)==false and requirewarsetting == true)then
 			--Declare war
 			if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == true)then
 				if(Mod.Settings.AllowAIDeclaration == true and game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == false)then
@@ -332,6 +332,9 @@ function DeclareWar(Player1,Player2,game)
 			if(game.ServerGame.Game.Players[Player2].IsAIOrHumanTurnedIntoAI == true and Mod.Settings.AIsdeclearAIs == false)then
 				return;
 			end
+		end
+		if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == false)then
+			error(tostring(Player1) .. " " .. tostring(Player2);
 		end
 		for _,newwar in pairs(RemainingDeclerations)do
 			local P1 = newwar.S1;

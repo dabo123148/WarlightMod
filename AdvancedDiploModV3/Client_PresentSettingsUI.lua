@@ -2,7 +2,7 @@
 function Client_PresentSettingsUI(rootParent)
 	root = rootParent;
 	UI.CreateLabel(rootParent).SetText('AI Settings');
-	CreateLine('AIs are allowed to declare war on player : ', Mod.Settings.AllowAIDeclaration,true,true);
+	CreateLine('AIs are allowed to declare war on player : ', Mod.Settings.AllowAIDeclaration,false,true);
 	CreateLine('AIs are allowed to declare war on AIs : ', Mod.Settings.AIsdeclearAIs,true,true);
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Alliance Settings');
@@ -54,7 +54,7 @@ function Client_PresentSettingsUI(rootParent)
 			UI.CreateLabel(rootParent).SetText('Gift Cards are unplayable').SetColor('#FF0000');
 		else
 			CreateLine('Gift Cards can be played on players you are in war with : ', Mod.Settings.GiftCardRequireWar,false,false);
-			CreateLine('Gift Cards can be played on players you are in peace with : ', Mod.Settings.GiftCardRequirePeace,false,false);
+			CreateLine('Gift Cards can be played on players you are in peace with : ', Mod.Settings.GiftCardRequirePeace,true,false);
 			CreateLine('Gift Cards can be played on players you are allied with : ', Mod.Settings.GiftCardRequireAlly,true,false);
 		end
 	end
