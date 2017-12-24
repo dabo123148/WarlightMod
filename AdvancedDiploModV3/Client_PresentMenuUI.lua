@@ -292,10 +292,40 @@ function TargetPlayerClickedOfferAllianze()
 end
 function OpenPendingRequests()
 	DeleteUI();
+	local haspeaceoffer = false;
+	local hasterritoryselloffer = false;
+	local hasallyoffer = false;
+	if(haspeaceoffer == true)then
+		ShowPeaceOffers();
+	end
+	if(hasterritoryselloffer == true)then
+		ShowPeaceOffers();
+	end
+	if(hasallyoffer == true)then
+		ShowTerritorySellOffers();
+	end
+	if(haspeaceoffer == false)then
+		ShowPeaceOffers();
+	end
+	if(hasterritoryselloffer == false)then
+		ShowTerritorySellOffers();
+	end
+	if(hasallyoffer == false)then
+		ShowAllyOffers();
+	end
+end
+function ShowPeaceOffers()
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offers",Game);
 end
-
+function ShowTerritorySellOffers()
+	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Territory Sell Offers",Game);
+end
+function ShowAllyOffers()
+	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Ally Offers",Game);
+end
 function toname(playerid,game)
 	return game.Game.Players[tonumber(playerid)].DisplayName(nil, false);
 end

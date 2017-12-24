@@ -203,15 +203,8 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	--reducing the number of turns a player cant declare war on an other
 	for _,pid in pairs(game.ServerGame.Game.Players)do
 		local random = math.random
-		local function uuid()
-				local template ='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-				return string.gsub(template, '[xy]', function (c)
-				local v = (c == 'x') and random(0, 0xf) or random(8, 0xb)
-				return string.format('%x', v)
-			end)
-		end
 		print("Test1");
-		local cardinstance = WL.NoParameterCardInstance.Create(uuid(),  2);
+		local cardinstance = WL.NoParameterCardInstance.Create(2);
 		print("Test2");
 		addNewOrder(WL.GameOrderReceiveCard.Create({2}, pid.ID, {cardinstance}));
 		print("Test3");
