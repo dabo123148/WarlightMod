@@ -334,7 +334,7 @@ function DeclareWar(Player1,Player2,game)
 			end
 		end
 		if(game.ServerGame.Game.Players[Player1].IsAIOrHumanTurnedIntoAI == false)then
-			error(tostring(Player1) .. " " .. tostring(Player2);
+			error(tostring(Player1) .. " " .. tostring(Player2));
 		end
 		for _,newwar in pairs(RemainingDeclerations)do
 			local P1 = newwar.S1;
