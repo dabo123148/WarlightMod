@@ -206,7 +206,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		print("Test1");
 		local cardinstance = WL.NoParameterCardInstance.Create(2);
 		print("Test2");
-		addNewOrder(WL.GameOrderReceiveCard.Create({2}, pid.ID, {cardinstance}));
+		addNewOrder(WL.GameOrderReceiveCard.Create(pid.ID, {cardinstance}));
 		print("Test3");
 		for _,pid2 in pairs(game.ServerGame.Game.Players)do
 			if(pid.ID ~= pid2.ID)then
