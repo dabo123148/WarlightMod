@@ -284,7 +284,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	RemainingAllyCancels = {};
 	--reducing the number of turns a player cant declare war on an other
 	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
-		if(game.Settings.Cards[WL.CardID.Spy] ~= nil)then
+		if(game.Settings.Cards[WL.CardID.Spy] ~= nil and Mod.Settings.SeeAllyTerritories == true)then
 			if(pid.IsAI == false)then
 				for _,pid2 in pairs(playerGameData[pid.ID].Allianzen) do
 					local cardinstance = WL.NoParameterCardInstance.Create(WL.CardID.Spy);
