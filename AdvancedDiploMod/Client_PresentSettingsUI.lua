@@ -2,7 +2,7 @@
 function Client_PresentSettingsUI(rootParent)
 	root = rootParent;
 	UI.CreateLabel(rootParent).SetText('AI Settings');
-	CreateLine('AIs are allowed to declare war on player : ', Mod.Settings.AllowAIDeclaration,true,true);
+	CreateLine('AIs are allowed to declare war on player : ', Mod.Settings.AllowAIDeclaration,false,true);
 	CreateLine('AIs are allowed to declare war on AIs : ', Mod.Settings.AIsdeclearAIs,true,true);
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Alliance Settings');
