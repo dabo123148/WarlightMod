@@ -212,9 +212,11 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			skipThisOrder(WL.ModOrderControl.Skip);
 		end
 	end
-	if(order.proxyType == "GameOrderPlayCardSpy")then
-		if(IsPlayable(order.PlayerID,order.TargetPlayerID,game,Mod.Settings.SpyCardRequireWar,Mod.Settings.SpyCardRequirePeace,Mod.Settings.SpyCardRequireAlly) == false)then
-			skipThisOrder(WL.ModOrderControl.Skip);
+	if(finished == null)then
+		if(order.proxyType == "GameOrderPlayCardSpy")then
+			if(IsPlayable(order.PlayerID,order.TargetPlayerID,game,Mod.Settings.SpyCardRequireWar,Mod.Settings.SpyCardRequirePeace,Mod.Settings.SpyCardRequireAlly) == false)then
+				skipThisOrder(WL.ModOrderControl.Skip);
+			end
 		end
 	end
 	if(order.proxyType == "GameOrderPlayCardGift")then
@@ -224,6 +226,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	end
 end
 function Server_AdvanceTurn_End (game,addNewOrder)
+	finished = true;
 	--add new war Declaretions
 	local publicGameData = Mod.PublicGameData;
 	for _,newwar in pairs(RemainingDeclerations)do
@@ -281,7 +284,14 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	end
 	RemainingAllyCancels = {};
 	--reducing the number of turns a player cant declare war on an other
-	for _,pid in pairs(game.ServerGame.Game.Players)do
+	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
+		if(pid.IsAI == false)then
+			for _,pid2 in pairs(playerGameData[pid.ID].Allianzen) do
+				local cardinstance = WL.NoParameterCardInstance.Create(2);
+				addNewOrder(WL.GameOrderReceiveCard.Create(pid.ID, {cardinstance}));
+				addNewOrder(WL.GameOrderPlayCardSpy.Create(cardinstance.ID, pid.ID, pid2));
+			end
+		end
 		for _,pid2 in pairs(game.ServerGame.Game.Players)do
 			if(pid.ID ~= pid2.ID)then
 				if(publicGameData.CantDeclare[pid.ID][pid2.ID] ~= nil)then
