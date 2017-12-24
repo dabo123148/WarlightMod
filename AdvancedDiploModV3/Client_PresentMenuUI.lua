@@ -303,11 +303,6 @@ function Openshop(rootParent)
 	DeleteUI();
 	SelectedData[1] = -1;
 	SelectedData[2] = -1;
-	if(Game.Settings.CommerceGame)then
-		--gifting money has been removed since already in an other mod and shouldn't be forced in the game
-		horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
-		textelem = UI.CreateLabel(horzobjlist[5]).SetText("The gifting money function with this mod has been removed, since it already exists alone and not everyone wants it in every diplo");
-	end
 	--Selling Territories
 	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[0]).SetText("Sell territory");
@@ -316,8 +311,8 @@ function Openshop(rootParent)
 	TargetTerritoryBtn = UI.CreateButton(horzobjlist[1]).SetText("Select territory...").SetOnClick(TargetPlayerClickedSellTerritorySelectTerritoy);
 	if(Game.Settings.CommerceGame)then
 		horzobjlist[2] = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horzobjlist[2]).SetText('How many money do you want for the territory(0=free)');
-		territoypreis = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(1);
+		UI.CreateLabel(horzobjlist[2]).SetText('How many gold do you want for the territory');
+		territoypreis = UI.CreateNumberInputField(horzobjlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
 	end
 	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[3]).SetText("Select the player you want to sell it to");
@@ -330,6 +325,11 @@ function Openshop(rootParent)
 	end);
 	horzobjlist[5] = UI.CreateHorizontalLayoutGroup(root);
 	commitbutton = UI.CreateButton(horzobjlist[5]).SetText("Offer").SetOnClick(OfferTerritory);
+	if(Game.Settings.CommerceGame)then
+		--gifting money has been removed since already in an other mod and shouldn't be forced in the game
+		horzobjlist[6] = UI.CreateHorizontalLayoutGroup(root);
+		textelem = UI.CreateLabel(horzobjlist[6]).SetText("The gifting money function with this mod has been removed, since it already exists alone and this mod focuses now more on pure diplo and not also game mechanics like money");
+	end
 end
 function OfferTerritory()
 	local targetterr = SelectedData[2];
@@ -345,20 +345,27 @@ function OfferTerritory()
 	local Preis = 0;
 	if(territoypreis ~= null)then
 		Preis = territoypreis.GetValue();
+		if(Preis < 0)then
+			UI.Alert("Price can't be negative");
+		end
 	end
+	local payload = {};
+	payload.Message = "Territory Sell";
+	payload.TargetPlayerID = SelectedData[1];
+	payload.Preis = Preis;
+	payload.TargetTerritoryID = targetterr;
+	Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
+		UI.Alert(returnvalue.Message);
+	end);
 end
 function TargetPlayerClickedSellTerritorySelectTerritoy()
 	local options = {};
 	local match = false;
-	print("T1");
-	for _,terr in pairs(Game.ClientGame.LatestStanding.Territories)do
-		print("T2");
+	for _,terr in pairs(Game.LatestStanding.Territories)do
 		if(terr.OwnerPlayerID == Game.Us.ID)then
-			print("T3");
 			table.insert(options,terr);
 		end
 	end
-		print("T4");
 	options = zusammen(options,TerritoryButtonCustom,TargetTerritoryBtn,2);
 	UI.PromptFromList("Select the territory you want to sell", options);
 end
@@ -435,10 +442,11 @@ function ContainsDeclareWarOrder(playerid)
 	return false;
 end
 function TerritoryButtonCustom(terr,knopf,knopfid)
-	local name = terr.Name .. "(ID:" .. terr.ID .. ")";
+	local name = Game.Map.Territories[terr.ID].Name .. "(ID:" .. terr.ID .. ")";
 	local ret = {};
 	ret["text"] = name;
 	ret["selected"] = function() 
+		SelectedData[knopfid] = terr.ID;
 		knopf.SetText(name);
 	end
 	return ret;

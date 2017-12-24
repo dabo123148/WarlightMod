@@ -59,7 +59,7 @@ function Client_PresentConfigureUI(rootParent)
 	end
 	GiftCardRequirePeaceinit = Mod.Settings.GiftCardRequirePeace;
 	if(GiftCardRequirePeaceinit == nil)then
-		GiftCardRequirePeaceinit = false;
+		GiftCardRequirePeaceinit = true;
 	end
 	GiftCardRequireAllyinit = Mod.Settings.GiftCardRequireAlly;
 	if(GiftCardRequireAllyinit == nil)then

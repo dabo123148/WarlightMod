@@ -53,7 +53,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local payloadsplit = stringtotable(order.Payload);
 			local von = tonumber(payloadsplit[1]);
 			local terrid = tonumber(payloadsplit[2]);
-			local playerGameData = Mod.PlayerGameData;
 			if(game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID == von)then
 				local Terrselloffer = GetOffer(playerGameData[order.PlayerID].TerritorySellOffers,von,terrid);
 				if(Terrselloffer == nil)then
@@ -203,6 +202,19 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	RemainingAllyCancels = {};
 	--reducing the number of turns a player cant declare war on an other
 	for _,pid in pairs(game.ServerGame.Game.Players)do
+		local random = math.random
+		local function uuid()
+				local template ='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+				return string.gsub(template, '[xy]', function (c)
+				local v = (c == 'x') and random(0, 0xf) or random(8, 0xb)
+				return string.format('%x', v)
+			end)
+		end
+		print("Test1");
+		local cardinstance = WL.NoParameterCardInstance.Create(uuid(),  2);
+		print("Test2");
+		addNewOrder(WL.GameOrderReceiveCard.Create({2}, pid.ID, {cardinstance}));
+		print("Test3");
 		for _,pid2 in pairs(game.ServerGame.Game.Players)do
 			if(pid.ID ~= pid2.ID)then
 				if(publicGameData.CantDeclare[pid.ID][pid2.ID] ~= nil)then
