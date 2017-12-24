@@ -203,15 +203,17 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	end
 	RemainingAllyCancels = {};
 	--reducing the number of turns a player cant declare war on an other
-	for _,pid in pairs(game.ServerGame.Game.Players)do
-		if(pid.IsAI == false)then
-			for _,pid2 in pairs(playerGameData[pid.ID].Allianzen) do
-				local cardinstance = WL.NoParameterCardInstance.Create(2);
-				addNewOrder(WL.GameOrderReceiveCard.Create(pid.ID, {cardinstance}));
-				addNewOrder(WL.GameOrderPlayCardSpy.Create(cardinstance.ID, pid.ID, pid2));
+	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
+		if(game.Game.Settings.Cards[2] ~= null)then
+			if(pid.IsAI == false)then
+				for _,pid2 in pairs(playerGameData[pid.ID].Allianzen) do
+					local cardinstance = WL.NoParameterCardInstance.Create(2);
+					addNewOrder(WL.GameOrderReceiveCard.Create(pid.ID, {cardinstance}));
+					addNewOrder(WL.GameOrderPlayCardSpy.Create(cardinstance.ID, pid.ID, pid2));
+				end
 			end
 		end
-		for _,pid2 in pairs(game.ServerGame.Game.Players)do
+		for _,pid2 in pairs(game.ServerGame.Game.PlayingPlayers)do
 			if(pid.ID ~= pid2.ID)then
 				if(publicGameData.CantDeclare[pid.ID][pid2.ID] ~= nil)then
 					publicGameData.CantDeclare[pid.ID][pid2.ID] = publicGameData.CantDeclare[pid.ID][pid2.ID] - 1;
