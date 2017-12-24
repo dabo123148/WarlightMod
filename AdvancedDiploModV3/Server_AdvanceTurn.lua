@@ -132,9 +132,11 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			skipThisOrder(WL.ModOrderControl.Skip);
 		end
 	end
-	if(order.proxyType == "GameOrderPlayCardSpy")then
-		if(IsPlayable(order.PlayerID,order.TargetPlayerID,game,Mod.Settings.SpyCardRequireWar,Mod.Settings.SpyCardRequirePeace,Mod.Settings.SpyCardRequireAlly) == false)then
-			--skipThisOrder(WL.ModOrderControl.Skip);
+	if(finished == null)then
+		if(order.proxyType == "GameOrderPlayCardSpy")then
+			if(IsPlayable(order.PlayerID,order.TargetPlayerID,game,Mod.Settings.SpyCardRequireWar,Mod.Settings.SpyCardRequirePeace,Mod.Settings.SpyCardRequireAlly) == false)then
+				skipThisOrder(WL.ModOrderControl.Skip);
+			end
 		end
 	end
 	if(order.proxyType == "GameOrderPlayCardGift")then
@@ -220,8 +222,10 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			end
 		end
 	end
+	finished = true;
 	Mod.PublicGameData = publicGameData;
 	Mod.PlayerGameData = playerGameData;
+
 end
 function ownsbonus(game,bonusid,ignorterrid,playerID)
 	for _,terrid in pairs(game.Map.Bonuses[bonusid].Territories)do
