@@ -84,7 +84,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					--buying the territory now
 					local effect = WL.TerritoryModification.Create(terrid);
 					effect.SetOwnerOpt = order.PlayerID;
-					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect}));
+					local costopt = {};
+					costopt[WL.ResourceType.Gold] = offer.Preis;
+					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect},costopt));
 					local message = {};
 					message.Type = 6;
 					message.Von = von;
