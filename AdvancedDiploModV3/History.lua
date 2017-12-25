@@ -26,8 +26,8 @@ function ShowHistory(datentable,game,ende)
 			turn = turn + 1;
 		end
 	end
-	data = data .. ende;
-	if(data ~= "")then
+	daten = daten .. ende;
+	if(daten ~= "")then
 		if(lastmessage == nil or lastmessage ~= daten)then
 			lastmessage = daten;
 			UI.Alert(daten);
