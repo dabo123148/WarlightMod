@@ -436,14 +436,13 @@ function AcceptPeaceOffer(data)
 	payload.Message = data.Message;
 	payload.TargetPlayerID = data.Spieler;
 	Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	
-			if(returnvalue.Message == 1)then
-				UI.Alert("The Peace Offer doesn't exist any longer");
+		if(returnvalue.Message == 1)then
+			UI.Alert("The Peace Offer doesn't exist any longer");
+		else
+			if(data.Message == "Decline Peace")then
+				UI.Alert('You declined ' .. toname(data.Spieler,Game) .. " Peace Offer");
 			else
-				if(data.Message == "Decline Peace")then
-					UI.Alert('You declined ' .. toname(data.Spieler,Game) .. " Peace Offer");
-				else
-					UI.Alert("You are now again in peace with " .. toname(data.Spieler,Game));
-				end
+				UI.Alert("You are now again in peace with " .. toname(data.Spieler,Game));
 			end
 		end
 	end);
