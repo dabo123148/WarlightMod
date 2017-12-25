@@ -150,7 +150,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			local preis = 0;
 			--local preis = playerGameData[playerID].Peaceoffers[player].Preis;
 			local dauer = playerGameData[playerID].Peaceoffers[player].Duration;
-			Pay(player,playerID,preis,playerGameData,game,true)
+			--Pay(player,playerID,preis,playerGameData,game,true)
 			local remainingwar = {};
 			publicGameData = Mod.PublicGameData;
 			for _,with in pairs(publicGameData.War[player]) do
