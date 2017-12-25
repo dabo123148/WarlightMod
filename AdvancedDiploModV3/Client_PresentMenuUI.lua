@@ -318,7 +318,7 @@ function ShowPeaceOffers()
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offers");
 	local hasoffer =false;
-	for _,offer in pairs(Mod.PlayerGameData.AllyOffers)do
+	for _,offer in pairs(Mod.PlayerGameData.Peaceoffers)do
 		hasoffer = true;
 		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(offer.OfferedBy,Game) .. " offers you peace");
