@@ -431,6 +431,24 @@ function ShowAllyOffers()
 		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no alliance offer");
 	end
 end
+function AcceptPeaceOffer(data)
+	local payload = {};
+	payload.Message = data.Message;
+	payload.TargetPlayerID = data.Spieler;
+	Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	
+			if(returnvalue.Message == 1)then
+				UI.Alert("The Peace Offer doesn't exist any longer");
+			else
+				if(data.Message == "Decline Peace")then
+					UI.Alert('You declined ' .. toname(data.Spieler,Game) .. " Peace Offer");
+				else
+					UI.Alert("You are now again in peace with " .. toname(data.Spieler,Game));
+				end
+			end
+		end
+	end);
+	OpenPendingRequests();
+end
 function toname(playerid,game)
 	return game.Game.Players[tonumber(playerid)].DisplayName(nil, false);
 end
