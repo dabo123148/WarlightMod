@@ -28,7 +28,7 @@ function ShowHistory(datentable,game,ende)
 	end
 	daten = daten .. ende;
 	if(daten ~= "")then
-		if(lastmessage == nil or lastmessage ~= daten)then
+		if(lastmessage == nil or lastmessage ~= daten or datentable == Mod.PlayerGameData.Nachrichten)then
 			lastmessage = daten;
 			UI.Alert(daten);
 		end
