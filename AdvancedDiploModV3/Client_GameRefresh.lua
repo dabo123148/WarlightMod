@@ -1,6 +1,6 @@
 require('History');
 function Client_GameRefresh(game)
-	if(game.Us == nil)then
+	if(game.Us == nil or Mod.PlayerGameData.TerritorySellOffers == nil)then
 		return;
 	end
 	local Nachricht = "";
