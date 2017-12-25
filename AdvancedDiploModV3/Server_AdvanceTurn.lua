@@ -86,7 +86,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					effect.SetOwnerOpt = order.PlayerID;
 					local costopt = {};
 					costopt[order.PlayerID] = {};
-					costopt[order.PlayerID][WL.ResourceType.Gold] = Terrselloffer.Preis;
+					costopt[order.PlayerID][WL.ResourceType.Gold] = game.ServerGame.LatestTurnStanding.NumResources(order.PlayerID, WL.ResourceType.Gold)-Terrselloffer.Preis;
 					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Bought " .. game.Map.Territories[terrid].Name, {}, {effect},costopt));
 					local message = {};
 					message.Type = 6;
