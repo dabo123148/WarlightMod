@@ -190,6 +190,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				end
 			end
 			playerGameData[playerID].Peaceoffers[player] = nil
+			playerGameData[player].Peaceoffers[playerID] = nil
 			Mod.PlayerGameData=playerGameData;
 			rg.Message = "The Peace Offer has been accepted.";
 			setReturnTable(rg);
