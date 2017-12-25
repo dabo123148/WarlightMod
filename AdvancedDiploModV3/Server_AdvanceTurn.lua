@@ -2,6 +2,19 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	playerGameData = Mod.PlayerGameData;
 	RemainingDeclerations = {};
 	RemainingAllyCancels = {};
+	local turn = game.Game.TurnNumber;
+	for _,pid in pairs(game.Game.PlayingPlayers) do
+		local history = playerGameData[pid.ID].NeueNachrichten;
+		local newhistory = {};
+		local num = 1;
+		for _,hist in pairs(history) do
+			if(hist.Turn > turn-2)then
+				newhistory[num] = hist;
+				num=num+1;
+			end
+		end
+		playerGameData[pid.ID] = newhistory;
+	end
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == "GameOrderAttackTransfer")then
@@ -199,7 +212,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	RemainingAllyCancels = {};
 	--reducing the number of turns a player cant declare war on an other
 	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
-		if(game.Settings.Cards[WL.CardID.Spy] ~= nil)then
+		if(game.Settings.Cards[WL.CardID.Spy] ~= nil and Mod.Settings.SeeAllyTerritories == true)then
 			if(pid.IsAI == false)then
 				for _,pid2 in pairs(playerGameData[pid.ID].Allianzen) do
 					local cardinstance = WL.NoParameterCardInstance.Create(WL.CardID.Spy);

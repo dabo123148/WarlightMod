@@ -321,11 +321,42 @@ end
 function ShowTerritorySellOffers()
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Territory Sell Offers");
+	local hasoffer =false;
+	for _,playerwitchoffer in pairs(Mod.PlayerGameData.TerritorySellOffers)do
+		for _,offer in pairs(playerwitchoffer)do
+			hasoffer = true;
+			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(offer.Player,Game) .. " offers you the territory " .. Game.Map.Territories[offer.terrID].name .. "(ID:" .. offer.terrID .. ")");
+			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+			button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
+			local onclick=function()
+				--add territory buy offer
+				OpenPendingRequests();
+			end;
+			button.SetOnClick(onclick);
+			button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
+			local onclick2=function()
+				local payload = {};
+				payload.Message = "Deny Territory Sell";
+				payload.TargetPlayerID = offer.Player;
+				payload.TargetTerritoryID = offer.terrID;
+				Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
+				OpenPendingRequests();
+			end;
+			button.SetOnClick(onclick2);
+		end
+	end
+	if(hasoffer == false)then
+		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no territory sell offer");
+	end
 end
 function ShowAllyOffers()
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Ally Offers");
+	local hasoffer =false;
 	for _,offer in pairs(Mod.PlayerGameData.AllyOffers)do
+		hasoffer = true;
 		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(offer.OfferedBy,Game) .. " offers you an alliance");
 		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
@@ -347,6 +378,10 @@ function ShowAllyOffers()
 			OpenPendingRequests();
 			end;
 		button.SetOnClick(onclick2);
+	end
+	if(hasoffer == false)then
+		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no alliance offer");
 	end
 end
 function toname(playerid,game)
