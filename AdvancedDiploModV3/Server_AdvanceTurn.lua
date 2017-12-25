@@ -9,7 +9,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 			local newhistory = {};
 			local num = 1;
 			for _,hist in pairs(history) do
-				if(hist.Turn > turn-2)then
+				if(hist.Turn >= turn-2)then
 					newhistory[num] = hist;
 					num=num+1;
 				end

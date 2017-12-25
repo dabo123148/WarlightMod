@@ -324,26 +324,45 @@ function ShowTerritorySellOffers()
 	local hasoffer =false;
 	for _,playerwitchoffer in pairs(Mod.PlayerGameData.TerritorySellOffers)do
 		for _,offer in pairs(playerwitchoffer)do
-			hasoffer = true;
-			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(offer.Player,Game) .. " offers you the territory " .. Game.Map.Territories[offer.terrID].Name .. "(ID:" .. offer.terrID .. ")");
-			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-			button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
-			local onclick=function()
-				local payload = {};
-				payload.Message = "Deny Territory Sell";
-				payload.TargetPlayerID = offer.Player;
-				payload.TargetTerritoryID = offer.terrID;
-				Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
-				OpenPendingRequests();
-			end;
-			button.SetOnClick(onclick);
-			button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
-			local onclick2=function()
-			--add territory buy offer
-				OpenPendingRequests();
-			end;
-			button.SetOnClick(onclick2);
+			if(ContainsTerritorySellOffer(offer.Player,offer.terrID)==false)then
+				hasoffer = true;
+				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+				UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(offer.Player,Game) .. " offers you the territory " .. Game.Map.Territories[offer.terrID].Name .. "(ID:" .. offer.terrID .. ")");
+				if(Game.Settings.CommerceGame)then
+					if(offer.Preis == 0)then
+						horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+						UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("The offer is for free");
+					else
+						horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+						UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You need to pay " .. offer.Preis .. " gold to accept");
+					end
+				end
+				horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
+				local onclick=function()
+					local payload = {};
+					payload.Message = "Deny Territory Sell";
+					payload.TargetPlayerID = offer.Player;
+					payload.TargetTerritoryID = offer.terrID;
+					Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
+					OpenPendingRequests();
+				end;
+				button.SetOnClick(onclick);
+				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
+				local onclick2=function()
+					--add territory buy order
+					local territorybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, "Buy Territory " .. Game.Map.Territories[offer.terrID].Name .. " from " .. toname(offer.Player,Game), "," .. offer.Player .. "," .. offer.terrID);
+					local orders = Game.Orders;
+					if(Game.Us.HasCommittedOrders == true)then
+						UI.Alert("You need to uncommit first");
+						return;
+					end
+					table.insert(orders, territorybuyorder);
+					Game.Orders=orders;
+					OpenPendingRequests();
+				end;
+				button.SetOnClick(onclick2);
+			end
 		end
 	end
 	if(hasoffer == false)then
@@ -523,6 +542,17 @@ function ContainsDeclareWarOrder(playerid)
 	for _,order in pairs(gameorders)do
 		if(order.proxyType == "GameOrderCustom")then
 			if(order.Payload == tostring(playerid))then
+				return true;
+			end
+		end
+	end
+	return false;
+end
+function ContainsTerritorySellOffer(playerid,terrid)
+	local gameorders = Game.Orders;
+	for _,order in pairs(gameorders)do
+		if(order.proxyType == "GameOrderCustom")then
+			if(order.Payload == "," .. playerid .. "," .. terrid)then
 				return true;
 			end
 		end
