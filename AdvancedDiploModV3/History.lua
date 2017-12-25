@@ -1,4 +1,4 @@
-function ShowHistory(datentable,game,ende,readconfirmationoff)
+function ShowHistory(datentable,game,ende)
 	for _,data in pairs(datentable)do
 		if(minTurn == nil)then
 			minTurn = data.Turn;
@@ -11,8 +11,8 @@ function ShowHistory(datentable,game,ende,readconfirmationoff)
 			maxTurn = data.Turn;
 		end
 	end
+	local daten = "";
 	if(minTurn ~= nil)then
-		local daten = "";
 		local turn = minTurn;
 		while (turn <= maxTurn)do
 			for _,data in pairs(datentable)do
@@ -25,6 +25,9 @@ function ShowHistory(datentable,game,ende,readconfirmationoff)
 			end
 			turn = turn + 1;
 		end
+	end
+	data = data .. ende;
+	if(data ~= "")then
 		if(lastmessage == nil or lastmessage ~= daten)then
 			lastmessage = daten;
 			UI.Alert(daten);

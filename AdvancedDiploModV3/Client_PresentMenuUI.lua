@@ -30,7 +30,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	if(game.Game.PlayingPlayers[game.Us.ID] == nil)then
 		UI.CreateLabel(horz).SetText("You have been eliminated, so you are only able to see your history");
 		oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function()
-			ShowHistory(Mod.PlayerGameData.Nachrichten,Game,"",true);
+			ShowHistory(Mod.PlayerGameData.Nachrichten,Game,"");
 		end);
 		return;
 	end
@@ -118,7 +118,7 @@ function OpenMenu()
 	cancelallianzebutton = UI.CreateButton(vert).SetText("Cancel Alliance").SetOnClick(OpenCancelAlliance);
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
 	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function()
-		ShowHistory(Mod.PlayerGameData.Nachrichten,Game,"",true);
+		ShowHistory(Mod.PlayerGameData.Nachrichten,Game,"");
 	end);
 	--Disableing buttons that have no function due to the diplomacy and showing the diplomacy
 	horzobjlist = {};
@@ -326,7 +326,7 @@ function ShowTerritorySellOffers()
 		for _,offer in pairs(playerwitchoffer)do
 			hasoffer = true;
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(offer.Player,Game) .. " offers you the territory " .. Game.Map.Territories[offer.terrID].name .. "(ID:" .. offer.terrID .. ")");
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(offer.Player,Game) .. " offers you the territory " .. Game.Map.Territories[offer.terrID].Name .. "(ID:" .. offer.terrID .. ")");
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
 			local onclick=function()
