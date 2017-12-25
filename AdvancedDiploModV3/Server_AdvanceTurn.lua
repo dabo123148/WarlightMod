@@ -4,16 +4,18 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	RemainingAllyCancels = {};
 	local turn = game.Game.TurnNumber;
 	for _,pid in pairs(game.Game.PlayingPlayers) do
-		local history = playerGameData[pid.ID].NeueNachrichten;
-		local newhistory = {};
-		local num = 1;
-		for _,hist in pairs(history) do
-			if(hist.Turn > turn-2)then
-				newhistory[num] = hist;
-				num=num+1;
+		if(pid.IsAI == false)then
+			local history = playerGameData[pid.ID].NeueNachrichten;
+			local newhistory = {};
+			local num = 1;
+			for _,hist in pairs(history) do
+				if(hist.Turn > turn-2)then
+					newhistory[num] = hist;
+					num=num+1;
+				end
 			end
+			playerGameData[pid.ID] = newhistory;
 		end
-		playerGameData[pid.ID] = newhistory;
 	end
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
