@@ -47,11 +47,11 @@ function OpenOfferPeace()
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[1]).SetText("Offer peace to: ");
 	TargetPlayerBtn = UI.CreateButton(horzobjlist[1]).SetText("Select player...").SetOnClick(TargetPlayerClickedOfferPeace);
-	if(Game.Settings.CommerceGame)then
-		horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horzobjlist[3]).SetText('How much money do you want for peace');
-		Moneyyougetforpeace = UI.CreateNumberInputField(horzobjlist[3]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
-	end
+	--if(Game.Settings.CommerceGame)then
+	--	horzobjlist[3] = UI.CreateHorizontalLayoutGroup(root);
+	--	UI.CreateLabel(horzobjlist[3]).SetText('How much money do you want for peace');
+	--	Moneyyougetforpeace = UI.CreateNumberInputField(horzobjlist[3]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(0);
+	--end
 	horzobjlist[4] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[4]).SetText('How many turns should you both be not able to declare war on each other');
 	peaceduration = UI.CreateNumberInputField(horzobjlist[4]).SetSliderMinValue(0).SetSliderMaxValue(10).SetValue(1);
@@ -317,6 +317,33 @@ end
 function ShowPeaceOffers()
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 	UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Peace Offers");
+	local hasoffer =false;
+	for _,offer in pairs(Mod.PlayerGameData.AllyOffers)do
+		hasoffer = true;
+		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(offer.OfferedBy,Game) .. " offers you peace");
+		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+		button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
+		local onclick=function()
+			local payload = {};
+			payload.Message = "Decline Peace";
+			payload.Spieler = offer.OfferedBy;
+			AcceptPeaceOffer(payload);
+			end;
+		button.SetOnClick(onclick);
+		button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
+		local onclick2=function()
+			local payload = {};
+			payload.Message = "Accept Peace";
+			payload.Spieler = offer.OfferedBy;
+			AcceptPeaceOffer(payload);
+			end;
+		button.SetOnClick(onclick2);
+	end
+	if(hasoffer == false)then
+		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
+		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no alliance offer");
+	end
 end
 function ShowTerritorySellOffers()
 	horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
@@ -350,7 +377,6 @@ function ShowTerritorySellOffers()
 				button.SetOnClick(onclick);
 				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
 				local onclick2=function()
-					--add territory buy order
 					local costopt = {};
 					costopt[WL.ResourceType.Gold] = offer.Preis;
 					local territorybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, "Buy Territory " .. Game.Map.Territories[offer.terrID].Name .. " from " .. toname(offer.Player,Game), "," .. offer.Player .. "," .. offer.terrID,costopt);

@@ -147,7 +147,8 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			setReturnTable(rg);
 		end
 		if(payload.Message == "Accept Peace")then
-			local preis = playerGameData[playerID].Peaceoffers[player].Preis;
+			local preis = 0;
+			--local preis = playerGameData[playerID].Peaceoffers[player].Preis;
 			local dauer = playerGameData[playerID].Peaceoffers[player].Duration;
 			Pay(player,playerID,preis,playerGameData,game,true)
 			local remainingwar = {};
