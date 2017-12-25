@@ -351,7 +351,9 @@ function ShowTerritorySellOffers()
 				button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
 				local onclick2=function()
 					--add territory buy order
-					local territorybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, "Buy Territory " .. Game.Map.Territories[offer.terrID].Name .. " from " .. toname(offer.Player,Game), "," .. offer.Player .. "," .. offer.terrID);
+					local costopt = {};
+					costopt[WL.ResourceType.Gold] = offer.Preis;
+					local territorybuyorder = WL.GameOrderCustom.Create(Game.Us.ID, "Buy Territory " .. Game.Map.Territories[offer.terrID].Name .. " from " .. toname(offer.Player,Game), "," .. offer.Player .. "," .. offer.terrID,costopt);
 					local orders = Game.Orders;
 					if(Game.Us.HasCommittedOrders == true)then
 						UI.Alert("You need to uncommit first");
