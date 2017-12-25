@@ -330,17 +330,17 @@ function ShowTerritorySellOffers()
 			horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 			button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
 			local onclick=function()
-				--add territory buy offer
-				OpenPendingRequests();
-			end;
-			button.SetOnClick(onclick);
-			button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
-			local onclick2=function()
 				local payload = {};
 				payload.Message = "Deny Territory Sell";
 				payload.TargetPlayerID = offer.Player;
 				payload.TargetTerritoryID = offer.terrID;
 				Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
+				OpenPendingRequests();
+			end;
+			button.SetOnClick(onclick);
+			button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Accept");
+			local onclick2=function()
+			--add territory buy offer
 				OpenPendingRequests();
 			end;
 			button.SetOnClick(onclick2);

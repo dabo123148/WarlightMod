@@ -17,7 +17,7 @@ function ShowHistory(datentable,game,ende)
 		while (turn <= maxTurn)do
 			for _,data in pairs(datentable)do
 				if(data.Turn == turn)then
-					local teildaten = translateHistory(data);
+					local teildaten = translateHistory(data,game);
 					if(teildaten ~= "")then
 						daten = daten .. "Turn " .. tostring(data.Turn+1) .. ":".. teildaten .. "\n";
 					end
@@ -34,7 +34,7 @@ function ShowHistory(datentable,game,ende)
 		end
 	end
 end
-function translateHistory(data)
+function translateHistory(data,game)
 	local teildaten = "";
 	if(data.Type == 1)then
 		if(data.S1 == game.Us.ID)then
