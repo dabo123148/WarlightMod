@@ -321,13 +321,13 @@ function ShowPeaceOffers()
 	for _,offer in pairs(Mod.PlayerGameData.Peaceoffers)do
 		hasoffer = true;
 		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(offer.OfferedBy,Game) .. " offers you peace");
+		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText(toname(offer.Offerby,Game) .. " offers you peace");
 		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
 		button = UI.CreateButton(horzobjlist[tablelength(horzobjlist)-1]).SetText("Deny");
 		local onclick=function()
 			local payload = {};
 			payload.Message = "Decline Peace";
-			payload.Spieler = offer.OfferedBy;
+			payload.Spieler = offer.Offerby;
 			AcceptPeaceOffer(payload);
 			end;
 		button.SetOnClick(onclick);
@@ -335,7 +335,7 @@ function ShowPeaceOffers()
 		local onclick2=function()
 			local payload = {};
 			payload.Message = "Accept Peace";
-			payload.Spieler = offer.OfferedBy;
+			payload.Spieler = offer.Offerby;
 			AcceptPeaceOffer(payload);
 			end;
 		button.SetOnClick(onclick2);
