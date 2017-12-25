@@ -14,7 +14,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 					num=num+1;
 				end
 			end
-			playerGameData[pid.ID] = newhistory;
+			playerGameData[pid.ID].NeueNachrichten = newhistory;
 		end
 	end
 end
