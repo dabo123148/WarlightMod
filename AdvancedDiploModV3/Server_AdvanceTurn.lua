@@ -279,10 +279,10 @@ function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,r
 			return true;
 		end
 	else
-		if(requirepeacesetting == true and InWar(Player1,Player2) == false and IsAlly(Player1,Player2) == false)then
+		if(requirepeacesetting == true and InWar(Player1,Player2) == false and IsAlly(Player1,Player2,game) == false)then
 			return true;
 		end
-		if(requireallysetting == true and IsAlly(Player1,Player2) == true)then
+		if(requireallysetting == true and IsAlly(Player1,Player2,game) == true)then
 			return true;
 		end
 		if(requirewarsetting == true)then
