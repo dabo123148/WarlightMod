@@ -129,17 +129,15 @@ function Server_AdvanceTurn_End(game,addOrder)
 	end
 	PGD = Mod.PlayerGameData;
 	PuGD = Mod.PublicGameData;
-	for _,terr in pairs(PuGD.IsolatedTerritories) do
-		print("t1" .. terr);
+	for i,terr in pairs(PuGD.IsolatedTerritories) do
 		terr = terr - 1;
-		print("t2" .. terr);
 		if(terr == 0)then
-			print("t3");
 			terr = nil;
 		end
-		print("t4");
+		PuGD.IsolatedTerritories[i]=terr;
 	end
-	error(terr);
+	Mod.PublicGameData=PuGD;
+	
 	for playerID in pairs(game.ServerGame.Game.PlayingPlayers) do
 		--addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 1)',''));
 		if(playerID > 50)then
