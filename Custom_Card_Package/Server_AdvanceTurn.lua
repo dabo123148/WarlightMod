@@ -160,6 +160,14 @@ function Server_AdvanceTurn_End(game,addOrder)
 					end
 					addOrder(WL.GameOrderCustom.Create(playerID,'Added Nuke Card Piece. You now have '..PGD[playerID].NukeCards..' Cards and '..PGD[playerID].NukeCardPieces..'/'..Mod.Settings.NukeCardPiecesNeeded..' Pieces.',''));
 				end
+				if(Mod.Settings.IsolationCardIn ~=nil and Mod.Settings.IsolationCardIn)then
+					PGD[playerID].IsolationCardPieces=Mod.PlayerGameData[playerID].IsolationCardPieces+1;
+					if(Mod.PlayerGameData[playerID].IsolationCardPieces+1>=Mod.Settings.IsolationCardPiecesNeeded)then
+						PGD[playerID].IsolationCards=Mod.PlayerGameData[playerID].IsolationCards+1;
+						PGD[playerID].IsolationCardPieces=0;
+					end
+					addOrder(WL.GameOrderCustom.Create(playerID,'Added Isolation Card Piece. You now have '..PGD[playerID].IsolationCards..' Cards and '..PGD[playerID].IsolationCardPieces..'/'..Mod.Settings.IsolationCardPiecesNeeded..' Pieces.',''));
+				end
 			end
 		end
 		--print(tostring(Mod.PublicGameData.PestilenceStadium));
