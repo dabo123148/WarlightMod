@@ -12,6 +12,15 @@ function Server_AdvanceTurn_Start(game,addOrder)
 								PlGD[playerID.ID].NukeCards=PlGD[playerID.ID].NukeCards-1;
 							end
 						end
+						if(split(order.Payload,'|')[1]=='Isolation')then
+							PGD=Mod.PublicGameData;
+							PGD.IsolatedTerritories[tonumber(split(order.Payload,'|')[2])]=Mod.Settings.IsolationCardDuration;
+							PlGD=Mod.PlayerGameData;
+							PlGD[gameOrder.PlayerID].IsolationCards=PlGD[order.PlayerID].IsolationCards-1;
+							Mod.PlayerGameData=PlGD;
+							Mod.PublicGameData=PGD;
+							WL.GameOrderCustom.Create(order.PlayerID, order.Message, "")
+						end
 					end
 				end
 			end
@@ -52,12 +61,7 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 				Mod.PublicGameData=PGD;
 			end
 			if(split(gameOrder.Payload,'|')[1]=='Isolation')then
-				PGD=Mod.PublicGameData;
-				PGD.IsolatedTerritories[tonumber(split(gameOrder.Payload,'|')[2])]=Mod.Settings.IsolationCardDuration;
-				PlGD=Mod.PlayerGameData;
-				PlGD[gameOrder.PlayerID].IsolationCards=PlGD[gameOrder.PlayerID].IsolationCards-1;
-				Mod.PlayerGameData=PlGD;
-				Mod.PublicGameData=PGD;
+				skip(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 			end
 			if(split(gameOrder.Payload,'|')[1]=='Nuke')then
 				skip(WL.ModOrderControl.SkipAndSupressSkippedMessage);
