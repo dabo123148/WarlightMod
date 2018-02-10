@@ -37,7 +37,7 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 				end
 			end
 		else
-			skip(WL.ModOrderControll.Skip);
+			skip(WL.ModOrderControl.Skip);
 			addOrder(WL.GameOrderEvent.Create(order.PlayerID, "Attack failed since territory is isolated", {}, {},{}));
 		end
 	end
