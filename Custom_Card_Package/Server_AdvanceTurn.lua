@@ -130,9 +130,9 @@ function Server_AdvanceTurn_End(game,addOrder)
 	PGD = Mod.PlayerGameData;
 	PuGD = Mod.PublicGameData;
 	for _,terr in pairs(PuGD.IsolatedTerritories) do
-		PuGD.IsolatedTerritorries[terr] = PuGD.IsolatedTerritorries[terr] - 1;
-		if(PuGD.IsolatedTerritorries[terr] == 0)then
-			PuGD.IsolatedTerritorries[terr] = nil;
+		terr = terr - 1;
+		if(terr == 0)then
+			terr = nil;
 		end
 	end
 	
