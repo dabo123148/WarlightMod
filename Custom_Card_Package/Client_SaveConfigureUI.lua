@@ -21,7 +21,13 @@ function Client_SaveConfigureUI(alert)
                         alert('You cannot deal more than 100% Damage');
                 end
         end
-        if(Mod.Settings.NukeCardIn==false and Mod.Settings.PestCardIn==false)then
+        Mod.Settings.IsolationCardIn=IsolationCardCheckbox.GetIsChecked();
+        if(Mod.Settings.IsolationCardIn==true)then
+                 Mod.Settings.IsolationCardDuration=IsolationCardDurationSlider.GetValue();
+                 Mod.Settings.IsolationCardPiecesNeeded=IsolationCardPiecesNeededBox.GetValue();
+                 Mod.Settings.IsolationCardStartPieces=IsolationCardStartPiecesBox.GetValue();
+        end
+        if(Mod.Settings.NukeCardIn==false and Mod.Settings.PestCardIn==false and IsolationCardIn==false)then
                  alert('There must be at least one card implemented');
         end
 end
