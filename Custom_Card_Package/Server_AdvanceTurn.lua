@@ -16,7 +16,7 @@ function Server_AdvanceTurn_Start(game,addOrder)
 							PGD=Mod.PublicGameData;
 							PGD.IsolatedTerritories[tonumber(split(order.Payload,'|')[2])]=Mod.Settings.IsolationCardDuration;
 							PlGD=Mod.PlayerGameData;
-							PlGD[gameOrder.PlayerID].IsolationCards=PlGD[order.PlayerID].IsolationCards-1;
+							PlGD[order.PlayerID].IsolationCards=PlGD[order.PlayerID].IsolationCards-1;
 							Mod.PlayerGameData=PlGD;
 							Mod.PublicGameData=PGD;
 							WL.GameOrderCustom.Create(order.PlayerID, order.Message, "")
