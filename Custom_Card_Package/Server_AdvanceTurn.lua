@@ -53,7 +53,7 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 			end
 			if(split(gameOrder.Payload,'|')[1]=='Isolation')then
 				PGD=Mod.PublicGameData;
-				PGD.IsolatedTerritories[tonumber(split(gameOrder.Payload,'|')[2])]=Mod.Settings.IsolationCardDuration+1;
+				PGD.IsolatedTerritories[tonumber(split(gameOrder.Payload,'|')[2])]=Mod.Settings.IsolationCardDuration;
 				PlGD=Mod.PlayerGameData;
 				PlGD[gameOrder.PlayerID].IsolationCards=PlGD[gameOrder.PlayerID].IsolationCards-1;
 				Mod.PlayerGameData=PlGD;
