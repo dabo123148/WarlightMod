@@ -64,7 +64,7 @@ function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 			end
 		end
 	end
-	if(deployed == false)then
+	if(Mod.Settings.NukeCardIn ~=nil and Mod.Settings.NukeCardIn and deployed == false)then
 		if(Mod.Settings.AfterDeployment~= nil and Mod.Settings.AfterDeployment == false)then
 			deployed = true;
 		end
