@@ -163,11 +163,11 @@ function IncludeExcludeIsolationCard()
 		IsolationCardDurationSlider = nil;
 	else
 		text8 = UI.CreateLabel(horzlist[13]).SetText('Isolation Card Duration:');
-		IsolationCardDurationSlider = UI.CreateNumberInputField(horzlist[1]).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(IsolationCardDurationinit);
+		IsolationCardDurationSlider = UI.CreateNumberInputField(horzlist[13]).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(IsolationCardDurationinit);
 		text9 = UI.CreateLabel(horzlist[14]).SetText('Card Pieces Needed:');
-		IsolationCardPiecesNeededBox=UI.CreateNumberInputField(horzlist[2]).SetSliderMinValue(1).SetSliderMaxValue(20).SetValue(IsolationCardPiecesNeededinit);
+		IsolationCardPiecesNeededBox=UI.CreateNumberInputField(horzlist[14]).SetSliderMinValue(1).SetSliderMaxValue(20).SetValue(IsolationCardPiecesNeededinit);
 		text10 = UI.CreateLabel(horzlist[15]).SetText('Card Pieces given at the beginning of the game:');
-		IsolationCardStartPiecesBox=UI.CreateNumberInputField(horzlist[3]).SetSliderMinValue(0).SetSliderMaxValue(20).SetValue(IsolationCardStartPiecesinit);
+		IsolationCardStartPiecesBox=UI.CreateNumberInputField(horzlist[15]).SetSliderMinValue(0).SetSliderMaxValue(20).SetValue(IsolationCardStartPiecesinit);
 	end
 end
 
