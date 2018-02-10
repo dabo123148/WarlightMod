@@ -15,11 +15,17 @@ function Server_StartGame(game,standing)
           playerGameData[playerID].NukeCardPieces=NukePieces;
           playerGameData[playerID].NukeCards=NukeCards;
        end
+      if(Mod.Settings.IsolationCardIn)then
+          IsolationPieces = Mod.Settings.IsolationCardStartPieces%Mod.Settings.IsolationCardPiecesNeeded;
+          IsolationCards = (Mod.Settings.IsolationCardStartPieces-IsolationPieces)/Mod.Settings.IsolationCardPiecesNeeded;
+          playerGameData[playerID].IsolationCardPieces=IsolationPieces;
+          playerGameData[playerID].IsolationCards=IsolationCards;
+       end
       playerGameData[playerID].SuccessfullyAttacked=0;
     end
   end
   local publicGameData = Mod.PublicGameData;
-  publicGameData={PestilenceStadium={}};
+  publicGameData={PestilenceStadium={},IsolatedTerritories={}};
   
   Mod.PublicGameData=publicGameData;
   Mod.PlayerGameData = playerGameData;
