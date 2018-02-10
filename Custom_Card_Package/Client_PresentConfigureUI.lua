@@ -89,7 +89,7 @@ function Client_PresentConfigureUI(rootParent)
 	end
 	horzlist = {};
 	horzlist[12] = UI.CreateHorizontalLayoutGroup(rootParent);
-	IsolationCardCheckbox=UI.CreateCheckBox(horzlist[0]).SetText('Include Isolation Card').SetIsChecked(IsolationCardIninit).SetOnValueChanged(IncludeExcludeIsolationCard);
+	IsolationCardCheckbox=UI.CreateCheckBox(horzlist[12]).SetText('Include Isolation Card').SetIsChecked(IsolationCardIninit).SetOnValueChanged(IncludeExcludeIsolationCard);
 	horzlist[13] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[14] = UI.CreateHorizontalLayoutGroup(rootParent);
 	horzlist[15] = UI.CreateHorizontalLayoutGroup(rootParent);
