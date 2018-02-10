@@ -19,7 +19,7 @@ function Server_AdvanceTurn_Start(game,addOrder)
 							PlGD[order.PlayerID].IsolationCards=PlGD[order.PlayerID].IsolationCards-1;
 							Mod.PlayerGameData=PlGD;
 							Mod.PublicGameData=PGD;
-							WL.GameOrderCustom.Create(order.PlayerID, order.Message, "")
+							addOrder(WL.GameOrderCustom.Create(order.PlayerID, order.Message, ""));
 						end
 					end
 				end
