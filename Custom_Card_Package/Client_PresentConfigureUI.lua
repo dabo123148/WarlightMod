@@ -75,7 +75,7 @@ function Client_PresentConfigureUI(rootParent)
 	if(Mod.Settings.IsolationCardIn ~= nil)then
    		IsolationCardIninit=Mod.Settings.IsolationCardIn;
 	end
-	IsolationCardDurationinit=false;
+	IsolationCardDurationinit=1;
 	if(Mod.Settings.IsolationCardDuration ~= nil)then
    		IsolationCardDurationinit=Mod.Settings.IsolationCardDuration;
 	end
