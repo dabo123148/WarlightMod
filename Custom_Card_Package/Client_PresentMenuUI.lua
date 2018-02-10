@@ -136,7 +136,7 @@ function SelectTerritoryIso(terr)
 		if(IsolationCardsFree == 0)then
 			UI.Destroy(IsolationButton1);
 		end
-		NukeText1.SetText('      You have got '..tostring(IsolationCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.IsolationCardPieces)..'/'..Mod.Settings.IsolationCardPiecesNeeded..' Pieces.');
+		IsolationText1.SetText('      You have got '..tostring(IsolationCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.IsolationCardPieces)..'/'..Mod.Settings.IsolationCardPiecesNeeded..' Pieces.');
 		Game.Orders = orders;
 	end
 	return ret;
