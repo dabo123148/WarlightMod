@@ -28,12 +28,17 @@ end
 function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 	
 	if(gameOrder.proxyType=='GameOrderAttackTransfer')then
-		if(gameOrder.PlayerID ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[gameOrder.PlayerID].IsAI == false and Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked ~= 1)then
-			if(result.IsSuccessful and result.IsAttack)then
-				local PGD=Mod.PlayerGameData;
-				PGD[gameOrder.PlayerID].SuccessfullyAttacked=1;
-				Mod.PlayerGameData=PGD;
+		if(Mod.PublicGameData.IsolatedTerritories == nil or (Mod.PublicGameData.IsolatedTerritories[gameOrder.To] ~= nil and Mod.PublicGameData.IsolatedTerritories[gameOrder.From ] ~= nil))then
+			if(gameOrder.PlayerID ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[gameOrder.PlayerID].IsAI == false and Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked ~= 1)then
+				if(result.IsSuccessful and result.IsAttack)then
+					local PGD=Mod.PlayerGameData;
+					PGD[gameOrder.PlayerID].SuccessfullyAttacked=1;
+					Mod.PlayerGameData=PGD;
+				end
 			end
+		else
+			skip(WL.ModOrderControll.Skip);
+			addOrder(WL.GameOrderEvent.Create(order.PlayerID, "Attack failed since territory is isolated", {}, {},{}));
 		end
 	end
 	if(gameOrder.proxyType=='GameOrderCustom')then
@@ -116,6 +121,12 @@ function Server_AdvanceTurn_End(game,addOrder)
 	end
 	PGD = Mod.PlayerGameData;
 	PuGD = Mod.PublicGameData;
+	for _,terr in pairs(PuGD.IsolatedTerritories) do
+		terr = terr - 1;
+		if(terr == 0)then
+			terr = nil;
+		end
+	end
 	for playerID in pairs(game.ServerGame.Game.PlayingPlayers) do
 		--addOrder(WL.GameOrderCustom.Create(playerID,'Added Pestilence Card Piece (TEST 1)',''));
 		if(playerID > 50)then
