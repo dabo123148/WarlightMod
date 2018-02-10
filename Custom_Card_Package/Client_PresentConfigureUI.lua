@@ -87,7 +87,6 @@ function Client_PresentConfigureUI(rootParent)
 	if(Mod.Settings.IsolationCardStartPieces ~= nil)then
    		IsolationCardStartPiecesinit=Mod.Settings.IsolationCardStartPieces;
 	end
-	horzlist = {};
 	horzlist[12] = UI.CreateHorizontalLayoutGroup(rootParent);
 	IsolationCardCheckbox=UI.CreateCheckBox(horzlist[12]).SetText('Include Isolation Card').SetIsChecked(IsolationCardIninit).SetOnValueChanged(IncludeExcludeIsolationCard);
 	horzlist[13] = UI.CreateHorizontalLayoutGroup(rootParent);
