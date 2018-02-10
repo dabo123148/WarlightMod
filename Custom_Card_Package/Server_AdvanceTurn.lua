@@ -28,7 +28,7 @@ end
 function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 	
 	if(gameOrder.proxyType=='GameOrderAttackTransfer')then
-		if(Mod.PublicGameData.IsolatedTerritories == nil or (Mod.PublicGameData.IsolatedTerritories[gameOrder.To] ~= nil and Mod.PublicGameData.IsolatedTerritories[gameOrder.From ] ~= nil))then
+		if(Mod.PublicGameData.IsolatedTerritories == nil or (Mod.PublicGameData.IsolatedTerritories[gameOrder.To] == nil and Mod.PublicGameData.IsolatedTerritories[gameOrder.From ] == nil))then
 			if(gameOrder.PlayerID ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[gameOrder.PlayerID].IsAI == false and Mod.PlayerGameData[gameOrder.PlayerID].SuccessfullyAttacked ~= 1)then
 				if(result.IsSuccessful and result.IsAttack)then
 					local PGD=Mod.PlayerGameData;
