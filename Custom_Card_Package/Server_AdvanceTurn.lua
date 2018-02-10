@@ -19,6 +19,11 @@ function Server_AdvanceTurn_Start(game,addOrder)
 	end
 	Mod.PlayerGameData=PlGD;
 	deployed = false;
+	publicGameData = Mod.PublicGameData;
+	if(publicGameData.IsolatedTerritories == nil)then
+		publicGameData.IsolatedTerritories = {};
+	end
+	Mod.PublicGameData = publicGameData;
 end
 function Server_AdvanceTurn_Order(game,gameOrder,result,skip,addOrder)
 	
