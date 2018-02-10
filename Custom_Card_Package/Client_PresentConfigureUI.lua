@@ -69,6 +69,37 @@ function Client_PresentConfigureUI(rootParent)
 			BeforeDeploymentToggle.SetIsChecked(true);
 		end
 	end
+	
+	root=rootParent;
+   	IsolationCardIninit=false;
+	if(Mod.Settings.IsolationCardIn ~= nil)then
+   		IsolationCardIninit=Mod.Settings.IsolationCardIn;
+	end
+	IsolationCardDurationinit=false;
+	if(Mod.Settings.IsolationCardDuration ~= nil)then
+   		IsolationCardDurationinit=Mod.Settings.IsolationCardDuration;
+	end
+	IsolationCardPiecesNeededinit=4;
+	if(Mod.Settings.IsolationCardPiecesNeeded ~= nil)then
+   		IsolationCardPiecesNeededinit=Mod.Settings.IsolationCardPiecesNeeded;
+	end
+	IsolationCardStartPiecesinit=4;
+	if(Mod.Settings.IsolationCardStartPieces ~= nil)then
+   		IsolationCardStartPiecesinit=Mod.Settings.IsolationCardStartPieces;
+	end
+	horzlist = {};
+	horzlist[12] = UI.CreateHorizontalLayoutGroup(rootParent);
+	IsolationCardCheckbox=UI.CreateCheckBox(horzlist[0]).SetText('Include Isolation Card').SetIsChecked(IsolationCardIninit).SetOnValueChanged(IncludeExcludeIsolationCard);
+	horzlist[13] = UI.CreateHorizontalLayoutGroup(rootParent);
+	horzlist[14] = UI.CreateHorizontalLayoutGroup(rootParent);
+	horzlist[15] = UI.CreateHorizontalLayoutGroup(rootParent);
+	horzlist[16] = UI.CreateHorizontalLayoutGroup(rootParent);
+	if(IsolationCardIninit == true)then
+		IncludeExcludeIsolationCard();
+	end
+	
+	
+	
 end
 function IncludeExcludePestilenzCard()
 	if(PestCardStrengthSlider ~= nil)then
@@ -120,6 +151,27 @@ function IncludeExcludeNukeCard()
 		end
 	end
 end
+
+function IncludeExcludeIsolationCard()
+	if(IsolationCardDurationSlider ~= nil)then
+		UI.Destroy(text8);
+		UI.Destroy(IsolationCardDurationSlider);
+		UI.Destroy(text9);
+		UI.Destroy(IsolationCardPiecesNeededBox);
+		UI.Destroy(text10);
+		UI.Destroy(IsolationCardStartPiecesBox);
+		IsolationCardDurationSlider = nil;
+	else
+		text8 = UI.CreateLabel(horzlist[13]).SetText('Isolation Card Duration:');
+		IsolationCardDurationSlider = UI.CreateNumberInputField(horzlist[1]).SetSliderMinValue(1).SetSliderMaxValue(3).SetValue(IsolationCardDurationinit);
+		text9 = UI.CreateLabel(horzlist[14]).SetText('Card Pieces Needed:');
+		IsolationCardPiecesNeededBox=UI.CreateNumberInputField(horzlist[2]).SetSliderMinValue(1).SetSliderMaxValue(20).SetValue(IsolationCardPiecesNeededinit);
+		text10 = UI.CreateLabel(horzlist[15]).SetText('Card Pieces given at the beginning of the game:');
+		IsolationCardStartPiecesBox=UI.CreateNumberInputField(horzlist[3]).SetSliderMinValue(0).SetSliderMaxValue(20).SetValue(IsolationCardStartPiecesinit);
+	end
+end
+
+
 function OnClickAfterDeployment()
 	if(AfterDeploymentToggle.GetIsChecked())then
 		BeforeDeploymentToggle.SetIsChecked(false);
