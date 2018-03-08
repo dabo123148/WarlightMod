@@ -427,6 +427,12 @@ function check(message,variable)
 end
 function addmessage(message,spieler)
 	print("spieler " .. spieler);
+	if(playerGameData == nil)then
+		print("Test1");
+	end
+	if(playerGameData[spieler].Nachrichten == nil)then
+		print("Test2");
+	end
 	playerGameData[spieler].Nachrichten[tablelength(playerGameData[spieler].Nachrichten)+1] = message;
 	playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten)+1] = message;
 end
