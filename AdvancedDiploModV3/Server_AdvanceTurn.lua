@@ -426,6 +426,7 @@ function check(message,variable)
 	return match;
 end
 function addmessage(message,spieler)
+	print("spieler " .. spieler);
 	playerGameData[spieler].Nachrichten[tablelength(playerGameData[spieler].Nachrichten)+1] = message;
 	playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten)+1] = message;
 end
