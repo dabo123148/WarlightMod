@@ -429,9 +429,15 @@ function addmessage(message,spieler)
 	print("spieler " .. spieler);
 	if(playerGameData == nil)then
 		print("Test1");
+		return;
+	end
+	if(playerGameData[spieler] == nil)then
+		print("Test2");
+		return;
 	end
 	if(playerGameData[spieler].Nachrichten == nil)then
-		print("Test2");
+		print("Test3");
+		return;
 	end
 	playerGameData[spieler].Nachrichten[tablelength(playerGameData[spieler].Nachrichten)+1] = message;
 	playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten)+1] = message;
