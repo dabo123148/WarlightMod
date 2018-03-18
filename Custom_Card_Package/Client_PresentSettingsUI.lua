@@ -23,7 +23,7 @@ function Client_PresentSettingsUI(rootParent)
 		end
 		UI.CreateLabel(rootParent).SetText(' ');
 	end
-	if(Mod.Settings.IsolationCardInIn ~= nil and Mod.Settings.IsolationCardInIn)then
+	if(Mod.Settings.IsolationCardIn ~= nil and Mod.Settings.IsolationCardIn)then
 		UI.CreateLabel(rootParent).SetText('Isolation Card Settings:');
 		CreateLine('Card Pieces Needed : ', Mod.Settings.IsolationCardPiecesNeeded,4,false);
 		CreateLine('Card Pieces Given in the beginning of the game : ', Mod.Settings.IsolationCardStartPieces,4,false);
