@@ -15,7 +15,7 @@ function Client_PresentSettingsUI(rootParent)
 		CreateLine('Card Pieces Given in the beginning of the game : ', Mod.Settings.NukeCardStartPieces,11,false);
 		CreateLine('Territories hit by a nuke take that much damage : ', Mod.Settings.NukeCardMainTerritoryDamage,50,false);
 		CreateLine('Connected Territories to a nuke take that much damage : ', Mod.Settings.NukeCardConnectedTerritoryDamage,25,false);
-		CreateLine('Connected Territories to a nuke take that much damage : ', Mod.Settings.Friendlyfire,true,true);
+		CreateLine('Players can harm themself : ', Mod.Settings.Friendlyfire,true,true);
 		if(Mod.Settings.AfterDeployment)then
 			UI.CreateLabel(rootParent).SetText('Territories get nuked AFTER Deployment but before Gift and Blockade Cards take effect').SetColor('#FF0000');
 		else
