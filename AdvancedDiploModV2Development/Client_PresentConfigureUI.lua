@@ -1,5 +1,6 @@
 
 function Client_PresentConfigureUI(rootParent)
+	print("Test1");
 	rootParentobj = rootParent;
 	AIDeclerationinit = Mod.Settings.AllowAIDeclaration;
 	if(AIDeclerationinit == nil)then
@@ -100,8 +101,10 @@ function Client_PresentConfigureUI(rootParent)
 	ShowUI();
 end
 function ShowUI()
+	print("Test2");
 	horzlist = {};
 	horzlist[0] = UI.CreateHorizontalLayoutGroup(rootParentobj);
+	print("Test3");
 	UI.CreateLabel(horzlist[0]).SetText('AI Settings');
    	horzlist[1] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	AIDeclerationcheckbox = UI.CreateCheckBox(horzlist[1]).SetText('Allow AIs to declare war on Player').SetIsChecked(AIDeclerationinit);
