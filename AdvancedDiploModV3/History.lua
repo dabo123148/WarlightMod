@@ -44,7 +44,7 @@ function translateHistory(data,game)
 			teildaten = getname(data.S1,game) .. " declared war on you";
 		end
 		if(data.S1 ~= game.Us.ID and data.S2 ~= game.Us.ID)then
-			teildaten = getname(data.S1,game) .. " declared war " .. getname(data.S2,game);
+			teildaten = getname(data.S1,game) .. " declared war on " .. getname(data.S2,game);
 		end
 	end
 	if(data.Type == 2)then
