@@ -7,16 +7,10 @@ War/Peace System:
   -Sanction, Bomb, Gift, Spy Card can be configurated, that they are just playable if you are in war/peace/ally with the persons you play them on
 Alliance System:
   -Players you are allied with automatically declare war on players declaring war on you(their allies won't declare war on you)
-  -You will be able to see the same territories your ally sees by default(not through cards or other alliances) through fog. (depends on settings)(coming soon)
+  -You will be able to see the same territories your ally sees by default(not through cards or other alliances) through fog. (depends on settings)
   -Alliances can be either public or private(depends on the settings)
-Ingame currency:
-  -You get money for(each item depends on the settings):       - killing armies
-                                                               - taking territories
-                                                               - every turn
-                                                               - taking bonuses
-                                                               - Game start
+ Trading
   -You can sell territories
-  -You can buy armies of the shop for a definded price
   -You can gift money to other players
   -If the setting basic money system is activated, you get the money in the next turn
 AIs for Diplos:
