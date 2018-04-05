@@ -1,0 +1,25 @@
+There are a lot of problems with commerce games, so you shouldn't use this mod at the moment with commerce games(working on fixes, but will result in a split).
+Don't use this mod with any other mod with a notifications system, else it may happen that the notifications don't show up.
+In oder to have the see ally territory feature working you need to have the spycards included in the game(best 1turn spycards).
+This Mod adds:
+War/Peace System:
+  -Attacks DON'T count as declaration
+  -After you declared War on someone, you have to wait one turn before you can attack him
+  -Sanction, Bomb, Gift, Spy Card can be configurated, that they are just playable if you are in war/peace/ally with the persons you play them on
+Alliance System:
+  -Players you are allied with automatically declare war on players declaring war on you(their allies won't declare war on you)
+  -You will be able to see the same territories your ally sees by default(not through cards or other alliances) through fog.
+  -Alliances can be either public or private(depends on the settings)
+Ingame currency:
+  -You get money for(each item depends on the settings):       - killing armies
+                                                               - taking territories
+                                                               - every turn
+                                                               - taking bonuses
+                                                               - Game start
+  -You can sell territories
+  -You can buy armies of the shop for a definded price
+  -You can gift money to other players
+  -If the setting basic money system is activated, you get the money in the next turn
+AIs for Diplos:
+  -AIs won't declare war on players(depends on settings)
+  -AIs won't declare war on AIs(depends on settings)
