@@ -19,7 +19,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			checkwin(order.PlayerID,addNewOrder,game);
 		end
 		local player2 = game.ServerGame.LatestTurnStanding.Territories[targetterr].OwnerPlayerID;
-		if(game.ServerGame.Game.Players[player2].IsAI == false)then
+		if(player2 ~= WL.PlayerID.Neutral and game.ServerGame.Game.Players[player2].IsAI == false)then
 			playerGameData[player2].Lostarmies = playerGameData[player2].Lostarmies+game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies/2;
 			playerGameData[player2].Ownedarmies = playerGameData[player2].Ownedarmies - game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies/2;;
 			checkwin(order.PlayerID,addNewOrder,game);
