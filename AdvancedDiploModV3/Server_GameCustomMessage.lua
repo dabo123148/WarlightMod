@@ -145,70 +145,71 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		if(playerGameData[playerID].Peaceoffers[player] == nil)then
 			rg.Message = "The Peace Offer doesn't exist, maybe you already accepted or declined it. The next time you reload the game, it shouldn't be shown there.";
 			setReturnTable(rg);
-		end
-		if(payload.Message == "Accept Peace")then
-			local preis = 0;
-			--local preis = playerGameData[playerID].Peaceoffers[player].Preis;
-			local dauer = playerGameData[playerID].Peaceoffers[player].Duration;
-			--Pay(player,playerID,preis,playerGameData,game,true)
-			local remainingwar = {};
-			publicGameData = Mod.PublicGameData;
-			for _,with in pairs(publicGameData.War[player]) do
-				if(with~=playerID)then
-					remainingwar[tablelength(remainingwar)+1] = with;
-				end
-			end
-			publicGameData.War[player] = remainingwar;
-			remainingwar = {};
-			for _,with in pairs(publicGameData.War[playerID]) do
-				if(with~=player)then
-					remainingwar[tablelength(remainingwar)+1] = with;
-				end
-			end
-			publicGameData.War[playerID] = remainingwar;
-			publicGameData.CantDeclare[player][playerID] = dauer;
-			publicGameData.CantDeclare[playerID][player] = dauer;
-			Mod.PublicGameData = publicGameData;
-			local message = {};
-			message.Von = player;
-			message.Acceptor = playerID;
-			message.Duration = dauer;
-			message.Turn = game.Game.NumberOfTurns;
-			message.Type = 10;
-			message.Preis = preis;
-			addmessagecustom(message,playerID);
-			addmessagecustom(message,player);
-			message = {};
-			message.Von = player;
-			message.Acceptor = playerID;
-			message.Duration = dauer;
-			message.Turn = game.Game.NumberOfTurns;
-			message.Type = 10;
-			for _,pid in pairs(game.ServerGame.Game.Players)do
-				if(pid.IsAI == false and pid.ID ~= player and pid.ID ~= playerID)then
-					addmessagecustom(message,pid.ID);
-				end
-			end
-			playerGameData[playerID].Peaceoffers[player] = nil
-			playerGameData[player].Peaceoffers[playerID] = nil
-			Mod.PlayerGameData=playerGameData;
-			rg.Message = "The Peace Offer has been accepted.";
-			setReturnTable(rg);
 		else
-			Mod.PlayerGameData=playerGameData;
-			local message = {};
-			message.Von = player;
-			message.DeclinedBy = playerID;
-			message.Duration = playerGameData[playerID].Peaceoffers[player].Duration;
-			message.Turn = game.Game.NumberOfTurns;
-			message.Type = 11;
-			message.Preis = playerGameData[playerID].Peaceoffers[player].Preis;
-			addmessagecustom(message,playerID);
-			addmessagecustom(message,player);
-			playerGameData[playerID].Peaceoffers[player] = nil
-			Mod.PlayerGameData=playerGameData;
-			rg.Message = "The Peace Offer has been declined.";
-			setReturnTable(rg);
+			if(payload.Message == "Accept Peace")then
+				local preis = 0;
+				--local preis = playerGameData[playerID].Peaceoffers[player].Preis;
+				local dauer = playerGameData[playerID].Peaceoffers[player].Duration;
+				--Pay(player,playerID,preis,playerGameData,game,true)
+				local remainingwar = {};
+				publicGameData = Mod.PublicGameData;
+				for _,with in pairs(publicGameData.War[player]) do
+					if(with~=playerID)then
+						remainingwar[tablelength(remainingwar)+1] = with;
+					end
+				end
+				publicGameData.War[player] = remainingwar;
+				remainingwar = {};
+				for _,with in pairs(publicGameData.War[playerID]) do
+					if(with~=player)then
+						remainingwar[tablelength(remainingwar)+1] = with;
+					end
+				end
+				publicGameData.War[playerID] = remainingwar;
+				publicGameData.CantDeclare[player][playerID] = dauer;
+				publicGameData.CantDeclare[playerID][player] = dauer;
+				Mod.PublicGameData = publicGameData;
+				local message = {};
+				message.Von = player;
+				message.Acceptor = playerID;
+				message.Duration = dauer;
+				message.Turn = game.Game.NumberOfTurns;
+				message.Type = 10;
+				message.Preis = preis;
+				addmessagecustom(message,playerID);
+				addmessagecustom(message,player);
+				message = {};
+				message.Von = player;
+				message.Acceptor = playerID;
+				message.Duration = dauer;
+				message.Turn = game.Game.NumberOfTurns;
+				message.Type = 10;
+				for _,pid in pairs(game.ServerGame.Game.Players)do
+					if(pid.IsAI == false and pid.ID ~= player and pid.ID ~= playerID)then
+						addmessagecustom(message,pid.ID);
+					end
+				end
+				playerGameData[playerID].Peaceoffers[player] = nil
+				playerGameData[player].Peaceoffers[playerID] = nil
+				Mod.PlayerGameData=playerGameData;
+				rg.Message = "The Peace Offer has been accepted.";
+				setReturnTable(rg);
+			else
+				Mod.PlayerGameData=playerGameData;
+				local message = {};
+				message.Von = player;
+				message.DeclinedBy = playerID;
+				message.Duration = playerGameData[playerID].Peaceoffers[player].Duration;
+				message.Turn = game.Game.NumberOfTurns;
+				message.Type = 11;
+				message.Preis = playerGameData[playerID].Peaceoffers[player].Preis;
+				addmessagecustom(message,playerID);
+				addmessagecustom(message,player);
+				playerGameData[playerID].Peaceoffers[player] = nil
+				Mod.PlayerGameData=playerGameData;
+				rg.Message = "The Peace Offer has been declined.";
+				setReturnTable(rg);
+			end
 		end
 	end
 	if(payload.Message == "Territory Sell")then
