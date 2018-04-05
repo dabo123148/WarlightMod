@@ -126,11 +126,11 @@ function OpenMenu()
 	offerallianzebutton = UI.CreateButton(vert).SetText("Offer Alliance").SetOnClick(OpenOfferAlliance);
 	cancelallianzebutton = UI.CreateButton(vert).SetText("Cancel Alliance").SetOnClick(OpenCancelAlliance);
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
-	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function()
-		if(tablelength(Mod.PlayerGameData.Nachrichten)~=0)then
-			ShowHistory(Mod.PlayerGameData.Nachrichten,Game,"",nil);
+	oldermessagesbutton =  UI.CreateButton(vert).SetText("Latest Mod History").SetOnClick(function()
+		if(tablelength(Mod.PlayerGameData.NeueNachrichten)~=0)then
+			ShowHistory(Mod.PlayerGameData.NeueNachrichten,Game,"");
 		else
-			UI.Alert("There is currently no history for this Mod");
+			UI.Alert("There is currently no history for this Mod in the last turns for older history check the game history");
 		end
 	end);
 	horzobjlist = {};

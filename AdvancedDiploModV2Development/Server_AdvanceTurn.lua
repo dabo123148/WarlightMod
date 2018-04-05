@@ -271,13 +271,13 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		message.S1 = newwar.S1;
 		message.S2 = newwar.S2;
 		message.Turn = game.Game.NumberOfTurns;
-			WL.GameOrderEvent.Create(newwar.S1, "You declared war on " .. toname(newwar.S2,game), {}, nil);
-			WL.GameOrderEvent.Create(newwar.S2, toname(newwar.S1,game) .. " declared war on you", {}, nil);
+			WL.GameOrderEvent.Create(newwar.S1, "You declared war on " .. toname(newwar.S2,game), {newwar.S1}, nil);
+			WL.GameOrderEvent.Create(newwar.S2, toname(newwar.S1,game) .. " declared war on you", {newwar.S2}, nil);
 		for _,pid in pairs(game.ServerGame.Game.Players)do
 			if(pid.IsAI == false)then
 				addnewmessage(message,pid.ID);
 				if(pid.ID ~= newwar.S1 and pid.ID ~= newwar.S2)then
-					WL.GameOrderEvent.Create(pid.ID, toname(newwar.S1,game) .. " declared war on " .. toname(newwar.S2,game), {}, nil);
+					WL.GameOrderEvent.Create(pid.ID, toname(newwar.S1,game) .. " declared war on " .. toname(newwar.S2,game), {pid.ID}, nil);
 				end
 			end
 		end
