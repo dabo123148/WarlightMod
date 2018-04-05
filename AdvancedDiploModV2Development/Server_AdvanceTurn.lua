@@ -16,26 +16,26 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 				end
 			end
 			playerGameData[pid.ID].NeueNachrichten = newhistory;
-		end
-		if(playerGameData[pid.ID].Nachrichten ~= nil)then
-			if(playerGameData[pid.ID].upgreaded == nil or playerGameData[pid.ID].upgreaded == false)then
-				addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "Due to a change in the system, all old mod messages are shown in this turn", nil, nil));
-			end
-			for _,data in pairs(playerGameData[pid.ID].Nachrichten)do
-				if(data.Type == 1)then
-					if(data.S1 == pid.ID)then
-						WL.GameOrderEvent.Create(pid.ID, "You declared war on " .. toname(data.S2,game), {}, nil);
-					end
-					if(data.S2 == pid.ID)then
-						WL.GameOrderEvent.Create(pid.ID, toname(data.S1,game) .. " declared war on you", {}, nil);
-					end
-					if(data.S1 ~= pid.ID and data.S2 ~= pid.ID)then
-						WL.GameOrderEvent.Create(pid.ID, toname(data.S1,game) .. " declared war on" .. toname(data.S2,game), {}, nil);
+			if(playerGameData[pid.ID].Nachrichten ~= nil)then
+				if(playerGameData[pid.ID].upgreaded == nil or playerGameData[pid.ID].upgreaded == false)then
+					addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "Due to a change in the system, all old mod messages are shown in this turn", nil, nil));
+				end
+				for _,data in pairs(playerGameData[pid.ID].Nachrichten)do
+					if(data.Type == 1)then
+						if(data.S1 == pid.ID)then
+							WL.GameOrderEvent.Create(pid.ID, "You declared war on " .. toname(data.S2,game), {}, nil);
+						end
+						if(data.S2 == pid.ID)then
+							WL.GameOrderEvent.Create(pid.ID, toname(data.S1,game) .. " declared war on you", {}, nil);
+						end
+						if(data.S1 ~= pid.ID and data.S2 ~= pid.ID)then
+							WL.GameOrderEvent.Create(pid.ID, toname(data.S1,game) .. " declared war on" .. toname(data.S2,game), {}, nil);
+						end
 					end
 				end
+				--playerGameData[pid.ID].Nachrichten = {};
+				playerGameData[pid.ID].upgreaded =true;
 			end
-			--playerGameData[pid.ID].Nachrichten = {};
-			playerGameData[pid.ID].upgreaded =true;
 		end
 	end
 end
