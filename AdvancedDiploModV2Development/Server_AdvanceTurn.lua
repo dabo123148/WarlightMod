@@ -19,7 +19,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 		end
 		if(playerGameData[pid.ID].Nachrichten ~= nil)then
 			if(playerGameData[pid.ID].upgreaded == nil or playerGameData[pid.ID].upgreaded == false)then
-				addNewOrder(WL.GameOrderCustom.Create(WL.PlayerID.Neutral, "Due to a change in the system, all old mod messages are shown in this turn", ""));
+				addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "Due to a change in the system, all old mod messages are shown in this turn", nil, nil));
 			end
 			for _,data in pairs(playerGameData[pid.ID].Nachrichten)do
 				if(data.Type == 1)then
