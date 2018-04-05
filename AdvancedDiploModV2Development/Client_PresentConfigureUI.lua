@@ -1,4 +1,3 @@
-
 function Client_PresentConfigureUI(rootParent)
 	print("Test1");
 	rootParentobj = rootParent;
