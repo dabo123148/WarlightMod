@@ -704,3 +704,6 @@ function GetOffer(offerType,spieler2,terr)
 	end
 	return nil;
 end
+function getterrname(terrid,game)
+	return game.Map.Territories[terrid].Name;
+end
