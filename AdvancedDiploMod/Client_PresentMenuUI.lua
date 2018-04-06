@@ -25,16 +25,6 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(vert).SetText("You cannot use this menu in the distribution phase");
 		return;
 	end
-	playersallowedtotest = {};
-	playersallowedtotest[520078] = true;
-	playersallowedtotest[415569] = true;
-	playersallowedtotest[517210] = true;
-	--if(playersallowedtotest[game.Us.ID] ~= nil)then
-	--	horz = UI.CreateHorizontalLayoutGroup(root);
-	--	UI.CreateLabel(horz).SetText("Your account has testing activated. So please don't use one of the following features in any other game then a testing game:");
-	--	horz = UI.CreateHorizontalLayoutGroup(root);
-	--	UI.CreateLabel(horz).SetText("-all features are currently public");
-	--end
   	horz = UI.CreateHorizontalLayoutGroup(root);
 	if((Mod.Settings.StartMoney ~= 0 or Mod.Settings.MoneyPerTurn ~= 0 or Mod.Settings.MoneyPerKilledArmy ~= 0 or Mod.Settings.MoneyPerCapturedTerritory ~= 0 or Mod.Settings.MoneyPerCapturedBonus ~= 0) or (Mod.Settings.BasicMoneySystem ~= nil and Mod.Settings.BasicMoneySystem == true))then
  		if(Mod.Settings.BasicMoneySystem == nil or Mod.Settings.BasicMoneySystem == false or Game.Settings.CommerceGame == false)then
@@ -136,11 +126,11 @@ function OpenMenu()
 	offerallianzebutton = UI.CreateButton(vert).SetText("Offer Alliance").SetOnClick(OpenOfferAlliance);
 	cancelallianzebutton = UI.CreateButton(vert).SetText("Cancel Alliance").SetOnClick(OpenCancelAlliance);
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
-	oldermessagesbutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(function()
-		if(tablelength(Mod.PlayerGameData.Nachrichten)~=0)then
-			ShowHistory(Mod.PlayerGameData.Nachrichten,Game,"",nil);
+	oldermessagesbutton =  UI.CreateButton(vert).SetText("Latest Mod History").SetOnClick(function()
+		if(tablelength(Mod.PlayerGameData.NeueNachrichten)~=0)then
+			ShowHistory(Mod.PlayerGameData.NeueNachrichten,Game,"");
 		else
-			UI.Alert("There is currently no history for this Mod");
+			UI.Alert("There is currently no history for this Mod in the last turns for older history check the game history");
 		end
 	end);
 	horzobjlist = {};

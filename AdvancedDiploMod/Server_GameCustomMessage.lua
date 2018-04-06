@@ -68,10 +68,6 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			setReturnTable(rg);
 		end
 	end
-	if(payload.Message == "Read")then
-		playerGameData[playerID].NeueNachrichten = {};
-		Mod.PlayerGameData=playerGameData;
-	end
 	if(payload.Message == "Gift Money")then
 		local target = tonumber(payload.TargetPlayerID);
 		Pay(target,playerID,payload.Wert,playerGameData,game,true)

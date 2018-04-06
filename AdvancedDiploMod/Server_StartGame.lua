@@ -13,6 +13,7 @@ function Server_StartGame(game,standing)
 			playerGameData[pid.ID].Allianzen = {};
 			playerGameData[pid.ID].Nachrichten = {};
 			playerGameData[pid.ID].NeueNachrichten = {};
+			playerGameData[pid.ID].upgreaded = true;
 		end
 		publicGameData.War[pid.ID] = {};
 		publicGameData.CantDeclare[pid.ID] = {};
