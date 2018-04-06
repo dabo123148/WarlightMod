@@ -315,7 +315,19 @@ function tablelength(T)
 end
 function addmessagecustom(message,spieler)
 	playerGameData[spieler].Nachrichten[tablelength(playerGameData[spieler].Nachrichten)+1] = message;
-	playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten)+1] = message;
+	if(tablelength(playerGameData[spieler].NeueNachrichten) == 10)then
+		local oldesturn = playerGameData[spieler].NeueNachrichten[1].Turn;
+		local num = 1;
+		for i,msg in pairs(playerGameData[spieler].NeueNachrichten)do
+			if(msg.Turn < oldesturn)then
+				oldesturn=msg.Turn;
+				num=i;
+			end
+		end
+		playerGameData[spieler].NeueNachrichten[num] = message;
+	else
+		playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten)+1] = message;
+	end
 end
 function GetOffer(offertype,spieler1,spieler2,terr)
 	if(offertype ~= nil)then
