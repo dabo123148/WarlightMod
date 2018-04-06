@@ -82,14 +82,14 @@ function translateHistory(data,game)
 	if(data.Type == 10)then
 		if(data.Acceptor == game.Us.ID)then
 			if(data.Preis ~= 0)then
-				teildaten = "You accepted the peace offer " .. getname(data.Von,game) .. " . You have now peace for " .. tostring(data.Duration) .. " Turns. The price for that was just " tostring(data.Preis);
+				teildaten = "You accepted the peace offer " .. getname(data.Von,game) .. " . You have now peace for " .. tostring(data.Duration) .. " Turns. The price for that was just " .. tostring(data.Preis);
 			else
 				teildaten = "You accepted the peace offer " .. getname(data.Von,game) .. " . You have now peace for " .. tostring(data.Duration) .. " Turns";
 			end
 		end
 		if(data.Von == game.Us.ID)then
 			if(data.Preis ~= 0)then
-				teildaten = getname(data.Acceptor,game) .. " accepted your peace offer. You have now peace for " .. tostring(data.Duration) .. " Turns. The price for that was just " tostring(data.Preis);
+				teildaten = getname(data.Acceptor,game) .. " accepted your peace offer. You have now peace for " .. tostring(data.Duration) .. " Turns. The price for that was just " .. tostring(data.Preis);
 			else
 				teildaten = getname(data.Acceptor,game) .. " accepted your peace offer. You have now peace for " .. tostring(data.Duration) .. " Turns";
 			end

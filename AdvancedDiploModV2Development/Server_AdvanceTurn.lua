@@ -67,14 +67,14 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 					if(data.Type == 10)then
 						if(data.Acceptor == pid.ID)then
 							if(data.Preis ~= 0)then
-								addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You accepted the peace offer " .. toname(data.Von,game) .. " . You have now peace for " .. tostring(data.Duration) .. " Turns. The price for that was just " tostring(data.Preis), {}, nil));
+								addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You accepted the peace offer " .. toname(data.Von,game) .. " . You have now peace for " .. tostring(data.Duration) .. " Turns. The price for that was just " .. tostring(data.Preis), {}, nil));
 							else
 								addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You accepted the peace offer " .. toname(data.Von,game) .. " . You have now peace for " .. tostring(data.Duration) .. " Turns", {}, nil));
 							end
 						end
 						if(data.Von == pid.ID)then
 							if(data.Preis ~= 0)then
-								addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.Acceptor,game) .. " accepted your peace offer. You have now peace for " .. tostring(data.Duration) .. " Turns. The price for that was just " tostring(data.Preis, {}, nil));
+								addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.Acceptor,game) .. " accepted your peace offer. You have now peace for " .. tostring(data.Duration) .. " Turns. The price for that was just " .. tostring(data.Preis, {}, nil));
 							else
 								addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.Acceptor,game) .. " accepted your peace offer. You have now peace for " .. tostring(data.Duration) .. " Turns", {}, nil));
 							end
