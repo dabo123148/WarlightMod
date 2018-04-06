@@ -686,7 +686,19 @@ function check(message,variable)
 	return match;
 end
 function addnewmessage(message,spieler)
-	playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten)+1] = message;
+	if(tablelength(playerGameData[spieler].NeueNachrichten) == 10)then
+		local oldesturn = playerGameData[spieler].NeueNachrichten[1].Turn;
+		local num = 1;
+		for i,msg in pairs(playerGameData[spieler].NeueNachrichten)do
+			if(msg.Turn < oldesturn)then
+				oldesturn=msg.Turn;
+				num=i;
+			end
+		end
+		playerGameData[spieler].NeueNachrichten[num] = message;
+	else
+		playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten)+1] = message;
+	end
 end
 function GetOffer(offerType,spieler2,terr)
 	if(offerType ~= nil)then
