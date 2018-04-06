@@ -29,11 +29,122 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 							addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.S1,game) .. " declared war on you", {}, nil));
 						end
 						if(data.S1 ~= pid.ID and data.S2 ~= pid.ID)then
-							addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.S1,game) .. " declared war on" .. toname(data.S2,game), {}, nil));
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, data.S1 .. " declared war on" .. toname(data.S2,game), {}, nil));
+						end
+					end
+					if(data.Type == 2)then
+						addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You were unable to buy " .. getterrname(data.terrid,game) .. " from " .. toname(data.Von,game) .. " cause he didn't own it, when you tried to buy it", {}, nil));
+					end
+					if(data.Type == 3)then
+						addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.Player,game) .. " was unable to buy " .. getterrname(data.terrid,game) .. " from you cause you didn't onwed it at the moment, he tried to buy it", {}, nil));;
+					end
+					if(data.Type == 4)then
+						addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.Von,game) .. " hasn't " .. tostring(data.Preis) .." to pay you for " .. getterrname(data.terrid,game), {}, nil));
+					end
+					if(data.Type == 5)then
+						addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You were unable to buy " .. getterrname(data.terrid,game) .. " from " .. toname(data.Von,game) .. " cause you only had " .. tostring(data.YourMoney) .. " and not the required " .. tostring(data.Preis) .. " money", {}, nil));
+					end
+					if(data.Type == 6)then
+						if(data.Preis == nil)then
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.buyer,game) .. " bought " .. getterrname(data.terrid,game) .." from " .. toname(data.Von,game), {}, nil));
+						else
+							if(data.buyer == pid.ID)then
+								addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You bought " .. getterrname(data.terrid,game) .." from " .. toname(data.Von,game) .. " for a price of " .. data.Preis, {}, nil));
+							else
+								addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.buyer,game) .. " bought " .. getterrname(data.terrid,game) .." from you for a price of " .. data.Preis, {}, nil));
+							end
+						end
+					end
+					if(data.Type == 7)then
+						addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You bought " .. tostring(data.Count) .. " armies for " .. getterrname(data.terrid,game) .. ". The total price was " .. tostring(data.Preis), {}, nil));
+					end
+					if(data.Type == 8)then
+						addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You declined the territory sell offer from " .. toname(data.Von,game) .. " for the territory " .. getterrname(data.TerrID,game), {}, nil));
+					end
+					if(data.Type == 9)then
+						addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.Revoker,game) .. " declined your territory sell offer for the territory " .. getterrname(data.TerrID,game), {}, nil));
+					end
+					if(data.Type == 10)then
+						if(data.Acceptor == pid.ID)then
+							if(data.Preis ~= 0)then
+								addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You accepted the peace offer " .. toname(data.Von,game) .. " . You have now peace for " .. tostring(data.Duration) .. " Turns. The price for that was just " tostring(data.Preis), {}, nil));
+							else
+								addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You accepted the peace offer " .. toname(data.Von,game) .. " . You have now peace for " .. tostring(data.Duration) .. " Turns", {}, nil));
+							end
+						end
+						if(data.Von == pid.ID)then
+							if(data.Preis ~= 0)then
+								addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.Acceptor,game) .. " accepted your peace offer. You have now peace for " .. tostring(data.Duration) .. " Turns. The price for that was just " tostring(data.Preis, {}, nil));
+							else
+								addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.Acceptor,game) .. " accepted your peace offer. You have now peace for " .. tostring(data.Duration) .. " Turns", {}, nil));
+							end
+						end
+						if(data.Acceptor ~= pid.ID and data.Von ~= pid.ID)then
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.Acceptor,game) .. " and " .. toname(data.Von,game) .. " have now peace for " .. tostring(data.Duration) .. " Turns", {}, nil));
+						end
+					end
+					if(data.Type == 11)then --accidentialy double used with gift money and declined peace
+						if(data.Spender ~= nil)then
+							if(data.Spender == pid.ID)then
+								addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You gifted " .. toname(data.Nehmer,game) .. " " .. data.Menge .. " money", {}, nil));
+							else
+								addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.Spender,game) .. " gifted you " .. data.Menge ..  " money", {}, nil));
+							end
+						else
+							if(data.DeclinedBy == pid.ID)then
+								addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You declined the peace offer from " .. toname(data.Von,game), {}, nil));
+							else
+								addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.DeclinedBy,game) .. " declined your peace offer", {}, nil));
+							end
+						end
+					end
+					if(data.Type == 12)then
+						addNewOrder(WL.GameOrderEvent.Create(pid.ID, "The territory sell offer for the territory " .. getterrname(data.terrid,game) .. " by " ..toname(data.Von,game) .. " didn't existed any longer, when you tried to buy it", {}, nil));
+					end
+					if(data.Type == 13)then
+						addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.Buyer,game) .. " tried to buy " .. getterrname(data.terrid,game) .. " from you, but you had just " .. tostring(data.YourMoney) .. " of " .. tostring(data.Preis) .. " money", {}, nil));
+					end
+					if(data.Type == 14)then
+						addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.Buyer,game) .. " tried to buy " .. getterrname(data.terrid,game) .. " from you, but he hadn't enough money", {}, nil));
+					end
+					if(data.Type == 15)then
+						if(data.OfferedBy == pid.ID)then
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You offered " ..toname(data.OfferedTo,game) .. " an alliance", {}, nil));
+						else
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.OfferedBy,game) .. " offered you an alliance", {}, nil));
+						end
+					end
+					if(data.Type == 16)then
+						if(data.OfferedBy == pid.ID)then
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You are now allied with " .. toname(data.AcceptedBy,game), {}, nil));
+						end
+						if(data.AcceptedBy == pid.ID)then
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You are now allied with " .. toname(data.OfferedBy,game), {}, nil));
+						end
+						if(data.OfferedBy ~= pid.ID and data.AcceptedBy ~= pid.ID)then
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.OfferedBy,game) .. " and "  .. toname(data.AcceptedBy,game) .. " are now allied", {}, nil));
+						end
+					end
+					if(data.Type == 17)then
+						if(data.OfferedBy == pid.ID)then
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.DeclinedBy,game) .. " declined your alliance offer", {}, nil));
+						else
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You declined " .. toname(data.OfferedBy,game) .. " alliance offer", {}, nil));
+						end
+					end
+					if(data.Type == 18)then
+						if(data.S1 == pid.ID)then
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You are no longer allied with " .. toname(data.S2,game), {}, nil));
+						end
+						if(data.S2 == pid.ID)then
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You are no longer allied with " .. toname(data.S1,game), {}, nil));
+						end
+						if(data.S1 ~= pid.ID and data.S2 ~= pid.ID)then
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.S1,game) .. " and "  .. toname(data.S2,game) .. " are no longer allied", {}, nil));
 						end
 					end
 				end
-				--playerGameData[pid.ID].Nachrichten = {};
+				playerGameData[pid.ID].Nachrichten = {};
 				playerGameData[pid.ID].upgreaded =true;
 			end
 		end
@@ -124,7 +235,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					message.Preis = money;
 					message.terrid = to;
 					message.Turn = game.Game.NumberOfTurns;
-					addmessage(message,order.PlayerID);
+					addnewmessage(message,order.PlayerID);
 				end
 			end
 		end
@@ -141,7 +252,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					message.Von = von;
 					message.terrid = terrid;
 					message.Turn = game.Game.NumberOfTurns;
-					addmessage(message,order.PlayerID);
+					addnewmessage(message,order.PlayerID);
+					addNewOrder(WL.GameOrderEvent.Create(pid.ID, "The territory sell offer for the territory " .. getterrname(terrid,game) .. " by " ..toname(von,game) .. " didn't existed any longer, when you tried to buy it", {}, nil));
 				else
 					local Preis = Terrselloffer.Preis;
 					if(Preis < 0 and GetMoney(playerid,playerGameData,game) < Preis*-1)then
@@ -152,15 +264,17 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						message.Preis = Preis;
 						message.terrid = terrid;
 						message.Turn = game.Game.NumberOfTurns;
-						addmessage(message,order.PlayerID);
+						addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, toname(von,game) .. " hasn't " .. tostring(Preis) .." to pay you for " .. getterrname(terrid,game), {}, nil));
+						addnewmessage(message,order.PlayerID);
 						message = {};
 						message.Type = 13;
 						message.Buyer = order.PlayerID;
 						message.Preis = Preis;
-						message.YourMoney = GetMoney(playerid,playerGameData,game)
+						message.YourMoney = GetMoney(playerid,playerGameData,game);
 						message.terrid = terrid;
 						message.Turn = game.Game.NumberOfTurns;
-						addmessage(message,von);
+						addnewmessage(message,von);
+						addNewOrder(WL.GameOrderEvent.Create(von, toname(order.PlayerID,game) .. " tried to buy " .. getterrname(terrid,game) .. " from you, but you had only " .. tostring(GetMoney(playerid,playerGameData,game)) .. " of " .. tostring(Preis) .. " money", {}, nil));
 					else
 						if(Preis > 0 and GetMoney(order.PlayerID,playerGameData,game) < Preis)then
 							--you haven't enough money
@@ -171,14 +285,16 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							message.YourMoney = GetMoney(order.PlayerID,playerGameData,game);
 							message.terrid = terrid;
 							message.Turn = game.Game.NumberOfTurns;
-							addmessage(message,order.PlayerID);
+							addnewmessage(message,order.PlayerID);
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You were unable to buy " .. getterrname(terrid,game) .. " from " .. toname(von,game) .. " cause you only had " .. tostring(GetMoney(order.PlayerID,playerGameData,game)) .. " and not the required " .. tostring(Preis) .. " money", {}, nil));
 							message = {};
 							message.Type = 14;
 							message.Buyer = order.PlayerID;
 							message.Preis = Preis;
 							message.terrid = terrid;
 							message.Turn = game.Game.NumberOfTurns;
-							addmessage(message,von);
+							addnewmessage(message,von);
+							addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(order.PlayerID,game) .. " tried to buy " .. getterrname(terrid,game) .. " from you, but he hadn't enough money", {}, nil));
 						else
 							--all players have the requirements for the offer
 							--> buying the territory now
@@ -193,8 +309,10 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							message.Preis = Preis;
 							message.terrid = terrid;
 							message.Turn = game.Game.NumberOfTurns;
-							addmessage(message,order.PlayerID);
-							addmessage(message,von);
+							addnewmessage(message,order.PlayerID);
+							addnewmessage(message,von);
+							addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "You bought " .. getterrname(terrid,game) .." from " .. toname(von,game) .. " for a price of " .. Preis, {}, nil));
+							addNewOrder(WL.GameOrderEvent.Create(von, toname(order.PlayerID,game) .. " bought " .. getterrname(terrid,game) .." from you for a price of " .. Preis, {}, nil));
 							--this is the message all other players can see(price is removed)
 							for _,pid in pairs(game.ServerGame.Game.Players)do
 								if(pid.IsAI == false)then
@@ -211,7 +329,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 										message.buyer = order.PlayerID;
 										message.terrid = terrid;
 										message.Turn = game.Game.NumberOfTurns;
-										addmessage(message,pid.ID);
+										addnewmessage(message,pid.ID);
+										addNewOrder(WL.GameOrderEvent.Create(pid.ID, order.PlayerID .. " bought " .. getterrname(terrid,game) .." from " .. toname(von,game), {}, nil));
 									end
 								end
 							end
@@ -225,14 +344,16 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				message.Von = von;
 				message.terrid = terrid;
 				message.Turn = game.Game.NumberOfTurns;
-				addmessage(message,order.PlayerID);
+				addnewmessage(message,order.PlayerID);
+				addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "You were unable to buy " .. getterrname(terrid,game) .. " from " .. toname(von,game) .. " cause he didn't own it, when you tried to buy it", {}, nil));
 				--This is the error code, that order.PlayerID was unable to buy terrid, since von didn't own it
 				message = {};
 				message.Type = 3;
 				message.Player = order.PlayerID;
 				message.terrid = terrid;
 				message.Turn = game.Game.NumberOfTurns;
-				addmessage(message,von);
+				addnewmessage(message,von);
+				addNewOrder(WL.GameOrderEvent.Create(von, toname(order.PlayerID,game) .. " was unable to buy " .. getterrname(terrid,game) .. " from you cause you didn't onwed it at the moment, he tried to buy it", {}, nil));;
 			end
 		end
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
@@ -313,13 +434,17 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		if(Mod.Settings.PublicAllies)then
 			for _,pd in pairs(game.ServerGame.Game.Players)do
 				if(pd.IsAI == false)then
-					addmessage(message,pd.ID);
+					if(pd.ID ~= canceldata.S1 and pd.ID ~= canceldata.S2)then
+						addnewmessage(message,pd.ID);
+						addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.S1,game) .. " and "  .. toname(data.S2,game) .. " are no longer allied", {}, nil));
+					end
 				end
 			end
-		else
-			addmessage(message,canceldata.S1);
-			addmessage(message,canceldata.S2);
 		end
+		addnewmessage(message,canceldata.S1);
+		addNewOrder(WL.GameOrderEvent.Create(canceldata.S1, "You are no longer allied with " .. toname(canceldata.S2,game), {}, nil));
+		addnewmessage(message,canceldata.S2);
+		addNewOrder(WL.GameOrderEvent.Create(canceldata.S2, "You are no longer allied with " .. toname(canceldata.S1,game), {}, nil));
 	end
 	RemainingAllyCancels = {};
 	--reducing the number of turns a player cant declare war on an other
