@@ -150,6 +150,8 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 			end
 		end
 	end
+	Mod.PlayerGameData = playerGameData;
+	playerGameData = Mod.PlayerGameData;
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == "GameOrderAttackTransfer")then
@@ -686,6 +688,7 @@ function check(message,variable)
 	return match;
 end
 function addnewmessage(message,spieler)
+	Mod.PlayerGameData = playerGameData;
 	if(tablelength(playerGameData[spieler].NeueNachrichten) == 10)then
 		local oldesturn = playerGameData[spieler].NeueNachrichten[1].Turn;
 		local num = 1;
@@ -699,6 +702,7 @@ function addnewmessage(message,spieler)
 	else
 		playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten)+1] = message;
 	end
+	playerGameData = Mod.PlayerGameData;
 end
 function GetOffer(offerType,spieler2,terr)
 	if(offerType ~= nil)then
