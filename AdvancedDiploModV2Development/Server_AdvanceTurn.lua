@@ -238,7 +238,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					message.Preis = money;
 					message.terrid = to;
 					message.Turn = game.Game.NumberOfTurns;
-					addnewmessage(message,order.PlayerID);
+					--addnewmessage(message,order.PlayerID);
 				end
 			end
 		end
@@ -255,7 +255,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					message.Von = von;
 					message.terrid = terrid;
 					message.Turn = game.Game.NumberOfTurns;
-					addnewmessage(message,order.PlayerID);
+					--addnewmessage(message,order.PlayerID);
 					addNewOrder(WL.GameOrderEvent.Create(pid.ID, "The territory sell offer for the territory " .. getterrname(terrid,game) .. " by " ..toname(von,game) .. " didn't existed any longer, when you tried to buy it", {}, nil));
 				else
 					local Preis = Terrselloffer.Preis;
@@ -268,7 +268,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						message.terrid = terrid;
 						message.Turn = game.Game.NumberOfTurns;
 						addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, toname(von,game) .. " hasn't " .. tostring(Preis) .." to pay you for " .. getterrname(terrid,game), {}, nil));
-						addnewmessage(message,order.PlayerID);
+						--addnewmessage(message,order.PlayerID);
 						message = {};
 						message.Type = 13;
 						message.Buyer = order.PlayerID;
@@ -276,7 +276,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 						message.YourMoney = GetMoney(playerid,playerGameData,game);
 						message.terrid = terrid;
 						message.Turn = game.Game.NumberOfTurns;
-						addnewmessage(message,von);
+						--addnewmessage(message,von);
 						addNewOrder(WL.GameOrderEvent.Create(von, toname(order.PlayerID,game) .. " tried to buy " .. getterrname(terrid,game) .. " from you, but you had only " .. tostring(GetMoney(playerid,playerGameData,game)) .. " of " .. tostring(Preis) .. " money", {}, nil));
 					else
 						if(Preis > 0 and GetMoney(order.PlayerID,playerGameData,game) < Preis)then
@@ -288,7 +288,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							message.YourMoney = GetMoney(order.PlayerID,playerGameData,game);
 							message.terrid = terrid;
 							message.Turn = game.Game.NumberOfTurns;
-							addnewmessage(message,order.PlayerID);
+							--addnewmessage(message,order.PlayerID);
 							addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You were unable to buy " .. getterrname(terrid,game) .. " from " .. toname(von,game) .. " cause you only had " .. tostring(GetMoney(order.PlayerID,playerGameData,game)) .. " and not the required " .. tostring(Preis) .. " money", {}, nil));
 							message = {};
 							message.Type = 14;
@@ -296,7 +296,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							message.Preis = Preis;
 							message.terrid = terrid;
 							message.Turn = game.Game.NumberOfTurns;
-							addnewmessage(message,von);
+							--addnewmessage(message,von);
 							addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(order.PlayerID,game) .. " tried to buy " .. getterrname(terrid,game) .. " from you, but he hadn't enough money", {}, nil));
 						else
 							--all players have the requirements for the offer
@@ -312,8 +312,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							message.Preis = Preis;
 							message.terrid = terrid;
 							message.Turn = game.Game.NumberOfTurns;
-							addnewmessage(message,order.PlayerID);
-							addnewmessage(message,von);
+							--addnewmessage(message,order.PlayerID);
+							--addnewmessage(message,von);
 							addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "You bought " .. getterrname(terrid,game) .." from " .. toname(von,game) .. " for a price of " .. Preis, {}, nil));
 							addNewOrder(WL.GameOrderEvent.Create(von, toname(order.PlayerID,game) .. " bought " .. getterrname(terrid,game) .." from you for a price of " .. Preis, {}, nil));
 							--this is the message all other players can see(price is removed)
@@ -332,7 +332,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 										message.buyer = order.PlayerID;
 										message.terrid = terrid;
 										message.Turn = game.Game.NumberOfTurns;
-										addnewmessage(message,pid.ID);
+										--addnewmessage(message,pid.ID);
 										addNewOrder(WL.GameOrderEvent.Create(pid.ID, order.PlayerID .. " bought " .. getterrname(terrid,game) .." from " .. toname(von,game), {}, nil));
 									end
 								end
@@ -347,7 +347,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				message.Von = von;
 				message.terrid = terrid;
 				message.Turn = game.Game.NumberOfTurns;
-				addnewmessage(message,order.PlayerID);
+				--addnewmessage(message,order.PlayerID);
 				addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "You were unable to buy " .. getterrname(terrid,game) .. " from " .. toname(von,game) .. " cause he didn't own it, when you tried to buy it", {}, nil));
 				--This is the error code, that order.PlayerID was unable to buy terrid, since von didn't own it
 				message = {};
@@ -355,7 +355,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				message.Player = order.PlayerID;
 				message.terrid = terrid;
 				message.Turn = game.Game.NumberOfTurns;
-				addnewmessage(message,von);
+				--addnewmessage(message,von);
 				addNewOrder(WL.GameOrderEvent.Create(von, toname(order.PlayerID,game) .. " was unable to buy " .. getterrname(terrid,game) .. " from you cause you didn't onwed it at the moment, he tried to buy it", {}, nil));;
 			end
 		end
