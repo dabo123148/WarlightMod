@@ -399,7 +399,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		addNewOrder(WL.GameOrderEvent.Create(newwar.S2, toname(newwar.S1,game) .. " declared war on you", {}, nil));
 		for _,pid in pairs(game.ServerGame.Game.Players)do
 			if(pid.IsAI == false)then
-				addnewmessage(message,pid.ID);
+				--addnewmessage(message,pid.ID);
 				if(pid.ID ~= newwar.S1 and pid.ID ~= newwar.S2)then
 					addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(newwar.S1,game) .. " declared war on " .. toname(newwar.S2,game), {}, nil));
 				end
@@ -438,15 +438,15 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			for _,pd in pairs(game.ServerGame.Game.Players)do
 				if(pd.IsAI == false)then
 					if(pd.ID ~= canceldata.S1 and pd.ID ~= canceldata.S2)then
-						addnewmessage(message,pd.ID);
+						--addnewmessage(message,pd.ID);
 						addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.S1,game) .. " and "  .. toname(data.S2,game) .. " are no longer allied", {}, nil));
 					end
 				end
 			end
 		end
-		addnewmessage(message,canceldata.S1);
+		--addnewmessage(message,canceldata.S1);
 		addNewOrder(WL.GameOrderEvent.Create(canceldata.S1, "You are no longer allied with " .. toname(canceldata.S2,game), {}, nil));
-		addnewmessage(message,canceldata.S2);
+		--addnewmessage(message,canceldata.S2);
 		addNewOrder(WL.GameOrderEvent.Create(canceldata.S2, "You are no longer allied with " .. toname(canceldata.S1,game), {}, nil));
 	end
 	RemainingAllyCancels = {};
