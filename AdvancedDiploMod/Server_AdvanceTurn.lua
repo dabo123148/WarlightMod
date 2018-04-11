@@ -21,6 +21,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 					addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "Due to a change in the system, all old mod messages are shown in this turn", nil, nil));
 				end
 				for _,data in pairs(playerGameData[pid.ID].Nachrichten)do
+					if(true==false)then
 					if(data.Type == 1)then
 						if(data.S1 == pid.ID)then
 							addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You declared war on " .. toname(data.S2,game), {}, nil));
@@ -142,6 +143,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 						if(data.S1 ~= pid.ID and data.S2 ~= pid.ID)then
 							addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.S1,game) .. " and "  .. toname(data.S2,game) .. " are no longer allied", {}, nil));
 						end
+					end
 					end
 				end
 				print("Nachrichten deleted");
