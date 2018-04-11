@@ -18,10 +18,10 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 			playerGameData[pid.ID].NeueNachrichten = newhistory;
 			if(playerGameData[pid.ID].Nachrichten ~= nil)then
 				if(playerGameData[pid.ID].upgreaded == nil or playerGameData[pid.ID].upgreaded == false)then
-					addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "Due to a change in the system, all old mod messages are shown in this turn", nil, nil));
+					playerGameData[pid.ID].Nachrichten = {};
+					addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "Due to a change in the mod history system, all old mod messages got deleted, new messages should still be shown", nil, nil));
 				end
 				for _,data in pairs(playerGameData[pid.ID].Nachrichten)do
-					if(true==false)then
 					if(data.Type == 1)then
 						if(data.S1 == pid.ID)then
 							addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You declared war on " .. toname(data.S2,game), {}, nil));
@@ -144,7 +144,6 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 							addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(data.S1,game) .. " and "  .. toname(data.S2,game) .. " are no longer allied", {}, nil));
 						end
 					end
-					end
 				end
 				print("Nachrichten deleted");
 				playerGameData[pid.ID].Nachrichten = {};
@@ -152,8 +151,6 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 			end
 		end
 	end
-	Mod.PlayerGameData = playerGameData;
-	playerGameData = Mod.PlayerGameData;
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
 	if(order.proxyType == "GameOrderAttackTransfer")then
@@ -401,7 +398,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		addNewOrder(WL.GameOrderEvent.Create(newwar.S2, toname(newwar.S1,game) .. " declared war on you", {}, nil));
 		for _,pid in pairs(game.ServerGame.Game.Players)do
 			if(pid.IsAI == false)then
-				--addnewmessage(message,pid.ID);
+				addnewmessage(message,pid.ID);
 				if(pid.ID ~= newwar.S1 and pid.ID ~= newwar.S2)then
 					addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(newwar.S1,game) .. " declared war on " .. toname(newwar.S2,game), {}, nil));
 				end
@@ -446,9 +443,9 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				end
 			end
 		end
-		--addnewmessage(message,canceldata.S1);
+		addnewmessage(message,canceldata.S1);
 		addNewOrder(WL.GameOrderEvent.Create(canceldata.S1, "You are no longer allied with " .. toname(canceldata.S2,game), {}, nil));
-		--addnewmessage(message,canceldata.S2);
+		addnewmessage(message,canceldata.S2);
 		addNewOrder(WL.GameOrderEvent.Create(canceldata.S2, "You are no longer allied with " .. toname(canceldata.S1,game), {}, nil));
 	end
 	RemainingAllyCancels = {};
@@ -690,7 +687,6 @@ function check(message,variable)
 	return match;
 end
 function addnewmessage(message,spieler)
-	Mod.PlayerGameData = playerGameData;
 	if(tablelength(playerGameData[spieler].NeueNachrichten) == 10)then
 		local oldesturn = playerGameData[spieler].NeueNachrichten[1].Turn;
 		local num = 1;
@@ -704,7 +700,6 @@ function addnewmessage(message,spieler)
 	else
 		playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten)+1] = message;
 	end
-	playerGameData = Mod.PlayerGameData;
 end
 function GetOffer(offerType,spieler2,terr)
 	if(offerType ~= nil)then
