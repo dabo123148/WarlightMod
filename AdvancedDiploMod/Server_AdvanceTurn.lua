@@ -17,6 +17,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 			end
 			playerGameData[pid.ID].NeueNachrichten = newhistory;
 			if(playerGameData[pid.ID].Nachrichten ~= nil)then
+				playerGameData[pid.ID].upgreaded=nil;
 				if(playerGameData[pid.ID].upgreaded == nil or playerGameData[pid.ID].upgreaded == false)then
 					playerGameData[pid.ID].Nachrichten = {};
 					addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "Due to a change in the mod history system, all old mod messages got deleted, new messages should still be shown", nil, nil));
