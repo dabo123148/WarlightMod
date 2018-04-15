@@ -20,6 +20,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 				playerGameData[pid.ID].upgreaded=nil;
 				if(playerGameData[pid.ID].upgreaded == nil or playerGameData[pid.ID].upgreaded == false)then
 					playerGameData[pid.ID].Nachrichten = {};
+					playerGameData[pid.ID].NeueNachrichten = {};
 					addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, "Due to a change in the mod history system, all old mod messages got deleted, new messages should still be shown", nil, nil));
 				end
 				for _,data in pairs(playerGameData[pid.ID].Nachrichten)do
@@ -697,9 +698,9 @@ function addnewmessage(message,spieler)
 				num=i;
 			end
 		end
-		playerGameData[spieler].NeueNachrichten[num] = message;
+		--playerGameData[spieler].NeueNachrichten[num] = message;
 	else
-		playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten)+1] = message;
+		--playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten)+1] = message;
 	end
 end
 function GetOffer(offerType,spieler2,terr)
