@@ -290,7 +290,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							message.terrid = terrid;
 							message.Turn = game.Game.NumberOfTurns;
 							--addnewmessage(message,order.PlayerID);
-							addNewOrder(WL.GameOrderEvent.Create(pid.ID, "You were unable to buy " .. getterrname(terrid,game) .. " from " .. toname(von,game) .. " cause you only had " .. tostring(GetMoney(order.PlayerID,playerGameData,game)) .. " and not the required " .. tostring(Preis) .. " money", {}, nil));
+							addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "You were unable to buy " .. getterrname(terrid,game) .. " from " .. toname(von,game) .. " cause you only had " .. tostring(GetMoney(order.PlayerID,playerGameData,game)) .. " and not the required " .. tostring(Preis) .. " money", {}, nil));
 							message = {};
 							message.Type = 14;
 							message.Buyer = order.PlayerID;
@@ -298,7 +298,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 							message.terrid = terrid;
 							message.Turn = game.Game.NumberOfTurns;
 							--addnewmessage(message,von);
-							addNewOrder(WL.GameOrderEvent.Create(pid.ID, toname(order.PlayerID,game) .. " tried to buy " .. getterrname(terrid,game) .. " from you, but he hadn't enough money", {}, nil));
+							addNewOrder(WL.GameOrderEvent.Create(von, toname(order.PlayerID,game) .. " tried to buy " .. getterrname(terrid,game) .. " from you, but he hadn't enough money", {}, nil));
 						else
 							--all players have the requirements for the offer
 							--> buying the territory now
