@@ -440,7 +440,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				if(pd.IsAI == false)then
 					if(pd.ID ~= canceldata.S1 and pd.ID ~= canceldata.S2)then
 						--addnewmessage(message,pd.ID);
-						addNewOrder(WL.GameOrderEvent.Create(pd.ID, toname(data.S1,game) .. " and "  .. toname(data.S2,game) .. " are no longer allied", {}, nil));
+						addNewOrder(WL.GameOrderEvent.Create(pd.ID, toname(message.S1,game) .. " and "  .. toname(message.S2,game) .. " are no longer allied", {}, nil));
 					end
 				end
 			end
