@@ -257,7 +257,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					message.terrid = terrid;
 					message.Turn = game.Game.NumberOfTurns;
 					--addnewmessage(message,order.PlayerID);
-					addNewOrder(WL.GameOrderEvent.Create(pid.ID, "The territory sell offer for the territory " .. getterrname(terrid,game) .. " by " ..toname(von,game) .. " didn't existed any longer, when you tried to buy it", {}, nil));
+					addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "The territory sell offer for the territory " .. getterrname(terrid,game) .. " by " ..toname(von,game) .. " didn't existed any longer, when you tried to buy it", {}, nil));
 				else
 					local Preis = Terrselloffer.Preis;
 					if(Preis < 0 and GetMoney(playerid,playerGameData,game) < Preis*-1)then
