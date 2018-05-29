@@ -307,6 +307,16 @@ function tablelength(T)
 end
 function addmessagecustom(message,spieler)
 	print("spieler " .. spieler);
+	if(playerGameData[spieler] == nil)then	--recreates account if it gets whyever lost
+		playerGameData[spieler].Nachrichten = {};
+		playerGameData[spieler] = {};
+		playerGameData[spieler].TerritorySellOffers = {};
+		playerGameData[spieler].Peaceoffers = {};
+		playerGameData[spieler].AllyOffers = {};
+		playerGameData[spieler].Allianzen = {};
+		playerGameData[spieler].Nachrichten = {};
+		playerGameData[spieler].NeueNachrichten = {};
+	end
 	if(playerGameData[spieler].Nachrichten == nil)then
 		playerGameData[spieler].Nachrichten = {};
 	end
