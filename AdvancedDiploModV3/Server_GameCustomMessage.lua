@@ -306,6 +306,13 @@ function tablelength(T)
 	return count;
 end
 function addmessagecustom(message,spieler)
+	print("spieler " .. spieler);
+	if(playerGameData[spieler].Nachrichten == nil)then
+		playerGameData[spieler].Nachrichten = {};
+	end
+	if(playerGameData[spieler].NeueNachrichten == nil)then
+		playerGameData[spieler].NeueNachrichten = {};
+	end
 	playerGameData[spieler].Nachrichten[tablelength(playerGameData[spieler].Nachrichten)+1] = message;
 	playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten)+1] = message;
 end
