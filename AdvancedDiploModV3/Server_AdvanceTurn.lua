@@ -16,6 +16,26 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 			end
 			playerGameData[pid.ID].NeueNachrichten = newhistory;
 		end
+		for _,pid2 in pairs(game.Game.PlayingPlayers) do
+			if(pid ~= pid2)then
+				if(InWar(pid2.ID,pid.ID) and  IsAlly(pid2.ID,pid.ID,game))then
+					local remainingwar = {};
+					for _,with in pairs(playerGameData[pid.ID].Allianzen)do
+						if(with ~= pid2.ID)then
+							remainingwar[tablelength(remainingwar)+1] = with;
+						end
+					end
+					playerGameData[pid.ID].Allianzen = remainingwar;
+					remainingwar = {};
+					for _,with in pairs(playerGameData[pid2.ID].Allianzen)do
+						if(with ~= pid.ID)then
+							remainingwar[tablelength(remainingwar)+1] = with;
+						end
+					end
+					playerGameData[pid2.ID].Allianzen = remainingwar;
+				end
+			end
+		end
 	end
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
