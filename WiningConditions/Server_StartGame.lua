@@ -1,7 +1,7 @@
 function Server_StartGame(game,standing)
 	print("Test1");
    	local playerGameData = Mod.PlayerGameData;
-	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
+	for _,pid in pairs(game.ServerGame.Game.Players)do
 		if(pid.IsAI == false)then
 			playerGameData[pid.ID] = {};
 			playerGameData[pid.ID].Capturedterritories = 0;
