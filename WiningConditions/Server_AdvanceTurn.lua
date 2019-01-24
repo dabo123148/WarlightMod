@@ -180,7 +180,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	
 end
 function Server_AdvanceTurn_End (game,addNewOrder)
-	for _,pid in pairs(game.ServerGame.Game.Players)do
+	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
 		if(pid.IsAI == false)then
 			if(playerGameData[pid.ID].HoldTerritories == nil)then
 				playerGameData[pid.ID].HoldTerritories = {};
