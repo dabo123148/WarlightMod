@@ -42,7 +42,7 @@ function ShowFirstMenu()
 			end
 	  	end
 		PestCardsFree=PestCards-PestCardsPlayed;
-    		Pest=UI.CreateVerticalLayoutGroup(rootParent);
+    		vertPest=UI.CreateVerticalLayoutGroup(rootParent);
     		PestText0=UI.CreateLabel(vertPest).SetText('Pestilence Card: ');
     		PestText1=UI.CreateLabel(vertPest).SetText('      You have got '..tostring(PestCardsFree)..' Cards and '..tostring(Mod.PlayerGameData.PestCardPieces)..'/'..Mod.Settings.PestCardPiecesNeeded..' Pieces.');
     		if(PestCardsFree>0)then
