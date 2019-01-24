@@ -2,9 +2,6 @@
 function Client_PresentSettingsUI(rootParent)
 	root = rootParent;
 	UI.CreateLabel(rootParent).SetText('To view your progress go under menu').SetColor('#FF0000');
-	UI.CreateLabel(rootParent).SetText('T1');
-	UI.CreateLabel(rootParent).SetText(Mod.Settings.Conditionsrequiredforwin);
-	UI.CreateLabel(rootParent).SetText('T2');
 	UI.CreateLabel(rootParent).SetText('To win, you need to complete ' .. Mod.Settings.Conditionsrequiredforwin .. ' of this red conditions').SetColor('#FF0000');
 	CreateLine('Captured this many territories : ',Mod.PlayerGameData.Capturedterritories, Mod.Settings.Capturedterritories,0);
 	CreateLine('Lost this many territories : ',Mod.PlayerGameData.Lostterritories, Mod.Settings.Lostterritories,0);
