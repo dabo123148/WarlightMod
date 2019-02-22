@@ -13,6 +13,7 @@ function Client_PresentConfigureUI(rootParent)
 		.SetSliderMinValue(2)
 		.SetSliderMaxValue(100)
 		.SetValue(Stacklimitsizeinit);
-	EffectsNeutralCheckBox = UI.CreateCheckBox(horz1).SetText('Also apply stacklimit to neutral territories').SetIsChecked(EffectsNeutralinit);
+	local horz2 = UI.CreateHorizontalLayoutGroup(rootParent);
+	EffectsNeutralCheckBox = UI.CreateCheckBox(horz2).SetText('Also apply stacklimit to neutral territories').SetIsChecked(EffectsNeutralinit);
 
 end

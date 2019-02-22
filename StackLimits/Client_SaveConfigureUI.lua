@@ -1,7 +1,7 @@
 
 function Client_SaveConfigureUI(alert)
     
-	local Stacklim = numberInputField1.GetValue();
+	local Stacklim = StackLimitInputfield.GetValue();
 	InRange(Stacklim,2,100000,"Stack Limit",alert);
 	Mod.Settings.StackLimit =Stacklim;
 	Mod.Settings.IncludeNeutral = EffectsNeutralCheckBox.GetIsChecked();
