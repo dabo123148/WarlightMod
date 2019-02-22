@@ -20,6 +20,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		local terr = game.ServerGame.LatestTurnStanding.Territories[order.DeployOn];
 		if(terr.NumArmies.NumArmies + Deploys > Mod.Settings.StackLimit)then
 			skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
+			local Effect = {};
 			Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(order.DeployOn);
 			Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
 			addNewOrder(WL.GameOrderEvent.Create(terra.OwnerPlayerID,"Stacklimit reduced Deployment to prevent crossing of Stacklimit",{},Effect));
