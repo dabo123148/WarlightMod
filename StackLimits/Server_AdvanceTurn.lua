@@ -23,7 +23,6 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local Effect = {};
 			Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(order.DeployOn);
 			Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
-			print(order.DeployOn .. " " .. order.PlayerID .. )
 			local newdeployorder = WL.GameOrderEvent.Create(order.PlayerID,"Stacklimit reduced Deployment to prevent crossing of Stacklimit",{},Effect);
 			addNewOrder(newdeployorder);
 		end
