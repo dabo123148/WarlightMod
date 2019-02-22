@@ -5,7 +5,21 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	local EffectNeutral = Mod.Settings.IncludeNeutral;
 	for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 		if(terra.NumArmies.NumArmies > Mod.Settings.StackLimit)then
+			print("Territory over limit");
+			if(terra.OwnerPlayerID ~= WL.PlayerID.Neutral)then
+				print("Test1");
+			end
+			if((terra.OwnerPlayerID == WL.PlayerID.Neutral and EffectNeutral == true))then
+				print("Test2");
+			end
+			if(terra.OwnerPlayerID == WL.PlayerID.Neutral)then
+				print("Test3");
+			end
+			if(EffectNeutral == true)then
+				print("Test4");
+			end
 			if(terra.OwnerPlayerID ~= WL.PlayerID.Neutral or (terra.OwnerPlayerID == WL.PlayerID.Neutral and EffectNeutral == true))then
+				print("added to effect");
 				local Effect = {};
 				Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terra.ID);
 				Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
