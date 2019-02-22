@@ -1,20 +1,17 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
-	local ArmiesonTerr = {};
-	for _, terra in pairs(game.Map.Territories)do
-		ArmiesonTerr[terra.ID] = game.ServerGame.LatestTurnStanding.Territories[terra.ID].NumArmies.NumArmies;
-	end
 	for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 		if(terra.NumArmies.NumArmies > Mod.Settings.StackLimit)then
+			local ArmiesOnTerritoy = game.ServerGame.LatestTurnStanding.Territories[terra.ID].NumArmies.NumArmies;
 			local Effect = {};
-			local ExtraArmies = ArmiesonTerr[terra.ID]-Mod.Settings.StackLimit;
+			local ExtraArmies = ArmiesOnTerritoy-Mod.Settings.StackLimit;
 			for _, terri in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 				if(terri.OwnerPlayerID == terra.OwnerPlayerID)then
-					local PlaceFor = Mod.Settings.StackLimit-ArmiesonTerr[terri.ID];
+					local PlaceFor = Mod.Settings.StackLimit-ArmiesOnTerritoy;
 					if(PlaceFor > ExtraArmies)then
 						PlaceFor = ExtraArmies;
 					end
 					if(PlaceFor > 0)then
-						local HasArmies = ArmiesonTerr[terri.ID];
+						local HasArmies = ArmiesOnTerritoy;
 						if(HasArmies + PlaceFor > Mod.Settings.StackLimit)then
 							ExtraArmies = ExtraArmies - (Mod.Settings.StackLimit-HasArmies);
 							HasArmies=Mod.Settings.StackLimit;
@@ -24,13 +21,13 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 						end
 						Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terri.ID);
 						Effect[tablelength(Effect)].SetArmiesTo = HasArmies;
-						ArmiesonTerr[terri.ID] = HasArmies;
+						ArmiesOnTerritoy = HasArmies;
 					end
 				end
 			end
 			Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terra.ID);
 			Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
-			ArmiesonTerr[terra.ID] = Mod.Settings.StackLimit;
+			ArmiesOnTerritoy = Mod.Settings.StackLimit;
 			addNewOrder(WL.GameOrderEvent.Create(terra.OwnerPlayerID,"Stack Limit",{},Effect));
 		end
 	end
