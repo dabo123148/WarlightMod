@@ -11,7 +11,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 		end
 	end
 	if(changefound)then
-		addNewOrder(WL.GameOrderEvent.Create(terra.OwnerPlayerID,"Verified All Territories and fixed Stack Limit on some",{},Effect));
+		addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral,"Verified All Territories and fixed Stack Limit on some",{},Effect));
 	end
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
@@ -23,7 +23,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			local Effect = {};
 			Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(order.DeployOn);
 			Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
-			addNewOrder(WL.GameOrderEvent.Create(terra.OwnerPlayerID,"Stacklimit reduced Deployment to prevent crossing of Stacklimit",{},Effect));
+			addNewOrder(WL.GameOrderEvent.Create(order.PlayerID,"Stacklimit reduced Deployment to prevent crossing of Stacklimit",{},Effect));
 		end
 	end
 	if(order.proxyType == 'GameOrderAttackTransfer')then
