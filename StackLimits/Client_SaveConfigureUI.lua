@@ -9,11 +9,11 @@ function Client_SaveConfigureUI(alert)
 		Mod.Settings.IncludeNeutral = true;
 	end
 end
-function InRange(value,min,max,name,alert){
+function InRange(value,min,max,name,alert)
 	if(value <min)then
 		alert(name .. " is too low(game would be stuck)");
 	end
 	if(value > max)then
 		alert(name .. " is too high");
 	end
-}
+end
