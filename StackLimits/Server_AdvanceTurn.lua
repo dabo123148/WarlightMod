@@ -2,12 +2,15 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	--Verification that no territory got over the Stacklimit somehow (improved cross mod support)
 	local Effect = {};
 	local changefound = false;
+	local EffectNeutral = Mod.Settings.IncludeNeutral;
 	for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 		if(terra.NumArmies.NumArmies > Mod.Settings.StackLimit)then
-			local Effect = {};
-			Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terra.ID);
-			Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
-			changefound = true;
+			if(terra.OwnerPlayerID ~= WL.PlayerID.Neutral or (terra.OwnerPlayerID == WL.PlayerID.Neutral and EffectNeutral == true))then
+				local Effect = {};
+				Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terra.ID);
+				Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
+				changefound = true;
+			end
 		end
 	end
 	if(changefound)then
