@@ -7,7 +7,7 @@ function Server_StartGame(game, standing)
 			if(territory.OwnerPlayerID ~= WL.PlayerID.Neutral or (territory.OwnerPlayerID == WL.PlayerID.Neutral and EffectNeutral == false))then
 				territory.NumArmies = WL.Armies.Create(Stacklimit,territory.NumArmies.SpecialUnits);
 			end
-       		end
+        end
   	end
 end
 
