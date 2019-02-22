@@ -1,35 +1,17 @@
 function Server_AdvanceTurn_Start (game,addNewOrder)
+	--Verification that no territory got over the Stacklimit somehow (improved cross mod support)
+	local Effect = {};
+	local changefound = false;
 	for _, terra in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 		if(terra.NumArmies.NumArmies > Mod.Settings.StackLimit)then
-			local ArmiesOnTerritoy = game.ServerGame.LatestTurnStanding.Territories[terra.ID].NumArmies.NumArmies;
 			local Effect = {};
-			local ExtraArmies = ArmiesOnTerritoy-Mod.Settings.StackLimit;
-			for _, terri in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-				if(terri.OwnerPlayerID == terra.OwnerPlayerID)then
-					local PlaceFor = Mod.Settings.StackLimit-ArmiesOnTerritoy;
-					if(PlaceFor > ExtraArmies)then
-						PlaceFor = ExtraArmies;
-					end
-					if(PlaceFor > 0)then
-						local HasArmies = ArmiesOnTerritoy;
-						if(HasArmies + PlaceFor > Mod.Settings.StackLimit)then
-							ExtraArmies = ExtraArmies - (Mod.Settings.StackLimit-HasArmies);
-							HasArmies=Mod.Settings.StackLimit;
-						else
-							ExtraArmies = ExtraArmies - PlaceFor;
-							HasArmies = HasArmies + PlaceFor;
-						end
-						Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terri.ID);
-						Effect[tablelength(Effect)].SetArmiesTo = HasArmies;
-						ArmiesOnTerritoy = HasArmies;
-					end
-				end
-			end
 			Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terra.ID);
 			Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
-			ArmiesOnTerritoy = Mod.Settings.StackLimit;
-			addNewOrder(WL.GameOrderEvent.Create(terra.OwnerPlayerID,"Stack Limit",{},Effect));
+			changefound = true;
 		end
+	end
+	if(changefound)then
+		addNewOrder(WL.GameOrderEvent.Create(terra.OwnerPlayerID,"Verified All Territories and fixed Stack Limit on some",{},Effect));
 	end
 end
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
@@ -37,38 +19,16 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		local Deploys = order.NumArmies;
 		local terr = game.ServerGame.LatestTurnStanding.Territories[order.DeployOn];
 		if(terr.NumArmies.NumArmies + Deploys > Mod.Settings.StackLimit)then
-			local PlaceFor = Mod.Settings.StackLimit-terr.NumArmies.NumArmies;
-			local Effect = {};
-			Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terr.ID);
+			skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
+			Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terra.ID);
 			Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
-			local RemainingArmies = Deploys-PlaceFor;
-			for _, terri in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-				if(terri.OwnerPlayerID == terr.OwnerPlayerID)then
-					local CanTakeArmies = Mod.Settings.StackLimit-terri.NumArmies.NumArmies;
-					if(CanTakeArmies > RemainingArmies)then
-						CanTakeArmies = RemainingArmies;
-					end
-					if(CanTakeArmies > 0)then
-						local HasArmies = terri.NumArmies.NumArmies;
-						if(HasArmies + CanTakeArmies > Mod.Settings.StackLimit)then
-							RemainingArmies = RemainingArmies - (Mod.Settings.StackLimit-HasArmies);
-							HasArmies=Mod.Settings.StackLimit;
-						else
-							RemainingArmies = RemainingArmies - CanTakeArmies;
-							HasArmies = HasArmies + CanTakeArmies;
-						end
-						Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terri.ID);
-						Effect[tablelength(Effect)].SetArmiesTo = HasArmies;
-					end
-				end
-			end
-			addNewOrder(WL.GameOrderEvent.Create(terr.OwnerPlayerID,"Stack Limit",{},Effect));
+			addNewOrder(WL.GameOrderEvent.Create(terra.OwnerPlayerID,"Stacklimit reduced Deployment to prevent crossing of Stacklimit",{},Effect));
 		end
 	end
 	if(order.proxyType == 'GameOrderAttackTransfer')then
-		local Deploys = order.NumArmies.NumArmies;
+		local moveswith = order.NumArmies.NumArmies;
 		local terr = game.ServerGame.LatestTurnStanding.Territories[order.To];
-		if(terr.NumArmies.NumArmies + Deploys > Mod.Settings.StackLimit)then
+		if(terr.NumArmies.NumArmies + moveswith > Mod.Settings.StackLimit)then
 			if(order.PlayerID == terr.OwnerPlayerID)then
 				local PlaceFor = Mod.Settings.StackLimit-terr.NumArmies.NumArmies;
 				skipThisOrder(WL.ModOrderControl.Skip);
@@ -76,7 +36,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					addNewOrder(WL.GameOrderAttackTransfer.Create(order.PlayerID, order.From, order.To, order.AttackTransfer , order.ByPercent , WL.Armies.Create(PlaceFor,order.NumArmies.SpecialUnits), order.AttackTeammates));
 				end
 			else
-				if(Deploys > Mod.Settings.StackLimit)then
+				if(moveswith > Mod.Settings.StackLimit)then
 					skipThisOrder(WL.ModOrderControl.Skip);
 					addNewOrder(WL.GameOrderAttackTransfer.Create(order.PlayerID, order.From, order.To, order.AttackTransfer , order.ByPercent , WL.Armies.Create(Mod.Settings.StackLimit,order.NumArmies.SpecialUnits), order.AttackTeammates));
 				end
@@ -84,9 +44,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 	end
 	if(order.proxyType == 'GameOrderPlayCardAirlift')then
-		local Deploys = order.Armies.NumArmies;
+		local moveswith = order.Armies.NumArmies;
 		local terr = game.ServerGame.LatestTurnStanding.Territories[order.ToTerritoryID];
-		if(terr.NumArmies.NumArmies + Deploys > Mod.Settings.StackLimit)then
+		if(terr.NumArmies.NumArmies + moveswith > Mod.Settings.StackLimit)then
 			local PlaceFor = Mod.Settings.StackLimit-terr.NumArmies.NumArmies;
 			skipThisOrder(WL.ModOrderControl.Skip);
 			if(PlaceFor > 0)then

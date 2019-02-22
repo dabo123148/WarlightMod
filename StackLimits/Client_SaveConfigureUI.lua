@@ -1,14 +1,19 @@
 
 function Client_SaveConfigureUI(alert)
     
-	local SL = numberInputField1.GetValue();
-	if(SL < 2)then
-		SL=2;
-		alert('Stack Limit is too low');
+	local Stacklim = numberInputField1.GetValue();
+	InRange(Stacklim,2,100000,"Stack Limit",alert);
+	Mod.Settings.StackLimit =Stacklim;
+	Mod.Settings.IncludeNeutral = EffectsNeutralCheckBox.GetIsChecked();
+	if(Mod.Settings.IncludeNeutral == nil)then
+		Mod.Settings.IncludeNeutral = true;
 	end
-	if(SL > 100000)then
-		SL=100000;
-		alert('Stack Limit is too high');
-	end
-	Mod.Settings.StackLimit =SL;
 end
+function InRange(value,min,max,name,alert){
+	if(value <min)then
+		alert(name .. " is too low(game would be stuck)");
+	end
+	if(value > max)then
+		alert(name .. " is too high");
+	end
+}
