@@ -59,6 +59,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	end
 	if(order.proxyType == "GameOrderPlayCardGift")then
 		local targetterr = order.TerritoryID;
+		local toowner = order.GiftTo;
 		if(playerGameData[order.PlayerID].HoldTerritories == nil)then
 			playerGameData[order.PlayerID].HoldTerritories = {};
 		end
