@@ -183,6 +183,7 @@ end
 function Server_AdvanceTurn_End (game,addNewOrder)
 	for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
 		if(pid.IsAI == false)then
+			print(pid.ID .. " playergamedata: playerGameData[pid.ID] "); 
 			if(playerGameData[pid.ID].HoldTerritories == nil)then
 				playerGameData[pid.ID].HoldTerritories = {};
 			end
