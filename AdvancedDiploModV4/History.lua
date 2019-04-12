@@ -3,7 +3,7 @@ function ShowHistory(datentable,game,ende)
 	for _,data in pairs(datentable)do
 		daten = daten .. getname(data.By,game) .. ":".. data.Text .. "\n";
 	end
-	if(ende == "")then
+	if(ende == "" or ende == "showhistory")then
 		if(daten ~= "This history gets written into the history of the next turn:\n")then
 			--if(lastmessage == nil or lastmessage ~= daten or datentable == Mod.PlayerGameData.Nachrichten)then
 				--lastmessage = daten;
