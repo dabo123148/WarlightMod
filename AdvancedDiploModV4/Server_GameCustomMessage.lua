@@ -133,8 +133,8 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				end
 				publicGameData.War[playerID] = remainingwar;
 				local message = {};
-				message.By = player;
-				message.Text = " Accepted the peace with " .. toname(playerID,game);
+				message.By = playerID;
+				message.Text = " Accepted the peace with " .. toname(player,game);
 				publicGameData.History[tablelength(publicGameData.History)] = message;
 				playerGameData[playerID].Peaceoffers[player] = nil
 				playerGameData[player].Peaceoffers[playerID] = nil
@@ -144,8 +144,8 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				setReturnTable(rg);
 			else
 				local message = {};
-				message.By = player;
-				message.Text = " Declined the peace with " .. toname(playerID,game);
+				message.By = playerID;
+				message.Text = " Declined the peace with " .. toname(player,game);
 				playerGameData[playerID].PrivateHistory[tablelength(playerGameData[playerID].PrivateHistory)] = message;
 				playerGameData[player].PrivateHistory[tablelength(playerGameData[player].PrivateHistory)] = message;
 				playerGameData[playerID].Peaceoffers[player] = nil
