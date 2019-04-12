@@ -86,8 +86,8 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				playerGameData[playerID].Peaceoffers[player] = nil;
 			end
 			local message = {};
-			message.By = player;
-			message.Text = " Accepted the peace with " .. toname(playerID,game);
+			message.By = playerID;
+			message.Text = " Accepted the peace with " .. toname(player,game);
 			publicGameData.History[tablelength(publicGameData.History)] = message;
 			Mod.PlayerGameData=playerGameData;
 			local remainingwar = {};
