@@ -72,7 +72,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				playerGameData[player].Peaceoffers[playerID].Offerby = playerID;
 				local message = {};
 				message.By = playerID;
-				message.Text = " Offered peace to " .. toname(playerID,game);
+				message.Text = " Offered peace to " .. toname(player,game);
 				playerGameData[playerID].PrivateHistory[tablelength(playerGameData[playerID].PrivateHistory)] = message;
 				playerGameData[player].PrivateHistory[tablelength(playerGameData[player].PrivateHistory)] = message;
 				Mod.PublicGameData = publicGameData;
