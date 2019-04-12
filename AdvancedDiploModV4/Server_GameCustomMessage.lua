@@ -151,6 +151,9 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		end
 	end
 end
+function toname(playerid,game)
+	return game.ServerGame.Game.Players[playerid].DisplayName(nil, false);
+end
 function tablelength(T)
 	local count = 0;
 	for _,elem in pairs(T)do
