@@ -50,7 +50,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			playerGameData[target].AllyOffers[playerID].OfferedInTurn = game.Game.NumberOfTurns;
 			local message = {};
 			message.By = playerID;
-			message.Text = " offered an alliance to " .. toname(payload.OfferedBy,game);
+			message.Text = " offered an alliance to " .. toname(target,game);
 			playerGameData[playerID].PrivateHistory[tablelength(playerGameData[playerID].PrivateHistory)] = message;
 			playerGameData[target].PrivateHistory[tablelength(playerGameData[target].PrivateHistory)] = message;
 			Mod.PlayerGameData = playerGameData;
