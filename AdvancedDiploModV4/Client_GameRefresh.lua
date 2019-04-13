@@ -1,9 +1,6 @@
 require('History');
 function Client_GameRefresh(game)
 	if(showedreturnmessage == nil or showedreturnmessage == true)then
-		if(showedreturnmessage ~= nil)then
-			print("Test " .. showedreturnmessage);
-		end
 		local Nachricht = "";
     		if(tablelength(Mod.PlayerGameData.Peaceoffers)>0)then
     			Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(Mod.PlayerGameData.Peaceoffers) .. ' open peace offer';
