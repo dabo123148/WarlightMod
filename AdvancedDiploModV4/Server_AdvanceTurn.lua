@@ -114,8 +114,12 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	--Finishing war declaration
 	for _,newwar in pairs(RemainingDeclerations)do
 		--removes ally offers
-		playerGameData[newwar.S1].AllyOffers[newwar.S2] = nil;
-		playerGameData[newwar.S2].AllyOffers[newwar.S1] = nil;
+		if(game.ServerGame.Game.Players[newwar.S1].IsAI == false)then
+			playerGameData[newwar.S1].AllyOffers[newwar.S2] = nil;
+		end
+		if(game.ServerGame.Game.Players[newwar.S2].IsAI == false)then
+			playerGameData[newwar.S2].AllyOffers[newwar.S1] = nil;
+		end
 		--Sets diplomacy to war between the players
 		publicGameData.War[newwar.S1][tablelength(publicGameData.War[newwar.S1])+1] = newwar.S2;
 		publicGameData.War[newwar.S2][tablelength(publicGameData.War[newwar.S2])+1] = newwar.S1;
