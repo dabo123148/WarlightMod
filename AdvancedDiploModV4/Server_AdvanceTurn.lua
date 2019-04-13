@@ -13,7 +13,9 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 		--Writing Private History into the history
 		if(pid.IsAI == false)then
 			for _,data in pairs(playerGameData[pid.ID].PrivateHistory) do
-				addNewOrder(WL.GameOrderEvent.Create(data.By, data.Text, {pid.ID}, nil, nil));
+				if(data.By ~= pid.ID)then
+					addNewOrder(WL.GameOrderEvent.Create(data.By, data.Text, {pid.ID}, nil, nil));
+				end
 			end
 			playerGameData[pid.ID].PrivateHistory = {};
 		end
