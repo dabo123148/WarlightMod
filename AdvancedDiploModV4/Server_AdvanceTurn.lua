@@ -138,7 +138,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 				remainingally[tablelength(remainingally)+1] = with;
 			end
 		end
-		playerGameData[canceldata.S2].Allianzen = remainingwar;
+		playerGameData[canceldata.S2].Allianzen = remainingally;
 		if(Mod.Settings.PublicAllies)then
 			for _,pd in pairs(game.ServerGame.Game.Players)do
 				if(pd.IsAI == false)then
