@@ -1,22 +1,12 @@
 require('History');
 function Client_GameRefresh(game)
-	if(game.Us == nil or Mod.PlayerGameData.TerritorySellOffers == nil)then
-		return;
-	end
 	local Nachricht = "";
-    if(tablelength(Mod.PlayerGameData.Peaceoffers)>0)then
-    	Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(Mod.PlayerGameData.Peaceoffers) .. ' open peace offer';
+    	if(tablelength(Mod.PlayerGameData.Peaceoffers)>0)then
+    		Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(Mod.PlayerGameData.Peaceoffers) .. ' open peace offer';
    	end
    	if(tablelength(Mod.PlayerGameData.AllyOffers)>0)then
-     	Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(Mod.PlayerGameData.AllyOffers) .. ' open ally offer';
-    end
-   	if(tablelength(Mod.PlayerGameData.TerritorySellOffers)>0)then
-		local offercount = 0;
-		for _,player in pairs(Mod.PlayerGameData.TerritorySellOffers)do
-			offercount = offercount + tablelength(player);
-		end
-     	Nachricht = Nachricht .. "\n" .. 'You have ' .. offercount .. ' open territory tradement offer';
-   	end
+     		Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(Mod.PlayerGameData.AllyOffers) .. ' open ally offer';
+  	  end
 	ShowHistory(Mod.PlayerGameData.NeueNachrichten,game,Nachricht);
 end
 function tablelength(T)
