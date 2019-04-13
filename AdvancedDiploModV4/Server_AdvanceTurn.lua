@@ -140,11 +140,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		end
 		playerGameData[canceldata.S2].Allianzen = remainingally;
 		if(Mod.Settings.PublicAllies)then
-			for _,pd in pairs(game.ServerGame.Game.Players)do
-				if(pd.IsAI == false)then
-					addNewOrder(WL.GameOrderEvent.Create(canceldata.S1, "Canceled the alliance with " .. toname(canceldata.S2,game), nil, nil, nil) );
-				end
-			end
+			addNewOrder(WL.GameOrderEvent.Create(canceldata.S1, "Canceled the alliance with " .. toname(canceldata.S2,game), nil, nil, nil) );
 		else
 			addNewOrder(WL.GameOrderEvent.Create(canceldata.S1, "Canceled the alliance with " .. toname(canceldata.S2,game), {canceldata.S2}, nil, nil) );
 		end
