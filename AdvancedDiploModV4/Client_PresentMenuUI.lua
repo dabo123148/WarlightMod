@@ -48,6 +48,7 @@ function commitofferpeace()
 		payload.Message = "Peace";
 		payload.TargetPlayerID = SelectedData[1];
 		Game.SendGameCustomMessage("Sending request...", payload, function(returnvalue)
+			showedreturnmessage = false;
 			UI.Alert(returnvalue.Message);
 			end);
 		TargetPlayerBtn.SetText("Select player...");
