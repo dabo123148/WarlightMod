@@ -1,5 +1,6 @@
 require('History');
 function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
+	showedreturnmessage = true;
 	horzobjlist = {};
 	TargetPlayerBtn = nil;
 	declarebutton=nil;
@@ -200,7 +201,7 @@ function OpenOfferAlliance()
 			local payload = {};
 			payload.Message = "Offer Allianze";
 			payload.TargetPlayerID = SelectedData[1];
-			Game.SendGameCustomMessage("Offering...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
+			Game.SendGameCustomMessage("Offering...", payload, function(returnvalue)	showedreturnmessage= false;UI.Alert(returnvalue.Message); end);
 		end);
 end
 function TargetPlayerSelectCancelAlliance()
@@ -312,7 +313,7 @@ function ShowAllyOffers()
 			local payload = {};
 			payload.Message = "Deny Allianze";
 			payload.OfferedBy = offer.OfferedBy;
-			Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
+			Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	showedreturnmessage=false;UI.Alert(returnvalue.Message); end);
 			OpenPendingRequests();
 			end;
 		button.SetOnClick(onclick);
@@ -321,7 +322,7 @@ function ShowAllyOffers()
 			local payload = {};
 			payload.Message = "Accept Allianze";
 			payload.OfferedBy = offer.OfferedBy;
-			Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	UI.Alert(returnvalue.Message); end);
+			Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	showedreturnmessage=false;UI.Alert(returnvalue.Message); end);
 			OpenPendingRequests();
 			end;
 		button.SetOnClick(onclick2);
@@ -336,6 +337,7 @@ function AcceptPeaceOffer(data)
 	payload.Message = data.Message;
 	payload.TargetPlayerID = data.Spieler;
 	Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	
+		showedreturnmessage = false;
 		if(returnvalue.Message == 1)then
 			UI.Alert("The Peace Offer doesn't exist any longer");
 		else
