@@ -1,5 +1,6 @@
 require('History');
 function Client_GameRefresh(game)
+	print("Test " .. showedreturnmessage);
 	if(showedreturnmessage == nil or showedreturnmessage == true)then
 		local Nachricht = "";
     		if(tablelength(Mod.PlayerGameData.Peaceoffers)>0)then
