@@ -171,7 +171,7 @@ function OpenCancelAlliance()
 	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Cancel alliance with: ");
 	TargetPlayerBtn = UI.CreateButton(horzobjlist[0]).SetText("Select player...").SetOnClick(TargetPlayerSelectCancelAlliance);
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
-	commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Offer").SetOnClick(function()
+	commitbutton = UI.CreateButton(horzobjlist[1]).SetText("Remove").SetOnClick(function()
 			if(TargetPlayerBtn.GetText() == "Select player...")then
 				UI.Alert('You need to choose a player first');
 				return;
