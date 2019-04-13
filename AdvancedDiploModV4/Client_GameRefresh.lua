@@ -7,7 +7,7 @@ function Client_GameRefresh(game)
    	if(tablelength(Mod.PlayerGameData.AllyOffers)>0)then
      		Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(Mod.PlayerGameData.AllyOffers) .. ' open ally offer';
   	  end
-	ShowHistory(Mod.PlayerGameData.NeueNachrichten,game,Nachricht);
+	ShowAllHistory(game,Nachricht);
 end
 function tablelength(T)
 	local count = 0;
