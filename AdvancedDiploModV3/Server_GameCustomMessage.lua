@@ -277,7 +277,9 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	if(payload.Message == "Deny Territory Sell")then
 		local von = tonumber(payload.TargetPlayerID);
 		local terr = tonumber(payload.TargetTerritoryID);
-		playerGameData[playerID].TerritorySellOffers[von][terr] = nil;
+		if(playerGameData[playerID].TerritorySellOffers[von] ~= nil)then
+			playerGameData[playerID].TerritorySellOffers[von][terr] = nil;
+		end
 		if(tablelength(playerGameData[playerID].TerritorySellOffers[von]) == 0)then
 			playerGameData[playerID].TerritorySellOffers[von] = nil;
 		end
