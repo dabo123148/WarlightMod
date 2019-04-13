@@ -112,6 +112,8 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	--add new war Declaretions
 	--Finishing war declaration
 	for _,newwar in pairs(RemainingDeclerations)do
+		playerGameData[newwar.S1].AllyOffers[newwar.S2] = nil;
+		playerGameData[newwar.S2].AllyOffers[newwar.S1] = nil;
 		publicGameData.War[newwar.S1][tablelength(publicGameData.War[newwar.S1])+1] = newwar.S2;
 		publicGameData.War[newwar.S2][tablelength(publicGameData.War[newwar.S2])+1] = newwar.S1;
 		addNewOrder(WL.GameOrderEvent.Create(newwar.S1, "Decleared war on " .. toname(newwar.S2,game), nil, nil, nil) );
