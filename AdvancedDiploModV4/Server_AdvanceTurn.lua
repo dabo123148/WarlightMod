@@ -51,7 +51,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if(toowner ~= WL.PlayerID.Neutral and order.PlayerID ~= WL.PlayerID.Neutral)then
 				if(InWar(order.PlayerID,toowner) == false)then
 					skipThisOrder(WL.ModOrderControl.Skip);
-					--Decleare War for AI(verification if settings allow it is in DeclareWar)
+					--Decleare War for AI if AI(verification if settings allow it is in DeclareWar)
 					if(game.ServerGame.Game.Players[order.PlayerID].IsAIOrHumanTurnedIntoAI == true)then
 						DeclareWar(order.PlayerID,toowner,game);
 					end
@@ -111,13 +111,15 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	end
 end
 function Server_AdvanceTurn_End (game,addNewOrder)
-	--add new war Declaretions
 	--Finishing war declaration
 	for _,newwar in pairs(RemainingDeclerations)do
+		--removes ally offers
 		playerGameData[newwar.S1].AllyOffers[newwar.S2] = nil;
 		playerGameData[newwar.S2].AllyOffers[newwar.S1] = nil;
+		--Sets diplomacy to war between the players
 		publicGameData.War[newwar.S1][tablelength(publicGameData.War[newwar.S1])+1] = newwar.S2;
 		publicGameData.War[newwar.S2][tablelength(publicGameData.War[newwar.S2])+1] = newwar.S1;
+		--Writes event to history
 		addNewOrder(WL.GameOrderEvent.Create(newwar.S1, "Decleared war on " .. toname(newwar.S2,game), nil, nil, nil) );
 	end
 	RemainingDeclerations = {};
@@ -166,13 +168,21 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	Mod.PlayerGameData = playerGameData;
 
 end
+--translates playerid to playername, which is required for history, since it is not userfriendly to show the id, but also results in static playernames and does not addapt to playername changes
 function toname(playerid,game)
 	return game.ServerGame.Game.Players[playerid].DisplayName(nil, false);
 end
+--Verifies if cards can be played
 function IsPlayable(Player1,Player2,game,requirewarsetting,requirepeacesetting,requireallysetting)
+	--Does not prevent other mods from playing cards(unsure if possible for those to play cards as neutral)
+	if(Player1 == WL.PlayerID.Neutral)then
+		return true;
+	end
+	--Does not prevent cards on Neutral
 	if(Player2 == WL.PlayerID.Neutral)then
 		return true;
 	end
+	--Verifies peace
 	if(requirepeacesetting == true and InWar(Player1,Player2) == false and IsAlly(Player1,Player2,game) == false)then
 		return true;
 	end
