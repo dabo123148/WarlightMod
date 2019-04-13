@@ -32,14 +32,12 @@ function ShowAllHistory(game,ende)
 	for _,data in pairs(datentable)do
 		daten = daten .. getname(data.By,game) .. ":".. data.Text .. "\n";
 	end
-	if(ende == "" or ende == "showmessage")then
+	if(ende == "")then
 		if(daten ~= "This history gets written into the history of the next turn:\n")then
 			--if(lastmessage == nil or lastmessage ~= daten or datentable == Mod.PlayerGameData.Nachrichten)then
 				--lastmessage = daten;
 				UI.Alert(daten);
 			--end
-		else
-			UI.Alert("There is currently no history");
 		end
 	else
 		daten = daten .. ende;
