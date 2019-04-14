@@ -1,3 +1,3 @@
-function ShowHistory(datentable,game,ende)
+function ShowHistory(game)
 	UI.Alert("Testvar " .. Mod.PublicGameData.Testvar);
 end
