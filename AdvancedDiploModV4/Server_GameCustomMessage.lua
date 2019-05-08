@@ -2,6 +2,15 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 	publicGameData = Mod.PublicGameData;
 	playerGameData = Mod.PlayerGameData;
 	local rg = {};
+	if(payload.Message == "Test")then
+		if(publicGameData.test == nil)then
+			publicGameData.test = 0;
+		end
+		publicGameData.test = publicGameData.test +1;
+		Mod.PublicGameData = publicGameData;
+		rg.Message = "Test";
+		setReturnTable(rg);
+	end
 	if(payload.Message == "Accept Allianze" or payload.Message == "Deny Allianze")then
 		if(playerGameData[playerID].AllyOffers[payload.OfferedBy] == nil)then
 			--offer doesn't exist any longer
