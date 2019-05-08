@@ -28,11 +28,6 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		return;
 	end
 	mainmenu = UI.CreateButton(horz).SetText("Main Menu").SetOnClick(OpenMenu);
-	local payload = {};
-	payload.Message = "Test";
-	deleteme =  UI.CreateButton(horz).SetText("Test").SetOnClick(function()
-		Game.SendGameCustomMessage("Testing",payload, function(returnvalue) showedreturnmessage = false; UI.Alert("TEST") end);
-	end);
 	vert = UI.CreateVerticalLayoutGroup(rootParent);
 	OpenMenu(rootParent);
 end
