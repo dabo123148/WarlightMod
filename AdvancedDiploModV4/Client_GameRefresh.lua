@@ -1,5 +1,8 @@
 require('History');
 function Client_GameRefresh(game)
+	if(game.Us == nil)then
+		return;
+	end
 	if(lastnachricht == nil)then
 		lastnachricht = "";
 	end
