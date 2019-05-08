@@ -9,6 +9,10 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 		publicGameData.test = publicGameData.test +1;
 		Mod.PublicGameData = publicGameData;
 		rg.Message = "Test";
+		local message = {};
+		message.By = playerID;
+		message.Text = " test history ";
+		publicGameData.History[tablelength(publicGameData.History)] = message;
 		setReturnTable(rg);
 	end
 	if(payload.Message == "Accept Allianze" or payload.Message == "Deny Allianze")then
