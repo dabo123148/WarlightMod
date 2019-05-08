@@ -1,5 +1,8 @@
 require('History');
 function Client_GameRefresh(game)
+	if(lastnachricht == nil)then
+		lastnachricht = "";
+	end
 	if(showedreturnmessage == nil or showedreturnmessage == true)then
 		local Nachricht = "";
     		if(tablelength(Mod.PlayerGameData.Peaceoffers)>0)then
@@ -8,7 +11,11 @@ function Client_GameRefresh(game)
    		if(tablelength(Mod.PlayerGameData.AllyOffers)>0)then
      			Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(Mod.PlayerGameData.AllyOffers) .. ' open ally offer';
   		  end
-		ShowAllHistory(game,Nachricht);
+		if(lastnachricht == Nachricht)then
+			lastnachricht = Nachricht;
+		else
+			ShowAllHistory(game,Nachricht);
+		end
 	else
 		showedreturnmessage = true;
 	end
