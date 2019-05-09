@@ -339,15 +339,7 @@ function AcceptPeaceOffer(data)
 	payload.TargetPlayerID = data.Spieler;
 	Game.SendGameCustomMessage("Sending data...", payload, function(returnvalue)	
 		showedreturnmessage = false;
-		if(returnvalue.Message == 1)then
-			UI.Alert("The Peace Offer doesn't exist any longer");
-		else
-			if(data.Message == "Decline Peace")then
-				UI.Alert('You declined ' .. toname(data.Spieler,Game) .. " Peace Offer");
-			else
-				UI.Alert("You are now again in peace with " .. toname(data.Spieler,Game));
-			end
-		end
+		UI.Alert(returnvalue.Message);
 	end);
 	OpenPendingRequests();
 end
