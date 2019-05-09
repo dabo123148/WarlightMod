@@ -13,12 +13,8 @@ function Client_GameRefresh(game)
    		end
    		if(tablelength(Mod.PlayerGameData.AllyOffers)>0)then
      			Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(Mod.PlayerGameData.AllyOffers) .. ' open ally offer';
-  		  end
-		if(lastnachricht == Nachricht)then
-			lastnachricht = Nachricht;
-		else
-			ShowAllHistory(game,Nachricht);
-		end
+  		end
+		ShowAllHistory(game,Nachricht);
 	else
 		showedreturnmessage = true;
 	end
