@@ -6,6 +6,7 @@ function Server_StartGame(game,standing)
 	publicGameData.War = {};
 	--Contains all additional public history, that happened during GameCustomMessage, getting cleared in Server_AdvancedTurnStart, in order to save storage space
 	publicGameData.History = {};
+	publicGameData.Historyorder = {};
 	for _,pid in pairs(game.ServerGame.Game.Players) do
 		if(pid.IsAI == false)then
 			playerGameData[pid.ID] = {};
