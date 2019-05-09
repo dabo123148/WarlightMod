@@ -16,6 +16,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 		end
 		number = number+1;
 	end
+	publicGameData.Historyorder = {};
 	--Writing Public History into the history
 	--for _,data in pairs(publicGameData.History) do
 	--	addNewOrder(WL.GameOrderEvent.Create(data.By, data.Text, nil, nil, nil));
