@@ -24,6 +24,9 @@ function Client_GameRefresh(game)
 	end
 end
 function tablelength(T)
+	if(T==nil)then
+		return "error";
+	end
 	local count = 0;
 	for _,elem in pairs(T)do
 		count = count + 1;
