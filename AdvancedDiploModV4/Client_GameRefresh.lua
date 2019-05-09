@@ -3,6 +3,10 @@ function Client_GameRefresh(game)
 	if(game.Us == nil)then
 		return;
 	end
+	--It appears that gamerefresh gets called before startgame, so this filters out a crash
+	if(Mod.PlayerGameData.Peaceoffers == nil)then
+		return;
+	end
 	if(lastnachricht == nil)then
 		lastnachricht = "";
 	end
