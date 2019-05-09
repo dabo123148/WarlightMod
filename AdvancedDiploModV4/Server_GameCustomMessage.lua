@@ -19,10 +19,27 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				message.By = playerID;
 				message.Text = " accepted the alliance with " .. toname(payload.OfferedBy,game);
 				if(Mod.Settings.PublicAllies == true)then
-					publicGameData.History[tablelength(publicGameData.History)] = message;
+					local newhistoryid = tablelength(publicGameData.History);
+					local additionalhistorydata = {};
+					additionalhistorydata.Type = "Public";
+					additionalhistorydata.ID = newhistoryid;
+					publicGameData.Historyorder[tablelength(publicGameData.Historyorder)] = additionalhistorydata;
+					publicGameData.History[newhistoryid] = message;
 				else
-					playerGameData[playerID].PrivateHistory[tablelength(playerGameData[playerID].PrivateHistory)] = message;
-					playerGameData[payload.OfferedBy].PrivateHistory[tablelength(playerGameData[payload.OfferedBy].PrivateHistory)] = message;
+					local newhistoryid = tablelength(playerGameData[playerID].PrivateHistory);
+					local additionalhistorydata = {};
+					additionalhistorydata.Type = "Private";
+					additionalhistorydata.ID = newhistoryid;
+					additionalhistorydata.PlayerID = playerID;
+					publicGameData.Historyorder[tablelength(publicGameData.Historyorder)] = additionalhistorydata;
+					playerGameData[playerID].PrivateHistory[newhistoryid] = message;
+					newhistoryid = tablelength(playerGameData[payload.OfferedBy].PrivateHistory);
+					additionalhistorydata = {};
+					additionalhistorydata.Type = "Private";
+					additionalhistorydata.ID = newhistoryid;
+					additionalhistorydata.PlayerID = payload.OfferedBy;
+					publicGameData.Historyorder[tablelength(publicGameData.Historyorder)] = additionalhistorydata;
+					playerGameData[payload.OfferedBy].PrivateHistory[newhistoryid] = message;
 				end
 				Mod.PublicGameData = publicGameData;
 				Mod.PlayerGameData = playerGameData;
