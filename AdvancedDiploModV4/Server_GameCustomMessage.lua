@@ -104,7 +104,13 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				message.By = playerID;
 				message.Text = " Offered peace to " .. toname(player,game);
 				playerGameData[playerID].PrivateHistory[tablelength(playerGameData[playerID].PrivateHistory)] = message;
-				playerGameData[player].PrivateHistory[tablelength(playerGameData[player].PrivateHistory)] = message;
+				local newhistoryid = tablelength(playerGameData[player].PrivateHistory);
+				local additionalhistorydata = {};
+				additionalhistorydata.Type = "Private";
+				additionalhistorydata.ID = newhistoryid;
+				additionalhistorydata.PlayerID = player;
+				publicGameData.Historyorder[tablelength(publicGameData.Historyorder)] = additionalhistorydata;
+				playerGameData[player].PrivateHistory[newhistoryid] = message;
 				Mod.PublicGameData = publicGameData;
 				Mod.PlayerGameData = playerGameData;
 				rg.Message = "The Offer has been submitted";
@@ -118,7 +124,11 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			local message = {};
 			message.By = playerID;
 			message.Text = " Accepted the peace with " .. toname(player,game);
-			publicGameData.History[tablelength(publicGameData.History)] = message;
+			local newhistoryid = tablelength(publicGameData.History);
+			local additionalhistorydata = {};
+			additionalhistorydata.Type = "Public";
+			additionalhistorydata.ID = newhistoryid;
+			publicGameData.History[newhistoryid] = message;
 			Mod.PlayerGameData=playerGameData;
 			local remainingwar = {};
 			for _,with in pairs(publicGameData.War[player]) do
@@ -165,7 +175,11 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				local message = {};
 				message.By = playerID;
 				message.Text = " Accepted the peace with " .. toname(player,game);
-				publicGameData.History[tablelength(publicGameData.History)] = message;
+				local newhistoryid = tablelength(publicGameData.History);
+				local additionalhistorydata = {};
+				additionalhistorydata.Type = "Public";
+				additionalhistorydata.ID = newhistoryid;
+				publicGameData.History[newhistoryid] = message;
 				playerGameData[playerID].Peaceoffers[player] = nil
 				playerGameData[player].Peaceoffers[playerID] = nil
 				Mod.PublicGameData = publicGameData;
@@ -177,7 +191,13 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				message.By = playerID;
 				message.Text = " Declined the peace with " .. toname(player,game);
 				playerGameData[playerID].PrivateHistory[tablelength(playerGameData[playerID].PrivateHistory)] = message;
-				playerGameData[player].PrivateHistory[tablelength(playerGameData[player].PrivateHistory)] = message;
+				local newhistoryid = tablelength(playerGameData[player].PrivateHistory);
+				local additionalhistorydata = {};
+				additionalhistorydata.Type = "Private";
+				additionalhistorydata.ID = newhistoryid;
+				additionalhistorydata.PlayerID = player;
+				publicGameData.Historyorder[tablelength(publicGameData.Historyorder)] = additionalhistorydata;
+				playerGameData[player].PrivateHistory[newhistoryid] = message;
 				playerGameData[playerID].Peaceoffers[player] = nil
 				Mod.PublicGameData = publicGameData;
 				Mod.PlayerGameData = playerGameData;
@@ -196,11 +216,6 @@ function tablelength(T)
 		count = count + 1;
 	end
 	return count;
-end
-function addmessagecustom(message,spieler)
-	print("spieler " .. spieler);
-	playerGameData[spieler].Nachrichten[tablelength(playerGameData[spieler].Nachrichten)+1] = message;
-	playerGameData[spieler].NeueNachrichten[tablelength(playerGameData[spieler].NeueNachrichten)+1] = message;
 end
 function GetOffer(offertype,spieler1,spieler2,terr)
 	if(offertype ~= nil)then
