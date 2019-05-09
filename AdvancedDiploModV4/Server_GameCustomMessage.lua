@@ -50,15 +50,9 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				local message = {};
 				message.By = playerID;
 				message.Text = " declined the alliance offer of " .. toname(payload.OfferedBy,game);
-				local newhistoryid = tablelength(playerGameData[playerID].PrivateHistory);
-				local additionalhistorydata = {};
-				additionalhistorydata.Type = "Private";
-				additionalhistorydata.ID = newhistoryid;
-				additionalhistorydata.PlayerID = playerID;
-				publicGameData.Historyorder[tablelength(publicGameData.Historyorder)] = additionalhistorydata;
 				playerGameData[playerID].PrivateHistory[newhistoryid] = message;
-				newhistoryid = tablelength(playerGameData[payload.OfferedBy].PrivateHistory);
-				additionalhistorydata = {};
+				local newhistoryid = tablelength(playerGameData[payload.OfferedBy].PrivateHistory);
+				local additionalhistorydata = {};
 				additionalhistorydata.Type = "Private";
 				additionalhistorydata.ID = newhistoryid;
 				additionalhistorydata.PlayerID = payload.OfferedBy;
@@ -81,8 +75,15 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			message.By = playerID;
 			message.Text = " offered an alliance to " .. toname(target,game);
 			playerGameData[playerID].PrivateHistory[tablelength(playerGameData[playerID].PrivateHistory)] = message;
-			playerGameData[target].PrivateHistory[tablelength(playerGameData[target].PrivateHistory)] = message;
+			local newhistoryid = tablelength(playerGameData[target].PrivateHistory);
+			local additionalhistorydata = {};
+			additionalhistorydata.Type = "Private";
+			additionalhistorydata.ID = newhistoryid;
+			additionalhistorydata.PlayerID = target;
+			publicGameData.Historyorder[tablelength(publicGameData.Historyorder)] = additionalhistorydata;
+			playerGameData[target].PrivateHistory[newhistoryid] = message;
 			Mod.PlayerGameData = playerGameData;
+			Mod.PublicGameData = publicGameData;
 			rg.Message = "The Player recieved the ally offer";
 			setReturnTable(rg);
 		else
