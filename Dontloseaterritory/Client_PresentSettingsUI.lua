@@ -3,7 +3,7 @@ function Client_PresentSettingsUI(rootParent)
 	if(Mod.Settings.NoTerritory ~= nil)then
 		if(Mod.Settings.NoTerritory)then
 			UI.CreateLabel(rootParent)
-			.SetText('If a player loses a territory, he has lost');
+			.SetText('If a player loses any territory, he has lost');
 		else
 			UI.CreateLabel(rootParent)
 			.SetText('If a player loses a starting territory, he has lost');
