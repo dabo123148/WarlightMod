@@ -4,21 +4,33 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	RemainingDeclerations = {};
 	RemainingAllyCancels = {};
 	local turn = game.Game.TurnNumber;
-	--Writing Public History into the history
-	for _,data in pairs(publicGameData.History) do
-		addNewOrder(WL.GameOrderEvent.Create(data.By, data.Text, nil, nil, nil));
+	local historyamount = tablelength(publicGameData.Historyorder);
+	local number = 0;
+	while(number<historyamount)do
+		local historyid = publicGameData.Historyorder[number].ID;
+		if(publicGameData.Historyorder[number].Type == "Public")then
+			addNewOrder(WL.GameOrderEvent.Create(publicGameData.History[historyid].By, publicGameData.History[historyid].Text, nil, nil, nil));
+		else
+			local spielerID = publicGameData.Historyorder[number].PlayerID;
+			addNewOrder(WL.GameOrderEvent.Create(playerGameData[spielerID].PrivateHistory[historyid].By, playerGameData[spielerID].PrivateHistory[historyid].Text, {spielerID}, nil, nil));
+		end
+		number = number+1;
 	end
-	publicGameData.History = {};
+	--Writing Public History into the history
+	--for _,data in pairs(publicGameData.History) do
+	--	addNewOrder(WL.GameOrderEvent.Create(data.By, data.Text, nil, nil, nil));
+	--end
+	--publicGameData.History = {};
 	for _,pid in pairs(game.Game.PlayingPlayers) do
 		--Writing Private History into the history
-		if(pid.IsAI == false)then
-			for _,data in pairs(playerGameData[pid.ID].PrivateHistory) do
-				if(data.By ~= pid.ID)then
-					addNewOrder(WL.GameOrderEvent.Create(data.By, data.Text, {pid.ID}, nil, nil));
-				end
-			end
-			playerGameData[pid.ID].PrivateHistory = {};
-		end
+		--if(pid.IsAI == false)then
+			--for _,data in pairs(playerGameData[pid.ID].PrivateHistory) do
+			--	if(data.By ~= pid.ID)then
+			--		addNewOrder(WL.GameOrderEvent.Create(data.By, data.Text, {pid.ID}, nil, nil));
+			--	end
+			--end
+			--playerGameData[pid.ID].PrivateHistory = {};
+		--end
 		for _,pid2 in pairs(game.Game.PlayingPlayers) do
 			if(pid ~= pid2)then
 				if(InWar(pid2.ID,pid.ID) and  IsAlly(pid2.ID,pid.ID,game))then
