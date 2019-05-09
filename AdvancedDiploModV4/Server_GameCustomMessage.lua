@@ -50,7 +50,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 				local message = {};
 				message.By = playerID;
 				message.Text = " declined the alliance offer of " .. toname(payload.OfferedBy,game);
-				playerGameData[playerID].PrivateHistory[newhistoryid] = message;
+				playerGameData[playerID].PrivateHistory[tablelength(playerGameData[playerID].PrivateHistory)] = message;
 				local newhistoryid = tablelength(playerGameData[payload.OfferedBy].PrivateHistory);
 				local additionalhistorydata = {};
 				additionalhistorydata.Type = "Private";
