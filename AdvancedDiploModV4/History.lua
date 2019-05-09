@@ -7,6 +7,7 @@ function ShowHistory(datentable,game,ende)
 		if(daten ~= "This history gets written into the history of the next turn:\n")then
 			--if(lastmessage == nil or lastmessage ~= daten or datentable == Mod.PlayerGameData.Nachrichten)then
 				--lastmessage = daten;
+			
 				UI.Alert(daten);
 			--end
 		else
@@ -36,7 +37,10 @@ function ShowAllHistory(game,ende)
 		if(daten ~= "This history gets written into the history of the next turn:\n")then
 			--if(lastmessage == nil or lastmessage ~= daten or datentable == Mod.PlayerGameData.Nachrichten)then
 				--lastmessage = daten;
-				UI.Alert(daten);
+				if(lastnachricht ~= Nachricht)then
+					lastnachricht = Nachricht;
+					UI.Alert(daten);
+				end
 			--end
 		end
 	else
@@ -44,7 +48,10 @@ function ShowAllHistory(game,ende)
 		if(daten ~= "This history gets written into the history of the next turn:\n")then
 			--if(lastmessage == nil or lastmessage ~= daten or datentable == Mod.PlayerGameData.Nachrichten)then
 				--lastmessage = daten;
-				UI.Alert(daten);
+				if(lastnachricht ~= Nachricht)then
+					lastnachricht = Nachricht;
+					UI.Alert(daten);
+				end
 			--end
 		end
 	end
