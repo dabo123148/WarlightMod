@@ -38,6 +38,7 @@ function ShowAllHistory(game,ende)
 			--if(lastmessage == nil or lastmessage ~= daten or datentable == Mod.PlayerGameData.Nachrichten)then
 				--lastmessage = daten;
 				if(lastnachricht ~= Nachricht)then
+					print(lastnachricht);
 					lastnachricht = Nachricht;
 					UI.Alert(daten);
 				end
@@ -49,6 +50,7 @@ function ShowAllHistory(game,ende)
 			--if(lastmessage == nil or lastmessage ~= daten or datentable == Mod.PlayerGameData.Nachrichten)then
 				--lastmessage = daten;
 				if(lastnachricht ~= Nachricht)then
+					print(lastnachricht);
 					lastnachricht = Nachricht;
 					UI.Alert(daten);
 				end
