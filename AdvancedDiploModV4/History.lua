@@ -24,7 +24,7 @@ function ShowHistory(datentable,game,ende)
 	end
 end
 function ShowAllHistory(game,ende)
-	local daten = "This history gets written into the history of the next turn:\n";
+	daten = "This history gets written into the history of the next turn:\n";
 	datentable = Mod.PublicGameData.History;
 	for _,data in pairs(datentable)do
 		daten = daten .. getname(data.By,game) .. ":".. data.Text .. "\n";
@@ -37,9 +37,9 @@ function ShowAllHistory(game,ende)
 		if(daten ~= "This history gets written into the history of the next turn:\n")then
 			--if(lastmessage == nil or lastmessage ~= daten or datentable == Mod.PlayerGameData.Nachrichten)then
 				--lastmessage = daten;
-				if(lastnachricht ~= Nachricht)then
-					print(lastnachricht);
-					lastnachricht = Nachricht;
+				if(lastnachricht ~= daten)then
+					print(daten);
+					lastnachricht = daten;
 					UI.Alert(daten);
 				end
 			--end
@@ -49,9 +49,9 @@ function ShowAllHistory(game,ende)
 		if(daten ~= "This history gets written into the history of the next turn:\n")then
 			--if(lastmessage == nil or lastmessage ~= daten or datentable == Mod.PlayerGameData.Nachrichten)then
 				--lastmessage = daten;
-				if(lastnachricht ~= Nachricht)then
-					print(lastnachricht);
-					lastnachricht = Nachricht;
+				if(lastnachricht ~= daten)then
+					print(daten);
+					lastnachricht = daten;
 					UI.Alert(daten);
 				end
 			--end
