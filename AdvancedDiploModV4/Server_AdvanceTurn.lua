@@ -23,17 +23,17 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	--for _,data in pairs(publicGameData.History) do
 	--	addNewOrder(WL.GameOrderEvent.Create(data.By, data.Text, nil, nil, nil));
 	--end
-	--publicGameData.History = {};
+	publicGameData.History = {};
 	for _,pid in pairs(game.Game.PlayingPlayers) do
 		--Writing Private History into the history
-		--if(pid.IsAI == false)then
+		if(pid.IsAI == false)then
 			--for _,data in pairs(playerGameData[pid.ID].PrivateHistory) do
 			--	if(data.By ~= pid.ID)then
 			--		addNewOrder(WL.GameOrderEvent.Create(data.By, data.Text, {pid.ID}, nil, nil));
 			--	end
 			--end
-			--playerGameData[pid.ID].PrivateHistory = {};
-		--end
+			playerGameData[pid.ID].PrivateHistory = {};
+		end
 		for _,pid2 in pairs(game.Game.PlayingPlayers) do
 			if(pid ~= pid2)then
 				if(InWar(pid2.ID,pid.ID) and  IsAlly(pid2.ID,pid.ID,game))then
