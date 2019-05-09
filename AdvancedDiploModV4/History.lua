@@ -40,7 +40,11 @@ function ShowAllHistory(game,ende)
 				if(lastnachricht ~= daten)then
 					print(daten);
 					lastnachricht = daten;
-					UI.Alert(daten);
+					if(showedreturnmessage == nil or showedreturnmessage == true)then
+						UI.Alert(daten);
+					else
+						showedreturnmessage = true;
+					end
 				end
 			--end
 		end
@@ -52,7 +56,11 @@ function ShowAllHistory(game,ende)
 				if(lastnachricht ~= daten)then
 					print(daten);
 					lastnachricht = daten;
-					UI.Alert(daten);
+					if(showedreturnmessage == nil or showedreturnmessage == true)then
+						UI.Alert(daten);
+					else
+						showedreturnmessage = true;
+					end
 				end
 			--end
 		end
