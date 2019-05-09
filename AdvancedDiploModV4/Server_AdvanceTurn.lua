@@ -12,7 +12,9 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 			addNewOrder(WL.GameOrderEvent.Create(publicGameData.History[historyid].By, publicGameData.History[historyid].Text, nil, nil, nil));
 		else
 			local spielerID = publicGameData.Historyorder[number].PlayerID;
-			addNewOrder(WL.GameOrderEvent.Create(playerGameData[spielerID].PrivateHistory[historyid].By, playerGameData[spielerID].PrivateHistory[historyid].Text, {spielerID}, nil, nil));
+			if(playerGameData[spielerID].PrivateHistory[historyid].By ~= spielerID)then
+				addNewOrder(WL.GameOrderEvent.Create(playerGameData[spielerID].PrivateHistory[historyid].By, playerGameData[spielerID].PrivateHistory[historyid].Text, {spielerID}, nil, nil));
+			end
 		end
 		number = number+1;
 	end
