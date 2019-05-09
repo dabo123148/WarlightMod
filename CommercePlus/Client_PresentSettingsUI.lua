@@ -12,7 +12,7 @@ function CreateLine(settingname,variable,default,important)
 		lab.SetText(settingname .. default);
 	else
 		if(variable == 0)then
-			lab.SetText(settingname .. disabled);
+			lab.SetText(settingname .. 'disabled');
 		else
 			lab.SetText(settingname .. variable);
 		end
