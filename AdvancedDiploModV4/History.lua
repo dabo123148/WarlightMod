@@ -27,31 +27,26 @@ function ShowAllHistory(game,ende)
 	daten = "This history gets written into the history of the next turn:\n";
 	local historyamount = tablelength(Mod.PublicGameData.Historyorder);
 	local number = 0;
+	local locnumber = 0;
 	while(number<historyamount)do
 		local historyid =  Mod.PublicGameData.Historyorder[number].ID;
 		
 		if(Mod.PublicGameData.Historyorder[number].Type == "Public")then
 			local By =  Mod.PublicGameData.History[historyid].By;
 			local Text =  Mod.PublicGameData.History[historyid].Text;
-			daten = daten .. tostring(number+1) .. " : " ..getname(By,game) .. ":".. Text .. "\n";
+			daten = daten .. tostring(locnumber+1) .. " : " ..getname(By,game) .. ":".. Text .. "\n";
+			locnumber = locnumber + 1;
 		else
 			local spielerID =  Mod.PublicGameData.Historyorder[number].PlayerID;
-			if(Mod.PlayerGameData.PrivateHistory[historyid].By == game.Us.ID)then
+			if(spielerID == game.Us.ID)then
 				local By = Mod.PlayerGameData.PrivateHistory[historyid].By;
 				local Text = Mod.PlayerGameData.PrivateHistory[historyid].Text;
-				daten = daten .. tostring(number+1) .. " : " ..getname(By,game) .. ":".. Text .. "\n";
+				daten = daten .. tostring(locnumber+1) .. " : " ..getname(By,game) .. ":".. Text .. "\n";
+				locnumber = locnumber + 1;
 			end
 		end
 		number = number+1;
 	end
-	--datentable = Mod.PublicGameData.History;
-	--for _,data in pairs(datentable)do
-	--	daten = daten .. getname(data.By,game) .. ":".. data.Text .. "\n";
-	--end
-	--datentable = Mod.PlayerGameData.PrivateHistory;
-	--for _,data in pairs(datentable)do
-	--	daten = daten .. getname(data.By,game) .. ":".. data.Text .. "\n";
-	--end
 	if(ende == "")then
 		if(daten ~= "This history gets written into the history of the next turn:\n")then
 			--if(lastmessage == nil or lastmessage ~= daten or datentable == Mod.PlayerGameData.Nachrichten)then
