@@ -10,3 +10,8 @@ Alliance System:
 AIs for Diplos:
   -AIs won't declare war on players(depends on settings)
   -AIs won't declare war on AIs(depends on settings)
+Mod internal history between turns:
+-All mod interaction is documented between turns in the mod history and gets written in the next turn into the normal history
+-It is seperated in:
+ -public(Accepting Peace and depending on settings Accepting Alliances)
+ -private(sending offeres and denying offers and depending on settings accepting alliances)
