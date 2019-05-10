@@ -74,22 +74,27 @@ function OpenhistoryMenu()
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[1]).SetText("Mod history of this turn(to refresh it reopen the menu):");
 	local historyamount = tablelength(Mod.PublicGameData.Historyorder);
+	print("historyamount" .. historyamount);
 	local number = 0;
 	while(number<historyamount)do
 		local historyid = Mod.PublicGameData.Historyorder[number].ID;
 		if(Mod.PublicGameData.Historyorder[number].Type == "Public")then
-					horzobjlist[number+2] = UI.CreateHorizontalLayoutGroup(root);
+			print("Test1");
+			horzobjlist[number+2] = UI.CreateHorizontalLayoutGroup(root);
 			local By =  Mod.PublicGameData.History[historyid].By;
 			local Text =  Mod.PublicGameData.History[historyid].Text;
 			textelem = UI.CreateLabel(horzobjlist[number+2]).SetText(tostring(number+1) .. " : " ..toname(By,Game) .. ":".. Text);
 			textelem.SetColor('#ff0000');
 		else
+			print("Test2");
 			local spielerID =  Mod.PublicGameData.Historyorder[number].PlayerID;
 			if(Mod.PlayerGameData.PrivateHistory[historyid].By == Game.Us.ID)then
+				print("Test3");
 				horzobjlist[number+2] = UI.CreateHorizontalLayoutGroup(root);
 				local By = Mod.PlayerGameData.PrivateHistory[historyid].By;
 				local Text = Mod.PlayerGameData.PrivateHistory[historyid].Text;
 				textelem = UI.CreateLabel(horzobjlist[number+2]).SetText(tostring(number+1) .. " : " ..toname(By,Game) .. ":".. Text);
+				print("Test4:" .. tostring(number+1) .. " : " ..toname(By,Game) .. ":".. Text);
 				textelem.SetColor('#00ff00');
 			end
 		end
