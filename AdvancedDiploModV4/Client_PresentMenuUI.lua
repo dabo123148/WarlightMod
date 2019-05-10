@@ -85,7 +85,7 @@ function OpenhistoryMenu()
 			textelem.SetColor('#ff0000');
 		else
 			local spielerID =  Mod.PublicGameData.Historyorder[number].PlayerID;
-			if(Mod.PlayerGameData.PrivateHistory[historyid].By == game.Us.ID)then
+			if(Mod.PlayerGameData.PrivateHistory[historyid].By == Game.Us.ID)then
 				local By = Mod.PlayerGameData.PrivateHistory[historyid].By;
 				local Text = Mod.PlayerGameData.PrivateHistory[historyid].Text;
 				textelem = UI.CreateLabel(horzobjlist[number+2]).SetText(tostring(number+1) .. " : " ..toname(By,Game) .. ":".. Text);
