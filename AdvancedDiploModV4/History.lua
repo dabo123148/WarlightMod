@@ -33,13 +33,13 @@ function ShowAllHistory(game,ende)
 		if(Mod.PublicGameData.Historyorder[number].Type == "Public")then
 			local By =  Mod.PublicGameData.History[historyid].By;
 			local Text =  Mod.PublicGameData.History[historyid].Text;
-			daten = daten .. (number+1).ToString() .. " : " ..getname(By,game) .. ":".. Text .. "\n";
+			daten = daten .. tostring(number+1) .. " : " ..getname(By,game) .. ":".. Text .. "\n";
 		else
 			local spielerID =  Mod.PublicGameData.Historyorder[number].PlayerID;
 			if(Mod.PlayerGameData.PrivateHistory[historyid].By == game.Us.ID)then
 				local By = Mod.PlayerGameData.PrivateHistory[historyid].By;
 				local Text = Mod.PlayerGameData.PrivateHistory[historyid].Text;
-				daten = daten .. (number+1).ToString() .. " : " ..getname(By,game) .. ":".. Text .. "\n";
+				daten = daten .. tostring(number+1) .. " : " ..getname(By,game) .. ":".. Text .. "\n";
 			end
 		end
 		number = number+1;
