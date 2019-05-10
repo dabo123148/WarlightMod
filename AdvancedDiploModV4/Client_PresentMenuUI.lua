@@ -89,6 +89,8 @@ function OpenhistoryMenu()
 			print("Test2");
 			local spielerID =  Mod.PublicGameData.Historyorder[number].PlayerID;
 			if(Mod.PlayerGameData.PrivateHistory[historyid].By == Game.Us.ID)then
+				print(Mod.PlayerGameData.PrivateHistory[historyid].By);
+				print(Game.Us.ID);
 				print("Test3");
 				horzobjlist[number+2] = UI.CreateHorizontalLayoutGroup(root);
 				local By = Mod.PlayerGameData.PrivateHistory[historyid].By;
