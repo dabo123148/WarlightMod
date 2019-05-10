@@ -81,14 +81,14 @@ function OpenhistoryMenu()
 		if(publicGameData.Historyorder[number].Type == "Public")then
 			local By =  Mod.PublicGameData.History[historyid].By;
 			local Text =  Mod.PublicGameData.History[historyid].Text;
-			textelem = UI.CreateLabel(horzobjlist[number+2]).SetText((number+1).ToString() .. " : " ..toname(By,Game) .. ":".. Text);
+			textelem = UI.CreateLabel(horzobjlist[number+2]).SetText(tostring(number+1) .. " : " ..toname(By,Game) .. ":".. Text);
 			textelem.SetColor('#ff0000');
 		else
 			local spielerID =  Mod.PublicGameData.Historyorder[number].PlayerID;
 			if(Mod.PlayerGameData.PrivateHistory[historyid].By == game.Us.ID)then
 				local By = Mod.PlayerGameData.PrivateHistory[historyid].By;
 				local Text = Mod.PlayerGameData.PrivateHistory[historyid].Text;
-				textelem = UI.CreateLabel(horzobjlist[number+2]).SetText((number+1).ToString() .. " : " ..toname(By,Game) .. ":".. Text);
+				textelem = UI.CreateLabel(horzobjlist[number+2]).SetText(tostring(number+1) .. " : " ..toname(By,Game) .. ":".. Text);
 				textelem.SetColor('#00ff00');
 			end
 		end
