@@ -30,7 +30,7 @@ function ShowAllHistory(game,ende)
 	while(number<historyamount)do
 		local historyid =  Mod.PublicGameData.Historyorder[number].ID;
 		
-		if(publicGameData.Historyorder[number].Type == "Public")then
+		if(Mod.PublicGameData.Historyorder[number].Type == "Public")then
 			local By =  Mod.PublicGameData.History[historyid].By;
 			local Text =  Mod.PublicGameData.History[historyid].Text;
 			daten = daten .. (number+1).ToString() .. " : " ..getname(By,game) .. ":".. Text .. "\n";
