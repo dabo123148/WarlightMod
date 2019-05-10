@@ -13,5 +13,5 @@ AIs for Diplos:
 Mod internal history between turns:
 -All mod interaction is documented between turns in the mod history and gets written in the next turn into the normal history
 -It is seperated in:
- -public(Accepting Peace and depending on settings Accepting Alliances)
- -private(sending offeres and denying offers and depending on settings accepting alliances)
+ -public(Accepting Peace and depending on settings Accepting Alliances), it can be seen by everyone
+ -private(sending offeres and denying offers and depending on settings accepting alliances), it can only be seen by involved players
