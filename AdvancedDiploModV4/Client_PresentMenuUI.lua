@@ -10,8 +10,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	offerpeacebutton = nil;
 	offerallianzebutton = nil;
 	pendingrequestbutton = nil;
-	publichistorybutton = nil;
-	privatehistorybutton = nil;
+	historybutton = nil;
 	cancelallianzebutton = nil;
 	SelectedData = {};
 	Game = game;
@@ -68,6 +67,33 @@ function TargetPlayerClickedOfferPeace()
 		UI.PromptFromList("Select the player you'd like to offer the peace to", options);
 	end
 end
+function OpenhistoryMenu()
+	DeleteUI();
+	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Mod history of this turn(to refresh it reopen the menu):");
+	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
+	textelem = UI.CreateLabel(horzobjlist[1]).SetText("Public: red, Private: green (see mod description for expenation)");
+	local number = 0;
+	while(number<historyamount)do
+		local historyid = Mod.PublicGameData.Historyorder[number].ID;
+		horzobjlist[number+2] = UI.CreateHorizontalLayoutGroup(root);
+		if(publicGameData.Historyorder[number].Type == "Public")then
+			local By =  Mod.PublicGameData.History[historyid].By;
+			local Text =  Mod.PublicGameData.History[historyid].Text;
+			textelem = UI.CreateLabel(horzobjlist[number+2]).SetText((number+1).ToString() .. " : " ..toname(By,Game) .. ":".. Text);
+			textelem.SetColor('#ff0000');
+		else
+			local spielerID =  Mod.PublicGameData.Historyorder[number].PlayerID;
+			if(Mod.PlayerGameData.PrivateHistory[historyid].By == game.Us.ID)then
+				local By = Mod.PlayerGameData.PrivateHistory[historyid].By;
+				local Text = Mod.PlayerGameData.PrivateHistory[historyid].Text;
+				textelem = UI.CreateLabel(horzobjlist[number+2]).SetText((number+1).ToString() .. " : " ..toname(By,Game) .. ":".. Text);
+				textelem.SetColor('#00ff00');
+			end
+		end
+		number = number+1;
+	end
+end
 function OpenMenu()
 	DeleteUI();
 	declarewarbutton = UI.CreateButton(vert).SetText("Declare War").SetOnClick(OpenDeclarWar);
@@ -75,12 +101,7 @@ function OpenMenu()
 	offerallianzebutton = UI.CreateButton(vert).SetText("Offer Alliance").SetOnClick(OpenOfferAlliance);
 	cancelallianzebutton = UI.CreateButton(vert).SetText("Cancel Alliance").SetOnClick(OpenCancelAlliance);
 	pendingrequestbutton = UI.CreateButton(vert).SetText("Pending Requests").SetOnClick(OpenPendingRequests);
-	publichistorybutton =  UI.CreateButton(vert).SetText("Public Mod History").SetOnClick(function()
-		ShowHistory(Mod.PublicGameData.History,Game,"showmessage");
-	end);
-	privatehistorybutton =  UI.CreateButton(vert).SetText("Private Mod History").SetOnClick(function()
-		ShowHistory(Mod.PlayerGameData.PrivateHistory,Game,"showmessage");
-	end);
+	historybutton =  UI.CreateButton(vert).SetText("Mod History").SetOnClick(OpenhistoryMenu);
 	--Disableing buttons that have no function due to the diplomacy and showing the diplomacy
 	horzobjlist = {};
 	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
@@ -467,13 +488,9 @@ function DeleteUI()
 		UI.Destroy(cancelallianzebutton);
 		cancelallianzebutton = nil;
 	end
-	if(publichistorybutton ~= nil)then
-		UI.Destroy(publichistorybutton);
-		publichistorybutton = nil;
-	end
-	if(privatehistorybutton ~= nil)then
-		UI.Destroy(privatehistorybutton);
-		privatehistorybutton = nil;
+	if(historybutton ~= nil)then
+		UI.Destroy(historybutton);
+		historybutton = nil;
 	end
 	for _,horzobj in pairs(horzobjlist)do
 		UI.Destroy(horzobj);
