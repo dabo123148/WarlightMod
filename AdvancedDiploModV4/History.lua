@@ -27,17 +27,17 @@ function ShowAllHistory(game,ende)
 	daten = "This history gets written into the history of the next turn:\n";
 	local number = 0;
 	while(number<historyamount)do
-		local historyid = publicGameData.Historyorder[number].ID;
+		local historyid =  Mod.PublicGameData.Historyorder[number].ID;
 		
 		if(publicGameData.Historyorder[number].Type == "Public")then
-			local By = WL.GameOrderEvent.Create(publicGameData.History[historyid].By;
-			local Text = publicGameData.History[historyid].Text;
+			local By =  Mod.PublicGameData.History[historyid].By;
+			local Text =  Mod.PublicGameData.History[historyid].Text;
 			daten = daten .. (number+1).ToString() .. " : " ..getname(By,game) .. ":".. Text .. "\n";
 		else
-			local spielerID = publicGameData.Historyorder[number].PlayerID;
-			if(playerGameData[spielerID].PrivateHistory[historyid].By == game.Us.ID)then
-				local By = playerGameData[spielerID].PrivateHistory[historyid].By;
-				local Text = playerGameData[spielerID].PrivateHistory[historyid].Text;
+			local spielerID =  Mod.PublicGameData.Historyorder[number].PlayerID;
+			if(Mod.PlayerGameData.PrivateHistory[historyid].By == game.Us.ID)then
+				local By = Mod.PlayerGameData.PrivateHistory[historyid].By;
+				local Text = Mod.PlayerGameData.PrivateHistory[historyid].Text;
 				daten = daten .. (number+1).ToString() .. " : " ..getname(By,game) .. ":".. Text .. "\n";
 			end
 		end
