@@ -88,7 +88,7 @@ function OpenhistoryMenu()
 		else
 			print("Test2");
 			local spielerID =  Mod.PublicGameData.Historyorder[number].PlayerID;
-			if(Mod.PlayerGameData.PrivateHistory[historyid].By == Game.Us.ID)then
+			if(spielerID == Game.Us.ID)then
 				print(Mod.PlayerGameData.PrivateHistory[historyid].By);
 				print(Game.Us.ID);
 				print("Test3");
