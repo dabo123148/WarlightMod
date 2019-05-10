@@ -25,6 +25,7 @@ function ShowHistory(datentable,game,ende)
 end
 function ShowAllHistory(game,ende)
 	daten = "This history gets written into the history of the next turn:\n";
+	local historyamount = tablelength(Mod.PublicGameData.Historyorder);
 	local number = 0;
 	while(number<historyamount)do
 		local historyid =  Mod.PublicGameData.Historyorder[number].ID;
