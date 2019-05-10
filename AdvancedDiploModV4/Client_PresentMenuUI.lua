@@ -78,7 +78,7 @@ function OpenhistoryMenu()
 	while(number<historyamount)do
 		local historyid = Mod.PublicGameData.Historyorder[number].ID;
 		horzobjlist[number+2] = UI.CreateHorizontalLayoutGroup(root);
-		if(publicGameData.Historyorder[number].Type == "Public")then
+		if(Mod.PublicGameData.Historyorder[number].Type == "Public")then
 			local By =  Mod.PublicGameData.History[historyid].By;
 			local Text =  Mod.PublicGameData.History[historyid].Text;
 			textelem = UI.CreateLabel(horzobjlist[number+2]).SetText(tostring(number+1) .. " : " ..toname(By,Game) .. ":".. Text);
