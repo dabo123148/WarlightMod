@@ -94,6 +94,7 @@ function OpenhistoryMenu()
 				print("Test3");
 				horzobjlist[number+2] = UI.CreateHorizontalLayoutGroup(root);
 				local By = Mod.PlayerGameData.PrivateHistory[historyid].By;
+				print(By);
 				local Text = Mod.PlayerGameData.PrivateHistory[historyid].Text;
 				textelem = UI.CreateLabel(horzobjlist[number+2]).SetText(tostring(number+1) .. " : " ..toname(By,Game) .. ":".. Text);
 				print("Test4:" .. tostring(number+1) .. " : " ..toname(By,Game) .. ":".. Text);
