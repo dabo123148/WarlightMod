@@ -6,7 +6,7 @@ function Client_PresentSettingsUI(rootParent)
 	CreateLine('AIs are allowed to declare war on AIs : ', Mod.Settings.AIsdeclearAIs,true,true);
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Alliance Settings');
-	CreateLine('Allied players can see your territories(currently not included) : ', Mod.Settings.SeeAllyTerritories,true,true);
+	CreateLine('Allied players can see your territories : ', Mod.Settings.SeeAllyTerritories,true,true);
 	CreateLine('Allies are visible to everyone : ', Mod.Settings.PublicAllies,true,true);
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Card Settings');
