@@ -146,6 +146,7 @@ function Server_GameCustomMessage(game, playerID, payload, setReturnTable)
 			local additionalhistorydata = {};
 			additionalhistorydata.Type = "Public";
 			additionalhistorydata.ID = newhistoryid;
+			publicGameData.Historyorder[tablelength(publicGameData.Historyorder)] = additionalhistorydata;
 			publicGameData.History[newhistoryid] = message;
 			Mod.PlayerGameData=playerGameData;
 			local remainingwar = {};
