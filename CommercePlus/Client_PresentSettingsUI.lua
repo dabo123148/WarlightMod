@@ -1,9 +1,9 @@
 
 function Client_PresentSettingsUI(rootParent)
 	root = rootParent;
-	CreateLine('Extra money per killed army : ', Mod.Settings.MoneyPerKilledArmy,1);
-	CreateLine('Extra money per captured territory : ', Mod.Settings.MoneyPerCapturedTerritory,5);
-	CreateLine('Extra money per captured bonus : ', Mod.Settings.MoneyPerCapturedBonus,10);
+	CreateLine('Extra gold per killed army : ', Mod.Settings.MoneyPerKilledArmy,1);
+	CreateLine('Extra gold per captured territory : ', Mod.Settings.MoneyPerCapturedTerritory,5);
+	CreateLine('Extra gold per captured bonus : ', Mod.Settings.MoneyPerCapturedBonus,10);
 end
 function CreateLine(settingname,variable,default,important)
 	local lab = UI.CreateLabel(root);
