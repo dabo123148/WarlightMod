@@ -22,12 +22,12 @@ end
 function ShowUI()
 	horzlist = {};
 	horzlist[1] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(horzlist[1]).SetText('Money per killed army');
+	UI.CreateLabel(horzlist[1]).SetText('Gold per killed army');
 	inputMoneyPerKilledArmy = UI.CreateNumberInputField(horzlist[1]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerKilledArmyinit);
 	horzlist[2] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(horzlist[2]).SetText('Money per captured territory');
+	UI.CreateLabel(horzlist[2]).SetText('Gold per captured territory');
 	inputMoneyPerCapturedTerritory = UI.CreateNumberInputField(horzlist[2]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerCapturedTerritoryinit);
 	horzlist[3] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(horzlist[3]).SetText('Money per captured bonus');
+	UI.CreateLabel(horzlist[3]).SetText('Gold per captured bonus');
 	inputMoneyPerCapturedBonus = UI.CreateNumberInputField(horzlist[3]).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(MoneyPerCapturedBonusinit);
 end
