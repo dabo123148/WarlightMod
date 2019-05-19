@@ -1,1 +1,1 @@
-Changes the number of armies on each neutral territory connected to the starting territories in a radius between 1-3 territories to a defined value.
+Changes the number of armies on each neutral territory connected to the starting territories in a radius between 1-3 territories to a defined value. It happens when the territories have been distributed(in games without autodistribution, it does not show how it will look like after picking). This mod can be used to prevent players from starting next to wastelands.
