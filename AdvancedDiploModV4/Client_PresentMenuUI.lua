@@ -191,8 +191,13 @@ function OpenMenu()
 	else
 		UI.Destroy(horzobjlist[6]);
 		horzobjlist[6] = nil;
-		UI.CreateLabel(horzobjlist[5]).SetText("You are currently allied with no one.");
-		cancelallianzebutton.SetInteractable(false);
+		if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then 
+			UI.CreateLabel(horzobjlist[5]).SetText("You are currently allied with no one.");
+			cancelallianzebutton.SetInteractable(false);
+		else
+			UI.CreateLabel(horzobjlist[5]).SetText("The alliance system is disabled by settings.");
+			cancelallianzebutton.SetInteractable(false);
+		end
 	end
 end
 function OpenCancelAlliance()
