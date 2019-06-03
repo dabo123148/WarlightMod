@@ -125,8 +125,14 @@ function NeverPlayable(warsetting,peacesetting,allysetting)
 	if(peacesetting == nil and allysetting == nil)then
 		return false;
 	end
-	if(peacesetting == false and allysetting  == false and warsetting == false)then
-		return true;
+	if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
+		if(peacesetting == false and allysetting  == false and warsetting == false)then
+			return true;
+		end
+	else
+		if(peacesetting == false and warsetting == false)then
+			return true;
+		end
 	end
 	return false;
 end
