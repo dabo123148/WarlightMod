@@ -11,6 +11,7 @@ Alliance System:
 AIs for Diplos:
   -AIs won't declare war on players(depends on settings)
   -AIs won't declare war on AIs(depends on settings)
+  -AIS will always accept peace so if you do not want to be in war anylonger with a booted player you can just offer the ai peace and it will instantly accept it
 Mod internal history between turns:
 -All mod interaction is documented between turns in the mod history and gets written in the next turn into the normal history
 -It is seperated in:
