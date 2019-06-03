@@ -68,5 +68,13 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.GiftCardRequireAlly == nil)then
 		Mod.Settings.GiftCardRequireAlly = true;
 	end
+	if(Mod.Settings.DisableAllies == false) then
+		Mod.Settings.SeeAllyTerritories = false;
+		Mod.Settings.PublicAllies = false;
+		Mod.Settings.SanctionCardRequireAlly = false;
+		Mod.Settings.BombCardRequireAlly = false;
+		Mod.Settings.SpyCardRequireAlly = false;
+		Mod.Settings.GiftCardRequireAlly = false;
+	end
 	Mod.Settings.StartWar = {};
 end
