@@ -84,7 +84,7 @@ function ShowUI()
 	horzlist[3] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	UI.CreateLabel(horzlist[3]).SetText('Allianze Settings');
 	horzlist[5] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	SeeAllyTerritoriesCheckbox = UI.CreateCheckBox(horzlist[5]).SetText('Disable alliance system').SetIsChecked(DisableAlliesinit);
+	DisableAlliesCheckbox = UI.CreateCheckBox(horzlist[5]).SetText('Disable alliance system').SetIsChecked(DisableAlliesinit);
 	horzlist[6] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	SeeAllyTerritoriesCheckbox = UI.CreateCheckBox(horzlist[6]).SetText('Allow Players to see the territories of their allies(requires spy card)').SetIsChecked(SeeAllyTerritoriesinit);
 	horzlist[7] = UI.CreateHorizontalLayoutGroup(rootParentobj);
