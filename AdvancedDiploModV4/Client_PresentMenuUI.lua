@@ -82,7 +82,7 @@ function OpenhistoryMenu()
 			horzobjlist[locnumber+2] = UI.CreateHorizontalLayoutGroup(root);
 			local By =  Mod.PublicGameData.History[historyid].By;
 			local Text =  Mod.PublicGameData.History[historyid].Text;
-			textelem = UI.CreateLabel(horzobjlist[number+2]).SetText(tostring(locnumber+1) .. " : " ..toname(By,Game) .. ":".. Text);
+			textelem = UI.CreateLabel(horzobjlist[locnumber+2]).SetText(tostring(locnumber+1) .. " : " ..toname(By,Game) .. ":".. Text);
 			textelem.SetColor('#ff0000');
 			locnumber = locnumber + 1;
 		else
