@@ -23,9 +23,9 @@ function Client_PresentSettingsUI(rootParent)
 		else
 			CreateLine('Sanction Cards can be played on players you are in war with : ', Mod.Settings.SanctionCardRequireWar,true,false);
 			CreateLine('Sanction Cards can be played on players you are in peace with : ', Mod.Settings.SanctionCardRequirePeace,false,false);
-			if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
+			--if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
 				CreateLine('Sanction Cards can be played on players you are allied with : ', Mod.Settings.SanctionCardRequireAlly,false,false);
-			end
+			--end
 		end
 	end
 	UI.CreateLabel(rootParent).SetText('Bomb Card');
