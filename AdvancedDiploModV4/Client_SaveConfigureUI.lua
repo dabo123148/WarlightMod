@@ -71,10 +71,10 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.DisableAllies == false) then
 		Mod.Settings.SeeAllyTerritories = false;
 		Mod.Settings.PublicAllies = false;
-		Mod.Settings.SanctionCardRequireAlly = false;
-		Mod.Settings.BombCardRequireAlly = false;
-		Mod.Settings.SpyCardRequireAlly = false;
-		Mod.Settings.GiftCardRequireAlly = false;
+		Mod.Settings.SanctionCardRequireAlly = true;
+		Mod.Settings.BombCardRequireAlly = true;
+		Mod.Settings.SpyCardRequireAlly = true;
+		Mod.Settings.GiftCardRequireAlly = true;
 	end
 	Mod.Settings.StartWar = {};
 end
