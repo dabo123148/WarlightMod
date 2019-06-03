@@ -6,8 +6,12 @@ function Client_PresentSettingsUI(rootParent)
 	CreateLine('AIs are allowed to declare war on AIs : ', Mod.Settings.AIsdeclearAIs,true,true);
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Alliance Settings');
-	CreateLine('Allied players can see your territories(requires spycards to be in the game) : ', Mod.Settings.SeeAllyTerritories,true,true);
-	CreateLine('Allies are visible to everyone : ', Mod.Settings.PublicAllies,true,true);
+	if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
+		CreateLine('Allied players can see your territories(requires spycards to be in the game) : ', Mod.Settings.SeeAllyTerritories,true,true);
+		CreateLine('Allies are visible to everyone : ', Mod.Settings.PublicAllies,true,true);
+	else
+		UI.CreateLabel(root).SetText("Alliances are disabled").SetColor('#FF0000');
+	end
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Card Settings');
 	UI.CreateLabel(rootParent).SetText('Sanction Card');
@@ -19,7 +23,9 @@ function Client_PresentSettingsUI(rootParent)
 		else
 			CreateLine('Sanction Cards can be played on players you are in war with : ', Mod.Settings.SanctionCardRequireWar,true,false);
 			CreateLine('Sanction Cards can be played on players you are in peace with : ', Mod.Settings.SanctionCardRequirePeace,false,false);
-			CreateLine('Sanction Cards can be played on players you are allied with : ', Mod.Settings.SanctionCardRequireAlly,false,false);
+			if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
+				CreateLine('Sanction Cards can be played on players you are allied with : ', Mod.Settings.SanctionCardRequireAlly,false,false);
+			end
 		end
 	end
 	UI.CreateLabel(rootParent).SetText('Bomb Card');
@@ -31,7 +37,9 @@ function Client_PresentSettingsUI(rootParent)
 		else
 			CreateLine('Bomb Cards can be played on players you are in war with : ', Mod.Settings.BombCardRequireWar,true,false);
 			CreateLine('Bomb Cards can be played on players you are in peace with : ', Mod.Settings.BombCardRequirePeace,false,false);
-			CreateLine('Bomb Cards can be played on players you are allied with : ', Mod.Settings.BombCardRequireAlly,false,false);
+			if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
+				CreateLine('Bomb Cards can be played on players you are allied with : ', Mod.Settings.BombCardRequireAlly,false,false);
+			end
 		end
 	end
 	UI.CreateLabel(rootParent).SetText('Spy Card');
@@ -43,7 +51,9 @@ function Client_PresentSettingsUI(rootParent)
 		else
 			CreateLine('Spy Cards can be played on players you are in war with : ', Mod.Settings.SpyCardRequireWar,true,false);
 			CreateLine('Spy Cards can be played on players you are in peace with : ', Mod.Settings.SpyCardRequirePeace,false,false);
-			CreateLine('Spy Cards can be played on players you are allied with : ', Mod.Settings.SpyCardRequireAlly,false,false);
+			if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
+				CreateLine('Spy Cards can be played on players you are allied with : ', Mod.Settings.SpyCardRequireAlly,false,false);
+			end	
 		end
 	end
 	UI.CreateLabel(rootParent).SetText('Gift Card');
@@ -55,7 +65,9 @@ function Client_PresentSettingsUI(rootParent)
 		else
 			CreateLine('Gift Cards can be played on players you are in war with : ', Mod.Settings.GiftCardRequireWar,false,false);
 			CreateLine('Gift Cards can be played on players you are in peace with : ', Mod.Settings.GiftCardRequirePeace,true,false);
-			CreateLine('Gift Cards can be played on players you are allied with : ', Mod.Settings.GiftCardRequireAlly,true,false);
+			if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
+				CreateLine('Gift Cards can be played on players you are allied with : ', Mod.Settings.GiftCardRequireAlly,true,false);
+			end
 		end
 	end
 end
