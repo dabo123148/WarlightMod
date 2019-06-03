@@ -151,7 +151,9 @@ function OpenMenu()
 				match = true;
 				haspeace=true;
 				if(pd.IsAI == false)then
-					foundpossibleally=true;
+					if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then 
+						foundpossibleally=true;
+					end
 				end
 			end
 		end
@@ -356,7 +358,11 @@ function ShowAllyOffers()
 	end
 	if(hasoffer == false)then
 		horzobjlist[tablelength(horzobjlist)] = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no alliance offer");
+		if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("You have no alliance offer");
+		else
+			UI.CreateLabel(horzobjlist[tablelength(horzobjlist)-1]).SetText("Alliance system got per settings disabled");
+		end
 	end
 end
 function AcceptPeaceOffer(data)
