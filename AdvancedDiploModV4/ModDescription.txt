@@ -7,6 +7,7 @@ War/Peace System:
 Alliance System:
   -You will be able to see the territories your ally ownes(requires spycards to be in the game)(depends on settings)
   -Alliances can be either public or private(depends on the settings)
+  -After you cancel an alliance you got to wait till the next turn to declare war
 AIs for Diplos:
   -AIs won't declare war on players(depends on settings)
   -AIs won't declare war on AIs(depends on settings)
