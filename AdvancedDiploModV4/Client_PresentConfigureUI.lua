@@ -9,6 +9,10 @@ function Client_PresentConfigureUI(rootParent)
 	if(SeeAllyTerritoriesinit == nil)then
 		SeeAllyTerritoriesinit = true;
 	end
+	DisableAlliesinit = Mod.Settings.DisableAllies;
+	if(DisableAlliesinit == nil)then
+		DisableAlliesinit = false;
+	end
 	PublicAlliesinit = Mod.Settings.PublicAllies;
 	if(PublicAlliesinit == nil)then
 		PublicAlliesinit = true;
@@ -80,33 +84,35 @@ function ShowUI()
 	horzlist[3] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	UI.CreateLabel(horzlist[3]).SetText('Allianze Settings');
 	horzlist[5] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	SeeAllyTerritoriesCheckbox = UI.CreateCheckBox(horzlist[5]).SetText('Allow Players to see the territories of their allies(requires spy card)').SetIsChecked(SeeAllyTerritoriesinit);
+	SeeAllyTerritoriesCheckbox = UI.CreateCheckBox(horzlist[5]).SetText('Disable alliance system').SetIsChecked(DisableAlliesinit);
 	horzlist[6] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	PublicAlliesCheckbox = UI.CreateCheckBox(horzlist[6]).SetText('Allow everyone to see every ally').SetIsChecked(PublicAlliesinit);
+	SeeAllyTerritoriesCheckbox = UI.CreateCheckBox(horzlist[6]).SetText('Allow Players to see the territories of their allies(requires spy card)').SetIsChecked(SeeAllyTerritoriesinit);
 	horzlist[7] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(horzlist[7]).SetText(' ');
+	PublicAlliesCheckbox = UI.CreateCheckBox(horzlist[7]).SetText('Allow everyone to see every ally').SetIsChecked(PublicAlliesinit);
 	horzlist[8] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(horzlist[8]).SetText('Card Settings');
+	UI.CreateLabel(horzlist[8]).SetText(' ');
 	horzlist[9] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(horzlist[9]).SetText('Sanction Card');
+	UI.CreateLabel(horzlist[9]).SetText('Card Settings');
 	horzlist[10] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	inputSanctionCardRequireWar = UI.CreateCheckBox(horzlist[10]).SetText('Sanction Cards can be played on enemy').SetIsChecked(SanctionCardRequireWarinit);
+	UI.CreateLabel(horzlist[10]).SetText('Sanction Card');
 	horzlist[11] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	inputSanctionCardRequirePeace = UI.CreateCheckBox(horzlist[11]).SetText('Sanction Cards can be played on players you are in peace with').SetIsChecked(SanctionCardRequirePeaceinit);
+	inputSanctionCardRequireWar = UI.CreateCheckBox(horzlist[11]).SetText('Sanction Cards can be played on enemy').SetIsChecked(SanctionCardRequireWarinit);
 	horzlist[12] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	inputSanctionCardRequireAlly = UI.CreateCheckBox(horzlist[12]).SetText('Sanction Cards can be played on ally').SetIsChecked(SanctionCardRequireAllyinit);
+	inputSanctionCardRequirePeace = UI.CreateCheckBox(horzlist[12]).SetText('Sanction Cards can be played on players you are in peace with').SetIsChecked(SanctionCardRequirePeaceinit);
 	horzlist[13] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(horzlist[13]).SetText(' ');
+	inputSanctionCardRequireAlly = UI.CreateCheckBox(horzlist[13]).SetText('Sanction Cards can be played on ally').SetIsChecked(SanctionCardRequireAllyinit);
 	horzlist[14] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(horzlist[14]).SetText('Bomb Card');
+	UI.CreateLabel(horzlist[14]).SetText(' ');
 	horzlist[15] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	inputBombCardRequireWar = UI.CreateCheckBox(horzlist[15]).SetText('Bomb Cards can be played on enemy').SetIsChecked(BombCardRequireWarinit);
+	UI.CreateLabel(horzlist[15]).SetText('Bomb Card');
 	horzlist[16] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	inputBombCardRequirePeace = UI.CreateCheckBox(horzlist[16]).SetText('Bomb Cards can be played on players you are in peace with').SetIsChecked(BombCardRequirePeaceinit);
+	inputBombCardRequireWar = UI.CreateCheckBox(horzlist[16]).SetText('Bomb Cards can be played on enemy').SetIsChecked(BombCardRequireWarinit);
 	horzlist[17] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	inputBombCardRequireAlly = UI.CreateCheckBox(horzlist[17]).SetText('Bomb Cards can be played on ally').SetIsChecked(BombCardRequireAllyinit);
+	inputBombCardRequirePeace = UI.CreateCheckBox(horzlist[17]).SetText('Bomb Cards can be played on players you are in peace with').SetIsChecked(BombCardRequirePeaceinit);
 	horzlist[18] = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(horzlist[18]).SetText(' ');
+	inputBombCardRequireAlly = UI.CreateCheckBox(horzlist[18]).SetText('Bomb Cards can be played on ally').SetIsChecked(BombCardRequireAllyinit);
+	horzlist[19] = UI.CreateHorizontalLayoutGroup(rootParentobj);
+	UI.CreateLabel(horzlist[19]).SetText(' ');
 	horzlist[22] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	UI.CreateLabel(horzlist[22]).SetText('Spy Card');
 	horzlist[23] = UI.CreateHorizontalLayoutGroup(rootParentobj);
