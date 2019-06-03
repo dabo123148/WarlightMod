@@ -37,9 +37,9 @@ function Client_PresentSettingsUI(rootParent)
 		else
 			CreateLine('Bomb Cards can be played on players you are in war with : ', Mod.Settings.BombCardRequireWar,true,false);
 			CreateLine('Bomb Cards can be played on players you are in peace with : ', Mod.Settings.BombCardRequirePeace,false,false);
-			if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
+			--if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
 				CreateLine('Bomb Cards can be played on players you are allied with : ', Mod.Settings.BombCardRequireAlly,false,false);
-			end
+			--end
 		end
 	end
 	UI.CreateLabel(rootParent).SetText('Spy Card');
@@ -51,9 +51,9 @@ function Client_PresentSettingsUI(rootParent)
 		else
 			CreateLine('Spy Cards can be played on players you are in war with : ', Mod.Settings.SpyCardRequireWar,true,false);
 			CreateLine('Spy Cards can be played on players you are in peace with : ', Mod.Settings.SpyCardRequirePeace,false,false);
-			if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
+			--if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
 				CreateLine('Spy Cards can be played on players you are allied with : ', Mod.Settings.SpyCardRequireAlly,false,false);
-			end	
+			--end	
 		end
 	end
 	UI.CreateLabel(rootParent).SetText('Gift Card');
