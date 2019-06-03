@@ -8,6 +8,10 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.AIsdeclearAIs == nil)then
 		Mod.Settings.AIsdeclearAIs = true;
 	end
+	Mod.Settings.DisableAllies = DisableAlliesCheckbox.GetIsChecked();
+	if(Mod.Settings.DisableAllies == nil)then
+		Mod.Settings.DisableAllies = true;
+	end
 	Mod.Settings.SeeAllyTerritories = SeeAllyTerritoriesCheckbox.GetIsChecked();
 	if(Mod.Settings.SeeAllyTerritories == nil)then
 		Mod.Settings.SeeAllyTerritories = true;
