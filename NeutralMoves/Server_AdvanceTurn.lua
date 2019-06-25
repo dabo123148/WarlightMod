@@ -10,8 +10,10 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 	local currentarmies = {};
 	if(executed == false) then
 		executed = true;
+		local startarmies = 0;
 		for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
 			currentarmies[terr.ID] = terr.NumArmies.NumArmies;
+			startarmies = startarmies + currentarmies[terr.ID];
 		end
 		for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
 			if(terr.OwnerPlayerID == WL.PlayerID.Neutral)then
@@ -21,19 +23,21 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 						local  Takenarmies = math.random(0,Remainingarmies);
 						if(Takenarmies > 0)then
 							Remainingarmies = Remainingarmies - Takenarmies;
-							print(terrmodnum);
-							terrMod[terrmodnum] = WL.TerritoryModification.Create(terr.ID);
-							terrMod[terrmodnum].SetArmiesTo = Remainingarmies;
-							terrMod[terrmodnum+1] = WL.TerritoryModification.Create(conn.ID);
+							currentarmies[terr.ID] = Remainingarmies;
 							currentarmies[conn.ID] = currentarmies[conn.ID] + Takenarmies;
-							terrMod[terrmodnum+1].SetArmiesTo = currentarmies[conn.ID];
-							currentarmies[conn.ID] = currentarmies[terr.ID]-Takenarmies;
-							terrmodnum = terrmodnum+2;
 						end
 					end
 				end
 			end
 		end
+		local endarmies = 0;
+		for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
+			terrMod[terrmodnum] = WL.TerritoryModification.Create(terr.ID);
+			terrMod[terrmodnum].SetArmiesTo = currentarmies[terr.ID];
+			terrmodnum = terrmodnum +1;
+			endarmies = endarmies + currentarmies[terr.ID];
+		end
+		print(startarmies .. " " .. endarmies);
 		addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, 'Neutral_Move', {}, terrMod));
 	end
 end
