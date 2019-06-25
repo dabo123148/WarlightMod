@@ -3,7 +3,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	if(tablelength(game.ServerGame.LatestTurnStanding.Territories) > 500)then
 		executed = true;
 	end
-	local terrmodnum = 1;
+	terrmodnum = 1;
 	terrMod = {}
 end
 function Server_AdvanceTurn_End(game,addNewOrder)
