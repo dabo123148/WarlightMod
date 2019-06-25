@@ -3,6 +3,8 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	if(tablelength(game.ServerGame.LatestTurnStanding.Territories) > 500)then
 		executed = true;
 	end
+	local terrmodnum = 1;
+	terrMod = {}
 end
 function Server_AdvanceTurn_End(game,addNewOrder)
 	local currentarmies = {};
@@ -19,19 +21,19 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 						local  Takenarmies = math.random(0,Remainingarmies);
 						if(Takenarmies > 0)then
 							Remainingarmies = Remainingarmies - Takenarmies;
-							local terrMod = {}
-							terrMod[1] = WL.TerritoryModification.Create(terr.ID);
-							terrMod[1].SetArmiesTo = Remainingarmies;
-							terrMod[2] = WL.TerritoryModification.Create(conn.ID);
+							terrMod[terrmodnum] = WL.TerritoryModification.Create(terr.ID);
+							terrMod[terrmodnum].SetArmiesTo = Remainingarmies;
+							terrMod[terrmodnum+1] = WL.TerritoryModification.Create(conn.ID);
 							currentarmies[conn.ID] = currentarmies[conn.ID] + Takenarmies;
-							terrMod[2].SetArmiesTo = currentarmies[conn.ID];
+							terrMod[terrmodnum+1].SetArmiesTo = currentarmies[conn.ID];
 							currentarmies[conn.ID] = currentarmies[terr.ID]-Takenarmies;
-							addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, 'Neutral_Move', {}, terrMod));
+							terrmodnum = terrmodnum+2;
 						end
 					end
 				end
 			end
 		end
+		addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, 'Neutral_Move', {}, terrMod));
 	end
 end
 function tablelength(arr)
