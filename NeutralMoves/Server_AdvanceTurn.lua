@@ -21,6 +21,7 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 						local  Takenarmies = math.random(0,Remainingarmies);
 						if(Takenarmies > 0)then
 							Remainingarmies = Remainingarmies - Takenarmies;
+							print(terrmodnum);
 							terrMod[terrmodnum] = WL.TerritoryModification.Create(terr.ID);
 							terrMod[terrmodnum].SetArmiesTo = Remainingarmies;
 							terrMod[terrmodnum+1] = WL.TerritoryModification.Create(conn.ID);
