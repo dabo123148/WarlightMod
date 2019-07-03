@@ -2,13 +2,13 @@
 function Client_PresentSettingsUI(rootParent)
 	root = rootParent;
 	UI.CreateLabel(rootParent).SetText('AI Settings');
-	CreateLine('AIs are allowed to declare war on player : ', Mod.Settings.AllowAIDeclaration,false,true,'With this enabled, AIs will declare war on players. This happens pretty much like they normaly attack --> they will declare war mainly on their surrounding players but also on those that they try to play cards on');
-	CreateLine('AIs are allowed to declare war on AIs : ', Mod.Settings.AIsdeclearAIs,true,true);
+	CreateLine('AIs are allowed to declare war on player : ', Mod.Settings.AllowAIDeclaration,false,true,'With this enabled, AIs will declare war on players(players turned into AI are excluded). This happens pretty much like they normaly attack --> they will declare war mainly on their surrounding players but also on those that they try to play cards on. If this is disabled and you are in war with an AI(e.g. since a player got booted and turned into AI, it will continue to fight you.');
+	CreateLine('AIs are allowed to declare war on AIs : ', Mod.Settings.AIsdeclearAIs,true,true,'With this enabled, AIs will declare war on other AIs or players turned into AI. This happens pretty much like they normaly attack --> they will declare war mainly on their surrounding players but also on those that they try to play cards on.');
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Alliance Settings');
 	if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
-		CreateLine('Allied players can see your territories(requires spycards to be in the game) : ', Mod.Settings.SeeAllyTerritories,true,true);
-		CreateLine('Allies are visible to everyone : ', Mod.Settings.PublicAllies,true,true);
+		CreateLine('Allied players can see your territories(requires spycards to be in the game) : ', Mod.Settings.SeeAllyTerritories,true,true,"If spycards are in the game and this feature is enabled, the mod automaticaly plays a spycard on all your allies so you can see their territories, this does not effect the lower setting that effects the normal playing of spycards on allies. For that it will not use your spycards.);
+		CreateLine('Allies are visible to everyone : ', Mod.Settings.PublicAllies,true,true,'This setting makes alliances be announced to everyone and visible in everyones history if set to true, otherwise it will only be visible for the players that made the alliance);
 	else
 		UI.CreateLabel(root).SetText("Alliances are disabled").SetColor('#FF0000');
 	end
