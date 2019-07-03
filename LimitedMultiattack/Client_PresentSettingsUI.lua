@@ -10,8 +10,8 @@ function Client_PresentSettingsUI(rootParent)
 	if(setttingContinueAttackIfFailed == nil)then
 		setttingContinueAttackIfFailed = true;
 	end
-	UI.CreateLabel(horz).SetText('No further attack if attack fails :');
-	UI.CreateButton(horz).SetText('?').SetColor('#0080ff').SetOnClick(function() UI.Alert('If you attack from a territory and your attack fails, this set to true, will prevent you from making further attacks from that territory in that turn'); end);
+	UI.CreateLabel(horz).SetText('Can continue to attack if attack fails :');
+	UI.CreateButton(horz).SetText('?').SetColor('#0080ff').SetOnClick(function() UI.Alert('If you attack from a territory and your attack fails, with this disabled, the mod will prevent you from making further attacks from that territory in that turn unless you recapture it'); end);
 	if(setttingContinueAttackIfFailed)then
 		UI.CreateLabel(horz).SetText(' True');
 	else
