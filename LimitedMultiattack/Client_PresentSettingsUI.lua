@@ -1,11 +1,14 @@
 
 function Client_PresentSettingsUI(rootParent)
-	if(Mod.Settings.MaxAttacks ~= 0)then
-		UI.CreateLabel(rootParent).SetText(Mod.Settings.MaxAttacks .. ' Attacks Multiattack');
-	else
-		UI.CreateLabel(rootParent).SetText('unlimited number of Multiattacks');
-	end
 	local horz = UI.CreateHorizontalLayoutGroup(rootParent);
+	if(Mod.Settings.MaxAttacks ~= 0)then
+		UI.CreateLabel(horz).SetText(Mod.Settings.MaxAttacks .. ' Attacks Multiattack');
+		UI.CreateButton(horz).SetText('?').SetColor('#0080ff').SetOnClick(function() UI.Alert('This setting tells you, what the attack range of the multiattack is. Please node, that you are able to enter orders further then the range, but those will not be executed'); end);
+	else
+		UI.CreateLabel(horz).SetText('unlimited number of Multiattacks');
+		UI.CreateButton(horz).SetText('?').SetColor('#0080ff').SetOnClick(function() UI.Alert('This means you can attack normaly with the multiattack and are not under range limitations'); end);
+	end
+	horz = UI.CreateHorizontalLayoutGroup(rootParent);
 	local setttingContinueAttackIfFailed = Mod.Settings.ContinueAttackIfFailed;
 	if(setttingContinueAttackIfFailed == nil)then
 		setttingContinueAttackIfFailed = true;
