@@ -2,7 +2,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == 'GameOrderPlayCardAirlift')then
 		local targetterritory = order.ToTerritoryID;
 		for _,terrid in pairs(game.ServerGame.LatestTurnStanding.Territories) do
-			if(terrid.OwnerPlayerID ~= order.PlayerID)then
+			if(terrid.OwnerPlayerID ~= order.PlayerID and terrid.OwnerPlayerID ~= WL.PlayerID.Neutral)then
 				addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Skipped an airlift since the target territory was next to an enemy territory", {}, nil, nil));
 				skipThisOrder(WL.ModOrderControl.Skip);
 				return;
