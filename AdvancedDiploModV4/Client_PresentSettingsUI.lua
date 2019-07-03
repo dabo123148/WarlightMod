@@ -77,7 +77,7 @@ function CreateLine(settingname,variable,default,important, help)
 	if(default == true or default == false)then
 		if(help ~= null)then
 			lab.SetText(settingname);
-			UI.CreateButton(horz).SetText('?').SetColor('#0080ff').SetOnClick(function() UI.Alert(help); end);
+			UI.CreateButton(horz).SetText('?').SetColor('#4FC5FF').SetOnClick(function() UI.Alert(help); end);
 			lab = UI.CreateLabel(horz);
 			lab.SetText(booltostring(variable,default));
 		else
@@ -87,7 +87,7 @@ function CreateLine(settingname,variable,default,important, help)
 		if(variable == nil)then
 			if(help ~= null)then
 				lab.SetText(settingname);
-				UI.CreateButton(horz).SetText('?').SetColor('#0080ff').SetOnClick(function() UI.Alert(help); end);
+				UI.CreateButton(horz).SetText('?').SetColor('#4FC5FF').SetOnClick(function() UI.Alert(help); end);
 				lab = UI.CreateLabel(horz);
 				lab.SetText(default);
 			else
