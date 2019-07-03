@@ -23,7 +23,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 		modify[modifyid] = WL.TerritoryModification.Create(targetterritory);
 		modify[modifyid].SetArmiesTo = 0;
-		addnewOrder(WL.GameOrderEvent.Create(order.PlayerID, "Airlift", {}, modify, nil,nil));
+		addNewOrder(WL.GameOrderEvent.Create(order.PlayerID, 'Airlift', {}, modify));
 		addNewOrder(WL.GameOrderDiscard.Create(order.PlayerID, order.CardInstanceID));
 		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 	end
