@@ -10,10 +10,8 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 	local currentarmies = {};
 	if(executed == false) then
 		executed = true;
-		local startarmies = 0;
 		for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
 			currentarmies[terr.ID] = terr.NumArmies.NumArmies;
-			startarmies = startarmies + currentarmies[terr.ID];
 		end
 		for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
 			if(terr.OwnerPlayerID == WL.PlayerID.Neutral)then
@@ -30,14 +28,11 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 				end
 			end
 		end
-		local endarmies = 0;
 		for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
 			terrMod[terrmodnum] = WL.TerritoryModification.Create(terr.ID);
 			terrMod[terrmodnum].SetArmiesTo = currentarmies[terr.ID];
 			terrmodnum = terrmodnum +1;
-			endarmies = endarmies + currentarmies[terr.ID];
 		end
-		print(startarmies .. " " .. endarmies);
 		addNewOrder(WL.GameOrderEvent.Create(WL.PlayerID.Neutral, 'Neutral_Move', {}, terrMod));
 	end
 end
