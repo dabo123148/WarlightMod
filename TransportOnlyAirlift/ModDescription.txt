@@ -1,1 +1,1 @@
-You can only airlift to territories where you are not facing an enemy
+You can only airlift to territories where you or your teammates are not directly connected to an enemy territory
