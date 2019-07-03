@@ -1,0 +1,1 @@
+With this mod, you can airlift all armies out of all bonuses in which the source territory is to the destination territory. It only lifts your own armies and ignores bonuses with 0 armies income. This makes it usefull to lift left over armies out of mega bonuses to a new frontline.
