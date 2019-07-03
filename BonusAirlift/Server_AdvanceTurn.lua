@@ -3,7 +3,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		local targetterritory = order.ToTerritoryID;
 		local from = order.FromTerritoryID;
 		local modify = {};
-		local modifyid = 0;
+		local modifyid = 1;
 		local armiestolift = 0;
 		local alreadymodified = {};
 		for _,bonusid in pairs(game.Map.Territories[from].PartOfBonuses) do
