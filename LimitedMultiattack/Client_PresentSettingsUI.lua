@@ -3,10 +3,10 @@ function Client_PresentSettingsUI(rootParent)
 	local horz = UI.CreateHorizontalLayoutGroup(rootParent);
 	if(Mod.Settings.MaxAttacks ~= 0)then
 		UI.CreateLabel(horz).SetText(Mod.Settings.MaxAttacks .. ' Attacks Multiattack');
-		UI.CreateButton(horz).SetText('?').SetColor('#0080ff').SetOnClick(function() UI.Alert('This setting tells you, what the attack range of the multiattack is. Please node, that you are able to enter orders further then the range, but those will not be executed'); end);
+		UI.CreateButton(horz).SetText('?').SetColor('#4FC5FF').SetOnClick(function() UI.Alert('This setting tells you, what the attack range of the multiattack is. Please node, that you are able to enter orders further then the range, but those will not be executed'); end);
 	else
 		UI.CreateLabel(horz).SetText('unlimited number of Multiattacks');
-		UI.CreateButton(horz).SetText('?').SetColor('#0080ff').SetOnClick(function() UI.Alert('This means you can attack normaly with the multiattack and are not under range limitations'); end);
+		UI.CreateButton(horz).SetText('?').SetColor('#4FC5FF').SetOnClick(function() UI.Alert('This means you can attack normaly with the multiattack and are not under range limitations'); end);
 	end
 	horz = UI.CreateHorizontalLayoutGroup(rootParent);
 	local setttingContinueAttackIfFailed = Mod.Settings.ContinueAttackIfFailed;
@@ -14,7 +14,7 @@ function Client_PresentSettingsUI(rootParent)
 		setttingContinueAttackIfFailed = true;
 	end
 	UI.CreateLabel(horz).SetText('Can continue to attack if attack fails :');
-	UI.CreateButton(horz).SetText('?').SetColor('#0080ff').SetOnClick(function() UI.Alert('If you attack from a territory and your attack fails, with this disabled, the mod will prevent you from making further attacks from that territory in that turn unless you recapture it'); end);
+	UI.CreateButton(horz).SetText('?').SetColor('#4FC5FF').SetOnClick(function() UI.Alert('If you attack from a territory and your attack fails, with this disabled, the mod will prevent you from making further attacks from that territory in that turn unless you recapture it'); end);
 	if(setttingContinueAttackIfFailed)then
 		UI.CreateLabel(horz).SetText(' True');
 	else
