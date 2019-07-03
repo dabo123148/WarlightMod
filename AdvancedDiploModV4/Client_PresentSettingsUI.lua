@@ -2,7 +2,7 @@
 function Client_PresentSettingsUI(rootParent)
 	root = rootParent;
 	UI.CreateLabel(rootParent).SetText('AI Settings');
-	CreateLine('AIs are allowed to declare war on player : ', Mod.Settings.AllowAIDeclaration,false,true);
+	CreateLine('AIs are allowed to declare war on player : ', Mod.Settings.AllowAIDeclaration,false,true,'With this enabled, AIs will declare war on players. This happens pretty much like they normaly attack --> they will declare war mainly on their surrounding players but also on those that they try to play cards on');
 	CreateLine('AIs are allowed to declare war on AIs : ', Mod.Settings.AIsdeclearAIs,true,true);
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Alliance Settings');
@@ -71,13 +71,28 @@ function Client_PresentSettingsUI(rootParent)
 		end
 	end
 end
-function CreateLine(settingname,variable,default,important)
-	local lab = UI.CreateLabel(root);
+function CreateLine(settingname,variable,default,important, help)
+	local horz = UI.CreateHorizontalLayoutGroup(rootParent);
+	local lab = UI.CreateLabel(horz);
 	if(default == true or default == false)then
-		lab.SetText(settingname .. booltostring(variable,default));
+		if(help ~= null)then
+			lab.SetText(settingname);
+			UI.CreateButton(horz).SetText('?').SetColor('#0080ff').SetOnClick(function() UI.Alert(help); end);
+			lab = UI.CreateLabel(horz);
+			lab.SetText(booltostring(variable,default));
+		else
+			lab.SetText(settingname .. booltostring(variable,default));
+		end
 	else
 		if(variable == nil)then
-			lab.SetText(settingname .. default);
+			if(help ~= null)then
+				lab.SetText(settingname);
+				UI.CreateButton(horz).SetText('?').SetColor('#0080ff').SetOnClick(function() UI.Alert(help); end);
+				lab = UI.CreateLabel(horz);
+				lab.SetText(default);
+			else
+				lab.SetText(settingname .. default);
+			end
 		else
 			lab.SetText(settingname .. variable);
 		end
