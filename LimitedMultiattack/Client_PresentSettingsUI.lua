@@ -5,6 +5,13 @@ function Client_PresentSettingsUI(rootParent)
 	else
 		UI.CreateLabel(rootParent).SetText('unlimited number of Multiattacks');
 	end
+	local horz = UI.CreateHorizontalLayoutGroup(rootParent);
+	local setttingContinueAttackIfFailed = Mod.Settings.ContinueAttackIfFailed;
+	if(setttingContinueAttackIfFailed == nil)then
+		setttingContinueAttackIfFailed = true;
+	end
+	UI.CreateLabel(horz).SetText('No further attack if attack fails : ' .. setttingContinueAttackIfFailed);
+	UI.CreateButton(horz).SetText('?').SetOnClick(function() UI.Alert('If you attack from a territory and your attack fails, this set to true, will prevent you from making further attacks from that territory in that turn'); end
 	local boundtocard = false;
 	if(Mod.Settings.ReinforcementCard ~= nil)then
 		if(Mod.Settings.ReinforcementCard)then
