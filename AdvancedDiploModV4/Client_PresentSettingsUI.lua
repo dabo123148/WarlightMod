@@ -72,7 +72,7 @@ function Client_PresentSettingsUI(rootParent)
 	end
 end
 function CreateLine(settingname,variable,default,important, help)
-	local horz = UI.CreateHorizontalLayoutGroup(rootParent);
+	local horz = UI.CreateHorizontalLayoutGroup(root);
 	local lab = UI.CreateLabel(horz);
 	if(default == true or default == false)then
 		if(help ~= null)then
