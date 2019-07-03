@@ -7,7 +7,7 @@ function Client_PresentSettingsUI(rootParent)
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Alliance Settings');
 	if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
-		CreateLine('Allied players can see your territories(requires spycards to be in the game) : ', Mod.Settings.SeeAllyTerritories,true,true,"If spycards are in the game and this feature is enabled, the mod automaticaly plays a spycard on all your allies so you can see their territories, this does not effect the lower setting that effects the normal playing of spycards on allies. For that it will not use your spycards.');
+		CreateLine('Allied players can see your territories(requires spycards to be in the game) : ', Mod.Settings.SeeAllyTerritories,true,true,'If spycards are in the game and this feature is enabled, the mod automaticaly plays a spycard on all your allies so you can see their territories, this does not effect the lower setting that effects the normal playing of spycards on allies. For that it will not use your spycards.');
 		CreateLine('Allies are visible to everyone : ', Mod.Settings.PublicAllies,true,true,'This setting makes alliances be announced to everyone and visible in everyones history if set to true, otherwise it will only be visible for the players that made the alliance');
 	else
 		UI.CreateLabel(root).SetText("Alliances are disabled").SetColor('#FF0000');
