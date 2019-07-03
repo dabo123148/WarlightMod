@@ -10,6 +10,10 @@ function Client_SaveConfigureUI(alert)
 	if( Mod.Settings.MaxAttacks > 100000)then
 		alert('The number is too big.');
 	end
+	Mod.Settings.ContinueAttackIfFailed = InputContinueAttackIfFailed.GetIsChecked();
+	if( Mod.Settings.ContinueAttackIfFailed == nil)then
+		Mod.Settings.ContinueAttackIfFailed = true;
+	end
 	local boundtocards = false;
 	Mod.Settings.ReinforcementCard = InputReinforcementCard.GetIsChecked();
 	if( Mod.Settings.ReinforcementCard == nil)then
