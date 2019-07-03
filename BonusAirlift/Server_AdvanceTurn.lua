@@ -10,8 +10,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if((game.Settings.OverriddenBonuses[bonusid] == nil and game.Map.Bonuses[bonusid].Amount ~=0) or (game.Settings.OverriddenBonuses[bonusid] ~= nil and game.Settings.OverriddenBonuses[bonusid] ~= 0))then
 				for _,terrid in pairs(game.Map.Bonuses[bonusid].Territories) do
 					if(terrid ~= targetterritory and game.ServerGame.LatestTurnStanding.Territories[terrid].OwnerPlayerID == order.PlayerID)then
-						armiestolift = armiestolift + game.ServerGame.LatestTurnStanding.Territories[terrid].NumArmies.NumArmies;
 						if(game.ServerGame.LatestTurnStanding.Territories[terrid].NumArmies.NumArmies ~= 0 and alreadymodified[terrid] == nil)then
+							armiestolift = armiestolift + game.ServerGame.LatestTurnStanding.Territories[terrid].NumArmies.NumArmies;
 							modify[modifyid] = WL.TerritoryModification.Create(terrid);
 							modify[modifyid].SetArmiesTo = 0;
 							modifyid = modifyid +1;
