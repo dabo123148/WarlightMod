@@ -116,7 +116,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				end
 			else
 				if(order.PlayerID == game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID)then
-					UbrigeAngriffe[order.From] = -1;
+					if(Mod.Settings.ContinueAttackIfFailed == nil or Mod.Settings.ContinueAttackIfFailed == false)then
+						UbrigeAngriffe[order.From] = -1;
+					end
 				end
 			end
 		else
