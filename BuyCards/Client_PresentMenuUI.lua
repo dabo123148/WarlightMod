@@ -18,7 +18,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	end
 	print(game.LatestStanding);
 	latestStanding = game.LatestStanding;
-	distributionStanding = game.GetDistributionStanding(function(standing) print(standing); distributionStanding= standing; end);
+	distributionStanding = game.GetDistributionStanding(function(standing) print(standing); if(standing == nil)then print("Fehler") end distributionStanding= standing; end);
 	if(distributionStanding == nil)then
 		print("Distribution is null");
 	end
