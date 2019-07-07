@@ -1,0 +1,1 @@
+This mod allows you to make cards purchasable. This mod requires Commerce.
