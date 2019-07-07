@@ -36,7 +36,7 @@ function OpenMenu()
 		end
 		addOrder(WL.GameOrderCustom.Create(Game.Us.ID, "Buy Spy Card", "",{ [WL.ResourceType.Gold] = Mod.Settings.SpyCardCost }));
 		CalcuateBuyPossiblities(); end);
-	buyemergencyblockardcard = UI.CreateButton(vert).SetText("Buy Emergecy Blockade Card for " .. Mod.Settings.EmergencyBlockadeCardCost).SetOnClick(function() 
+	buyemergencyblockardcard = UI.CreateButton(vert).SetText("Buy Emergency Blockade Card for " .. Mod.Settings.EmergencyBlockadeCardCost).SetOnClick(function() 
 		local goldHave = CalculateGoldUsed();
 		if(goldHave<Mod.Settings.EmergencyBlockadeCardCost)then
 			UI.Alert("You dont have enough Gold to buy this card");
