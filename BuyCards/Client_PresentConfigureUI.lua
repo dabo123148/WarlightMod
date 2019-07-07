@@ -62,10 +62,10 @@ function ShowUI()
 	UI.CreateLabel(horz).SetText('Cost of spy cards:');
 	SpyCardCostinput = UI.CreateNumberInputField(horz).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(SpyCardCostinit);
 	horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(horz).SetText('Cost of emergency blockard cards:');
+	UI.CreateLabel(horz).SetText('Cost of emergency blockade cards:');
 	EmergencyBlockadeCardCostinput = UI.CreateNumberInputField(horz).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(EmergencyBlockadeCardCostinit);
 	horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
-	UI.CreateLabel(horz).SetText('Cost of blockard cards:');
+	UI.CreateLabel(horz).SetText('Cost of blockade cards:');
 	BlockadeCardCostinput = UI.CreateNumberInputField(horz).SetSliderMinValue(0).SetSliderMaxValue(100).SetValue(BlockadeCardCostinit);
 	horz = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	UI.CreateLabel(horz).SetText('Cost of order priority cards:');
