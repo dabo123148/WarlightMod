@@ -2,6 +2,10 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	Game = game;
 	root = rootParent;
 	setMaxSize(450, 350);
+	if (game.Settings.CommerceGame == false) then
+		UI.CreateLabel(vert).SetText("This mod only works in commerce games.  This isn't a commerce game.");
+		return;
+	end
 	if(game.Us == nil) then
 		horz = UI.CreateHorizontalLayoutGroup(rootParent);
 		UI.CreateLabel(horz).SetText("You cannot use the mod, cause you aren't in the game");
@@ -12,6 +16,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(horz).SetText("You have been eliminated, so you are no longer able to interact with the mod");
 		return;
 	end
+	print(game.GetTurn());
 	if(game.GetTurn() == nil)then
 		horz = UI.CreateHorizontalLayoutGroup(root);
 		UI.CreateLabel(horz).SetText("This mod can not be used during distribution");
