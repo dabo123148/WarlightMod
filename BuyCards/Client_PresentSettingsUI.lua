@@ -12,14 +12,14 @@ function Client_PresentSettingsUI(rootParent)
 		CreateTextLine('Spy Cards can not be purchased');
 	end
 	if(Mod.Settings.EmergencyBlockadeCardCost ~= 0)then
-		CreateLine('Emergency blockard Card Cost : ',Mod.Settings.EmergencyBlockadeCardCost,Mod.Settings.EmergencyBlockadeCardCost);
+		CreateLine('Emergency blockade Card Cost : ',Mod.Settings.EmergencyBlockadeCardCost,Mod.Settings.EmergencyBlockadeCardCost);
 	else
-		CreateTextLine('Emergency blockard Cards can not be purchased');
+		CreateTextLine('Emergency blockade Cards can not be purchased');
 	end
 	if(Mod.Settings.BlockadeCardCost ~= 0)then
-		CreateLine('Blockard Card Cost : ',Mod.Settings.BlockadeCardCost,Mod.Settings.BlockadeCardCost);
+		CreateLine('Blockade Card Cost : ',Mod.Settings.BlockadeCardCost,Mod.Settings.BlockadeCardCost);
 	else
-		CreateTextLine('Blockard Cards can not be purchased');
+		CreateTextLine('Blockade Cards can not be purchased');
 	end
 	if(Mod.Settings.OrderPriorityCardCost ~= 0)then
 		CreateLine('Order priority Card Cost : ',Mod.Settings.OrderPriorityCardCost,Mod.Settings.OrderPriorityCardCost);
