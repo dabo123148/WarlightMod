@@ -1,7 +1,7 @@
 function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	print(game.GetTurn);
 	turn = game.GetTurn;
-	print(turn().TurnNumber);
+	print(turn.TurnNumber);
 	Game = game;
 	root = rootParent;
 	setMaxSize(450, 350);
