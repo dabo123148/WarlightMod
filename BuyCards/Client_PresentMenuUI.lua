@@ -17,7 +17,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		return;
 	end
 	print(game.LatestStanding);
-	print(game.GetDistributionStanding(function(standing)return standing; end));
+	print(game.GetDistributionStanding());
 	if(game.LatestStanding == game.GetDistributionStanding(function(standing)return standing; end))then
 		horz = UI.CreateHorizontalLayoutGroup(root);
 		UI.CreateLabel(horz).SetText("This mod can not be used during distribution");
