@@ -1,5 +1,4 @@
 function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
-	print(game.GetTurn().TurnNumber);
 	Game = game;
 	root = rootParent;
 	setMaxSize(450, 350);
@@ -17,7 +16,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(horz).SetText("You have been eliminated, so you are no longer able to interact with the mod");
 		return;
 	end
-	if(game.GetTurn() == nil)then
+	if(game.LatestStanding == game.GetDistributionStanding(function(standing)return standing; end))then
 		horz = UI.CreateHorizontalLayoutGroup(root);
 		UI.CreateLabel(horz).SetText("This mod can not be used during distribution");
 		return;
