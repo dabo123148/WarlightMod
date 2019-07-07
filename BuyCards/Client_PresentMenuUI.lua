@@ -16,17 +16,6 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(horz).SetText("You have been eliminated, so you are no longer able to interact with the mod");
 		return;
 	end
-	print(game.LatestStanding);
-	latestStanding = game.LatestStanding;
-	game.GetDistributionStanding(function(standing) print(standing); if(standing == nil)then print("Fehler") end distributionStanding= standing; end);
-	if(distributionStanding == nil)then
-		print("Distribution is null");
-	end
-	if(latestStanding == distributionStanding)then
-		horz = UI.CreateHorizontalLayoutGroup(root);
-		UI.CreateLabel(horz).SetText("This mod can not be used during distribution");
-		return;
-	end
 	OpenMenu()
 end
 function OpenMenu()
