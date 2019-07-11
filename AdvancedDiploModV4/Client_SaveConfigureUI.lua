@@ -2,11 +2,11 @@
 function Client_SaveConfigureUI(alert)
   	Mod.Settings.AllowAIDeclaration = AIDeclerationcheckbox.GetIsChecked();
 	if(Mod.Settings.AllowAIDeclaration == nil)then
-		Mod.Settings.AllowAIDeclaration = true;
+		Mod.Settings.AllowAIDeclaration = false;
 	end
 	Mod.Settings.AIsdeclearAIs = AIsdeclearAIsinitcheckbox.GetIsChecked();
 	if(Mod.Settings.AIsdeclearAIs == nil)then
-		Mod.Settings.AIsdeclearAIs = true;
+		Mod.Settings.AIsdeclearAIs = false;
 	end
 	Mod.Settings.DisableAllies = DisableAlliesCheckbox.GetIsChecked();
 	if(Mod.Settings.DisableAllies == nil)then
