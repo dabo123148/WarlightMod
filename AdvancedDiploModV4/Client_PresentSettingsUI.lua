@@ -3,7 +3,7 @@ function Client_PresentSettingsUI(rootParent)
 	root = rootParent;
 	UI.CreateLabel(rootParent).SetText('AI Settings');
 	CreateLine('AIs are allowed to declare war on player : ', Mod.Settings.AllowAIDeclaration,false,true,'With this enabled, AIs will declare war on players(players turned into AI are excluded). This happens pretty much like they normaly attack --> they will declare war mainly on their surrounding players but also on those that they try to play cards on. If this is disabled and you are in war with an AI(e.g. since a player got booted and turned into AI, it will continue to fight you.');
-	CreateLine('AIs are allowed to declare war on AIs : ', Mod.Settings.AIsdeclearAIs,true,true,'With this enabled, AIs will declare war on other AIs or players turned into AI. This happens pretty much like they normaly attack --> they will declare war mainly on their surrounding players but also on those that they try to play cards on.');
+	CreateLine('AIs are allowed to declare war on AIs : ', Mod.Settings.AIsdeclearAIs,false,true,'With this enabled, AIs will declare war on other AIs or players turned into AI. This happens pretty much like they normaly attack --> they will declare war mainly on their surrounding players but also on those that they try to play cards on.');
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Alliance Settings');
 	if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then
