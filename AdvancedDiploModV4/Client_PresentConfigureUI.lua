@@ -19,7 +19,7 @@ function Client_PresentConfigureUI(rootParent)
 	end
 	AIsdeclearAIsinit = Mod.Settings.AIsdeclearAIs;
 	if(AIsdeclearAIsinit == nil)then
-		AIsdeclearAIsinit = true;
+		AIsdeclearAIsinit = false;
 	end
 	SanctionCardRequireWarinit = Mod.Settings.SanctionCardRequireWar;
 	if(SanctionCardRequireWarinit == nil)then
