@@ -1,1 +1,1 @@
-This mod prevents AIs from deploying and is applyable for diplo games in combination with a mod that prevents AIs from attacking(e.g. Advanced Diplo Mod) in order to receive completly passive AIs.
+This mod prevents AIs from deploying and is applyable for diplo games in combination with a mod that prevents AIs from attacking(e.g. Advanced Diplo Mod) in order to receive placeholder AIs(just AIs that hold a spot for e.g. booted players).
