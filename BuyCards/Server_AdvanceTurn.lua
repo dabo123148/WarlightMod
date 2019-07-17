@@ -129,7 +129,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			end
 		end
 		if(order.Message == "Buy Sanctions Card")then
-			if(order.CostOpt[WL.ResourceType.Gold]== Mod.Settings.SanctionCardCost)then
+			if(order.CostOpt[WL.ResourceType.Gold]== Mod.Settings.SanctionsCardCost)then
 				if(game.Settings.Cards[WL.CardID.Sanctions] ~= nil)then
 					local cardinstance = WL.NoParameterCardInstance.Create(WL.CardID.Sanctions);
 					addNewOrder(WL.GameOrderReceiveCard.Create(order.PlayerID, {cardinstance}));
