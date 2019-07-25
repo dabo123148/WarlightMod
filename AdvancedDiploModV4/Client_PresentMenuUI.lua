@@ -114,7 +114,7 @@ function OpenMenu()
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
 	horzobjlist[2] = UI.CreateVerticalLayoutGroup(root);
 	local haswar = false;
-	if(Mod.PublicGameData.War~=nil)then
+	if(Mod.PublicGameData.War~=nil and Mod.PublicGameData.War[Game.Us.ID]~=nil)then
 		for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
 			if(Game.Game.PlayingPlayers[with] ~= null)then
 				UI.CreateLabel(horzobjlist[2]).SetText("-" .. toname(with,Game));
