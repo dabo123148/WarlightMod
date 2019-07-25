@@ -7,13 +7,15 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 	local historyamount = tablelength(publicGameData.Historyorder);
 	local number = 0;
 	while(number<historyamount)do
-		local historyid = publicGameData.Historyorder[number].ID;
-		if(publicGameData.Historyorder[number].Type == "Public")then
-			addNewOrder(WL.GameOrderEvent.Create(publicGameData.History[historyid].By, publicGameData.History[historyid].Text, nil, nil, nil));
-		else
-			local spielerID = publicGameData.Historyorder[number].PlayerID;
-			if(playerGameData[spielerID].PrivateHistory[historyid].By ~= spielerID)then
-				addNewOrder(WL.GameOrderEvent.Create(playerGameData[spielerID].PrivateHistory[historyid].By, playerGameData[spielerID].PrivateHistory[historyid].Text, {spielerID}, nil, nil));
+		if(publicGameData.Historyorder ~= nil and  publicGameData.Historyorder[number] ~=nil)then
+			local historyid = publicGameData.Historyorder[number].ID;
+			if(publicGameData.Historyorder[number].Type == "Public")then
+				addNewOrder(WL.GameOrderEvent.Create(publicGameData.History[historyid].By, publicGameData.History[historyid].Text, nil, nil, nil));
+			else
+				local spielerID = publicGameData.Historyorder[number].PlayerID;
+				if(playerGameData[spielerID].PrivateHistory[historyid].By ~= spielerID)then
+					addNewOrder(WL.GameOrderEvent.Create(playerGameData[spielerID].PrivateHistory[historyid].By, playerGameData[spielerID].PrivateHistory[historyid].Text, {spielerID}, nil, nil));
+				end
 			end
 		end
 		number = number+1;
