@@ -29,20 +29,22 @@ function ShowAllHistory(game,ende)
 	local number = 0;
 	local locnumber = 0;
 	while(number<historyamount)do
-		local historyid =  Mod.PublicGameData.Historyorder[number].ID;
+		if(Mod.PublicGameData.Historyorder ~= nil and Mod.PublicGameData.Historyorder[number] ~=nil)then
+			local historyid =  Mod.PublicGameData.Historyorder[number].ID;
 		
-		if(Mod.PublicGameData.Historyorder[number].Type == "Public")then
-			local By =  Mod.PublicGameData.History[historyid].By;
-			local Text =  Mod.PublicGameData.History[historyid].Text;
-			daten = daten .. tostring(locnumber+1) .. " : " ..getname(By,game) .. ":".. Text .. "\n";
-			locnumber = locnumber + 1;
-		else
-			local spielerID =  Mod.PublicGameData.Historyorder[number].PlayerID;
-			if(spielerID == game.Us.ID)then
-				local By = Mod.PlayerGameData.PrivateHistory[historyid].By;
-				local Text = Mod.PlayerGameData.PrivateHistory[historyid].Text;
+			if(Mod.PublicGameData.Historyorder[number].Type == "Public")then
+				local By =  Mod.PublicGameData.History[historyid].By;
+				local Text =  Mod.PublicGameData.History[historyid].Text;
 				daten = daten .. tostring(locnumber+1) .. " : " ..getname(By,game) .. ":".. Text .. "\n";
 				locnumber = locnumber + 1;
+			else
+				local spielerID =  Mod.PublicGameData.Historyorder[number].PlayerID;
+				if(spielerID == game.Us.ID)then
+					local By = Mod.PlayerGameData.PrivateHistory[historyid].By;
+					local Text = Mod.PlayerGameData.PrivateHistory[historyid].Text;
+					daten = daten .. tostring(locnumber+1) .. " : " ..getname(By,game) .. ":".. Text .. "\n";
+					locnumber = locnumber + 1;
+				end
 			end
 		end
 		number = number+1;
