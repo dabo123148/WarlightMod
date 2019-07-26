@@ -28,7 +28,9 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	end
 	mainmenu = UI.CreateButton(horz).SetText("Main Menu").SetOnClick(OpenMenu);
 	vert = UI.CreateVerticalLayoutGroup(rootParent);
-	OpenMenu(rootParent);
+	if(Mod.PublicGameData.War ~=nil)then
+		OpenMenu(rootParent);
+	end
 end
 function OpenOfferPeace()
 	DeleteUI();
