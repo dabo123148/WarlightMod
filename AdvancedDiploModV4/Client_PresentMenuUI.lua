@@ -519,6 +519,9 @@ function DeleteUI()
 end
 function  tablelength(T)
 	local count = 0;
+	if(T==nil)then
+		return 0;
+	end
 	for _, elem in pairs(T)do
 		count = count + 1;
 	end
