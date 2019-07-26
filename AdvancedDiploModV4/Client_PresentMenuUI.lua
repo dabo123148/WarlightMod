@@ -26,7 +26,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(horz).SetText("You have been eliminated, so you are no longer able to interact with the mod");
 		return;
 	end
-	if(Mod.PublicGameData.War ~=nil)then
+	if(Mod.PublicGameData.War ==nil)then
 		UI.CreateLabel(horz).SetText("This menu is not avalible in distribution");
 		return;
 	end
