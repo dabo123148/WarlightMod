@@ -138,23 +138,25 @@ function OpenMenu()
 	for _,pd in pairs(Game.Game.PlayingPlayers)do
 		if(pd.ID ~= Game.Us.ID)then
 			local match2 = false;
-			for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
-				if(with == pd.ID)then
-					match2 = true;
+			if(Mod.PublicGameData.War ~= nil)then
+				for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
+					if(with == pd.ID)then
+						match2 = true;
+					end
 				end
-			end
-			for _,with in pairs(Mod.PlayerGameData.Allianzen)do
-				if(with == pd.ID)then
-					match2 = true;
+				for _,with in pairs(Mod.PlayerGameData.Allianzen)do
+					if(with == pd.ID)then
+						match2 = true;
+					end
 				end
-			end
-			if(match2 == false)then
-				UI.CreateLabel(horzobjlist[4]).SetText("-" .. toname(pd.ID,Game));
-				match = true;
-				haspeace=true;
-				if(pd.IsAI == false)then
-					if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then 
-						foundpossibleally=true;
+				if(match2 == false)then
+					UI.CreateLabel(horzobjlist[4]).SetText("-" .. toname(pd.ID,Game));
+					match = true;
+					haspeace=true;
+					if(pd.IsAI == false)then
+						if(Mod.Settings.DisableAllies == nil or Mod.Settings.DisableAllies == false)then 
+							foundpossibleally=true;
+						end
 					end
 				end
 			end
