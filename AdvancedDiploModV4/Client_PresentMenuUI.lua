@@ -108,10 +108,10 @@ end
 function OpenMenu()
 	print("Testlenght " .. tablelength(Mod.PublicGameData.War));
 	for key,pd in pairs(Mod.PublicGameData.War)do
-		print(key);
+		print("Key(playerid out of Server_StartGame.lua: " .. key);
 	end
 	for _,pd in pairs(Game.Game.PlayingPlayers)do
-		print("Playerid " .. pd.ID);
+		print("Playerid in  Client_PresentMenuUI.lua: " .. pd.ID);
 		--if(Mod.PublicGameData.War[Game.Us.ID.."0"] == {} or Mod.PublicGameData.War[pd.ID .."0"] ~= nil)then
 		--		print("Test" .. pd.ID);
 		--end
