@@ -106,7 +106,7 @@ function OpenhistoryMenu()
 	end
 end
 function OpenMenu()
-	for _,pd in pairs(Game.Game.PlayingPlayers)then
+	for _,pd in pairs(Game.Game.PlayingPlayers)do
 		if(Mod.PublicGameData.War[pd.ID] ~= nil)then
 				print("Test" .. pd.ID);
 		end
