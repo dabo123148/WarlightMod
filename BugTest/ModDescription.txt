@@ -1,0 +1,21 @@
+Don't use this mod with any other mod with a notifications system, else it may happen that the notifications don't show up.
+This Mod adds:
+War/Peace System:
+  -Attacks DON'T count as declaration
+  -After you declared War on someone, you have to wait one turn before you can attack him
+  -Sanction, Bomb, Gift, Spy Card can be configurated, that they are just playable if you are in war/peace/ally with the persons you play them on
+  -you start at peace with everyone
+Alliance System:
+  -can be disabled over settings
+  -You will be able to see the territories your ally ownes(requires spycards to be in the game)(depends on settings)
+  -Alliances can be either public or private(depends on the settings)
+  -After you cancel an alliance you got to wait till the next turn to declare war
+AIs for Diplos:
+  -AIs won't declare war on players(depends on settings)
+  -AIs won't declare war on AIs(depends on settings)
+  -AIS will always accept peace so if you do not want to be in war anylonger with a booted player you can just offer the ai peace and it will instantly accept it
+Mod internal history between turns:
+-All mod interaction is documented between turns in the mod history and gets written in the next turn into the normal history
+-It is seperated in:
+ -public(Accepting Peace and depending on settings Accepting Alliances), it can be seen by everyone
+ -private(sending offeres and denying offers and depending on settings accepting alliances), it can only be seen by involved players
