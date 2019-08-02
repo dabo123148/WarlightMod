@@ -106,6 +106,7 @@ function OpenhistoryMenu()
 	end
 end
 function OpenMenu()
+	print("Testlenght " .. tablelength(Mod.PublicGameData.War));
 	for _,pd in pairs(Game.Game.PlayingPlayers)do
 		if(Mod.PublicGameData.War[pd.ID] ~= nil)then
 				print("Test" .. pd.ID);
