@@ -106,6 +106,11 @@ function OpenhistoryMenu()
 	end
 end
 function OpenMenu()
+	for _,pd in pairs(Game.Game.PlayingPlayers)then
+		if(Mod.PublicGameData.War[pd.ID] ~= nil)then
+				print("Test" .. pd.ID);
+		end
+	end
 	DeleteUI();
 	declarewarbutton = UI.CreateButton(vert).SetText("Declare War").SetOnClick(OpenDeclarWar);
 	offerpeacebutton = UI.CreateButton(vert).SetText("Offer Peace").SetOnClick(OpenOfferPeace);
