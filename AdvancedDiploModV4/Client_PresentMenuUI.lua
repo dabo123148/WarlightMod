@@ -81,26 +81,28 @@ function OpenhistoryMenu()
 	local number = 0;
 	local locnumber = 0;
 	while(number<historyamount)do
-		local historyid = Mod.PublicGameData.Historyorder[number].ID;
-		if(Mod.PublicGameData.Historyorder[number].Type == "Public")then
-			horzobjlist[locnumber+2] = UI.CreateHorizontalLayoutGroup(root);
-			local By =  Mod.PublicGameData.History[historyid].By;
-			local Text =  Mod.PublicGameData.History[historyid].Text;
-			textelem = UI.CreateLabel(horzobjlist[locnumber+2]).SetText(tostring(locnumber+1) .. " : " ..toname(By,Game) .. ":".. Text);
-			textelem.SetColor('#ff0000');
-			locnumber = locnumber + 1;
-		else
-			local spielerID =  Mod.PublicGameData.Historyorder[number].PlayerID;
-			if(spielerID == Game.Us.ID)then
+		if(Mod.PublicGameData.Historyorder[number] ~= nil)then
+			local historyid = Mod.PublicGameData.Historyorder[number].ID;
+			if(Mod.PublicGameData.Historyorder[number].Type == "Public")then
 				horzobjlist[locnumber+2] = UI.CreateHorizontalLayoutGroup(root);
-				local By = Mod.PlayerGameData.PrivateHistory[historyid].By;
-				local Text = Mod.PlayerGameData.PrivateHistory[historyid].Text;
+				local By =  Mod.PublicGameData.History[historyid].By;
+				local Text =  Mod.PublicGameData.History[historyid].Text;
 				textelem = UI.CreateLabel(horzobjlist[locnumber+2]).SetText(tostring(locnumber+1) .. " : " ..toname(By,Game) .. ":".. Text);
-				textelem.SetColor('#00ff00');
+				textelem.SetColor('#ff0000');
 				locnumber = locnumber + 1;
+			else
+				local spielerID =  Mod.PublicGameData.Historyorder[number].PlayerID;
+				if(spielerID == Game.Us.ID)then
+					horzobjlist[locnumber+2] = UI.CreateHorizontalLayoutGroup(root);
+					local By = Mod.PlayerGameData.PrivateHistory[historyid].By;
+					local Text = Mod.PlayerGameData.PrivateHistory[historyid].Text;
+					textelem = UI.CreateLabel(horzobjlist[locnumber+2]).SetText(tostring(locnumber+1) .. " : " ..toname(By,Game) .. ":".. Text);
+					textelem.SetColor('#00ff00');
+					locnumber = locnumber + 1;
+				end
 			end
+			number = number+1;
 		end
-		number = number+1;
 	end
 end
 function OpenMenu()
