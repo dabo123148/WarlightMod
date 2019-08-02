@@ -107,13 +107,13 @@ function OpenhistoryMenu()
 end
 function OpenMenu()
 	print("Testlenght " .. tablelength(Mod.PublicGameData.War));
-	--for _,pd in pairs(Game.Game.PlayingPlayers)do
-	for key,pd in pairs(Mod.PublicGameData.War)do
-		print(key);
+	for _,pd in pairs(Game.Game.PlayingPlayers)do
+	--for key,pd in pairs(Mod.PublicGameData.War)do
+		--print(key);
 		--print("Testid" .. Mod.PublicGameData.War[pd.ID]);
-		--if(Mod.PublicGameData.War[pd.ID] == {} or Mod.PublicGameData.War[pd.ID] ~= nil)then
-		--		print("Test" .. pd.ID);
-		--end
+		if(Mod.PublicGameData.War[pd.ID.."0"] == {} or Mod.PublicGameData.War[pd.ID .."0"] ~= nil)then
+				print("Test" .. pd.ID);
+		end
 	end
 	DeleteUI();
 	declarewarbutton = UI.CreateButton(vert).SetText("Declare War").SetOnClick(OpenDeclarWar);
