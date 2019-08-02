@@ -8,7 +8,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	--printing in order to visualize the bug
 	print("Testlenght " .. tablelength(Mod.PublicGameData.War));
 	for key,pd in pairs(Mod.PublicGameData.War)do
-		print("Key(playerid out of Server_StartGame.lua: " .. key);
+		print(key .. " " .. pd);
 	end
 	for _,pd in pairs(game.Game.PlayingPlayers)do
 		print("Playerid in  Client_PresentMenuUI.lua: " .. pd.ID);
