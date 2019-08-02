@@ -4,7 +4,7 @@ function Server_StartGame(game,standing)
 	publicGameData.War = {};
 	for _,pid in pairs(game.ServerGame.Game.Players) do
 		--Sets, that every player has no war going on
-		publicGameData.War[pid.ID] = {};
+		publicGameData.War[pid.ID] = "Test " .. pid.ID;
 	end
 	--Saves data
 	Mod.PublicGameData = publicGameData;
