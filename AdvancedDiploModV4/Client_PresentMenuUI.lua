@@ -142,7 +142,7 @@ function OpenMenu()
 	for _,pd in pairs(Game.Game.PlayingPlayers)do
 		if(pd.ID ~= Game.Us.ID)then
 			local match2 = false;
-			if(Mod.PublicGameData.War ~= nil)then
+			if(Mod.PublicGameData.War ~= nil and Mod.PublicGameData.War[Game.Us.ID] ~= nil)then
 				for _,with in pairs(Mod.PublicGameData.War[Game.Us.ID])do
 					if(with == pd.ID)then
 						match2 = true;
