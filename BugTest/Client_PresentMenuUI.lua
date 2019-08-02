@@ -12,7 +12,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	end
 	for _,pd in pairs(game.Game.PlayingPlayers)do
 		print("Playerid in  Client_PresentMenuUI.lua: " .. pd.ID);
-		if(Mod.PublicGameData.War[game.Us.ID] == {} or Mod.PublicGameData.War[pd.ID] ~= nil)then
+		if(Mod.PublicGameData.War[pd.ID] ~= nil)then
 			vert = UI.CreateVerticalLayoutGroup(rootParent);
 			UI.CreateLabel(vert).SetText("If this is printed then there is no bug existend, otherwise the mod can not see the data that is stored with the same playerid");
 			print("If this is printed then there is no bug existend, otherwise it can not see the data that is stored with the same playerid");
