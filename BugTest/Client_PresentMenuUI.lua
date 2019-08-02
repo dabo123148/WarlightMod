@@ -9,6 +9,8 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	print("Testlenght " .. tablelength(Mod.PublicGameData.War));
 	for key,pd in pairs(Mod.PublicGameData.War)do
 		print(key .. " " .. pd);
+		vert = UI.CreateVerticalLayoutGroup(rootParent);
+		UI.CreateLabel(vert).SetText(key .. " " .. pd);
 	end
 	for _,pd in pairs(game.Game.PlayingPlayers)do
 		print("Playerid in  Client_PresentMenuUI.lua: " .. pd.ID);
