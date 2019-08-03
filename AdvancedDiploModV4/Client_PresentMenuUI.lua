@@ -88,7 +88,7 @@ end
 function OpenhistoryMenu()
 	DeleteUI();
 	horzobjlist[0] = UI.CreateHorizontalLayoutGroup(root);
-	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Public: red, Private: green (see mod description for expenation)");
+	textelem = UI.CreateLabel(horzobjlist[0]).SetText("Public: red, Private: green (see mod description for explenation)");
 	horzobjlist[1] = UI.CreateHorizontalLayoutGroup(root);
 	textelem = UI.CreateLabel(horzobjlist[1]).SetText("Mod history of this turn(to refresh it reopen the menu):");
 	local historyamount = tablelength(Mod.PublicGameData.Historyorder);
