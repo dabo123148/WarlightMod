@@ -20,6 +20,10 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		UI.CreateLabel(horz).SetText("This menu is not avalible in distribution");
 		return;
 	end
+	if(Mod.PublicGameData.War[game.Us.ID] ==nil)then
+		UI.CreateLabel(horz).SetText("I identified a problem with the data structure of this mod. This could be based on the device you are running(it is a normal bug for some devices that run the standalone client). Try using a different device. If the bug consists, please contact the author of this mod(go to mod info and click the github link).");
+		return;
+	end
 	print("Testlenght " .. tablelength(Mod.PublicGameData.War));
 	for key,pd in pairs(Mod.PublicGameData.War)do
 		print("Key(playerid out of Server_StartGame.lua: " .. key);
