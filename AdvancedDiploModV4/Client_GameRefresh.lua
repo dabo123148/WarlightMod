@@ -7,6 +7,10 @@ function Client_GameRefresh(game)
 	if(Mod.PlayerGameData.Peaceoffers == nil)then
 		return;
 	end
+	if(Mod.PublicGameData.War[game.Us.ID] ==nil)then
+		UI.Alert("I identified a problem with the data structure of this mod. This could be based on the device you are running(it is a normal bug for some devices that run the standalone client). Try using a different device. If the bug consists, please contact the author of this mod(go to mod info and click the github link).");
+		return;
+	end
 	if(lastnachricht == nil)then
 		lastnachricht = "";
 	end
