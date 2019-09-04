@@ -35,6 +35,7 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 			--	end
 			--end
 			playerGameData[pid.ID].PrivateHistory = {};
+			playerGameData[pid.ID].HasNewWar = false;
 		end
 		for _,pid2 in pairs(game.Game.PlayingPlayers) do
 			if(pid ~= pid2)then
@@ -133,10 +134,12 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		--removes ally offers
 		if(game.ServerGame.Game.Players[newwar.S1].IsAI == false)then
 			playerGameData[newwar.S1].AllyOffers[newwar.S2] = nil;
+			playerGameData[newwar.S1].HasNewWar = true;
 		end
 		if(game.ServerGame.Game.Players[newwar.S2].IsAI == false)then
 			playerGameData[newwar.S2].AllyOffers[newwar.S1] = nil;
-		end
+			playerGameData[newwar.S2].HasNewWar = true;
+		end		
 		--Sets diplomacy to war between the players
 		publicGameData.War[newwar.S1][tablelength(publicGameData.War[newwar.S1])+1] = newwar.S2;
 		publicGameData.War[newwar.S2][tablelength(publicGameData.War[newwar.S2])+1] = newwar.S1;
