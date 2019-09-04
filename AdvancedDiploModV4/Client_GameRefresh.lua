@@ -21,6 +21,9 @@ function Client_GameRefresh(game)
    	if(tablelength(Mod.PlayerGameData.AllyOffers)>0)then
      		Nachricht = Nachricht .. "\n" .. 'You have ' .. tablelength(Mod.PlayerGameData.AllyOffers) .. ' open ally offer';
   	end
+	if(playerGameData[pid.ID].HasNewWar == true)then
+		Nachricht = Nachricht .. "\n" .. 'You seem to be in war with a new player. Please check out the diplomacy overview in the mod menu or check the bottom of the history of the last turn';
+	end
 	ShowAllHistory(game,Nachricht);
 end
 function tablelength(T)
