@@ -100,9 +100,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if(InWar(order.PlayerID,order.Payload) == false)then
 				DeclareWar(order.PlayerID,tonumber(order.Payload),game);
 			end
+			--Skips order since it will be executed at the end of the turn(Server_AdvanceTurn_End)
+			skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 		end
-		--Skips order since it will be executed at the end of the turn(Server_AdvanceTurn_End)
-		skipThisOrder(WL.ModOrderControl.SkipAndSupressSkippedMessage);
 	end
 	--Card playing verification
 	if(order.proxyType == "GameOrderPlayCardSanctions")then
