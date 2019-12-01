@@ -27,7 +27,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			Effect[tablelength(Effect)].SetArmiesTo = Mod.Settings.StackLimit;
 			local costopt = {};
 			costopt[order.PlayerID] = {};
-			costopt[order.PlayerID][WL.ResourceType.Gold] = Mod.Settings.StackLimit-terr.NumArmies.NumArmies;
+			costopt[order.PlayerID][WL.ResourceType.Gold] = Mod.Settings.StackLimit-terr.NumArmies.NumArmies+game.ServerGame.LatestTurnStanding.NumResources(pid.ID,WL.ResourceType.Gold);
 			local newdeployorder = WL.GameOrderEvent.Create(order.PlayerID,"Stacklimit reduced deployment to prevent crossing of Stacklimit",{},Effect,costopt);
 			addNewOrder(newdeployorder);
 		end
