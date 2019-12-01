@@ -28,7 +28,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if(order.PlayerID ~= WL.PlayerID.Neutral)then
 				local costopt = {};
 				costopt[order.PlayerID] = {};
-				costopt[order.PlayerID][WL.ResourceType.Gold] = -terr.NumArmies.NumArmies+Mod.Settings.StackLimit+game.ServerGame.LatestTurnStanding.NumResources(order.PlayerID,WL.ResourceType.Gold);
+				costopt[order.PlayerID][WL.ResourceType.Gold] = terr.NumArmies.NumArmies-Mod.Settings.StackLimit+game.ServerGame.LatestTurnStanding.NumResources(order.PlayerID,WL.ResourceType.Gold);
 				local newdeployorder = WL.GameOrderEvent.Create(order.PlayerID,"Stacklimit reduced deployment to prevent crossing of Stacklimit",{},Effect,costopt);
 				addNewOrder(newdeployorder);
 			else
