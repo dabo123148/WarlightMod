@@ -14,7 +14,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			Deploys = Mod.Settings.MaxDeploy-AlreadyDeployed[on];
 			skipThisOrder(WL.ModOrderControl.Skip);
 			if(Deploys > 0)then
-				addNewOrder(WL.GameOrderDeploy.Create(order.PlayerID,Deploys,on));
+				addNewOrder(WL.GameOrderDeploy.Create(order.PlayerID,Deploys,on,false));
 				--print('Deploys ' .. Deploys .. ' on ' .. game.Map.Territories[on].Name .. AlreadyDeployed[on] .. ' armies deployed');
 				local terri = game.ServerGame.LatestTurnStanding.Territories[on];
 				local remainingarmies = order.NumArmies-Deploys;
@@ -28,7 +28,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 										PlaceFor = remainingarmies;
 									end
 									if(PlaceFor > 0)then
-										addNewOrder(WL.GameOrderDeploy.Create(terri.OwnerPlayerID,PlaceFor,terra.ID));
+										addNewOrder(WL.GameOrderDeploy.Create(terri.OwnerPlayerID,PlaceFor,terra.ID,false));
 										remainingarmies = remainingarmies - PlaceFor;
 										--print('ReDeploys ' .. PlaceFor .. ' on ' .. game.Map.Territories[terra.ID].Name .. ' before there were ' .. AlreadyDeployed[terra.ID] .. ' armies deployed');
 									end
