@@ -55,6 +55,14 @@ function Client_SaveConfigureUI(alert)
 			boundtocards=true;
 		end
 	end
+	Mod.Settings.SurveillanceCard = InputSurveillanceCard.GetIsChecked();
+	if( Mod.Settings.SurveillanceCard == nil)then
+		Mod.Settings.SurveillanceCard = false;
+	else
+		if(Mod.Settings.SurveillanceCard)then
+			boundtocards=true;
+		end
+	end
 	if(boundtocards == false)then
 		if(Mod.Settings.MaxAttacks==0)then
 			alert('With this settings, the mod has no effect');
