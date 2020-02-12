@@ -46,4 +46,10 @@ function Client_PresentConfigureUI(rootParent)
 		initialValue = false;
 	end
 	InputSpyCard = UI.CreateCheckBox(horz).SetText('Activate when Playing Spy Card').SetIsChecked(initialValue);
+	horz = UI.CreateHorizontalLayoutGroup(rootParent);
+	initialValue = Mod.Settings.SurveillanceCard;
+	if initialValue == nil then
+		initialValue = false;
+	end
+	InputSurveillanceCard = UI.CreateCheckBox(horz).SetText('Activate when Playing Surveillance Card').SetIsChecked(initialValue);
 end
