@@ -15,13 +15,18 @@ function Server_AdvanceTurn_Start (game,addNewOrder)
 			boundtoacard=true;
 		end
 	end
-	if(Mod.Settings.ReconnaisanceCard ~= nil)then
-		if(Mod.Settings.ReconnaisanceCard)then
+	if(Mod.Settings.SpyCard ~= nil)then
+		if(Mod.Settings.SpyCard)then
 			boundtoacard=true;
 		end
 	end
-	if(Mod.Settings.SpyCard ~= nil)then
-		if(Mod.Settings.SpyCard)then
+	if(Mod.Settings.SurveillanceCard ~= nil)then
+		if(Mod.Settings.SurveillanceCard)then
+			boundtoacard=true;
+		end
+	end
+	if(Mod.Settings.ReconnaisanceCard ~= nil)then
+		if(Mod.Settings.ReconnaisanceCard)then
 			boundtoacard=true;
 		end
 	end
@@ -43,58 +48,93 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	--result GameOrderAttackTransferResult
 	--order GameOrderAttackTransfer
 	if(boundtoacard)then
-		if(order.proxyType == 'GameOrderPlayCardAirlift') then
-			activated[order.PlayerID] = true;
-			local Maximaleangriffe = Mod.Settings.MaxAttacks;
-			if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
-			if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
-			for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
-				if(terr.OwnerPlayerID == order.PlayerID)then
-					UbrigeAngriffe[terr.ID] = Maximaleangriffe;
+		if(Mod.Settings.AirliftCard ~= nil)then
+			if(Mod.Settings.AirliftCard)then
+				if(order.proxyType == 'GameOrderPlayCardAirlift') then
+					activated[order.PlayerID] = true;
+					local Maximaleangriffe = Mod.Settings.MaxAttacks;
+					if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
+					if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
+					for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
+						if(terr.OwnerPlayerID == order.PlayerID)then
+							UbrigeAngriffe[terr.ID] = Maximaleangriffe;
+						end
+					end
 				end
 			end
 		end
-		if(order.proxyType == 'GameOrderPlayCardReinforcement') then
-			activated[order.PlayerID] = true;
-			local Maximaleangriffe = Mod.Settings.MaxAttacks;
-			if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
-			if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
-			for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
-				if(terr.OwnerPlayerID == order.PlayerID)then
-					UbrigeAngriffe[terr.ID] = Maximaleangriffe;
+		if(Mod.Settings.ReinforcementCard ~= nil)then
+			if(Mod.Settings.ReinforcementCard)then
+				if(order.proxyType == 'GameOrderPlayCardReinforcement') then
+					activated[order.PlayerID] = true;
+					local Maximaleangriffe = Mod.Settings.MaxAttacks;
+					if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
+					if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
+					for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
+						if(terr.OwnerPlayerID == order.PlayerID)then
+							UbrigeAngriffe[terr.ID] = Maximaleangriffe;
+						end
+					end
 				end
 			end
 		end
-		if(order.proxyType == 'GameOrderPlayCardSpy') then
-			activated[order.PlayerID] = true;
-			local Maximaleangriffe = Mod.Settings.MaxAttacks;
-			if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
-			if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
-			for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
-				if(terr.OwnerPlayerID == order.PlayerID)then
-					UbrigeAngriffe[terr.ID] = Maximaleangriffe;
+		if(Mod.Settings.GiftCard ~= nil)then
+			if(Mod.Settings.GiftCard)then
+				if(order.proxyType == 'GameOrderPlayCardGift') then
+					activated[order.PlayerID] = true;
+					local Maximaleangriffe = Mod.Settings.MaxAttacks;
+					if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
+					if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
+					for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
+						if(terr.OwnerPlayerID == order.PlayerID)then
+							UbrigeAngriffe[terr.ID] = Maximaleangriffe;
+						end
+					end
 				end
 			end
 		end
-		if(order.proxyType == 'GameOrderPlayCardReconnaissance') then
-			activated[order.PlayerID] = true;
-			local Maximaleangriffe = Mod.Settings.MaxAttacks;
-			if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
-			if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
-			for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
-				if(terr.OwnerPlayerID == order.PlayerID)then
-					UbrigeAngriffe[terr.ID] = Maximaleangriffe;
+		if(Mod.Settings.SpyCard ~= nil)then
+			if(Mod.Settings.SpyCard)then
+				if(order.proxyType == 'GameOrderPlayCardSpy') then
+					activated[order.PlayerID] = true;
+					local Maximaleangriffe = Mod.Settings.MaxAttacks;
+					if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
+					if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
+					for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
+						if(terr.OwnerPlayerID == order.PlayerID)then
+							UbrigeAngriffe[terr.ID] = Maximaleangriffe;
+						end
+					end
 				end
 			end
 		end
-		if(order.proxyType == 'GameOrderPlayCardSurveillance') then
-			activated[order.PlayerID] = true;
-			local Maximaleangriffe = Mod.Settings.MaxAttacks;
-			if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
-			if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
-			for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
-				if(terr.OwnerPlayerID == order.PlayerID)then
-					UbrigeAngriffe[terr.ID] = Maximaleangriffe;
+		if(Mod.Settings.ReconnaisanceCard ~= nil)then
+			if(Mod.Settings.ReconnaisanceCard)then
+				if(order.proxyType == 'GameOrderPlayCardReconnaissance') then
+					activated[order.PlayerID] = true;
+					local Maximaleangriffe = Mod.Settings.MaxAttacks;
+					if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
+					if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
+					for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
+						if(terr.OwnerPlayerID == order.PlayerID)then
+							UbrigeAngriffe[terr.ID] = Maximaleangriffe;
+						end
+					end
+				end
+			end
+		end
+		if(Mod.Settings.SurveillanceCard ~= nil)then
+			if(Mod.Settings.SurveillanceCard)then
+				if(order.proxyType == 'GameOrderPlayCardSurveillance') then
+					activated[order.PlayerID] = true;
+					local Maximaleangriffe = Mod.Settings.MaxAttacks;
+					if (Maximaleangriffe < 1) then Maximaleangriffe = 1 end;
+					if (Maximaleangriffe > 100000) then Maximaleangriffe = 100000 end;
+					for _, terr in pairs(game.ServerGame.LatestTurnStanding.Territories) do
+						if(terr.OwnerPlayerID == order.PlayerID)then
+							UbrigeAngriffe[terr.ID] = Maximaleangriffe;
+						end
+					end
 				end
 			end
 		end
