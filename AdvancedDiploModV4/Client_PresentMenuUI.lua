@@ -17,6 +17,11 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	root = rootParent;
 	horz = UI.CreateHorizontalLayoutGroup(root);
 	setMaxSize(450, 350);
+if(game.Us == nil) then
+		vert = UI.CreateVerticalLayoutGroup(rootParent);
+		UI.CreateLabel(vert).SetText("You cannot use the Diplomacy Mod, cause you aren't in the game");
+		return;
+	end
 	if(Mod.PublicGameData.War ==nil)then
 		UI.CreateLabel(horz).SetText("This menu is not avalible in distribution");
 		return;
@@ -34,11 +39,6 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		--if(Mod.PublicGameData.War[Game.Us.ID.."0"] == {} or Mod.PublicGameData.War[pd.ID .."0"] ~= nil)then
 		--		print("Test" .. pd.ID);
 		--end
-	end
-	if(game.Us == nil) then
-		vert = UI.CreateVerticalLayoutGroup(rootParent);
-		UI.CreateLabel(vert).SetText("You cannot use the Diplomacy Mod, cause you aren't in the game");
-		return;
 	end
 	if(game.Game.PlayingPlayers[game.Us.ID] == nil)then
 		UI.CreateLabel(horz).SetText("You have been eliminated, so you are no longer able to interact with the mod");
