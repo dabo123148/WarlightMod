@@ -7,6 +7,6 @@ function Client_PresentConfigureUI(rootParent)
     
     local horz = UI.CreateHorizontalLayoutGroup(rootParent);
   	  InputNoTerritory = UI.CreateCheckBox(horz)
-		.SetText('Only effect starting territory.')
+		.SetText('Effect every territory.')
 		.SetIsChecked(initialValue);
 end
