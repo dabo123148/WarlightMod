@@ -14,6 +14,7 @@ function Client_PresentSettingsUI(rootParent)
 	end
 	UI.CreateLabel(rootParent).SetText(' ');
 	UI.CreateLabel(rootParent).SetText('Card Settings');
+	CreateLine('Players in peace to each other can see each others territories : ', Mod.Settings.SeePeaceTerritories,false,false,'If spycards are in the game and this feature is enabled, the mod automaticaly plays a spycard on all players you are in peace with so you can see their territories, this does not effect the lower setting that effects the normal playing of spycards. For that it will not use your spycards. Usefull in games with fog');
 	UI.CreateLabel(rootParent).SetText('Sanction Card');
 	if(AlwaysPlayable(Mod.Settings.SanctionCardRequireWar,Mod.Settings.SanctionCardRequirePeace,Mod.Settings.SanctionCardRequireAlly))then
 		UI.CreateLabel(rootParent).SetText('You can play a Sanction Card on everybody').SetColor('#FF0000');
