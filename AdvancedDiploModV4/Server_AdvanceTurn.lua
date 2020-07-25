@@ -187,7 +187,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 			for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
 				
 				for _,pid2 in pairs(game.ServerGame.Game.PlayingPlayers)do
-					if(pid.ID ~= pid2.ID and InWar(pid2.ID,pid.ID) ==false and IsAlly(pid.ID,pid2.ID) == false)then
+					if(pid.ID ~= pid2.ID and InWar(pid2.ID,pid.ID,game) ==false and IsAlly(pid.ID,pid2.ID,game) == false)then
 						local cardinstance = WL.NoParameterCardInstance.Create(WL.CardID.Spy);
 						addNewOrder(WL.GameOrderReceiveCard.Create(pid.ID, {cardinstance}));
 						addNewOrder(WL.GameOrderPlayCardSpy.Create(cardinstance.ID, pid.ID, pid2));
