@@ -68,6 +68,10 @@ function Client_SaveConfigureUI(alert)
 	if(Mod.Settings.GiftCardRequireAlly == nil)then
 		Mod.Settings.GiftCardRequireAlly = true;
 	end
+	Mod.Settings.SeePeaceTerritories = SeePeaceTerritoriesCheckbox.GetIsChecked();
+	if(Mod.Settings.SeePeaceTerritories == nil)then
+		Mod.Settings.SeePeaceTerritories = true;
+	end
 	if(Mod.Settings.DisableAllies == true) then
 		Mod.Settings.SeeAllyTerritories = false;
 		Mod.Settings.PublicAllies = false;
