@@ -185,13 +185,11 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		end
 		if(Mod.Settings.SeePeaceTerritories ~= nil and Mod.Settings.SeePeaceTerritories == true)then
 			for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
-				local allied = false;
-					for _,pid2 in pairs(game.ServerGame.Game.PlayingPlayers)do
-						if(pid.ID ~= pid2.ID and InWar(pid2.ID,pid.ID) ==false and IsAlly(pid.ID,pid2.ID) == false)then
-							local cardinstance = WL.NoParameterCardInstance.Create(WL.CardID.Spy);
-							addNewOrder(WL.GameOrderReceiveCard.Create(pid.ID, {cardinstance}));
-							addNewOrder(WL.GameOrderPlayCardSpy.Create(cardinstance.ID, pid.ID, pid2));
-						end
+				for _,pid2 in pairs(game.ServerGame.Game.PlayingPlayers)do
+					if(pid.ID ~= pid2.ID and InWar(pid2.ID,pid.ID) ==false and IsAlly(pid.ID,pid2.ID) == false)then
+						local cardinstance = WL.NoParameterCardInstance.Create(WL.CardID.Spy);
+						addNewOrder(WL.GameOrderReceiveCard.Create(pid.ID, {cardinstance}));
+						addNewOrder(WL.GameOrderPlayCardSpy.Create(cardinstance.ID, pid.ID, pid2));
 					end
 				end
 			end
