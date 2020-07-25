@@ -185,6 +185,7 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 		end
 		if(Mod.Settings.SeePeaceTerritories ~= nil and Mod.Settings.SeePeaceTerritories == true)then
 			for _,pid in pairs(game.ServerGame.Game.PlayingPlayers)do
+				
 				for _,pid2 in pairs(game.ServerGame.Game.PlayingPlayers)do
 					if(pid.ID ~= pid2.ID and InWar(pid2.ID,pid.ID) ==false and IsAlly(pid.ID,pid2.ID) == false)then
 						local cardinstance = WL.NoParameterCardInstance.Create(WL.CardID.Spy);
@@ -273,7 +274,7 @@ function InWar(Player1,Player2)
 	return false;
 end
 function IsAlly(Player1,Player2,game)
-	if(game.ServerGame.Game.Players[Player1].IsAI == false)then
+	if(game.ServerGame.Game.Players[Player1].IsAI == false and game.ServerGame.Game.Players[Player2].IsAI == false)then
 		for _,pID in pairs(playerGameData[Player1].Allianzen)do
 			if(pID == Player2)then
 				--both players are allied
