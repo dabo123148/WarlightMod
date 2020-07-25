@@ -73,7 +73,7 @@ function Client_PresentSettingsUI(rootParent)
 	if(Mod.Settings.SeePeaceTerritories ~= nil)then
 		UI.CreateLabel(rootParent).SetText(' ');
 		UI.CreateLabel(rootParent).SetText('Other Settings');
-		CreateLine('Players in peace to each other can see each others territories : ', Mod.Settings.SeePeaceTerritories,false,false,'If spycards are in the game and this feature is enabled, the mod automaticaly plays a spycard on all players you are in peace with so you can see their territories, this does not effect the lower setting that effects the normal playing of spycards. For that it will not use your spycards. Usefull in games with fog');
+		CreateLine('Players in peace to each other can see each others territories : ', Mod.Settings.SeePeaceTerritories,true,true,'If spycards are in the game and this feature is enabled, the mod automaticaly plays a spycard on all players you are in peace with so you can see their territories, this does not effect the lower setting that effects the normal playing of spycards. For that it will not use your spycards. Usefull in games with fog');
 	end
 end
 function CreateLine(settingname,variable,default,important, help)
