@@ -69,6 +69,10 @@ function Client_PresentConfigureUI(rootParent)
 	if(GiftCardRequireAllyinit == nil)then
 		GiftCardRequireAllyinit = true;
 	end
+	SeePeaceTerritoriesinit = Mod.Settings.SeePeaceTerritories;
+	if(SeePeaceTerritoriesinit == nil)then
+		SeePeaceTerritoriesinit = true;
+	end
 	ShowUI();
 end
 function ShowUI()
@@ -131,4 +135,8 @@ function ShowUI()
 	inputGiftCardRequirePeace = UI.CreateCheckBox(horzlist[30]).SetText('Gift Cards can be played on players you are in peace with').SetIsChecked(GiftCardRequirePeaceinit);
 	horzlist[31] = UI.CreateHorizontalLayoutGroup(rootParentobj);
 	inputGiftCardRequireAlly = UI.CreateCheckBox(horzlist[31]).SetText('Gift Cards can be played on ally').SetIsChecked(GiftCardRequireAllyinit);
+	horzlist[32] = UI.CreateHorizontalLayoutGroup(rootParentobj);
+	UI.CreateLabel(horzlist[32]).SetText('Other Settings');
+	horzlist[33] = UI.CreateHorizontalLayoutGroup(rootParentobj);
+	SeePeaceTerritoriesCheckbox = UI.CreateCheckBox(horzlist[33]).SetText('Allow Players to see the territories of players they are in peace with(requires spy card)').SetIsChecked(SeePeaceTerritoriesinit);
 end
