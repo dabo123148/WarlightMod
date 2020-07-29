@@ -27,13 +27,13 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	end
 	if(order.proxyType == "GameOrderPlayCardAbandon" or order.proxyType == "GameOrderPlayCardBlockade")then
 		local targetterr = order.TargetTerritoryID;
-		if(playerGameData[order.PlayerID].HoldTerritories == nil)then
-			playerGameData[order.PlayerID].HoldTerritories = {};
-		end
-		if(playerGameData[order.PlayerID].HoldTerritories[targetterr] == nil)then
-			playerGameData[order.PlayerID].HoldTerritories[targetterr] = nil;
-		end
 		if(game.ServerGame.Game.Players[order.PlayerID].IsAI == false)then
+			if(playerGameData[order.PlayerID].HoldTerritories == nil)then
+				playerGameData[order.PlayerID].HoldTerritories = {};
+			end
+			if(playerGameData[order.PlayerID].HoldTerritories[targetterr] == nil)then
+				playerGameData[order.PlayerID].HoldTerritories[targetterr] = nil;
+			end
 			playerGameData[order.PlayerID].Ownedarmies = playerGameData[order.PlayerID].Ownedarmies - game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies;
 			playerGameData[order.PlayerID].Lostarmies = playerGameData[order.PlayerID].Lostarmies+game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies;
 			playerGameData[order.PlayerID].Killedarmies = playerGameData[order.PlayerID].Killedarmies+game.ServerGame.LatestTurnStanding.Territories[targetterr].NumArmies.NumArmies;
