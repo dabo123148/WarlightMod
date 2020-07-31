@@ -201,6 +201,9 @@ function Server_AdvanceTurn_End (game,addNewOrder)
 	Mod.PlayerGameData = playerGameData;
 end
 function checkwin(pid,addNewOrder,game)
+	if(playerGameData[pid] == nil)then
+		return;
+	end
 	local completed = 0;
 	local required = Mod.Settings.Conditionsrequiredforwin;
 	if(Mod.Settings.Capturedterritories ~= 0)then
