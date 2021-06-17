@@ -3,7 +3,8 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	root = rootParent;
 	setMaxSize(450, 350);
 	if (game.Settings.CommerceGame == false) then
-		UI.CreateLabel(vert).SetText("This mod only works in commerce games.  This isn't a commerce game.");
+		horz = UI.CreateHorizontalLayoutGroup(rootParent);
+		UI.CreateLabel(horz).SetText("This mod only works in commerce games.  This isn't a commerce game.");
 		return;
 	end
 	if(game.Us == nil) then
