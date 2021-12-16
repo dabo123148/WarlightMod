@@ -142,9 +142,11 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 	if(order.proxyType == 'GameOrderAttackTransfer') then
 		if(UbrigeAngriffe[order.From] > 0 or (activated[order.PlayerID] and Mod.Settings.MaxAttacks == 0))then
 			if(result.IsSuccessful)then
+				-- removed the else statement, it was the main issue of the bug
 				if(game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID ~= game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID)then
 					UbrigeAngriffe[order.To] = UbrigeAngriffe[order.From];
 				end
+				-- changed if statement below, otherwise it would treat a transfer the same as an attack
 				if(UbrigeAngriffe[order.To] ~= 0 and game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID ~= game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID)then
 					UbrigeAngriffe[order.To] = UbrigeAngriffe[order.To] - 1;
 				end
