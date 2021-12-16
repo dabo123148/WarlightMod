@@ -144,15 +144,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			if(result.IsSuccessful)then
 				if(game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID ~= game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID)then
 					UbrigeAngriffe[order.To] = UbrigeAngriffe[order.From];
-				else
-					UbrigeAngriffe[order.To] = -1;
 				end
-				if(Mod.Settings.MaxAttacks == 0 and UbrigeAngriffe[order.To] ~= 0)then
+				if(UbrigeAngriffe[order.To] ~= 0 and game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID ~= game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID)then
 					UbrigeAngriffe[order.To] = UbrigeAngriffe[order.To] - 1;
-				else
-					if(UbrigeAngriffe[order.To] ~= 0)then
-						UbrigeAngriffe[order.To] = UbrigeAngriffe[order.To] - 1;
-					end
 				end
 			else
 				if(order.PlayerID == game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID)then
