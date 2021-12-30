@@ -64,7 +64,7 @@ function Client_SaveConfigureUI(alert)
 		end
 	end
 	if(boundtocards == false)then
-		if(Mod.Settings.MaxAttacks==0)then
+		if(Mod.Settings.MaxAttacks==0 and Mod.Settings.ContinueAttackIfFailed==true)then
 			alert('With this settings, the mod has no effect');
 		end
 	end
