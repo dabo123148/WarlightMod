@@ -145,7 +145,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			return;
 		end
 		-- it says in the mod configuration that when MaxAttacks set to 0 there is unlimited multi attacks, but I believe you get an alert of you set it to 0
-		if(UbrigeAngriffe[order.From] > 0 or (activated[order.PlayerID] and Mod.Settings.MaxAttacks == 0))then
+		if(UbrigeAngriffe[order.From] > 0 or (activated[order.PlayerID] and Mod.Settings.MaxAttacks == 0 and boundtocard))then
 			if(result.IsSuccessful)then
 				-- check if the attack was a transfer, if this is the case do nothing
 				-- Warzone itself makes sure these armies are not able to move again
