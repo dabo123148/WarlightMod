@@ -1,1 +1,0 @@
-New Warlight AI made for supporting Mods. If you have the Mod Support turned on, you needn't to active the Mods seperatly cause this may lead to bugs.
