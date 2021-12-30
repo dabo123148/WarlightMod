@@ -152,7 +152,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				if(game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID ~= game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID)then
 					-- order was an attack, so we can set the table value at order.To to the table value at order.From - 1
 					UbrigeAngriffe[order.To] = UbrigeAngriffe[order.From] - 1;
-					if(Mod.Settings.MaxAttacks == 0 and Mod.Settings.ContinueAttackIfFailed == true) then
+					--Case: you want a game where you play normally just where you can not attack anylonger from a territory once the attack fails
+					if(Mod.Settings.MaxAttacks == 0 and Mod.Settings.ContinueAttackIfFailed == false and boundtocard == false) then
 						UbrigeAngriffe[order.To] = 1
 					end
 				end
