@@ -1,1 +1,0 @@
-This Mod allows you to limit the maximum number of attacks of a multiattack.
