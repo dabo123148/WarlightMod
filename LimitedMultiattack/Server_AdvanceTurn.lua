@@ -140,6 +140,10 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 		end
 	end
 	if(order.proxyType == 'GameOrderAttackTransfer') then
+		if(order.PlayerID ~= game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID) then
+			skipThisOrder(WL.ModOrderControl.Skip);
+			return;
+		end
 		-- it says in the mod configuration that when MaxAttacks set to 0 there is unlimited multi attacks, but I believe you get an alert of you set it to 0
 		if(UbrigeAngriffe[order.From] > 0 or (activated[order.PlayerID] and Mod.Settings.MaxAttacks == 0))then
 			if(result.IsSuccessful)then
