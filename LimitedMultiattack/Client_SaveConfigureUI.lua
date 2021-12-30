@@ -64,8 +64,12 @@ function Client_SaveConfigureUI(alert)
 		end
 	end
 	if(boundtocards == false)then
-		if(Mod.Settings.MaxAttacks==0 and Mod.Settings.ContinueAttackIfFailed==true)then
-			alert('With this settings, the mod has no effect');
+		if(Mod.Settings.MaxAttacks==0)then
+			if(Mod.Settings.ContinueAttackIfFailed==true)then
+				alert('The mod is not designed for this setting combination. Unlimited MaxAttacks needs to be bound to a card');
+			else
+				alert('With this settings, the mod has no effect');
+			end
 		end
 	end
 end
