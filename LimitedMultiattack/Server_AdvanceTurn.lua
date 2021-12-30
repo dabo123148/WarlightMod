@@ -145,17 +145,13 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 			return;
 		end
 		-- it says in the mod configuration that when MaxAttacks set to 0 there is unlimited multi attacks, but I believe you get an alert of you set it to 0
-		if(UbrigeAngriffe[order.From] > 0 or (activated[order.PlayerID] and Mod.Settings.MaxAttacks == 0 and boundtocard))then
+		if(UbrigeAngriffe[order.From] > 0 or (activated[order.PlayerID] and Mod.Settings.MaxAttacks == 0))then
 			if(result.IsSuccessful)then
 				-- check if the attack was a transfer, if this is the case do nothing
 				-- Warzone itself makes sure these armies are not able to move again
 				if(game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID ~= game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID)then
 					-- order was an attack, so we can set the table value at order.To to the table value at order.From - 1
 					UbrigeAngriffe[order.To] = UbrigeAngriffe[order.From] - 1;
-					--Case: you want a game where you play normally just where you can not attack anylonger from a territory once the attack fails
-					if(Mod.Settings.MaxAttacks == 0 and Mod.Settings.ContinueAttackIfFailed == false and boundtocard == false) then
-						UbrigeAngriffe[order.To] = 1
-					end
 				end
 			else
 				if(order.PlayerID == game.ServerGame.LatestTurnStanding.Territories[order.From].OwnerPlayerID)then
