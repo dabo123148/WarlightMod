@@ -16,7 +16,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 								newarmies = 0;
 							end
 							effect.SetArmiesTo = newarmies;
-							addNewOrder(WL.GameOrderEvent.Create(FromOwner, "Heal", {}, {effect},true));
+							addNewOrder(WL.GameOrderEvent.Create(FromOwner, "Heal", {}, {effect}));
 						end
 						if(game.ServerGame.LatestTurnStanding.Territories[conn.ID].OwnerPlayerID == ToOwner)then
 							local effect = WL.TerritoryModification.Create(conn.ID);
@@ -25,7 +25,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 								newarmies = 0;
 							end
 							effect.SetArmiesTo = newarmies;
-							addNewOrder(WL.GameOrderEvent.Create(ToOwner, "Heal", {}, {effect},true));
+							addNewOrder(WL.GameOrderEvent.Create(ToOwner, "Heal", {}, {effect}));
 						end
 					end
 				end
