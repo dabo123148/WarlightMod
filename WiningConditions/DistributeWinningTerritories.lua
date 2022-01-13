@@ -1,9 +1,9 @@
 function DistributeItems(game, standing)
 
     for _,condition in pairs(Mod.Settings.terrcondition)do
-			local terrid = getterrid(game,condition.Terrname);
+	local terrid = getterrid(game,condition.Terrname);
       if(terrid ~= -1) then
-        local s = terrs[i].Structures;
+        local s = standing.Territories[terrid].Structures;
         if (s == nil) then 
           s = {}; 
         end;
