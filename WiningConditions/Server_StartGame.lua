@@ -44,5 +44,7 @@ function Server_StartGame(game,standing)
 		pid = nil;
 	end
    	Mod.PlayerGameData = playerGameData;
-	DistributeItems(game,standing);
+	if (game.Settings.AutomaticTerritoryDistribution) then
+		DistributeItems(game,standing);
+	end
 end
