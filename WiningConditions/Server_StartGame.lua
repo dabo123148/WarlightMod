@@ -1,5 +1,5 @@
+require('DistributeWinningTerritories')
 function Server_StartGame(game,standing)
-	print("Test1");
    	local playerGameData = Mod.PlayerGameData;
 	for _,pid in pairs(game.ServerGame.Game.Players)do
 		if(pid.IsAI == false)then
@@ -16,7 +16,6 @@ function Server_StartGame(game,standing)
 			playerGameData[pid.ID].Eleminateais = 0;
 			playerGameData[pid.ID].Eleminateplayers = 0;
 			playerGameData[pid.ID].Eleminateaisandplayers = 0;
-			print("Test2");
 		end
 	end
 	for _,terr in pairs(standing.Territories)do
@@ -44,6 +43,6 @@ function Server_StartGame(game,standing)
 		end
 		pid = nil;
 	end
-	print("Test3");
    	Mod.PlayerGameData = playerGameData;
+	DistributeItems(game,standing);
 end
