@@ -11,7 +11,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 								local Effect = {};
 								local Player = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 								for _,terr2 in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-									if(Player==terr2.OwnerPlayerID)then
+									if(Player==terr2.OwnerPlayerID and terr.id ~= order.To)then
 										Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terr2.ID); 
 										Effect[tablelength(Effect)].SetOwnerOpt = WL.PlayerID.Neutral;
 									end
@@ -24,7 +24,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 					local Effect = {};
 					local Player = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 					for _,terr in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-						if(Player==terr.OwnerPlayerID)then
+						if(Player==terr.OwnerPlayerID and terr.id ~= order.To)then
 							Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terr.ID); 
 							Effect[tablelength(Effect)].SetOwnerOpt = WL.PlayerID.Neutral;
 						end
