@@ -7,10 +7,8 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				if(Mod.Settings.NoTerritory == nil or Mod.Settings.NoTerritory == false)then
 					for _,terr in pairs(game.ServerGame.TurnZeroStanding.Territories)do
 						if(terr.ID == order.To)then
-							print('Test1')
 							local Player = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 							if(terr.OwnerPlayerID == Player)then
-								print('Test2')
 								local Effect = {};
 								for _,terr2 in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 									if(Player==terr2.OwnerPlayerID and terr2.ID ~= order.To)then
