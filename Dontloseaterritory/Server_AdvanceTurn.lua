@@ -7,9 +7,9 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 				if(Mod.Settings.NoTerritory == nil or Mod.Settings.NoTerritory == false)then
 					for _,terr in pairs(game.ServerGame.TurnZeroStanding.Territories)do
 						if(terr.ID == order.To)then
-							if(terr.OwnerPlayerID ~= WL.PlayerID.Neutral)then
+							local Player = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
+							if(terr.OwnerPlayerID == Player)then
 								local Effect = {};
-								local Player = game.ServerGame.LatestTurnStanding.Territories[order.To].OwnerPlayerID;
 								for _,terr2 in pairs(game.ServerGame.LatestTurnStanding.Territories)do
 									if(Player==terr2.OwnerPlayerID and terr.ID ~= order.To)then
 										Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terr2.ID); 
