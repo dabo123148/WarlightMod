@@ -13,7 +13,7 @@ function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrde
 								print('Test2')
 								local Effect = {};
 								for _,terr2 in pairs(game.ServerGame.LatestTurnStanding.Territories)do
-									if(Player==terr2.OwnerPlayerID and terr.ID ~= order.To)then
+									if(Player==terr2.OwnerPlayerID and terr2.ID ~= order.To)then
 										Effect[tablelength(Effect)+1] = WL.TerritoryModification.Create(terr2.ID); 
 										Effect[tablelength(Effect)].SetOwnerOpt = WL.PlayerID.Neutral;
 									end
