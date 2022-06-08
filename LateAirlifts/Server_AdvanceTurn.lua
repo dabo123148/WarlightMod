@@ -14,8 +14,9 @@ function Server_AdvanceTurn_End(game,addNewOrder)
 	if(executed == false) then
 		executed = true;
 		for _,order in pairs(SkippedAirlifts)do
+			local toowner = game.ServerGame.LatestTurnStanding.Territories[order.ToTerritoryID].OwnerPlayerID;
 			if(order.PlayerID == game.ServerGame.LatestTurnStanding.Territories[order.FromTerritoryID].OwnerPlayerID)then
-				if(game.ServerGame.LatestTurnStanding.Territories[order.FromTerritoryID].OwnerPlayerID == game.ServerGame.LatestTurnStanding.Territories[order.ToTerritoryID].OwnerPlayerID)then
+				if(game.ServerGame.Players[order.PlayerID].TeamID == game.ServerGame.Players[toowner].TeamID)then
 					addNewOrder(order);
 				end
 			end
