@@ -1,6 +1,11 @@
 
 function Client_SaveConfigureUI(alert)
-  	Mod.Settings.GiftCardCost = GiftCardCostinput.GetValue();
+  	
+	Mod.Settings.ReinforcementCardCost = ReinforcementCardCostinput.GetValue();
+	if(Mod.Settings.ReinforcementCardCost > 100000 or Mod.Settings.ReinforcementCardCost < 0)then
+		alert("Reinforcement card cost is invalid");
+	end
+	Mod.Settings.GiftCardCost = GiftCardCostinput.GetValue();
 	if(Mod.Settings.GiftCardCost > 100000 or Mod.Settings.GiftCardCost < 0)then
 		alert("gift card cost is invalid");
 	end
