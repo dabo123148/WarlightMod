@@ -1,5 +1,36 @@
 function Server_AdvanceTurn_Order(game, order, result, skipThisOrder, addNewOrder)
+	
+
+	--game.Settings.Cards[WL.CardID.Reinforcement].FixedArmies
+--[[ Fixed	0
+609: ProgressiveByNumberOfTerritories	1
+609: ProgressiveByTurnNumber	2]]--
+
 	if(order.proxyType == "GameOrderCustom")then
+
+	
+		
+
+		if(order.Message == "Buy Fixed Reinforcement Card")then
+			
+			if(order.CostOpt[WL.ResourceType.Gold]== Mod.Settings.ReinforcementCardCost)then
+				
+				if(game.Settings.Cards[WL.CardID.Reinforcement] ~= nil and game.Settings.Cards[WL.CardID.Reinforcement].Mode == 0)then
+					local cardinstance = WL.ReinforcementCardInstance.Create(game.Settings.Cards[WL.CardID.Reinforcement].FixedArmies);
+					addNewOrder(WL.GameOrderReceiveCard.Create(order.PlayerID, {cardinstance}));
+				
+				else
+					--somehow the card got purchased even though it is not in the game
+					skipThisOrder(WL.ModOrderControl.Skip);
+					return;
+				end
+			
+			else
+				--price got manipulated
+				skipThisOrder(WL.ModOrderControl.Skip);
+				return;
+			end
+		end
 		if(order.Message == "Buy Gift Card")then
 			if(order.CostOpt[WL.ResourceType.Gold]== Mod.Settings.GiftCardCost)then
 				if(game.Settings.Cards[WL.CardID.Gift] ~= nil)then

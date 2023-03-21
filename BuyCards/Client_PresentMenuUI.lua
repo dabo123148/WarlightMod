@@ -20,7 +20,19 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	OpenMenu()
 end
 function OpenMenu()
+print (Mod.Settings.GiftCardCost .. " " .. Mod.Settings.ReinforcementCardCost)
+
 	vert = UI.CreateVerticalLayoutGroup(root);
+
+	buyReinforcementcard = UI.CreateButton(vert).SetText("Buy Fixed Reinforcement card for " .. Mod.Settings.ReinforcementCardCost).SetOnClick(function()
+		local goldHave = CalculateGoldUsed() ;
+		if(goldHave<Mod.Settings.ReinforcementCardCost)then
+			UI.Alert("You dont have enough Gold to buy this card");
+			return;
+		end
+		addOrder(WL.GameOrderCustom.Create(Game.Us.ID, "Buy Fixed Reinforcement Card", "",{ [WL.ResourceType.Gold] = Mod.Settings.ReinforcementCardCost }));
+		CalcuateBuyPossiblities(); end);
+
 	buygiftcard = UI.CreateButton(vert).SetText("Buy Gift Card for " .. Mod.Settings.GiftCardCost).SetOnClick(function() 
 		local goldHave = CalculateGoldUsed();
 		if(goldHave<Mod.Settings.GiftCardCost)then
@@ -29,6 +41,7 @@ function OpenMenu()
 		end
 		addOrder(WL.GameOrderCustom.Create(Game.Us.ID, "Buy Gift Card", "",{ [WL.ResourceType.Gold] = Mod.Settings.GiftCardCost }));
 		CalcuateBuyPossiblities(); end);
+
 	buyspycard = UI.CreateButton(vert).SetText("Buy Spy Card for " .. Mod.Settings.SpyCardCost).SetOnClick(function() 
 		local goldHave = CalculateGoldUsed();
 		if(goldHave<Mod.Settings.SpyCardCost)then
@@ -37,7 +50,8 @@ function OpenMenu()
 		end
 		addOrder(WL.GameOrderCustom.Create(Game.Us.ID, "Buy Spy Card", "",{ [WL.ResourceType.Gold] = Mod.Settings.SpyCardCost }));
 		CalcuateBuyPossiblities(); end);
-	buyemergencyblockardcard = UI.CreateButton(vert).SetText("Buy Emergency Blockade Card for " .. Mod.Settings.EmergencyBlockadeCardCost).SetOnClick(function() 
+
+	buyemergencyblockardcard = UI.CreateButton(vert).SetText("Buy Emergency Blockade Card for " .. Mod.Settings.EmergencyBlockadeCardCost).SetOnClick(function()
 		local goldHave = CalculateGoldUsed();
 		if(goldHave<Mod.Settings.EmergencyBlockadeCardCost)then
 			UI.Alert("You dont have enough Gold to buy this card");
@@ -119,16 +133,24 @@ function OpenMenu()
 		CalcuateBuyPossiblities(); end);
 	CalcuateBuyPossiblities();
 end
+
+
 function CalculateGoldUsed()
 	return Game.LatestStanding.NumResources(Game.Us.ID, WL.ResourceType.Gold);
 end
+
+
 --Calculates which cards can be bought
 function CalcuateBuyPossiblities()
-	if(Game.Settings.Cards[WL.CardID.Gift] == nil or Mod.Settings.GiftCardCost == 0)then
+
+	if( Game.Settings.Cards[WL.CardID.Reinforcement] == nil or  Mod.Settings.ReinforcementCardCost == 0)then
+		buyReinforcementcard.SetInteractable(false).SetText("Fixed Reinforcement cards can not be purchased");
+	end
+	if( Game.Settings.Cards[WL.CardID.Gift] == nil or  Mod.Settings.GiftCardCost == 0)then
 		buygiftcard.SetInteractable(false).SetText("Gift cards can not be purchased");
 	end
 	if(Game.Settings.Cards[WL.CardID.Spy] == nil or Mod.Settings.SpyCardCost == 0)then
-		buyspycard.SetInteractable(false).SetText("Gift cards can not be purchased");
+		buyspycard.SetInteractable(false).SetText("Spy cards can not be purchased");
 	end
 	if(Game.Settings.Cards[WL.CardID.EmergencyBlockade] == nil or Mod.Settings.EmergencyBlockadeCardCost == 0)then
 		buyemergencyblockardcard.SetInteractable(false).SetText("EmergencyBlockade cards can not be purchased");
