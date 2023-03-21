@@ -1,12 +1,13 @@
 
 function Client_PresentSettingsUI(rootParent)
 	root = rootParent;
-
+	if(Mod.Settings.ReinforcementCardCost ~=nil)then
 	if(Mod.Settings.ReinforcementCardCost ~= 0)then
 		CreateLine('Reinforcement Card Cost : ',Mod.Settings.ReinforcementCardCost,Mod.Settings.ReinforcementCardCost);
 	else
 		CreateTextLine('Reinforcement Cards can not be purchased');
 	end
+		end
 	if(Mod.Settings.GiftCardCost ~= 0)then
 		CreateLine('Gift Card Cost : ',Mod.Settings.GiftCardCost,Mod.Settings.GiftCardCost);
 	else
