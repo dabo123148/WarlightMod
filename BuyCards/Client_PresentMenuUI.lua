@@ -20,10 +20,9 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	OpenMenu()
 end
 function OpenMenu()
-print (Mod.Settings.GiftCardCost .. " " .. Mod.Settings.ReinforcementCardCost)
 
 	vert = UI.CreateVerticalLayoutGroup(root);
-
+	if(Mod.Settings.ReinforcementCardCost ~=nil)then
 	buyReinforcementcard = UI.CreateButton(vert).SetText("Buy Fixed Reinforcement card for " .. Mod.Settings.ReinforcementCardCost).SetOnClick(function()
 		local goldHave = CalculateGoldUsed() ;
 		if(goldHave<Mod.Settings.ReinforcementCardCost)then
@@ -32,7 +31,7 @@ print (Mod.Settings.GiftCardCost .. " " .. Mod.Settings.ReinforcementCardCost)
 		end
 		addOrder(WL.GameOrderCustom.Create(Game.Us.ID, "Buy Fixed Reinforcement Card", "",{ [WL.ResourceType.Gold] = Mod.Settings.ReinforcementCardCost }));
 		CalcuateBuyPossiblities(); end);
-
+	end
 	buygiftcard = UI.CreateButton(vert).SetText("Buy Gift Card for " .. Mod.Settings.GiftCardCost).SetOnClick(function() 
 		local goldHave = CalculateGoldUsed();
 		if(goldHave<Mod.Settings.GiftCardCost)then
