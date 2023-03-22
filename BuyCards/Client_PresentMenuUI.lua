@@ -142,7 +142,7 @@ end
 --Calculates which cards can be bought
 function CalcuateBuyPossiblities()
 
-	if( Game.Settings.Cards[WL.CardID.Reinforcement] == nil or  Mod.Settings.ReinforcementCardCost == 0)then
+	if(Mod.Settings.ReinforcementCardCost ~= nil and Game.Settings.Cards[WL.CardID.Reinforcement] == nil or  Mod.Settings.ReinforcementCardCost == 0)then
 		buyReinforcementcard.SetInteractable(false).SetText("Fixed Reinforcement cards can not be purchased");
 	end
 	if( Game.Settings.Cards[WL.CardID.Gift] == nil or  Mod.Settings.GiftCardCost == 0)then
