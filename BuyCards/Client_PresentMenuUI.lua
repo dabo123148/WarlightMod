@@ -25,6 +25,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		}
 
 		UI.CreateLabel(horz).SetText(reason);
+		return
 	end
 	if(game.Game.PlayingPlayers[game.Us.ID] == nil)then
 		horz = UI.CreateHorizontalLayoutGroup(root);
