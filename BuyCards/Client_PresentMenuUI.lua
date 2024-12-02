@@ -15,17 +15,17 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	end
 	if (game.Game.State ~= WL.GameState.Playing) then
 		local horz = UI.CreateHorizontalLayoutGroup(rootParent);
-		local reason = 'You cannot use the mod because ';
+		local reason = "You cannot use the mod because ";
 	
 		if (game.Game.State == DistributingTerritories) {
-			reason = reason + " territory picks are not over";
+			reason = reason + "territory picks are not over";
 		}
 		else {
-			reason = reason + " the game is over";
+			reason = reason + "the game is over";
 		}
 
 		UI.CreateLabel(horz).SetText(reason);
-		return
+		return;
 	end
 	if(game.Game.PlayingPlayers[game.Us.ID] == nil)then
 		horz = UI.CreateHorizontalLayoutGroup(root);
