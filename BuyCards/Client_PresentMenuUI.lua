@@ -18,10 +18,10 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		local reason = "You cannot use the mod because ";
 	
 		if (game.Game.State == WL.GameState.DistributingTerritories) {
-			reason = reason + "territory picks are not over";
+			reason = reason .. "territory picks are not over";
 		}
 		else {
-			reason = reason + "the game is over";
+			reason = reason .. "the game is over";
 		}
 
 		UI.CreateLabel(horz).SetText(reason);
