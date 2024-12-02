@@ -17,7 +17,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 		local horz = UI.CreateHorizontalLayoutGroup(rootParent);
 		local reason = "You cannot use the mod because ";
 	
-		if (game.Game.State == DistributingTerritories) {
+		if (game.Game.State == WL.GameState.DistributingTerritories) {
 			reason = reason + "territory picks are not over";
 		}
 		else {
