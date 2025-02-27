@@ -1,1 +1,1 @@
-Airlifts will happen through this Mod as last order
+Causes airlifts to happen at the end of a turn instead of at the beginning. The airlift will be canceled if you no longer own that territory at that time.
