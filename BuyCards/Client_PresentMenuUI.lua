@@ -2,6 +2,7 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	Game = game;
 	root = rootParent;
 	setMaxSize(450, 350);
+
 	if (game.Settings.CommerceGame == false) then
 		horz = UI.CreateHorizontalLayoutGroup(rootParent);
 		UI.CreateLabel(horz).SetText("This mod only works in commerce games.  This isn't a commerce game.");
@@ -10,6 +11,20 @@ function Client_PresentMenuUI(rootParent, setMaxSize, setScrollable, game)
 	if(game.Us == nil) then
 		horz = UI.CreateHorizontalLayoutGroup(rootParent);
 		UI.CreateLabel(horz).SetText("You cannot use the mod, cause you aren't in the game");
+		return;
+	end
+	if (game.Game.State ~= WL.GameState.Playing) then
+		local horz = UI.CreateHorizontalLayoutGroup(rootParent);
+		local reason = "You cannot use the mod because ";
+	
+		if (game.Game.State == WL.GameState.DistributingTerritories) {
+			reason = reason .. "territory picks are not over";
+		}
+		else {
+			reason = reason .. "the game is over";
+		}
+
+		UI.CreateLabel(horz).SetText(reason);
 		return;
 	end
 	if(game.Game.PlayingPlayers[game.Us.ID] == nil)then
